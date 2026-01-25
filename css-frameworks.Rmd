@@ -1,41 +1,41 @@
-# CSS Frameworks
-The previous chapters have covered how to use CSS to make your page both stylish and responsive. While it is certain possible to implement an entire site by creating your own CSS rules, that can quickly get tedious: often you'd like a page to have a "standard" set of rules (because the browser's style-less appearance) and then customize those rules to your liking.
+# CSS Framework
+Le lezioni precedenti hanno mostrato come usare CSS per rendere una pagina sia bella sia responsive. Sebbene sia possibile implementare un intero sito creando le proprie regole CSS, questo puo' diventare rapidamente noioso: spesso vuoi una serie di regole "standard" (perche' l'aspetto senza stile del browser) e poi personalizzarle a tuo piacimento.
 
-For this reason, most professional web developers utilize an existing **CSS Framework** instead. A CSS Framework is a stylesheet (a `.css` file!) that contains a large list of pre-defined rules that you can apply to your page. CSS frameworks provide a number of benefits:
+Per questo motivo, la maggior parte dei web developer professionisti usa un **CSS Framework** esistente. Un CSS Framework e' uno stylesheet (un file `.css`) che contiene molte regole predefinite che puoi applicare alla pagina. I framework offrono diversi benefici:
 
-- _Applies attractive default styling to all HTML elements_: CSS frameworks make your pages instantly look better through a bunch of element selector rules. Frameworks provide pleasant default fonts, line spacing, spacing, and link styling without any extra effort on your part.
-- _Provides style classes for common UI components_: framework stylesheets will also include CSS classes you can add to your markup to easily include badges, in-page tabs, drop-down buttons, multi-column layouts, and more. Frameworks enable you to add style your page by specifying CSS classes, rather than needing to define multiple CSS rules for a single effect.
+- _Applica uno styling di default gradevole a tutti gli elementi HTML_: i framework rendono le pagine subito piu' belle con regole su selector di elementi. Forniscono font piacevoli, line-height, spacing e link styling senza sforzo aggiuntivo.
+- _Fornisce class di stile per componenti UI comuni_: gli stylesheet dei framework includono class CSS che puoi aggiungere al markup per badge, tab in-page, drop-down button, layout multi-colonna e altro. I framework permettono di stilizzare la pagina con class, invece di scrivere molte regole per lo stesso effetto.
 
-CSS frameworks are thus designed to make your life easier and your development more efficient&mdash;while still enabling you to provide your own customizations and styling with all of the power of CSS.
+I CSS framework sono pensati per rendere il lavoro piu' semplice ed efficiente, pur permettendoti di personalizzare e usare tutta la potenza di CSS.
 
 <!-- ### Popular Frameworks {-} -->
-There are many different CSS frameworks to choose from. Some popular ones include:
+Ci sono molti CSS framework tra cui scegliere. Alcuni popolari:
 
-- [**Bootstrap**](http://getbootstrap.com/) is the most commonly used CSS framework on the web. Sometimes called "Twitter Bootstrap", it was originally created at Twitter to enforce some consistency among their internal tools, but was released as an open-source project in 2011. Its popularity has benefits and drawbacks: it's very well tested, documented, and supported, but it's also so prevalent that it's default look has become cliché.
+- [**Bootstrap**](http://getbootstrap.com/) e' il framework CSS piu' usato sul web. A volte chiamato "Twitter Bootstrap", e' stato creato in Twitter per dare coerenza agli strumenti interni, poi rilasciato open source nel 2011. La sua popolarita' ha pro e contro: e' ben testato, documentato e supportato, ma e' cosi' diffuso che il suo look di default e' diventato un po' cliche'.
 
-    As of this writing, the latest major version of Bootstrap is **v5**, released in May 2021. This is a major update of v4 (released in 2017). Note that Bootstrap 4 introduced Flexbox as a foundation for its grid system, offering better performance. For this and other reasons, Bootstrap 4+ does **not support** IE 9 or earlier browsers. For older browsers, you'd need to use an even earlier version&mdash;or probably just skip the framework entirely at that point.
+    Al momento, l'ultima major release di Bootstrap e' **v5**, rilasciata a maggio 2021. E' un aggiornamento importante rispetto alla v4 (2017). Nota che Bootstrap 4 ha introdotto Flexbox come base per il grid system, con migliori performance. Per questo e altri motivi, Bootstrap 4+ **non supporta** IE 9 o precedenti. Per browser vecchi dovresti usare una versione ancora piu' vecchia -- o probabilmente evitare il framework.
 
-    <div class="alert alert-warning">This text discusses Bootstrap 5 as an example. It is recommended to always use the latest version of a library or framework. Be careful that you are looking at information about the right version if you seek out documentation or help online!</div>
+    <div class="alert alert-warning">Questo testo usa Bootstrap 5 come esempio. E' consigliato usare sempre l'ultima versione di una libreria o framework. Assicurati di leggere la documentazione della versione corretta!</div>
 
-- [**Foundation**](http://foundation.zurb.com/) has a reputation for being more ahead-of-the-curve than Bootstrap (introducing new features sooner). For example, it was the first framework to use a responsive mobile-first design, and provided a Flexbox-based grid long before Bootstrap. Foundation has most of the same UI elements as Bootstrap, but with a different look and feel (that can be [customized](http://foundation.zurb.com/sites/download.html/#customizeFoundation) through a web-based tool).
+- [**Foundation**](http://foundation.zurb.com/) ha la reputazione di essere piu' "ahead-of-the-curve" rispetto a Bootstrap (introduce nuove feature prima). Per esempio, e' stato il primo framework con design responsive mobile-first e ha fornito una grid basata su Flexbox molto prima di Bootstrap. Foundation ha quasi gli stessi elementi UI di Bootstrap ma con un look diverso (personalizzabile con uno [strumento web](http://foundation.zurb.com/sites/download.html/#customizeFoundation)).
 
-- [**Material Components for the Web (MCW)**](https://material.io/components/web/) is an official implementation of Google's [Material Design](https://material.google.com/) visual language. This is the look-and-feel found in most Google products and Android applications. Material Design is very opinionated so MCW is very difficult to customize. The MCW style class names are also very verbose, as they follow the [Block, Element, Modifier (BEM)](https://en.bem.info/methodology/) naming scheme.
+- [**Material Components for the Web (MCW)**](https://material.io/components/web/) e' l'implementazione ufficiale del linguaggio visivo [Material Design](https://material.google.com/) di Google. E' il look&feel di molti prodotti Google e app Android. Material Design e' molto opinionato, quindi MCW e' difficile da personalizzare. I nomi delle class MCW sono molto verbosi perche' seguono lo schema [Block, Element, Modifier (BEM)](https://en.bem.info/methodology/).
 
-- [**Materialize**](http://materializecss.com/) is the other popular Material Design implementation. This is an open-source project, so it is not provided nor supported by Google. However, it is structurally similar to Bootstrap, making it easy to learn and popular among people who know that framework.
+- [**Materialize**](http://materializecss.com/) e' l'altra implementazione Material Design popolare. E' open-source, quindi non fornita da Google. Tuttavia e' strutturalmente simile a Bootstrap, rendendola facile da imparare e popolare tra chi conosce Bootstrap.
 
-- [**normalize.css**](http://necolas.github.io/normalize.css/) is not so much a full framework as a small utility that performs browser normalization (also called a "reset"). `normalize.css` standardizes the quirks across browsers and making it so that the same HTML and CSS is displayed more consistently and without errors. Note that most other frameworks include some version of this package (for example, Bootstrap contains a fork called [Reboot](https://medium.com/css-mine/bootstraps-reboot-next-evolutionary-step-for-css-reset-a30f718521b9)).
+- [**normalize.css**](http://necolas.github.io/normalize.css/) non e' un framework completo, ma una utility che fa browser normalization ("reset"). `normalize.css` standardizza le differenze tra browser e rende lo stesso HTML/CSS piu' consistente. Nota che molti framework includono una variante di questo pacchetto (ad es. Bootstrap include una fork chiamata [Reboot](https://medium.com/css-mine/bootstraps-reboot-next-evolutionary-step-for-css-reset-a30f718521b9)).
 
-    If you choose **not** to use a framework, you should still include `normalize` to make your sites consistent across browsers!
+    Se scegli **di non** usare un framework, dovresti comunque includere `normalize` per rendere i siti consistenti tra browser.
 
-Other frameworks exist as well, each with its own benefits and drawbacks (e.g., [Skeleton](http://getskeleton.com/) is designed to be as lightweight as possible, but at the cost of features).
+Esistono anche altri framework, ciascuno con pro e contro (ad es. [Skeleton](http://getskeleton.com/) e' ultra-leggero ma con meno feature).
 
-## Using a Framework
-The important thing to realize is that a CSS framework is **just a stylesheet with a bunch of rules that someone else wrote for you**. There's nothing magic about them. You can look at the stylesheet and see all the rules that have been defined, and it's all stuff you could have written yourself (though some of it can be quite complex). But those rules have been crafted by professionals and tested on a wide array of browsers to ensure consistent results, so it's a good idea to build on top of them rather than trying to re-invent the wheel.
+## Usare un framework
+La cosa importante e' che un CSS framework e' **solo uno stylesheet con regole scritte da qualcun altro**. Non c'e' nulla di magico. Puoi guardare il CSS e vedere tutte le regole -- sono cose che potresti scrivere anche tu (anche se alcune sono complesse). Ma queste regole sono state create da professionisti e testate su molti browser per risultati consistenti, quindi conviene costruire sopra di esse invece di reinventare la ruota.
 
-For example, you can view the `normalize.css` file at https://necolas.github.io/normalize.css/8.0.1/normalize.css and see that it looks exactly like the CSS you might write on your own!
+Per esempio, puoi vedere il file `normalize.css` su https://necolas.github.io/normalize.css/8.0.1/normalize.css e notare che e' esattamente il CSS che potresti scrivere da solo.
 
-### Including a Framework {-}
-Because a CSS framework is _just a CSS file_, you include one in your page using a `<link>` element just like with any other stylesheet:
+### Includere un framework {-}
+Poiche' un CSS framework e' _solo un file CSS_, lo includi con un `<link>` come qualsiasi stylesheet:
 
 ```html
 <head>
@@ -47,10 +47,10 @@ Because a CSS framework is _just a CSS file_, you include one in your page using
 </head>
 ```
 
-**Important!** Note that you link the CSS framework _before_ you link your own stylesheet. Remember that CSS is read top-to-bottom, and that the last rule on the page wins. By putting your stylesheet second, any rules you define will _override_ the rules specified in the framework, thereby allowing you to continue to customize the appearance.
+**Importante!** Collega il framework _prima_ del tuo stylesheet. CSS e' letto top-to-bottom, e l'ultima regola vince. Mettendo il tuo CSS dopo, le tue regole _sovrascriveranno_ quelle del framework, permettendoti di personalizzare l'aspetto.
 
 <!-- replace with Bootstrap example?? -->
-- For example, `bootstrap.css` gives the `<body>` a font-family of `"Segoe UI"` (a sans-serif font); you may instead want to have a different default typeface:
+- Per esempio, `bootstrap.css` imposta `font-family` del `<body>` su `"Segoe UI"` (sans-serif); potresti voler un typeface diverso:
 
     ```css
     /* my-style.css */
@@ -59,61 +59,61 @@ Because a CSS framework is _just a CSS file_, you include one in your page using
     }
     ```
 
-    If you included your stylesheet _first_ in the `<head>`, then your rule would be applied initially but would be overridden by the `bootstrap.css` file, causing your rule to seem to have no effect! Thus you should **always** put your own custom CSS as the _last_ `<link>` in the page, after any CSS frameworks.
+    Se includessi il tuo stylesheet _prima_ nel `<head>`, la tua regola verrebbe applicata ma poi sovrascritta da `bootstrap.css`, facendo sembrare che non funzioni. Quindi metti **sempre** il tuo CSS come ultimo `<link>`, dopo i framework.
 
-It is most common to include the **minified** versions of CSS frameworks: these are usually named as **`.min.css`** files (e.g., `bootstrap.min.css`). A minified file is one that has extra comments and white space removed, creating a file with a much smaller size (remember that each space and line break is a character so takes up a byte! Bootstrap goes from 160 kilobytes to about 127 kilobytes when minimized). Because web pages have to be downloaded, smaller pages will be downloaded faster, and thus will be "quicker" for the user. While an unminimized CSS file won't "break the bank", the extra white space doesn't provide anything that you need.
+E' molto comune includere le versioni **minified** dei framework: di solito chiamate **`.min.css`** (es. `bootstrap.min.css`). Un file minified ha commenti e spazi rimossi, quindi e' piu' piccolo (Bootstrap passa da 160 KB a ~127 KB). Pagina piu' piccola = download piu' veloce. Un CSS non minified non e' un disastro, ma lo spazio extra non ti serve.
 
-- You can almost always switch between the minimized and non-minimized file just by changing the file name between `file.css` and `file.min.css` (when using a CDN).
+- Quasi sempre puoi passare da minified a non-minified cambiando il nome file tra `file.css` e `file.min.css` (se usi una CDN).
 
-There are a few different ways of accessing a CSS framework's stylesheet in order to link it into your page:
+Ci sono diversi modi per accedere a uno stylesheet di un framework:
 
-#### Linking to a CDN {-}
-The easiest option is usually to link to a [Content Delivery Network (CDN)](https://en.wikipedia.org/wiki/Content_delivery_network), which is a web service intended to quickly serve files commonly used by multiple websites. To do this, you simply provide the URL for the file on the CDN's servers as the `href` of your link (as in the example above).
+#### Link a una CDN {-}
+L'opzione piu' semplice e' collegarsi a una [Content Delivery Network (CDN)](https://en.wikipedia.org/wiki/Content_delivery_network), un servizio pensato per servire rapidamente file comuni usati da molti siti. Basta mettere l'URL della CDN nell'`href` del `<link>` (come sopra).
 
-<p class="alert alert-info">[CDNJS](https://cdnjs.com/) is a CDN for packages and libraries operated by [Cloudflare](https://en.wikipedia.org/wiki/Cloudflare), and is a good place to start if you're unsure of the CDN link for a packages. Other packages may have different CDN hosting (e.g., Bootstrap recommends a link from [jsdeliver.net](https://cdn.jsdelivr.net)).</p>
+<p class="alert alert-info">[CDNJS](https://cdnjs.com/) e' una CDN per pacchetti e librerie gestita da [Cloudflare](https://en.wikipedia.org/wiki/Cloudflare) ed e' un buon punto di partenza se non sai il link CDN. Altri pacchetti hanno CDN diverse (ad es. Bootstrap consiglia [jsdeliver.net](https://cdn.jsdelivr.net)).</p>
 
-In addition to being simple, CDNs also provide a distinct speed benefit: CDNs replicate their content to machines in several regions of the world, and use dynamic Domain Name Service (DNS) resolution to steer users to the machine nearest them. So a user in Australia might download the Bootstrap CSS from a server located in Singapore, while a user in France might get the same CSS file from a server located in Ireland. This helps increase the speed that the files are downloaded.
+Oltre alla semplicita', le CDN offrono un vantaggio di velocita': replicano i file in piu' regioni e usano DNS per servire l'utente dal server piu' vicino. Un utente in Australia potrebbe scaricare Bootstrap da un server a Singapore, uno in Francia da un server in Irlanda, ecc. Questo accelera il download.
 
-Additionally, CDNs allow a site to take advantage of **browser caching**: browsers will save previously downloaded versions of a file to avoid downloading it again. If multiple sites all use the CDN version of Bootstrap, then the browser only has to download that file the first time you visit one of those sites. With popular frameworks like Bootstrap, it's highly likely that your user has already visited a site that links to Bootstrap's CDN version, and thus the Bootstrap files are already in the user's browser cache.
+Inoltre, le CDN sfruttano la **browser cache**: il browser salva versioni scaricate per evitare di riscaricarle. Se piu' siti usano la versione CDN di Bootstrap, il browser scarica il file solo la prima volta. Con framework popolari, e' probabile che l'utente abbia gia' visitato un sito che usa Bootstrap, quindi il file e' gia' in cache.
 
-Finally, CDNs allow the frameworks to be accessed [as a service](https://en.wikipedia.org/wiki/Software_as_a_service), meaning that framework developers may be able to quickly patch bugs (if the fix doesn't break existing code) without the web developer (*i.e.*, the user of the framework) having to do anything. (This feature can also be seen as a drawback, as you need to trust the library developer not to break anything or accidentally include malicious code).
+Infine, le CDN permettono ai framework di essere accessibili [as a service](https://en.wikipedia.org/wiki/Software_as_a_service), quindi gli autori possono patchare bug rapidamente (se non rompono il codice) senza intervento del developer che usa il framework. (Questo puo' anche essere visto come un contro: devi fidarti degli autori).
 
-The only real disadvantage to linking to a CDN is that it won't work when you are offline. If you commonly do your development offline, or if you are building a web application that is meant to run offline, you'll need to utilize a different method.
+L'unico vero svantaggio delle CDN e' che non funzionano offline. Se sviluppi offline o costruisci un'app offline, devi usare un altro metodo.
 
-#### Downloading the Source {-}
-If you can't link to a CDN, you'll need to download the source file directly to your computer and saving it as a source code file in your project (often in a `lib/` folder). These files can be found on the framework's website, or often in their GitHub repo (look for the `.css` file, or for a `dist/` distribution folder).
+#### Scaricare il sorgente {-}
+Se non puoi usare una CDN, devi scaricare il file sorgente sul computer e salvarlo nel progetto (spesso in `lib/`). I file si trovano sul sito del framework o nel repo GitHub (cerca il `.css` o la cartella `dist/`).
 
-In addition to being available offline, downloading CSS files directly provides a few other advantages:
+Oltre a funzionare offline, scaricare i CSS offre altri vantaggi:
 
-- Frameworks may allow you to customize their content even before you include the file: selecting only the components you need, and adjusting base styling properties before downloading your customized source file.
-- If you use a CSS pre-compiler such as [SASS](http://sass-lang.com/), you can often modify the source-code mix-ins to more easily provide your own customizations and override the default fonts, colors, sizes, etc. simply by changing some variables.
-- If you use a build system such as [webpack](https://webpack.js.org/), then you can often combine _all_ of your CSS files into a single file. This reduces the total number of files that need to be downloaded, which can increase the page load speed&mdash;especially on slower mobile networks.
+- I framework possono permettere di personalizzare il contenuto prima di scaricare: scegli componenti e modifica styling di base prima di ottenere il file.
+- Se usi un pre-compiler CSS come [SASS](http://sass-lang.com/), puoi modificare mixin e variabili per personalizzare font, colori, dimensioni, ecc.
+- Se usi un build system come [webpack](https://webpack.js.org/), puoi combinare _tutti_ i CSS in un singolo file, riducendo il numero di file da scaricare e aumentando la velocita' (soprattutto su reti mobili lente).
 
-Note that it is also possible to utilize a **package manager** such as `npm` to download and manage the source for frameworks. This has the advantage of enabling you to avoid adding large extraneous source files to your code repo, as well as managing any dependencies for those libraries.
+Nota che puoi usare un **package manager** come `npm` per scaricare e gestire i framework. Questo evita di aggiungere file grandi al repo e ti permette di gestire dipendenze facilmente.
 
-Recall that you can install a package using `npm`, saving the dependency into your project's `package.json` file:
+Ricorda che puoi installare un package con `npm`, salvandolo nel `package.json`:
 
 ```bash
 # install bootstrap (latest version)
 npm install bootstrap
 ```
 
-This will install the library's source code into your project's `node_modules/` folder. Because you've saved the dependency in your `package.json` file, you can use the `.gitignore` file to exclude the `node_modules/` folder from your code repo, having new developers install the required framework via `npm install`. You can also use `npm` to easily upgrade the packages (such as when a new version of Bootstrap comes out.
+Questo installa il codice sorgente in `node_modules/`. Poiche' la dipendenza e' in `package.json`, puoi escludere `node_modules/` dal repo con `.gitignore` e far installare le dipendenze agli altri con `npm install`. Puoi anche usare `npm` per aggiornare i pacchetti (es. quando esce una nuova versione di Bootstrap).
 
-Note that in order to then include the framework in your page, you would need to link in the actual `.css` file which would be found somewhere in the `node_modules` folder. You'll need to dig around for it; the location is in no way consistent across all frameworks or even all versions of a framework:
+Nota che, per includere il framework nella pagina, devi linkare il file `.css` dentro `node_modules`. La posizione non e' uniforme tra framework o versioni, quindi dovrai cercarla:
 
 ```html
 <!-- notice the RELATIVE path to the file -->
 <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 ```
 
-<div class="alert alert-warning">**Importantly**, this relative `<link>` will only work if the `node_modules` folder is available at at the expected path&mdash;and since you never want to commit the `node_modules` folder to git (because of its size), this is not a viable solution for anything that will be published e.g., to Github Pages. For this reason, you should almost always use a CDN when importing a CSS framwork. The only exception will be when using a build system (such as React's use of Webpack) which will automatically build the module file into your source code.</div>
+<div class="alert alert-warning">**Importante**, questo `<link>` relativo funziona solo se `node_modules` e' disponibile nel path atteso -- e poiche' non vuoi mai committare `node_modules` su git (e' enorme), non e' una soluzione valida per la pubblicazione (es. GitHub Pages). Per questo, quasi sempre conviene usare una CDN. L'unica eccezione e' quando usi un build system (come React con Webpack) che incorpora il modulo nel bundle.</div>
 
 
 ## Bootstrap
-This section discusses _some_ of the features and uses of the Bootstrap CSS framework. Note that many other frameworks are used in a similar fashion (though the specific classes and components may be different).
+Questa sezione discute _alcune_ feature e usi del framework Bootstrap. Molti altri framework si usano in modo simile (con class e componenti diversi).
 
-You include the Bootstrap framework by linking its `.css` file to your page (whether from a CDN or a local file). You can get the link for the latest version from the [Bootstrap Home Page](https://getbootstrap.com/).
+Includi Bootstrap linkando il suo `.css` nella pagina (CDN o file locale). Puoi ottenere il link per l'ultima versione dalla [Bootstrap Home Page](https://getbootstrap.com/).
 
 ```html
 <link rel="stylesheet"
@@ -122,20 +122,20 @@ You include the Bootstrap framework by linking its `.css` file to your page (whe
       crossorigin="anonymous">
 ```
 
-(This `<link>` example has 2 additional (optional) attributes: `integrity` gives a [cryptographic hash](https://en.wikipedia.org/wiki/Cryptographic_hash_function) of the source code so the browser can make sure you didn't download a malicious file by mistake, and `crossorigin` which says that no credentials are sent to the remote server&mdash;see the [AJAX](#ajax) chapter for a more detailed discussion).
+(Questo `<link>` ha 2 attribute opzionali: `integrity` fornisce un [hash crittografico](https://en.wikipedia.org/wiki/Cryptographic_hash_function) per verificare il file; `crossorigin` indica che non vengono inviate credenziali al server remoto -- vedi [AJAX](#ajax) per una discussione piu' dettagliata).
 
-When you first include the Bootstrap framework, you'll immediately see the effects (usually for the better!): the default font has changed, margins are different, and so forth. The Bootstrap CSS file contains a number of rules that apply to elements without an extra work, including the `<body>` and headers. See [the documentation](https://getbootstrap.com/docs/5.2/content/reboot/) for details about the default styling (as well as the entire "Content" section of the documentation).
+Quando includi Bootstrap, vedrai subito gli effetti (di solito in meglio): font di default diverso, margin cambiati, ecc. Il file CSS di Bootstrap contiene regole che si applicano agli elementi senza lavoro extra, incluso `<body>` e header. Vedi la [documentazione](https://getbootstrap.com/docs/5.2/content/reboot/) per lo styling di default (e tutta la sezione "Content" della documentazione).
 
-### Utility Classes {-}
-In addition to the base styling rules, Bootstrap also includes a huge number of rules that can be applied to elements by giving them a particular CSS **class**. These [utility classes](https://getbootstrap.com/docs/5.2/utilities) are what gives Bootstrap its power and flexibility.
+### Utility class {-}
+Oltre alle regole di base, Bootstrap include molte regole applicabili agli elementi con una specifica **class**. Queste [utility class](https://getbootstrap.com/docs/5.2/utilities) sono la fonte di potenza e flessibilita'.
 
-For example, Bootstrap provides [text utilities](https://getbootstrap.com/docs/5.2/utilities/text/) that allow you to style text just by giving it a CSS class, rather than needing to write a new rule for that element. For example, you can make text center-aligned by using the `text-center` utility:
+Per esempio, Bootstrap offre [text utilities](https://getbootstrap.com/docs/5.2/utilities/text/) per stilizzare testo con class, invece di scrivere nuove regole. Ad esempio, puoi centrare il testo con `text-center`:
 
 ```html
 <p class="text-center">This text will be centered on all viewport sizes.</p>
 ```
 
-Note that all you have done is add a class to the HTML, exactly like you would for any CSS rule. Bootstrap just happens to contain a rule which will apply to elements that have that class:
+Hai solo aggiunto una class all'HTML, come per qualsiasi regola CSS. Bootstrap contiene una regola che si applica a quella class:
 
 ```css
 /* from bootstrap.css */
@@ -144,12 +144,11 @@ Note that all you have done is add a class to the HTML, exactly like you would f
 }
 ```
 
-While it would be entirely possible for you to write such a rule yourself, Bootstrap provides these classes as "built-in", so you can focus on the semantics of the content rather than the CSS.
+Potresti scrivere la stessa regola, ma Bootstrap la fornisce "built-in", cosi' puoi concentrarti sulla semantica del contenuto invece che sul CSS.
 
-(You might notice that the `bootstrap.css` file gives a lot of properties the `!important` flag. This is used to override other rules no matter how specific, allowing the Bootstrap rule to take effect no matter what. If you find yourself wanting to override this rule&mdash;e.g., you didn't want the text to be centered&mdash;don't try to write one that is more specific by using the `!important` flag yourself. Instead, _just remove the Bootstrap class_. If you don't want the text to be centered, don't give it the `text-centered` class! Don't include Bootstap classes if you don't want their effects, and _never_ use the `!important` flag).
+(Noterai che `bootstrap.css` usa spesso `!important`. Serve per sovrascrivere altre regole indipendentemente dalla specificita'. Se vuoi sovrascrivere questa regola -- ad es. non vuoi testo centrato -- non provare a vincere con `!important`. _Rimuovi la class Bootstrap_. Se non vuoi l'effetto, non usare quella class, e _mai_ usare `!important`.)
 
-
-Many elements need to be given an additional utility class to indicate that they should use Bootstrap styling. For example, in order to give a `<button>` a Bootstrap style, it needs to have the class `btn`. This allows you to utilize Bootstrap's styling, but to not be forced to "override" that look and feel if you want to do something different.
+Molti elementi devono avere una utility class per usare lo styling Bootstrap. Per esempio, per dare a un `<button>` lo stile Bootstrap serve la class `btn`. Questo ti permette di usare lo stile Bootstrap senza essere obbligato a sovrascriverlo se vuoi un look diverso.
 
 ```html
 <button>Plain button</button>
@@ -159,13 +158,13 @@ Many elements need to be given an additional utility class to indicate that they
 
 ![Bootstrap button classes. Note that the second button has no color specified, so is white on a white background.](img/css-frameworks/bootstrap-buttons.png)
 
-The last button in this example has an additional utility class `btn-primary` that specifies which [color style](https://getbootstrap.com/docs/5.2/utilities/colors/) it should use. Bootstrap provides a number of pre-defined color styles, named after semantic meaning (e.g., `primary` or `warning`):
+L'ultimo button ha una class aggiuntiva `btn-primary` che specifica lo [stile colore](https://getbootstrap.com/docs/5.2/utilities/colors/). Bootstrap fornisce vari stili colore predefiniti, con nomi semantici (es. `primary` o `warning`).
 
 ![Bootstrap Button colors.](img/css-frameworks/bootstrap-buttons-all.png)
 
-These same color classes can be applied to text elements (e.g., `text-primary`), element backgrounds (e.g., `bg-primary`), [alert blocks](https://getbootstrap.com/docs/5.2/components/alerts/) (e.g., `alert-warning`), and more. Modifying the SASS source code for Bootstrap will allow you to easily customize these colors while keeping the theme consistent.
+Le stesse class colore si applicano a testo (es. `text-primary`), background (es. `bg-primary`), [alert](https://getbootstrap.com/docs/5.2/components/alerts/) (es. `alert-warning`) e altro. Modificando il sorgente SASS di Bootstrap puoi personalizzare questi colori mantenendo coerenza nel theme.
 
-Note that you can even use the `btn` class to style other elements (e.g., `<a>` links) so that they _look_ like buttons!
+Nota che puoi usare la class `btn` anche su altri elementi (es. `<a>`) per farli _sembrare_ button.
 
 <div class="row">
 <div class="column col2">
@@ -178,61 +177,61 @@ Note that you can even use the `btn` class to style other elements (e.g., `<a>` 
 </div>
 </div>
 
-This allows you to keep the _semantic meaning_ of the HTML even if the styling changes. Something that the user clicks to navigate to a different location is a hyperlink (an `<a>`), even if you want it to look like a button.
+Questo ti permette di mantenere il _significato semantico_ dell'HTML anche se lo stile cambia. Qualcosa che l'utente clicca per navigare e' un hyperlink (`<a>`), anche se vuoi che sembri un button.
 
-"Stacking" utility classes like this is quite common in Bootstrap; it is not unusual for an element to have 4 or 5 different utility classes to fully specify its appearance. For example, you could use the [spacing utilities](https://getbootstrap.com/docs/5.2/utilities/spacing/) to specify the spacing around an element:
+"Stackare" utility class e' comune in Bootstrap: non e' raro che un elemento abbia 4 o 5 class per specificare l'aspetto. Per esempio, puoi usare le [spacing utilities](https://getbootstrap.com/docs/5.2/utilities/spacing/) per impostare lo spacing attorno a un elemento:
 
 ```html
 <div class="p-3 pt-1 mx-2 mb-2">An element with padding and spacing</div>
 ```
 
-This element has the `p-3` class, which gives it "3 spacers" worth of **p**adding on all sides. But `pt-1` causes it to only have 1 spacer worth of **p**adding on the **t**op. The `mx-2` class gives it 2 spacers of **m**argin on the __x__ axis (th left and right), and the `mb-2` class gives it 2 spacers of margin on the **b**ottom.
+Questo elemento ha `p-3` (3 spacer di **p**adding su tutti i lati), `pt-1` (1 spacer di **p**adding in alto), `mx-2` (2 spacer di **m**argin sull'asse __x__ sinistra/destra) e `mb-2` (2 spacer di margin in **b**ottom).
 
-Bootstrap is filled with utility classes, both for generic styling (e.g., [borders](https://getbootstrap.com/docs/5.2/utilities/borders/) or [position](https://getbootstrap.com/docs/5.2/utilities/position/)), and for specific types of content (e.g., [lists](https://getbootstrap.com/docs/5.2/content/typography/#lists), [tables](https://getbootstrap.com/docs/5.2/content/tables/), [forms](https://getbootstrap.com/docs/5.2/forms/overview/)). It even provides classes for specifying and managng [flexboxes](https://getbootstrap.com/docs/5.2/utilities/flex/). Explore the documentation and examples for details on how to style particular elements and achieve specific effects.
+Bootstrap e' pieno di utility class, sia per styling generico (es. [borders](https://getbootstrap.com/docs/5.2/utilities/borders/) o [position](https://getbootstrap.com/docs/5.2/utilities/position/)), sia per contenuti specifici (es. [lists](https://getbootstrap.com/docs/5.2/content/typography/#lists), [tables](https://getbootstrap.com/docs/5.2/content/tables/), [forms](https://getbootstrap.com/docs/5.2/forms/overview/)). Offre anche class per gestire i [flexbox](https://getbootstrap.com/docs/5.2/utilities/flex/). Esplora la documentazione per dettagli.
 
-<p class="alert alert-info">Bootstrap also includes guidance and classes that can [specifically support screen readers](https://getbootstrap.com/docs/5.2/getting-started/accessibility/). For example, the `.visually-hidden` class can be used to style an element so it is only perceivable to screen readers.</p>
+<p class="alert alert-info">Bootstrap include anche linee guida e class che [supportano gli screen reader](https://getbootstrap.com/docs/5.2/getting-started/accessibility/). Per esempio, `.visually-hidden` serve per rendere un elemento percepibile solo agli screen reader.</p>
 
-<p class="alert alert-warning">Utility classes do **not** mean you never have to write any CSS rules! While Bootstrap provides classes to handle lots of "common" styling, you'll almost always need to add your own customizations on top of it to produce the appearance you want. At the very least, writing CSS rules that apply to lots of elements can help make your styling more readable and consistent.</p>
+<p class="alert alert-warning">Le utility class **non** significano che non dovrai mai scrivere CSS! Anche se Bootstrap copre molti casi comuni, quasi sempre dovrai aggiungere personalizzazioni per ottenere l'aspetto desiderato. Al minimo, regole CSS che si applicano a molti elementi possono rendere lo styling piu' leggibile e consistente.</p>
 
 
 ### Responsive Design {-}
-A major feature of Bootstrap (and other CSS frameworks) is the ability to support **mobile-first, responsive webpages**. Many Bootstrap utility classes use _media queries_ to cause them to respond to the device's screen size.
+Una feature importante di Bootstrap (e altri framework) e' il supporto a **mobile-first, responsive webpages**. Molte utility class Bootstrap usano _media query_ per reagire alla dimensione dello schermo.
 
-Bootstrap's responsive utilities utilize a predefined set of [responsive breakpoints](https://getbootstrap.com/docs/5.2/layout/breakpoints/): screen widths that mark the "boundaries" between different size devices.
+Bootstrap usa un set predefinito di [responsive breakpoints](https://getbootstrap.com/docs/5.2/layout/breakpoints/): larghezze che segnano i confini tra dispositivi di dimensioni diverse.
 
 | Screen Width | Abbreviation | Approximate Device Size |
 | :----- | :--- | :--------------------------------|
-| &lt; 576px | (default) | Extra-small devices (e.g., portrait phones) |
-| &ge; 576px | `sm` | Small devices (e.g., landscape phones) |
-| &ge; 768px | `md` | Medium devices (e.g., tablets) |
-| &ge; 992px | `lg` | Large devices (e.g., laptops) |
-| &ge; 1200px | `xl` | Extra-large devices (e.g., desktops) |
-| &ge; 1400px | `xxl` | Extra-large devices (e.g., big desktops) |
+| < 576px | (default) | Extra-small devices (e.g., portrait phones) |
+| >= 576px | `sm` | Small devices (e.g., landscape phones) |
+| >= 768px | `md` | Medium devices (e.g., tablets) |
+| >= 992px | `lg` | Large devices (e.g., laptops) |
+| >= 1200px | `xl` | Extra-large devices (e.g., desktops) |
+| >= 1400px | `xxl` | Extra-large devices (e.g., big desktops) |
 
-All of these size specifications are "greater than or equal", following a mobile first approach. Thus a responsive utility that applies to a medium (`md`) screen will also apply to large (`lg`) and extra-large (`xl`) screens.
+Tutte queste specifiche sono "greater than or equal", seguendo l'approccio mobile-first. Quindi una utility che si applica a `md` si applica anche a `lg` e `xl`.
 
-Responsive utilities are named with the size's abbreviation to specify what screen size that utility should apply on. For example, the `float-left` class will cause an element to float to the left on _any_ sized screen (it has no size specification). On the other hand, the `float-md-left` class will cause the element to float **only on medium _or larger_ screens**. Similarly, the `float-lg-left` class would cause the element to float only on _large or larger_ screens. This would allow you to have an image that floats to the side on a bigger screen, but is flowed with the rest of the content when there isn't enough room. (Don't use `float`; use a flexbox instead!)
+Le responsive utilities sono nominate con l'abbreviazione della dimensione per indicare su quali schermi si applicano. Per esempio, la class `float-left` fa fluttuare un elemento a sinistra su _qualsiasi_ schermo (nessuna dimensione specificata). Invece `float-md-left` fa fluttuare a sinistra **solo su schermi medium o piu' grandi**. `float-lg-left` solo su large o piu' grandi. Questo permette di far fluttuare un'immagine su schermi grandi, ma lasciarla in flow normale quando non c'e' spazio. (Non usare `float`; usa Flexbox.)
 
-- The breakpoint abbreviations are consistent across Bootstrap (and even shared by other frameworks such as Materialize), and usually comes after the name of property to change but before the value to give it. For example, the `d-none` class gives an element a `display:none` on all devices, while `d-sm-none` would apply on small or larger screens.
+- Le abbreviazioni dei breakpoint sono consistenti in Bootstrap (e spesso condivise da altri framework come Materialize) e di solito vanno dopo il nome della property ma prima del valore. Per esempio, `d-none` applica `display:none` su tutti i device, mentre `d-sm-none` solo su small o piu' grandi.
 
-Many (but not all!) Bootstrap classes support responsive breakpoints. The most common class to do this is the [`container`](https://getbootstrap.com/docs/5.2/layout/containers/) class. Containers are the most basic layout element in Bootstrap, and are required for doing more complex layouts (such as Grids, below). The `container` class gives the element a fixed width that includes some padding on the sides, so that the content isn't right up against the edge of the window. If the size of the window shrinks to the point where the padding would disappear, the `container` responsively changes size so that there remains padding even on the smaller screen!
+Molte (ma non tutte) le class Bootstrap supportano i breakpoint. La classe piu' comune e' [`container`](https://getbootstrap.com/docs/5.2/layout/containers/). I container sono l'elemento di layout base di Bootstrap e sono richiesti per layout complessi (come la Grid, sotto). `container` assegna all'elemento una larghezza fissa con padding laterale, cosi' il contenuto non e' a filo finestra. Se la finestra si restringe, `container` si ridimensiona per mantenere un po' di padding anche su schermi piccoli.
 
-- See [this Code Pen](https://codepen.io/drstearns/pen/brKKBK) for an example. If you slowly resize the browser, you'll see the text "jump" to a smaller width as you pass each responsive breakpoint.
+- Vedi [questo CodePen](https://codepen.io/drstearns/pen/brKKBK). Ridimensionando il browser, vedrai il testo "saltare" a larghezze diverse ai breakpoint.
 
-- `.container` elements are often direct children of the `<body>` (e.g., `<header>`, `<main>`). However, if you want a background color or image to "full bleed" to the edges of the viewport, you can put the `.container` inside the another element that is styled with the background, as in the CodePen example.
+- Gli elementi `.container` sono spesso figli diretti di `<body>` (es. `<header>`, `<main>`). Se vuoi un background full bleed fino ai bordi del viewport, puoi mettere `.container` dentro un altro elemento che ha lo sfondo, come nel CodePen.
 
-- Do not put one `.container` inside of another! This will add multiple layers of padding that are almost certainly not what you expect. Similarly, because the class name `.container` is fairly generic, be careful when naming your own classes so they don't overlap&mdash;for example, a flexbox container should probably be called something like `.flexbox-container`.
+- Non mettere un `.container` dentro un altro. Aggiungerebbe padding multipli quasi sicuramente non desiderati. Inoltre, poiche' `.container` e' un nome generico, fai attenzione a non usarlo per le tue class; ad esempio, un container flexbox potrebbe chiamarsi `.flexbox-container`.
 
-- Bootstrap also provides an alternate `container-fluid` class that always has the same amount of padding around the content, with the content "reflowing" based on the browser size.
+- Bootstrap offre anche `container-fluid`, che mantiene sempre lo stesso padding attorno al contenuto, con reflow in base alla dimensione del browser.
 
-In general, every page you style with Bootstrap will have a Container (usually a `.container`) to hold the content.
+In generale, ogni pagina stile Bootstrap avra' un Container (di solito `.container`) per contenere il contenuto.
 
-### The Grid {-}
-After Containers, most common use of the responsive utility classes in CSS frameworks such as Bootstrap is to provide a **grid layout**, similar to the multi-column layouts created with Flexbox in the previous chapters. The [Bootstrap Grid system](https://getbootstrap.com/docs/5.2/layout/grid/) allows you to specify these kinds of complex, responsive layouts without needing to implement your own Flexbox containers and items.
+### La Grid {-}
+Dopo i Container, l'uso piu' comune delle responsive utilities nei framework (come Bootstrap) e' la **grid layout**, simile ai layout multi-colonna creati con Flexbox. Il [Bootstrap Grid system](https://getbootstrap.com/docs/5.2/layout/grid/) permette di creare layout responsive complessi senza implementare Flexbox manualmente.
 
-<p class="alert alert-info">In Bootstrap 5, the grid is implemented using a flexbox&mdash;so you can think of it as just another way of semantically defining flexbox elements.</p>
+<p class="alert alert-info">In Bootstrap 5, la grid e' implementata con Flexbox -- quindi puoi pensarla come un altro modo semantico di definire elementi flexbox.</p>
 
-You specify that a set of elements should be part of a "grid" by putting them inside a `.row` element (the `row` class ensures that the elements are lined up). A `.row` acts a lot like a "flex-container" (and in fact does have `display:flex`), where each of its children will be "flex items".
+Per indicare che un insieme di elementi fa parte di una "grid", li metti dentro un elemento `.row` (la class `row` assicura che gli elementi siano allineati). Una `.row` agisce come un "flex-container" (e infatti ha `display:flex`), dove i child sono "flex items".
 
 ```html
 <div class="row"> <!-- a row of items -->
@@ -242,25 +241,25 @@ You specify that a set of elements should be part of a "grid" by putting them in
 </div>
 ```
 
-You specify how wide each item in the `.row` is by specifying the number of "columns" it spans. Think of the grid as containing **12** "slots":
+Per indicare quanto e' larga ciascuna colonna, specifichi il numero di "colonne" che occupa. Pensa alla grid come a **12** slot:
 
 <img src="img/css-frameworks/bootstrap-grid-12.png" alt="A row of grid columns">
 
-Each item in the grid is given a class that indicates how many of these slots it takes up (similar to merging cells in a spreadsheet):
+Ogni item ha una class che indica quanti slot occupa (simile al merge di celle in un foglio di calcolo):
 
 <img src="img/css-frameworks/bootstrap-grid-example.png" alt="An example of Bootstrap grid rows">
 
-These classes are named in the format `col-#`, where the `#` is how many column slots it should take. For example a `.col-4` will take up 4 columns, while a `.col-6` will take up 6 columns. A class of just `col` will take up an _equal share of the remaining columns_ (similar to what happens with the `flex-grow` property!)
+Le class sono nel formato `col-#`, dove `#` e' il numero di colonne. Per esempio, `.col-4` occupa 4 colonne, `.col-6` occupa 6. Una class `col` occupa _una quota uguale delle colonne rimanenti_ (simile a `flex-grow`).
 
-Thus the above HTML will produce elements with the following layout:
+Quindi l'HTML sopra produce questo layout:
 
 <img src="img/css-frameworks/bootstrap-grid-manual-example.png" alt="An example of a Bootstrap grid layout">
 
-- Notice that "Item 1" takes up half (6/12) of the grid, "Item 2" takes up a third (4/12), and "Item 3" takes up the remainder (2/12).
+- Nota che "Item 1" occupa meta' (6/12), "Item 2" un terzo (4/12) e "Item 3" il resto (2/12).
 
-You can also make this grid layout responsive by using responsive utility versions of the `col-#` classes. For example, a `.col-md-4` would take up 4 columns _only on medium or larger_ screens, while a `.col-lg-6` would take up 6 columns _only on large or larger_ screens. Note that a child of the `.row` that doesn't have a column size will effectively act as its own row (on its own line).
+Puoi rendere la grid responsive usando versioni responsive delle class `col-#`. Per esempio, `.col-md-4` occupa 4 colonne _solo su schermi medium o piu' grandi_, mentre `.col-lg-6` occupa 6 colonne _solo su large o piu' grandi_. Nota che un child di `.row` senza dimensione colonna agira' come una riga separata (su una propria linea).
 
-Finally, note that you can specify _multiple responsive utilities_ on each grid item! For example, you can specify that items should take up 6 columns on small or larger screens (`col-sm-6`), only but 3 columns on medium or larger screens (`col-md-3`):
+Infine, puoi specificare _piu' utility responsive_ per item. Per esempio, puoi farli occupare 6 colonne su small o piu' grandi (`col-sm-6`), ma 3 colonne su medium o piu' grandi (`col-md-3`):
 
 ```html
 <div class="row">
@@ -271,17 +270,17 @@ Finally, note that you can specify _multiple responsive utilities_ on each grid 
 </div>
 ```
 
-(See a [CodePen](https://codepen.io/drstearns/pen/XaYBXp) of this code in action!)
+(Vedi un [CodePen](https://codepen.io/drstearns/pen/XaYBXp) in azione.)
 
-The ordering of Bootstrap's CSS means that the `col-sm-6` class will get overridden by the `col-md-3` class (since `md` is a more specific size than `sm`), so you can specify both classes and the correct one will apply&mdash;the order of the class names in the element doesn't matter. Note that the _"or larger"_ part of the responsive breakpoint definition also means that you don't need to specify a column width for _each_ different breakpoint, only for the smallest level at which the utility should apply (e.g., we don't need `col-lg-` since it isn't different than `col-md-`).
+L'ordine del CSS di Bootstrap significa che `col-sm-6` viene sovrascritto da `col-md-3` (perche' `md` e' piu' specifico di `sm`), quindi puoi specificare entrambe le class e quella corretta si applichera' -- l'ordine delle class nell'elemento non importa. Nota anche che, per via del concetto "or larger", non serve specificare una larghezza per _ogni_ breakpoint, solo per il livello minimo in cui vuoi che si applichi (ad es. non serve `col-lg-` se non e' diverso da `col-md-`).
 
-Bootstrap includes a number of utilities that can be used to customize how grids of content are displayed, including all of the features of Flexbox. For more details and options, see the [Grid documentation](https://getbootstrap.com/docs/5.2/layout/grid/).
+Bootstrap include molte utility per personalizzare la grid, inclusi i feature di Flexbox. Per dettagli e opzioni, vedi la [Grid documentation](https://getbootstrap.com/docs/5.2/layout/grid/).
 
 
-### Components {-}
-In addition to its basic and responsive utilities, Bootstrap provides a number of CSS classes that let you easily create more complex **components** or widgets: alerts, cards, navbars, collapsible boxes, image carousels, pop-up modals, and more. Each of these components is discussed in the [documentation](https://getbootstrap.com/docs/5.2/components), and has its own particular element structure and CSS classes you need to use.
+### Componenti {-}
+Oltre alle utility di base e responsive, Bootstrap offre class per creare **componenti** o widget piu' complessi: alert, card, navbars, box collapsibili, carousels, modali, ecc. Ogni componente e' descritto nella [documentazione](https://getbootstrap.com/docs/5.2/components), con la sua struttura di elementi e class necessarie.
 
-For example, you can create a [card](https://getbootstrap.com/docs/5.2/components/card/) (a styled content container) by creating an element with the `card` class and `card-body` child. You can then include other nested elements with classes such as `card-img-top`, `card-title`, or `card-text` to produce further styled effects:
+Per esempio, puoi creare una [card](https://getbootstrap.com/docs/5.2/components/card/) (container di contenuto stilizzato) usando un elemento con class `card` e un child `card-body`. Poi puoi includere altri elementi con class come `card-img-top`, `card-title` o `card-text` per effetti di stile:
 
 ```html
 <div class="card"> <!-- the card -->
@@ -295,25 +294,24 @@ For example, you can create a [card](https://getbootstrap.com/docs/5.2/component
 </div>
 ```
 
-(See this code in [CodePen](https://codepen.io/drstearns/pen/yoEqRM)).
+(Vedi questo codice su [CodePen](https://codepen.io/drstearns/pen/yoEqRM)).
 
+Molti di questi componenti includono **interattivita'**: per esempio, la [navbar](https://getbootstrap.com/docs/5.2/components/navbar/) si "collassa" in hamburger menu su schermi piccoli, mentre le [modals](https://getbootstrap.com/docs/5.2/components/modal/) aggiungono popup in pagina.
 
-Many of these components include some form of **interactivity**: for example, the [navbar](https://getbootstrap.com/docs/5.2/components/navbar/) will "collapse" into a hamburger menu on small devices, while [modals](https://getbootstrap.com/docs/5.2/components/modal/) add in-page pop-up dialogs.
-
-CSS is not capable of adding this level of interactivity&mdash;that requires **JavaScript**. Thus to support these components, you also need to include the Bootstrap JavaScript library:
+CSS non puo' gestire questo livello di interattivita' -- serve **JavaScript**. Quindi per supportare questi componenti devi includere la libreria JavaScript di Bootstrap:
 
 ```html
 <!-- the Bootstrap JavaScript library -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 ```
 
-See the chapter on [JavaScript](#javascript) for more details on including JavaScript libraries. Note that not all components or utilities require JavaScript.
+Vedi il capitolo [JavaScript](#javascript) per dettagli su come includere librerie JS. Nota che non tutti i componenti richiedono JavaScript.
 
-However, with most Bootstrap components, you don't actually need to write any JavaScript code. Instead, you just need to provide some particular `data-` HTML attributes, and the library will take care of everything else.
+Tuttavia, con la maggior parte dei componenti Bootstrap non devi scrivere JS. Ti basta aggiungere alcuni `data-` attribute HTML, e la libreria fa il resto.
 
-- A [data attributes](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes) is an normal HTML attribute that begins with the text `data-` (e.g., `data-thingamabob` or `data-my-attribute`). The HTML specification explicitly says that attributes that begin with `data-` are legal but not part of the standard, thus enabling them to be used for storing app-specific information. They effectively act as custom "variables" for elements that do not violate the HTML standard.
+- I [data attributes](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes) sono attribute HTML che iniziano con `data-` (es. `data-thingamabob` o `data-my-attribute`). Lo standard HTML dice che gli attribute `data-` sono legali ma non standardizzati, quindi possono essere usati per informazioni app-specific. Agiscono come "variabili" personalizzate sugli elementi senza violare lo standard HTML.
 
-For example, consider the below code from Bootstap's documentation for defining a [modal](https://getbootstrap.com/docs/5.2/components/modal/) and a button to open it:
+Per esempio, ecco il codice dalla documentazione Bootstrap per una [modal](https://getbootstrap.com/docs/5.2/components/modal/) e un button per aprirla:
 
 ```html
 <!-- note that the `id` attribute is set to "exampleModal" -->
@@ -342,15 +340,15 @@ the value of the `id` attribute on the element that starts your modal markup -->
 </button>
 ```
 
-(Try it out in [CodePen](https://codepen.io/drstearns/pen/dzKqNB)).
+(Provalo su [CodePen](https://codepen.io/drstearns/pen/dzKqNB)).
 
-There is a lot to unpack in this code, including styling classes and ARIA attributes (e.g., `role`, `aria-labelledby`, and `aria-hidden`). The important part is that the root `.modal` element is _hidden_ (`display:none`) when the page first loads. But when you click on the `<button>`, the included JavaScript library sees that it has a `data-toggle="modal"` attribute, and determines that clicking the button should show the modal. The JavaScript using the `data-target` attribute on that button to determine _which_ modal to open (finding the modal with that `id`), and then shows it. The `data-dismiss` attribute on the first `<button>` inside the modal allows it to be closed.
+C'e' molto da capire in questo codice, incluse class di stile e attribute ARIA (`role`, `aria-labelledby`, `aria-hidden`). La parte importante e' che l'elemento `.modal` e' _nascosto_ (`display:none`) al caricamento. Quando clicchi il `<button>`, la libreria JS vede `data-toggle="modal"` e determina che deve aprire la modal. Usa `data-target` per capire _quale_ modal aprire (quella con l'`id`), e la mostra. L'attribute `data-dismiss` nel button dentro la modal permette di chiuderla.
 
-<p class="alert alert-info">The best way to understand these components is to start from the examples in the documentation, and then consider each element and attribute one at a time. Read the documentation!</p>
+<p class="alert alert-info">Il modo migliore per capire questi componenti e' partire dagli esempi in documentazione e poi analizzare ogni elemento e attribute. Leggi la documentazione!</p>
 
-<p class="alert alert-warning">The JavaScript included in these CSS frameworks allows you to easily add interactive features, but **they do not mix well with more advanced JavaScript frameworks like React.** To work with React, you'd need to switch instead to a library such as [react-bootstrap](https://react-bootstrap.github.io/), which uses the Bootstrap CSS stylesheet, but re-implement the JavaScript portions to fit into the React framework.</p>
+<p class="alert alert-warning">Il JavaScript dei CSS framework permette di aggiungere facilmente interattivita', ma **non si integra bene con framework JavaScript avanzati come React**. Per React, dovresti usare librerie come [react-bootstrap](https://react-bootstrap.github.io/), che usano il CSS di Bootstrap ma re-implementano la parte JS per funzionare con React.</p>
 
-## Resources {-}
+## Risorse {-}
 <div class="list-condensed">
 - [Bootstrap Documentation](https://getbootstrap.com/docs/5.2/getting-started/introduction/)
 - [Materialize Documentation](http://materializecss.com/getting-started.html)

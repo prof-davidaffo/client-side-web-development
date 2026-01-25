@@ -1,28 +1,28 @@
-# HTML Fundamentals
+# Fondamenti di HTML {#html-fundamentals}
 
-A webpage on the internet is basically a set of files that the browser _renders_ (shows) in a particular way, allowing the user to interact with it. The most basic way to control how a browser displays content (e.g., words, images, etc) is by _encoding_ that content in HTML.
+Una web page su Internet e' fondamentalmente un insieme di file che il browser _renderizza_ (mostra) in un certo modo, permettendo all'utente di interagire. Il modo piu' basilare per controllare come un browser visualizza i contenuti (ad es. parole, immagini, ecc.) e' _codificare_ quel contenuto in HTML.
 
-**HTML** (**H**yper**T**ext **M**arkup **L**anguage) is a language that is used to give meaning to otherwise plain text, which the browser can then use to determine how to display that text. HTML is not a programming language but rather a _markup language_: it adds additional details to information (like notes in the margin of a book), but doesn't contain any logic. HTML is a "hypertext" markup language because it was [originally intended](https://en.wikipedia.org/wiki/HTML#Development) to mark up a document with [hyperlinks](https://en.wikipedia.org/wiki/Hyperlink), or links to other documents. In modern usage, HTML describes the **semantic meaning** of textual content: it marks what text is a _heading_, what text is a _paragraph_, what content is an _image_, what text is a _hyperlink_, and so forth. In this sense HTML serves a similar function to the [Markdown](https://info201.github.io/markdown.html) markup language, but is much more expressive and powerful.
+**HTML** (**H**yper**T**ext **M**arkup **L**anguage) e' un linguaggio usato per dare significato a testo altrimenti semplice, che il browser puo' poi usare per determinare come visualizzare quel testo. HTML non e' un linguaggio di programmazione ma un _markup language_: aggiunge dettagli aggiuntivi alle informazioni (come note a margine di un libro), ma non contiene logica. HTML e' un linguaggio di markup "hypertext" perche' era [originariamente pensato](https://en.wikipedia.org/wiki/HTML#Development) per annotare un documento con [hyperlink](https://en.wikipedia.org/wiki/Hyperlink), ovvero link ad altri documenti. Nell'uso moderno, HTML descrive il **significato semantico** del contenuto testuale: indica quale testo e' un _heading_, quale testo e' un _paragraph_, quale contenuto e' un _image_, quale testo e' un _hyperlink_, e cosi' via. In questo senso HTML svolge una funzione simile al markup language [Markdown](https://info201.github.io/markdown.html), ma e' molto piu' espressivo e potente.
 
-This chapter provides an overview and explanation of HTML's syntax (how to write it to annotate content). HTML's syntax is very simple, and generally fast to learn&mdash;though using it effectively can require more practice. For more details on using HTML effectively, see [Semantic HTML](#semantic-html).
+Questo capitolo fornisce una panoramica e una spiegazione della sintassi di HTML (come scriverlo per annotare i contenuti). La sintassi di HTML e' molto semplice e in genere si impara rapidamente — anche se usarlo in modo efficace richiede piu' pratica. Per maggiori dettagli su come usare HTML in modo efficace, vedi [Semantic HTML](#semantic-html).
 
-## HTML Elements
-HTML content is normally written in `.html` files. By using the `.html` extension, your editor, computer, and browser should automatically understand that this file will contain text content that includes HTML markup.
+## Elementi HTML
+Il contenuto HTML di solito e' scritto in file `.html`. Usando l'estensione `.html`, il tuo editor, computer e browser dovrebbero capire automaticamente che questo file contiene testo con markup HTML.
 
-<p class="alert alert-info">As mentioned in Chapter 2, most web servers will by default serve a file named **`index.html`**, and so that filename is traditionally used for a website's home page.</p>
+<p class="alert alert-info">Come menzionato nel Capitolo 2, la maggior parte dei web server serve di default un file chiamato **`index.html`**, e quindi quel filename e' tradizionalmente usato per la home page di un sito.</p>
 
-As with all programming languages, `.html` files are really just plain text files with a special extension, so can be created in any text editor. However, using a coding editor such as [VS Code](#visual-studio-code) provides [additional helpful features](https://code.visualstudio.com/docs/languages/html) that can speed up your development process.
+Come per tutti i linguaggi di programmazione, i file `.html` sono in realta' semplici file di testo con un'estensione speciale, quindi possono essere creati in qualsiasi editor di testo. Tuttavia, usare un editor per il codice come [VS Code](#visual-studio-code) offre [funzionalita' aggiuntive utili](https://code.visualstudio.com/docs/languages/html) che possono accelerare lo sviluppo.
 
-HTML files contain the **content** of your web page: the text that you want to show on the page. This content is then annotated (marked up) by surrounding it with **tags**:
+I file HTML contengono il **contenuto** della tua web page: il testo che vuoi mostrare sulla pagina. Questo contenuto viene poi annotato ("marked up") circondandolo con **tag**:
 
 ![Basic syntax for an HTML element.](img/html/element-diagram.png)
 
-The **opening/start tag** comes before the content and tell the computer "I'm about to give you content with some meaning", while the **closing/end tag** comes after the content to tell the computer "I'm done giving content with that meaning." For example, the `<h1>` tag represents a [top-level heading](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements) (equivalent to one `#` in Markdown), and so the open tag says "here's the start of the heading" and the closing tag says "that's the end of the heading".
+Il **opening/start tag** viene prima del contenuto e dice al computer "sto per darti contenuto con un certo significato", mentre il **closing/end tag** viene dopo il contenuto per dire "ho finito di dare contenuto con quel significato". Per esempio, il tag `<h1>` rappresenta un [top-level heading](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements) (equivalente a un `#` in Markdown), quindi l'opening tag dice "ecco l'inizio dell'heading" e il closing tag dice "questa e' la fine dell'heading".
 
-Tags are written with a less-than symbol **```<```**, then the name of the tag (often a single letter), then a greater-than symbol **```>```**. A _closing tag_ is written just like an _opening tag_, but includes a forward slash `/` immediately after the less-than symbol&mdash;this indicates that the tag is closing the annotation.
-HTML tag names are not case sensitive, but you should always write them in all lowercase&mdash;see the [Code Style Guide](#code-style-guide) for details.
+I tag si scrivono con il simbolo minore **```<```**, poi il nome del tag (spesso una singola lettera), poi il simbolo maggiore **```>```**. Un _closing tag_ si scrive come un _opening tag_, ma include una barra `/` subito dopo il simbolo minore — questo indica che il tag sta chiudendo l'annotazione.
+I nomi dei tag HTML non sono case sensitive, ma dovresti sempre scriverli in lowercase — vedi la [Code Style Guide](#code-style-guide) per i dettagli.
 
-Line breaks and white space around tags (including indentation) are ignored. Tags may thus be written on their own line, or _inline_ with the content. These two uses of the `<p>` tag (which marks a _paragraph_ of content) are equivalent:
+Le interruzioni di riga e gli spazi bianchi intorno ai tag (inclusa l'indentazione) sono ignorati. I tag possono quindi essere scritti su una riga propria o _inline_ con il contenuto. Questi due usi del tag `<p>` (che indica un _paragraph_ di contenuto) sono equivalenti:
 
 ```html
 <p>
@@ -32,56 +32,56 @@ Line breaks and white space around tags (including indentation) are ignored. Tag
 <p>The itsy bitsy spider went up the water spout.</p>
 ```
 
-Nevertheless, when writing HTML code, use line breaks and spacing for readability (to make it clear what content is part of what element)&mdash;again, refer to the [Code Style Guide](#code-style-guide).
+Tuttavia, quando scrivi codice HTML, usa interruzioni di riga e spaziatura per leggibilita' (per rendere chiaro quale contenuto appartiene a quale elemento) — di nuovo, vedi la [Code Style Guide](#code-style-guide).
 
-Taken together, the tags and the content they _contain_ are called an **HTML Element**. A website is made of a bunch of these elements&mdash;in fact, all content is annoted so that it is part of some element.
+Presi insieme, i tag e il contenuto che _contengono_ si chiamano **HTML Element**. Un sito e' composto da molti di questi elementi — in effetti, tutto il contenuto e' annotato in modo che faccia parte di qualche elemento.
 
 
-### Some Example Elements {-}
-The HTML standard defines [lots of different elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element), each of which marks a different meaning for the content. Common elements include:
+### Alcuni elementi di esempio {-}
+Lo standard HTML definisce [molti elementi diversi](https://developer.mozilla.org/en-US/docs/Web/HTML/Element), ognuno dei quali indica un significato diverso per il contenuto. Tra gli elementi comuni:
 
 <div class="list-condensed">
-- `<h1>`: a 1st-level heading
-- `<h2>`: a 2nd-level heading (and so on, down to `<h6>`)
-- `<p>`: a paragraph of text
-- `<a>`: an "anchor", or a hyperlink
-- `<img>`: an image
-- `<button>`: a button
-- `<em>`: emphasized content. Note that this doesn't mean _italic_ (which is not semantic), but _emphasized_ (which is semantic). The same as `_text_` in Markdown.
-- `<strong>`: important, strongly stated content. The same as `**text**` in Markdown
-- `<ul>`: an unordered list (and `<ol>` is an ordered list)
-- `<li>`: a list item (an item in a list)
-- `<table>`: a data table
-- `<form>`: a form for the user to fill out
-- `<div>`: a division (section) of content. Also acts as an empty _block_ element (one followed by a line break)
+- `<h1>`: un heading di livello 1
+- `<h2>`: un heading di livello 2 (e cosi' via, fino a `<h6>`)
+- `<p>`: un paragraph di testo
+- `<a>`: un "anchor", ovvero un hyperlink
+- `<img>`: un'immagine
+- `<button>`: un button
+- `<em>`: contenuto enfatizzato. Nota che non significa _italic_ (che non e' semantico), ma _emphasized_ (che e' semantico). Come `_text_` in Markdown.
+- `<strong>`: contenuto importante, fortemente espresso. Come `**text**` in Markdown
+- `<ul>`: una unordered list (e `<ol>` e' una ordered list)
+- `<li>`: un list item (un elemento in una lista)
+- `<table>`: una data table
+- `<form>`: un form che l'utente deve compilare
+- `<div>`: una division (sezione) di contenuto. Funziona anche come elemento _block_ vuoto (seguito da un line break)
 </div>
 
-And lots more!
+E molti altri.
 
-Element names are defined by the HTML specification&mdash;often they are abbreviations for what they represent (e.g., `<p>` for paragraph). In standard HTML you can only use elements that are defined by the specification; you are not allowed to "make up" your own tags. Trying to use a `<paragraph>` instead of a `<p>` would be non-standard and wouldn't be understood or rendered correctly by the browser.
+I nomi degli elementi sono definiti dalla specifica HTML — spesso sono abbreviazioni di cio' che rappresentano (ad es. `<p>` per paragraph). In HTML standard puoi usare solo elementi definiti dalla specifica; non puoi "inventarti" tag. Provare a usare `<paragraph>` al posto di `<p>` sarebbe non standard e non verrebbe capito o renderizzato correttamente dal browser.
 
-You don't need to memorize every HTML element type (though you will learn the common ones by heart by happenstance); you can always look up more details about specific element types. For many people "knowing" HTML is about knowing what elements exist in the standard, and the proper ways to combine those elements.
+Non devi memorizzare ogni tipo di elemento HTML (anche se imparerai quelli comuni col tempo); puoi sempre cercare i dettagli sui singoli elementi. Per molte persone "conoscere" HTML significa sapere quali elementi esistono nello standard e come combinarli correttamente.
 
-See [Semantic HTML](#semantic-html) for more examples and discussion of specific HTML elements.
+Vedi [Semantic HTML](#semantic-html) per altri esempi e discussioni su elementi HTML specifici.
 
 
-### Comments {-}
-As with every programming language, HTML includes a way to add comments to your code. It does this by using a tag with special syntax:
+### Commenti {-}
+Come in ogni linguaggio di programmazione, HTML include un modo per aggiungere commenti al codice. Lo fa usando un tag con sintassi speciale:
 
 ```html
 <!-- this is a comment -->
 <p>this is is not a comment</p>
 ```
 
-The contents of the comment tag (between the `<!--` and the `-->`) can span multiple lines, so you can comment multiple lines by surrounding them all with a single `<!--` and `-->`.
+Il contenuto del tag commento (tra `<!--` e `-->`) puo' estendersi su piu' righe, quindi puoi commentare piu' righe racchiudendole tra `<!--` e `-->`.
 
-Because the comment syntax is somewhat awkward to type, most source-code editors will let you comment-out the currently highlighted text by pressing `cmd + /` (or `ctrl + /` on Windows). If you're using a code editor, try placing your cursor on a line and using that keyboard command to comment and un-comment the line.
+Poiche' la sintassi dei commenti e' un po' scomoda da digitare, la maggior parte degli editor ti permette di commentare il testo selezionato premendo `cmd + /` (o `ctrl + /` su Windows). Se usi un code editor, prova a posizionare il cursore su una riga e usare quel comando da tastiera per commentare e de-commentare la riga.
 
-Comments can appear anywhere in the file. Just as in other languages, they are ignored by any program reading the file, but they do remain in the page and are visible when you [view the page source](https://support.google.com/surveys/answer/6172725).
+I commenti possono comparire ovunque nel file. Come in altri linguaggi, vengono ignorati da qualsiasi programma che legge il file, ma restano nella pagina e sono visibili quando [visualizzi il page source](https://support.google.com/surveys/answer/6172725).
 
 
-### Attributes {-}
-The start tag of an element may also contain one or more **attributes**. These are similar to attributes in object-oriented programming: they specify _properties_, options, or otherwise add additional meaning to an element. Like named parameters in `R` or `python`, attributes are written in the format `attributeName=value` (no spaces are allowed around the `=`); values of attributes are almost always strings, and so are written in quotes. Multiple attributes are separated by spaces:
+### Attributi {-}
+Il tag di apertura di un elemento puo' contenere uno o piu' **attributes**. Sono simili agli attributi nella programmazione a oggetti: specificano _proprieta'_, opzioni o aggiungono significato a un elemento. Come i named parameter in `R` o `python`, gli attribute si scrivono nel formato `attributeName=value` (senza spazi attorno a `=`); i valori sono quasi sempre stringhe, quindi si scrivono tra virgolette. Piu' attribute sono separati da spazi:
 
 ```html
 <tag attributeA="value" attributeB="value">
@@ -89,54 +89,54 @@ The start tag of an element may also contain one or more **attributes**. These a
 </tag>
 ```
 
-For example, a hyperlink anchor (`<a>`) uses a `href` ("**h**ypertext **ref**erence") attribute to specify where the browser should navigate to when the content is clicked:
+Per esempio, un anchor (`<a>`) usa l'attribute `href` ("**h**ypertext **ref**erence") per specificare dove il browser deve navigare quando il contenuto viene cliccato:
 
 ```html
 <a href="https://ischool.uw.edu">iSchool homepage</a>
 ```
 
-In a hyperlink, the _content_ of the tag is the displayed text, and the _attribute_ specifies the link's URL. This means that the URL comes "before" the displayed text&mdash;the opposite of Markdown hyperlink syntax.
+In un hyperlink, il _contenuto_ del tag e' il testo visualizzato, e l'_attribute_ specifica l'URL del link. Questo significa che l'URL viene "prima" del testo visualizzato — l'opposto della sintassi dei link in Markdown.
 
-Similarly, an image (`<img>`) uses the `src` (**s**ou**rc**e) attribute to specify what picture it is showing. (That hyperlink use `href` and images use `src` is one of the many quirks of HTML syntax). An image's `alt` attribute contains alternate text to use if the browser can't show images&mdash;such as with screen readers (for the visually impaired) and search engine indexers.
+Allo stesso modo, un'immagine (`<img>`) usa l'attribute `src` (**s**ou**rc**e) per specificare quale immagine mostra. (Il fatto che i link usino `href` e le immagini usino `src` e' una delle tante particolarita' della sintassi HTML). L'attribute `alt` di un'immagine contiene testo alternativo da usare se il browser non puo' mostrare immagini — ad esempio con screen reader (per persone con impairment visivi) e per gli indicizzatori dei motori di ricerca.
 
 ```html
 <img src="baby_picture.jpg" alt="a cute baby">
 ```
 
-Because an `<img>` has no textual content, it is an _empty element_ (see below).
+Poiche' `<img>` non ha contenuto testuale, e' un _empty element_ (vedi sotto).
 
-Allowable attributes and their names are determined by the HTML specification&mdash;each element supports a certain set of attributes (see the [HTML attribute reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes)). Many attributes are supported by some elements and not by others. However, there are also a number of [global attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) that can be used on any element. For example:
+Gli attribute consentiti e i loro nomi sono determinati dalla specifica HTML — ogni elemento supporta un certo set di attribute (vedi il [HTML attribute reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes)). Molti attribute sono supportati da alcuni elementi e non da altri. Tuttavia, esistono anche dei [global attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) che possono essere usati su qualsiasi elemento. Per esempio:
 
-- Every HTML element can include an **`id`** attribute, which is used to give it a unique identifier so that you can refer to it later (e.g., from JavaScript). `id` attributes are named like variable names, and must be **unique** on the page.
+- Ogni elemento HTML puo' includere un attribute **`id`**, usato per dare un identificatore univoco cosi' da poterlo riferire in seguito (ad es. da JavaScript). Gli attribute `id` sono nominati come variabili e devono essere **unici** nella pagina.
 
     ```html
     <h1 id="title">My Web Page</h1>
     ```
 
-    The `id` attribute is most commonly used used to create ["bookmark hyperlinks"](https://www.w3.org/TR/html4/struct/links.html#h-12.2.3), which are hyperlinks to a particular location on a page (i.e., that cause the page to scroll down to that location). You do this by including the `id` as the **fragment** of the URL to link to (e.g., after the `#` in the URL).
+    L'attribute `id` e' usato piu' spesso per creare ["bookmark hyperlink"](https://www.w3.org/TR/html4/struct/links.html#h-12.2.3), ovvero hyperlink a una posizione specifica della pagina (cioe' che fanno scorrere la pagina fino a quel punto). Lo fai includendo l'`id` come **fragment** dell'URL (ad es. dopo `#` nell'URL).
 
     ```html
     <a href="index.html#nav">Link to element on `index.html` with `id="nav"`</a>
     <a href="#title">Link to element on current page with `id="title"`</a>
     ```
 
-    Note that, when specifying an id (i.e., `<h1 id="title">`) you do not include the `#` symbol. However, to _link_ to an element with id `title`, you include the `#` symbol before the id (i.e., `<a href="#title">`)
+    Nota che, quando specifichi un id (cioe' `<h1 id="title">`) non includi il simbolo `#`. Tuttavia, per _linkare_ a un elemento con id `title`, includi il simbolo `#` prima dell'id (cioe' `<a href="#title">`)
 
-- Every HTML element can include a **`class`** attribute, which is used to specify what _CSS classes_ apply to it. See [CSS Fundamentals](#css-fundamentals) for more details.
+- Ogni elemento HTML puo' includere un attribute **`class`**, usato per specificare quali _CSS class_ si applicano. Vedi [CSS Fundamentals](#css-fundamentals) per maggiori dettagli.
 
-- The `lang` attribute is used to indicate the language in which the element's content is written. Programs reading this file might use that to properly index the content, correctly pronounce it via a screen reader, or even translate it into another language:
+- L'attribute `lang` indica la lingua in cui e' scritto il contenuto dell'elemento. I programmi che leggono questo file possono usarlo per indicizzare correttamente il contenuto, pronunciarlo correttamente tramite uno screen reader o persino tradurlo in un'altra lingua:
 
     ```html
     <p lang="sp">No me gusta</p>
     ```
 
-    The `lang` attribute is primarily specified for the `<html>` element (see below) to define the default language of the page; that way you don't need to mark the language of every element.
+    L'attribute `lang` si specifica principalmente sull'elemento `<html>` (vedi sotto) per definire la lingua predefinita della pagina; cosi' non devi indicare la lingua di ogni elemento.
 
     ```html
     <html lang="en">
     ```
 
-Note that some attributes are written without an explicit value, meaning the value is the boolean `true` (for the value to be `false`, you omit the attribute entirely). For example, a `<button>` can be disabled:
+Nota che alcuni attribute si scrivono senza un valore esplicito, nel senso che il valore e' il boolean `true` (per avere `false`, ometti l'attribute). Per esempio, un `<button>` puo' essere disabilitato:
 
 ```html
 <!-- the presence of the `disabled` means the value is `true` -->
@@ -144,34 +144,34 @@ Note that some attributes are written without an explicit value, meaning the val
 ```
 
 
-### Empty Elements {-}
-A few HTML elements don't require a closing tag because they _can't_ contain any content. These elements are often used for inserting media into a web page, such as the `<img>` element. With an `<img>` element, you can specify the path to the image file in the `src` attribute, but the image element itself can't contain additional text or other content. Since it can't contain any content, you omit the end tag entirely:
+### Elementi vuoti {-}
+Alcuni elementi HTML non richiedono un closing tag perche' _non possono_ contenere contenuto. Questi elementi sono spesso usati per inserire media in una web page, come l'elemento `<img>`. Con un `<img>` puoi specificare il path dell'immagine nell'attribute `src`, ma l'elemento immagine non puo' contenere testo o altri contenuti. Poiche' non puo' contenere contenuto, ometti del tutto l'end tag:
 
 ```html
 <img src="picture.png" alt="description of image for screen readers and indexers">
 ```
 
-Older versions of HTML (and current related languages like [XML](https://en.wikipedia.org/wiki/XML)) required you to include a forward slash `/` just before the ending `>` symbol. This "closing" slash indicated that the element was complete and expected no further content&mdash;what is called a **self-closing tag**:
+Versioni piu' vecchie di HTML (e linguaggi correlati come [XML](https://en.wikipedia.org/wiki/XML)) richiedevano di includere una barra `/` subito prima del simbolo di chiusura `>`. Questa barra di "chiusura" indicava che l'elemento era completo e non si aspettava altro contenuto — un cosiddetto **self-closing tag**:
 
 ```html
 <img src="picture.png" alt="description of image for screen readers and indexers" />
 ```
 
-This is no longer required in HTML5, so feel free to omit that forward slash (though some purists, or those working with XML, will still include it). You will also need to include the closing `/` on empty elements when writing HTML for [React](#react) apps.
+In HTML5 non e' piu' richiesto, quindi sentiti libero di omettere la barra (anche se alcuni puristi, o chi lavora con XML, la includono ancora). Dovrai includere la barra di chiusura `/` sugli empty element quando scrivi HTML per app [React](#react).
 
 
-## Nesting Elements
-Web pages are made up of multiple (hundreds! thousands!) of HTML elements. Moreover, HTML elements can be **nested**: that is, the content of an HTML element can contain _other_ HTML tags (and thus other HTML elements):
+## Nidificazione di elementi
+Le web page sono composte da molte (centinaia! migliaia!) di elementi HTML. Inoltre, gli elementi HTML possono essere **nested**: cioe' il contenuto di un elemento HTML puo' contenere _altri_ tag HTML (e quindi altri elementi HTML):
 
 ![An example of element nesting: the `<em>` element is nested in the `<h1>` element's content.](img/html/nesting.png)
 
-The semantic meaning indicated by an element applies to _all_ its content: thus all the text in the above example is a top-level heading, and the content "(with emphasis)" is emphasized in addition.
+Il significato semantico indicato da un elemento si applica a _tutto_ il suo contenuto: quindi tutto il testo nell'esempio sopra e' un top-level heading, e il contenuto "(with emphasis)" e' enfatizzato in aggiunta.
 
-Because elements can contain elements which can _themselves_ contain elements, an HTML document ends up being structured as a <a href="https://en.wikipedia.org/wiki/Tree_(data_structure)">**"tree"**</a> of elements:
+Poiche' gli elementi possono contenere elementi che possono _a loro volta_ contenere elementi, un documento HTML finisce per essere strutturato come un <a href="https://en.wikipedia.org/wiki/Tree_(data_structure)">**"tree"**</a> di elementi:
 
 ![An example DOM tree (a tree of HTML elements).](img/html/dom-tree.jpg)
 
-In an HTML document, the "root" element of the tree is always an **`<html>`** element. Inside this we put a **`<body>`** element to contain the document's "body" (that is, the shown content):
+In un documento HTML, l'elemento "root" dell'albero e' sempre un **`<html>`**. All'interno mettiamo un elemento **`<body>`** che contiene il "body" del documento (cioe' il contenuto mostrato):
 
 ```html
 <html lang="en">
@@ -182,13 +182,13 @@ In an HTML document, the "root" element of the tree is always an **`<html>`** el
 </html>
 ```
 
-This model of HTML as a tree of "nodes"&mdash;along with an API (programming interface) for manipulating them&mdash; is known as the [**Document Object Model (DOM)**](https://en.wikipedia.org/wiki/Document_Object_Model). See [Document Object Model (DOM)](#dom) for details.
+Questo modello di HTML come albero di "nodes" — insieme a un'API (interfaccia di programmazione) per manipolarli — e' noto come [**Document Object Model (DOM)**](https://en.wikipedia.org/wiki/Document_Object_Model). Vedi [Document Object Model (DOM)](#dom) per dettagli.
 
-Following the "tree" structure metaphor, you refer an element as being the _parent_ of any element it contains, and the contained element as the _child_. In the above example, the `<em>` element is the child of the `<p>` element, and the `<p>` element is the parent of the `<em>` element. The `<body>` is a child of the `<html>`, and the parent of the `<h1>` and the `<p>`.
+Seguendo la metafora dell'"albero", si dice che un elemento e' il _parent_ degli elementi che contiene, e l'elemento contenuto e' il _child_. Nell'esempio sopra, l'elemento `<em>` e' il child dell'elemento `<p>`, e l'elemento `<p>` e' il parent dell'elemento `<em>`. Il `<body>` e' un child di `<html>`, e il parent di `<h1>` e `<p>`.
 
-<p class="alert alert-warning">**Caution!** HTML elements have to be "closed" correctly, or the semantic meaning may be incorrect! If you forget to close the `<h1>` tag, then _all_ of the following content will be considered part of the heading! Remember to close your inner tags _before_ you close the outer ones. [Validating](http://validator.w3.org/) your HTML can help find errors in this.</p>
+<p class="alert alert-warning">**Attenzione!** Gli elementi HTML devono essere "chiusi" correttamente, altrimenti il significato semantico puo' risultare errato! Se dimentichi di chiudere il tag `<h1>`, allora _tutto_ il contenuto successivo sara' considerato parte dell'heading! Ricorda di chiudere i tag interni _prima_ di chiudere quelli esterni. La [validazione](http://validator.w3.org/) del tuo HTML puo' aiutare a trovare questi errori.</p>
 
-Nesting elements is fundamental to HTML; in fact, all elements on the page are the child of some other element (except the `<html>` at the root). For example, a _list_ can be specified by nesting list item (`<li>`) elements inside of an unordered list (`<ul>`) element. And of course, those `<li>` elements can contain even more elements, such as additional ordered list (`<ol>`) elements!
+La nidificazione degli elementi e' fondamentale in HTML; in effetti, tutti gli elementi della pagina sono child di qualche altro elemento (tranne l'elemento `<html>` alla root). Per esempio, una _list_ puo' essere specificata nidificando elementi list item (`<li>`) dentro un elemento unordered list (`<ul>`). E naturalmente, quei `<li>` possono contenere ancora altri elementi, come ulteriori ordered list (`<ol>`).
 
 ```html
 <!-- An unordered list <ul> with 3 items <li>. The second item's content
@@ -206,13 +206,13 @@ Nesting elements is fundamental to HTML; in fact, all elements on the page are t
 </ul>
 ```
 
-This example has elements nested 4 levels deep (and that's relatively shallow for HTML). Note that the second `<li>` contains text (the word "Swallows:") as well as an additional element (an `<ol>`)&mdash;but all of that is content of the element!
+Questo esempio ha elementi nidificati a 4 livelli (ed e' relativamente superficiale per HTML). Nota che il secondo `<li>` contiene testo (la parola "Swallows:") e anche un altro elemento (`<ol>`) — ma tutto e' contenuto dell'elemento.
 
 
-### Block vs. Inline Elements {-}
-All HTML elements fall into one of two categories:
+### Elementi block vs. inline {-}
+Tutti gli elementi HTML rientrano in una di due categorie:
 
-- **Block elements** form a visible "block" on a page. In particular, a block element will be rendered below (on a "new line" from) from the previous content, and any content after it will be rendered below it. Block elements tend to be structural elements for a page: headings (`<h1>`), paragraphs (`<p>`), lists (`<ul>`), etc.
+- **Block elements** formano un "blocco" visibile nella pagina. In particolare, un block element viene renderizzato sotto (su una "nuova riga" rispetto a) il contenuto precedente, e qualsiasi contenuto dopo verra' renderizzato sotto di esso. I block element tendono a essere elementi strutturali della pagina: heading (`<h1>`), paragraph (`<p>`), list (`<ul>`), ecc.
 
     ```html
     <p>Block element</p>
@@ -221,7 +221,7 @@ All HTML elements fall into one of two categories:
 
     ![Two block elements rendered on a page.](img/html/block-element.png)
 
-- **Inline elements** are contained "in the line" of content. These will _not_ have a "line break" after them. Inline elements are used to modify the content rather than set it apart, such as giving it emphasis (`<em>`) or declaring that it to be a hyperlink (`<a>`).
+- **Inline elements** sono contenuti "nella riga" del contenuto. Questi _non_ avranno un "line break" dopo di loro. Gli inline element sono usati per modificare il contenuto invece di separarlo, ad esempio per dare enfasi (`<em>`) o dichiarare che e' un hyperlink (`<a>`).
 
     ```html
     <em>Inline element</em>
@@ -230,17 +230,17 @@ All HTML elements fall into one of two categories:
 
     ![Two inline elements rendered on a page.](img/html/inline-element.png)
 
-So in general, block elements are used to specify the "parts" of the page or annotate large blocks of content, while inline elements annote parts of that content (individual words or phrases).
+Quindi, in generale, i block element si usano per specificare le "parti" della pagina o annotare grandi blocchi di contenuto, mentre gli inline element annotano parti di quel contenuto (singole parole o frasi).
 
-When nesting elements, inline elements can go inside of block elements or other inline elements, and it's common to put block elements inside of the other block elements (e.g., an `<li>` inside of a `<ul>`, or a `<p>` inside of a `<div>`). However, it is invalid to nest a block element inside of an inline element. For example, you can't put a `<p>` inside of an `<em>` to say that the paragraph is emphasized (it would need to go the other way around). The one exception is that you are allowed to nest block elements inside of `<a>` elements to turn the entire block into a hyperlink, though this isn't very common.
+Quando nidifichi elementi, gli inline element possono andare dentro block element o altri inline element, ed e' comune mettere block element dentro altri block element (ad es. un `<li>` dentro un `<ul>`, o un `<p>` dentro un `<div>`). Tuttavia, non e' valido nidificare un block element dentro un inline element. Per esempio, non puoi mettere un `<p>` dentro un `<em>` per dire che il paragraph e' enfatizzato (dovrebbe essere il contrario). L'unica eccezione e' che e' consentito nidificare block element dentro `<a>` per trasformare l'intero blocco in un hyperlink, anche se non e' molto comune.
 
-<p class="alert alert-warning">Some elements have further restrictions on nesting. For example, a `<ul>` (unordered list) is _only_ allowed to contain `<li>` elements&mdash;anything else is considered invalid markup.</p>
+<p class="alert alert-warning">Alcuni elementi hanno ulteriori restrizioni sulla nidificazione. Per esempio, un `<ul>` (unordered list) puo' contenere _solo_ elementi `<li>` — qualsiasi altra cosa e' considerata markup non valido.</p>
 
-Each element has a different default display type (e.g., `block` or `inline`, but it is also possible to change how an element is displayed using CSS. See [the `display` property](#flow-layout).
+Ogni elemento ha un diverso display type di default (ad es. `block` o `inline`), ma e' anche possibile cambiare come un elemento viene visualizzato usando CSS. Vedi [la proprieta' `display`](#flow-layout).
 
 
-## Web Page Structure
-As noted above, HTML documents always follow a particular structure, with all of the content nested inside of a single `<html>` element. Thus web documents all use the following "template":
+## Struttura della web page
+Come detto sopra, i documenti HTML seguono sempre una struttura specifica, con tutto il contenuto nidificato dentro un singolo elemento `<html>`. Quindi i documenti web usano questo "template":
 
 ```html
 <!DOCTYPE html>
@@ -259,37 +259,37 @@ As noted above, HTML documents always follow a particular structure, with all of
 </html>
 ```
 
-(Alternatively, you can use the VS Code shortcut of writing an exclamation point (`!`) then hitting the `tab` key in a `.html` file to create a similar page skeleton).
+(In alternativa, puoi usare la scorciatoia di VS Code: scrivi un punto esclamativo (`!`) e poi premi `tab` in un file `.html` per creare uno skeleton simile).
 
-There are a few parts and elements to this template:
+Ci sono alcune parti ed elementi in questo template:
 
-- **Doctype Declaration**. All HTML files start with a [document type declaration](https://en.wikipedia.org/wiki/Document_type_declaration), commonly referred to as the "Doctype." This tells the rendering program (e.g., the browser) what format and syntax your document is using. Since your web document is written in HTML 5, you declare it as `<!DOCTYPE html>`.
+- **Doctype Declaration**. Tutti i file HTML iniziano con una [document type declaration](https://en.wikipedia.org/wiki/Document_type_declaration), comunemente chiamata "Doctype." Questo dice al programma di rendering (ad es. il browser) quale formato e sintassi usa il documento. Poiche' il tuo documento web e' scritto in HTML 5, lo dichiari come `<!DOCTYPE html>`.
 
-  `<!DOCTYPE>` isn't technically an HTML tag (it's actually XML). While modern browsers will perform a "best guess" as to the Doctype, it is best practice to specify it explicitly. Always include the Doctype at the start of your HTML files!
+  `<!DOCTYPE>` non e' tecnicamente un tag HTML (in realta' e' XML). Anche se i browser moderni faranno un "best guess" sul Doctype, e' una best practice specificarlo esplicitamente. Includi sempre il Doctype all'inizio dei tuoi file HTML.
 
-- **The `<html>` element**: The `<html>` element is the "start" of the HTML document (the whole document is contained within that element). Specify a `lang` attribute for this element.
+- **L'elemento `<html>`**: l'elemento `<html>` e' l'inizio del documento HTML (l'intero documento e' contenuto in quell'elemento). Specifica un attribute `lang` per questo elemento.
 
-  The `<html>` element contains exactly two child elements: a `<head>` and a `<body>`. No other elements can go directly inside of the `<html>`.
+  L'elemento `<html>` contiene esattamente due elementi child: un `<head>` e un `<body>`. Nessun altro elemento puo' andare direttamente dentro `<html>`.
 
-- **The `<head>` element**: The `<head>` element contains _metadata_ for the document&mdash;data about the content that isn't displayed on the page. It specifies information about the document being rendered. There are a couple of common elements you should include in the `<head>`:
+- **L'elemento `<head>`**: l'elemento `<head>` contiene _metadata_ per il documento — dati sul contenuto che non vengono visualizzati nella pagina. Specifica informazioni sul documento renderizzato. Ci sono alcuni elementi comuni che dovresti includere nel `<head>`:
 
-  - A **`<title>`**, which specifies the "title" of the webpage:
+  - Un **`<title>`**, che specifica il "titolo" della web page:
 
       ```html
       <title>My Page Title</title>
       ```
 
-      Browsers will show the page title in the tab at the top of the browser window, and use that as the default bookmark name if you bookmark the page. But the title is _also_ used by search indexers and screen readers for the blind, since it often provides a strong signal about what is the page's subject. Thus your title should be informative and reflective of the content.
+      I browser mostrano il page title nella tab in alto nella finestra del browser, e lo usano come nome predefinito del bookmark se lo salvi. Ma il title viene _anche_ usato da search indexer e screen reader per ciechi, perche' spesso fornisce un forte segnale sull'argomento della pagina. Quindi il titolo dovrebbe essere informativo e riflettere il contenuto.
 
-  - A **`<meta>`** tag that specifies the character encoding of the page:
+  - Un tag **`<meta>`** che specifica la character encoding della pagina:
 
       ```html
       <meta charset="UTF-8">
       ```
 
-      The `<meta>` tag itself represents "metadata" (information about the page's data), and uses an attribute and value to specify that information. The most important `<meta>` tag is for the character set, which tells the browser how to convert binary bits from the server into letters. Nearly all editors these days will save files in the `UTF-8` character set, which supports the mixing of different scripts (Latin, Cyrillic, Chinese, Arabic, etc) in the same file.
+      Il tag `<meta>` rappresenta "metadata" (informazioni sui dati della pagina) e usa un attribute e un valore per specificare tali informazioni. Il `<meta>` piu' importante e' quello del character set, che dice al browser come convertire i bit binari del server in lettere. Quasi tutti gli editor oggi salvano i file in `UTF-8`, che supporta la combinazione di script diversi (Latin, Cyrillic, Chinese, Arabic, ecc.) nello stesso file.
 
-  - You can also use the `<meta>` tag to include more information about the author, description, and keywords for your page:
+  - Puoi usare `<meta>` anche per includere informazioni su autore, descrizione e keyword della pagina:
 
       ```html
       <meta name="author" content="your name">
@@ -297,29 +297,29 @@ There are a few parts and elements to this template:
       <meta name="keywords" content="list,of,keywords,separate,by,commas">
       ```
 
-      Note that the `name` attribute is used to specify the "variable name" for that piece of metadata, while the `content` attribute is used to specify the "value" of that metadata. `<meta>` elements are _empty elements_ and have no content of their own.
+      Nota che l'attribute `name` specifica il "nome variabile" di quel metadata, mentre l'attribute `content` specifica il "valore" di quel metadata. Gli elementi `<meta>` sono _empty elements_ e non hanno contenuto proprio.
 
-      Again, these are not visible in the browser window (because they are in the `<head>`!), but will be used by search engines to index your page.
+      Anche qui, questi elementi non sono visibili nella finestra del browser (perche' sono nel `<head>`), ma vengono usati dai motori di ricerca per indicizzare la pagina.
 
-      - _At the very least, always include author information for on the home page of sites you create!_
+      - _Come minimo, includi sempre le informazioni dell'autore nella home page dei siti che crei._
 
-  Additional elements for the `<head>` section will be introduced in later chapters, such as using `<link>` to include CSS and using `<script>` to include JavaScript.
+  Elementi aggiuntivi per la sezione `<head>` verranno introdotti nei capitoli successivi, come l'uso di `<link>` per includere CSS e di `<script>` per includere JavaScript.
 
-  Note that the `<head>` is different from a _header_ element (like an `<h1>`), as well as from the `<header>` element discussed in [Semantic HTML](#semantic-html).
+  Nota che `<head>` e' diverso da un elemento _header_ (come `<h1>`), e anche dall'elemento `<header>` discusso in [Semantic HTML](#semantic-html).
 
-- **The `<body>` element**: The `<body>` element contains all of the visible content of the web page. Every heading, paragraph, image, form, etc goes inside of the `<body>`. Note that you cannot put any visible elements outside of the `<body>`&mdash;not in the `<head>` or directly in the `<html>`. Header and footer content are still part of the `<body>` of the page!
+- **L'elemento `<body>`**: l'elemento `<body>` contiene tutto il contenuto visibile della web page. Ogni heading, paragraph, image, form, ecc. va dentro `<body>`. Nota che non puoi mettere elementi visibili fuori dal `<body>` — non nel `<head>` e nemmeno direttamente in `<html>`. Anche i contenuti di header e footer fanno parte del `<body>`!
 
 
-## Resources {-}
-Some useful references and documentation as you begin learning HTML include:
+## Risorse {-}
+Alcuni riferimenti e documentazione utili mentre inizi a imparare HTML includono:
 
 <div class="list-condensed">
 - [General HTML 5 Reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
 - [Alphabetical HTML Tag Reference](http://www.w3schools.com/tags/default.asp)
 </div>
 
-The first reference is from the [Mozilla Developer Network (MDN)](https://developer.mozilla.org/en-US/docs/Web). This reference is managed by Mozilla, the organization that creates and maintains the Firefox web browser. It is the most detailed and accurate reference for web programming, and is what I consider the closest "documentation" for code syntax.
+Il primo riferimento e' della [Mozilla Developer Network (MDN)](https://developer.mozilla.org/en-US/docs/Web). Questo riferimento e' gestito da Mozilla, l'organizzazione che crea e mantiene il browser Firefox. E' il riferimento piu' dettagliato e accurato per il web programming, ed e' quello che considero piu' vicino alla "documentazione" per la sintassi del codice.
 
-The second reference is from [W3Schools](https://www.w3schools.com/), and is a very friendly beginner reference for many web development topics. However, it is somewhat less extensive and accurate than MDN.
+Il secondo riferimento e' di [W3Schools](https://www.w3schools.com/), un riferimento molto amichevole per principianti su molti argomenti di web development. Tuttavia, e' un po' meno esteso e accurato di MDN.
 
-Also remember you can [view the HTML page source](https://support.google.com/surveys/answer/6172725) of _any_ webpage you visit. Use that to explore how others have developed pages and to learn new tricks and techniques!
+Ricorda anche che puoi [visualizzare il page source HTML](https://support.google.com/surveys/answer/6172725) di _qualsiasi_ web page che visiti. Usalo per esplorare come altri hanno sviluppato pagine e per imparare nuovi trucchi e tecniche.

@@ -1,14 +1,14 @@
 # CSS Selectors
 
-[CSS Fundamentals](#css-fundamentals) introduced ths basic syntax and usage of CSS. This chapter details additional syntax and options for **selectors** that specify to which elements on a web page a CSS rule should apply.
+[CSS Fundamentals](#css-fundamentals) ha introdotto la sintassi base e l'uso di CSS. Questo capitolo dettaglia sintassi aggiuntiva e opzioni per i **selector** che specificano a quali elementi di una web page si applica una regola CSS.
 
-<p class="alert alert-success">Development environments such as VS Code can help show which elements will be selected by a different rule depending on the selector. In VS Code, you can hover the mouse over the selector part of a written CSS rule, and a small pop-up will give a generic example of what element that rule applies to! This can be useful for checking your understanding of the selector syntax, as well as for confirming that the rule applies to the elements you intend.</p>
+<p class="alert alert-success">Ambienti di sviluppo come VS Code possono aiutare a mostrare quali elementi vengono selezionati da una regola a seconda del selector. In VS Code puoi passare il mouse sul selector di una regola CSS e un pop-up ti dara' un esempio generico di quali elementi quella regola colpisce. Questo e' utile per verificare la comprensione della sintassi e per confermare che la regola si applichi agli elementi desiderati.</p>
 
-## Basic Selectors
-Almost all CSS selectors are made up of the most basic selector types: **type selectors**, **class selectors**, or **id selectors**. Type and class selectors were introduced in [CSS Fundamentals](#css-fundamentals); those explanations are repeated here for ease of reference.
+## Selector di base
+Quasi tutti i CSS selector sono composti dai tipi piu' basilari: **type selector**, **class selector** o **id selector**. I type e class selector sono stati introdotti in [CSS Fundamentals](#css-fundamentals); le spiegazioni sono ripetute qui per comodita'.
 
 ### Type Selector {-}
-The most basic selector is the **type selector**, which selects elements by their type (tag name). For example, the below rule will apply to the all `<p>` elements, regardless of where they appear on the page:
+Il selector piu' basilare e' il **type selector**, che seleziona elementi per tipo (nome del tag). Per esempio, la regola sotto si applichera' a tutti gli elementi `<p>`, indipendentemente da dove si trovano nella pagina:
 
 ```css
 p {
@@ -16,7 +16,7 @@ p {
 }
 ```
 
-CSS rules can use the type selector to style any type of element:
+Le regole CSS possono usare il type selector per stilizzare qualsiasi tipo di elemento:
 
 ```css
 /* style all h1 elements to be purple */
@@ -37,7 +37,7 @@ img {
 ```
 
 ### Class Selector {-}
-A **class selector** will select all elements with a **`class`** attribute that contains the specified name. For example, if you had HTML:
+Un **class selector** seleziona tutti gli elementi con un attribute **`class`** che contiene il nome specificato. Per esempio, se avessi HTML:
 
 ```html
 <!-- HTML -->
@@ -45,7 +45,7 @@ A **class selector** will select all elements with a **`class`** attribute that 
 <p>This text is not highlighted</p>
 ```
 
-You could color just the correct paragraph by using the class selector:
+Potresti colorare solo il paragraph corretto usando il class selector:
 
 ```css
 /* CSS */
@@ -54,18 +54,18 @@ You could color just the correct paragraph by using the class selector:
 }
 ```
 
-Class selectors are written with a single dot (**`.`**) preceding the _name of the class_ (not the name of the element!) The `.` is only used in the CSS rule, not in the HTML `class` attribute. In the above example, the HTML element has the class `highlighted` (no dot), and the CSS selector uses `.highlighted` to mean "elements with class `highlighted`".
+I class selector si scrivono con un punto (**`.`**) prima del _nome della class_ (non del nome dell'elemento). Il `.` si usa solo nella regola CSS, non nell'attribute `class` HTML. Nell'esempio sopra, l'elemento HTML ha la class `highlighted` (senza punto), e il selector CSS usa `.highlighted` per dire "elementi con class `highlighted`".
 
-CSS class names should start with a letter, and can contain hyphens, underscores, and numbers. Words are usually written in lowercase and separated by hyphens rather than camelCased or snake_cased. Classes should be given _informative_ names&mdash;like you would name a variable! See [Naming CSS Classes](#naming-css-classes) below for further discussion.
+I nomi delle class CSS dovrebbero iniziare con una lettera e possono contenere trattini, underscore e numeri. Le parole di solito si scrivono in lowercase e separate da trattini invece che in camelCase o snake_case. Le class dovrebbero avere nomi _informativi_ — come daresti un nome a una variabile. Vedi [Naming CSS Classes](#naming-css-classes) sotto per ulteriori dettagli.
 
-Class selectors will apply to any element that contains that class, regardless of the element's type. This can let you apply a single consistent styling to multiple different types of elements:
+I class selector si applicano a qualsiasi elemento che contiene quella class, indipendentemente dal tipo dell'elemento. Questo permette di applicare uno styling coerente a tipi diversi di elementi:
 
 ```html
 <h1 class="alert-flashing">I am a flashing alert!</h1>
 <p class="alert-flashing">So am I!<p>
 ```
 
-HTML elements can have _multiple classes_; each class name is separate by a **space** (not a comma):
+Gli elementi HTML possono avere _piu' class_; ogni nome di class e' separato da uno **spazio** (non da una virgola):
 
 ```html
 <p class="alert flashing">I have TWO classes: "alert" and "flashing"</p>
@@ -73,16 +73,16 @@ HTML elements can have _multiple classes_; each class name is separate by a **sp
 <p class="alert flashing fast">I have THREE classes: "alert", "flashing", and "fast"</p>
 ```
 
-The class selector will select any element that _contains_ that class in its list. So the first paragraph in the above example would be styled by either the selector `.alert` _or_ the selector `.flashing`. The second paragraph would not be styled by either selector, because `"alert-flashing"` is not the `"alert"` or the `"flashing"` class.
+Il class selector selezionera' qualsiasi elemento che _contiene_ quella class nella lista. Quindi il primo paragraph nell'esempio sopra verrebbe stilizzato dal selector `.alert` _o_ dal selector `.flashing`. Il secondo paragraph non sarebbe stilizzato da nessuno dei due selector, perche' "alert-flashing" non e' la class "alert" o "flashing".
 
-It is common for HTML elements to be given lots of classes, particularly under a _modular class naming_ scheme.
+E' comune che gli elementi HTML abbiano molte class, specialmente in uno _schema modulare di naming_.
 
-Class selectors are the best way to style a single particular element (just give it a `class` and then write a rule to refer to that), as well as one of the most clearest and effective ways of styling large _portions_ of the page.
+I class selector sono il modo migliore per stilizzare un singolo elemento (assegnagli una `class` e poi scrivi una regola che lo selezioni), oltre a essere uno dei modi piu' chiari ed efficaci per stilizzare grandi _porzioni_ della pagina.
 
 ### Id Selector {-}
-It is also possible to select HTML elements by their `id` attribute by using an **id selector**. Every HTML element can have an `id` attribute, but unlike the `class` attribute the value of the `id` must be _unique within the page_. That is, no two elements can have the same value for their `id` attributes. (While technically an id selector will apply to _all_ elements with that id, it's invalid HTML for two elements to share the same `id`).
+E' anche possibile selezionare elementi HTML in base al loro attribute `id` usando un **id selector**. Ogni elemento HTML puo' avere un attribute `id`, ma a differenza di `class`, il valore dell'`id` deve essere _unico nella pagina_. Cioe', nessun elemento puo' avere lo stesso `id`. (Tecnicamente un id selector si applicherebbe a _tutti_ gli elementi con quell'id, ma e' HTML non valido).
 
-The **id selectors** is written with a **`#`** character, followed by the value of the `id`:
+L'**id selector** si scrive con un carattere **`#`**, seguito dal valore dell'`id`:
 
 ```html
 <div id="sidebar">
@@ -96,18 +96,18 @@ The **id selectors** is written with a **`#`** character, followed by the value 
 }
 ```
 
-Similar to with class selectors, the `#` is only used in the CSS rule, not in the HTML `id` attribute. The CSS selector uses `#sidebar` to mean "the element with id `sidebar`".
+Come per i class selector, il `#` si usa solo nella regola CSS, non nell'attribute `id` HTML. Il selector CSS usa `#sidebar` per dire "l'elemento con id `sidebar`".
 
-The `id` attribute is more specific (it's always just one element!) but less flexible than the `class` attribute, and makes it harder to "reuse" your styling across multiple elements or multiple pages. Thus best practice to use class or type selectors instead of id selectors when styling content (see [the code style guidelines](#code-style-guide)). However, id selectors are often used in JavaScript when referring to elements on the page (since such identifiers will be unique).
+L'attribute `id` e' piu' specifico (e' sempre un solo elemento!) ma meno flessibile del `class`, e rende piu' difficile riusare lo styling su piu' elementi o pagine. Quindi e' best practice usare class o type selector invece degli id selector per lo styling (vedi [code style guide](#code-style-guide)). Tuttavia gli id selector sono spesso usati in JavaScript per riferirsi agli elementi (dato che l'identificatore e' unico).
 
 
-## Complex Selectors
-The _type selector_, _class selector_, and _id selector_ are the core types of selectors used in CSS. However, it is also possible to _combined_ these basic types into more complex selectors in order to specify rules that apply only to particular elements or groups of elements. This section describes different syntax used to combine basic selectors.
+## Selector complessi
+I _type selector_, _class selector_ e _id selector_ sono i tipi base di selector in CSS. Tuttavia e' possibile _combinare_ questi tipi base in selector piu' complessi per specificare regole che si applicano solo a elementi o gruppi particolari. Questa sezione descrive la sintassi per combinare i selector di base.
 
 ### Grouping Selector {-}
-The **grouping selector** allows you to have a single rule apply to elements matched by lots of different selectors. Technically this isn't a distinct complex selector: rather it is just a _"short-cut syntax"_ for writing multiple multiples rules with different selectors (but the same properties) at once.
+Il **grouping selector** permette di applicare una singola regola a elementi selezionati da piu' selector diversi. Tecnicamente non e' un selector complesso distinto: e' una _"short-cut syntax"_ per scrivere piu' regole con selector diversi (ma stesse property) in una volta sola.
 
-The grouping selector combines each component selector with a comma (**`,`**) separating them:
+Il grouping selector combina i selector con una virgola (**`,`**) tra loro:
 
 ```css
 /* grouping selector: applies to h1, h2, AND h3 elements */
@@ -117,7 +117,7 @@ h1, h2, h3 {
 }
 ```
 
-The above example applies to all elements that would be selected by an `h1` selector, that would be selected by an `h2` rule, _and_ that would be selected by an `h3` selector. It is precisely equivalent to writing out the three rules separately; the grouping selector just lets you avoid having to repeat the same set of property specifications.
+L'esempio sopra si applica a tutti gli elementi selezionati da un selector `h1`, da un selector `h2` _e_ da un selector `h3`. E' esattamente equivalente a scrivere le tre regole separatamente; il grouping selector evita di ripetere le stesse property.
 
 ```css
 /* Two rules written as one with the grouping selector */
@@ -135,9 +135,9 @@ h2 {
 }
 ```
 
-<p class="alert alert-info">It is totally acceptable to have the same property and value defined multiples times in multiple different rules. Do not go out of your way to "minimize" duplicated properties by using the grouping selector. It's best to only grouping selectors if they _semantically_ are applying "the same style".</p>
+<p class="alert alert-info">E' totalmente accettabile definire la stessa property e value piu' volte in regole diverse. Non cercare di "minimizzare" le ripetizioni usando il grouping selector. E' meglio usare il grouping selector solo se _semanticamente_ sta applicando "lo stesso stile".</p>
 
-The component selectors in the grouping selector can be _any_ kind of selector, including `.class` selectors, `#id` selectors, or any of the other complex selectors described in this chapter:
+I selector componenti nel grouping selector possono essere _qualsiasi_ tipo di selector, inclusi `.class`, `#id` o altri selector complessi descritti in questo capitolo:
 
 ```css
 /* grouping selector can also combine class or id selectors */
@@ -148,7 +148,7 @@ h2, .menu, #sidebar {
 }
 ```
 
-Note that since later rules take precedence earlier ones, you can use a group select to apply a property to multiple different elements, then include additional rules to add variations to those elements. For example, you can have one rule that applies "general" styling to a large class of elements, with further rules then customizing particular elements.
+Nota che, poiche' le regole successive hanno precedenza sulle precedenti, puoi usare un grouping selector per applicare una property a piu' elementi, poi aggiungere regole ulteriori per varianti specifiche. Per esempio, puoi avere una regola generale per un'ampia classe di elementi, e regole successive per personalizzazioni specifiche.
 
 ```css
 /* all headings are Helvetica, bold, and purple */
@@ -166,7 +166,7 @@ h2 {
 
 
 ### Compound Selector {-}
-A **compound selector** combines element, class, and id selectors together to be more specific about where a rule applies. You do this by simply putting a class or id selector _immediately after_ the previous selector, without a space or comma or anything between them. The selector will apply to elements that match _all_ of the component parts.
+Un **compound selector** combina selector di elemento, class e id per essere piu' specifico su dove si applica una regola. Lo fai mettendo un class o id selector _immediatamente dopo_ il selector precedente, senza spazio o virgola tra loro. Il selector si applichera' agli elementi che corrispondono a _tutte_ le parti componenti.
 
 ```css
 /* Selects only p elements that have class="alert"
@@ -202,13 +202,13 @@ p.highlighted, li.marked {
 }
 ```
 
-<p class="alert alert-warning">Note that putting a space between the selectors components (e.g., `p .alert` instead of `p.alert`) instead specifies a [descendant selector](#descendant-selector) (described below), which has a totally separate meaning. Every character matters in CSS! Use tools such as VS Code's selector pop-up to confirm that you've written selectors as intended.</p>
+<p class="alert alert-warning">Nota che mettere uno spazio tra i componenti del selector (ad es. `p .alert` invece di `p.alert`) indica un [descendant selector](#descendant-selector) (descritto sotto), con un significato completamente diverso. Ogni carattere conta in CSS. Usa strumenti come il pop-up dei selector in VS Code per confermare di aver scritto i selector corretti.</p>
 
-A compound selector adds additional specificity to a selector, allowing you to reuse class names (e.g., for shared semantics and readability purposes) but have those classes apply different styles to different elements. For example, a compound selector would allow a "highlighted" paragraph `p.highlighted` to look different from a "highlighted" heading `h1.highlighted`. It also allows you to combine modular classes to produce customizations: a successful alert (`.alert.success`) can look different from a warning alert (`.alert.warning`), which can have specialized changes that wouldn't apply to general `.warning` elements.
+Un compound selector aggiunge specificita' a un selector, permettendoti di riusare nomi di class (ad es. per semantica condivisa e leggibilita') ma far applicare stili diversi a elementi diversi. Per esempio, un compound selector permetterebbe a un paragraph "highlighted" (`p.highlighted`) di apparire diverso da un heading "highlighted" (`h1.highlighted`). Permette anche di combinare class modulari per personalizzazioni: un alert di successo (`.alert.success`) puo' apparire diverso da un alert warning (`.alert.warning`), con differenze che non si applicano agli elementi `.warning` generali.
 
 
 ### Descendant Selector {-}
-The selectors mentioned so far will apply to matching elements regardless of where they are in the HTML element tree. But sometimes you want to be more specific and style only a set of elements that exist within a particular parent or ancestor element, and not all the other matching elements elsewhere in the page. You can do this form of targeted selecting using a **descendant selector**. This is written by putting a blank space (**<code>&nbsp;</code>**) between selector components. The rule will apply to elements that match the final component only if they have parents that match the preceding selector components:
+I selector menzionati finora si applicano agli elementi corrispondenti indipendentemente dalla loro posizione nell'albero HTML. Ma a volte vuoi essere piu' specifico e stilizzare solo un insieme di elementi che esistono dentro un particolare parent o ancestor, e non tutti gli elementi altrove nella pagina. Puoi farlo con un **descendant selector**. Si scrive mettendo uno spazio (**<code>&nbsp;</code>**) tra i componenti del selector. La regola si applichera' agli elementi che corrispondono all'ultimo componente solo se hanno parent che corrispondono ai componenti precedenti:
 
 ```html
 <header>
@@ -230,9 +230,9 @@ header p {
 }
 ```
 
-This selector can be read as "select all `<header>` elements, then style each `<p>` inside of those elements". Alternatively, I often find it easier to read a descendant selector "backwards": style the `<p>` elements that are inside of a `<header>`.
+Questo selector si puo' leggere come "seleziona tutti gli elementi `<header>`, poi stilizza ogni `<p>` dentro quegli elementi". In alternativa, spesso e' piu' facile leggere un descendant selector "al contrario": stilizza gli elementi `<p>` che sono dentro un `<header>`.
 
-A descendant selector can have as many "levels" as desired, and each level can be made up of any kind other selector (including e.g., compound selectors). However, it is good style to only have 2 or 3 levels in a descendant selector. If you find you need to be more specific than that, then perhaps defining a new `.class` is in order.
+Un descendant selector puo' avere quanti "livelli" vuoi, e ogni livello puo' essere qualsiasi tipo di selector (inclusi compound selector). Tuttavia, e' buon stile avere solo 2 o 3 livelli. Se ti serve piu' specificita', forse e' il caso di definire una nuova `.class`.
 
 ```css
 /* selects elements with class="logo"
@@ -243,9 +243,9 @@ header p .logo {
 }
 ```
 
-Mind the space! `header p .logo` is different than `header p.logo`&mdash;the first refers to `.logo` elements that are _inside_ of a `<p>` (and inside of a `<header>`), while the second refers to `<p>` elements that _have_ the class `"logo"` (and are inside of a `<header>`).
+Occhio allo spazio. `header p .logo` e' diverso da `header p.logo`: il primo si riferisce a elementi `.logo` _dentro_ un `<p>` (e dentro un `<header>`), mentre il secondo si riferisce a elementi `<p>` che _hanno_ la class `"logo"` (e sono dentro un `<header>`).
 
-To be clear: the component parts of _any_ selector can be made up of any other selector:
+Per chiarezza: i componenti di _qualsiasi_ selector possono essere composti da altri selector:
 
 ```css
 /* Using multiple different selectors in combination!
@@ -256,7 +256,7 @@ To be clear: the component parts of _any_ selector can be made up of any other s
 header p.subtitle, .sidebar.form fieldset legend { }
 ```
 
-Note that descendant selectors will select matching descendant elements _anywhere_ lower in the tree branch, not just direct children, so the `.logo` elements here could be nested several layers below the `<p>` element (perhaps inside a `<span>`). This is usually a good idea because you may introduce new nesting layers to your page as you go along, and don't want to need to then modify the CSS. But if you really want to select only _direct_ children, you can use a variant known as a **child selector**, which uses a **`>`** symbol to indicate direct descendants only:
+Nota che i descendant selector selezionano elementi discendenti _a qualsiasi profondita'_ nel ramo, non solo child diretti, quindi gli elementi `.logo` potrebbero essere annidati diversi livelli sotto l'elemento `<p>` (magari dentro uno `<span>`). In genere e' una buona idea perche' potresti introdurre nuovi livelli di nesting e non vuoi dover modificare il CSS. Ma se vuoi davvero selezionare solo i child diretti, puoi usare una variante chiamata **child selector**, che usa il simbolo **`>`** per indicare solo discendenti diretti:
 
 ```html
 <body>
@@ -275,7 +275,7 @@ body > p {
 }
 ```
 
-Similarly, the **sibling selector** (**`~`**) will select elements that are _siblings_ of the preceding component selector, while the **adjacent-sibling selector** (**`+`**) will select elements that are the _immediately following_ sibling of the preceding component. These selectors are more rarely used, as they more heavily rely on the specific layout of elements on a page and are more likely to require updating if new content is added.
+Allo stesso modo, il **sibling selector** (**`~`**) seleziona elementi che sono _sibling_ del componente precedente, mentre il **adjacent-sibling selector** (**`+`**) seleziona elementi che sono il sibling _immediatamente successivo_ del componente precedente. Questi selector sono usati piu' raramente, perche' dipendono di piu' dal layout specifico degli elementi e tendono a richiedere aggiornamenti se si aggiungono nuovi contenuti.
 
 ```css
 /* Sibling Selector: selectors elements that are siblings
@@ -284,14 +284,14 @@ Similarly, the **sibling selector** (**`~`**) will select elements that are _sib
 img ~ p { }
 
 /* Adjacent Sibling Selector: selects elements that are the *next* sibling
-   Applies to the single <p> that shares the same parant as an `<img>` and comes
+   Applies to the single <p> that shares the same parent as an `<img>` and comes
    immediately after it (with no other elements inbetween)
    */
 img + p {  }
 ```
 
-### Pseudo-classes {-}
-A **pseudo-class** is a selector component that is used to select elements depending on their current _state_ of use, rather than their explicit identity such as element type or class. You can almost think of these as pre-defined classes built into the browser, that are added and removed as you interact with the page. This allows you to define styles based on user interactions (among other things). Pseudo-classes are written with a colon (**`:`**) and the name of the pseudo-class immediately after a selector component (whether basic or complex):
+### Pseudo-classi {-}
+Una **pseudo-class** e' un componente del selector usato per selezionare elementi in base al loro _stato_ corrente di utilizzo, invece che alla loro identita' esplicita come tipo o class. Puoi pensarle come class predefinite integrate nel browser, che vengono aggiunte o rimosse mentre interagisci con la pagina. Questo permette di definire stili basati sulle interazioni utente (tra le altre cose). Le pseudo-class si scrivono con i due punti (**`:`**) seguiti dal nome della pseudo-class, immediatamente dopo un componente del selector (base o complesso):
 
 ```css
 /* Selects <li> elements that the user hovers over with a mouse
@@ -301,9 +301,9 @@ li:hover {
 }
 ```
 
-For example, this rule will apply to any `<li>` element the user hovers over with a mouse, so that while that element is in the "hovered" state it will have a larger font size. When the element is no longer hovered, this rule no longer applies and the element will not have that size. Note that the styling applies to the _element_&mdash;the pseudo-class just describes which element the rule applies to.
+Per esempio, questa regola si applica a qualunque elemento `<li>` su cui l'utente passa il mouse, quindi mentre l'elemento e' in stato "hover" avra' un font piu' grande. Quando non e' piu' hover, la regola non si applica. Nota che lo styling si applica all'_elemento_ — la pseudo-class descrive solo quali elementi vengono selezionati.
 
-Pseudo-classes can be combined with complex selector components:
+Le pseudo-class possono essere combinate con componenti di selector complessi:
 
 ```css
 /* Style hovered <li> only that are descendants of <ul> elements */
@@ -313,9 +313,9 @@ ul li:hover { }
 p:hover img { }
 ```
 
-<p class="alert alert-warning">While neat looking, in general modifying page appearance based on the `:hover` property is not a great idea and should be used sparingly if at all. The `:hover` property isn't accessible (a screen reader can't hover over text). The `:hover` property doesn't work with mobile devices (you can't hover with your finger). And changing element styling on hover&mdash;particularly any styling that affects the rendered size of an element&mdash;can cause cascading effects on the rest of the page (making an image or text larger will move everything else around) that will make the page harder to read and interact with.</p>
+<p class="alert alert-warning">Anche se e' carino, in generale modificare l'aspetto della pagina con `:hover` non e' una grande idea e va usato con parsimonia. `:hover` non e' accessibile (uno screen reader non puo' hoverare). `:hover` non funziona su dispositivi mobile (non puoi hoverare con il dito). E cambiare lo styling in hover — in particolare se influisce sulle dimensioni — puo' causare effetti a cascata sul resto della pagina, rendendola piu' difficile da leggere e usare.</p>
 
-There are [many different supported pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes), which range from user interactions to form state:
+Ci sono [molte pseudo-class supportate](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes), che vanno dalle interazioni utente allo stato dei form:
 
 ```css
 /* Selects <input> elements that are disabled */
@@ -329,11 +329,11 @@ input:checked {
 }
 ```
 
-Some additional common types of pseudoclasses are described in the following sections.
+Alcuni altri tipi comuni di pseudo-class sono descritti nelle sezioni seguenti.
 
 
-#### Styling Hyperlinks {-}
-Hyperlink (`<a>`) elements come with their own browser-dependent default styling behavior&mdash;such as making links blue and underlined, and then purple if they've been visited previously. CSS can be used to override these styles, and additional psuedo-classes can be used to specify the style based on the state of the link:
+#### Styling degli hyperlink {-}
+Gli elementi hyperlink (`<a>`) hanno un comportamento di styling di default dipendente dal browser — ad esempio link blu e sottolineati, poi viola se visitati. CSS puo' sovrascrivere questi stili e usare pseudo-class per specificare lo stile in base allo stato del link:
 
 ```css
 /* Applies to <a> elements that have NOT been visited before */
@@ -351,7 +351,7 @@ a:focus {  }
 a:active {  }
 ```
 
-These selectors may often apply to an element at the same time: a link may be unvisited (`:link`), and have `:focus` at the moment it is being clicked (`:active`). To ensure that rules are not overridden, they need to be applied in **LVHFA** order: `:link`, `:visited`, `:hover`, `:focus`, `:active`. Indeed, rules are often written to apply to all states in this order:
+Questi selector possono spesso applicarsi allo stesso elemento: un link puo' essere non visitato (`:link`) e avere `:focus` nel momento in cui viene cliccato (`:active`). Per assicurare che le regole non vengano sovrascritte, vanno applicate nell'ordine **LVHFA**: `:link`, `:visited`, `:hover`, `:focus`, `:active`. Infatti, spesso le regole vengono scritte per applicarsi a tutti gli stati in quest'ordine:
 
 ```css
 /* Applies to <a> elements no matter the state */
@@ -360,13 +360,13 @@ a:link, a:visited, a:hover, a:focus, a:active {
 }
 ```
 
-<p class="alert alert-warning">Remember to always set both `hover` _and_ `focus`, to support accessibility for people who cannot use a mouse!</p>
+<p class="alert alert-warning">Ricorda di impostare sempre sia `hover` _sia_ `focus`, per supportare l'accessibilita' delle persone che non possono usare un mouse.</p>
 
 
-#### Tree Structure Pseudo-classes {-}
-Another helpful type of pseudo-class are those that [select elements based on their location within the document's tree of elements](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes#tree-structural_pseudo-classes). These can serve a similar purpose to the descendant, child, or sibling selectors, but with more capabilities.
+#### Pseudo-class di struttura dell'albero {-}
+Un altro tipo utile di pseudo-class sono quelle che [selezionano elementi in base alla loro posizione nell'albero del documento](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes#tree-structural_pseudo-classes). Servono a scopi simili ai selector discendenti/child/sibling, ma con piu' capacita'.
 
-For example, pseudo-classes can be used to select a single element of a particular type based on which child it is:
+Per esempio, le pseudo-class possono selezionare un singolo elemento di un certo tipo in base a quale child e':
 
 ```css
 /* Selects the first `<li>` element in its parent */
@@ -381,9 +381,9 @@ p:first-child {
 }
 ```
 
-These pseudo-classes are similar to the descendant selector or the child selector, but rather than styling an element if it is a child, they style an element if is a _particular_ child. There are equivalent `:last-of-type` and `:last-child` pseudo-classes as well).
+Queste pseudo-class sono simili ai selector discendenti o child, ma invece di stilizzare un elemento se e' un child, lo stilizzano se e' un _child particolare_. Esistono anche le pseudo-class `:last-of-type` e `:last-child`.
 
-A more complex variation of these selectors are the **`:nth-of-type`** and **`:nth-child`** pseudo-classes. These are similar the "first" and "last" version, but select elements based on an arbitrary number or position: the "second child", "fifth child", or "every third child".
+Una variante piu' complessa sono le pseudo-class **`:nth-of-type`** e **`:nth-child`**, che selezionano elementi in base a un numero o posizione: il "secondo child", il "quinto child" o "ogni terzo child".
 
 ```css
 /* Selects the 2nd <li> element  */
@@ -399,9 +399,9 @@ li:nth-of-type(3n) { }
 li:nth-of-type(3n+2) { }
 ```
 
-These are an example of a pseudo-class that are written like a function, expecting an **argument** indicating which elements to select. The argument can be a single number (to select that number element), the keywords `even` or `odd` to select every other element (count starting at 1), or an expression of the form `An+B`, where the `A` is how many elements to count and the `B` is where to start counting from.
+Queste sono pseudo-class scritte come funzioni, con un **argomento** che indica quali elementi selezionare. L'argomento puo' essere un numero singolo (per selezionare quell'elemento), le keyword `even` o `odd` per selezionare ogni altro elemento (contando da 1), o un'espressione `An+B`, dove `A` e' quanti elementi contare e `B` dove iniziare a contare.
 
-Sturctural pseudo-classes like this are particularly useful for repeated elements, such as lists or tables. For example, you can use these to style "every other row" or a table, or to give the last row a particular appearance:
+Le pseudo-class strutturali sono utili per elementi ripetuti, come liste o tabelle. Per esempio, puoi usarle per stilizzare "ogni altra riga" o per dare all'ultima riga un aspetto particolare:
 
 ```css
 /* Select every other row (for a "striped" table appearance) */
@@ -415,18 +415,18 @@ tr:last-of-type {
 }
 ```
 
-Pseudo-classes and other complex selectors are _not required_ when writing CSS. You can often achieve the same effect by using CSS classes or clever applications of e.g., the descendant selector. However, pseudo-classes can make your code more _expressive_ and easier to write and modify: rather that needing to add a `class` to every other row (and then changing that if a row gets inserted into the midddle!), you can use `:nth-of-type(even)` to achieve the same effect.
+Le pseudo-class e altri selector complessi _non sono obbligatori_ quando si scrive CSS. Spesso puoi ottenere lo stesso effetto usando class o combinazioni di selector discendenti. Tuttavia, le pseudo-class possono rendere il codice piu' _espressivo_ e facile da scrivere e modificare: invece di aggiungere una `class` a ogni altra riga (e poi aggiornarla se inserisci una riga a meta), puoi usare `:nth-of-type(even)`.
 
-There are [many other pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes), some of which expect arguments, that can be useful when needing to style a particular element. Refer to the documentation for more details.
+Ci sono [molte altre pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes), alcune con argomenti, che possono essere utili per stilizzare elementi specifici. Vedi la documentazione per maggiori dettagli.
 
 
-### Additional Selectors {-}
-While this is not a comprehensive list of all CSS selectors and options (see e.g., [MDN's documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference) for that!), there are a few additional selector types that are worth mentioning. These are not as commonly used, but it is helpful to be aware of them in case them come up in examples or existing sites you are modifying.
+### Altri selector {-}
+Anche se non e' una lista completa di tutti i selector CSS (vedi ad es. la [documentazione MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)), ci sono alcuni tipi di selector aggiuntivi che vale la pena conoscere. Non sono i piu' usati, ma e' utile saperli nel caso compaiano in esempi o siti esistenti che stai modificando.
 
-<p class="alert alert-success">If you ever find a symbol or a selector in CSS that you don't understand, look it up!</p>
+<p class="alert alert-success">Se trovi un simbolo o un selector in CSS che non capisci, cercalo!</p>
 
-#### Attribute Selectors {-}
-The **attribute selector** selects elements that have a particular attribute. Attribute selectors are written by placing brackets **`[]`** after a basic selector; inside the brackets you list the attribute and value you want to select for using `attribute=value` syntax:
+#### Attribute Selector {-}
+L'**attribute selector** seleziona elementi che hanno un certo attribute. Si scrive mettendo parentesi quadre **`[]`** dopo un selector base; dentro le parentesi indichi attribute e valore con sintassi `attribute=value`:
 
 ```css
 /* select all p elements whose "lang=sp" */
@@ -436,9 +436,9 @@ p[lang="sp"] {
 }
 ```
 
-It is also possible to select attributes that only "partially" match a particular value; see [the attribute selector documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) for details.
+E' possibile selezionare attribute che corrispondono solo parzialmente a un valore; vedi la [documentazione degli attribute selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) per dettagli.
 
-Note that it is most common to use this selector when styling form inputs; for example, to make checked boxes appear different than unchecked boxes:
+Nota che e' piu' comune usare questo selector per stilizzare input dei form; per esempio, per rendere diverse le checkbox selezionate:
 
 ```css
 /* select <input type="checkbox"> that have the "checked" state */
@@ -447,11 +447,11 @@ input[type=checkbox]:checked {
 }
 ```
 
-Do not use attribute selectors to style based on the `class` or `id` attributes&mdash;that's what class and id selectors are for! Attribute selectors should only be used when the _presence of the attribute_ is the characteristic that prompts a particular styling, such as the `type` for an `<input>`. Do not use attribute selectors for specific values of general attributes, such as to style an `<img>` with a particular `src` or an `<a>` with a particular `<href>` Those values are highly "fragile" in that they may change often, and thus would require you to change the selector. Write CSS rules based on information about the semantic meaning of elements (including those semantics defined by attributes), not based on the contents of a particular element. If you want to style a very particular element, give it a class!
+Non usare gli attribute selector per stilizzare in base a `class` o `id` — per quello ci sono class e id selector. Gli attribute selector vanno usati solo quando _la presenza dell'attribute_ e' la caratteristica che richiede uno styling, come il `type` di un `<input>`. Non usarli per valori specifici di attribute generici, come stilizzare un `<img>` con un certo `src` o un `<a>` con un certo `href`. Questi valori sono fragili e possono cambiare, costringendoti ad aggiornare il selector. Scrivi regole CSS basate sul significato semantico degli elementi (incluse semantiche definite da attribute), non sul contenuto specifico di un elemento. Se vuoi stilizzare un elemento molto particolare, assegnagli una class.
 
 
 #### Universal Selector {-}
-Although very rarely used, it is possible to select **all** elements on the page using the **universal selector**. Written as a **`*`** (like a wildcard from the command line), this selector refers to "any" element:
+Anche se raramente usato, e' possibile selezionare **tutti** gli elementi della pagina usando il **universal selector**. Si scrive con **`*`** (come un wildcard), e si riferisce a "qualsiasi" elemento:
 
 ```css
 /* Selects all elements on the page */
@@ -466,11 +466,11 @@ Although very rarely used, it is possible to select **all** elements on the page
 }
 ```
 
-There are few legitimate reasons to use this selector&mdash;you very rarely want to apply a styling rule to every single element (the `box-sizing` example above is an exception). In general it's better practice to apply a styling rule to a single high-level element such as the `<body>` and then rely on property inheritance to apply that styling through the page as appropriate.
+Ci sono pochi motivi legittimi per usare questo selector — raramente vuoi applicare una regola a ogni singolo elemento (l'esempio `box-sizing` sopra e' un'eccezione). In generale e' meglio applicare una regola a un elemento di alto livello come `<body>` e poi affidarsi all'ereditarieta' per propagare lo stile dove opportuno.
 
 
-## Selector Specificity
-As noted in [CSS Fundamental](#css-fundamentals), because multiple rules may apply to a single element, it's possible that multiple values for the same property will be specified for that element:
+## Specificita' dei selector
+Come notato in [CSS Fundamental](#css-fundamentals), poiche' piu' regole possono applicarsi a un singolo elemento, e' possibile che piu' valori per la stessa property vengano specificati:
 
 ```css
 /* css */
@@ -487,9 +487,9 @@ p { color: blue; }
 </p>
 ```
 
-If multiple rules try to specify the same property, then the _value from the more **specific** rule is applied_. The property value from the less specific rule is said to be **overridden**. You can see which properties have been overridden in the Chrome Developer Tools&mdash;overridden properties are crossed out. Note that property values that don't conflict will still be applied even if one value is overrriden.
+Se piu' regole cercano di specificare la stessa property, allora _si applica il value della regola piu' **specifica**_. Il valore della regola meno specifica si dice **overridden**. Puoi vedere quali property sono state override nei Chrome Developer Tools — le property override sono barrate. Nota che i valori che non confliggono vengono comunque applicati anche se uno e' overridden.
 
-The _specificity_ of a rule is determined by counting the number of element, class, and id selector components within a rule's selector:
+La _specificita'_ di una regola e' determinata contando il numero di componenti di selector di tipo element, class e id nel selector:
 
 ```css
 /* Counting selector components for specificty */
@@ -513,9 +513,9 @@ div.alert.success strong {  } /* 2x class, 2x type selector */
 .green, p.alert.success {  } /* 1x class selector; 2x class, 1x type selector */
 ```
 
-Thus the number and category of selector components in a complex selector contribute to how specific that selector is. Attribute selectors and pseudo-classes are counted like class selectors.
+Quindi il numero e la categoria dei componenti di selector in un selector complesso contribuiscono alla specificita'. Gli attribute selector e le pseudo-class contano come class selector.
 
-Each selector category is counted separately, producing a "score" with 3 numbers: id, class, and type. These are often written as a triple in that order; you can see such specificity noted in VS Code if you hover over a selector. Which rule is _more specific_ is determined by which rule has the highest id count, and in the case of a tie which has the highest class count, and in the case that ties which has the highest type count.
+Ogni categoria di selector e' contata separatamente, producendo un "punteggio" con 3 numeri: id, class e type. Spesso si scrive come tripla in questo ordine; puoi vederlo in VS Code passando sul selector. Quale regola e' _piu' specifica_ dipende da quale ha il conteggio id piu' alto, poi in caso di pari quale ha il conteggio class piu' alto, poi in caso di pari quale ha il conteggio type piu' alto.
 
 ```css
 /* CSS Selectors with specificity counts, ordered from most specific to least */
@@ -535,11 +535,11 @@ nav a {  } /* (0,0,2) */
 p {  } /* (0,0,1) */
 ```
 
-Importantly, each selector category (id, class, or type) is considered in order. A rule with a single class selector (e.g., `.highlighted`, score of `(0,1,0)`) is more specific than a rule with only type selectors, no matter how many there may be (e.g., `nav ul li a em`, score of `(0,0,5)`). Scores are not place values: a rule with 11 class selectors (it can happen!) would have a score of `(0,11,0)`.
+Importante: ogni categoria (id, class o type) e' considerata in ordine. Una regola con una sola class (ad es. `.highlighted`, punteggio `(0,1,0)`) e' piu' specifica di una regola con solo type selector, a prescindere da quanti siano (ad es. `nav ul li a em`, punteggio `(0,0,5)`). I punteggi non sono valori posizionali: una regola con 11 class selector avrebbe punteggio `(0,11,0)`.
 
-<p class="alert alert-warning">Precedence rules are **not** a reason to use `#id` selectors instead of `.class` selectors or other combinators. Write selectors that are appropriately specific.</p>
+<p class="alert alert-warning">Le regole di precedenza **non** sono un motivo per usare `#id` selector invece di `.class` o altri combinatori. Scrivi selector con la specificita' adeguata.</p>
 
-If two rules are equally specific&mdash;they have the exact same specificity score&mdash;then the _last declared rule is applied_, overriding the previously declared rule. CSS rules are applied "in order", with later rules overridding those of equal or lesser specificty.
+Se due regole sono ugualmente specifiche — hanno lo stesso punteggio — allora _si applica l'ultima regola dichiarata_, che sovrascrive quella precedente. Le regole CSS sono applicate "in ordine", con le ultime che override quelle di uguale o minore specificita'.
 
 ```css
 /* Two rules, both alike in specificity */
@@ -551,11 +551,11 @@ p { color: blue; }
 <p>This text will be blue, because that rule comes last!</p>
 ```
 
-It is technically possible to override any rule specificty by using the [`!important`](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#the_!important_exception) declaration. However this is considered _bad practice_ and should be avoided. You can _always_ write a correctly specific rule to achieve your desired styling.
+E' tecnicamente possibile sovrascrivere qualsiasi specificita' usando la dichiarazione [`!important`](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#the_!important_exception). Tuttavia e' considerata _bad practice_ e va evitata. Puoi _sempre_ scrivere una regola con la specificita' corretta per ottenere lo styling desiderato.
 
-While selector specificity is an important aspect of CSS, in generall you'll find that you don't need to worry about it too often. Most "semantic" CSS is written to be appropriately specific; you think about rules at a sufficient level specificty in the first place. Moreover, people tend to talk about rules in increasingly specific order naturally, so code will be written to follow that. You won't often have rules that override each other unintentionally.
+Anche se la specificita' e' importante, in generale non dovrai preoccupartene troppo. La maggior parte del CSS "semantico" e' scritto con la specificita' giusta; pensi alle regole a un livello sufficiente fin dall'inizio. Inoltre, le persone tendono a parlare di regole in ordine sempre piu' specifico, quindi il codice segue quell'ordine. Non avrai spesso regole che si sovrascrivono in modo non intenzionale.
 
-If you notice that one of your style rules is not being applied, despite your syntax being correct, be sure to check your browser's [developer tools](https://developer.chrome.com/devtools) to see if your rule is being overridden by a more specific rule earlier in the spreadsheet (or in a different sheet even)! Then adjust your selector so that it has the same or greater specificity, such as by clarifying the parent class or element type using the descendant selector.
+Se noti che una regola di stile non viene applicata pur essendo corretta la sintassi, controlla i [developer tools](https://developer.chrome.com/devtools) per vedere se la regola e' sovrascritta da una regola piu' specifica prima nel foglio (o in un altro foglio). Poi aggiusta il selector in modo che abbia specificita' uguale o maggiore, ad esempio chiarendo la class parent o il tipo di elemento usando il descendant selector.
 
 
 <!-- fix link in fundametals if this name changes -->
@@ -564,9 +564,9 @@ If you notice that one of your style rules is not being applied, despite your sy
 //do I want to write this out?
 //add this when time... -->
 
-## Resources {-}
-More details about CSS selectors can be found in the documention (e.g., [MDN's CSS Selector reference](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors)). Some additional learning resources are noted below.
+## Risorse {-}
+Maggiori dettagli sui CSS selector sono nella documentazione (ad es. [MDN CSS Selector reference](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors)). Di seguito alcune risorse aggiuntive.
 
 <div class="list-condensed">
-- [CSS Diner](https://flukeout.github.io/) a fun game for practicing with different CSS selectors
+- [CSS Diner](https://flukeout.github.io/) un gioco divertente per esercitarsi con i CSS selector
 </div>

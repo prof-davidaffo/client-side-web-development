@@ -1,157 +1,157 @@
-# Getting Setup {#software-setup}
+# Impostazione iniziale {#software-setup}
 
-This course will cover and use a wide variety of tools and techniques common to modern web development, including different software programs that are used to write, manage, and execute the code for your web application. This chapter explains how to install and use some of the software you will need to build these applications.
+Questo corso coprirà e userà una vasta gamma di strumenti e tecniche comuni al moderno web development, inclusi diversi programmi software usati per scrivere, gestire ed eseguire il codice della tua web application. Questo capitolo spiega come installare e usare parte del software di cui avrai bisogno per costruire queste applicazioni.
 
-<p class="alert alert-info">Note that iSchool lab machines should have all appropriate software already installed and ready to use.</p>
+<p class="alert alert-info">Nota: i computer dei lab dell'iSchool dovrebbero già avere tutto il software necessario installato e pronto all'uso.</p>
 
-In summary, you'll need to install and set up the following software on your machine (more information below on each of these). Feel free to use alternative software, but these are the suggested programs for the course (i.e., the ones which we will provide support for):
+In sintesi, dovrai installare e configurare il seguente software sulla tua macchina (maggiori dettagli sotto su ciascun elemento). Sentiti libero di usare software alternativi, ma questi sono i programmi consigliati per il corso (cioè quelli per cui forniremo supporto):
 
-- A modern web browser such as [**Google Chrome**](https://www.google.com/chrome/browser/desktop/index.html)
-- [**Visual Studio Code**](https://code.visualstudio.com/) as a code editor for writing code
-- [**Node.js**](https://nodejs.org/en/), a JavaScript engine
-  - [**`npm`**](https://www.npmjs.com/), a JavaScript package manager that comes with Node.js
-- A Bash terminal (e.g., the [**Git Bash**](https://git-scm.com/downloads) for Windows; **Terminal** is already installed on Macs).
-- [**`git`**](https://git-scm.com/downloads) as a version control system (for Windows users; already installed on Macs)
+- Un browser moderno come [**Google Chrome**](https://www.google.com/chrome/browser/desktop/index.html)
+- [**Visual Studio Code**](https://code.visualstudio.com/) come code editor per scrivere codice
+- [**Node.js**](https://nodejs.org/en/), un motore JavaScript
+  - [**`npm`**](https://www.npmjs.com/), un JavaScript package manager incluso con Node.js
+- Un terminale Bash (ad es. [**Git Bash**](https://git-scm.com/downloads) per Windows; **Terminal** e' gia' installato su Mac).
+- [**`git`**](https://git-scm.com/downloads) come sistema di version control (per utenti Windows; gia' installato su Mac)
 
 ## Web Browser
 
-The first thing you'll need is a web browser for viewing the web pages you make! I recommend you install and use [**Chrome**](https://www.google.com/chrome/browser/desktop/index.html), which comes with an effective set of built-in [developer tools](https://developers.google.com/web/tools/chrome-devtools/) that will be especially useful in this class. I recommend Chrome primarily for historical reasons (and because it is the browser used by the author&mdash;and I had to pick one!).
+La prima cosa che ti serve e' un web browser per visualizzare le pagine web che crei. Ti consiglio di installare e usare [**Chrome**](https://www.google.com/chrome/browser/desktop/index.html), che include un set efficace di [developer tools](https://developers.google.com/web/tools/chrome-devtools/) integrati, particolarmente utili in questo corso. Consiglio Chrome soprattutto per ragioni storiche (e perche' e' il browser usato dall'autore — e dovevo sceglierne uno!).
 
-You can access the Chrome Developer tools by selecting **View > Developer > Developer Tools** from Chrome's main menu (`cmd + option + i` on a Mac, `ctrl + shift + i` on Windows). You will pretty much always want to have these tools open when doing web development, especially when including interactivity via JavaScript.
+Puoi aprire gli strumenti di sviluppo di Chrome scegliendo **View > Developer > Developer Tools** dal menu principale di Chrome (`cmd + option + i` su Mac, `ctrl + shift + i` su Windows). Vorrai praticamente sempre tenere questi strumenti aperti quando fai web development, soprattutto quando aggiungi interattivita' tramite JavaScript.
 
-Other modern browsers such as [**Firefox**](https://www.mozilla.org/en-US/firefox/new/) or [**Microsoft Edge**](https://www.microsoft.com/en-us/windows/microsoft-edge) will also function perfectly well in this course and include their own versions of the required development tools. Note that different browsers may and will render code in different ways, which will be discussed extensively throughout the course.
+Altri browser moderni come [**Firefox**](https://www.mozilla.org/en-US/firefox/new/) o [**Microsoft Edge**](https://www.microsoft.com/en-us/windows/microsoft-edge) funzioneranno perfettamente in questo corso e includono le loro versioni dei necessari developer tools. Nota che browser diversi possono e renderanno il codice in modi differenti, cosa che verra' discussa ampiamente durante il corso.
 
-I strongly suggest that you don't use Safari, as it has a number of user interface and rendering issues that make it difficult to develop with for this course.
+Ti sconsiglio fortemente di usare Safari, perche' presenta una serie di problemi di interfaccia e di rendering che rendono difficile lo sviluppo in questo corso.
 
 
 ## Code Editor
 
-In order to write web code, you need somewhere to write it. There are a variety of code editors and IDEs (Integrated Development Environments) that are specialized for web development, providing syntax highlighting, code completion, and other useful functionality. There are lots of different code editors out there, all of which have slightly different appearances and features; you only need to download and use one of the following programs. I strongly recommend **Visual Studio Code** as a default, but feel free to try out different ones to find something you like (and then evangelize about it to your friends!)
+Per scrivere web code, serve un posto dove farlo. Esistono vari code editor e IDE (Integrated Development Environments) specializzati nel web development, che offrono syntax highlighting, code completion e altre funzionalita' utili. Ci sono molti editor diversi, con interfacce e caratteristiche leggermente diverse; ti serve solo scaricare e usare uno dei programmi seguenti. Consiglio fortemente **Visual Studio Code** come scelta predefinita, ma sentiti libero di provarne altri per trovare quello che preferisci (e poi evangelizzarlo ai tuoi amici!).
 
 ### Visual Studio Code {-}
 
-[Visual Studio Code](https://code.visualstudio.com/) (or VS Code; not to be confused with Visual Studio) is a free, open-source editor developed by Microsoft&mdash;yes, really. It focuses on web programming and JavaScript, though also supports many other languages and provides a number of [community-built extensions](https://code.visualstudio.com/docs/editor/extension-gallery) for adding even more features. It is one of the most common editors for programming and web development in particular. VS Code is actually a stand-alone web application, so it's written in the same HTML, CSS, and JavaScript you'll learn in this course!
+[Visual Studio Code](https://code.visualstudio.com/) (o VS Code; da non confondere con Visual Studio) e' un editor gratuito e open source sviluppato da Microsoft — si', davvero. Si concentra sul web programming e su JavaScript, ma supporta anche molti altri linguaggi e offre numerose [community-built extensions](https://code.visualstudio.com/docs/editor/extension-gallery) per aggiungere ancora piu' funzionalita'. E' uno degli editor piu' comuni per la programmazione e in particolare per il web development. VS Code e' in realta' una web application autonoma, quindi e' scritto nello stesso HTML, CSS e JavaScript che imparerai in questo corso.
 
-To install VS Code, follow the above link and Click the "Download" button to download the installer (e.g, `.dmg` or `.exe`) file, then double-click on that to install the application.
+Per installare VS Code, segui il link sopra e fai click sul pulsante "Download" per scaricare l'installer (ad es. `.dmg` o `.exe`), poi fai doppio click per installare l'applicazione.
 
-VS Code is highly customizable with very many features. For more information about using VS Code, see [the documentation](https://code.visualstudio.com/docs), which includes [videos](https://code.visualstudio.com/docs/getstarted/introvideos) if you find them useful. The documentation for programming in [HTML](https://code.visualstudio.com/docs/languages/html), [CSS](https://code.visualstudio.com/docs/languages/css), and especially [JavaScript](https://code.visualstudio.com/docs/languages/javascript) also contain lots of tips and tricks.
+VS Code e' altamente personalizzabile e ricco di funzionalita'. Per maggiori informazioni su come usare VS Code, vedi [la documentazione](https://code.visualstudio.com/docs), che include anche [video](https://code.visualstudio.com/docs/getstarted/introvideos) se ti sono utili. La documentazione per programmare in [HTML](https://code.visualstudio.com/docs/languages/html), [CSS](https://code.visualstudio.com/docs/languages/css) e soprattutto [JavaScript](https://code.visualstudio.com/docs/languages/javascript) contiene molti suggerimenti e trucchi.
 
-You can open a file in VS Code by using the `File > Open...` command. Because web development often involves working with lots of different files at once, it's often more effective to open an entire _folder_ at once using `File > Open Folder...`. This will list all of the files in that folder in a sidebar, and you can double-click on each file to open it up in its own tab. You can also manage files from the sidebar: moving them, making folders, or renaming them through the context (right-click) menu.
+Puoi aprire un file in VS Code usando il comando `File > Open...`. Poiche' il web development spesso richiede di lavorare con molti file contemporaneamente, e' spesso piu' efficace aprire un'intera _cartella_ con `File > Open Folder...`. Questo elenchera' tutti i file della cartella in una sidebar, e potrai fare doppio click su ciascun file per aprirlo in una scheda dedicata. Puoi anche gestire i file dalla sidebar: spostarli, creare cartelle o rinominarli tramite il menu contestuale (click destro).
 
-Note that when VS code files are open in tabs, they will show an "x" on the right of the tab to close it. But if the file has been _modified_, that "x" will instead be a filled-in circle, indicating that there are unsaved changed to the file. Watch out for this: its a good way to catch if you forgot to save your work (and thats why your changes aren't showing up!)
+Nota che quando i file sono aperti in schede, a destra della scheda appare una "x" per chiuderla. Ma se il file e' stato _modificato_, quella "x" diventera' un cerchietto pieno, indicando che ci sono modifiche non salvate. Fai attenzione: e' un buon modo per accorgerti se hai dimenticato di salvare il tuo lavoro (ed e' il motivo per cui le modifiche non compaiono!).
 
-One more trick to using VS Code effectively is to get comfortable with the [Command Palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette). If you hit `cmd + shift + p`, VS Code will open a small dialog where you can search for whatever you want the editor to do. For example, if you type in `markdown` you can get list of commands related to Markdown files (including the ability to open up a preview). The `Format Code` option is also particularly useful for fixing spacing issues in your code.
+Un altro trucco per usare VS Code in modo efficace e' familiarizzare con la [Command Palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette). Se premi `cmd + shift + p`, VS Code aprira' una piccola finestra di dialogo in cui puoi cercare cio' che vuoi che l'editor faccia. Per esempio, se digiti `markdown` ottieni l'elenco dei comandi relativi ai file Markdown (inclusa la possibilita' di aprire un'anteprima). Anche l'opzione `Format Code` e' particolarmente utile per correggere problemi di spaziatura nel codice.
 
-<p class="alert alert-warning">While VS Code is relatively unobtrusive when compared to otehr IDEs, be very careful about using its auto-complete or AI-based features. Often the editor will try and help or "fix" your code by adding in wrong solutions, which then cause further unexpected problems later. Make sure that any code that is written into your files are lines that you understand and can debug!</p>
+<p class="alert alert-warning">Anche se VS Code e' relativamente poco invasivo rispetto ad altri IDE, fai molta attenzione nell'usare l'auto-complete o le funzionalita' basate su AI. Spesso l'editor cerca di aiutarti o "correggere" il codice aggiungendo soluzioni sbagliate, che poi causano altri problemi imprevisti. Assicurati che il codice inserito nei tuoi file sia composto da righe che capisci e che sai fare debug.</p>
 
-### Other Editors
-While we suggest using VSCode for this course, other editors are also acceptable and may be of interest to you. Note that these
+### Altri editor
+Anche se suggeriamo VS Code per questo corso, altri editor sono accettabili e potrebbero interessarti. Nota che questi
 
-- [Sublime Text](https://www.sublimetext.com/3) is an older but popular text editor with excellent defaults and a variety of available extensions (though you'll need to manage and install extensions to achieve the functionality offered by other editors out of the box). While the software can be used for free, every 20 or so saves it will prompt you to purchase the full version. This is a great option to write a plain text file.
+- [Sublime Text](https://www.sublimetext.com/3) e' un vecchio ma popolare text editor con ottimi default e varie estensioni disponibili (anche se dovrai gestire e installare le estensioni per ottenere le funzionalita' offerte da altri editor out of the box). Il software puo' essere usato gratis, ma ogni 20 salvataggi o giu' di li' ti chiede di acquistare la versione completa. E' un'ottima opzione per scrivere file di testo semplice.
 
-- [WebStorm](https://www.jetbrains.com/webstorm/) is a full-featured IDE from JetBrains (the makers of IntelliJ for Java). While it can offer some useful features, it is also likely to produce a lot of "cruft" or guide your coding in particular ways. I recommend you only use it after you have mastered the basics (such as by finishing this course!) so that you understand the choices it is making.
+- [WebStorm](https://www.jetbrains.com/webstorm/) e' un IDE completo di JetBrains (gli autori di IntelliJ per Java). Puo' offrire funzionalita' utili, ma e' anche probabile che produca molto "cruft" o guidi il tuo coding in modi particolari. Ti consiglio di usarlo solo dopo aver padroneggiato le basi (ad esempio completando questo corso), cosi' da capire le scelte che sta facendo.
 
-- [Atom](https://atom.io/) was a text editor built by the folks at GitHub, though it has since been [retired](https://github.blog/2022-06-08-sunsetting-atom/). It was very similar to VS Code in terms of features, but has a somewhat different interface and community. It had a similar _command-palette_ to VS Code. The document you are reading was authored in Atom, which is why it remains on this list. The [Pulsar](https://pulsar-edit.dev/) project is a fork of the Atom editor.
+- [Atom](https://atom.io/) era un text editor creato dal team di GitHub, ma e' stato [ritirato](https://github.blog/2022-06-08-sunsetting-atom/). Era molto simile a VS Code per funzionalita', ma con un'interfaccia e una community un po' diverse. Aveva una _command-palette_ simile a quella di VS Code. Il documento che stai leggendo e' stato scritto in Atom, ed e' per questo che resta in questa lista. Il progetto [Pulsar](https://pulsar-edit.dev/) e' un fork dell'editor Atom.
 
 
 ## Bash (Command Line)
 
-Many of the software tools used in professional web development are used on the **command line**: a text-based interface for controlling your computer. While the command line is harder to learn and figure out, it is particularly effective for doing web development. Command line automation is powerful and efficient enough to handle the dozens of repeated tasks across hundreds of different source files (split across multiple computers) commonly found in web programming. You will need to be comfortable using the command line in order to utilize the software for this course.
+Molti degli strumenti software usati nel web development professionale funzionano sulla **command line**: un'interfaccia testuale per controllare il computer. Anche se la command line e' piu' difficile da imparare, e' particolarmente efficace per il web development. L'automazione da command line e' potente ed efficiente abbastanza da gestire le decine di task ripetuti su centinaia di file sorgente (distribuiti su piu' computer) comuni nel web programming. Dovrai essere a tuo agio con la command line per utilizzare il software di questo corso.
 
-While there are multiple different **command shells** (command line interfaces), this course uses the <a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">Bash</a> shell, which provides a particular common set of commands common to Mac and Linux machines. What you install depends on your operating system:
+Esistono diversi **command shell** (interfacce da command line), ma in questo corso usiamo la shell <a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">Bash</a>, che offre un set di comandi comune alle macchine Mac e Linux. Cio' che devi installare dipende dal tuo sistema operativo:
 
-- On a Mac you'll want to use the built-in app called **Terminal**. You can open it by searching via Spotlight (hit Cmd (`⌘`) and Spacebar together, type in "terminal", then select the app to open it), or by finding it in the Applications/Utilities folder.
+- Su Mac dovrai usare l'app integrata **Terminal**. Puoi aprirla cercando tramite Spotlight (premi insieme Cmd (`⌘`) e la barra spaziatrice, digita "terminal", poi seleziona l'app), oppure trovarla nella cartella Applicazioni/Utility.
 
-    As of macOS Catalina, Macs use **zsh** as the default command shell with Terminal. This works mostly the same as Bash (supporting generally the same command). It is also possible to [switch between the two shells](https://www.howtogeek.com/444596/how-to-change-the-default-shell-to-bash-in-macos-catalina/) if needed.
+    A partire da macOS Catalina, i Mac usano **zsh** come command shell predefinita con Terminal. Funziona quasi come Bash (supporta in generale gli stessi comandi). E' anche possibile [passare da una shell all'altra](https://www.howtogeek.com/444596/how-to-change-the-default-shell-to-bash-in-macos-catalina/) se necessario.
 
-- On Windows, you can use the [**Git Bash**](https://git-scm.com/downloads) shell, which you should install along with `git` (see below). Open this program to open the command shell.
+- Su Windows puoi usare la shell [**Git Bash**](https://git-scm.com/downloads), che dovresti installare insieme a `git` (vedi sotto). Apri questo programma per usare la command shell.
 
-    Note that Windows does come with its own command shell, called the _Command Prompt_ (previously the _DOS Prompt_), but it has a different set of commands and features. _Powershell_ is a more powerful version of the Command Prompt if you really want to get into the Windows Management Framework. But Bash is more common in open-source programming like we'll be doing, and so we will be focusing on that set of commands.
+    Nota che Windows include una sua command shell, chiamata _Command Prompt_ (precedentemente _DOS Prompt_), ma ha un set di comandi e funzionalita' diverso. _Powershell_ e' una versione piu' potente del Command Prompt se vuoi davvero entrare nel Windows Management Framework. Ma Bash e' piu' comune nella programmazione open source come quella che faremo qui, quindi ci concentreremo su quel set di comandi.
 
-    <div class="alert alert-warning">Some software used in this course will not work with the Command Prompt or Powershell; you will need to have and use a Bash-type shell installed.</div>
+    <div class="alert alert-warning">Alcuni software usati in questo corso non funzionano con Command Prompt o Powershell; dovrai avere e usare una shell di tipo Bash.</div>
 
-<p class="alert alert-danger">This course expects you to already be familiar with basic command line usage. For review, see e.g., [The Command Line](https://info201.github.io/command-line.html) in the _INFO 201_ course reader.</p>
+<p class="alert alert-danger">Questo corso si aspetta che tu sia gia' familiare con l'uso base della command line. Per ripasso, vedi ad esempio [The Command Line](https://info201.github.io/command-line.html) nel corso _INFO 201_.</p>
 
-## Node and `npm`
+## Node e `npm`
 
-[**Node.js**](https://nodejs.org/en/) (commonly just "Node") is a a command line runtime environment for the JavaScript programming language&mdash;that is, a program that is used to _interpret_ and _execute_ programming instructions written in JavaScript. Although client-side development usually involves running JavaScript in the browser (see [Chapter: JavaScript](#JavaScript)), Node provides a platform for installing and running a wide variety of "helper" programs that are frequently used in web development.
+[**Node.js**](https://nodejs.org/en/) (spesso solo "Node") e' un runtime environment da command line per il linguaggio di programmazione JavaScript — cioe' un programma usato per _interpretare_ ed _eseguire_ istruzioni scritte in JavaScript. Anche se lo sviluppo client-side di solito implica l'esecuzione di JavaScript nel browser (vedi [Capitolo: JavaScript](#JavaScript)), Node fornisce una piattaforma per installare ed eseguire una grande varieta' di programmi "di supporto" che sono spesso usati nel web development.
 
-The _easiest_ way to install Node is to use the installer from [Nodejs.org](https://nodejs.org/en/). I recommend getting the latest version for this course. Download the installer and execute it to set up Node on your machine.
+Il modo _piu' semplice_ per installare Node e' usare l'installer di [Nodejs.org](https://nodejs.org/en/). Ti consiglio di prendere l'ultima versione per questo corso. Scarica l'installer ed eseguilo per configurare Node sulla tua macchina.
 
-If you want more control over your machine and Node versions, you can alternatively install Node using [**`nvm`**](https://github.com/nvm-sh/nvm), the Node Version Manager. This is a command line program that manages installing the Node command line program, but also makes it easy to update or adjust your Node installation. See [the installation instructions](https://github.com/nvm-sh/nvm#installing-and-updating) for details.
+Se vuoi un controllo maggiore sulla tua macchina e sulle versioni di Node, puoi alternativamente installare Node usando [**`nvm`**](https://github.com/nvm-sh/nvm), il Node Version Manager. E' un programma da command line che gestisce l'installazione di Node e rende facile aggiornare o modificare la tua installazione. Vedi [le istruzioni di installazione](https://github.com/nvm-sh/nvm#installing-and-updating) per i dettagli.
 
-You can test that Node is installed and working by opening your command shell and running
+Puoi verificare che Node sia installato e funzioni aprendo la tua command shell ed eseguendo
 
 ```bash
 node --version
 ```
 
-Be sure and check that you have a recent enough version! At time of this writing, you should have Node v18 or later.
+Assicurati di avere una versione sufficientemente recente. Al momento della stesura, dovresti avere Node v18 o successivo.
 
-Installing Node also installs an additional command line program called [**`npm`**](https://www.npmjs.com/). `npm` is a **package manager**, or a program used to "manage" other programs&mdash;think of it as a command line "app store" for developer tools and libraries. `npm` is the most common way of installing and running a large number of tools used in professional web development. As of September 2022, the `npm` "registry" included more than 2.1 million different packages.
+Installare Node installa anche un ulteriore programma da command line chiamato [**`npm`**](https://www.npmjs.com/). `npm` e' un **package manager**, cioe' un programma usato per "gestire" altri programmi — pensa a un "app store" da command line per strumenti e librerie da sviluppatori. `npm` e' il modo piu' comune per installare ed eseguire un gran numero di tool usati nel web development professionale. A settembre 2022, la "registry" di `npm` contava piu' di 2,1 milioni di package diversi.
 
-You will need to have at least `v5.6` of `npm` installed. Installing the latest Node should give you the latest `npm` as well, but you can also upgrade `npm` using the command **`npm install npm@latest -g`**. See below for an explanation of this command.
+Avrai bisogno di almeno `v5.6` di `npm`. Installare l'ultima versione di Node dovrebbe fornirti anche l'ultima versione di `npm`, ma puoi anche aggiornare `npm` con il comando **`npm install npm@latest -g`**. Vedi sotto per una spiegazione di questo comando.
 
 
-### Installing software with npm {-}
+### Installare software con npm {-}
 
-You can use the `npm` program to download and install command line programs by name:
+Puoi usare `npm` per scaricare e installare programmi da command line per nome:
 
 ```bash
 # syntax to globally install package with npm
 npm install -g PACKAGE-NAME
 ```
 
-For example, you could install the [_Jest_](https://jestjs.io/) testing application (a program for running automated tests) used in this course using:
+Per esempio, puoi installare l'applicazione di testing [_Jest_](https://jestjs.io/) (un programma per eseguire test automatizzati) usata in questo corso con:
 
 ```bash
 # globally install the Jest package
 npm install -g jest
 ```
 
-Importantly, note the included **`-g`** option. This tells `npm` that the package should be installed **globally**, making it available across the entire computer, rather than just from a particular folder. Because you want to be able to use a command line program like Jest from any folder (e.g., for any project), command line utilities are always installed globally with the `-g` option.
+E' importante notare l'opzione **`-g`**. Questo dice a `npm` di installare il package **globalmente**, rendendolo disponibile su tutto il computer, invece che solo in una specifica cartella. Poiche' vuoi poter usare un programma da command line come Jest da qualsiasi cartella (ad es. per qualsiasi progetto), le command line utilities vengono sempre installate globalmente con l'opzione `-g`.
 
-Installing an application globally often requires **administrator permissions**. If you try to install something without admin permission, you'll get an error saying _permission denied_:
+Installare un'applicazione globalmente spesso richiede **permessi di amministratore**. Se provi a installare qualcosa senza permessi admin, riceverai un errore _permission denied_:
 
 <p class="alert alert-danger">![A permission denied error when installing with npm](img/setup/permission-error.png)</p>
 
-In order to install programs globally, you will need to use the **`sudo`** (**s**uper**u**ser **do**) command to run the install as an administrator. You do this by putting `sudo` in front of the command you want to run, for example:
+Per installare programmi globalmente, dovrai usare il comando **`sudo`** (**s**uper**u**ser **do**) per eseguire l'installazione come amministratore. Lo fai mettendo `sudo` davanti al comando che vuoi eseguire, per esempio:
 
 ```bash
 # as an administrator, globally install the Jest package
 sudo npm install -g jest
 ```
 
-You will be prompted for your computer's password, make sure to fill that in (even though you won't see any typing occur).
+Ti verra' chiesta la password del computer: inseriscila (anche se non vedrai i caratteri digitati).
 
-Note that you should only use sudo when absolutely necessary (e.g., when you hit this error); don't run every command as an administrator!
+Nota che dovresti usare sudo solo quando e' strettamente necessario (ad esempio quando vedi questo errore); non eseguire ogni comando come amministratore!
 
-After an application is installed through `npm`, you can run that program from the command line by typing its name followed by any arguments. For example, you can have the Jest program print its version:
+Dopo che un'applicazione e' stata installata tramite `npm`, puoi eseguire quel programma da command line digitandone il nome seguito dagli argomenti. Per esempio, puoi far stampare a Jest la sua versione:
 
 ```bash
 # get the version of the installed Jest application
 jest --version
 ```
 
-The latest version of `npm` also comes with an additional program called [**`npx`**](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b). This application lets you "download and run" an application without installing it separately. For example, you could download and run Jest to see it's version; note that you don't ever need to call `npm install` for jest when using `npx`:
+L'ultima versione di `npm` include anche un programma aggiuntivo chiamato [**`npx`**](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b). Questa applicazione ti permette di "scaricare ed eseguire" un'applicazione senza installarla separatamente. Per esempio, potresti scaricare ed eseguire Jest per vederne la versione; nota che non devi mai chiamare `npm install` per jest quando usi `npx`:
 
 ```bash
 # download and run the Jest application without installing it separately
 npx jest --version
 ```
 
-### Managing local packages {-}
-It is also possible to install packages _locally_ by omitting the `-g` argument. For example:
+### Gestire package locali {-}
+E' anche possibile installare package _localmente_ omettendo l'argomento `-g`. Per esempio:
 
 ```bash
 npm install lodash
 ```
 
-This command will download the [`lodash`](https://lodash.com/) code library (a set of useful JavaScript functions). This package will be placed into a new folder _in the current project directory_ called **`node_modules/`**, and can be imported and used in the current directory's code. (It's called a _local install_ because the package is only available to the "local" project). You will need to install local packages once per project.
+Questo comando scarichera' la libreria [`lodash`](https://lodash.com/) (un set di funzioni JavaScript utili). Questo package verra' messo in una nuova cartella _nella directory del progetto corrente_ chiamata **`node_modules/`**, e potra' essere importato e usato nel codice della directory corrente. (Si chiama _installazione locale_ perche' il package e' disponibile solo per il progetto "locale"). Dovrai installare i package locali una volta per ogni progetto.
 
-<p class="alert alert-warning">Because node packages can be very large, and projects can have lots of them, you want to be sure to **not** commit the `node_modules/` folder to version control. Make sure that the folder is listed in your `.gitignore` file!</p>
+<p class="alert alert-warning">Poiche' i package Node possono essere molto grandi e i progetti possono averne molti, assicurati di **non** fare commit della cartella `node_modules/` nel version control. Assicurati che la cartella sia elencata nel file `.gitignore`.</p>
 
-As projects become large, it is common for them to build up many _dependencies_: packages that must be installed in order for the program to work. In other words, there needs to be a certain set of packages in the project's `node_modules/` folder. `npm` is able to keep track of these dependencies by recording them in a specialized file called `package.json` that can be placed inside the project directory. A **`package.json`** file is a text file containing a [JSON](https://en.wikipedia.org/wiki/JSON) list of information about your project. For example:
+Quando i progetti diventano grandi, e' comune che accumulino molte _dependencies_: package che devono essere installati affinche' il programma funzioni. In altre parole, serve un certo set di package nella cartella `node_modules/` del progetto. `npm` e' in grado di tenere traccia di queste dipendenze registrandole in un file specializzato chiamato `package.json` che si trova nella directory del progetto. Un file **`package.json`** e' un file di testo contenente un elenco in formato [JSON](https://en.wikipedia.org/wiki/JSON) con informazioni sul progetto. Per esempio:
 
 ```json
 {
@@ -175,103 +175,26 @@ As projects become large, it is common for them to build up many _dependencies_:
 }
 ```
 
-(You can create one of these files by using the command `npm init` in the current project directory, and then following the instructions to fill in the fields).
+(Puoi creare uno di questi file usando il comando `npm init` nella directory del progetto corrente, poi seguendo le istruzioni per compilare i campi).
 
-Notice that there are two packages listed under `"dependencies"`: `lodash` and `moment` (the `^4.17.4` indicates which version of `lodash`&mdash;one that is at least `4.17.4`).  You can use `npm` to automatically install all of the packages listed under `"dependencies"` (as well as under `"devDependencies"`) in the `package.json` file using the command:
+Nota che ci sono due package elencati sotto `"dependencies"`: `lodash` e `moment` (il `^4.17.4` indica quale versione di `lodash` — almeno la `4.17.4`). Puoi usare `npm` per installare automaticamente tutti i package elencati sotto `"dependencies"` (e anche sotto `"devDependencies"`) nel file `package.json` con il comando:
 
 ```bash
 npm install
 ```
 
-Using **`npm install`** without any arguments means "install all of the requirements that have been recorded for this project". This is a good first step _any time_ you download a project or checkout a repository from GitHub!
+Usare **`npm install`** senza argomenti significa "installa tutti i requisiti registrati per questo progetto". E' un ottimo primo passo _ogni volta_ che scarichi un progetto o fai checkout di un repository da GitHub.
 
-You can run the `npm install` command as many times as you wish: if the package has already been installed (into the `node_modules/` folder), it won't be downloaded again. Only "missing" packages&mdash;such as those recently added to the `package.json` file&mdash;will be installed.
+Puoi eseguire `npm install` tutte le volte che vuoi: se il package e' gia' stato installato (nella cartella `node_modules/`), non verra' scaricato di nuovo. Solo i package "mancanti" — ad esempio quelli aggiunti di recente al file `package.json` — verranno installati.
 
-Because all local packages are saved in the `node_modules/` folder, that folder is a common target when troubleshooting package installation issues. For example, if package does not seem to be importing correctly, a common step is to delete the `node_modules` folder and then try again!
+Poiche' tutti i package locali sono salvati nella cartella `node_modules/`, quella cartella e' un obiettivo comune quando si fa troubleshooting dei problemi di installazione dei package. Per esempio, se un package non sembra importarsi correttamente, un passo comune e' eliminare la cartella `node_modules` e poi riprovare.
 
-Note that while the `package.json` file lists the desired dependencies for a project, the **`package-lock.json`** file lists the specific versions of dependencies (and the dependencies of the dependencies!) that have actually been installed. This is to make sure that if a package received a minor update (e.g., from 4.17.18 to 4.17.19) that has a bug, you won't accidentally install that version and break your project. The `package-lock.json` file is automatically generated every time you install or re-install a local package. Changes to this file are a good way to check if you've accidentally installed a different version of a dependency.
+Nota che, mentre il file `package.json` elenca le dependencies desiderate per un progetto, il file **`package-lock.json`** elenca le versioni specifiche delle dependencies (e le dependencies delle dependencies!) che sono state effettivamente installate. Questo serve per assicurare che, se un package riceve un aggiornamento minore (ad es. da 4.17.18 a 4.17.19) con un bug, tu non installi accidentalmente quella versione e rompa il progetto. Il file `package-lock.json` viene generato automaticamente ogni volta che installi o reinstalli un package locale. Le modifiche a questo file sono un buon modo per verificare se hai installato per errore una versione diversa di una dependency.
 
 
-When installing specific packages (e.g., with `npm install package-name`), `npm` automatically adds them to the dependencies list in the `package.json`. You can also make this recording explicit with the `--save` option:
+Quando installi package specifici (ad es. con `npm install package-name`), `npm` li aggiunge automaticamente alla lista delle dependencies in `package.json`. Puoi anche rendere esplicita questa registrazione con l'opzione `--save`:
 
 ```bash
 # explicitly save dependency in package.json
 npm install --save lodash
 ```
-
-This means that every time you want to "add" a packagae to your project, you just need to install it once and it will automatically be saved in the `package.json` file (so that it can be installed alongside the rest of the dependencies with `npm install`).
-
-Similarly, the `--save-dev` option will instead save the package in the `"devDependencies"` list, which are dependencies needed only for development (writing the program's code) and not for execution (running the program). Whether you are in "development" or "production" mode depends on the configuration of your Node environment; by default everything is in development mode so there is no distinction between the two lists.
-
-<!-- If you want to use a _globally_ installed package in your local project (e.g., have it be a dependency but not have to download and install it again), you can use `npm link` to "include" the global package locally. For example, the below will allow you to use a globally installed version of `lodash` so you don't have to download a copy for the project:
-
-```bash
-npm link lodash
-```
-
-Be sure to `link` any global packages _before_ you run `npm install` so you don't download any packages from `package.json` that you already have! -->
-
-You can uninstall packages using `npm uninstall`, or can remove packages from the dependencies lists simply by editing the `package.json` file (e.g., with VS Code).
-
-
-To sum up, you will use three commands with `npm` to install packages:
-
-1. `npm install -g PACKAGE-NAME` to _globally_ install command line programs.
-2. `npm install` to _locally_ install all of the dependencies for a project you check out.
-3. `npm install PACKAGE-NAME` to _locally_ install a new code package and record it in the `package.json` file.
-
-<p class="alert alert-info">While `npm` is the most popular package manager (and the one used in this course), there are others as well. For example, [**Yarn**](https://yarnpkg.com/en/) is a package manager created by Facebook that is [compatible](https://yarnpkg.com/en/docs/migrating-from-npm) with `npm` and is quickly growing in popularity. Note that you will generally need to use one package manager or other; don't try to mix them in a single project!</p>
-
-
-## Git and GitHub
-Professional web development involves many different people working on many different files. **`git`** is a collaborative version control system that provides a set of commands that allow you to manage changes to written code, particularly when collaborating with other programmers.
-
-<p class="alert alert-danger">This course expects you to already be familiar with using Git and GitHub. For review, see
-[Git and GitHub](https://info201.github.io/git-basics.html), [Git Branches](https://info201.github.io/git-branches.html), and [Git Collaboration](https://info201.github.io/git-collaboration.html)
-in the _INFO 201_ course reader. Note that students in the INFO 340 course will use `git` and GitHub to turn in programming assignments.</p>
-
-For this course, you will need to [download](https://git-scm.com/downloads) and install the `git` software program in order to use it. If you are on a Mac, `git` should already be installed. If you are using a Windows machine, then installing `git` will also install the Git Bash command shell.
-
-Note that `git` is a command line application: you can test that it is installed by running the command:
-
-```bash
-git --version
-```
-
-Some coding editors such as VS Code have also integrated `git` commands and information, so that you can see e.g., what files have been modified since the last commit (new files are colored green in the file list sidebar; new files are colored yellow). Note however that this course focuses on the command line use of `git` in order to best understand what commands are being run to manage code versions.
-
-While `git` is the software used to manage versions of code, [**GitHub**](https://github.com/) is a website that is used to store copies online copies of computer code that are being managed with `git`.
-
-In order to use GitHub, you'll need to have a [free GitHub account](https://github.com/join). You should register a username that is identifiable as you (e.g., based on your name or your UW NetID). This will make it easier for others to determine out who contributed what code, rather than needing to gudess who 'LeetDesigner2099' is. This can be the start of a professional account you may use for the rest of your career!
-
-<div class="alert alert-info">
-<p>In order to push and pull to GitHub from the command line, you'll need to set up a [Personal Access Token (PAT)](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) for GitHub. This is like a specialized password whose access you can control, rather than using your "full account" password.</p>
-
-<p>If you don't have a working token (or it's been a long time since you used one), you'll need to create it. To create the PAT, go to your account settings on GitHub, click on Developer Settings option, and then choose to modify Personal access tokens (you'll end up at <https://github.com/settings/apps>). To make a new token":</p>
-<ol>
-<li>Click the **Generate new token** button; choose **Generate new token (classic)**.</li>
-<li>On the next page, give your token a name (e.g., "INFO 340 command line", or just "command line access").</li>
-<li>Specify any expiration date that is after the end of the course; I set it to expire a year from when I create it to make sure that I refresh it periodically.</li>
-<li>Under _Select Scopes_, make sure you click the checkbox next to **repo** in order to give the token access to repositories; you do not need to provide any additional access for this course.</li>
-<li>Then click the _Generate Token_ button at the bottom.</li>
-</ol>
-
-<p>Your token will look like a random string of characters starting with `ghp`. This string is the "password" you can use when cloning or pushing from GitHub on the command line. Store it in a safe place (a password manager is good), though after you use it once `git` should cache it so you won't need to remember it every time. In order to cache your token, clone a code repo (using `git clone`). When prompted, put in your GitHub user name, and when when prompted for a password, _put in the token string_!</p>
-
-<p>If you've used a token before, you may need to remove your old "saved" password from your computer and replace it with the new token&mdash;see [these instructions](https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git) for how to do that for your operating system (on a Mac in particular you may need to [update your credentials in Keychain](https://docs.github.com/en/github/getting-started-with-github/updating-credentials-from-the-macos-keychain))</p>
-</div>
-
-<!-- Could add more on using git/github here, including branching and publishing? -->
-
-
-## Resources {-}
-Links to the recommended software are collected here for easy access:
-
-<div class="list-condensed">
-- [Chrome](https://www.google.com/chrome/browser/desktop/index.html)
-- [Visual Studio Code](https://code.visualstudio.com/)
-- [Node.js (and npm)](https://nodejs.org/)
-    - [npm documentation](https://docs.npmjs.com/getting-started/what-is-npm)
-- [git (and Git Bash)](https://git-scm.com/downloads)
-	- [GitHub](https://github.com/join) (sign up)
-</div>
