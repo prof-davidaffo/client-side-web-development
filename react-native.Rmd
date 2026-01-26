@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     }
 })
 
-//un example app
+//un'app di esempio
 export default class App {
     render() {
         return (

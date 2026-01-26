@@ -1,4 +1,4 @@
-# Functional Programming in JS {#functional-programming}
+# Programmazione funzionale in JS {#functional-programming}
 
 Nonostante il nome, il linguaggio JavaScript e' basato piu' su <a href="https://en.wikipedia.org/wiki/Scheme_(programming_language)">Scheme</a> che su Java. Scheme e' un **functional programming language**, il che significa che segue un paradigma centrato sulle _functions_ piuttosto che su _variables_, objects e statements come hai fatto finora (conosciuto come _imperative programming_). Alternativa all'object-oriented programming, il functional programming fornisce un framework per pensare a come dare istruzioni a un computer. Anche se JavaScript non e' un linguaggio completamente funzionale, supporta diverse feature di functional programming che sono vitali per sviluppare sistemi efficaci e interattivi. Questo capitolo introduce questi concetti funzionali.
 
@@ -9,34 +9,34 @@ Di solito consideri le functions come "sequenze di istruzioni con un nome", o gr
 In JavaScript, **functions ARE variables**:
 
 ```js
-//create a function called `sayHello`
+//crea una function chiamata `sayHello`
 function sayHello(name) {
-    console.log("Hello, "+name);
+    console.log("Ciao, "+name);
 }
 
-//what kind of thing is `sayHello` ?
+//che tipo di cosa e' `sayHello` ?
 console.log(typeof sayHello);  //=> 'function'
 ```
 
-Proprio come `let x = 3` definisce una variable per un value di tipo `number`, o `let msg = "hello"` definisce una variable per un value di tipo `string`, la function `sayHello` sopra e' in realta' una variable per un _value_ di tipo `function`!
+Proprio come `let x = 3` definisce una variable per un value di tipo `number`, o `let msg = "ciao"` definisce una variable per un value di tipo `string`, la function `sayHello` sopra e' in realta' una variable per un _value_ di tipo `function`!
 
-<p class="alert alert-warning">**Important**: ci riferiamo a una function usando il suo nome _senza_ parentesi!</p>
+<p class="alert alert-warning">**Importante**: ci riferiamo a una function usando il suo nome _senza_ parentesi!</p>
 
 Il fatto che le functions **siano** variables e' la realizzazione fondamentale quando programmi in stile funzionale. Devi saper pensare alle functions come a **things** (nouns), piuttosto che come a **behaviors** (verbi). Se immagini le functions come "ricette", allora devi pensarle come _pagine di un ricettario_ (che possono essere rilegate insieme o passate a un amico), invece che come la sola sequenza di azioni da eseguire.
 
 E dato che le functions sono solo un altro tipo di variable, possono essere usate **ovunque** una variable "normale" possa essere usata. Per esempio, le functions sono values, quindi possono essere assegnate ad altre variables!
 
 ```js
-//create a function called `sayHello`
+//crea una function chiamata `sayHello`
 function sayHello(name) {
-    console.log("Hello, "+name);
+    console.log("Ciao, "+name);
 }
 
-//assign the `sayHello` value to a new variable `greet`
+//assegna il value `sayHello` a una nuova variable `greet`
 let greet = sayHello;
 
-//call the function assigned to the `greet` variable
-greet("world");  //logs "Hello world"
+//chiama la function assegnata alla variable `greet`
+greet("mondo");  //stampa "Ciao mondo"
 ```
 
 - E' utile pensare alle functions come a un tipo speciale di array. Proprio come gli _arrays_ hanno una sintassi speciale `[]` (bracket notation) per "ottenere" un value dalla lista, le _functions_ hanno una sintassi speciale `()` (parentheses) che si usa per "eseguire" la function.
@@ -45,28 +45,28 @@ greet("world");  //logs "Hello world"
 Le functions sono values, proprio come arrays e objects. E proprio come arrays e objects possono essere scritti come literal che possono essere passati _anonimamente_ dentro functions, JavaScript supporta le **anonymous functions**:
 
 ```js
-var array = [1,2,3]; //named variable (not anonymous)
-console.log(array); //pass in named var
-console.log( [4,5,6] ); //pass in anonymous value
+var array = [1,2,3]; //variable con nome (non anonima)
+console.log(array); //passa una var con nome
+console.log( [4,5,6] ); //passa un value anonimo
 ```
 
 ```js
-//named function (normal)
+//function con nome (normale)
 function sayHello(person){
-    console.log("Hello, "+person);
+    console.log("Ciao, "+person);
 }
 
-//an anonymous function (with no name!)
-//(We can't reference this without a name, so writing an anonymous function is
-//not a valid statement)
+//una function anonima (senza nome!)
+//(Non possiamo referenziarla senza un nome, quindi scrivere una function anonima
+//non e' uno statement valido)
 function(person) {
-    console.log("Hello, "+person);
+    console.log("Ciao, "+person);
 }
 
-//anonymous function (value) assigned to variable
-//equivalent to the version in the previous example
+//function anonima (value) assegnata a una variable
+//equivalente alla versione nell'esempio precedente
 let sayHello = function(person) {
-    console.log("Hello, "+person);
+    console.log("Ciao, "+person);
 }
 ```
 
@@ -75,24 +75,24 @@ let sayHello = function(person) {
 Quindi puoi definire functions con un nome in due modi: o creando una function con nome esplicito o assegnando una anonymous function a una variable:
 
 ```js
-//these produce the same function
+//queste producono la stessa function
 function foo(bar) {}
 let foo = function(bar) {}
 ```
 
 L'unica differenza tra queste due costruzioni e' l'_ordering_. Quando l'interpreter JavaScript legge e fa il parsing del file di script, mettera' le dichiarazioni di variable e function in memoria prima di eseguire qualsiasi riga. In pratica, JavaScript sembrera' "spostare" le dichiarazioni di variable e function in cima al file! Questo processo si chiama [**hoisting**](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting) (le dichiarazioni vengono "hoisted" in cima allo script).
 <!-- ```js
-//this will work even though the function is declared after it is called!
-sayHello("world");
+//questo funzionera' anche se la function e' dichiarata dopo che e' chiamata!
+sayHello("mondo");
 
-function sayHello(name) { console.log("Hello, "+name); }
+function sayHello(name) { console.log("Ciao, "+name); }
 ``` -->
 L'hoisting funziona _solo_ per le dichiarazioni di functions con nome: assegnare una anonymous function a una variable non fa hoist della definizione della function:
 
 <!-- ```js
-sayHello("world"); //ReferenceError: sayHello is not defined
+sayHello("mondo"); //ReferenceError: sayHello is not defined
 
-let sayHello = function(name) { console.log("Hello, "+name); }
+let sayHello = function(name) { console.log("Ciao, "+name); }
 ``` -->
 
 In pratica, dovresti **sempre** dichiarare e definire le functions prima di usarle (mettile tutte in cima al file!), cosi' riduci l'impatto dell'hoisting e puoi usare entrambe le costruzioni.
@@ -102,19 +102,19 @@ In pratica, dovresti **sempre** dichiarare e definire le functions prima di usar
 Inoltre, le functions sono values, quindi possono essere assegnate come values di _object properties_ (dato che le object properties sono come variables con namespace):
 
 ```js
-//an object representing a dog
+//un object che rappresenta un cane
 let dog = {
     name: 'Sparky'
     breed: 'mutt'
 }
 
-//assign an anonymous function to the `bark` property
+//assegna una function anonima alla property `bark`
 dog.bark = function(){
-    console.log('woof!');
+    console.log('bau!');
 }
 
-//call the function
-dog.bark(); //logs "woof!"
+//chiama la function
+dog.bark(); //stampa "bau!"
 ```
 
 - Ancora una volta, e' come assegnare un array come property di un object. Con un value array useresti la bracket notation per usare il suo "special power"; con un function value usi le parentheses!
@@ -128,20 +128,20 @@ Questo e' il modo in cui possiamo creare un equivalente delle "member functions"
 // An object representing a Dog
 let fido = {
   name: "Fido",
-  bark: function() { console.log(this.name, "woofs")}
+  bark: function() { console.log(this.name, "abbaia")}
 }
 
-// An object representing another Dog
+// Un object che rappresenta un altro Dog
 let spot = {
   name: "Spot",
-  bark: function() { console.log(this.name, "yips")}
+  bark: function() { console.log(this.name, "guaisce")}
 }
 
-console.log('***This is Fido barking:***');
-fido.bark(); //=> "Fido woofs". Note, `this` will refer to the `fido` object.
+console.log('***Questo e' Fido che abbaia:***');
+fido.bark(); //=> "Fido abbaia". Nota: `this` si riferira' all'object `fido`.
 
-console.log('***This is Spot barking***');
-spot.bark(); //=> "Spot yips". Note, `this` will refer to the `spot` object.
+console.log('***Questo e' Spot che abbaia***');
+spot.bark(); //=> "Spot guaisce". Nota: `this` si riferira' all'object `spot`.
 ```
 
 
@@ -149,43 +149,43 @@ spot.bark(); //=> "Spot yips". Note, `this` will refer to the `spot` object.
 Infine, le functions sono values, quindi possono essere _passate come parameters ad altre functions_!
 
 ```js
-//create a function `sayHello`
+//crea una function `sayHello`
 function sayHello(name){
-    console.log("Hello, "+name);
+    console.log("Ciao, "+name);
 }
 
-//a function that takes ANOTHER FUNCTION as an argument
-//this function will call the argument function, passing it "world"
+//una function che prende UN'ALTRA FUNCTION come argomento
+//questa function chiamera' la function argomento, passandole "mondo"
 function doWithWorld(funcToCall){
-    //call the given function with an argument of "world"
-    funcToCall("world");
+    //chiama la function data con un argomento "mondo"
+    funcToCall("mondo");
 }
 
-doWithWorld(sayHello);  //logs "Hello world";
+doWithWorld(sayHello);  //stampa "Ciao mondo";
 ```
 
-In questo caso, la function `doWithWorld` _eseguira'_ qualsiasi function le venga passata, passando il value `"world"`.
+In questo caso, la function `doWithWorld` _eseguira'_ qualsiasi function le venga passata, passando il value `"mondo"`.
 
-- **Important note**: quando passiamo `sayHello` come argomento, non mettiamo parentesi dopo il nome! Mettere le parentesi dopo il nome della function _esegue_ la function, causando l'esecuzione delle righe di codice che definisce. Questo fa si' che l'espressione che contiene la function _risolva_ al suo valore di return, invece che al value della function stessa. E' come passare la torta gia' fatta invece della pagina con la ricetta.
+- **Nota importante**: quando passiamo `sayHello` come argomento, non mettiamo parentesi dopo il nome! Mettere le parentesi dopo il nome della function _esegue_ la function, causando l'esecuzione delle righe di codice che definisce. Questo fa si' che l'espressione che contiene la function _risolva_ al suo valore di return, invece che al value della function stessa. E' come passare la torta gia' fatta invece della pagina con la ricetta.
 
     ```js
-    function greet() {  //version with no args for clarity
-        return "Hello";
+    function greet() {  //versione senza argomenti per chiarezza
+        return "Ciao";
     }
 
-    //log out the function value itself
-    console.log(greet);  //logs e.g., [Function: greet], the function
+    //logga il value della function stessa
+    console.log(greet);  //stampa ad es. [Function: greet], la function
 
-    console.log(greet());  //logs "Hello", which is what `sayHello()` resolves to
+    console.log(greet());  //stampa "Ciao", che e' cio' a cui `sayHello()` risolve
     ```
 
 Una function passata in un'altra e' comunemente chiamata **callback function**: e' un argomento a cui l'altra function "richiama" ed esegue quando necessario.
 
 ```js
 function doLater(callback) {
-    console.log("I'm waiting a bit...");
-    console.log("Okay, time to work!");
-    callback();  //"call back" and execute that function
+    console.log("Sto aspettando un po'...");
+    console.log("Ok, e' ora di lavorare!");
+    callback();  //"call back" ed esegue quella function
 }
 
 function doHomework() {
@@ -200,20 +200,20 @@ Le functions possono prendere piu' di una callback function come argomento, e qu
 
 ```js
 function doTogether(firstCallback, secondCallback){
-    firstCallback();  //execute the first function
-    secondCallback();  //execute the second function
-    console.log('at the same time!');
+    firstCallback();  //esegui la prima function
+    secondCallback();  //esegui la seconda function
+    console.log('allo stesso tempo!');
 }
 
 function patHead() {
-    console.log('pat your head');
+    console.log('batti la testa');
 }
 
 function rubBelly() {
-    console.log('rub your belly');
+    console.log('strofina la pancia');
 }
 
-//pass in the callbacks to do them together
+//passa le callbacks per farle insieme
 doTogether(patHead, rubBelly);
 ```
 
@@ -222,21 +222,21 @@ Questa idea di _passare functions come argomenti ad altre functions_ e' al cuore
 Spesso una callback function viene definita solo per essere passata a un'altra function. Questo rende il nome della callback un po' ridondante, quindi e' piu' comune usare **anonymous callback functions**:
 
 ```js
-//name anonymous function by assigning to variable
+//dai un nome alla function anonima assegnandola a una variable
 let sayHello = function(name){
-    console.log("Hello, "+name);
+    console.log("Ciao, "+name);
 }
 
 function doWithWorld(funcToCall){
-    funcToCall("world");
+    funcToCall("mondo");
 }
 
-//pass the named function by name
+//passa la function con nome usando il nome
 doWithWorld(sayHello);
 
-//pass in anonymous version of the function
+//passa la versione anonima della function
 doWithWorld(function(name){
-    console.log("Hello, "+name);
+    console.log("Ciao, "+name);
 });
 ```
 
@@ -251,33 +251,33 @@ Le functions sono values, quindi non solo possono essere passate come parameters
 
 <!-- https://slides.com/joelross/arch-w17-typescript/edit #26-->
 ```js
-//This function produces ANOTHER FUNCTION
-//which greets a person with a given greeting
+//Questa function produce UN'ALTRA FUNCTION
+//che saluta una persona con un greeting dato
 function makeGreeterFunc(greeting){
-    //explicitly store the param as a local variable (for clarity)
+    //salva esplicitamente il parametro come variable locale (per chiarezza)
     let localGreeting = greeting;
 
-    //A new function that uses the `greeting` param
-    //this is just a value!
+    //Una nuova function che usa il parametro `greeting`
+    //questo e' solo un value!
     let aGreeterFunc = function(name){
         console.log(localGreeting+" "+name);
     }
 
-    return aGreeterFunc; //return the value (which happens to be a function)
+    return aGreeterFunc; //return del value (che in questo caso e' una function)
 }
 
-//Use the "maker" to create two new functions
-let sayHello = makeGreeterFunc('Hello'); //says 'Hello' to a name
-let sayHowdy = makeGreeterFunc('Howdy'); //says 'Howdy' to a name
+//Usa il "maker" per creare due nuove functions
+let sayHello = makeGreeterFunc('Ciao'); //dice "Ciao" a un nome
+let sayHowdy = makeGreeterFunc('Salve'); //dice "Salve" a un nome
 
-//call the functions that were made
-sayHello('world'); //"Hello world"
-sayHello('Dave'); //"Hello Dave"
-sayHowdy('world'); //"Howdy wold"
-sayHowdy('partner'); //"Howdy partner"
+//chiama le functions create
+sayHello('mondo'); //"Ciao mondo"
+sayHello('Dave'); //"Ciao Dave"
+sayHowdy('mondo'); //"Salve mondo"
+sayHowdy('partner'); //"Salve partner"
 ```
 
-- In questo esempio, abbiamo definito una function `makeGreeterFunc` che prende in input alcune informazioni (un greeting) come parametro. Usa quelle informazioni per creare una nuova function `aGreeterFunc`&mdash;questa function avra' un behavior diverso a seconda del parametro (ad es. puo' dire "Hello" o "Howdy" o qualsiasi altro greeting dato). Poi restituiamo questa nuova `aGreeterFunc` in modo che possa essere usata in seguito (fuori dalla function "maker").
+- In questo esempio, abbiamo definito una function `makeGreeterFunc` che prende in input alcune informazioni (un greeting) come parametro. Usa quelle informazioni per creare una nuova function `aGreeterFunc`&mdash;questa function avra' un behavior diverso a seconda del parametro (ad es. puo' dire "Ciao" o "Salve" o qualsiasi altro greeting dato). Poi restituiamo questa nuova `aGreeterFunc` in modo che possa essere usata in seguito (fuori dalla function "maker").
 
     Quando chiamiamo `makeGreeterFunc()`, il risultato (una function) viene assegnato a una variable (ad es. `sayHello`). E dato che il risultato e' una function, possiamo chiamarla con un parametro! Quindi `makeGreeterFunc` agisce un po' come una "factory" che crea altre functions, che poi possono essere usate dove servono.
 
@@ -294,9 +294,9 @@ Per capire il functional looping, considera prima il classico for loop usato per
 let array = [{...}, {...}, {...}];
 
 for(let i=0; i<array.length; i++){
-    let currentItem = array[i]; //convenience variable for current item
+    let currentItem = array[i]; //variable di comodo per l'item corrente
 
-    //do something with current item
+    //fai qualcosa con l'item corrente
     console.log(currentItem);
 }
 ```
@@ -308,12 +308,12 @@ Come alternativa, puoi usare il metodo [`forEach()`](https://developer.mozilla.o
 ```js
 let array = [{...}, {...}, {...}];
 
-//function for what to do with each item
+//function per cosa fare con ogni item
 function printItem(currentItem){
     console.log(currentItem;)
 }
 
-//print out each item
+//stampa ogni item
 array.forEach(printItem);
 ```
 
@@ -351,16 +351,16 @@ array.forEach(function(item){
 JavaScript fornisce diversi altri functional loop methods. Per esempio, considera il seguente loop "regolare":
 
 ```js
-function square(n) { //a function that squares a number
+function square(n) { //una function che eleva al quadrato un numero
     return n*n;
 }
 
-let numbers = [1,2,3,4,5];  //an initial array
+let numbers = [1,2,3,4,5];  //un array iniziale
 
-let squares = []; //the transformed array
+let squares = []; //l'array trasformato
 for(let i=0; i<numbers.length; i++){
-    let transformed = square(numbers[i]); //call our square() function
-    squares.push(transformed); //add transformed to the list
+    let transformed = square(numbers[i]); //chiama la function square()
+    squares.push(transformed); //aggiungi il trasformato alla lista
 }
 console.log(squares); // [1, 4, 9, 16, 25]
 ```
@@ -370,13 +370,13 @@ Questo loop rappresenta un'operazione di **mapping**: prende un array originale 
 Tuttavia, JavaScript fornisce anche un _built-in array method_ chiamato [**`map()`**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) che esegue direttamente questo tipo di mapping su un array senza bisogno di un loop:
 
 ```js
-function square(n) { //a function that squares a number
+function square(n) { //una function che eleva al quadrato un numero
     return n*n;
 }
 
-let numbers = [1,2,3,4,5];  //an initial array
+let numbers = [1,2,3,4,5];  //un array iniziale
 
-//map the numbers using the `square` transforming function
+//mappa i numeri usando la function di trasformazione `square`
 let squares = numbers.map(square);
 
 console.log(squares); // [1, 4, 9, 16, 25]
@@ -402,7 +402,7 @@ Una seconda operazione comune e' **filter** una lista di elementi, rimuovendo qu
 
 ```js
 function isEven(n) { //a function that determines if a number is even
-    let remainder = n % 2; //get remainder when dividing by 2 (modulo operator)
+    let remainder = n % 2; //ottieni il resto quando dividi per 2 (operatore modulo)
     return remainder == 0; //true if no remainder, false otherwise
 }
 
@@ -451,7 +451,7 @@ Poiche' `map()` e `filter()` sono entrambi chiamati su arrays e producono arrays
 ```js
 let numbers = [1,2,3,4,5];  //an initial array
 
-//get the squares of EVEN numbers only
+//ottieni i quadrati dei numeri PARI soltanto
 let filtered = numbers.filter(isEven);
 let squares = filtered.map(square);
 console.log(squares); //[4, 16, 36]
@@ -529,7 +529,7 @@ Nel loro insieme, le operazioni **map**, **filter** e **reduce** formano la piat
 
 
 ## Pure Functions
-<small>This section was adapted from a [tutorial](https://drstearns.github.io/tutorials/jsfunctional/) by [Dave Stearns](https://ischool.uw.edu/people/faculty/dlsinfo).</small>
+<small>Questa sezione e' stata adattata da un [tutorial](https://drstearns.github.io/tutorials/jsfunctional/) di [Dave Stearns](https://ischool.uw.edu/people/faculty/dlsinfo).</small>
 
 Il concetto di _first-class functions_ (functions come values) e' centrale in ogni functional programming language. Tuttavia, il paradigma funzionale e' piu' di sole callback functions. In un linguaggio pienamente funzionale, costruisci programmi combinando piccole functions **pure**, riutilizzabili, che prendono in input data, li trasformano e poi li restituiscono per usi futuri. Le functions _pure_ hanno le seguenti qualita':
 

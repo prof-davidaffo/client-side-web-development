@@ -1,4 +1,4 @@
-# Selector CSS
+# Selettori CSS
 
 [CSS Fundamentals](#css-fundamentals) ha introdotto la sintassi base e l'uso di CSS. Questo capitolo dettaglia sintassi aggiuntiva e opzioni per i **selector** che specificano a quali elementi di una web page si applica una regola CSS.
 

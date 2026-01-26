@@ -140,7 +140,7 @@ Nota che alcuni attribute si scrivono senza un valore esplicito, nel senso che i
 
 ```html
 <!-- the presence of the `disabled` means the value is `true` -->
-<button disabled>You can't click me because I'm turned off</button>
+<button disabled>Non puoi cliccarmi perche' sono disabilitato</button>
 ```
 
 
@@ -163,21 +163,21 @@ In HTML5 non e' piu' richiesto, quindi sentiti libero di omettere la barra (anch
 ## Nidificazione di elementi
 Le web page sono composte da molte (centinaia! migliaia!) di elementi HTML. Inoltre, gli elementi HTML possono essere **nested**: cioe' il contenuto di un elemento HTML puo' contenere _altri_ tag HTML (e quindi altri elementi HTML):
 
-![An example of element nesting: the `<em>` element is nested in the `<h1>` element's content.](img/html/nesting.png)
+![Esempio di annidamento di elementi: l'elemento `<em>` e' annidato nel contenuto dell'elemento `<h1>`.](img/html/nesting.png)
 
 Il significato semantico indicato da un elemento si applica a _tutto_ il suo contenuto: quindi tutto il testo nell'esempio sopra e' un top-level heading, e il contenuto "(with emphasis)" e' enfatizzato in aggiunta.
 
 Poiche' gli elementi possono contenere elementi che possono _a loro volta_ contenere elementi, un documento HTML finisce per essere strutturato come un <a href="https://en.wikipedia.org/wiki/Tree_(data_structure)">**"tree"**</a> di elementi:
 
-![An example DOM tree (a tree of HTML elements).](img/html/dom-tree.jpg)
+![Esempio di DOM tree (un albero di elementi HTML).](img/html/dom-tree.jpg)
 
 In un documento HTML, l'elemento "root" dell'albero e' sempre un **`<html>`**. All'interno mettiamo un elemento **`<body>`** che contiene il "body" del documento (cioe' il contenuto mostrato):
 
 ```html
 <html lang="en">
   <body>
-    <h1>Hello world!</h1>
-    <p>This is <em>conteeeeent</em>!</p>
+    <h1>Ciao mondo!</h1>
+    <p>Questo e' <em>contenuuuto</em>!</p>
   </body>
 </html>
 ```

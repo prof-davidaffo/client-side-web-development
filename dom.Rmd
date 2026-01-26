@@ -1,4 +1,4 @@
-# Document Object Model (DOM) {#dom}
+# Modello a oggetti del documento (DOM) {#dom}
 
 Lo scopo principale di usare JavaScript in una web page e' rendere quella pagina **interattiva**: il linguaggio JavaScript e' usato per programmare decisioni logiche che influenzeranno cio' che viene mostrato nella pagina. Lo fa principalmente _cambiando l'HTML renderizzato dal browser_. Per esempio, JavaScript puo' essere usato per cambiare il testo dentro un `<p>`, aggiungere altri elementi `<li>` a una lista, o dare a un `<div>` un nuovo attribute CSS `class`. La rappresentazione programmatica degli elementi HTML attualmente mostrati dal browser e' conosciuta come **Document Object Model (DOM)**. Nel web programming, il codice JavaScript e' usato per modificare il DOM (gli elementi HTML attualmente mostrati dal browser) in risposta all'input dell'utente, rendendo cosi' la pagina interattiva. Questo capitolo introduce il Document Object Model e come usare JavaScript per manipolarlo tramite interazioni guidate dall'utente.
 
@@ -33,16 +33,16 @@ console.log( Math.sqrt(25) ); //=> 5
 Il _web browser_ fornisce anche diverse global variables che puoi usare. Per esempio [**`window`**](https://developer.mozilla.org/en-US/docs/Web/API/Window) e' un object globale che rappresenta il browser stesso. Puoi usare questo object per ottenere informazioni sul browser:
 
 ```js
-/* example properties */
-let width = window.innerWidth;   //viewport width
-let height = window.innerHeight; //viewport height
-var url = window.location.href; //url for this page
+/* properties di esempio */
+let width = window.innerWidth;   //larghezza del viewport
+let height = window.innerHeight; //altezza del viewport
+var url = window.location.href; //url per questa pagina
 
-/* example functions */
-window.alert("Boo!"); //show a popup alert. Do not use this.
-window.scrollTo(0, 1000); //scroll to a position
-window.setTimeout(callback, 1000); //execute callback after an delay
-window.setInterval(callback, 1000); //execute callback repeatedly after interval
+/* functions di esempio */
+window.alert("Buu!"); //mostra un popup. Non usarlo.
+window.scrollTo(0, 1000); //scroll a una posizione
+window.setTimeout(callback, 1000); //esegue la callback dopo un delay
+window.setInterval(callback, 1000); //esegue la callback ripetutamente dopo un intervallo
 ```
 
 <p class="alert alert-warning">Anche se questi esempi sono inclusi per completezza, la maggior parte delle functions di `window` sono usate raramente e andrebbero evitate. I popup con la function `window.alert()` sono ineleganti, interrompono le azioni dell'utente e producono una bad user experience&mdash;dovresti invece usare opzioni di alerting dentro la finestra (come mostrare un `<p class="alert">`). Le functions di controllo del browser come `scrollTo()` sono non standard e possono variare drasticamente tra sistemi e piattaforme. Usa cautela quando usi le functions di `window`!</p>
@@ -55,22 +55,22 @@ Mentre `window` rappresenta il Browser, il **DOM** stesso e' rappresentato dall'
 Per manipolare gli elementi DOM in una pagina, devi prima ottenere un _reference_ all'elemento che vuoi cambiare&mdash;cioe' ti serve una variable che si riferisca a quell'elemento. Puoi ottenere queste references usando una delle "selector" functions di `document`:
 
 ```js
-//element with id="foo"
+//elemento con id="foo"
 let fooElem = document.getElementById('foo');
 
-//elements with class="row"
-let rowElems = document.getElementsByClassName('row'); //note the plural!
+//elementi con class="row"
+let rowElems = document.getElementsByClassName('row'); //nota il plurale!
 
-//<li> elements
-let liElems = document.getElementsByTagName('li'); //note the plural!
+//elementi <li>
+let liElems = document.getElementsByTagName('li'); //nota il plurale!
 
-/*easiest to select by reusing CSS selectors! */
-let cssSelector = 'header p, .title > p';  //a string of a CSS selector
+/*il modo piu' facile e' riusare i CSS selectors! */
+let cssSelector = 'header p, .title > p';  //una string di un CSS selector
 
-//selects FIRST element that matches css selector
+//seleziona il PRIMO elemento che corrisponde al css selector
 let elem = document.querySelector(cssSelector);
 
-//matches ALL elements that match css selector
+//corrisponde a TUTTI gli elementi che matchano il css selector
 let elems = document.querySelectorAll(cssSelector);
 ```
 
@@ -87,19 +87,19 @@ Una volta ottenuto un reference a un elemento, accedi alle properties e chiami i
 Puoi usare JavaScript per accedere e modificare il **contenuto** di un elemento DOM (ad es. cio' che sta tra start e close tag):
 
 ```js
-//get a reference to the FIRST <p> element
+//ottieni una reference al PRIMO elemento <p>
 let elem = document.querySelector('p');
 
-console.log(elem); //to demonstrate
+console.log(elem); //per dimostrazione
 
-let text = elem.textContent; //the text content of the elem
-elem.textContent = "This is different content!"; //change the content
+let text = elem.textContent; //il contenuto testuale dell'elem
+elem.textContent = "Questo e' contenuto diverso!"; //cambia il contenuto
 
-let html = elem.innerHTML; //content including HTML
-elem.innerHTML = "This is <em>different</em> content!"; //interpreted as HTML
+let html = elem.innerHTML; //contenuto che include HTML
+elem.innerHTML = "Questo e' contenuto <em>diverso</em>!"; //interpretato come HTML
 ```
 
-La property `textContent` dell'elemento si riferisce a _tutto_ il contenuto, ma considerato come "plain text": questo significa che e' una property "safe": puoi assegnare stringhe che contengono codice HTML (ad es. `<em>Hello</em>`), ma quel codice verra' escaped e non interpretato come HTML (invece i simboli `<` e `>` saranno scritti come se avessi usato le [HTML entities](https://www.w3schools.com/html/html_entities.asp)). La property `.innerHTML`, invece, non e' "safe": qualsiasi HTML incluso nella String che assegni verra' convertito in elementi DOM. Questo la rende una property da evitare a meno che tu non sia assolutamente certo che il contenuto provenga da una fonte affidabile.
+La property `textContent` dell'elemento si riferisce a _tutto_ il contenuto, ma considerato come "plain text": questo significa che e' una property "safe": puoi assegnare stringhe che contengono codice HTML (ad es. `<em>Ciao</em>`), ma quel codice verra' escaped e non interpretato come HTML (invece i simboli `<` e `>` saranno scritti come se avessi usato le [HTML entities](https://www.w3schools.com/html/html_entities.asp)). La property `.innerHTML`, invece, non e' "safe": qualsiasi HTML incluso nella String che assegni verra' convertito in elementi DOM. Questo la rende una property da evitare a meno che tu non sia assolutamente certo che il contenuto provenga da una fonte affidabile.
 
 - La property `innerHTML` andrebbe usata principalmente per includere elementi _inline_ come `<em>` o `<strong>`. Per contenuti HTML piu' complessi, e' piu' pulito (separation of concerns!) creare esplicitamente nuovi elementi&mdash;vedi sotto per dettagli.
 
@@ -107,20 +107,20 @@ La property `textContent` dell'elemento si riferisce a _tutto_ il contenuto, ma 
 
     ```js
     let alertElem = document.querySelector('.alert');
-    alertElem.textContent = ''; //no more alert!
+    alertElem.textContent = ''; //nessun alert!
     ```
 
 #### Cambiare gli attributes {-}
 Puoi anche cambiare gli **attributes** dei singoli elementi. Ogni attribute definito nella specifica HTML e' tipicamente esposto come _property_ dell'object elemento:
 
 ```js
-//get a reference to the `#picture` element
+//ottieni una reference all'elemento `#picture`
 let imgElem = document.querySelector('#picture');
 
-//access the attribute
-console.log( imgElem.src ); //logs the source of the image
+//accedi all'attribute
+console.log( imgElem.src ); //stampa la source dell'immagine
 
-//modify the attribute
+//modifica l'attribute
 imgElem.src = 'my-picture.png';
 ```
 
@@ -130,13 +130,13 @@ In alternativa puoi modificare gli attributes degli elementi usando i metodi `ge
 
 ```js
 let imgElem = document.querySelector('#picture');
-imgElement.setAttribute('src', 'my-other-picture.png'); //set the src
+imgElement.setAttribute('src', 'my-other-picture.png'); //imposta il src
 
 console.log( imgElem.getAttribute('src') ); //=> 'my-other-picture.png'
 
-//the `hasAttribute()` method returns a boolean.
+//il metodo `hasAttribute()` restituisce un boolean.
 let isThick = document.querySelector('svg rect')
-                      .hasAttribute('stroke-width'); //chained anonymous variables
+                      .hasAttribute('stroke-width'); //variables anonime chainate
 ```
 
 Questi metodi ti permettono di interagire con attributes _non_ definiti dalla spec HTML, come gli attribute `data-`. Tuttavia, _non_ funzionano con alcuni attributes degli elementi (come l'attribute `value` di un elemento `<input>`). Altri elementi possono avere DOM properties speciali: vedi la [DOM Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) per una lista delle [HTML interfaces](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model#HTML_interfaces).
@@ -145,27 +145,27 @@ Questi metodi ti permettono di interagire con attributes _non_ definiti dalla sp
 E' possibile modificare le **CSS classes** (e anche lo styling inline) di un elemento. Ma invece di usare la property `class` come con gli altri attributes, accedi alla property **`classList`**. Nei browser moderni (IE 10 o successivi), questa property supporta i metodi `.add()` e `.remove()` per aggiungere e rimuovere class dalla lista:
 
 ```js
-//access list of classes
+//accedi alla lista delle class
 let classList = elem.classList;
 
-//add a class
-elem.classList.add('small'); //add a single class
-elem.classList.add('alert','alert-warning'); //add multiples classes (not on IE)
+//aggiungi una class
+elem.classList.add('small'); //aggiungi una singola class
+elem.classList.add('alert','alert-warning'); //aggiungi class multiple (non su IE)
 
-//remove a class
+//rimuovi una class
 elem.classList.remove('small');
 
-//"toggle" (add if missing, remove if present)
+//"toggle" (aggiungi se manca, rimuovi se presente)
 elem.classList.toggle('small');
 ```
 
 - Anche se IE 10+ supporta questi metodi, non supporta _multiple arguments_ (quindi non puoi aggiungere piu' class in una singola chiamata). Se devi supportare browser piu' vecchi (inclusa qualsiasi versione di IE), puoi invece modificare la property `.className` come se fosse una String:
 
     ```js
-    //fallback for IE (all)
+    //fallback per IE (tutti)
     var classes = elem.className;
-    classes += ' '+ 'sweet sour'; //modify the string (append!)
-    elem.className = classes;     //reassign
+    classes += ' '+ 'sweet sour'; //modifica la stringa (append!)
+    elem.className = classes;     //ri-assegna
     ```
 
     I metodi `classList` funzionano perfettamente su Microsoft Edge.
@@ -175,7 +175,7 @@ E' anche possibile accedere e modificare singole CSS properties di elementi tram
 ```js
 let h1 = document.querySelector('h1');
 h1.style.color = 'green';
-h1.style.backgroundColor = 'black'; //not `.background-color`
+h1.style.backgroundColor = 'black'; //non `.background-color`
 ```
 
 <p class="alert alert-info">In generale, dovresti modificare il CSS di un elemento cambiandone la class, piuttosto che modificando specifiche style properties.</p>
@@ -189,27 +189,27 @@ Per prima cosa, nota che ogni elemento DOM JavaScript ha [properties _read-only_
 ```html
 <main>
     <section id="first-section">
-        <p>First paragraph</p>
-        <p>Second paragraph</p>
+        <p>Primo paragrafo</p>
+        <p>Secondo paragrafo</p>
     </section>
     <section id="second-section"></section>
 <main>
 ```
 
 ```js
-//get reference to the first section
+//ottieni una reference alla prima section
 let firstSection = document.querySelector('#first-section');
 
-//get reference to the "parent" node
+//ottieni una reference al node "parent"
 let main = firstSection.parentElement;
 console.log(main); //<main>...</main>
 
-//get reference to the child elements (2 paragraphs)
+//ottieni una reference agli elementi child (2 paragrafi)
 let paragraphs = firstSection.children;
 console.log(paragraphs.length); //2
-console.log(paragraphs[0]); //<p>First paragraph</p>
+console.log(paragraphs[0]); //<p>Primo paragrafo</p>
 
-//get reference to the the next sibling
+//ottieni una reference al sibling successivo
 let sectionSection = firstSection.nextElementSibling;
 console.log(secondSection); //<section id="second-section"></section>
 ```
@@ -221,24 +221,24 @@ console.log(secondSection); //<section id="second-section"></section>
 Puoi anche chiamare methods per creare e aggiungere nuovi elementi DOM HTML al tree. La function `document.createElement()` e' usata per creare un nuovo elemento HTML. Tuttavia questo elemento _non_ viene creato come parte del tree (dopotutto non hai specificato dove inserirlo nella pagina)! Quindi devi anche usare un metodo come `appendChild` per aggiungere quel nuovo elemento come child di un altro elemento:
 
 ```js
-//create a new <p> (not yet in the tree)
+//crea un nuovo <p> (non ancora nell'albero)
 let newP = document.createElement('p');
-newP.textContent = "I'm new!";
+newP.textContent = "Sono nuovo!";
 
-//create Node of textContent only (not an HTML element, just text)
-let newText = document.createTextNode("I'm blank");
+//crea un Node con solo textContent (non un elemento HTML, solo testo)
+let newText = document.createTextNode("Sono vuoto");
 
 let main = document.querySelector('main');
-main.appendChild(newP); //add element INSIDE (at end)
-main.appendChild(newText); //add the text inside, AFTER the <p>
+main.appendChild(newP); //aggiungi elemento DENTRO (in fondo)
+main.appendChild(newText); //aggiungi il testo dentro, DOPO il <p>
 
-//add anonymous new node BEFORE element. Parameters are: (new, old)
-main.insertBefore(document.createTextNode("First!"), newP);
+//aggiungi il nuovo node anonimo PRIMA dell'elemento. I parametri sono: (new, old)
+main.insertBefore(document.createTextNode("Primo!"), newP);
 
-//replace node. Parameters are: (new, old)
-main.replaceChild(document.createTextNode('boo'), newText);
+//sostituisci il node. I parametri sono: (new, old)
+main.replaceChild(document.createTextNode('buh'), newText);
 
-//remove node
+//rimuovi il node
 main.removeChild(main.querySelector('p'));
 ```
 
@@ -253,7 +253,7 @@ Rendi un elemento una live region assegnandogli l'attribute `aria-live`:
 
 ```html
 <div aria-live="polite">
-  This content can change!
+  Questo contenuto puo' cambiare!
 </div>
 ```
 
@@ -274,19 +274,19 @@ Per fare in modo che il tuo script risponda agli user events, devi _register an 
 La DOM API ti permette di registrare un event listener chiamando **`.addEventListener()`** su un elemento selezionato (ad es. sull'elemento che vuoi ascoltare). Questo metodo prende due argomenti: una string che rappresenta il tipo di event che vuoi ascoltare, e una _callback function_ da eseguire quando senti quell'event:
 
 ```js
-//a (named) callback function
+//una callback function (con nome)
 function onClickCallback() {
-    console.log("You clicked me!");
+    console.log("Mi hai cliccato!");
 }
 
-//get a reference to the element we want to "listen" to
+//ottieni una reference all'elemento che vogliamo "ascoltare"
 let button = document.querySelector('button');
 
-//register a listener for 'click' events
+//registra un listener per eventi 'click'
 button.addEventListener('click', onClickCallback);
 ```
 
-- Quando il button viene cliccato dall'utente, "gridera'" un event `'click'` ("I was clicked! I was clicked!"). Poiche' hai configurato un listener (un alert/notification) per questa occorrenza, il tuo script potra' fare qualcosa&mdash;e quel qualcosa sara' eseguire la callback function specificata.
+- Quando il button viene cliccato dall'utente, "gridera'" un event `'click'` ("Sono stato cliccato! Sono stato cliccato!"). Poiche' hai configurato un listener (un alert/notification) per questa occorrenza, il tuo script potra' fare qualcosa&mdash;e quel qualcosa sara' eseguire la callback function specificata.
 
     E' come se avessi dato a qualcuno una ricetta dicendo: "quando ti chiamo, prepara questa torta!"
 
@@ -295,7 +295,7 @@ button.addEventListener('click', onClickCallback);
     ```js
     let button = document.querySelect.select('button');
     button.addEventListener('click', function() {
-        console.log("You clicked me!");
+        console.log("Mi hai cliccato!");
     });
     ```
 
@@ -305,8 +305,8 @@ Alla callback dell'event viene passato un singolo argomento: un object che rappr
 
 ```js
 elem.addEventListener('click', function(event) {
-   //get who was clicked;
-   let clickedElem = event.target; //target property of the event
+   //ottieni chi e' stato cliccato;
+   let clickedElem = event.target; //property target dell'event
    console.log(clickedElem);
 });
 ```
@@ -316,12 +316,12 @@ Nota anche che a volte vuoi fermare gli effetti "normali" di un event. Per esemp
 ```js
 submitBtn.addEventListener('click', function(event) {
 
-  event.preventDefault(); //don't do normal behavior
-  event.stopPropagation(); //don't pass the event to parents
+  event.preventDefault(); //non eseguire il comportamento normale
+  event.stopPropagation(); //non passare l'event ai parent
 
-  //..do custom behavior here
+  //..esegui qui il comportamento personalizzato
 
-  return false; //don't do normal behavior OR propagate! (for IE)
+  return false; //non fare il comportamento normale NE' propagare! (per IE)
 })
 ```
 
@@ -338,7 +338,7 @@ Ci sono [numerosi eventi diversi](https://developer.mozilla.org/en-US/docs/Web/E
     ```js
     elem.addEventListener('keydown', function(event){
         if(event.key === 'ArrowUp'){
-            console.log("Going up!")
+            console.log("Su!")
         }
         //...
     });
@@ -362,7 +362,7 @@ Ci sono [numerosi eventi diversi](https://developer.mozilla.org/en-US/docs/Web/E
 
     ```js
     window.onload = function() {
-        //...do stuff once page is ready (e.g., run the rest of your code)
+        //...fai cose una volta che la pagina e' pronta (es. esegui il resto del codice)
     }
     ```
 
@@ -372,7 +372,7 @@ Ci sono [numerosi eventi diversi](https://developer.mozilla.org/en-US/docs/Web/E
 In un tipico web program, le event callback functions possono verificarsi ripetutamente, ancora e ancora (ad es. ogni volta che l'utente clicca un button). Questo le fa comportare un po' come il body di un `while` loop. Tuttavia, poiche' queste callback sono _functions_, qualsiasi variable definita al loro interno e' **scoped** a quella function e non sara' disponibile nelle esecuzioni successive. Quindi, se vuoi tenere traccia di informazioni aggiuntive (ad es. quante volte e' stato cliccato un button), devi usare una variable dichiarata _fuori_ dalla function (ad es. una **global**). Queste variables possono rappresentare lo **state** (situazione) del programma, che puo' poi essere usato per determinare quale behavior eseguire quando si verifica un event, seguendo il pattern sotto:
 
 ```
-//pseudocode
+//pseudocodice
 QUANDO si verifica un event {
    controlla lo STATE del programma;
    DECIDE cosa fare in base a quello state;
@@ -383,13 +383,13 @@ QUANDO si verifica un event {
 Per esempio:
 
 ```js
-let clickCount = 0;  //keep track of the "state" (global)
+let clickCount = 0;  //tieni traccia dello "state" (global)
 document.querySelector('button').addEventListener('click', function() {
-    if(clickCount > 10) {  //decide what to do
+    if(clickCount > 10) {  //decidi cosa fare
         console.log("I think you've had enough");
     }
     else {
-        clickCount++;  //change state (+1)
+        clickCount++;  //cambia stato (+1)
         console.log('You clicked me!');
     }
 });

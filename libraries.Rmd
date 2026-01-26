@@ -1,4 +1,4 @@
-# JavaScript Libraries
+# Librerie JavaScript
 Molti web programmer incontrano gli stessi requisiti di programmazione mentre sviluppano web sites interattivi. Per esempio, molti siti devono gestire e manipolare objects e arrays, mostrare componenti standard (come modal windows o contenuti collapsible) o fare forme simili di complessa DOM manipulation. Poiche' uno dei principi principali dello sviluppo software e' il [___reuse___](https://en.wikipedia.org/wiki/Reusability), i developer spesso rendono disponibile ad altri il codice che risolve questi problemi sotto forma di **libraries e frameworks**. Sono file script rilasciati pubblicamente che puoi scaricare e includere nel tuo project, permettendoti di sviluppare applicazioni complesse piu' rapidamente e facilmente. Questa e' la cosa fantastica della comunita' open-source: le persone risolvono problemi e poi rendono quelle soluzioni disponibili agli altri.
 
 Le web applications moderne fanno un uso _esteso_ di librerie esterne, sia integrando molte librerie diverse in una sola app, sia facendo affidamento su un framework specifico (che puo' a sua volta essere composto da molte librerie diverse)! Questo capitolo descrive come includere e utilizzare librerie JavaScript esterne nella tua web page, e presenta la popolare libreria [jQuery](https://jquery.com/) come esempio.
@@ -8,25 +8,25 @@ Le web applications moderne fanno un uso _esteso_ di librerie esterne, sia integ
 Nota che gli script esterni sono in genere chiamati _libraries_ o _frameworks_. Tuttavia, questi termini non sono completamente intercambiabili. Una **library** e' un insieme di behaviors (functions) che puoi usare e chiamare nel tuo codice. Per esempio, `Lodash` (descritto sotto) e' una library che fornisce utility functions utilizzabili. Chiami il codice della library quando vuoi. Un **framework**, invece, fornisce un insieme di codice in cui inserisci i tuoi _behaviors_, per esempio subclassando componenti forniti o specificando le tue callback functions. Il framework chiama _il tuo_ codice quando vuole lui. [Martin Fowler](http://martinfowler.com/bliki/InversionOfControl.html) si riferisce a questo come _"Inversion of control"_. I framework spesso sembrano piu' facili da usare (fanno di piu' con meno lavoro da parte tua!), ma possono essere difficili da personalizzare per raggiungere obiettivi precisi. Le libraries possono essere piu' difficili da usare, ma probabilmente puoi impiegarle esattamente come serve. Questo capitolo si concentra principalmente sulle _libraries_; [React](https://reactjs.org/) (descritto nei capitoli successivi) e' piu' un framework.
 
 
-## Including a Library
+## Includere una Library
 Proprio come puoi includere piu' file CSS in una pagina con elementi `<link>` multipli, puoi includere piu' script JavaScript con elementi `<script>` multipli.
 
 ```html
-<script src="alpha.js"></script> <!-- run this script first -->
-<script src="beta.js"></script> <!-- run this script second -->
+<script src="alpha.js"></script> <!-- esegui questo script per primo -->
+<script src="beta.js"></script> <!-- esegui questo script per secondo -->
 ```
 
 _Importante_, i file script vengono eseguiti nell'ordine in cui appaiono nel DOM. Questo conta perche' tutti gli script inclusi tramite l'elemento `<script>` vengono eseguiti nello stesso [namespace](https://en.wikipedia.org/wiki/Namespace). Questo significa che variables e functions dichiarate in uno script sono disponibili negli script successivi&mdash;e' quasi come se tutti i file script fossero combinati in un unico file.
 
 ```js
 /* alpha.js */
-let message = "Hello World";
+let message = "Ciao Mondo";
 ```
 
 ```js
 /* beta.js */
-console.log(message); //=> "Hello World"
-                      //variable was defined in previous script!
+console.log(message); //=> "Ciao Mondo"
+                      //la variable era definita nello script precedente!
 ```
 
 L'ordine conta: se `beta.js` fosse incluso _prima_ di `alpha.js`, quando viene eseguito la variable `message` non sarebbe ancora definita, causando un errore.
@@ -57,23 +57,23 @@ Dato che tutti i file JavaScript condividono lo stesso namespace, la maggior par
 ```js
 let array = [3,4,3];
 
-let unique = _.uniq(array); //call function of lodash object
+let unique = _.uniq(array); //chiama una function dell'object lodash
 
-console.log(unique); //[3,4], the unique elements!
+console.log(unique); //[3,4], gli elementi unici!
 ```
 
 - Una volta caricata la library, i globals che fornisce possono essere accessi come i built-in globals `window`, `document`, `Math`, ecc.
 
 - Lodash usa un nome di variable apparentemente strano per essere rapido e facile da digitare, e per evitare conflitti con altre variables che potresti creare.
 
-Lodash provides [lots of useful functions](https://lodash.com/docs/) that can be called on the global `_` object. For example:
+Lodash fornisce [molte funzioni utili](https://lodash.com/docs/) che possono essere chiamate sull'object globale `_`. Per esempio:
 
 <div class="list-condensed">
-- [`_.random()`](https://lodash.com/docs/4.17.4#random) to generate a random number within a range
-- [`_.range()`](https://lodash.com/docs/4.17.4#range) to generate an array of numbers within a range
-- [`_.includes()`](https://lodash.com/docs/4.17.4#includes) to determine if a value is in an array (cross-browser!)
-- [`_.pick()`](https://lodash.com/docs/4.17.4#pick) to produce a new object that has only select properties of another
-- [`_.merge()`](https://lodash.com/docs/4.17.4#merge) to combine the properties of two objects into a single new object
+- [`_.random()`](https://lodash.com/docs/4.17.4#random) per generare un numero casuale in un intervallo
+- [`_.range()`](https://lodash.com/docs/4.17.4#range) per generare un array di numeri in un intervallo
+- [`_.includes()`](https://lodash.com/docs/4.17.4#includes) per determinare se un value e' in un array (cross-browser!)
+- [`_.pick()`](https://lodash.com/docs/4.17.4#pick) per produrre un nuovo object che ha solo alcune properties di un altro
+- [`_.merge()`](https://lodash.com/docs/4.17.4#merge) per combinare le properties di due objects in un singolo nuovo object
 </div>
 
 Nota che quale object globale viene fornito (e quali functions ha) e' diverso per ogni library. Devi guardare la documentazione (spesso il file `README.md` su Github) per istruzioni ed esempi su come chiamare e utilizzare quella library.
@@ -85,78 +85,78 @@ Nota che quale object globale viene fornito (e quali functions ha) e' diverso pe
 <p class="alert alert-info">Se stai usando un linter per controllare il coding style, devi far sapere al linter di qualsiasi global variable caricata in altri script cosi' il linter non pensi che quelle variables siano undefined. Vedi [la documentazione](https://eslint.org/docs/user-guide/configuring#specifying-globals) per dettagli su come farlo in ESLint.</p>
 
 
-## Example: jQuery
-As an extended example of a JavaScript library, the remainder of this chapter describes [**jQuery**](https://jquery.com/)&mdash;a popular JavaScript library that helps with DOM manipulation. jQuery was designed to provide easier, faster, and more reliable methods for manipulating the DOM in the ways described in the previous chapter. jQuery is one of the most popular libraries used in web development, and is used in around [70% of the most popular websites](https://trends.builtwith.com/javascript/jQuery).
+## Esempio: jQuery
+Come esempio esteso di una library JavaScript, il resto di questo capitolo descrive [**jQuery**](https://jquery.com/) -- una popolare library JavaScript che aiuta con la DOM manipulation. jQuery e' stata progettata per fornire metodi piu' facili, veloci e affidabili per manipolare il DOM nei modi descritti nel capitolo precedente. jQuery e' una delle librerie piu' popolari nel web development ed e' usata da circa il [70% dei siti piu' popolari](https://trends.builtwith.com/javascript/jQuery).
 
-jQuery was developed to help fill in gaps in the JavaScript language and to standardize functionality across browsers. It made it so that you could write manipulate the DOM while writing 10% of the code, and produce scripts that would run on both Firefox _and_ Internet Explorer!
+jQuery e' stata sviluppata per colmare lacune del linguaggio JavaScript e per standardizzare funzionalita' tra browser. Ha reso possibile manipolare il DOM scrivendo una frazione del codice, e produrre script che funzionavano sia su Firefox _sia_ su Internet Explorer.
 
-However, in the 10+ years since it's release, later versions of the JavaScript language and the DOM API have improved (e.g., by introducing a `querySelector()` function) so that much of what made jQuery special is [now standard and widely supported](http://youmightnotneedjquery.com/). Indeed, jQuery' approach to interactive webpages is now common practice. Nevertheless, jQuery is still commonly used in web systems ([Bootstrap's JavaScript components](http://getbootstrap.com/docs/4.0/getting-started/javascript/) utilize jQuery), and is popular enough that it you should be familiar with it in the likely chance that you need to engage with a web system build more than 3 years ago.
+Tuttavia, nei 10+ anni dalla sua uscita, il linguaggio JavaScript e le API DOM sono migliorati (ad es. con `querySelector()`), cosi' gran parte di cio' che rendeva speciale jQuery e' [ora standard e ampiamente supportato](http://youmightnotneedjquery.com/). In effetti, l'approccio di jQuery alle pagine interattive e' diventato pratica comune. Ciononostante, jQuery e' ancora usata in molti sistemi web ([i componenti JavaScript di Bootstrap](http://getbootstrap.com/docs/4.0/getting-started/javascript/) la usano) ed e' abbastanza diffusa da rendere utile conoscerla, soprattutto se devi lavorare su un sistema costruito piu' di 3 anni fa.
 
-As with other libraries, you [include jQuery](https://jquery.com/download/) by referencing it from a `<script>` tag in your HTML (_before your own script!_):
+Come per altre librerie, [includi jQuery](https://jquery.com/download/) referenziandola con un tag `<script>` nel tuo HTML (_prima del tuo script!_):
 
 ```html
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 ```
 
-- Note that version jQuery `3.x` is for [current browsers](https://jquery.com/browser-support/). If you need to support an older version (e.g., IE 6-8), you can use version `1.12`. Yes, jQuery supports IE 6!
+- Nota che la versione jQuery `3.x` e' per i [browser attuali](https://jquery.com/browser-support/). Se devi supportare versioni piu' vecchie (ad es. IE 6-8), puoi usare la `1.12`. Si', jQuery supporta IE 6!
 
-Loading the jQuery library creates a **`jQuery`** variable in the global scope, meaning you can access this variable and utilize it in your script.
+Caricare la library jQuery crea una variable **`jQuery`** nello scope globale, quindi puoi accedervi e usarla nello script.
 
-The `jQuery` variable is actually a _function_ that you can call, called the **Selector function**. This function is used to select DOM elements by [CSS selector](http://api.jquery.com/category/selectors/basic-css-selectors/), similar to how `document.querySelector()` works:
+La variable `jQuery` e' in realta' una _function_ che puoi chiamare, detta **Selector function**. Questa function seleziona elementi DOM tramite [CSS selector](http://api.jquery.com/category/selectors/basic-css-selectors/), simile a `document.querySelector()`:
 
 ```js
-//selects element with id="foo" (e.g., <p id="foo">)
+//seleziona l'elemento con id="foo" (es. <p id="foo">)
 let fooElem = jQuery('#foo');
 
-//selects all <a> elements
+//seleziona tutti gli elementi <a>
 let allLinksArray = jQuery('a');
 ```
 
-However, it is much more common to use a provided _alias_ for the `jQuery()` function called **`$()`**. This "shortcut" lets you select elements with a single character (instead of 6)!
+Tuttavia, e' molto piu' comune usare un _alias_ fornito per `jQuery()`, chiamato **`$()`**. Questa scorciatoia permette di selezionare elementi con un solo carattere (invece di 6).
 
 ```js
-//selects element with id="foo" (e.g., <p id="foo">)
+//seleziona l'elemento con id="foo" (es. <p id="foo">)
 let fooElem = $('#foo');
 
-//selects all <a> elements
+//seleziona tutti gli elementi <a>
 let allLinksArray = $('a');
 ```
 
-- Similar to Lodash's `_`, jQuery uses `$` because no one in their right might would name a variable that, so the chance of having a namespace conflict is minimal.
+- Come per `_` in Lodash, jQuery usa `$` perche' nessuno sano di mente darebbe quel nome a una variable, quindi la probabilita' di conflitti di namespace e' minima.
 
-Like `document.querySelector()`, the jQuery selector function handles most all [selectors](http://api.jquery.com/category/selectors/) you are familiar with from CSS, as well as some additional useful pseudo-classes:
+Come `document.querySelector()`, la function selector di jQuery gestisce la maggior parte dei [selector](http://api.jquery.com/category/selectors/) CSS, oltre a qualche pseudo-class utile:
 
 ```js
-$('#my-div') // by id
-$('div') // by type
-$('.my-class') // by class
-$('header, footer') // group selector
-$('nav a') // descendant selector
-$('p.red') // scoped selector
+$('#my-div') // per id
+$('div') // per tipo
+$('.my-class') // per class
+$('header, footer') // selector di gruppo
+$('nav a') // selector discendente
+$('p.red') // selector con scope
 
-$('section:first') // first <section> element
-                   // (not a css selector!)
+$('section:first') // primo elemento <section>
+                   // (non e' un css selector!)
 ```
 
-### Maniputing the DOM {-}
-Once you've selected some elements, jQuery provides _methods_ that perform most of the [manipulations](http://api.jquery.com/category/attributes/) you would do using DOM properties:
+### Manipolare il DOM {-}
+Una volta selezionati gli elementi, jQuery fornisce _methods_ che eseguono la maggior parte delle [manipolazioni](http://api.jquery.com/category/attributes/) che faresti con le property del DOM:
 
 ```js
-var txt = $('#my-div').text();      //get the textContent
-$('#my-div').text('new info!');     //change the textContent
+var txt = $('#my-div').text();      //ottieni il textContent
+$('#my-div').text('new info!');     //cambia il textContent
 
-$('#my-div').html('<em>new html!</em>'); //change the HTML
+$('#my-div').html('<em>new html!</em>'); //cambia l'HTML
 
-$('svg rect').attr('height');       //get attribute (of all selected)
-$('svg rect').attr('height',200);   //set attribute (of all selected)
-$('svg rect').attr( {x:50, y:60} ); //set multiple attributes by passing in an object
+$('svg rect').attr('height');       //ottieni l'attribute (di tutti i selezionati)
+$('svg rect').attr('height',200);   //imposta l'attribute (di tutti i selezionati)
+$('svg rect').attr( {x:50, y:60} ); //imposta piu' attributes passando un object
 
-$('section').addClass('container'); //add class (to all selected)
-$('section').removeClass('old');    //remove class (from all selected)
+$('section').addClass('container'); //aggiungi class (a tutti i selezionati)
+$('section').removeClass('old');    //rimuovi class (da tutti i selezionati)
 
-$('body').css('font-size','24px');  //set css property (of all selected)
+$('body').css('font-size','24px');  //imposta la property CSS (di tutti i selezionati)
 $('body').css( {'font-size':'24px',
-                'font-family':'Helvetica'} ); //set multiple properties via an object
+                'font-family':'Helvetica'} ); //imposta piu' properties via un object
 ```
 
 Se confronti questo con le operazioni equivalenti usando il DOM, noterai che (a) jQuery e' molto piu' conciso. jQuery e' anche piu' potente: per esempio, puoi impostare piu' attributes con una singola chiamata a `.attr()` passando un _object_ che contiene gli attributes da impostare (le keys sono i nomi degli attribute). Questo ti permette di cambiare facilmente molti attributes in una volta!
@@ -166,25 +166,25 @@ Se confronti questo con le operazioni equivalenti usando il DOM, noterai che (a)
 jQuery fornisce anche metodi che permettono di [manipolare](https://api.jquery.com/category/manipulation/) il DOM tree (ad es. per aggiungere, spostare o rimuovere elementi):
 
 ```js
-//create an element (not yet in the DOM)
-let newP = $('<p class="new">This is a new element</p>'); //notice the tag!
+//crea un elemento (non ancora nel DOM)
+let newP = $('<p class="new">Questo e' un nuovo elemento</p>'); //nota il tag!
 
-//add content to DOM
-$('main').append(newP); //add the element INSIDE <main>, at end
-$('main').append('<em>new</em>'); //can a create element on the fly!
+//aggiungi contenuto al DOM
+$('main').append(newP); //aggiungi l'elemento DENTRO <main>, in fondo
+$('main').append('<em>nuovo</em>'); //puoi creare un elemento al volo!
 
-$('main').prepend('<em>new</em>'); //add new <em> element INSIDE <main>, at beginning
+$('main').prepend('<em>nuovo</em>'); //aggiungi un nuovo elemento <em> DENTRO <main>, all'inizio
 
-$('main').before('<header>'); //insert new <header> BEFORE <main> (older sibling)
-                              //notice you can omit the closing tag if no content
+$('main').before('<header>'); //inserisci un nuovo <header> PRIMA di <main> (fratello precedente)
+                              //nota che puoi omettere il tag di chiusura se non c'e' contenuto
 
-$('footer').insertAfter('main'); //insert selected (<footer>) AFTER parameter (<main>)
-                                 //since the <footer> was selected, it will move!
+$('footer').insertAfter('main'); //inserisci il selezionato (<footer>) DOPO il parametro (<main>)
+                                 //dato che <footer> era selezionato, si spostera'!
 
-$('main').wrap('<div class="container"></div>'); //surround the <main> with a .container
+$('main').wrap('<div class="container"></div>'); //circonda <main> con una .container
 
-$('footer').remove(); //remove selected <footer> element
-$('main').empty(); //remove all child elements of <main>
+$('footer').remove(); //rimuove l'elemento <footer> selezionato
+$('main').empty(); //rimuove tutti gli elementi child di <main>
 ```
 
 La prima cosa importante da notare e' che crei nuovi elementi passando il contenuto HTML (incluso il tag `<>`) alla function `$()`. Questo e' diverso da `document.createElement()`, che esplicitamente _non_ include le parentesi angolari `<>`. Se crei un elemento senza contenuto, puoi anche specificare solo il tag di apertura!
@@ -194,14 +194,14 @@ jQuery offre anche metodi di manipolazione piu' potenti, permettendoti di posizi
 <p class="alert alert-warning">Anche se jQuery ti permette di creare elementi HTML arbitrariamente complessi da aggiungere al DOM, dovresti **evitare** di scrivere grandi blocchi di HTML dentro il file `.js` da appendere via jQuery (ad es. non aggiungere un intero DOM tree in una volta!). Questo viola la separation of concerns e rende il codice difficile da leggere, interpretare e modificare (perche' ora l'HTML e' in due posti!). Se devi inserire dinamicamente grandi quantita' di HTML "hard-coded", scrivi invece quel contenuto nel file `.html`, rendilo invisibile (ad es. `display:none`), e poi usa jQuery per spostare e mostrare l'elemento quando serve.</p>
 
 
-### Handling Events {-}
-jQuery fornisce anche _convenience methods_ per registrare event listeners:
+### Gestire gli eventi {-}
+jQuery fornisce anche _convenience methods_ per registrare event listener:
 
 ```js
 $('#button').click(function(event) {
-   console.log('clicky clicky!');
+   console.log('clic clic!');
 
-   //who was clicked
+   //chi e' stato cliccato
    let element = $(event.target);
 });
 ```
@@ -221,9 +221,9 @@ Il parametro [`event`](http://api.jquery.com/category/events/event-object/) pass
 Il capitolo precedente ha citato l'event listener `window.onload`, usato per determinare quando il DOM ha finito di caricarsi ed e' pronto per essere manipolato. jQuery fornisce una funzionalita' simile tramite il listener `.ready()` (di solito chiamato su tutto il `document`):
 
 ```js
-$(document).ready(function() { //this need not be an anonymous function
-    //program goes here
-    console.log('Hello world!');
+$(document).ready(function() { //non serve che sia una function anonima
+    //il programma va qui
+    console.log('Ciao mondo!');
 
     //...
 });
@@ -232,37 +232,37 @@ $(document).ready(function() { //this need not be an anonymous function
 Questo e' un pattern molto comune: spesso con jQuery interi programmi sono scritti dentro la callback `.ready()`, cosi' i tag `<script>` possono stare nel `<head>` ed essere scaricati rapidamente ma eseguiti solo quando il DOM e' disponibile. Questo pattern e' _cosi'_ comune che la function selector di jQuery puo' essere usata come scorciatoia:
 
 ```js
-//equivalent to the above
+//equivalente a quello sopra
 $(function() {
-    //program goes here
-    console.log('Hello world!');
+    //il programma va qui
+    console.log('Ciao mondo!');
 
     //...
 });
 ```
 - Se passi una _function_ invece di una string Selector alla function jQuery `$()`, verra' interpretata come callback da eseguire quando il document e' pronto! Tienilo presente se guardi codice altrui e vedi che inizia con un `$(function)` a caso.
 
-### And more! {-}
-Questo e' solo la punta dell'iceberg di cio' che jQuery puo' fare. Per esempio, jQuery fornisce anche diverse [utility](http://api.jquery.com/category/utilities/) functions che possono essere chiamate sul global `jQuery` (o `$`):
+### E altro! {-}
+Questo e' solo la punta dell'iceberg di cio' che jQuery puo' fare. Per esempio, jQuery fornisce anche diverse [utility](http://api.jquery.com/category/utilities/) function che possono essere chiamate sul global `jQuery` (o `$`):
 
 ```js
-//check if an item is in an array
+//controlla se un item e' in un array
 $.inArray(4, [3,4,3] );
-jQuery.inArray(4, [3,4,3] ); //equivalent, but maybe easier to read
+jQuery.inArray(4, [3,4,3] ); //equivalente, ma forse piu' leggibile
 
-//find an item in an array that matches the filter function
-//this is like .filter, but works on old browsers (if right jQuery version)
+//trova un item in un array che matcha la function di filtro
+//questo e' come .filter, ma funziona su browser vecchi (con la versione jQuery giusta)
 $.grep( [3,4,3], function(item) {
    return item > 3;
 });
 
-//iterate over arrays or objects -- works for either!
+//itera su arrays o objects -- funziona per entrambi!
 $.each( [3,4,3], function(key, value) {
-   console.log('Give me a '+value);
+   console.log('Dammi un '+value);
 });
 
 $.each( {first:'Joel',last:'Ross'}, function(key, value) {
-   console.log(key+' name: '+value);
+   console.log(key+' nome: '+value);
 });
 ```
 
@@ -271,25 +271,25 @@ $.each( {first:'Joel',last:'Ross'}, function(key, value) {
 E come ultimo esempio divertente: jQuery fornisce anche functions che permettono di creare facilmente [animated effects](http://api.jquery.com/category/effects/)!
 
 ```js
-$('#id').fadeIn(1000);   //fade in over 1 second
-$('#id').fadeOut(500);   //fade out over 1/2 sec
-$('#id').slideDown(200); //slide down over 200ms
-$('#id').slideUp(500);   //slide up over 500ms
-$('#id').toggle();       //toggle whether displayed
+$('#id').fadeIn(1000);   //fade in in 1 secondo
+$('#id').fadeOut(500);   //fade out in 1/2 sec
+$('#id').slideDown(200); //slide down in 200ms
+$('#id').slideUp(500);   //slide up in 500ms
+$('#id').toggle();       //toggle se visualizzato
 
-//custom animation syntax:
+//sintassi di animazione custom:
 //$(selector).animate({targetProperties}, speed [, doneCallback]);
 $("#box").animate({
-    left: '500px', //make the box fly around!
+    left: '500px', //fai volare la box in giro!
     opacity: '0.5',
     height: '200px',
     width: '200px'
 }, 1500);
 ```
 
-<!-- ## Example: Bootstrap
-//another example: Bootstrap's JS
-//example: collapse? -->
+<!-- ## Esempio: Bootstrap
+//altro esempio: JS di Bootstrap
+//esempio: collapse? -->
 
 ## Risorse {-}
 <div class="list-condensed">

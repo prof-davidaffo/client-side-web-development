@@ -1,4 +1,4 @@
-# Code Style Guide
+# Guida allo stile del codice
 
 Il codice e' letto da due audience diverse: i computer, che eseguono gli statements (o renderizzano la web page), e gli esseri umani, che devono interpretare e aggiornare il codice nel tempo. Usare un buon **coding style**&mdash;il modo e il formato in cui il codice e' scritto&mdash;e' fondamentale per supportare gli esseri umani che lo leggono. Il codice scritto male puo' essere interpretabile dal computer e quindi funzionare correttamente, ma deve anche essere comprensibile alle persone.
 
@@ -50,7 +50,7 @@ Questo capitolo fornisce diverse linee guida specifiche seguendo le opinioni deg
     </div>
 
     <!-- Do this -->
-    <p>Hello world</p> <!-- short content so can be on same line as tags -->
+    <p>Ciao mondo</p> <!-- contenuto breve, quindi puo' stare sulla stessa riga dei tag -->
 
     <!-- Don't do this -->
     <div><p>lorem ipsum</p></div>
@@ -77,13 +77,13 @@ Questo capitolo fornisce diverse linee guida specifiche seguendo le opinioni deg
     ```html
     <!-- Do this -->
     <p>
-      This is a picture of a dog:
-      <img src="puppy.png" alt="a puppy">
+      Questa e' una foto di un cane:
+      <img src="puppy.png" alt="un cucciolo">
     </p>
 
     <!-- Don't do this -->
     <p>
-      This is a picture of a dog: <img src="puppy.png" alt="a puppy">
+      Questa e' una foto di un cane: <img src="puppy.png" alt="un cucciolo">
     </p>
     ```
 
@@ -591,7 +591,7 @@ Non lasciare grandi blocchi di codice commentato nelle versioni _production_ (fi
 
     /* Do not do this */
     function App(props) {
-      //This is all one statement (line) of code! Don't do that.
+      //Questo e' tutto un unico statement (linea) di codice! Non farlo.
       return (
         <div>
           {

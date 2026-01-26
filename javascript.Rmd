@@ -104,9 +104,9 @@ Per esempio:
 
 ```js
 /* script.js */
-/* This is the ENTIRE contents of the file! */
-console.log("Hello world!");  //this is executed first
-console.log("I'm doing JavaScript!");  //this is executed second
+/* Questo e' il contenuto COMPLETO del file! */
+console.log("Ciao mondo!");  //questo viene eseguito per primo
+console.log("Sto facendo JavaScript!");  //questo viene eseguito per secondo
 ```
 
 Il codice di esempio sopra mostra la function [**`console.log()`**](https://developer.mozilla.org/en-US/docs/Web/API/Console/log), che e' l'equivalente JavaScript di `System.out.println()` in Java&mdash;l'output verra' mostrato nella JavaScript console (nei Developer Tools). Per questo in JavaScript si parla di "logging out" dei valori, invece di "printing" dei valori come in Java.
@@ -114,7 +114,7 @@ Il codice di esempio sopra mostra la function [**`console.log()`**](https://deve
 - La function `console.log()` e' tecnicamente un metodo `log()` chiamato su un oggetto `console` _global_. I globals e gli objects saranno discussi in dettaglio piu' avanti.
 
 <div style="float:right;margin-left:1em;">
-![Don't forget the semicolons!](img/javascript/hunting-semicolons.jpg)
+![Non dimenticare i punti e virgola!](img/javascript/hunting-semicolons.jpg)
 </div>
 
 Come in Java, ogni statement dovrebbe terminare con un punto e virgola (**`;`**) che marca la fine di quello statement. Ma a differenza di Java, JavaScript puo' essere indulgente se dimentichi un punto e virgola. Il JavaScript interpreter cerca di essere "helpful" e spesso assume che uno statement finisca alla fine di una riga se la riga successiva "sembra" un nuovo statement. Tuttavia, a volte sbaglia in modo disastroso&mdash;e quindi la best practice come developer e' **includere sempre i punti e virgola**.
@@ -137,10 +137,10 @@ Dichiari che uno script o una function debba essere eseguita in strict mode mett
 Le variables in JavaScript sono **dynamically typed**. Questo significa che le variables _non_ sono dichiarate come un tipo particolare (ad es. `int` o `String`), ma assumono il data type (`Number`, `String`, ecc.) del _value_ attualmente assegnato a quella variable. Poiche' non specifichiamo il data type, le variables in JavaScript si dichiarano usando la keyword `let`:
 
 ```js
-let message = 'Hello World';  //a String
+let message = 'Ciao Mondo';  //una String
 console.log(typeof message);  //=> `string`
 
-let shoeSize = 7;  //a Number
+let shoeSize = 7;  //un Number
 console.log(typeof shoeSize);  //=> 'number'
 ```
 
@@ -153,7 +153,7 @@ console.log(typeof shoeSize);  //=> 'number'
 Le variables dichiarate hanno un valore di default `undefined`&mdash;un value che rappresenta che la variable non ha valore. Questo e' simile a `null` in Java (anche se JavaScript ha _anche_ un value `null` che non e' usato frequentemente):
 
 ```js
-//create a variable (not assigned)
+//crea una variable (non assegnata)
 let hoursSlept;
 console.log(hoursSlept);  //=> undefined
 ```
@@ -165,8 +165,8 @@ Nota che la keyword `let` e' in realta' una nuova sintassi introdotta con `ES6`:
 Oltre a `let`, le variables JavaScript possono anche essere dichiarate usando la keyword `const` per indicare che sono _constant_ (simile a cio' che fa la keyword `final` in Java). Una variable `const` e' block scoped, ma puo' essere assegnata una sola volta:
 
 ```js
-const ISCHOOL_URL = 'https://ischool.uw.edu'; //declare constant
-ISCHOOL_URL = 'https://example.com'; //TypeError: Assignment to constant variable.
+const ISCHOOL_URL = 'https://ischool.uw.edu'; //dichiara una costante
+ISCHOOL_URL = 'https://example.com'; //TypeError: assegnazione a variable costante.
 ```
 
 
@@ -181,13 +181,13 @@ JavaScript supporta molti degli stessi basic data types di Java e altri linguagg
     let y = x/4;
     typeof y;  //'number'
 
-    //numbers use floating point division
+    //i numeri usano la divisione in virgola mobile
     console.log( x/4 );  //1.25
 
-    //use the Math.floor() function to do integer division
+    //usa la function Math.floor() per fare la divisione intera
     console.log( Math.floor(x/4) );  //1
 
-    //other common Math functions available as well
+    //altre functions Math comuni sono disponibili
     console.log( Math.sqrt(x) );  //2.23606797749979
     ```
 
@@ -195,27 +195,27 @@ JavaScript supporta molti degli stessi basic data types di Java e altri linguagg
 
     ```js
     let name = 'Joel';
-    let greeting = 'Hello, my name is '+name; //concatenation
+    let greeting = 'Ciao, mi chiamo '+name; //concatenazione
     ```
 
     Le Strings supportano anche molti [methods](https://www.w3schools.com/jsref/jsref_obj_string.asp) per lavorarci. Come in Java, le stringhe JavaScript sono _immutable_, quindi la maggior parte dei string methods restituisce una nuova stringa modificata.
 
     ```js
-    let message = 'Hello World';
+    let message = 'Ciao Mondo';
     let shouted = message.toUpperCase();
-    console.log(shouted);  //=> 'HELLO WORLD'
+    console.log(shouted);  //=> 'CIAO MONDO'
     ```
 
 - **Booleans** (`true` e `false`) in JavaScript funzionano allo stesso modo che in Java, possono essere prodotti usando gli stessi _relational operators_ (ad es. `<`, `>=`, `!=`) e supportano gli stessi _logical operators_ (ad es. `&&`, `||` e `!`):
 
     ```js
-    //conjunction (and)
+    //congiunzione (and)
     boolOne && boolTwo
 
-    //disjunction (or)
+    //disgiunzione (or)
     boolOne || boolTwo
 
-    //negation (not)
+    //negazione (not)
     !boolOne //not
     ```
 
@@ -225,23 +225,23 @@ JavaScript supporta molti degli stessi basic data types di Java e altri linguagg
 JavaScript supporta anche gli **arrays**, che sono _ordered, one-dimensional sequences of values_. Come in Java, gli Arrays JavaScript si scrivono come literal dentro parentesi quadre **`[]`**. Gli elementi individuali possono essere accessi tramite _index_ (0-based) usando la **bracket notation**.
 
 ```js
-//an array of names
+//un array di nomi
 let names = ['John', 'Paul', 'George', 'Ringo'];
 
-//an array of numbers (can contain "duplicate" values)
+//un array di numeri (puo' contenere valori "duplicati")
 let numbers = [1, 2, 2, 3, 5, 8];
 
-//arrays can contain different types (including other arrays!)
+//gli array possono contenere tipi diversi (inclusi altri array!)
 let things = ['raindrops', 2.5, true, [3, 4, 3]];
 
-//arrays can be empty (contain no elements)
+//gli array possono essere vuoti (non contengono elementi)
 let empty = [];
 
-//access using bracket notation
+//accesso usando la bracket notation
 console.log( names[1] );  // "Paul"
 console.log( things[3][2] );  // 3
 
-numbers[0] = '340';  //assign new value at index 0
+numbers[0] = '340';  //assegna un nuovo value all'indice 0
 console.log( numbers );  // [340, 2, 2, 3, 5, 8]
 ```
 
@@ -250,30 +250,30 @@ Nota che e' possibile assegnare un valore a _qualsiasi_ index nell'array, anche 
 ```js
 let letters = ['a', 'b', 'c'];
 console.log(letters.length);  // 3
-letters[5] = 'f';  //grows the array
+letters[5] = 'f';  //fa crescere l'array
 console.log(letters);  // [ 'a', 'b', 'c', , , 'f' ]
-                       //blank spaces are undefined
+                       //gli spazi vuoti sono undefined
 console.log(letters.length);  // 6
 ```
 
 Gli arrays supportano anche diversi [methods](https://www.w3schools.com/jsref/jsref_obj_array.asp) che possono essere usati per modificare facilmente i loro elementi, in modo simile alla class `ArrayList` in Java:
 
 ```js
-//Make a new array
+//Crea un nuovo array
 let array = ['i','n','f','o'];
 
-//add item to end of the array
+//aggiungi un elemento alla fine dell'array
 array.push('340');
 console.log(array); //=> ['i','n','f','o','340']
 
-//combine elements into a string
+//combina gli elementi in una stringa
 let str = array.join('-');
 console.log(str); //=> "i-n-f-o-340"
 
-//get index of an element (first occurrence)
+//ottieni l'indice di un elemento (prima occorrenza)
 let oIndex = array.indexOf('o'); //=> 3
 
-//remove 1 element starting at oIndex
+//rimuovi 1 elemento a partire da oIndex
 array.splice(oIndex, 1);
 console.log(array); //=> ['i','n','f','340']
 ```
@@ -288,18 +288,18 @@ Il data type piu' generico e utile in JavaScript e' l'Object. Un **Object** e' s
 Gli Objects si scrivono come literal dentro parentesi graffe **`{}`**. Le property-value pairs si scrivono con i due punti (**`:`**) tra nome della property e value, e ogni elemento (coppia) nell'Object e' separato da una _comma_ (**`,`**). Nota che i nomi delle property _non_ devono essere scritti tra virgolette se sono una sola parola (le virgolette sono implicite&mdash;le properties sono sempre Strings):
 
 ```js
-//an object of ages (explicit Strings for keys)
-//The `ages` object has a `sarah` property (with a value of 42)
+//un object di eta' (Strings esplicite per le keys)
+//L'object `ages` ha una property `sarah` (con value 42)
 let ages = {'sarah':42, 'amit':35, 'zhang':13};
 
-//different properties can have the same values
-//property names with non-letter characters must be in quotes
+//properties diverse possono avere gli stessi values
+//i nomi di property con caratteri non alfabetici devono essere tra virgolette
 let meals = {breakfast:'coffee', lunch: 'coffee', 'afternoon tea': 'coffee'}
 
-//values can be of different types (including arrays or other objects!)
+//i values possono essere di tipi diversi (inclusi array o altri objects!)
 let typeExamples = {number:12, string:'dog', array:[1,2,3]};
 
-//objects can be empty (contains no properties)
+//gli objects possono essere vuoti (non contengono properties)
 let empty = {}
 ```
 
@@ -310,26 +310,26 @@ _Nota importante:_ gli Objects sono una collezione **unordered** di key-value pa
     ```js
     let myObject = {a:1, b:2}
 
-    //convert object to string, won't log nicely
-    console.log("My object: " + myObject); //=> My object: [object Object]
+    //converte l'object in stringa, non logga bene
+    console.log("Il mio object: " + myObject); //=> Il mio object: [object Object]
 
-    //log the object directly
-    console.log("My object ", myObject); //=> My object {a: 1, b: 2}
+    //logga l'object direttamente
+    console.log("Il mio object ", myObject); //=> Il mio object {a: 1, b: 2}
     ```
 
 Nonostante il nome, gli Objects JavaScript non hanno nulla a che fare con l'Object-Oriented Programming. Tuttavia, possono essere usati per rappresentare "things" nello stesso modo di un object Java, con ogni property che agisce come un "attribute" (instance variable):
 
 ```js
-//an object representing a Person (spacing is for readability; white-space is ignored)
+//un object che rappresenta una Person (spaziatura per leggibilita'; i white-space sono ignorati)
 let person = {
   firstName: 'Alice',
   lastName: 'Smith',
   age: 40,
-  pets: ['rover', 'fluffy', 'mittens'],  //value is an array
-  favorites: {   //value is another object
+  pets: ['rover', 'fluffy', 'mittens'],  //value e' un array
+  favorites: {   //value e' un altro object
     music: 'jazz',
     food: 'pizza',
-    numbers: [12, 42]  //value is an array
+    numbers: [12, 42]  //value e' un array
   }
 }
 ```
@@ -342,22 +342,22 @@ Come per gli arrays, i values di un Object possono essere accessi tramite **brac
 ```js
 let favorites = {music: 'jazz', food: 'pizza', numbers: [12, 42]};
 
-//access variable
+//accedi alla variable
 console.log( favorites['music'] ); //'jazz'
 
-//assign variable
-favorites['food'] = 'cake';  //property name is a string
+//assegna la variable
+favorites['food'] = 'cake';  //il nome della property e' una stringa
 console.log( favorites['food'] ); //'cake'
 
-//access undefined key
+//accedi a una key undefined
 console.log( favorites['language'] ); //undefined
-favorites['language'] = 'javascript'; //assign new key and value
+favorites['language'] = 'javascript'; //assegna nuova key e value
 
-//access nested values
+//accedi ai values annidati
 console.log( favorites['numbers'][0] ); //12
 
-//use a variable as the "key"
-let userInputtedTopic = 'food'; //pretend this value is supplied dynamically
+//usa una variable come "key"
+let userInputtedTopic = 'food'; //fingi che questo value sia fornito dinamicamente
 console.log(favorites[userInputtedTopic]);  //'cake'
 ```
 
@@ -366,18 +366,18 @@ _Inoltre_, i values di un Object possono anche essere accessi tramite **dot nota
 ```js
 let favorites = {music: 'jazz', food: 'pizza', numbers: [12, 42]};
 
-//access variable
+//accedi alla variable
 console.log( favorites.music ); //'jazz'
 
-//assign variable
+//assegna la variable
 favorites.food = 'cake';
 console.log( favorites.food ); //'cake'
 
-//access undefined key
+//accedi a una key undefined
 console.log( favorites.language ); //undefined
-favorites.language = 'javascript'; //assign new key and value
+favorites.language = 'javascript'; //assegna nuova key e value
 
-//access nested values
+//accedi ai values annidati
 console.log( favorites.numbers[0] ); //12
 ```
 
@@ -396,7 +396,7 @@ Come notato sopra, sia arrays che objects possono avere values di qualsiasi tipo
 Una delle forme di nesting piu' comuni che vedrai e' un **array of objects** in cui ogni object ha _le stesse properties_ (ma values diversi). Per esempio:
 
 ```js
-//an arbitrary list of people's names, heights, and weights
+//una lista arbitraria di nomi, altezze e pesi di persone
 let people = [
     {name: 'Ada', height: 58, 'weight': 115},
     {name: 'Bob', height: 59, 'weight': 117},
@@ -408,7 +408,7 @@ let people = [
 
 Questa struttura puo' essere vista come una lista di **records** (gli objects), ciascuno con diverse **features** (le key-value pairs). Questa lista di feature records e' di fatto un modo comune di rappresentare una **data table** come quella che creeresti in un foglio Excel:
 
-![A data table.](img/javascript/excel-table.png)
+![Una tabella di dati.](img/javascript/excel-table.png)
 
 Ogni object (record) agisce come una "row" nella tabella, e ogni property (feature) agisce come una "column". Finche' tutti gli objects condividono le stesse keys, questo array di objects _e'_ una tabella!
 
@@ -417,17 +417,17 @@ Ogni object (record) agisce come una "row" nella tabella, e ogni property (featu
 Come detto sopra, le variables in JavaScript sono _dynamically typed_, e quindi hanno il data type del value **attualmente** assegnato a quella variable. Le variables JavaScript possono "cambiare tipo" quando viene assegnato loro un data type diverso:
 
 ```js
-let myVariable = 'hello'; //value is a String
-myVariable = 42; //value is now a Number
+let myVariable = 'ciao'; //value e' una String
+myVariable = 42; //value ora e' un Number
 ```
 
 A differenza di alcuni altri linguaggi dinamicamente tipati, JavaScript non lancia errori se provi ad applicare operators (come `+` o `<`) a tipi diversi. Invece, l'interpreter tenta di essere "helpful" e **coerce** (convertire) un value da un data type a un altro. Anche se questo processo e' simile a come Java fa automaticamente il cast dei data type in Strings (ad es. `"hello"+4`), la type coercion di JavaScript puo' produrre alcune stranezze:
 
 ```js
 let x = '40' + 2;
-console.log(x);  //=> '402'; the 2 is coerced to a String
+console.log(x);  //=> '402'; il 2 e' coerced a una String
 let y = '40' - 4;
-console.log(y);  //=> 36; can't subtract strings so '40' is coerced to a Number!
+console.log(y);  //=> 36; non puoi sottrarre stringhe quindi '40' e' coerced a un Number!
 ```
 
 JavaScript tenta anche di coerce i values quando controlla l'uguaglianza con `==`:
@@ -436,7 +436,7 @@ JavaScript tenta anche di coerce i values quando controlla l'uguaglianza con `==
 let num = 10
 let str = '10'
 
-console.log(num == str) //true, the values can be coerced into one another
+console.log(num == str) //true, i values possono essere coerced l'uno nell'altro
 ```
 
 In questo caso, l'interpreter fara' coerce del Number `10` nella String `'10'` (dato che i numbers possono sempre essere trasformati in Strings), e siccome quelle Strings sono uguali, determina che le variables sono uguali.
@@ -447,14 +447,14 @@ In generale questo tipo di coercion automatica puo' portare a bug sottili. Quind
 let num = 10
 let str = '10'
 
-console.log(num === str) //false, the values have different types
+console.log(num === str) //false, i values hanno tipi diversi
 ```
 
 JavaScript fara' del suo meglio per coerce qualsiasi value quando viene confrontato. Spesso questo significa convertire i values in Strings, ma spesso li converte anche in _booleans_ per confrontarli. Per esempio:
 
 ```js
-//compare an empty String to the number 0
-console.log( '' == 0 ); //true; both can be coerced to a `false` value
+//confronta una String vuota con il numero 0
+console.log( '' == 0 ); //true; entrambi possono essere coerced a un value `false`
 ```
 
 Questo perche' sia la stringa vuota `''` sia `0` sono considerati values [**"falsey"**](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) (values che possono essere coerced a `false`). Altri falsy values includono `undefined`, `null` e `NaN` (not a number). Tutti gli altri values verranno coerced a `true`.
@@ -466,22 +466,22 @@ Le control structures in JavaScript hanno una sintassi simile a quelle in Java o
 
 ```js
 if(condition){
-  //statements
+  //istruzioni
 }
 else if(alternativeCondition) {
-  //statements
+  //istruzioni
 }
 else {
-  //statements
+  //istruzioni
 }
 ```
 
 La **`condition`** puo' essere qualsiasi espressione che valuta a un Boolean value. Ma siccome qualsiasi value puo' essere _coerced_ in Booleans, puoi mettere qualsiasi value dentro la condition dell'`if`. Questo e' davvero utile&mdash;dato che `undefined` e' un falsy value, puoi usare questa coercion per controllare se una variable e' stata assegnata oppure no:
 
 ```js
-//check if a `person` variable has a `name` property
+//controlla se una variable `person` ha una property `name`
 if(person.name){
-    console.log('Person does have a name!');
+    console.log('La persona ha un nome!');
 }
 ```
 
@@ -492,14 +492,14 @@ Nell'esempio sopra, la condition verra' coerced a `true` solo se `person.name` e
 Inoltre, JavaScript fornisce un [ternary conditional operator](https://en.wikipedia.org/wiki/%3F:) che ti permette di scrivere un semplice `if` statement come una singola espressione:
 
 ```js
-let x; //declare variable
+let x; //dichiara variable
 if(condition) {
     x = 'foo';
 } else {
     x = 'bar';
 }
 
-//can be condensed into:
+//puo' essere compattato in:
 let x = condition ? 'foo' : 'bar';
 ```
 
@@ -508,7 +508,7 @@ let x = condition ? 'foo' : 'bar';
 JavaScript supporta anche i **`while`** loop (per iterazione indefinita) e i **`for`** loop (per iterazione definita), simili a Java. L'unica differenza e' che, poiche' le variables JavaScript sono dynamically typed, le _loop control variables_ non sono dichiarate con un type:
 
 ```js
-//an example for loop. The `i` is not declared as an int
+//un esempio di for loop. `i` non e' dichiarata come int
 for(let i=0; i<array.length; i++){
   console.log(array[i]);
 }
@@ -523,18 +523,18 @@ JavaScript _ha_ una sintassi `for ... in`. Tuttavia, non funziona come ti aspett
 E ovviamente, JavaScript include le **functions** (sequenze di statements con nome usate per _astrarre_ il codice). Le functions JavaScript si scrivono con la seguente sintassi:
 
 ```js
-//A function named `makeFullName` that takes two arguments
-//and returns the "full name" made from them
+//Una function chiamata `makeFullName` che prende due argomenti
+//e restituisce il "full name" costruito da essi
 function makeFullName(firstName, lastName) {
-  //Function body: perform tasks in here
+  //Function body: esegui i task qui
   let fullName = firsName + " " + lastName;
 
-  // Return: what you want the function to output
+  // Return: cio' che vuoi restituire come output
   return fullName;
 }
 
-// Call the makeFullName function with the values "Alice" and "Kim"
-// Assign the result to `myName`
+// Chiama la function makeFullName con i valori "Alice" e "Kim"
+// Assegna il risultato a `myName`
 let myName = makeFullName("Alice", "Kim")  // "Alice Kim"
 ```
 
@@ -546,17 +546,17 @@ Come in altri linguaggi, gli arguments di una function in JavaScript sono implic
 
 ```js
 function sayHello(name) {
-    return "Hello, "+name;
+    return "Ciao, "+name;
 }
 
-//expected: argument is assigned a value
-sayHello("Joel");  //"Hello, Joel"
+//expected: l'argomento viene assegnato a un valore
+sayHello("Joel");  //"Ciao, Joel"
 
-//argument not assigned a value (left undefined)
-sayHello();  //"Hello, undefined"
+//argomento non assegnato (rimane undefined)
+sayHello();  //"Ciao, undefined"
 
-//extra arguments (values) are not assigned to variables, so are ignored
-sayHello("Joel", "y'all");  //"Hello, Joel"
+//argomenti extra (values) non sono assegnati a variables, quindi sono ignorati
+sayHello("Joel", "y'all");  //"Ciao, Joel"
 ```
 
 - Se una function ha un argument, non significa che abbia ricevuto un value. Se una function non ha un argument, non significa che non le sia stato passato un value!

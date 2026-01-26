@@ -1,4 +1,4 @@
-# Component Class React {#class-components}
+# Componenti class React {#class-components}
 
 Come menzionato in [_Introduzione a React_](#react), e' anche possibile definire React Components usando la sintassi class ES6:
 
@@ -50,7 +50,7 @@ class UserInfo extends Component {
 let userInfo = <UserInfo userName="Ethel" descriptor="Aardvark" />;
 ```
 
-Nota che l'object `this.props` e' **read only**&mdash;cioe' non puoi assegnargli nuovi values, ne' modificare direttamente le sue props. Dovresti pensare alle props come data immutabili che arrivano dall'esterno del component (di nuovo, simile agli argomenti di una function). Un component non crea o cambia le proprie props, le usa solo per determinare come renderizzare il suo contenuto.
+Nota che l'object `this.props` e' **solo lettura**&mdash;cioe' non puoi assegnargli nuovi values, ne' modificare direttamente le sue props. Dovresti pensare alle props come data immutabili che arrivano dall'esterno del component (di nuovo, simile agli argomenti di una function). Un component non crea o cambia le proprie props, le usa solo per determinare come renderizzare il suo contenuto.
 
 ## Gestire gli Eventi nei Class Components
 Quando usi class components, gli eventi vengono gestiti nello stesso modo dei function components (per esempio, usando la prop `onClick`). La differenza principale e' che le callback di event handler sono di solito definite come _methods_ separati della class:
@@ -79,7 +79,7 @@ E' molto comune che le event callback functions di un Component debbano referenz
 Ma come discusso in [Sezione 15.2](#working-with-this), le callback functions non vengono chiamate su alcun object specifico, e quindi non hanno un value assegnato alla loro variable `this`. Nell'esempio sopra, anche se stai usando la parola `this` per _referenziare_ il method `this.handleClick` (per dire a JavaScript dove trovare la function), quella function non viene realmente chiamata sulla class. Come descritto nella Sezione 15.2, solo perche' il method e' stato definito dentro una class non significa che debba essere chiamato su una instance di quella class!
 
 ```jsx
-//BUGGY CODE: Un button che causa un errore quando viene cliccato!
+//CODICE BUGGATO: Un button che causa un errore quando viene cliccato!
 class MyButton extends Component {
   handleClick(event) {
      //Riferisci la instance variable `this.props` dell'object. Ma dato che `this`
@@ -100,7 +100,7 @@ ReactDOM.render(<MyButton text="Cliccami!"/>, document.getElementById('root'));
 
 Quindi, dovrai assicurarti di "mantenere" il contesto `this` quando specifichi una event callback function. Ci sono alcuni modi per farlo. 
 
-- Primo, come descritto nel Chapter 15, una _arrow function_ usera' lo stesso `this` lessicale del contesto in cui e' definita. Quindi puoi "wrappare" la event callback function in una arrow function per mantenere il `this`, chiamando quel method sulla instance `this` in modo esplicito:
+- Primo, come descritto nel Capitolo 15, una _arrow function_ usera' lo stesso `this` lessicale del contesto in cui e' definita. Quindi puoi "wrappare" la event callback function in una arrow function per mantenere il `this`, chiamando quel method sulla instance `this` in modo esplicito:
 
     ```jsx
     class MyButton extends Component {

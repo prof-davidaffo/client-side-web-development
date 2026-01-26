@@ -1,4 +1,4 @@
-# ES6+ Syntax {#es6}
+# Sintassi ES6+ {#es6}
 Come discusso nel [Chapter 10](#history-and-versions), la specifica ECMAScript per il linguaggio JavaScript ha attraversato diverse versioni, ognuna delle quali ha aggiunto nuova sintassi e nuove feature per rendere il linguaggio piu' potente, espressivo o piu' facile da usare.
 
 Dopo che il linguaggio JavaScript fu scritto inizialmente nel 1995 e poi iterato fino alla fine degli anni '90, rimase per lo piu' consistente (con piccoli cambiamenti) per circa un decennio&mdash;fino al 2009 con il rilascio di JavaScript v5. La versione successiva importante non usci' fino al 2015&mdash;anche se ufficialmente chiamata "ECMAScript 2015", la maggior parte dei developer la chiama con il nome di lavoro **"ES6"** (ad es. versione 6 del linguaggio). ES6 ha introdotto molte feature sintattiche notevoli e utili&mdash;inclusi `let` e `const`! Da allora, il linguaggio e' stato aggiornato annualmente, con ogni versione chiamata secondo l'anno di rilascio (_ES 2016_ e' uscito nel 2016, _ES 2017_ nel 2017, ecc).
@@ -20,7 +20,7 @@ Come descritto nel [Chapter 11](#functional-programming), JavaScript permette di
 
 ```js
 const sayHello = function(name) {
-  return 'Hello '+name;
+  return 'Ciao '+name;
 }
 ```
 
@@ -28,7 +28,7 @@ Come hai visto, l'uso di anonymous functions e' incredibilmente comune in JavaSc
 
 ```js
 const sayHello = (name) => {
-    return 'Hello '+name;
+    return 'Ciao '+name;
 }
 ```
 
@@ -37,14 +37,14 @@ Per trasformare una anonymous function in _arrow function_, basta rimuovere la k
 E' anche possibile omettere le `()` attorno alla lista degli argomenti in una arrow function:
 
 ```js
-//may omit the parentheses around the argument -- but don't do this!
+//puoi omettere le parentesi attorno all'argomento -- ma non farlo!
 const sayHello = name => {
-    return 'Hello '+name;
+    return 'Ciao '+name;
 }
 
-//requried to include the parentheses if there are no arguments
+//le parentesi sono richieste se non ci sono argomenti
 const printHello = () => {
-    console.log('Hello world');
+    console.log('Ciao mondo');
 }
 ```
 
@@ -53,16 +53,16 @@ Tuttavia, questo rende la sintassi piu' difficile da leggere (leggendo il testo,
 Le arrow functions sono particolarmente comode quando usi anonymous callback functions (function literals):
 
 ```js
-const array = [1,2,3]; //an array to work with
+const array = [1,2,3]; //un array con cui lavorare
 
-//function declaration syntax
+//sintassi di dichiarazione della function
 array.map(function(num) {
-  return num * 2; //multiply each item by 2
+  return num * 2; //moltiplica ogni item per 2
 });
 
-//arrow function syntax
+//sintassi arrow function
 array.map((num) => {
-  return num * 2; //multiply each item by 2
+  return num * 2; //moltiplica ogni item per 2
 });
 ```
 
@@ -73,30 +73,30 @@ Usare una arrow function rende leggermente piu' ovvio che la function prende un 
 Per functions molto semplici, le arrow functions possono essere scritte in modo ancora piu' _compatto_: se il body della function ha solo uno statement, puoi omettere le `{}` del block e anche il `return`. Questa si chiama **concise body**. La function restituira' il risultato del singolo statement, che sara' un'espressione o `undefined`. Per esempio:
 
 ```js
-//function declaration syntax
+//sintassi di dichiarazione della function
 function makeFullName(first, last) {
   return first + " " + last;
 }
 
-//block body arrow function syntax
+//sintassi arrow function a block body
 const makeFullName = (first, last) => {
   return first + " " + last;
 }
 
-//concise body arrow function syntax
+//sintassi arrow function a concise body
 const makeFullName = (first, last) => first + " " + last;
 ```
 
 Nota che se l'espressione di una concise-body arrow function restituisce `undefined` (ad es. da un `console.log`), allora anche la arrow function restituira' `undefined`.
 
 ```js
-//concise body arrow function syntax
-const sayHello = (name) => console.log("Hello" + name);
+//sintassi arrow function a concise body
+const sayHello = (name) => console.log("Ciao" + name);
 
-//that is identical to use block body syntax. Yes, returning the result of
-//console.log() is odd
+//questo e' identico all'uso della block body syntax. Si, restituire il risultato di
+//console.log() e' strano
 const sayHello = (name) => {
-  return console.log("Hello" + name);
+  return console.log("Ciao" + name);
 }
 ```
 
@@ -113,7 +113,7 @@ Per fare destructuring di un array in JavaScript, scrivi le variables a cui vuoi
 
 ```js
 const myArray = [1, 2, 3];
-const [x, y, z] = myArray; //assign myArray elements to `x`, `y`, `z` respectively
+const [x, y, z] = myArray; //assegna gli elementi di myArray a `x`, `y`, `z` rispettivamente
 console.log(x); //=> 1;
 console.log(y); //=> 2;
 console.log(z); //=> 3;
@@ -125,16 +125,16 @@ E' possibile che la "lista di variables" e la size dell'array destructured non c
 
 ```js
 const bigArray = [1, 2, 3, 4, 5];
-const [a, b] = bigArray; //only the first 2 elements will be assigned
+const [a, b] = bigArray; //solo i primi 2 elementi verranno assegnati
 console.log(a); //=> 1;
 console.log(b); //=> 2;
-//other elements are not assigned
+//gli altri elementi non sono assegnati
 
 const smallArray = [1, 2]
 const [x, y, z] = smallArray;
 console.log(x); //=> 1;
 console.log(y); //=> 2;
-console.log(z); //=> undefined; (because smallArray[2] is undefined!)
+console.log(z); //=> undefined; (perche' smallArray[2] e' undefined!)
 ```
 
 E' anche possibile fare destructuring di _objects_ usando una sintassi simile, tranne per il fatto che metti le variables a cui vuoi assegnare dentro **`{}`** sul _left-hand side_ dell'assegnazione&mdash;come se stessi assegnando a un object!
@@ -151,7 +151,7 @@ Nota che quando fai destructuring di un object, le variables specificate sul lat
 
 ```js
 const myObject = {a: 1, b: 2, c: 3};
-const {c, b, a} = myObject; //"order" of variables doesn't matter
+const {c, b, a} = myObject; //"ordine" delle variables non importa
 console.log(a); //=> 1
 console.log(b); //=> 2;
 console.log(c); //=> 3;
@@ -164,30 +164,30 @@ Come per il destructuring di array, la lista di variables e il numero di object 
 Il destructuring e' uno syntactic shortcut utile per fare assegnazioni multiple. In React e' spesso usato per creare variables locali, cosi' non devi scrivere continuamente `object.property`:
 
 ```js
-//a function that expects an object as an argument
+//una function che si aspetta un object come argomento
 function getBMI(personObject) {
-  const {height, weight} = personObject; //destructure to local variables
-  //this avoids needing to refer to `personObject.height`
+  const {height, weight} = personObject; //destructuring in variables locali
+  //evita di dover riferirsi a `personObject.height`
 
-  return 703*weight/(height*height); //calculate and return value
+  return 703*weight/(height*height); //calcola e restituisce il value
 }
 
-const person = {name: 'Ada', height: 64, weight: 135} //an example person
-const adaBMI = getBMI(person); //pass in the object
+const person = {name: 'Ada', height: 64, weight: 135} //una persona di esempio
+const adaBMI = getBMI(person); //passa l'object
 ```
 
 In effetti, questo comportamento e' cosi' comune che e' possibile _fare destructuring dei function parameters_ nella function declaration stessa! Per farlo, sostituisci il nome dell'object nella lista dei parametri con l'insieme delle variables destructured (cio' che starebbe sul left-hand side del destructuring):
 
 ```js
-//a function with the object argument destructured
-//notice the `{} in the argument list`
-function getBMI( {height, weight} ) { //implicitly calls `{height, weight} = personObject`
+//una function con l'argomento object destructured
+//nota il `{} nella lista degli argomenti`
+function getBMI( {height, weight} ) { //chiama implicitamente `{height, weight} = personObject`
 
-  return 703*weight/(height*height); //calculate and return value
+  return 703*weight/(height*height); //calcola e restituisce il value
 }
 
-const person = {name: 'Ada', height: 64, weight: 135} //an example person
-const adaBMI = getBMI(person); //pass in the object
+const person = {name: 'Ada', height: 64, weight: 135} //una persona di esempio
+const adaBMI = getBMI(person); //passa l'object
 ```
 
 Per essere chiari: nel secondo esempio, la function `getBMI()` si aspetta _solo 1 argomento_&mdash;quell'unico argomento viene semplicemente destructured in due variables quando la function viene chiamata.
@@ -201,7 +201,7 @@ Introdotto in ES6 e poi ampliato in ES 2018, lo [**spread operator**](https://de
 ```js
 const originalArray = ['a', 'b', 'c', 'd'];
 
-//new array contains "the elements of" `originalArray`
+//il nuovo array contiene "gli elementi di" `originalArray`
 const newArray = [...originalArray, 'e', 'f'];
 
 console.log(newArray) //['a', 'b', 'c', 'd', 'e', 'f']
@@ -210,16 +210,16 @@ console.log(newArray) //['a', 'b', 'c', 'd', 'e', 'f']
 In questo esempio il `newArray` contiene tutti gli elementi di `originalArray`, oltre a elementi aggiuntivi. E' particolarmente utile quando vuoi creare una "copy" di un array o object, con o senza values aggiuntivi.
 
 ```js
-//assigning an array to a different variable doesn't create a new array!
+//assegnare un array a una variable diversa non crea un nuovo array!
 const myArray = ['a', 'b', 'c', 'd'];
-const secondArray = myArray; //just a new label for the same value
-myArray[0] = 'Z'; //changing the original variable changes second variable as well
+const secondArray = myArray; //solo una nuova etichetta per lo stesso value
+myArray[0] = 'Z'; //modificare la variable originale modifica anche la seconda variable
 console.log(secondArray[0]) //'Z'
 
-//use spread to create an actual copy that is a different array
+//usa lo spread per creare una vera copia che e' un array diverso
 const clonedArray = [...myArray];
-myArray[1] = 'Q'; //modify the original variable
-console.log(clonedArray[1]); //'b'; the clonedArray is different
+myArray[1] = 'Q'; //modifica la variable originale
+console.log(clonedArray[1]); //'b'; clonedArray e' diverso
 ```
 
 Lo spread operator puo' essere usato anche per creare nuovi objects; fare spread di un object espande sia le property keys che i values:
@@ -227,34 +227,34 @@ Lo spread operator puo' essere usato anche per creare nuovi objects; fare spread
 ```js
 const person = {name: 'Ada', height: 64, weight: 135}
 
-const copyOfPerson = {...person}; //clone the object
+const copyOfPerson = {...person}; //clona l'object
 console.log(copyOfPerson); // {name: 'Ada', height: 64, weight: 135}
 
-//all off the properties are "spread" into the new object
+//tutte le properties sono "spalmate" nel nuovo object
 const personWithHat = {hat: 'bowler', ...person}
-console.log(person); //has properties 'name', 'height', 'weight'
-console.log(personWithHat); //has properties 'hat', 'name', 'height', 'weight'
+console.log(person); //ha properties 'name', 'height', 'weight'
+console.log(personWithHat); //ha properties 'hat', 'name', 'height', 'weight'
 ```
 
 Quando combinato con il _destructuring_, lo spread operator puo' riferirsi anche al "resto" degli elementi di un array o object che non sono stati assegnati a specifiche variables. In questa situazione spesso si parla di **rest operator**.
 
 ```js
 const dimensions = [10, 20, 30, 40];
-//extra values are "spread" into destructuring slots
+//i values extra sono "spalmati" negli slot di destructuring
 const [width, height, ...others] = dimensions
 console.log(width);  //=> 10
 console.log(height); //=> 20
-console.log(others);   //=> [30, 40]; the rest of the values!
+console.log(others);   //=> [30, 40]; il resto dei values!
 ```
 
 Infine, lo spread operator puo' essere usato per specificare che una function puo' accettare un numero variabile di argomenti e raccogliere tutti questi values in un singolo array. Lo fai includendo lo spreading operator nella function declaration. Gli argomenti verranno raccolti in quella singola variable&mdash;quasi il contrario del destructuring! (E si', il fatto che lo "spread" operator "raccolga" i values e' un po' confuso).
 
 ```js
-//a function that logs out all of the arguments
+//una function che stampa tutti gli arguments
 function printArgs(...argArray){
-    //all the arguments will be grouped into a single array `args`
+    //tutti gli argomenti saranno raggruppati in un singolo array `args`
     for(const arg of argArray) {
-      console.log(arg); //can log out all of them, no matter how many!
+      console.log(arg); //puoi stamparli tutti, non importa quanti!
     }
 }
 
@@ -262,16 +262,16 @@ printArgs('a', 'b', 'c'); //=> "a" "b" "c"
 printArgs(1, 2, 3, 4, 5, 6); //=> "1" "2" "3" "4" "5" "6"
 
 
-//a function that adds up all the arguments (no matter how many!)
+//una function che somma tutti gli argomenti (non importa quanti!)
 function sum(...numbers) {
-    //numbers is an array, so we can `reduce()` it!
+    //numbers e' un array, quindi possiamo usare `reduce()`!
     const total = numbers.reduce((runningTotal, num) => {
-        return runningTotal + num; //new total
-    }, 0); //start at 0
+        return runningTotal + num; //nuovo totale
+    }, 0); //parti da 0
 
     return total;
 
-    //or as one line with a concise arrow function (not pretty!)
+    //oppure su una riga con una concise arrow function (non bello!)
     return numbers.reduce((total, n) => total+n);
 }
 
@@ -286,9 +286,9 @@ Lo spread operator non e' usato spesso in questo modo con React, ma e' utile sap
 In ES6, puoi dichiarare Strings che contengono espressioni embedded, permettendoti di "iniettare" un'espressione direttamente in una string (invece di concatenare la String con quell'espressione). Queste si chiamano [**template strings**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) (o _template literals_). Le template strings si scrivono con i back tick (**``` `` ```**) invece delle quotes, con le espressioni inserite dentro il token **`${}`**:
 
 ```js
-const name = 'world';
-const greeting = `Hello, ${name}!`; //template string
-console.log(greeting); //=> "Hello, world!"
+const name = 'mondo';
+const greeting = `Ciao, ${name}!`; //template string
+console.log(greeting); //=> "Ciao, mondo!"
 ```
 
 Le template strings possono anche includere line break, permettendoti di creare stringhe multi-linea!
@@ -296,29 +296,29 @@ Le template strings possono anche includere line break, permettendoti di creare 
 Nota che puoi mettere _qualsiasi_ espressione dentro il token `${}`; tuttavia, e' best practice mantenere l'espressione il piu' semplice possibile (ad es. usando una variable locale) per supportare la leggibilita':
 
 ```js
-const name = 'world';
+const name = 'mondo';
 
-//greeting with capitalization. Don't do this!
-const greeting = `Hello, ${name.substr(0,1).toUpperCase() + name.substr(1)}!`
-console.log(greeting); //=> "Hello, World!";
+//saluto con capitalizzazione. Non farlo cosi'!
+const greeting = `Ciao, ${name.substr(0,1).toUpperCase() + name.substr(1)}!`
+console.log(greeting); //=> "Ciao, Mondo!";
 
-//do this instead!
+//fai invece cosi'!
 const capitalizedName = name.substr(0,1).toUpperCase() + name.substr(1);
-const greeting = `Hello, ${capitalizedName}`
-console.log(greeting); //=> "Hello, World!";
+const greeting = `Ciao, ${capitalizedName}`
+console.log(greeting); //=> "Ciao, Mondo!";
 ```
 
-One more example:
+Un altro esempio:
 
 ```js
-//function expects a name, an animal, and a verb
+//la function si aspetta un nome, un animale e un verbo
 function makeExcuse(name, animal, verb) {
-  const email = `Hello Professor ${name},
+  const email = `Ciao Professore ${name},
 
-Please excuse my missing assignment, as my ${animal} ate it.
+Per favore scusi il mio compito mancante, perche' il mio ${animal} l'ha mangiato.
 
-${verb} you later,
-A Student`;
+${verb} a presto,
+Uno Studente`;
 
   return email;
 }
@@ -338,7 +338,7 @@ Anche se separare il codice in moduli e' comune in ambiente Node.js, ES6 aggiung
 Un browser carica i moduli in modo diverso dagli script "regolari"; per caricare codice come module, specifichi l'attribute `type="module"` nel tag `<script>` di quel module:
 
 ```html
-<!-- load scripts that can import from other modules -->
+<!-- carica script che possono importare da altri moduli -->
 <script type="module" src="path/to/firstModule.js"></script>
 <script type="module" src="path/to/secondModule.js"></script>
 ```
@@ -354,21 +354,21 @@ Tuttavia, nella maggior parte dei casi _non_ userai i moduli direttamente nel br
 Come in Java o Python, un module JavaScript puo' "caricare" moduli o librerie esterne usando la keyword **`import`**:
 
 ```java
-//Java example: import the `Random` variable from `java.util` module
+//Esempio Java: importa la variable `Random` dal modulo `java.util`
 import java.util.Random;
 ```
 
 ```python
-# Python example: import the `randint` variable from `random` module
+# Esempio Python: importa la variable `randint` dal modulo `random`
 from random import randint
 ```
 
 ```js
 //JavaScript:
-//import the `Random` variable from a `util.js` module
+//importa la variable `Random` da un modulo `util.js`
 import { Random } from './util.js';
 
-//import the `randint` and `randrange` variables from a `random.js` module
+//importa le variables `randint` e `randrange` da un modulo `random.js`
 import { randint, randrange } from './random.js'
 ```
 
@@ -377,8 +377,8 @@ Questa e' la versione piu' comune della sintassi `import` di ES6 (chiamata **nam
 - Assicurati di includere `./` per indicare che stai caricando un file da una directory specifica. Se lo ometti, il module loader di Node cerchera' un module installato nel _load path_ (ad es. in `node_modules/`). Ommetti `./` quando carichi librerie di terze parti come jQuery o React:
 
     ```js
-    //with jquery installed in `node_modules/`
-    //import the `$` and `jQuery` variables
+    //con jquery installato in `node_modules/`
+    //importa le variables `$` e `jQuery`
     import { $, jQuery } from 'jquery'; //no `./` in front of library name
     ```
 
@@ -390,11 +390,11 @@ Qualsiasi variable che un module `import` deve essere dichiarata come disponibil
 ```js
 /*** my-module.js ***/
 
-//define and export variables for use elsewhere
+//definisci ed esporta variables per usarle altrove
 export const question = "Why'd the chicken cross the road?";
 export const answer = "To get to the other side";
 
-export function laugh() { //an exported function
+export function laugh() { //una function esportata
     console.log("hahaha");
 }
 ```
@@ -404,12 +404,12 @@ Questo si chiama **named export** (in contrasto con il _default export_ descritt
 ```js
 /*** index.js ***/
 
-//import all 3 variables from `my-modules.js`
-//now all 3 variables exist in this module and can be used
+//importa tutte e 3 le variables da `my-modules.js`
+//ora tutte e 3 le variables esistono in questo modulo e possono essere usate
 import { question, answer, laugh } from './my-module.js';
 
-console.log(question); //=> "Why'd the chicken cross the road?"
-console.log(answer); //=> "To get to the other side"
+console.log(question); //=> "Perche' il pollo ha attraversato la strada?"
+console.log(answer); //=> "Per arrivare dall'altra parte"
 laugh(); //"hahaha"
 ```
 
@@ -421,57 +421,57 @@ Per esempio, puoi usare la keyword **`as`** per "aliasare" un value sia quando v
 
 ```js
 /*** my-module.js ***/
-export function foo() { return 'foo'; } //standard named export
+export function foo() { return 'foo'; } //export nominato standard
 
-//provide an "alias" (consumer name) for value when exporting
+//fornisci un "alias" (nome consumer) per il value quando esporti
 export { bar as yourBar };
 
-//will not be available (a "private" function)
+//non sara' disponibile (una function "private")
 function baz() { return 'baz'; }
 ```
 
 ```js
 /*** index.js ***/
 
-//provide "alias" for value when importing!
+//fornisci un "alias" per il value quando importi!
 import {foo as myFoo} from './my-module.js';
 myFoo(); //=> 'foo'
-foo(); //error, does not exist (aliased the variable as `myFoo`)
+foo(); //errore, non esiste (la variable e' aliasata come `myFoo`)
 
-import { yourBar } from './my-module.js'; //import value by exported name
+import { yourBar } from './my-module.js'; //importa il value col nome exportato
 yourBar() //=> 'bar'
 
-import { bar } from './my-module.js'; //error, no value `bar` exported
+import { bar } from './my-module.js'; //errore, nessun value `bar` esportato
 ```
 
 E' possibile `import`are _tutto_ cio' che e' stato exportato da un module usando la sintassi **`import * as`**. Specifichi un nome per l'object che rappresentera' i values exportati dal module (ad es. `theModule` nell'esempio sotto), e ogni variable exportata sara' una _property_ di quell'object. Questo puo' essere utile quando potresti aggiungere altri `exports` a un module durante lo sviluppo, ma non vuoi continuare a modificare l'`import` statement; d'altro canto, il resto del codice puo' essere piu' difficile da leggere perche' devi accedere alle properties dell'object.
 
 ```js
 /*** index.js ***/
-import * as theModule from './my-module'; //import everything that was exported
-                                          //loads as a single object with values
-                                          //as properties
+import * as theModule from './my-module'; //importa tutto cio' che e' stato exportato
+                                          //carica come un singolo object con i values
+                                          //come properties
 theModule.foo(); //=> 'foo'
 theModule.yourBar(); //=> 'bar'
-theModule.baz(); //Error (private function so wasn't exported)
+theModule.baz(); //Errore (function privata, non exportata)
 ```
 
 Infine, ogni module puo' anche `export`are una _singola_ (una sola!) variable **default**, che fornisce una scorciatoia quando importi quella variable dal module. Specifichi il _default export_ includendo la keyword **`default`** subito dopo `export`:
 
 ```js
 /*** my-module.js ***/
-//this function is the "default" export
+//questa function e' l'export "default"
 export default function sayHello() {
-    return 'Hello world!';
+    return 'Ciao mondo!';
 }
 ```
 
 ```js
 /*** index.js ***/
-import greet from './my-module'; //import the default value
-                                 //`greet` is alias defined in this module
+import greet from './my-module'; //importa il value di default
+                                 //`greet` e' l'alias definito in questo modulo
 
-greet(); //=> "Hello world!"
+greet(); //=> "Ciao mondo!"
 ```
 
 Quando importi un `default` export, non includi `{}` con il nome della variable, ma fornisci invece un nome di variable ("alias") con cui vuoi riferirti a quel value exportato.
@@ -480,7 +480,7 @@ Nota che e' anche possibile rendere values anonimi `default` exports:
 
 ```js
 /*** animals.js ***/
-export default ['lion', 'tiger', 'bear']; //export anonymous array
+export default ['lion', 'tiger', 'bear']; //export di array anonimo
 ```
 
 La tecnica del `default` export e' particolarmente comune in framework object-oriented come React, o in framework grandi come Bootstrap con molti moduli indipendenti. Usare default exports ti permette di far si' che ogni module JavaScript contenga il codice per una singola function o `class`; quella function diventa il `default` export, permettendo ad altri moduli di importarla rapidamente e facilmente, ad es. `import MyComponent from './MyComponent.js'`.
@@ -514,8 +514,8 @@ const person = {
    }
 }
 
-//tell me about this person!
-console.log(person.name + " is a " + person.costume);
+//parlami di questa persona!
+console.log(person.name + " e' un " + person.costume);
 ```
 
 Questo Object rappresenta una cosa con attributes `name`, `age` e `costume` (ma non abbiamo ancora indicato che questo Object ha la *class*ification di "Person"). Il value della property `trickOrTreat()` e' una function (ricorda: le functions sono values!), ed e' un esempio di come un Object possa "avere" una function.
@@ -531,39 +531,39 @@ _template/recipe/blueprint_ per gli objects individuali. Definisce quali data (a
 Per prima cosa, considera la seguente class semplice definita in _Java_ (che dovrebbe essere un ripasso dai corsi di programmazione precedenti):
 
 ```java
-//class declaration
+//dichiarazione di class
 public class Person {
 
-    //attributes (private)
+    //attributi (private)
     private String firstName;
     private int age;
 
-    //a Constructor method
-    //this is called when the class is instantiated (with `new`)
-    //and has the job of initializing the attributes
+    //un metodo Constructor
+    //viene chiamato quando la class e' istanziata (con `new`)
+    //e ha il compito di inizializzare gli attributes
     public Person(String newName, int newAge){
-        //assign parameters to the attributes
+        //assegna i parametri agli attributes
         this.firstName = newName;
         this.age = newAge;
     }
 
-    //return this Person's name
+    //restituisce il nome di questa Person
     public String getName() {
-        return this.firstName; //return own attribute
+        return this.firstName; //restituisce il proprio attribute
     }
 
-    //grow a year
+    //cresci di un anno
     public void haveBirthday() {
-        this.age++; //increase this person's age (accessing own attribute)
+        this.age++; //aumenta l'eta' di questa Person (accedendo al proprio attribute)
     }
 
-    //a method that takes in a Person type as a parameter
+    //un metodo che prende una Person come parametro
     public void sayHello(Person otherPerson) {
-        //call method on parameter object for printing
-        System.out.println("Hello, " + otherPerson.getName());
+        //chiama un metodo sull'object parametro per stampare
+        System.out.println("Ciao, " + otherPerson.getName());
 
-        //access own attribute for printing
-        System.out.println("I am " + this.age +  " years old");
+        //accedi al proprio attribute per stampare
+        System.out.println("Ho " + this.age +  " anni");
     }
 }
 ```
@@ -572,14 +572,14 @@ Naturalmente puoi usare questa class (instantiarla e chiamarne i methods) in que
 
 ```java
 public static void main(String[] args) {
-    //instantiate two new People objects
+    //istanzia due nuovi objects Person
     Person aliceObj = new Person("Alice", 21);
     Person bobObj = new Person("Bob", 42);
 
-    //call method on Alice (changing her fields)
+    //chiama il metodo su Alice (cambiando i suoi fields)
     aliceObj.haveBirthday();
 
-    //call the method ON Alice, and PASS Bob as a param to it
+    //chiama il metodo SU Alice, e PASSA Bob come parametro
     aliceObj.sayHello(bobObj);
 }
 ```
@@ -599,35 +599,35 @@ Alcune cose da notare su questa sintassi:
 Ecco come creeresti _la stessa identica class_ in JavaScript usando la sintassi ES6:
 
 ```javascript
-//class declaration
+//dichiarazione di class
 class Person {
 
-    //a Constructor method
-    //this is called when the class is instantiated (with `new`)
-    //and has the job of initializing the attributes
+    //un metodo Constructor
+    //viene chiamato quando la class e' istanziata (con `new`)
+    //e ha il compito di inizializzare gli attributes
     constructor(newName, newAge) {
-        //assign parameters to the attributes
+        //assegna i parametri agli attributes
         this.firstName = newName;
         this.age = newAge;
     }
 
-    //return this Person's name
+    //restituisce il nome di questa Person
     getName() {
-        return this.firstName; //return own attribute
+        return this.firstName; //restituisce il proprio attribute
     }
 
-    //grow a year
+    //cresci di un anno
     haveBirthday() {
-        this.age++; //increase this person's age (accessing own attribute)
+        this.age++; //aumenta l'eta' di questa Person (accedendo al proprio attribute)
     }
 
-    //a method that takes in a Person type as a parameter
+    //un metodo che prende una Person come parametro
     sayHello(otherPerson) {
-        //call method on parameter object for printing
-        console.log("Hello, " + otherPerson.getName());
+        //chiama un metodo sull'object parametro per stampare
+        console.log("Ciao, " + otherPerson.getName());
 
-        //access own attribute for printing
-        console.log("I am " + this.age +  " years old");
+        //accedi al proprio attribute per stampare
+        console.log("Ho " + this.age +  " anni");
     }
 }
 ```
@@ -635,14 +635,14 @@ class Person {
 Ed ecco come useresti questa class:
 
 ```javascript
-//instantiate two new People objects
+//istanzia due nuovi objects Person
 const aliceObj = new Person("Alice", 21);
 const bobObj = new Person("Bob", 42);
 
-//call method on Alice (changing her attributes)
+//chiama il metodo su Alice (cambiando i suoi attributes)
 aliceObj.haveBirthday();
 
-//call the method ON Alice, and PASS Bob as a param to it
+//chiama il metodo SU Alice, e PASSA Bob come parametro
 aliceObj.sayHello(bobObj);
 ```
 
@@ -685,12 +685,12 @@ class Cat {
     meow() { /*...*/ }
 }
 
-//declare a (non-class) function
+//dichiara una function (non-class)
 function petAnimal(animal) { /*...*/ }
 
-//at the "main" level, instantiate the classes and call the functions
+//a livello "main", istanzia le class e chiama le functions
 const fido = new Dog();
-petAnimal(fido); //pass this Dog object to the function
+petAnimal(fido); //passa questo object Dog alla function
 ```
 
 <p class="alert alert-warning">Anche se la sintassi sopra sembra Java, e' importante ricordare che le instance di class JavaScript sono ancora _semplici Objects come gli altri_. Per esempio, puoi aggiungere nuove properties e functions a quell'object, o sovrascrivere il value di qualsiasi property. Anche se sembra una class Java, in realta' non si comporta come tale.</p>
@@ -701,45 +701,45 @@ La sintassi `class` di ES6 permette anche di specificare **class inheritance**, 
 Come in Java, usi la keyword `extends` per indicare che una class deve **inherit** da un'altra:
 
 ```js
-//The "parent/super" class
+//La class "parent/super"
 class Dog {
   constructor(name) {
       this.name = name;
   }
 
   sit() {
-      console.log('The dog '+this.name+' sits. Good boy.');
+      console.log('Il cane '+this.name+' si siede. Bravo!');
   }
 
   bark() {
-      console.log('"Woof!"');
+      console.log('"Bau!"');
   }
 }
 
-//The "child/sub" class (inherits abilities from Dog)
+//La class "child/sub" (eredita abilita' da Dog)
 class Husky extends Dog {
     constructor(name, distance) {
-        super(name); //call parent constructor
+        super(name); //chiama il constructor del parent
         this.distance = distance;
     }
 
-    //a new method ("special ability")
+    //un nuovo method ("abilita' speciale")
     throwFootball() {
-        console.log('Husky '+this.name+' throws '+this.dist+' yards');
+        console.log('Husky '+this.name+' lancia '+this.dist+' yard');
     }
 
-    //override (replace) parent's method
+    //override (sostituisce) il method del parent
     bark() {
-      super.bark(); //call parent method
-      console.log("(Go huskies!)");
+      super.bark(); //chiama il method del parent
+      console.log("(Forza husky!)");
     }
 }
 
-//usage
-const dog = new Husky("Harry", 60); //make a Husky
-dog.sit(); //call inherited method
-dog.throwFootball(); //call own method
-dog.bark(); //call own (overridden) method
+//uso
+const dog = new Husky("Harry", 60); //crea un Husky
+dog.sit(); //chiama il method ereditato
+dog.throwFootball(); //chiama il method proprio
+dog.bark(); //chiama il method proprio (override)
 ```
 
 In questo caso, la class `Husky` e' una _versione specializzata_ della class `Dog`: ___e' un___ `Dog` con alcune abilita' speciali (ad es. puo' lanciare un football). Ci riferiamo alla class base, meno specializzata (`Dog`), come **parent** o **super class**, e alla class derivata, piu' specializzata (`Husky`), come **child** o **sub-class**.
@@ -759,11 +759,11 @@ In JavaScript, le functions sono chiamate su **Objects** usando la _dot notation
 const doggy = {
   name: "Fido",
   bark: function() {
-      console.log(this.name, "woofs"); //`this` is object the function was called on
+      console.log(this.name, "abbaia"); //`this` e' l'object su cui e' stata chiamata la function
   }
 }
 
-doggy.bark(); //=> "Fido woofs"
+doggy.bark(); //=> "Fido abbaia"
 ```
 
 - Qui `this` e' assegnato all'object `doggy`, su cui e' stato chiamato `.bark()`.
@@ -771,27 +771,27 @@ doggy.bark(); //=> "Fido woofs"
 Ma dato che le functions sono values e possono essere assegnate a piu' variables (con etichette diverse), l'object su cui una function viene chiamata non e' necessariamente l'object a cui era stata assegnata inizialmente come property. `this` si riferisce all'object su cui la function e' chiamata al momento dell'esecuzione, non al momento della definizione:
 
 ```js
-//An object representing a Dog
+//Un object che rappresenta un Dog
 const doggy = {
   name: "Fido",
-  bark: function() { console.log(this.name + " woofs"); }
+  bark: function() { console.log(this.name + " abbaia"); }
 }
 
-// An object representing another Dog
+// Un object che rappresenta un altro Dog
 const doggo = {
   name: "Spot",
-  bark: function() { console.log(this.name + " yips")}
+  bark: function() { console.log(this.name + " guaisce")}
 }
 
-//This is Fido barking
-doggy.bark( /*this = doggy*/ ); //=> "Fido woofs"
+//Questo e' Fido che abbaia
+doggy.bark( /*this = doggy*/ ); //=> "Fido abbaia"
 
-//This is Spot barking
-doggo.bark( /*this = doggo*/ ); //=> "Spot yips"
+//Questo e' Spot che abbaia
+doggo.bark( /*this = doggo*/ ); //=> "Spot guaisce"
 
-//This is Fido using Spot's bark!
-doggy.bark = doggo.bark; //assign the function value to `doggy`
-doggy.bark( /*this = doggy*/) //=> "Fido yips"
+//Questo e' Fido che usa l'abbaio di Spot!
+doggy.bark = doggo.bark; //assegna il value della function a `doggy`
+doggy.bark( /*this = doggy*/) //=> "Fido guaisce"
 ```
 
 - Nota come la variable `this` viene implicitamente assegnata al value dell'object su cui e' stata chiamata&mdash;anche se la function viene assegnata a un nuovo object in seguito!
@@ -800,13 +800,13 @@ Ma dato che la variable `this` si riferisce all'object su cui la function e' chi
 
 ```js
 class Person {
-   constructor(name){ this.name = name; } //basic constructor
+   constructor(name){ this.name = name; } //constructor base
 
-   //greet each person in the given array
+   //saluta ogni person nell'array dato
    greetAll(peopleArray) {
-      //loop through each Person using a callback
+      //itera su ogni Person usando una callback
       peopleArray.forEach(function(person) {
-         console.log("Hi"+person.name+", I'm "+this.name);
+         console.log("Ciao "+person.name+", sono "+this.name);
       });
    }
 }
@@ -821,8 +821,8 @@ class Person {
    constructor(name){ this.name = name; }
 
    greetAll(peopleArray) {
-      peopleArray.forEach((person) => { //arrow function (subtle difference)
-         console.log("Hi"+person.name+", I'm "+this.name); //works correctly!
+      peopleArray.forEach((person) => { //arrow function (differenza sottile)
+         console.log("Ciao "+person.name+", io sono "+this.name); //funziona correttamente!
       });
    }
 }
@@ -830,10 +830,10 @@ class Person {
 
 Questa proprieta' rende le arrow functions preziose quando specifichi callback functions, soprattutto quando entrano in gioco classes e objects. _Usa sempre arrow functions per le anonymous callbacks!_
 
-<div class="alert alert-info">In alternativa, e' possibile associare "permanentemente" un particolare value di `this` a una function, indipendentemente dall'object su cui quella function viene chiamata. Questo si chiama **binding** di `this`, e si fa chiamando il metodo [`.bind()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind) sulla function e passando il value che vuoi assegnare a `this`. Il metodo `.bind()` restituisce una _nuova function_ che ha il value associato; spesso poi prendi questa nuova function e la "re-assign" alla vecchia variable della function:
+<div class="alert alert-info">In alternativa, e' possibile associare "permanentemente" un particolare value di `this` a una function, indipendentemente dall'object su cui quella function viene chiamata. Questo si chiama **binding** di `this`, e si fa chiamando il metodo [`.bind()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind) sulla function e passando il value che vuoi assegnare a `this`. Il metodo `.bind()` restituisce una _nuova function_ che ha il value associato; spesso poi prendi questa nuova function e la "ri-assegni" alla vecchia variable della function:
 
 ```js
-//re-assign function
+//ri-assegna la function
 myFunction = myFunction.bind(thisValue);
 ```
 
@@ -845,8 +845,8 @@ Questo capitolo ha descritto alcune delle feature ES6 piu' comuni e potenzialmen
 
 <!-- ## Resources {-}
 <div class="list-condensed">
-- [ES6 For Humans](https://github.com/metagrover/ES6-for-humans) an good online text on ES6
-- [ECMAScript 6](https://github.com/lukehoban/es6features#readme) A good unofficial summary with examples
-- [ES6 Features](http://es6-features.org/) (also shows equivalent ES5 syntax where possible)
-- [ECMAScript 2015 Language Specification](http://www.ecma-international.org/ecma-262/6.0/) official standard
+- [ES6 For Humans](https://github.com/metagrover/ES6-for-humans) un buon testo online su ES6
+- [ECMAScript 6](https://github.com/lukehoban/es6features#readme) Un buon riassunto non ufficiale con esempi
+- [ES6 Features](http://es6-features.org/) (mostra anche la sintassi ES5 equivalente quando possibile)
+- [ECMAScript 2015 Language Specification](http://www.ecma-international.org/ecma-262/6.0/) standard ufficiale
 </div> -->

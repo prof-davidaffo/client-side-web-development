@@ -1,13 +1,13 @@
-# Testing with Jest {#jest}
+# Test con Jest {#jest}
 
-> People just aren't as repeatable as computers are. Nor should we expect them to be. A shell script or batch file will execute the same instructions, in the same order, time after time. It can be put under source control, so you can examine changes to the procedure over time as well ("but it used to work..."). - [The Pragmatic Programmer](http://www.amazon.com/The-Pragmatic-Programmer-Journeyman-Master/dp/020161622X)
+> Le persone non sono ripetibili come i computer. Ne' dovremmo aspettarcelo. Uno script di shell o un batch file eseguira' le stesse istruzioni, nello stesso ordine, volta dopo volta. Puo' essere messo sotto controllo di versione, cosi' puoi anche esaminare le modifiche alla procedura nel tempo ("ma prima funzionava..."). - [The Pragmatic Programmer](http://www.amazon.com/The-Pragmatic-Programmer-Journeyman-Master/dp/020161622X)
 
 Questo capitolo introduce l'**automated testing** usando il framework [Jest](https://facebook.github.io/jest/). Seguendo questo tutorial, imparerai come scrivere ed eseguire semplici unit tests su functions JavaScript e codice che manipola il DOM.
 
 <p class="alert alert-info">Questo tutorial fa riferimento al codice su <https://github.com/info343/jest-tutorial>.</p>
 
 
-## Testing
+## Test
 Uno degli obiettivi piu' importanti nello sviluppo di programmi e' assicurarsi che il codice scritto _funzioni_ davvero. Puoi determinare se un programma funziona considerando tre cose:
 
 1. Quale **input** e' stato dato al programma? Dal punto di vista dell'utente, sono le _azioni_ che l'utente ha fatto (ad es. "ho premuto un button"). Dal punto di vista del codice, e' spesso il value passato a un method.
@@ -25,7 +25,7 @@ Dato che l'automated testing e' cosi' utile e comune, esiste una grande varieta'
 In JavaScript, i testing frameworks piu' popolari sono [Jasmine](https://jasmine.github.io/), [Mocha](https://mochajs.org/) (che e' solo il framework, usa [Chai](http://chaijs.com/) per confrontare received ed expected results&mdash;le bevande calde sono un tema), e [Jest](https://facebook.github.io/jest/). Quest'ultimo e' stato sviluppato da Facebook per supportare il testing di applicazioni React, ed e' il framework introdotto e usato in questo corso (anche se l'API e' quasi identica a Jasmine e Mocha/Chai).
 
 
-## Testing with Jest
+## Testing con Jest
 Jest e' un programma da command line, quindi devi averlo installato sulla tua macchina. Puoi installarlo _globalmente_ tramite `npm`:
 
 ```bash
@@ -41,16 +41,16 @@ npm install
 
 Con Jest, definisci i "tests", che sono semplicemente codice JavaScript usato per eseguire l'_action_ e confrontare i risultati _received_ ed _expected_. Questi test possono essere messi in un file il cui nome finisce con `.test.js` (indicando che e' uno script di test), `.spec.js` (per "specification"), o in un file `.js` dentro la cartella `__tests__` del programma. In ogni caso, uno script di test e' _solo un file JavaScript_, quindi puoi includere qualsiasi codice/variable/function desideri.
 
-## Writing a Test
+## Scrivere un test
 Definiamo un "test" (un controllo che una funzionalita' specifica funzioni) chiamando la function [**`test()`**](https://facebook.github.io/jest/docs/en/api.html#testname-fn)&mdash;una function predefinita fornita da Jest. Questa function prende due argomenti: una _string_ che descrive cosa il test sta controllando, e una _callback function_ che contiene il codice da eseguire per fare l'azione e confrontare i risultati.
 
 ```js
 test('should do something...', function() {
-  //regular old Javascript code that will perform the test goes here
+  //qui va il normale codice Javascript che esegue il test
 });
 ```
 
-- Le descrizioni dei test (il parametro string) sono scritte al _present tense_ e dichiarano in inglese semplice quale behavior DOVREBBE avvenire. Iniziare la descrizione con la parola "should" e' un buon approccio!
+- Le descrizioni dei test (il parametro string) sono scritte al _tempo presente_ e dichiarano in inglese semplice quale behavior DOVREBBE avvenire. Iniziare la descrizione con la parola "should" e' un buon approccio!
 
 - Jest fornisce anche una function `it()` che e' un alias di `test()` e permette al codice di leggere come un inglese con poca punteggiatura:
 
@@ -58,7 +58,7 @@ test('should do something...', function() {
     it('should do something', function() { ... });
     ```
 
-### Assertions and Matchers {-}
+### Assertion e matcher {-}
 Controlliamo che il programma faccia davvero cio' che stiamo testando scrivendo un'**assertion**. Un'assertion e' una _proposition_ che afferma che un fatto e' vero. In questo caso, _assertiamo_ che l'expected result e l'actual result siano uguali. Se la proposition risulta valida (la nostra affermazione che i risultati coincidono e' vera), allora sappiamo che il programma funziona e quindi il test "passa"!
 
 - Puoi pensare a un'_assertion_ come a un if-else statement:
@@ -86,16 +86,16 @@ test('should add numbers correctly', function() {
 Jest supporta una grande varieta' di matchers. Per esempio:
 
 ```js
-//can do numerical comparison
+//puoi fare confronti numerici
 expect(receivedNumber).toBeGreaterThan(expectedNumber);
 
-//compare against undefined
-expect(receivedValue).toBeDefined(); //check if defined!
+//confronta con undefined
+expect(receivedValue).toBeDefined(); //controlla se e' definito!
 
-//find receivedValue in an array
+//trova receivedValue in un array
 expect(receivedArray).toContain(expectedValue);
 
-//can negate ANY matcher with a .not property
+//puoi negare QUALSIASI matcher con la property .not
 expect(receivedValue).not.toEqual(expectedValue);
 ```
 
@@ -103,7 +103,7 @@ expect(receivedValue).not.toEqual(expectedValue);
 
 Nota che un singolo `test()` puo' includere piu' assertions!
 
-### Organizing Tests {-}
+### Organizzare i test {-}
 Puoi "raggruppare" i test usando la function [`describe()`](https://facebook.github.io/jest/docs/en/api.html#describename-fn). Questa function prende due parametri: una _string_ che descrive quale **feature** viene testata, e una _callback function_ che contiene il codice dei test:
 
 ```js
@@ -125,8 +125,8 @@ describe('Basic math', function() {
 E' anche possibile eseguire blocchi di codice _prima_ che gruppi di test vengano eseguiti usando le functions `beforeEach()` e `beforeAll()`. Vedi [Setup and Teardown](https://facebook.github.io/jest/docs/en/setup-teardown.html) per dettagli.
 
 
-### Running the Tests {-}
-Puoi **run**nare i test (far fare il lavoro di testing al computer) usando il programma da command line `jest`, passando il nome dello script di test (senza estensione) che vuoi eseguire:
+### Eseguire i test {-}
+Puoi eseguire i test (far fare il lavoro di testing al computer) usando il programma da command line `jest`, passando il nome dello script di test (senza estensione) che vuoi eseguire:
 
 ```bash
 # test the app.spec.js file
@@ -135,14 +135,14 @@ jest app
 
 La command line stampera' i risultati di questo test script:
 
-![An example passing script](img/jest/pass.png)
+![Esempio di script che passa](img/jest/pass.png)
 
 Questo ti dira' quali test sono stati eseguiti, quali hanno "passato" (in verde, good to _go_!) e quali hanno "fallito" (in rosso). I test falliti riportano anche quale assertion e' fallita e quali valori expected e received non corrispondevano.
 
-### Practice {-}
+### Esercizio {-}
 Il file `app.js` di questo repo contiene una function `invertCase()`. Nel file `app.spec.js` fornito, implementa un blocco `describe()` che contenga test per la function, e scrivi unit tests per verificare bug (fornendo input specifici e confrontando _received_ vs _expected_). Se trovi bug, correggili e poi ri-esegui i test!
 
-## Testing Web Apps with Jest
+## Testing di web app con Jest
 E' anche possibile usare Jest per codice JavaScript che manipola il DOM. Puoi farlo perche' Jest crea un **virtual DOM** con cui puoi interagire. Cioe', Jest fornisce un object globale `document` a cui puoi accedere e chiamare methods (ad es. `document.querySelector()`). Non e' un browser completo: non carica file CSS esterni ne' permette di navigare tra pagine, ma fornisce un tree di elementi HTML che puoi modificare e ispezionare, permettendoti di testare la manipolazione del DOM.
 
 Ci sono alcuni passi per lavorare efficacemente con il `document` fornito da Jest:
@@ -150,7 +150,7 @@ Ci sono alcuni passi per lavorare efficacemente con il `document` fornito da Jes
 1. Per prima cosa, assicurati che il contenuto del DOM includa gli elementi HTML che vuoi testare. Questo si chiama **mounting** del contenuto. Puoi montare contenuto HTML assegnandolo a `innerHTML` dell'_root element_ del DOM&mdash;non l'elemento `<html>`, ma un elemento virtuale che agisce come parent ultimo del DOM (simile alla cartella root `/` di un sistema operativo). Questo node e' accessibile tramite la property `document.documentElement`:
 
     ```js
-    //assign a given HTML content (e.g., as string) to the virtual DOM
+    //assegna un contenuto HTML dato (ad es. come stringa) al DOM virtuale
     document.documentElement.innerHTML = "<html><head></head><body>...</body></html>";
     ```
 
@@ -161,7 +161,7 @@ Ci sono alcuni passi per lavorare efficacemente con il `document` fornito da Jes
     Carichi uno script esterno in Jest usando la function `require()` di Node, passando il _relative path_ al file di script che vuoi caricare (questo script deve essere salvato localmente):
 
     ```js
-    //load the `index.js` file
+    //carica il file `index.js`
     require('../js/index.js');
     ```
 
@@ -170,8 +170,8 @@ Ci sono alcuni passi per lavorare efficacemente con il `document` fornito da Jes
     Devi anche far caricare esplicitamente a Jest qualsiasi libreria esterna (come jQuery) che vuoi usare. Queste librerie devono essere caricate da un file locale (Jest non puo' accedere a un CDN), ma di solito possono essere installate via `npm`. Per esempio, puoi caricare jQuery cosi':
 
     ```js
-    $ = require('jquery'); //load the jQuery module (installed from npm)
-    window.$ = $; //assign make the jQuery library into a DOM global
+    $ = require('jquery'); //carica il modulo jQuery (installato da npm)
+    window.$ = $; //assegna la library jQuery a una globale del DOM
     ```
 
     _Ricorda di caricare gli script esterni **prima** dei tuoi!_
@@ -179,16 +179,16 @@ Ci sono alcuni passi per lavorare efficacemente con il `document` fornito da Jes
 3. Infine, puoi usare i metodi DOM (o gli helper jQuery!) per triggerare _events_ (come click su button). Poi puoi ispezionare il DOM con `document.querySelector()` e fare assertions sullo stato del DOM dopo quella user action.
 
     ```js
-    //for example
+    //per esempio
     let h1 = document.querySelector('h1');
-    expert(h1.textContent).toEqual('Hello world!');
+    expert(h1.textContent).toEqual('Ciao mondo!');
     ```
 
 Con questo, puoi testare automaticamente se l'interactivity della pagina funziona come previsto senza dover cliccare ripetutamente un button. In particolare, questi test automatici ti aiutano a garantire che cambiamenti futuri non _rompano_ il codice (ad es. non facciano fallire i test), eseguendo quello che si chiama [**regression testing**](https://en.wikipedia.org/wiki/Regression_testing).
 
 - Dovresti comunque testare la pagina nel browser, per intercettare eventuali differenze tra il DOM virtuale di Jest e i web browser reali.
 
-### Practice {-}
+### Pratica {-}
 Scrivi un test nel file `index.spec.js` fornito per confermare che quando il button "Panic" viene premuto, l'elemento `.alert` dell'HTML viene mostrato.
 
 

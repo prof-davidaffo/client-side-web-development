@@ -106,7 +106,7 @@ Al suo core, React e' semplicemente una library per creare e renderizzare il DOM
 const element = document.createElement('hi'); //crea l'elemento
 element.id = 'hello'; //specifica gli attributes
 element.classList.add('my-class');
-element.textContent = 'Hello World!'; //specifica il contenuto
+element.textContent = 'Ciao Mondo!'; //specifica il contenuto
 
 document.getElementById('root').appendChild(element);
 ```
@@ -126,7 +126,7 @@ const msgElem = React.createElement(
   //object di attributes
   { id: 'hello', className: 'myClass' },
   //contenuto
-  'Hello World!'
+  'Ciao Mondo!'
 );
 
 //Crea una "React root" dall'elemento `#root`
@@ -146,7 +146,7 @@ La function `React.createElement()` e' verbosa e scomoda da digitare, soprattutt
 
 ```jsx
 //Crea un nuovo elemento `<h1>` usando la sintassi JSX
-const element = <h1 id="hello" className="myClass">Hello World</h1>;
+const element = <h1 id="hello" className="myClass">Ciao Mondo</h1>;
 
 //Crea una "React root" dall'elemento `#root`
 //poi renderizza l'elemento React in quel root
@@ -164,7 +164,7 @@ Il value assegnato alla variable `element` _non_ e' una String (non ha virgolett
     //JSX puo' definire elementi annidati
     const header = (
       <header className="banner">
-        <h1>Hello world!</h1>
+        <h1>Ciao mondo!</h1>
       </header>
     );
     ```
@@ -188,11 +188,11 @@ In breve: scrivi codice JSX, e quando esegui la tua app con Create React App vie
 JSX ti permette di includere espressioni JavaScript (come variables a cui vuoi riferirti) direttamente dentro la sintassi tipo HTML. Lo fai mettendo l'espressione dentro le parentesi graffe (**`{}`**):
 
 ```jsx
-const message = "Hello world!";
+const message = "Ciao mondo!";
 const element = <h1>{message}</h1>;
 ```
 
-Quando l'elemento viene renderizzato, l'espressione e le parentesi graffe saranno sostituite dal value dell'espressione. Quindi il JSX sopra verrebbe renderizzato come HTML: `<h1>Hello World</h1>`.
+Quando l'elemento viene renderizzato, l'espressione e le parentesi graffe saranno sostituite dal value dell'espressione. Quindi il JSX sopra verrebbe renderizzato come HTML: `<h1>Ciao Mondo</h1>`.
 
 Puoi mettere qualsiasi espressione dentro `{}`&mdash;cioe' qualsiasi codice JavaScript che risolve a un singolo value (pensa: qualsiasi cosa che potresti assegnare a una variable). Questo puo' includere operazioni matematiche, function calls, [ternary expressions](https://en.wikipedia.org/wiki/%3F:), o anche values di anonymous functions (vedi il prossimo capitolo per esempi):
 
@@ -295,7 +295,7 @@ React ti permette di _implementare_ la pagina in termini di [explicit Components
 
 <div class="row">
 <div class="column col2">
-![An example page broken up into components. Example from <http://coenraets.org/blog/2014/12/sample-mobile-application-with-react-and-cordova/>](img/react/uimockscript.png)
+![Esempio di pagina suddivisa in componenti. Esempio da <http://coenraets.org/blog/2014/12/sample-mobile-application-with-react-and-cordova/>](img/react/uimockscript.png)
 </div>
 <div class="column col2" style="font-size:14px">
 ```xml
@@ -332,7 +332,7 @@ function UserInfoCard(props) {
   return (
     <div>
       <h1>{name}</h1>
-      <p>Hello, my name is {name} and I am a {descriptor}</p>
+      <p>Ciao, mi chiamo {name} e sono {descriptor}</p>
     </div>
   )
 }
@@ -376,8 +376,8 @@ Questa function definisce un nuovo Component (pensa: un nuovo elemento HTML!) ch
     function FragmentExample(props) {
       return (
         <>
-          <p>First paragraph</p>
-          <p>Second paragraph</p>
+          <p>Primo paragrafo</p>
+          <p>Secondo paragrafo</p>
         </>
       )
     }
@@ -392,7 +392,7 @@ Dato che i Components sono istanziati come React elements, puoi usarli ovunque u
 ```jsx
 //Un component che rappresenta un messaggio
 function HelloMessage(props) {
-  return <p>Hello World!</p>;
+  return <p>Ciao Mondo!</p>;
 }
 
 //Un component che rappresenta un altro messaggio

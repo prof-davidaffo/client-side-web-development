@@ -1,4 +1,4 @@
-# AJAX Requests {#ajax}
+# Richieste AJAX {#ajax}
 JavaScript ti permette di definire dinamicamente il contenuto di una web page, generando il DOM a runtime invece che nei file `.html` source. Uno dei motivi principali per cui vogliamo produrre dinamicamente un DOM e' quando il contenuto della web page si basa su **data** che possono cambiare nel tempo: per esempio, il tipo di data disponibile tramite una [**Web API**](https://info201.github.io/apis.html#what-is-a-web-api). Usando JavaScript per renderizzare il DOM, puoi produrre rapidamente grandi quantita' di HTML necessarie per mostrare grandi data set, assicurandoti di avere data aggiornati ogni volta che la pagina si carica, e perfino _aggiornare automaticamente il contenuto della pagina_ senza richiedere all'utente di ricaricare!
 
 Questo capitolo descrive come usare JavaScript per inviare dinamicamente HTTP Requests per scaricare dati (senza ricaricare la pagina!), e come eseguire la **asynchronous programming** necessaria quando si lavora con web requests e altre operazioni che richiedono tempo.
@@ -17,7 +17,7 @@ Per creare moderne web page dinamiche che mostrano nuovi data senza dover ricari
 AJAX si chiama "AJA**X**" perche' era stato progettato originariamente per richiedere data in formato XML. **XML** (E**X**tensible **M**arkup **L**anguage) e' un markup language (come HTML) usato per codificare significato nel contenuto in un formato che sia leggibile sia dagli esseri umani _che_ dai computer. La sintassi dell'XML e' _esattamente_ la stessa dell'HTML: infatti, l'HTML puo' essere visto come un "subset" del linguaggio. Puoi pensare all'XML come "HTML, ma puoi inventare i nomi dei tuoi elementi"!
 
 ```xml
-<!-- Some XML encoding information about a person -->
+<!-- Informazioni XML codificate su una persona -->
 <person>
    <firstName>Alice</firstName>
    <lastName>Smith</lastName>
@@ -60,15 +60,15 @@ Il formato JSON usa una sintassi quasi identica a quella per definire Object lit
 Il linguaggio JavaScript fornisce un object globale `JSON` (come il global `Math`) che puo' essere usato per convertire da _strings_ codificate di contenuto JSON (ad es. il blocco di codice sopra come singola string variable `'{"firstName":"Alice"}'`) a objects JavaScript, e viceversa:
 
 ```js
-//convert from Object to encoded String
+//converti da Object a String codificata
 let personObj = {firstName:"Alice", lastName:"Smith", id:12} //JavaScript object
-let personString = JSON.stringify(personObj); //turn object into JSON string
+let personString = JSON.stringify(personObj); //trasforma l'object in una JSON string
 console.log(personString); //=> '{"firstName":"Alice","lastName":"Smith","id":12}'
 console.log(typeof personString); //=> 'string'
 
-//convert from encoded String to Object
-let favoritesString = '{"music":"jazz", "numbers":[12,42]}'; //a string, not an object!
-let favoritesObj = JSON.parse(favoritesString); //turn JSON string into object
+//converti da String codificata a Object
+let favoritesString = '{"music":"jazz", "numbers":[12,42]}'; //una string, non un object!
+let favoritesObj = JSON.parse(favoritesString); //trasforma la JSON string in un object
 console.log(favoritesObj); //=> { music: 'jazz', numbers: [ 12, 42 ] }
 console.log(typeof favoritesObj); //=> 'object'
 ```
@@ -82,28 +82,28 @@ JSON ha sostituito XML come encoding preferito per lavorare con AJAX requests&md
 Il supporto AJAX e' integrato nei browser tramite la global variable `XMLHttpRequest` (la "cosa xml http"). Questo object fornisce functions che permettono di inviare un HTTP request al server, ma l'API dell'object e' **davvero complessa da usare**:
 
 <details>
-<summary>An example `XMLHTTPRequest`</summary>
+<summary>Un esempio di `XMLHTTPRequest`</summary>
 ```js
-//create a new XMLHttpRequest object
+//crea un nuovo object XMLHttpRequest
 let request = new XMLHttpRequest();
 
-//configure it to do an HTTP GET request for some URL
+//configuralo per fare una HTTP GET request verso un URL
 request.open('GET', 'https://domain.com/data', true);
 
-//add a listener for the "load" event (when the data has been downloaded)
+//aggiungi un listener per l'event "load" (quando i data sono stati scaricati)
 request.addEventListener('load', function() {
-    if (request.status >= 200 && request.status < 400) { //check response status
+    if (request.status >= 200 && request.status < 400) { //controlla lo status della response
         let data = JSON.parse(request.responseText);
-        console.log(data); //do something with the data
+        console.log(data); //fai qualcosa con i data
     }
 });
 
-//listen for "error" events if there was a network error
+//ascolta gli event "error" se c'e' stato un errore di rete
 request.addEventListener('error', function() {
-    //handle error...
+//gestisci l'errore...
 })
 
-//finally, send the request to the server!
+//infine, invia la request al server!
 request.send();
 ```
 </details>
@@ -112,8 +112,8 @@ Invece di dover capire tutto quel codice, i developer tendevano a usare function
 
 ```js
 $.getJSON('https://domain.com/data', function(data) {
-    //`data` is the already-parsed JSON data
-    console.log(data); //do something with the data
+    //`data` sono i JSON data gia' parsati
+    console.log(data); //fai qualcosa con i data
 });
 ```
 
@@ -122,10 +122,10 @@ Ma questo richiede di includere la libreria jQuery nella pagina, e [dato che la 
 <div class="alert alert-warning">
 `fetch()` e' uno standard recente, quindi non e' supportato dai browser piu' vecchi (ad es. [Internet Explorer](http://caniuse.com/#feat=fetch)). Tuttavia, possiamo usare comunque `fetch()` con questi browser includendo un [**polyfill**](https://en.wikipedia.org/wiki/Polyfill)&mdash;una libreria esterna che replica una API esistente su piattaforme che non la supportano! Il [`fetch()` polyfill](https://github.com/github/fetch) fornisce una function `fetch()` ai browser che non la includono (lasciando invariati gli altri) e usa l'`XMLHttpRequest` esistente senza che tu debba interagire con quell'object.</p>
 
-It's easiest to just load the polyfill from a [CDN](https://cdnjs.com/libraries/fetch):
+Il modo piu' semplice e' caricare il polyfill da un [CDN](https://cdnjs.com/libraries/fetch):
 
 ```html
-<!-- put this BEFORE your own script! -->
+<!-- metti questo PRIMA del tuo script! -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
 ```
 </div>
@@ -146,15 +146,15 @@ fetch('https://domain.com/data');
 Tuttavia, la function `fetch()` **NON** restituisce direttamente i data che vuoi scaricare! Scaricare data da Internet puo' richiedere molto tempo: la connessione di rete potrebbe essere lenta e la quantita' di data da scaricare potrebbe essere molto grande (i metadata degli ultimi 100 tweet di Twitter sono quasi 500k di contenuto JSON). Poiche' il fetching dei data puo' richiedere tempo, le AJAX requests sono eseguite **asincronamente** (questa e' la "A" in AJAX)&mdash;il download avverra' _allo stesso tempo_ in cui il resto del codice viene eseguito. Quindi il download e il resto dello script _non_ saranno sincronizzati; saranno "asynchronous".
 
 ```js
-console.log('About to send request'); //statement 1
+console.log('Sto per inviare la request'); //statement 1
 
-//send request for data to the url
+//invia la request di data all'url
 fetch(url);  //statement 2
 
-console.log('Sent request'); //statement 3
+console.log('Request inviata'); //statement 3
 
-//The data is actually received sometime later,
-//when the JS interpreter is down here!
+//I data arrivano in realta' in un momento successivo,
+//quando l'interpreter JS arriva qui!
 ```
 
 - Nell'esempio sopra, l'interpreter JS eseguira' lo statement 1, poi lo statement 2 (la chiamata `fetch()`). Passera' poi _immediatamente_ allo statement 3 (il secondo `console.log`), senza aspettare che la request finisca! Il download continuera' in background e finira' a un certo punto piu' avanti nel programma&mdash;anche se non sappiamo esattamente quando.
@@ -168,15 +168,15 @@ Poiche' `fetch()` e' una **asynchronous function** (il suo codice viene eseguito
 Le Promises hanno tre stati possibili: _pending_ (i data si stanno scaricando), _fulfilled_ (i data hanno finito di scaricarsi) o _rejected_ (il download e' fallito e la promise e' "rotta"). Possiamo specificare _callback functions_ (simili agli event listeners) che si eseguono quando una Promise pending viene fulfilled oppure rejected. La callback "on success" si specifica chiamando la function **`.then()`** sull'object Promise e passando la "on success callback" come parametro:
 
 ```js
-function onSuccessCallback(response) { //what to do when we get the response
+function onSuccessCallback(response) { //cosa fare quando otteniamo la response
     console.log(response);
 }
 
-//When fulfilled, execute the callback function (which will be passed the response)
+//Quando e' fulfilled, esegui la callback function (a cui verra' passata la response)
 let promise = fetch(url);
 promise.then(onSuccessCallback);
 
-//It is much more common to use anonymous variables/callbacks:
+//E' molto piu' comune usare variables/callback anonime:
 fetch(url).then(function(response) {
     console.log(response);
 });
@@ -187,8 +187,8 @@ La callback "on success" ricevera' un singolo parametro: il **data value** per c
 ```js
 let promise = fetch(url);
 promise.then(function(response){
-    console.log( response.url ); //a string of where the request was sent
-    console.log( response.status ); //the HTTP status code (e.g., 200, 404)
+    console.log( response.url ); //una stringa di dove e' stata inviata la request
+    console.log( response.status ); //il codice di status HTTP (ad es. 200, 404)
 });
 ```
 
@@ -202,22 +202,22 @@ Questo response object ha una property `body` che rappresenta il "body" (data co
 Tuttavia, la function `.then()` di una Promise ha una proprieta' interessante che rende tutto piu' semplice. Chiamare `.then()` su una Promise restituisce una nuova Promise come placeholder per i data prodotti dalla function `.then()`. Questi data promessi saranno il value _restituito_ dalla callback "on success". Questo permette di "chainare" le chiamate `.then()`, ognuna delle quali puo' eseguire una trasformazione sui data:
 
 ```js
-function makeQuestion(dataString) { //a function to make a string a question
+function makeQuestion(dataString) { //una function che trasforma una stringa in una domanda
     return dataString + '???';
 }
 
-//image a hypothetical asynchronous function `getAsyncString`
-//it returns a Promise (placeholder) for a string load from a given source
+//immagina una function asincrona ipotetica `getAsyncString`
+//restituisce una Promise (placeholder) per una stringa caricata da una fonte data
 let originalPromise = getAsyncString(myDataSource);
 
-//when the original promise is fulfilled, call `makeQuestion` on it
-//`questionPromise` will be a placeholder for that transformed data
+//quando la promise originale e' fulfilled, chiama `makeQuestion` su di essa
+//`questionPromise` sara' un placeholder per quei data trasformati
 let questionPromise = originalPromise.then(makeQuestion);
 
-//when the `questionPromise` is fulfilled, call an anonymous callback on it
-//the callback will be passed the transformed ("question") data
+//quando `questionPromise` e' fulfilled, chiama una callback anonima su di essa
+//alla callback verranno passati i data trasformati ("question")
 questionPromise.then(function(data){
-    console.log(data); //data will be a question!
+    console.log(data); //i data saranno una domanda!
 })
 ```
 
@@ -235,28 +235,28 @@ Ma aspetta, c'e' di piu'! `.then()` ha anche una feature speciale: se la callbac
 
 ```js
 let outerPromise = getAsyncString(myFirstSource).then(function(firstData){
-    //do something with `firstData`
+    //fai qualcosa con `firstData`
 
-    let newPromise = getAsyncString(mySecondSource); //a second async call!
-    return newPromise; //return the promise.
-}); //`outerPromise` now takes on the state and data of `newPromise`
+    let newPromise = getAsyncString(mySecondSource); //una seconda async call!
+    return newPromise; //return della promise.
+}); //`outerPromise` ora assume lo stato e i data di `newPromise`
 
 outerPromise.then(function(secondData){
-    //do something with `secondData`, the data downloaded from `mySecondSource`
+    //fai qualcosa con `secondData`, i data scaricati da `mySecondSource`
 });
 ```
 
 Tornando a `fetch()` per mettere tutto insieme: dato che la function di encoding `.json()` restituisce una Promise, puoi semplicemente _restituire_ quella Promise dalla callback `.then()` per renderla disponibile alle successive chiamate `.then()`!
 
 ```js
-fetch(url)  //start the download
-    .then(function(response) {  //when done downloading
-        let dataPromise = response.json();  //start encoding into an object
-        return dataPromise;  //hand this Promise up
+fetch(url)  //avvia il download
+    .then(function(response) {  //quando ha finito di scaricare
+        let dataPromise = response.json();  //avvia l'encoding in un object
+        return dataPromise;  //passa su questa Promise
     })
-    .then(function(data) {  //when done encoding
-        //do something with the data!!
-        console.log(data); //will now be encoded as a JavaScript object!
+    .then(function(data) {  //quando ha finito di codificare
+        //fai qualcosa con i data!!
+        console.log(data); //ora sara' codificato come un object JavaScript!
     });
 ```
 
@@ -269,16 +269,16 @@ Per gestire errori inevitabili, le Promises forniscono un metodo **`.catch()`** 
 
 ```js
 fetch(url)
-    .then(function(response) {  //when done downloading
-        return response.json();  //second promise is anonymous
+    .then(function(response) {  //quando ha finito di scaricare
+        return response.json();  //la seconda promise e' anonima
     })
-    .then(function(data) {  //when done encoding
-        //do something with the data!!
-        console.log(data); //will now be encoded as a JavaScript object!
+    .then(function(data) {  //quando ha finito di codificare
+        //fai qualcosa con i data!!
+        console.log(data); //ora sara' codificato come un object JavaScript!
     })
     .catch(function(err) {
-        //do something with the error
-        console.error(err);  //e.g., show in the console
+        //fai qualcosa con l'errore
+        console.error(err);  //ad es. mostra in console
     });
 
 ```
@@ -298,7 +298,7 @@ Quindi, vorrai assicurarti di gestire risposte errate o response body inattesi, 
 
 <!-- TODO
 ## async/await
-//this lets you write asynchronous code in a more "synchronous" style, by specifying lines of code that will only execute after the promise is resolved (fulfilled or rejected).
+//questo ti permette di scrivere codice asincrono in uno stile piu' "sincrono", specificando righe che verranno eseguite solo dopo che la promise e' risolta (fulfilled o rejected).
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
 https://hackernoon.com/6-reasons-why-javascripts-async-await-blows-promises-away-tutorial-c7ec10518dd9
@@ -306,7 +306,7 @@ https://hackernoon.com/6-reasons-why-javascripts-async-await-blows-promises-away
 
 
 <!--
-//forms go here... or just walk through making one in exercise!
+//qui vanno i form... oppure segui l'esercizio per crearne uno!
     //form: `method` and `action`
     //input elements
     //labels
@@ -320,14 +320,14 @@ L'uso di `fetch()` sopra funziona bene per i data formattati in JSON (che e' il 
 Per scaricare data in formato **plain text**, puoi usare `fetch()` come sopra, ma invece di chiamare `.json()` sulla response per encodarla come object JavaScript, puoi chiamare il metodo `.text()` per encodarla come string di base:
 
 ```js
-fetch(url)  //start the download
-    .then(function(response) {  //when done downloading
-        let dataPromise = response.text();  //start encoding into a String
-        return dataPromise;  //hand this Promise up
+fetch(url)  //avvia il download
+    .then(function(response) {  //quando ha finito di scaricare
+        let dataPromise = response.text();  //avvia l'encoding in una String
+        return dataPromise;  //passa su questa Promise
     })
-    .then(function(text) {  //when done encoding
-        //do something with the text data!!
-        console.log(text); //will now be encoded as a JavaScript string!
+    .then(function(text) {  //quando ha finito di codificare
+        //fai qualcosa con i data testuali!!
+        console.log(text); //ora sara' codificato come una stringa JavaScript!
     });
 ```
 
@@ -354,7 +354,7 @@ Per usare `d3.fetch()`, devi caricarlo come libreria esterna:
 ```
 
 
-For formatted plain text (such as JSON or CSV data), you will need -->
+Per plaintext formattato (come JSON o CSV), dovrai -->
 
 
 

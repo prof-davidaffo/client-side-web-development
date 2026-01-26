@@ -227,7 +227,7 @@ Nel component `BlogPost` sopra, il value `urlParams` sara' un object che contien
     - visitare `posts/hello` fara' si' che `urlParams` sia l'object `{postId: "hello"}`
     - visitare `posts/2022-10-31` fara' si' che `urlParams` sia l'object: `{postId: "2022-10-13"}`
 - Se l'elemento e' renderizzato da `<Route path="posts/:date/:title" element={<BlogPost />} />`, allora
-    - visitare `posts/2022-10-31/Hello` fara' si' che `urlParams` sia l'object `{date: "2022-10-31", title: "Hello"}` (nota i values multipli per i parametri multipli!)
+    - visitare `posts/2022-10-31/Ciao` fara' si' che `urlParams` sia l'object `{date: "2022-10-31", title: "Ciao"}` (nota i values multipli per i parametri multipli!)
 
 Se vuoi lavorare con i **query parameters** (per esempio, la parte `?key1=value1&key2=value2` dell'URL), puoi usare l'hook `useSearchParams()`. Questo funziona in modo simile all'hook `useState()`, tranne che il value verra' memorizzato nel query parameter dell'URL invece che nello state del Component. Nota che i query parameters dovrebbero essere usati solo per values come le search queries che _non corrispondono a una risorsa consistente_.
 

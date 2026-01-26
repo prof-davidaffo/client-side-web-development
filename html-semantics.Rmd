@@ -8,9 +8,9 @@ Un HTML non semantico e' un HTML che non descrive davvero il significato di un c
 <div class="column col2">
 ```html
 <!-- HTML -->
-<h1>This is a real heading!</h1>
+<h1>Questo e' un vero heading!</h1>
 <p class="fake-header">
-  This just LOOKS like a heading.
+  Questo solo SEMBRA un heading.
 </p>
 ```
 </div>
@@ -63,7 +63,7 @@ Il valore dell'attribute `href` puo' essere qualsiasi URL valido (inclusi quelli
 
     ```html
     <!-- An internal hyperlink to a file in a different folder on the same domain.
-         Note that the relative URL cam include moving up a folder. -->
+         Nota che l'URL relativo puo' includere la risalita di una cartella. -->
     <a href="../assignments/exercise-01.html">Exercise 01</a>
     ```
 
@@ -186,7 +186,7 @@ Gli elementi `<figure>` e `<figcaption>` sono un buon esempio di elementi semant
 E' anche possibile incorporare elementi video o audio in una web page usando rispettivamente [**`<video>`**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) e [**`<audio>`**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio). Questi elementi si aspettano una "source", specificata con l'attribute `src` o con un elemento figlio `<source>` (usato per avere piu' sorgenti):
 
 ```html
-<!-- basic example of <video> element, adapted from MDN -->
+<!-- esempio base dell'elemento <video>, adattato da MDN -->
 <video controls width="400">
   <source src="media/videos/cat-video.mp4" type="video/mp4" />
   <!-- text to show if video isn't supported -->
@@ -421,7 +421,7 @@ Le tabelle sono codificate in HTML con l'elemento `<table>`. Un `<table>` contie
 </div>
 <div class="column col2">
 
-![The rendered data table produced by the HTML code.](img/html-semantics/table-basic.png)
+![La tabella di dati renderizzata prodotta dal codice HTML.](img/html-semantics/table-basic.png)
 
 </div>
 </div>
@@ -495,7 +495,7 @@ Quando un form viene submit (ad es. cliccando un `<button>` di tipo `submit`), i
 
 L'attribute `action` specifica l'URL a cui i dati saranno inviati quando il form viene submit. Di solito e' un URL nello stesso domain della pagina corrente, quindi si fornisce solo un relative path. Quindi nell'esempio sopra, i dati saranno inviati all'URL `result.html`; il server gestira' i dati inviati e poi restituira' una response per quell'URL (in pratica, caricando quella pagina). Nota che i server possono fare molte cose con i dati, incluso _redirigere_ gli utenti, quindi la pagina che si carica per l'utente non e' necessariamente la stessa specificata in `action`.
 
-L'attribute `method` indica quale [HTTP Method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) usera' la request risultante. Opzioni valide sono `"GET"` (per request `GET` — usate quando si recuperano dati dal server) o `"POST"` (per request `POST` — usate quando si aggiungono o aggiornano dati sul server). I form che inviano `GET` trasmettono i dati come **query parameter** (uno per ogni `<input>`) aggiunti all'URL `action` — ad esempio, inviare il form sopra con il messaggio "Hello" invierebbe una HTTP request a `result.html?greeting=Hello`. I form che inviano `POST` includono i dati nel body della HTTP request (da cui il server puo' leggerli).
+L'attribute `method` indica quale [HTTP Method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) usera' la request risultante. Opzioni valide sono `"GET"` (per request `GET` — usate quando si recuperano dati dal server) o `"POST"` (per request `POST` — usate quando si aggiungono o aggiornano dati sul server). I form che inviano `GET` trasmettono i dati come **query parameter** (uno per ogni `<input>`) aggiunti all'URL `action` — ad esempio, inviare il form sopra con il messaggio "Ciao" invierebbe una HTTP request a `result.html?greeting=Ciao`. I form che inviano `POST` includono i dati nel body della HTTP request (da cui il server puo' leggerli).
 
 <p class="alert alert-info">Le app React e sistemi simili spesso gestiscono i dati del form client-side; quindi gli attribute `action` e `method` vengono _omessi_ perche' non sono usati. Puoi impedire a un form di inviare una nuova HTTP request usando `event.preventDefault()` in JavaScript; vedi [DOM Manipulation](#dom) per dettagli.</p>
 
@@ -504,7 +504,7 @@ L'attribute `method` indica quale [HTTP Method](https://developer.mozilla.org/en
 Gli utenti forniscono dati ai form tramite elementi [**`<input>`**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input). Un `<input>` fornisce un controllo interattivo, come un campo di testo o una checkbox. Gli elementi `<input>` sono inline e _empty_ — come un `<img>`, non hanno contenuto testuale proprio.
 
 ```html
-<!-- example input elements -->
+<!-- elementi di input di esempio -->
 <label for="usernameInput">Username:</label>
 <input type="text" id="usernameInput" name="username">
 
@@ -545,7 +545,7 @@ Come negli esempi sopra, tutti i form control e gli input supportano e si aspett
 Tutti gli input supportano anche un attribute `value`. Questo attribute memorizza il valore inserito o selezionato dall'utente. Puoi usarlo per fornire un valore di default che l'utente puo' sostituire.
 
 ```html
-<!-- example inputs with different names and default values -->
+<!-- input di esempio con nomi diversi e valori di default -->
 <label for="firstnameInput">First Name:</label>
 <input type="text" id="firstnameInput" name="firstname" value="Joel">
 
@@ -688,7 +688,7 @@ ARIA fornisce supporto all'accessibilita' anche per web page _interattive_, dove
 Per esempio, considera una pagina con un [hamburger menu](https://en.wikipedia.org/wiki/Hamburger_button)) o un dropdown/"slide-out" simile. Le tecnologie assistive devono informare l'utente se il menu e' espanso o se il contenuto scorrevole e' visibile. Questo puo' essere gestito con [ARIA state attributes](https://w3c.github.io/aria/#states_and_properties) come `aria-expanded`:
 
 ```html
-<!-- an example hamburger menu with ARIA attributes -->
+<!-- un esempio di menu hamburger con attributi ARIA -->
 <button aria-expanded="false" aria-controls="menuContent" aria-label="Expand Menu">
   <img src="hamburger-icon" alt="a hamburger menu">
 </button>

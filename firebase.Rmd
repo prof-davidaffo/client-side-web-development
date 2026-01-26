@@ -120,16 +120,16 @@ Per modificare o configurare le security rules, vai alla tab "Rules" della pagin
 Le Firebase Security Rules sono definite in JSON usando uno schema particolare (e un po' awkward). In pratica, dentro la property `"rules"` specifichi un JSON tree che rispecchia la struttura del database. Ma invece di avere un value per le keys del database, specifichi un object con le properties `".read"` e `".write"`. I values di queste properties sono espressioni booleane che indicano se l'utente corrente puo' leggere (access) o scrivere (modify) quel value. Per maggiori dettagli su come scrivere le rules, come gestire l'autorizzazione degli utenti (solo certi utenti possono read/write) o la data validation (assicurare che i data siano di un certo tipo), vedi [la documentazione ufficiale](https://firebase.google.com/docs/database/security/).
 
 
-### Data References {-}
+### Reference ai dati {-}
 Per iniziare a lavorare con il tuo database, devi ottenere una **reference** a quel value nel database.
 
 Inizi ottenendo una reference al database stesso, usando la function **`getDatabase()`** fornita dal database module `firebase/database` di Firebase:
 
 ```js
-//import the function from the realtime database module
+//importa la function dal modulo realtime database
 import { getDatabase } from 'firebase/database';
 
-//get a reference to the database service
+//ottieni una reference al servizio database
 const db = getDatabase();
 ```
 
@@ -142,14 +142,14 @@ Per modificare specifici values nel database, devi ottenere una [**reference**](
 ```js
 import { getDatabase, ref } from 'firebase/database';
 
-//get a reference to the database service
+//ottieni una reference al servizio database
 const db = getDatabase();
 
-//get reference to the "people"" property in the database
+//ottieni una reference alla property "people" nel database
 const peopleRef = ref(db, "people")
 
-//get reference to the "sarah" property inside the "people" property in the database
-//similar to `database.people.sarah` using dot notation
+//ottieni una reference alla property "sarah" dentro la property "people" nel database
+//simile a `database.people.sarah` usando la dot notation
 const sarahRef = ref(db, "people/sarah");
 ```
 
@@ -160,10 +160,10 @@ I "path" ai values annidati nel database sono scritti in una "path notation" sti
 Dato che questo path e' solo una string, puoi usare la string concatenation per costruire il path al value specifico che vuoi referenziare (ad es. se vuoi lavorare solo con il value di una persona specifica):
 
 ```js
-//variable name to access
+//nome della variable da usare per accedere
 const personName = "Ada";
 
-//access the "Ada" property inside of the "people" property inside the database
+//accedi alla property "Ada" dentro la property "people" nel database
 const personOfInterestRef = ref(db, "people/"+personName);
 ```
 
@@ -172,12 +172,12 @@ In alternativa, puoi usare la function **`child()`** per ottenere una reference 
 ```js
 import { ref, child } from 'firebase/database';
 
-//equivalent to the above example
+//equivalente all'esempio sopra
 
-//get reference to the "people" property in the database
+//ottieni una reference alla property "people" nel database
 const peopleRef = ref(db, "people")
 
-//get reference to the "sarah" property inside of the "people" reference'd value
+//ottieni una reference alla property "sarah" dentro il value referenziato di "people"
 const sarahRef = child(peopleRef, "sarah")
 ```
 
@@ -188,16 +188,16 @@ In generale, vuoi lavorare con il subset di data piu' piccolo possibile. Quindi 
 Puoi modificare i values nel database usando la function **`set()`**. Questa function prende due argomenti: una _database reference_ e il nuovo value che vuoi assegnare a quella location nel database:
 
 ```js
-//alias the `set` function as `firebaseSet`
+//aliasa la function `set` come `firebaseSet`
 import { ref, set as firebaseSet } from 'firebase/database'
 
-//get a reference to where sarah's age is stored in the database
+//ottieni una reference a dove e' memorizzata l'eta' di sarah nel database
 const sarahAgeRef = ref(db, "people/sarah/age");
 
-//change Sarah's age to 43 (happy birthday!)
+//cambia l'eta' di Sarah a 43 (buon compleanno!)
 const newValueForSarahAge = 43;
 
-//assign the new value in the database
+//assegna il nuovo value nel database
 firebaseSet(sarahRef, newValueForSarahAge);
 ```
 
@@ -208,13 +208,13 @@ Nota che in questo esempio uso la keyword `as` per _aliasare_ la function `set` 
 Nota che, come per i normali JSON objects, puoi anche "set"are values per entries del database che non esistevano prima&mdash;non devi "dichiarare" un value nel database in anticipo.
 
 ```js
-//a reference to the people entry in the database
+//una reference all'entry "people" nel database
 const peopleRef = ref(db, "people")
 
-//a reference to a location with no currently defined value
+//una reference a una location senza value definito
 const adaRef = ref(peopleRef, "ada");
 
-//set an object to that location in the database
+//imposta un object in quella location nel database
 firebaseSet(adaRef, {age: "206", pet: "Charlie"})
 ```
 
@@ -225,10 +225,10 @@ Infine, nota che il metodo `set()` restituisce una _Promise_. Quindi puoi usare 
 ```js
 const sarahPetRef = ref(db, "people/sarah/pet");
 
-//change Sarah's pet
+//cambia il pet di Sarah
 firebaseSet(sarahPetRef, "Sparky")
-    .then(() => console.log("data saved successfully!"))
-    .catch(err => console.log(err)); //log any errors for debugging
+    .then(() => console.log("dati salvati con successo!"))
+    .catch(err => console.log(err)); //logga eventuali errori per debugging
 ```
 
 
@@ -240,14 +240,14 @@ Registri un database change listener usando la function **`onValue()`**. Questa 
 ```js
 import { ref, onValue } from "firebase/database"
 
-//get a reference to a particular value location in the database
+//ottieni una reference a una particolare posizione di value nel database
 const amitRef = ref(db, 'people/amit');
 
-//register a listener for changes to that value location
+//registra un listener per i cambiamenti in quella location di value
 onValue(amitRef, (snapshot) => {
     const amitValue = snapshot.val();
-    console.log(amitValue); //=> e.g., { age: 35, petName: "Spot" }
-    //can do something else with amitValue (e.g., assign to a state variable)
+    console.log(amitValue); //=> ad es., { age: 35, petName: "Spot" }
+    //puoi fare altro con amitValue (ad es. assegnarlo a una state variable)
 });
 ```
 
@@ -264,17 +264,17 @@ function MyComponent(props) {
     const db = getDatabase();
     const amitRef = ref(db, "people/amit");
 
-    //returns a function that will "unregister" (turn off) the listener
+    //restituisce una function che fara' "unregister" (spegne) il listener
     const unregisterFunction = onValue(amitRef, (snapshot) => {
       const amitValue = snapshot.val();
-      //...set state variable, etc...
+      //...imposta la state variable, ecc...
     })
 
-    //cleanup function for when component is removed
+    //function di cleanup quando il component viene rimosso
     function cleanup() {
-      unregisterFunction(); //call the unregister function
+      unregisterFunction(); //chiama la function di unregister
     }
-    return cleanup; //effect hook callback returns the cleanup function
+    return cleanup; //la callback dell'effect hook restituisce la function di cleanup
   })
 }
 ```
@@ -287,7 +287,7 @@ Quando lavori e memorizzi data nel cloud, spesso vuoi organizzare quei data in l
 
 - Il problema e' che con un array, un numero di index non si riferisce sempre allo stesso elemento! Per esempio, se hai un array `['a', 'b' 'c']`, l'index `1` inizialmente si riferisce a `'b'`. Tuttavia, se aggiungi un elemento all'inizio dell'array, improvvisamente l'index `1` si riferisce a `'a'`. Quindi, se un utente stava provando a modificare `'b'` prima che la sua macchina fosse consapevole del cambiamento, potrebbe finire per modificare il value sbagliato quando chiede di cambiare il value all'index `1`! Questo bug e' un esempio di [race condition](https://en.wikipedia.org/wiki/Race_condition), che puo' verificarsi quando due processi modificano i data _concurrently_ (allo stesso tempo).
 
-<!-- could put code version of example ?? -->
+<!-- si potrebbe mettere la versione del codice dell'esempio ?? -->
 
 Per evitare questo problema, Firebase tratta tutte le data structures come Objects, cosi' ogni value nel JSON tree ha una key _unique_. In questo modo ogni client modifica sempre il value che si aspetta. Tuttavia, Firebase offre un modo per trattare gli Objects come arrays, tramite la function **`push()`**(https://firebase.google.com/docs/reference/js/firebase.database.Reference#push) che aggiunge un value a un object con una **auto-generated key**.
 
@@ -295,10 +295,10 @@ Per evitare questo problema, Firebase tratta tutte le data structures come Objec
 import { getDatabase, ref, push as firebasePush } from 'firebase/database';
 
 const db = getDatabase;
-const tasksRef = ref(db, "tasks"); //an object of tasks
+const tasksRef = ref(db, "tasks"); //un object di task
 
-firebasePush(taskRef, {description:'First things first'} ) //add one task
-firebasePush(taskRef, {description:'Next things next'} ) //add another task
+firebasePush(taskRef, {description:'First things first'} ) //aggiungi un task
+firebasePush(taskRef, {description:'Next things next'} ) //aggiungi un altro task
 ```
 
 Questo produrra' un database con una struttura:
@@ -323,26 +323,26 @@ Nota come la property `tasks` sia un Object (anche se abbiamo "pushato" elementi
 Gli _snapshots_ Firebase supportano una function `forEach()` che puoi usare per iterare gli elementi, permettendoti di fare loop sugli elementi di un array. Tuttavia, se vuoi fare qualcosa di piu' complesso (come `map()`, `filter()` o `reduce()`), ti serve un vero array. Il modo migliore per ottenerlo e' usare `Objects.keys()` su `snapshot.val()` per ottenere un array di keys, e poi puoi iterare/mappare quelle keys in un array di values (accedendo a ogni elemento dell'"array" con la bracket notation).
 
 ```js
-//`tasksSnapshot` is a snapshot of the `tasks` "array"
-const allTasksObject = tasksSnapshot.val(); //convert snapshot to value
+//`tasksSnapshot` e' uno snapshot dell'"array" `tasks`
+const allTasksObject = tasksSnapshot.val(); //converti lo snapshot in value
 
-//an array of the keys in the object ["-KyxgJhKOVeAj2ibPxrO", "-KyxgMDJueu17348NxDF"]
+//un array delle keys nell'object ["-KyxgJhKOVeAj2ibPxrO", "-KyxgMDJueu17348NxDF"]
 const allTasksKeys = Object.keys(allTasksObject);
 
-//map array of keys into array of tasks
+//mappa l'array di keys in un array di task
 const allTasksArray = allTasksKeys.map((key) => {
-    const singleTaskCopy = {...allTasksObject[key]}; //copy element at that key
-    singleTaskCopy.key = key; //locally save the key string as an "id" for later
-    return singleTaskCopy; //the transformed object to store in the array
+    const singleTaskCopy = {...allTasksObject[key]}; //copia l'elemento a quella key
+    singleTaskCopy.key = key; //salva localmente la key come "id" per dopo
+    return singleTaskCopy; //l'object trasformato da salvare nell'array
 });
 
 allTasksArray.map((taskObject) => { ... })
 ```
 
-Nota che quando fai loop su un "array", ogni elemento viene gestito separatamente dalla sua key (allo stesso modo in cui un `forEach()` ti permette di lavorare con gli elementi separatamente dal loro index). Ma dato che potresti aver bisogno di quella key come identificatore per fare `ref()` e modificare l'elemento JSON piu' avanti, assicurati di "salvare" la key nell'object mentre lo processi come property locale aggiuntiva. Questo non modifica il value nel database, solo la variable locale su cui sta lavorando il codice. _Don't lose your key!_.
+Nota che quando fai loop su un "array", ogni elemento viene gestito separatamente dalla sua key (allo stesso modo in cui un `forEach()` ti permette di lavorare con gli elementi separatamente dal loro index). Ma dato che potresti aver bisogno di quella key come identificatore per fare `ref()` e modificare l'elemento JSON piu' avanti, assicurati di "salvare" la key nell'object mentre lo processi come property locale aggiuntiva. Questo non modifica il value nel database, solo la variable locale su cui sta lavorando il codice. _Non perdere la key!_.
 
 
-## User Authentication
+## Autenticazione utenti
 Firebase fornisce la possibilita' di **authenticate** gli utenti: permettere alle persone di sign up nella tua application e poi verificare che siano chi dicono di essere (ad es. hanno fornito la password corretta). Firebase supporta diverse forme di authentication: gli utenti possono fare sign up con email e password, log in con un social media service come Google o Facebook, o anche autenticarsi "anonymously" (cosi' puoi almeno tenere traccia di persone diverse anche se non sai chi sono).
 
 Per supportare la user authentication, devi abilitare questa feature nella Firebase Web Console. Clicca il link "Authentication" nel menu laterale sotto la categoria Build per andare alla pagina di gestione authentication, poi scegli "Get started". Nella tab "Sign-In Method", puoi scegliere quali forme di authentication abilitare.
@@ -353,21 +353,21 @@ Per supportare la user authentication, devi abilitare questa feature nella Fireb
 
 Nota che potrai usare questa pagina per vedere e gestire gli utenti che si sono registrati con il tuo project Firebase. Qui puoi vedere se gli utenti sono stati creati correttamente, cercare il loro **User UID** per debugging o eliminare utenti dal project:
 
-![Firebase users as presented in the authentication web console](img/firebase/firebase-users.png)
+![Utenti Firebase come presentati nella web console di authentication](img/firebase/firebase-users.png)
 
-### Signing In with FirebaseUI {-}
+### Accesso con FirebaseUI {-}
 E' possibile chiamare functions fornite da Firebase per creare e loggare utenti. Tuttavia, questo richiederebbe implementare il "log in form" da soli&mdash;e supporterebbe facilmente solo l'opzione Email/Password.
 
-Invece, un approccio migliore e' usare la libreria [**FireabaseUI**](https://firebase.google.com/docs/auth/web/firebaseui), gestita da Firebase. Questa libreria fornisce un set di elementi UI predefiniti come un "login form", inclusi quelli che supportano diversi metodi di authentication.
+Invece, un approccio migliore e' usare la libreria [**FirebaseUI**](https://firebase.google.com/docs/auth/web/firebaseui), gestita da Firebase. Questa libreria fornisce un set di elementi UI predefiniti come un "login form", inclusi quelli che supportano diversi metodi di authentication.
 
-![Example of FirebaseUI authentication](img/firebase/firebaseui-example.png)
+![Esempio di authentication con FirebaseUI](img/firebase/firebaseui-example.png)
 
 Esistono diverse librerie FirebaseUI per piattaforme diverse; in passato per React si usava [`firebaseui-web-react`](https://github.com/firebase/firebaseui-web-react). Tuttavia, a novembre 2022 questa libreria non e' stata aggiornata per funzionare con l'ultima versione di React (React 18), e sembra essere stata abbandonata invece di [applicare il fix necessario](https://github.com/firebase/firebaseui-web-react/pull/173). Ci sono due possibili workaround:
 
-1. You can install a version of the library updated by [Gabriel Villenave](https://github.com/gvillenave) (which hasn't been accepted as a pull request yet):
+1. Puoi installare una versione della libreria aggiornata da [Gabriel Villenave](https://github.com/gvillenave) (che non e' stata ancora accettata come pull request):
 
     ```bash
-    # install library on the command line
+    # installa la libreria dalla command line
     npm install https://gitpkg.now.sh/gvillenave/firebaseui-web-react/dist --legacy-peer-deps
     ```
 
@@ -391,38 +391,38 @@ Esistono diverse librerie FirebaseUI per piattaforme diverse; in passato per Rea
 La libreria React FirebaseUI fornisce un Component chiamato `<StyledFirebaseAuth>`, che puoi renderizzare nella pagina come qualsiasi altro Component. Puoi pensare a questo Component come al "login form". Un esempio completo di come si usa questo Component e' mostrato sotto, seguito da una spiegazione.
 
 ```jsx
-//import auth functions and variables from Firebase
+//importa functions e variables di auth da Firebase
 import { getAuth, EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth'
 
-//import the component -- pick one!
+//importa il component -- scegline uno!
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'; //install option 1
 import StyledFirebaseAuth from './StyledFirebaseAuth'; //install option 2
 
-//an object of configuration values
+//un object di valori di configurazione
 const firebaseUIConfig = {
-  signInOptions: [ //array of sign in options supported
-    //array can include just "Provider IDs", or objects with the IDs and options
+  signInOptions: [ //array di opzioni di sign in supportate
+    //l'array puo' includere solo "Provider IDs", o objects con gli ID e le options
     GoogleAuthProvider.PROVIDER_ID,
     { provider: EmailAuthProvider.PROVIDER_ID, requiredDisplayName: true },
   ],
-  signInFlow: 'popup', //don't redirect to authenticate
-  credentialHelper: 'none', //don't show the email account chooser
-  callbacks: { //"lifecycle" callbacks
+  signInFlow: 'popup', //non fare redirect per autenticare
+  credentialHelper: 'none', //non mostrare il selettore email
+  callbacks: { //callbacks di "lifecycle"
     signInSuccessWithAuthResult: () => {
-      return false; //don't redirect after authentication
+      return false; //non fare redirect dopo l'autenticazione
     }
   }
 }
 
-//the React compnent to render
+//il component React da renderizzare
 function MySignInScreen() {
 
-  const auth = getAuth(); //access the "authenticator"
+  const auth = getAuth(); //accedi all'"authenticator"
 
   return (
     <div>
-      <h1>My App</h1>
-      <p>Please sign-in:</p>
+      <h1>La mia app</h1>
+      <p>Per favore fai sign-in:</p>
       <StyledFirebaseAuth uiConfig={firebaseUIConfig} firebaseAuth={auth} />
     </div>
   );
@@ -472,7 +472,7 @@ import { getAuth, signOut } from 'firebase/auth';
 const auth = getAuth();
 
 signOut(auth)
-    .catch(err => console.log(err)); //log any errors for debugging
+    .catch(err => console.log(err)); //logga eventuali errori per debugging
 ```
 
 Nota che il metodo `signOut()` restituisce una Promise, quindi puoi fare `.catch()` e mostrare eventuali errori.
@@ -486,18 +486,18 @@ L'_authenticator_ (da `getAuth()`) tiene traccia di quale Firebase User e' attua
 Il modo consigliato per [determinare chi e' attualmente logged in](https://firebase.google.com/docs/auth/web/manage-users#get_the_currently_signed-in_user) e' registrare un _event listener_ che ascolta gli eventi quando lo "state" dell'authentication cambia (ad es. un utente fa log in o log out). Questo event avviene quando la pagina si carica e Firebase determina che un utente si e' registrato in precedenza (viene impostato lo "initial state"), oppure quando un utente fa log in o log out. Puoi registrare questo listener usando la function **`onAuthStateChanged()`** di Firebase:
 
 ```js
-//import functions
+//importa le functions
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 const auth = getAuth();
 
 onAuthStateChanged(auth, (firebaseUser) => {
-    if(firebaseUser){ //firebaseUser defined: is logged in
-        console.log('logged in', firebaseUser.displayName);
-        //do something with firebaseUser (e.g. assign to a state variable)
+    if(firebaseUser){ //firebaseUser definito: e' loggato
+        console.log('loggato', firebaseUser.displayName);
+        //fai qualcosa con firebaseUser (ad es. assegnarlo a una state variable)
     }
-    else { //firebaseUser is undefined: is not logged in
-        console.log('logged out');
+    else { //firebaseUser e' undefined: non e' loggato
+        console.log('log out');
     }
 });
 ```
@@ -519,19 +519,19 @@ function MyComponent(props) {
   useEffect(() => {
     const auth = getAuth();
 
-    //returns a function that will "unregister" (turn off) the listener
+    //restituisce una function che fara' "unregister" (spegne) il listener
     const unregisterFunction = onAuthStateChanged(auth, (firebaseUser) => {
-      //handle user state change
+      //gestisci il cambio di stato dell'utente
       if(firebaseUser){
         //...
       }
     })
 
-    //cleanup function for when component is removed
+    //function di cleanup quando il component viene rimosso
     function cleanup() {
-      unregisterFunction(); //call the unregister function
+      unregisterFunction(); //chiama la function di unregister
     }
-    return cleanup; //effect hook callback returns the cleanup function
+    return cleanup; //la callback dell'effect hook restituisce la function di cleanup
   })
 }
 ```
@@ -551,18 +551,18 @@ function MyComponent(props) {
   const auth = getAuth();
   const [user, loading, error] = useAuthState(auth);
 
-  if(loading){ //still waiting
+  if(loading){ //ancora in attesa
     return <p>Initializing user</p>
   }
 
-  if(error) { //error logging in
+  if(error) { //errore durante il log in
     return <p>Error: {error}</p>
   }
 
-  if(user) { //user is defined, so logged in
-    return <p>Welcome {user.displayName}</p>
-  } else { //user is undefined
-    return <p>Please sign in</p>
+  if(user) { //user definito, quindi loggato
+    return <p>Benvenuto {user.displayName}</p>
+  } else { //user e' undefined
+    return <p>Per favore fai sign in</p>
   }
 
   //...
@@ -577,7 +577,7 @@ Anche se usare questa libreria non e' necessario, e' un buon esempio di come l'a
 ## Firebase Storage
 Il Realtime Database di Firebase persiste data JSON: quindi alla fine solo strings, numbers e booleans (anche se quei values sono organizzati in objects). Se vuoi persistere _file_ di data&mdash;come musica, video, pdf, ecc&mdash;devi usare un servizio diverso chiamato [**Firebase Storage**](https://firebase.google.com/docs/storage). Storage e' progettato per salvare file piu' grandi invece di data types primitivi. Alla fine funziona in modo abbastanza simile al realtime database, ma senza data binding.
 
-<div class="alert alert-warning"><p>Ad October 2024, Firebase richiede un piano "pay-as-you-go" per creare un storage bucket. Questo richiede di fornire informazioni di carta di credito. Gli studenti del corso INFO 340 non devono iscriversi a questo piano; parla con il docente per dettagli.</p>
+<div class="alert alert-warning"><p>A ottobre 2024, Firebase richiede un piano "pay-as-you-go" per creare un storage bucket. Questo richiede di fornire informazioni di carta di credito. Gli studenti del corso INFO 340 non devono iscriversi a questo piano; parla con il docente per dettagli.</p>
 <p>Con questo piano hai fino a 5 GB di storage gratis (con 1 GB/giorno di download consentito). Sono circa 5000 immagini hi-res, 1000 file musicali o circa 20 ore di video compresso. Questo significa che il free storage service funziona benissimo per la maggior parte delle versioni di sviluppo delle media applications&mdash;anche se potresti esaurire lo spazio rapidamente se lavori con video, soprattutto in fase di test. Considera sempre la quantita' di data che dovrai salvare prima di scegliere un cloud storage service.</p></div>
 
 Per usare Firebase Storage, devi abilitare questa feature nella Firebase Web Console. Clicca il link "Storage" nel menu laterale sotto la categoria Build per andare alla pagina di gestione, poi scegli "Get started". Come per il realtime database, dovrai scegliere le security rules (probabilmente in _test mode_ per lo sviluppo). Quando ti viene chiesto un Cloud Storage bucket location, scegli qualcosa di vicino per velocizzare l'accesso un po', ma per la maggior parte dei progetti studenteschi non importa molto.
@@ -598,13 +598,13 @@ Questo elemento funziona come gli altri `<input>` che hai usato (di solito con i
 Dopo che l'utente sceglie un file, puoi accedere ai file scelti tramite la property `.files` dell'elemento `<input>`&mdash;simile alla property `.value` usata con i `<input>` di default. Nota che la finestra di scelta file del sistema operativo puo' permettere di scegliere piu' file (o nessuno!); vorrai controllare questo quando rispondi ai cambiamenti dell'input:
 
 ```js
-//an event handler function that responds to changing in an `<input type="file">`
+//una event handler function che risponde al cambio in un `<input type="file">`
 const handleChange = (event) => {
-  //the event.target is the <input> element
-  //check e.g., that the user picked at least 1 file, and that the file they picked actually exists
+  //event.target e' l'elemento <input>
+  //controlla, ad es., che l'utente abbia scelto almeno 1 file e che il file esista davvero
   if(event.target.files.length > 0 && event.target.files[0]) {
-    const chosenFile = event.target.files[0]; //the first file chosen
-    //... do something with that value, such as store it in React's state
+    const chosenFile = event.target.files[0]; //il primo file scelto
+    //... fai qualcosa con quel value, ad es. salvarlo nello state di React
   }
 }
 ```
@@ -619,10 +619,10 @@ Per prima cosa, devi ottenere una _reference_ alla location in Storage dove vuoi
 ```js
 import {getStorage, ref as storageRef } from 'firebase/storage';
 
-//get a reference to the storage service
+//ottieni una reference al servizio storage
 const storage = getStorage();
 
-//get a reference to where the file will go in storage
+//ottieni una reference a dove andra' il file nello storage
 const fileRef = storageRef(storage, "path/to/myfile.png");
 ```
 
@@ -639,8 +639,8 @@ const storage = getStorage();
 const fileRef = storageRef(storage, "path/to/myfile.png");
 
 uploadBytes(fileRef, myFile)
-  .then(() => console.log("file successfully uploaded!"))
-  .catch(err => console.log(err)); //log any errors for debugging
+  .then(() => console.log("file caricato con successo!"))
+  .catch(err => console.log(err)); //logga eventuali errori per debugging
 ```
 
 La function `uploadBytes()` e' asynchronous (puo' richiedere tempo per caricare file grandi!) e restituisce una Promise che puoi usare per reagire quando il file ha finito di caricarsi o per catturare e gestire gli errori.
@@ -652,18 +652,18 @@ Ma interrogare Firebase e' un'operazione di rete, quindi richiede tempo... Per q
 ```js
 import {getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 
-//await calls need to go in an async function
+//le chiamate await devono stare in una function async
 async function uploadFile() {
   const storage = getStorage();
   const fileRef = storageRef(storage, "path/to/myfile.png");
 
-  try { //try/catch to handle errors
-    await uploadBytes(fileRef, myFile) //asynchronous upload
-    const url = await getDownloadURL(fileRef); //asynch query for public URL
-    //...do something with the url, such as set it to state for rendering
-    //...or save that url in the realtime database
+  try { //try/catch per gestire errori
+    await uploadBytes(fileRef, myFile) //upload asincrono
+    const url = await getDownloadURL(fileRef); //query asincrona per URL pubblico
+    //...fai qualcosa con l'url, ad es. salvarlo nello state per il rendering
+    //...oppure salva quell'url nel realtime database
   } catch (err) {
-    console.log(err); //log any errors for debugging
+    console.log(err); //logga eventuali errori per debugging
   }
 }
 ```
