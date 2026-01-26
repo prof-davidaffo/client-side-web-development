@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="it" xml:lang="it">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 HTML Semantico | Sviluppo Web lato client</title>
+  <meta name="description" content="Dispensa del corso INFO 340: Client-Side Web Development." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 HTML Semantico | Sviluppo Web lato client" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://info340.github.io//img/cover-img.png" />
+  <meta property="og:description" content="Dispensa del corso INFO 340: Client-Side Web Development." />
+  <meta name="github-repo" content="info340/book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 HTML Semantico | Sviluppo Web lato client" />
+  
+  <meta name="twitter:description" content="Dispensa del corso INFO 340: Client-Side Web Development." />
+  <meta name="twitter:image" content="https://info340.github.io//img/cover-img.png" />
+
+<meta name="author" content="Joel Ross" />
+
+
+<meta name="date" content="2026-01-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/busy-spider-icon.png" type="image/x-icon" />
+<link rel="prev" href="css-fundamentals.html"/>
+<link rel="next" href="selettori-css.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-98444716-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/prism.min.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./" class="title">Client-Side Web Development</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Informazioni sul libro</a></li>
+<li class="chapter" data-level="1" data-path="software-setup.html"><a href="software-setup.html"><i class="fa fa-check"></i><b>1</b> Impostazione iniziale</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="software-setup.html"><a href="software-setup.html#web-browser"><i class="fa fa-check"></i><b>1.1</b> Web Browser</a></li>
+<li class="chapter" data-level="1.2" data-path="software-setup.html"><a href="software-setup.html#code-editor"><i class="fa fa-check"></i><b>1.2</b> Code Editor</a>
+<ul>
+<li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html#visual-studio-code"><i class="fa fa-check"></i>Visual Studio Code</a></li>
+<li class="chapter" data-level="1.2.1" data-path="software-setup.html"><a href="software-setup.html#altri-editor"><i class="fa fa-check"></i><b>1.2.1</b> Altri editor</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="software-setup.html"><a href="software-setup.html#bash-command-line"><i class="fa fa-check"></i><b>1.3</b> Bash (Command Line)</a></li>
+<li class="chapter" data-level="1.4" data-path="software-setup.html"><a href="software-setup.html#node-e-npm"><i class="fa fa-check"></i><b>1.4</b> Node e <code>npm</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html#installare-software-con-npm"><i class="fa fa-check"></i>Installare software con npm</a></li>
+<li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html#gestire-package-locali"><i class="fa fa-check"></i>Gestire package locali</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html"><i class="fa fa-check"></i><b>2</b> Sviluppo lato client</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#client-e-server"><i class="fa fa-check"></i><b>2.1</b> Client e server</a></li>
+<li class="chapter" data-level="2.2" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#url-e-file-web"><i class="fa fa-check"></i><b>2.2</b> URL e file web</a>
+<ul>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#tipi-di-file-client-side"><i class="fa fa-check"></i>Tipi di file client-side</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#server-e-hosting"><i class="fa fa-check"></i><b>2.3</b> Server e hosting</a>
+<ul>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#hosting-con-github-pages"><i class="fa fa-check"></i>Hosting con GitHub Pages</a></li>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#development-server"><i class="fa fa-check"></i>Development server</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#web-standards"><i class="fa fa-check"></i><b>2.4</b> Web standards</a></li>
+<li class="chapter" data-level="2.5" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#accessibilita-web"><i class="fa fa-check"></i><b>2.5</b> Accessibilita’ web</a>
+<ul>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#supportare-laccessibilita"><i class="fa fa-check"></i>Supportare l’accessibilita’</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="html-fundamentals.html"><a href="html-fundamentals.html"><i class="fa fa-check"></i><b>3</b> Fondamenti di HTML</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="html-fundamentals.html"><a href="html-fundamentals.html#elementi-html"><i class="fa fa-check"></i><b>3.1</b> Elementi HTML</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#alcuni-elementi-di-esempio"><i class="fa fa-check"></i>Alcuni elementi di esempio</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#commenti"><i class="fa fa-check"></i>Commenti</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#attributi"><i class="fa fa-check"></i>Attributi</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#elementi-vuoti"><i class="fa fa-check"></i>Elementi vuoti</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="html-fundamentals.html"><a href="html-fundamentals.html#nidificazione-di-elementi"><i class="fa fa-check"></i><b>3.2</b> Nidificazione di elementi</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#elementi-block-vs.-inline"><i class="fa fa-check"></i>Elementi block vs. inline</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="html-fundamentals.html"><a href="html-fundamentals.html#struttura-della-web-page"><i class="fa fa-check"></i><b>3.3</b> Struttura della web page</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#risorse"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="css-fundamentals.html"><a href="css-fundamentals.html"><i class="fa fa-check"></i><b>4</b> Fondamenti di CSS</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="css-fundamentals.html"><a href="css-fundamentals.html#perche-due-linguaggi-diversi"><i class="fa fa-check"></i><b>4.1</b> Perche’ due linguaggi diversi?</a></li>
+<li class="chapter" data-level="4.2" data-path="css-fundamentals.html"><a href="css-fundamentals.html#includere-css"><i class="fa fa-check"></i><b>4.2</b> Includere CSS</a></li>
+<li class="chapter" data-level="4.3" data-path="css-fundamentals.html"><a href="css-fundamentals.html#regole-css"><i class="fa fa-check"></i><b>4.3</b> Regole CSS</a>
+<ul>
+<li class="chapter" data-level="" data-path="css-fundamentals.html"><a href="css-fundamentals.html#fondamenti-dei-css-selector"><i class="fa fa-check"></i>Fondamenti dei CSS selector</a></li>
+<li class="chapter" data-level="" data-path="css-fundamentals.html"><a href="css-fundamentals.html#fondamenti-delle-property-css"><i class="fa fa-check"></i>Fondamenti delle property CSS</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="css-fundamentals.html"><a href="css-fundamentals.html#la-cascade"><i class="fa fa-check"></i><b>4.4</b> La cascade</a></li>
+<li class="chapter" data-level="" data-path="css-fundamentals.html"><a href="css-fundamentals.html#risorse-1"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="html-semantico.html"><a href="html-semantico.html"><i class="fa fa-check"></i><b>5</b> HTML Semantico</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="html-semantico.html"><a href="html-semantico.html#elementi-html-specifici"><i class="fa fa-check"></i><b>5.1</b> Elementi HTML specifici</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#hyperlink"><i class="fa fa-check"></i>Hyperlink</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#elementi-testuali-inline"><i class="fa fa-check"></i>Elementi testuali inline</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#immagini-e-media"><i class="fa fa-check"></i>Immagini e media</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#headings"><i class="fa fa-check"></i>Headings</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#elementi-non-semantici"><i class="fa fa-check"></i>Elementi non semantici</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#sectioning-elements"><i class="fa fa-check"></i>Sectioning elements</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#tabelle"><i class="fa fa-check"></i>Tabelle</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#form"><i class="fa fa-check"></i>Form</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="html-semantico.html"><a href="html-semantico.html#aria-for-accessibility"><i class="fa fa-check"></i><b>5.2</b> ARIA for Accessibility</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#aria-labeling"><i class="fa fa-check"></i>ARIA Labeling</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#aria-roles-and-landmarks"><i class="fa fa-check"></i>ARIA Roles and Landmarks</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#aria-e-interattivita"><i class="fa fa-check"></i>ARIA e interattivita’</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#risorse-2"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="selettori-css.html"><a href="selettori-css.html"><i class="fa fa-check"></i><b>6</b> Selettori CSS</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="selettori-css.html"><a href="selettori-css.html#selector-di-base"><i class="fa fa-check"></i><b>6.1</b> Selector di base</a>
+<ul>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#type-selector"><i class="fa fa-check"></i>Type Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#class-selector"><i class="fa fa-check"></i>Class Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#id-selector"><i class="fa fa-check"></i>Id Selector</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="selettori-css.html"><a href="selettori-css.html#selector-complessi"><i class="fa fa-check"></i><b>6.2</b> Selector complessi</a>
+<ul>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#grouping-selector"><i class="fa fa-check"></i>Grouping Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#compound-selector"><i class="fa fa-check"></i>Compound Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#descendant-selector"><i class="fa fa-check"></i>Descendant Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#pseudo-classi"><i class="fa fa-check"></i>Pseudo-classi</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#altri-selector"><i class="fa fa-check"></i>Altri selector</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="selettori-css.html"><a href="selettori-css.html#specificita-dei-selector"><i class="fa fa-check"></i><b>6.3</b> Specificita’ dei selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#risorse-3"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="proprieta-css.html"><a href="proprieta-css.html"><i class="fa fa-check"></i><b>7</b> Proprieta’ CSS</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="proprieta-css.html"><a href="proprieta-css.html#specificare-i-valori-delle-property"><i class="fa fa-check"></i><b>7.1</b> Specificare i valori delle property</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#valori-di-property-ereditati"><i class="fa fa-check"></i>Valori di property ereditati</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#css-units"><i class="fa fa-check"></i>Unita’ di lunghezza e dimensioni</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="proprieta-css.html"><a href="proprieta-css.html#font-e-testo"><i class="fa fa-check"></i><b>7.2</b> Font e testo</a></li>
+<li class="chapter" data-level="7.3" data-path="proprieta-css.html"><a href="proprieta-css.html#css-colors"><i class="fa fa-check"></i><b>7.3</b> Colori e background</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#background-e-immagini"><i class="fa fa-check"></i>Background e immagini</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="proprieta-css.html"><a href="proprieta-css.html#box-model"><i class="fa fa-check"></i><b>7.4</b> Spaziatura con il Box Model</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#padding"><i class="fa fa-check"></i>Padding</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#border"><i class="fa fa-check"></i>Border</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#margin"><i class="fa fa-check"></i>Margin</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#padding-vs.-margin"><i class="fa fa-check"></i>Padding vs. Margin</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#box-sizing"><i class="fa fa-check"></i>Box-Sizing</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="proprieta-css.html"><a href="proprieta-css.html#flow-layout"><i class="fa fa-check"></i><b>7.5</b> Flow Layout</a></li>
+<li class="chapter" data-level="7.6" data-path="proprieta-css.html"><a href="proprieta-css.html#posizionamento-alternativo"><i class="fa fa-check"></i><b>7.6</b> Posizionamento alternativo</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#floating"><i class="fa fa-check"></i>Floating</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="proprieta-css.html"><a href="proprieta-css.html#flexbox"><i class="fa fa-check"></i><b>7.7</b> Flexbox</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#risorse-4"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="responsive-css.html"><a href="responsive-css.html"><i class="fa fa-check"></i><b>8</b> CSS responsive</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="responsive-css.html"><a href="responsive-css.html#design-mobile-first"><i class="fa fa-check"></i><b>8.1</b> Design mobile-first</a>
+<ul>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#principi-di-mobile-first-design"><i class="fa fa-check"></i>Principi di mobile-first design</a></li>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#specificare-il-viewport"><i class="fa fa-check"></i>Specificare il viewport</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="responsive-css.html"><a href="responsive-css.html#media-query"><i class="fa fa-check"></i><b>8.2</b> Media query</a>
+<ul>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#esempio-flexbox-responsive"><i class="fa fa-check"></i>Esempio: Flexbox responsive</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#risorse-5"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="framework-css.html"><a href="framework-css.html"><i class="fa fa-check"></i><b>9</b> Framework CSS</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="framework-css.html"><a href="framework-css.html#usare-un-framework"><i class="fa fa-check"></i><b>9.1</b> Usare un framework</a>
+<ul>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#includere-un-framework"><i class="fa fa-check"></i>Includere un framework</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="framework-css.html"><a href="framework-css.html#bootstrap"><i class="fa fa-check"></i><b>9.2</b> Bootstrap</a>
+<ul>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#class-di-utilita"><i class="fa fa-check"></i>Class di utilita’</a></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#design-responsive"><i class="fa fa-check"></i>Design responsive</a></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#la-grid"><i class="fa fa-check"></i>La Grid</a></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#componenti"><i class="fa fa-check"></i>Componenti</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#risorse-6"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="javascript.html"><a href="javascript.html"><i class="fa fa-check"></i><b>10</b> Fondamenti di JavaScript</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="javascript.html"><a href="javascript.html#programmare-con-javascript"><i class="fa fa-check"></i><b>10.1</b> Programmare con JavaScript</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#storia-e-versioni"><i class="fa fa-check"></i>Storia e versioni</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="javascript.html"><a href="javascript.html#eseguire-javascript"><i class="fa fa-check"></i><b>10.2</b> Eseguire JavaScript</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#nel-browser"><i class="fa fa-check"></i>Nel Browser</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#da-command-line-con-node.js"><i class="fa fa-check"></i>Da Command-line con Node.js</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="javascript.html"><a href="javascript.html#scrivere-script"><i class="fa fa-check"></i><b>10.3</b> Scrivere Script</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#strict-mode"><i class="fa fa-check"></i>Strict Mode</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="javascript.html"><a href="javascript.html#variabili"><i class="fa fa-check"></i><b>10.4</b> Variabili</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#data-types-di-base"><i class="fa fa-check"></i>Data Types di base</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#array"><i class="fa fa-check"></i>Array</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#object"><i class="fa fa-check"></i>Object</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#type-coercion"><i class="fa fa-check"></i>Type Coercion</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="javascript.html"><a href="javascript.html#strutture-di-controllo"><i class="fa fa-check"></i><b>10.5</b> Strutture di controllo</a></li>
+<li class="chapter" data-level="10.6" data-path="javascript.html"><a href="javascript.html#funzioni"><i class="fa fa-check"></i><b>10.6</b> Funzioni</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#risorse-7"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>11</b> Programmazione funzionale in JS</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="functional-programming.html"><a href="functional-programming.html#functions-are-variables"><i class="fa fa-check"></i><b>11.1</b> Functions ARE Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#anonymous-functions"><i class="fa fa-check"></i>Anonymous Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="functional-programming.html"><a href="functional-programming.html#object-functions"><i class="fa fa-check"></i><b>11.2</b> Object Functions</a></li>
+<li class="chapter" data-level="11.3" data-path="functional-programming.html"><a href="functional-programming.html#callback-functions"><i class="fa fa-check"></i><b>11.3</b> Callback Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#closures"><i class="fa fa-check"></i>Closures</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="functional-programming.html"><a href="functional-programming.html#functional-looping"><i class="fa fa-check"></i><b>11.4</b> Functional Looping</a>
+<ul>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#map"><i class="fa fa-check"></i>Map</a></li>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#filter"><i class="fa fa-check"></i>Filter</a></li>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#reduce"><i class="fa fa-check"></i>Reduce</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="functional-programming.html"><a href="functional-programming.html#pure-functions"><i class="fa fa-check"></i><b>11.5</b> Pure Functions</a></li>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#risorse-8"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="dom.html"><a href="dom.html"><i class="fa fa-check"></i><b>12</b> Modello a oggetti del documento (DOM)</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="dom.html"><a href="dom.html#la-dom-api"><i class="fa fa-check"></i><b>12.1</b> La DOM API</a>
+<ul>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#global-variables"><i class="fa fa-check"></i>Global Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="dom.html"><a href="dom.html#dom-manipulation"><i class="fa fa-check"></i><b>12.2</b> DOM Manipulation</a>
+<ul>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#referenziare-elementi-html"><i class="fa fa-check"></i>Referenziare elementi HTML</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#modificare-elementi-html"><i class="fa fa-check"></i>Modificare elementi HTML</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#modificare-il-dom-tree"><i class="fa fa-check"></i>Modificare il DOM Tree</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#accessibility"><i class="fa fa-check"></i>Accessibility</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="dom.html"><a href="dom.html#ascoltare-gli-eventi"><i class="fa fa-check"></i><b>12.3</b> Ascoltare gli Eventi</a>
+<ul>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#tipi-di-eventi"><i class="fa fa-check"></i>Tipi di Eventi</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#event-driven-programming"><i class="fa fa-check"></i>Event-Driven Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#risorse-9"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="librerie-javascript.html"><a href="librerie-javascript.html"><i class="fa fa-check"></i><b>13</b> Librerie JavaScript</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="librerie-javascript.html"><a href="librerie-javascript.html#includere-una-library"><i class="fa fa-check"></i><b>13.1</b> Includere una Library</a></li>
+<li class="chapter" data-level="13.2" data-path="librerie-javascript.html"><a href="librerie-javascript.html#esempio-jquery"><i class="fa fa-check"></i><b>13.2</b> Esempio: jQuery</a>
+<ul>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#manipolare-il-dom"><i class="fa fa-check"></i>Manipolare il DOM</a></li>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#gestire-gli-eventi"><i class="fa fa-check"></i>Gestire gli eventi</a></li>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#e-altro"><i class="fa fa-check"></i>E altro!</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#risorse-10"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="es6.html"><a href="es6.html"><i class="fa fa-check"></i><b>14</b> Sintassi ES6+</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="es6.html"><a href="es6.html#es6-syntax-features"><i class="fa fa-check"></i><b>14.1</b> ES6+ Syntax Features</a>
+<ul>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#arrow-functions"><i class="fa fa-check"></i>Arrow Functions</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#destructuring"><i class="fa fa-check"></i>Destructuring</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#spreading"><i class="fa fa-check"></i>Spreading</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#template-strings"><i class="fa fa-check"></i>Template Strings</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="es6.html"><a href="es6.html#modules"><i class="fa fa-check"></i><b>14.2</b> Modules</a>
+<ul>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#module-syntax"><i class="fa fa-check"></i>Module Syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="es6.html"><a href="es6.html#es6-classes"><i class="fa fa-check"></i><b>14.3</b> Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#why-classes"><i class="fa fa-check"></i>Why Classes?</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#review-classes-in-java"><i class="fa fa-check"></i>Review: Classes in Java</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#es6-class-syntax"><i class="fa fa-check"></i>ES6 Class Syntax</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#inheritance"><i class="fa fa-check"></i>Inheritance</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#working-with-this"><i class="fa fa-check"></i>Working with <code>this</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="react.html"><a href="react.html"><i class="fa fa-check"></i><b>15</b> Introduzione a React</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="react.html"><a href="react.html#react-vite-setup"><i class="fa fa-check"></i><b>15.1</b> Preparazione: React e Vite</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#eseguire-il-development-server"><i class="fa fa-check"></i>Eseguire il Development Server</a></li>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#struttura-del-progetto"><i class="fa fa-check"></i>Struttura del Progetto</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="react.html"><a href="react.html#jsx"><i class="fa fa-check"></i><b>15.2</b> JSX</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#espressioni-inline"><i class="fa fa-check"></i>Espressioni Inline</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="react.html"><a href="react.html#component-react"><i class="fa fa-check"></i><b>15.3</b> Component React</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#organizzazione-dei-components"><i class="fa fa-check"></i>Organizzazione dei Components</a></li>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#alternativa-deprecata-class-components"><i class="fa fa-check"></i>Alternativa Deprecata: Class Components</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="react.html"><a href="react.html#props"><i class="fa fa-check"></i><b>15.4</b> Proprieta’ (<code>props</code>)</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#props-e-composizione"><i class="fa fa-check"></i>Props e Composizione</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#risorse-11"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="react-interattivo.html"><a href="react-interattivo.html"><i class="fa fa-check"></i><b>16</b> React Interattivo</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="react-interattivo.html"><a href="react-interattivo.html#gestire-gli-eventi-in-react"><i class="fa fa-check"></i><b>16.1</b> Gestire gli Eventi in React</a></li>
+<li class="chapter" data-level="16.2" data-path="react-interattivo.html"><a href="react-interattivo.html#state-e-hooks"><i class="fa fa-check"></i><b>16.2</b> State e Hooks</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#aggiornare-lo-state"><i class="fa fa-check"></i>Aggiornare lo State</a></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#state-vs.-props"><i class="fa fa-check"></i>State vs. Props</a></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#lifting-up-state"><i class="fa fa-check"></i>Lifting Up State</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="react-interattivo.html"><a href="react-interattivo.html#interazioni-specifiche"><i class="fa fa-check"></i><b>16.3</b> Interazioni Specifiche</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#lavorare-con-i-forms"><i class="fa fa-check"></i>Lavorare con i Forms</a></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#caricare-data-via-ajax"><i class="fa fa-check"></i>Caricare Data via AJAX</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#risorse-12"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="routing-lato-client.html"><a href="routing-lato-client.html"><i class="fa fa-check"></i><b>17</b> Routing lato client</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="routing-lato-client.html"><a href="routing-lato-client.html#single-page-applications"><i class="fa fa-check"></i><b>17.1</b> Single-Page Applications</a></li>
+<li class="chapter" data-level="17.2" data-path="routing-lato-client.html"><a href="routing-lato-client.html#react-router"><i class="fa fa-check"></i><b>17.2</b> React-Router</a>
+<ul>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#routing"><i class="fa fa-check"></i>Routing</a></li>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#linking"><i class="fa fa-check"></i>Linking</a></li>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#react-router-e-hosting"><i class="fa fa-check"></i>React Router e Hosting</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#risorse-13"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="ajax.html"><a href="ajax.html"><i class="fa fa-check"></i><b>18</b> Richieste AJAX</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="ajax.html"><a href="ajax.html#ajax-1"><i class="fa fa-check"></i><b>18.1</b> AJAX</a>
+<ul>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#xml-e-json"><i class="fa fa-check"></i>XML e JSON</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="ajax.html"><a href="ajax.html#fetching-data"><i class="fa fa-check"></i><b>18.2</b> Fetching Data</a></li>
+<li class="chapter" data-level="18.3" data-path="ajax.html"><a href="ajax.html#asynchronous-programming"><i class="fa fa-check"></i><b>18.3</b> Asynchronous Programming</a>
+<ul>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#chaining-promises"><i class="fa fa-check"></i>Chaining Promises</a></li>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#handling-errors"><i class="fa fa-check"></i>Handling Errors</a></li>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#altri-data-formats"><i class="fa fa-check"></i>Altri Data Formats</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#risorse-14"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="firebase.html"><a href="firebase.html"><i class="fa fa-check"></i><b>19</b> Firebase</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="firebase.html"><a href="firebase.html#setting-up-firebase"><i class="fa fa-check"></i><b>19.1</b> Setting up Firebase</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#creating-a-project"><i class="fa fa-check"></i>Creating a Project</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#including-firebase-in-react"><i class="fa fa-check"></i>Including Firebase in React</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#adding-collaborators-to-a-project"><i class="fa fa-check"></i>Adding Collaborators to a Project</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="firebase.html"><a href="firebase.html#realtime-database"><i class="fa fa-check"></i><b>19.2</b> Realtime Database</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#setting-up-the-database"><i class="fa fa-check"></i>Setting Up the Database</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#reference-ai-dati"><i class="fa fa-check"></i>Reference ai dati</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#listening-for-data-changes"><i class="fa fa-check"></i>Listening for Data Changes</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#firebase-arrays"><i class="fa fa-check"></i>Firebase Arrays</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="firebase.html"><a href="firebase.html#autenticazione-utenti"><i class="fa fa-check"></i><b>19.3</b> Autenticazione utenti</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#accesso-con-firebaseui"><i class="fa fa-check"></i>Accesso con FirebaseUI</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#managing-the-user"><i class="fa fa-check"></i>Managing the User</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="firebase.html"><a href="firebase.html#firebase-storage"><i class="fa fa-check"></i><b>19.4</b> Firebase Storage</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#file-inputs"><i class="fa fa-check"></i>File Inputs</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#uploading-files"><i class="fa fa-check"></i>Uploading Files</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#risorse-15"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendice-appendici-e-argomenti-speciali.html"><a href="appendice-appendici-e-argomenti-speciali.html"><i class="fa fa-check"></i>(APPENDICE) Appendici e argomenti speciali</a></li>
+<li class="chapter" data-level="20" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html"><i class="fa fa-check"></i><b>20</b> Guida allo stile del codice</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#html-guidelines"><i class="fa fa-check"></i><b>20.1</b> HTML Guidelines</a>
+<ul>
+<li class="chapter" data-level="" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#spacing"><i class="fa fa-check"></i>Spacing</a></li>
+<li class="chapter" data-level="" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#elementi-specifici"><i class="fa fa-check"></i>Elementi specifici</a></li>
+<li class="chapter" data-level="" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#commenti-in-html"><i class="fa fa-check"></i>Commenti in HTML</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#css-guidelines"><i class="fa fa-check"></i><b>20.2</b> CSS Guidelines</a>
+<ul>
+<li class="chapter" data-level="20.2.1" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#spacing-1"><i class="fa fa-check"></i><b>20.2.1</b> Spacing</a></li>
+<li class="chapter" data-level="20.2.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#selectors"><i class="fa fa-check"></i><b>20.2.2</b> Selectors</a></li>
+<li class="chapter" data-level="20.2.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#class-names"><i class="fa fa-check"></i><b>20.2.3</b> Class Names</a></li>
+<li class="chapter" data-level="20.2.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#proprieta-specifiche"><i class="fa fa-check"></i><b>20.2.4</b> Proprieta’ specifiche</a></li>
+<li class="chapter" data-level="20.2.5" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#responsive-css-1"><i class="fa fa-check"></i><b>20.2.5</b> Responsive CSS</a></li>
+<li class="chapter" data-level="20.2.6" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#commenti-in-css"><i class="fa fa-check"></i><b>20.2.6</b> Commenti in CSS</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#javascript-guidelines"><i class="fa fa-check"></i><b>20.3</b> JavaScript Guidelines</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#variables"><i class="fa fa-check"></i><b>20.3.1</b> Variables</a></li>
+<li class="chapter" data-level="20.3.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#functions"><i class="fa fa-check"></i><b>20.3.2</b> Functions</a></li>
+<li class="chapter" data-level="20.3.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#commenti-in-javascript"><i class="fa fa-check"></i><b>20.3.3</b> Commenti in JavaScript</a></li>
+<li class="chapter" data-level="20.3.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#altre-linee-guida-javascript"><i class="fa fa-check"></i><b>20.3.4</b> Altre linee guida JavaScript</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#react-guidelines"><i class="fa fa-check"></i><b>20.4</b> React Guidelines</a>
+<ul>
+<li class="chapter" data-level="20.4.1" data-path="react.html"><a href="react.html#components"><i class="fa fa-check"></i><b>20.4.1</b> Components</a></li>
+<li class="chapter" data-level="20.4.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#mapping-data"><i class="fa fa-check"></i><b>20.4.2</b> Mapping Data</a></li>
+<li class="chapter" data-level="20.4.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#state"><i class="fa fa-check"></i><b>20.4.3</b> State</a></li>
+<li class="chapter" data-level="20.4.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#events-e-forms"><i class="fa fa-check"></i><b>20.4.4</b> Events e Forms</a></li>
+</ul></li>
+<li class="chapter" data-level="20.5" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#linee-guida-varie"><i class="fa fa-check"></i><b>20.5</b> Linee guida varie</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="jest.html"><a href="jest.html"><i class="fa fa-check"></i><b>21</b> Test con Jest</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="jest.html"><a href="jest.html#test"><i class="fa fa-check"></i><b>21.1</b> Test</a></li>
+<li class="chapter" data-level="21.2" data-path="jest.html"><a href="jest.html#testing-con-jest"><i class="fa fa-check"></i><b>21.2</b> Testing con Jest</a></li>
+<li class="chapter" data-level="21.3" data-path="jest.html"><a href="jest.html#scrivere-un-test"><i class="fa fa-check"></i><b>21.3</b> Scrivere un test</a>
+<ul>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#assertion-e-matcher"><i class="fa fa-check"></i>Assertion e matcher</a></li>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#organizzare-i-test"><i class="fa fa-check"></i>Organizzare i test</a></li>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#eseguire-i-test"><i class="fa fa-check"></i>Eseguire i test</a></li>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#esercizio"><i class="fa fa-check"></i>Esercizio</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="jest.html"><a href="jest.html#testing-di-web-app-con-jest"><i class="fa fa-check"></i><b>21.4</b> Testing di web app con Jest</a>
+<ul>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#pratica"><i class="fa fa-check"></i>Pratica</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="webpack.html"><a href="webpack.html"><i class="fa fa-check"></i><b>22</b> Laboratorio: Webpack</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="webpack.html"><a href="webpack.html#che-cose-webpack"><i class="fa fa-check"></i><b>22.1</b> Che cos’e’ Webpack?</a></li>
+<li class="chapter" data-level="22.2" data-path="webpack.html"><a href="webpack.html#getting-started"><i class="fa fa-check"></i><b>22.2</b> Getting Started</a></li>
+<li class="chapter" data-level="22.3" data-path="webpack.html"><a href="webpack.html#webpack.config.js"><i class="fa fa-check"></i><b>22.3</b> <code>webpack.config.js</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#entry-e-output"><i class="fa fa-check"></i><code>entry</code> e <code>output</code></a></li>
+</ul></li>
+<li class="chapter" data-level="22.4" data-path="webpack.html"><a href="webpack.html#loaders"><i class="fa fa-check"></i><b>22.4</b> Loaders</a>
+<ul>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#babel-loader"><i class="fa fa-check"></i>Babel Loader</a></li>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#clean-up-bath"><i class="fa fa-check"></i>Clean up :bath:</a></li>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#ulteriore-pratica-con-i-loader"><i class="fa fa-check"></i>Ulteriore pratica con i Loader</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="class-components.html"><a href="class-components.html"><i class="fa fa-check"></i><b>23</b> Componenti class React</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="class-components.html"><a href="class-components.html#props-nei-class-components"><i class="fa fa-check"></i><b>23.1</b> Props nei Class Components</a></li>
+<li class="chapter" data-level="23.2" data-path="class-components.html"><a href="class-components.html#gestire-gli-eventi-nei-class-components"><i class="fa fa-check"></i><b>23.2</b> Gestire gli Eventi nei Class Components</a>
+<ul>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#accedere-al-this-del-component-dagli-eventi"><i class="fa fa-check"></i>Accedere al <code>this</code> del Component dagli Eventi</a></li>
+</ul></li>
+<li class="chapter" data-level="23.3" data-path="class-components.html"><a href="class-components.html#state-in-class-components"><i class="fa fa-check"></i><b>23.3</b> State nei Class Components</a>
+<ul>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#cambiare-lo-state"><i class="fa fa-check"></i>Cambiare lo State</a></li>
+</ul></li>
+<li class="chapter" data-level="23.4" data-path="class-components.html"><a href="class-components.html#il-lifecycle-del-component"><i class="fa fa-check"></i><b>23.4</b> Il Lifecycle del Component</a>
+<ul>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#esempio-di-lifecycle-caricare-data-via-ajax"><i class="fa fa-check"></i>Esempio di Lifecycle: Caricare Data via AJAX</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#risorse-16"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="css-in-js.html"><a href="css-in-js.html"><i class="fa fa-check"></i><b>24</b> CSS in JS</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="css-in-js.html"><a href="css-in-js.html#perche-css-in-js"><i class="fa fa-check"></i><b>24.1</b> Perche’ CSS in JS?</a></li>
+<li class="chapter" data-level="24.2" data-path="css-in-js.html"><a href="css-in-js.html#stili-inline-in-react"><i class="fa fa-check"></i><b>24.2</b> Stili inline in React</a></li>
+<li class="chapter" data-level="24.3" data-path="css-in-js.html"><a href="css-in-js.html#aphrodite"><i class="fa fa-check"></i><b>24.3</b> Aphrodite</a></li>
+<li class="chapter" data-level="24.4" data-path="css-in-js.html"><a href="css-in-js.html#css-modules"><i class="fa fa-check"></i><b>24.4</b> CSS Modules</a>
+<ul>
+<li class="chapter" data-level="" data-path="css-in-js.html"><a href="css-in-js.html#ejecting-da-create-react-app"><i class="fa fa-check"></i>Ejecting da Create React App</a></li>
+<li class="chapter" data-level="" data-path="css-in-js.html"><a href="css-in-js.html#composizione-delle-class"><i class="fa fa-check"></i>Composizione delle class</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="css-in-js.html"><a href="css-in-js.html#risorse-17"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="redux.html"><a href="redux.html"><i class="fa fa-check"></i><b>25</b> Redux</a></li>
+<li class="chapter" data-level="26" data-path="react-native.html"><a href="react-native.html"><i class="fa fa-check"></i><b>26</b> React Native</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="react-native.html"><a href="react-native.html#getting-setup"><i class="fa fa-check"></i><b>26.1</b> Getting Setup</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#eseguire-react-native-apps"><i class="fa fa-check"></i>Eseguire React Native Apps</a></li>
+</ul></li>
+<li class="chapter" data-level="26.2" data-path="react-native.html"><a href="react-native.html#react-native-apps"><i class="fa fa-check"></i><b>26.2</b> React Native Apps</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#styling-react-native"><i class="fa fa-check"></i>Styling React Native</a></li>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#interaction"><i class="fa fa-check"></i>Interaction</a></li>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#liste-e-data"><i class="fa fa-check"></i>Liste e Data</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Sviluppo Web lato client</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="html-semantico" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> HTML Semantico<a href="html-semantico.html#html-semantico" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Come spiegato nei capitoli precedenti, lo scopo del markup HTML e’ <strong>annotare semanticamente</strong> il testo. Quando diciamo che HTML e’ “semantico”, intendiamo che descrive il significato, la struttura o lo scopo del testo — <em>non</em> l’aspetto visivo del contenuto. Usare HTML solo per la semantica aiuta a seguire il principio di <em>separation of concerns</em> (rendendo il codice piu’ flessibile e facile da modificare e mantenere). Inoltre rende le web page piu’ <strong>accessibili</strong>, perche’ possono essere comprese e navigate meglio da tecnologie assistive come gli screen reader.</p>
+<p>Un HTML non semantico e’ un HTML che non descrive davvero il significato di un contenuto, ma che puo’ avere un aspetto visivo che suggerisce quel significato attraverso l’uso di CSS. Per esempio, un elemento <code>&lt;h1&gt;</code> indica un top-level heading, come il titolo della pagina. Ma di default i browser danno a <code>&lt;h1&gt;</code> un aspetto diverso dal contenuto non marcato (di solito piu’ grande e in grassetto). E’ possibile ottenere un effetto visivo simile solo con CSS:</p>
+<div class="row">
+<div class="column col2">
+<pre class="language-html"><code><span class="token comment">&lt;!-- HTML --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Questo e' un vero heading!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>fake-header<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  Questo solo SEMBRA un heading.
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
+</div>
+<div class="column col2">
+<pre class="language-css"><code><span class="token comment">/* CSS */</span>
+<span class="token selector">.fake-header</span> <span class="token punctuation">{</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 2em<span class="token punctuation">;</span>
+  <span class="token property">font-weight</span><span class="token punctuation">:</span> bold<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</div>
+</div>
+<div class="float">
+<img src="img/accessibility/headings.png" alt="A real heading (top) and a fake heading (bottom)." />
+<div class="figcaption">A real heading (top) and a fake heading (bottom).</div>
+</div>
+<p>In questo esempio, la seconda riga <em>sembra</em> un heading (e’ grande e bold) — ma l’HTML dice che non lo e’, e’ solo un paragraph. Questo puo’ creare problemi e confusione, soprattutto per screen reader e altri sistemi che non sono interessati all’aspetto visivo. Un utente cieco che visita questa pagina non saprebbe che il secondo paragraph dovrebbe fare da heading, perche’ questo non e’ indicato nell’HTML (solo dall’aspetto renderizzato).</p>
+<p>Per questo motivo e’ vitale che il markup HTML sia usato solo per fornire un’annotazione semantica accurata. Non usare un tipo di elemento non semantico (come un heading) per il suo aspetto di default, e usa elementi che forniscono informazioni aggiuntive sullo scopo del contenuto quando possibile, cosi’ che screen reader e altre tecnologie assistive lo comprendano.</p>
+<p class="alert alert-info">
+Molte regole nella <a href="#code-style-guide">code style guide</a> riguardano l’uso semantico di HTML.
+</p>
+<p>Questo capitolo discute alcuni elementi HTML specifici, fornendo dettagli su come includerli nei documenti e come usarli in modo semantico per garantire che la pagina supporti al meglio le tecnologie assistive. Discute anche lo standard <strong>ARIA</strong> per aggiungere significati semantici aggiuntivi agli elementi e supportare ulteriormente l’accessibilita’.</p>
+<div id="elementi-html-specifici" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Elementi HTML specifici<a href="html-semantico.html#elementi-html-specifici" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ci sono oltre 100 elementi HTML diversi, ognuno con il proprio significato semantico. Questo capitolo non e’ una reference completa (per quello usa <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">la reference MDN</a>), ma fornisce indicazioni specifiche e requisiti per usarli in modo efficace e semantico.</p>
+<div id="hyperlink" class="section level3 unnumbered hasAnchor">
+<h3>Hyperlink<a href="html-semantico.html#hyperlink" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Gli hyperlink sono fondamentali per HTML (e’ proprio nel nome!), quindi l’<strong>anchor element <code>&lt;a&gt;</code></strong> e’ forse il piu’ importante. L’elemento <code>&lt;a&gt;</code> indica un hyperlink: testo che, quando <em>attivato</em> (ad es. cliccato o selezionato), fara’ <em>navigare</em> il browser verso un URL diverso da quello corrente. Cliccare un hyperlink si chiama <em>seguire</em> il link.</p>
+<p>Come discusso in <a href="html-fundamentals.html#html-fundamentals">HTML Fundamentals</a>, l’elemento <code>&lt;a&gt;</code> ha quasi sempre un attribute <code>href</code> che indica dove va il testo dell’elemento:</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- a external hyperlink to `https://ischool.uw.edu` --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://ischool.uw.edu<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>iSchool homepage<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
+<p>Il valore dell’attribute <code>href</code> puo’ essere qualsiasi URL valido (inclusi quelli che usano protocolli diversi da <code>https</code>). La maggior parte degli hyperlink e’ di uno di questi due tipi:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>external hyperlink</strong>: navigano verso un <em>domain</em> diverso. Per esempio, un link a Google o alla homepage dell’iSchool (come l’esempio sopra) da questo libro sarebbe un external hyperlink, perche’ le pagine del libro non sono sullo stesso domain. Gli external hyperlink si scrivono in genere come URL completi, includendo il protocollo, perche’ includono il domain a cui si collegano.</p></li>
+<li><p><strong>internal hyperlink</strong>: navigano verso altre web page nello <em>stesso domain</em>. Per esempio, i link ad altri capitoli di questo libro sono internal hyperlink. Gli URL per questi hyperlink sono specificati solo come <em>path</em> degli altri URL; il domain e il protocollo sono sottintesi e quindi omessi come ridondanti. Per esempio:</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- An internal hyperlink to a different `.html` file in the same domain --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/client-side-development.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Chapter 2: Client-Side Development<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
+<p>Gli internal hyperlink possono usare <em>absolute path</em> come nell’esempio sopra. Il path e’ allora determinato dalla “root folder” del server. Questi URL risolvono anche se il link e’ in una pagina nidificata dentro una o piu’ cartelle del server. E’ anche possibile usare <em>relative path</em>, nel qual caso il target dell’hyperlink e’ relativo all’URL della <em>pagina corrente</em> (che di solito renderizza il file che include il link):</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- An internal hyperlink to a file in a different folder on the same domain.
+     Nota che l'URL relativo puo' includere la risalita di una cartella. --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>../assignments/exercise-01.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Exercise 01<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
+<p>E come notato in <a href="#attributes">HTML Fundamentals</a>, l’URL di un hyperlink puo’ includere anche il <em>fragment</em> (la parte dopo <code>#</code>) per creare un <strong>bookmark link</strong> verso un elemento con un attribute <code>id</code> su una pagina:</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>index.html#nav<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Link to element on `index.html` with `id="nav"`<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#title<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Link to element on current page with `id="title"`<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre></li>
+</ol>
+<p>Per fare in modo che un hyperlink si apra in una nuova tab o finestra (dipende dal browser), aggiungi un attribute <strong><code>target="_blank"</code></strong>. Il valore <code>"_blank"</code> e’ una keyword speciale che dice al browser di aprire il link in un nuovo contesto.</p>
+<p>Infine, e’ importante notare che attivare un hyperlink (ad es. cliccarlo) <em>invia una nuova HTTP request</em> al server, che risponde con la nuova pagina da renderizzare. Questo significa che anche se hai un hyperlink alla stessa pagina (eccetto i bookmark link), la pagina verra’ comunque ricaricata:</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- in index.html --></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>index.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>A link to this same URL will cause the page to reload<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
+<p>Ricaricare una pagina significa che tutti gli asset (immagini, ecc.) possono essere riscaricati e qualsiasi stato in JavaScript verra’ perso. Fai attenzione a quando inneschi un reload di pagina.</p>
+<p class="alert alert-info">
+HTTP e’ un protocollo <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview#http_is_stateless_but_not_sessionless"><strong>stateless</strong></a>. Questo significa che ogni HTTP request — ogni page load — e’ considerata indipendente e senza relazione intrinseca. Visitare o caricare una pagina una volta non ha impatto su page load futuri; ogni visita e’ una “prima e ultima volta”. Server e browser possono (e spesso lo fanno) includere logica extra per tracciare <em>sessioni</em> e far sembrare che i page load siano correlati (ad es. mantenere un carrello online), ma questo e’ lavoro extra separato dall’encoding della pagina. Nello sviluppo client-side e’ meglio agire come se ogni page load fosse un evento unico, salvo indicazioni diverse dal server.
+</p>
+<p>Gli hyperlink servono per la <em>navigazione</em> — attivare un hyperlink dirige l’utente verso un URL diverso. L’elemento <code>&lt;a&gt;</code> <em>non</em> va usato per elementi cliccabili che non fanno navigazione (come inviare un form o espandere un dropdown). I clic non di navigazione vanno annotati come <strong><code>&lt;button&gt;</code></strong>. Allo stesso modo, non usare un <code>&lt;button&gt;</code> per la navigazione — quello deve essere un <code>&lt;a&gt;</code>! Se vuoi che un hyperlink sembri un button, puoi usare CSS per stilizzarlo in quel modo — <a href="#utility-classes">Bootstrap</a> supporta facilmente questo comportamento, per esempio.</p>
+<div id="hyperlink-accessibili" class="section level4 unnumbered hasAnchor">
+<h4>Hyperlink accessibili<a href="html-semantico.html#hyperlink-accessibili" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Tecnologie assistive come gli screen reader possono saltare rapidamente tra gli hyperlink di una pagina — questo aiuta gli utenti a capire quali elementi di navigazione sono disponibili e a spostarsi velocemente senza ascoltare contenuti extra. Per questo, per rendere un hyperlink accessibile, <em>il testo del link deve indicare dove porta</em> anche quando e’ fuori contesto:</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- Do this --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/assignments<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>see assignments here<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+
+<span class="token comment">&lt;!-- Don't do this --></span>
+see assignments <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/assignments<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>here<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
+<p>Nel secondo esempio, il link consiste solo nella parola “here”, quindi quando uno screen reader elenca tutti gli elementi di navigazione, elenchera’ solo la parola “here” senza contesto per capire dove porta. Questo aiuta anche utenti vedenti, che capiscono piu’ facilmente i link nel contesto.</p>
+<p>Allo stesso modo, assicurati che testi di link “simili” che puntano a posti diversi siano resi univoci:</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- Don't do this; screenreaders can't distinguish between the links --></span>
+For the first <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>exercise-01.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>exercise<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span> you'll practice HTML, for
+the second <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>exercise-02.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>exercise<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span> you'll practice CSS.</code></pre>
+<p>Usare attribute ARIA come <code>aria-label</code> (vedi sotto) puo’ aiutare a garantire che il testo dei link sia accessibile, fornendo contesto specifico per lo screen reader se fai fatica a rendere la prosa auto-contenuta.</p>
+</div>
+</div>
+<div id="elementi-testuali-inline" class="section level3 unnumbered hasAnchor">
+<h3>Elementi testuali inline<a href="html-semantico.html#elementi-testuali-inline" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>//storicamente le singole parole di una frase possono essere formattate tipograficamente per essere marcate come distinte rendendole in bold o italico. Ma queste sono solo proprieta’ di <em>aspetto</em>/formattazione — non forniscono alcuna informazione semantica sul testo. Quindi anche se HTML include elementi <code>&lt;b&gt;</code> per il bold e <code>&lt;i&gt;</code> per l’italic, questi sono artefatti storici e <em>non dovrebbero essere usati</em>. Per esempio, <code>&lt;b&gt;</code> fa renderizzare il testo in bold, ma non fa nulla per indicare <em>perche’</em> quel testo e’ in bold. Un utente vedente puo’ inferire qualcosa dal contesto, ma uno screen reader non puo’ fare queste inferenze da elementi non semantici.</p>
+<p>HTML include invece una vasta serie di <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element#inline_text_semantics">inline textual elements</a> che puoi usare per separare semanticamente il testo. Di default possono renderizzare il testo in bold o italico (e questo puo’ essere personalizzato con CSS), fornendo anche supporto semantico aggiuntivo per rendere il testo piu’ accessibile alle tecnologie assistive.</p>
+<p>Alcuni degli elementi inline semantici piu’ utili o interessanti sono descritti qui sotto, con link alla documentazione MDN per maggiori informazioni:</p>
+<ul>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/em"><code>&lt;em&gt;</code></a> marca il testo come <em>emphasized</em>, di default in italic.</p></li>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/strong"><code>&lt;strong&gt;</code></a> marca il testo come <strong>strongly</strong> importante, di default in bold. Questo e’ distinto da <code>&lt;em&gt;</code>: non e’ solo enfasi ma particolare importanza.</p></li>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/strong"><code>&lt;code&gt;</code></a> marca testo come codice, di default in <code>monospace</code>. L’elemento <code>&lt;pre&gt;</code> puo’ essere usato per gestire testo pre-formattato per code block piu’ grandi.</p></li>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/del"><code>&lt;del&gt;</code></a> marca testo come eliminato, di default con <span style="text-decoration:line-through">strike-through</span>.</p></li>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/del"><code>&lt;u&gt;</code></a> marca testo con una annotazione non testuale, come un underline o una decorazione. Anche se di default rende il testo sottolineato, il significato dell’elemento e’ annotare che quel testo <em>ha</em> una decorazione (anche se e’ fornita dal tag). In generale e’ meglio evitare questo elemento perche’ poco semantico (come evitare <code>&lt;i&gt;</code> e <code>&lt;b&gt;</code>), e usare la property CSS <code>text-decoration</code> per sottolineature.</p></li>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/cite"><code>&lt;cite&gt;</code></a> marca testo come titolo di un’opera creativa citata — ad esempio il titolo di un libro o film. Nota che non indica la “citazione” in un saggio (non e’ il <code>(Brown, 1999)</code> in MLA, o una voce in bibliografia); indica solo il titolo dell’opera. Di default rende il testo in italic.</p></li>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/abbr"><code>&lt;abbr&gt;</code></a> marca testo come abbreviazione o acronimo. In particolare, se assegni all’elemento un attribute <code>title</code> con il significato esteso dell’acronimo, l’utente puo’ passare con il mouse e vedere un pop-up con il significato:</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>abbr</span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Hypertext Markup Language<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>HTML<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>abbr</span><span class="token punctuation">></span></span></code></pre>
+<p>Questo aiuta a fornire definizioni fuori dal flusso del testo — ma quando presenti informazioni, e’ meglio includere quelle definizioni nella frase stessa.</p></li>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time"><code>&lt;time&gt;</code></a> rappresenta un orario o una data. Fornire l’attribute <code>datetime</code> puo’ codificare l’orario in formato leggibile dalle macchine, utile per SEO o altri sistemi:</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>time</span> <span class="token attr-name">datetime</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>2023-12-23<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>New Year's Eve<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>time</span><span class="token punctuation">></span></span></code></pre></li>
+</ul>
+<p>Importante: anche se molti di questi elementi forniscono uno styling di default, dovresti usarli solo per <em>scopi semantici</em>. Non usare <code>&lt;em&gt;</code> solo per ottenere l’italic: puoi usare un altro elemento semantico (o uno <code>&lt;span&gt;</code>, vedi sotto) e poi usare CSS per stilizzarlo. La property <code>font-style</code> puo’ rendere il contenuto italic, <code>font-weight</code> puo’ renderlo bold, <code>text-decoration</code> puo’ aggiungere sottolineature, ecc.</p>
+<p class="alert alert-warning">
+Gli elementi <code>&lt;i&gt;</code> (italics) e <code>&lt;b&gt;</code> (bold) erano originariamente parte di HTML come elementi puramente di styling, senza significato semantico (e quindi non dovrebbero essere usati). L’HTML moderno attribuisce loro un significato semantico: <code>&lt;i&gt;</code> e’ usato per contenuto “set apart” (ma per un motivo coperto da un altro elemento), e <code>&lt;b&gt;</code> per contenuto che “merita attenzione” (ma per un motivo non coperto da altri elementi). Poiche’ il significato e’ vago, spesso e’ meglio non usarli per evitare confusione. Se vuoi mettere in italic del testo, pensa al motivo: e’ perche’ e’ enfatizzato (quindi <code>&lt;em&gt;</code>) o perche’ e’ un termine da definire o un’opera citata? C’e’ quasi sempre un elemento migliore e piu’ informativo per annotare il contenuto.
+</p>
+<!-- line breaks -- leave in the style guide? -->
+</div>
+<div id="immagini-e-media" class="section level3 unnumbered hasAnchor">
+<h3>Immagini e media<a href="html-semantico.html#immagini-e-media" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Anche se le web page sono principalmente un medium testuale, spesso contengono molte informazioni puramente <em>visive</em>. Questo include media come immagini o video, ma anche etichette visive come icone (ad es. un bottone “search” con una lente o un <a href="https://en.wikipedia.org/wiki/Hamburger_button">hamburger button</a>). Queste feature possono essere create con diversi elementi, ma servono attenzioni specifiche per garantire che siano accessibili e possano essere <em>percepite</em> dagli screen reader.</p>
+<p>La forma piu’ comune di media visivo sul web sono le immagini, create con l’elemento <strong><code>&lt;img&gt;</code></strong>. Come notato in <a href="html-fundamentals.html#html-fundamentals">HTML Fundamentals</a>, l’attribute <code>src</code> specifica il path del file immagine da mostrare. Di solito e’ un <em>relative path</em> verso un file servito dallo stesso domain (ad es. <code>src="imgs/my_pic.jpg"</code>). Ma e’ anche possibile usare un path assoluto verso un’immagine su un altro domain (ad es. <code>src="http://pictures.com/cat_pic.jpg"</code>) — questo e’ chiamato <a href="https://simple.wikipedia.org/wiki/Hotlinking">hotlinking</a> di un’immagine. L’hotlinking e’ spesso considerato una bad practice — non solo costringe un altro domain a fornire bandwidth per i contenuti del tuo sito, ma significa anche che il file servito potrebbe cambiare senza che tu lo sappia, causando contenuti indesiderati sul tuo sito.</p>
+<p>Per rendere le immagini accessibili, includi sempre un attribute <code>alt</code> che fornisce testo <strong>alt</strong>ernativo quando l’immagine non puo’ essere mostrata (ad es. con screen reader, ma anche se l’immagine non si carica):</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>puppy_picture.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>a cute puppy<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
+<p>Questo elemento verra’ letto dagli screen reader come “a cute puppy, image”. Nota che l’“alt-text” <em>non</em> dovrebbe includere testo introduttivo come “a picture of”, perche’ gli screen reader indicano gia’ che si tratta di un’immagine. La WAI (Web Accessibility Initiative) fornisce ulteriori <a href="https://www.w3.org/WAI/tutorials/images/tips/">indicazioni su come scrivere un buon alt text</a>.</p>
+<p>Per immagini piu’ complesse (come chart o infographic), puoi anche fornire un <em>hyperlink</em> a una descrizione piu’ lunga usando l’attribute <code>longdesc</code>. Questo attribute prende un valore URI (relativo o assoluto; quello che metteresti in <code>href</code>) che punta a dove si trova la descrizione. Gli screen reader offriranno all’utente l’opzione di navigare verso questa descrizione lunga.</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>accessibility_infographic.png<span class="token punctuation">"</span></span>
+     <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>an infographic showing how to make web pages accessible<span class="token punctuation">"</span></span>
+     <span class="token attr-name">longdesc</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>infographic_text.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- link to other page with text description --></span></code></pre>
+<p>Ovviamente, fornire testo descrittivo per le immagini puo’ essere utile per <em>tutti</em> gli utenti (cosi’ capiscono cosa stanno guardando). Puoi aggiungere semanticamente una caption a un’immagine mettendola dentro un elemento <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure"><code>&lt;figure&gt;</code></a> e poi usando un elemento <code>&lt;figcaption&gt;</code> per la caption:</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>chart.png<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>a chart showing some information<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figcaption</span><span class="token punctuation">></span></span>
+    A caption for the above figure. It provides the same information,
+    but in a text format.
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figcaption</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">></span></span></code></pre>
+<p>Gli elementi <code>&lt;figure&gt;</code> e <code>&lt;figcaption&gt;</code> sono un buon esempio di elementi semantici usati insieme: un <code>&lt;figcaption&gt;</code> puo’ essere usato solo dentro un <code>&lt;figure&gt;</code> (e deve essere il primo o l’ultimo child di quell’elemento). Se vuoi regolare aspetto o posizionamento della caption, userai CSS.</p>
+<p>E’ anche possibile incorporare elementi video o audio in una web page usando rispettivamente <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"><strong><code>&lt;video&gt;</code></strong></a> e <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio"><strong><code>&lt;audio&gt;</code></strong></a>. Questi elementi si aspettano una “source”, specificata con l’attribute <code>src</code> o con un elemento figlio <code>&lt;source&gt;</code> (usato per avere piu’ sorgenti):</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- esempio base dell'elemento &lt;video>, adattato da MDN --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>video</span> <span class="token attr-name">controls</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>400<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>source</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>media/videos/cat-video.mp4<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>video/mp4<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+  <span class="token comment">&lt;!-- text to show if video isn't supported --></span>
+  Video not supported. <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/media/videos/cat-video.mp4<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>download the video<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>video</span><span class="token punctuation">></span></span></code></pre>
+<p>Sia <code>&lt;video&gt;</code> che <code>&lt;audio&gt;</code> supportano molti attribute aggiuntivi (come <code>controls</code> nell’esempio sopra) usati per personalizzare presentazione, controlli e playback. Una discussione completa di tutte le opzioni e’ fuori dallo scopo di questo testo; vedi la documentazione per dettagli ed esempi.</p>
+<p>Nota che i controlli video in particolare <a href="https://developer.mozilla.org/en-US/docs/Learn/Accessibility/Multimedia">potrebbero non essere completamente accessibili agli screen reader</a> a seconda del browser. Come minimo, dovresti <a href="https://developer.mozilla.org/en-US/docs/Web/Media/Audio_and_video_delivery/Adding_captions_and_subtitles_to_HTML5_video">aggiungere caption e subtitle</a> ai video (fornendo elementi <code>&lt;track&gt;</code>) per assicurarti che tutti gli utenti possano accedervi.</p>
+<p>Infine, l’elemento <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API"><strong><code>&lt;canvas&gt;</code></strong></a> e’ usato per generare immagini grafiche (2d o 3d) via JavaScript. E’ la base HTML per molte interazioni grafiche o web game — anche se gran parte del lavoro avviene in JavaScript e altri linguaggi.</p>
+</div>
+<div id="headings" class="section level3 unnumbered hasAnchor">
+<h3>Headings<a href="html-semantico.html#headings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Gli elementi <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements"><strong>Heading</strong></a> (<code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>, fino a <code>&lt;h6&gt;</code>) sono usati per dare struttura a una web page, permettendo a utenti e screen reader di navigare facilmente tra le sezioni del contenuto. Gli elementi <code>&lt;h#&gt;</code> sono block-level e di default sono piu’ grandi e bold del testo normale (con heading piu’ piccoli resi piu’ piccoli). Tuttavia, <em>non</em> usare gli heading solo per cambiare la formattazione del testo — usa CSS per quello.</p>
+<p class="alert alert-warning">
+Fai attenzione a non confondere un head<strong>ing</strong> (<code>&lt;h1&gt;</code>) con l’elemento <code>&lt;head&gt;</code> (per i meta-data) o con l’elemento di sectioning <code>&lt;header&gt;</code> descritto sotto.
+</p>
+<p>Gli heading sono usati da browser e screen reader per costruire automaticamente un “table of contents” della pagina. Quindi dovresti considerarli come titoli di capitoli o sezioni — come etichetteresti le parti di un “outline” della pagina. Ogni web page dovrebbe avere un solo <code>&lt;h1&gt;</code>, che rappresenta il “titolo” della pagina. Sezioni diverse possono essere marcate con <code>&lt;h2&gt;</code>, mentre le sottosezioni con <code>&lt;h3&gt;</code> e cosi’ via. Una pagina puo’ avere molti <code>&lt;h2&gt;</code> o <code>&lt;h3&gt;</code>, ognuno che segna un “livello” nell’outline. Per esempio, le sezioni di questo capitolo sono annotate con heading <code>&lt;h#&gt;</code>:</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Semantic HTML<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>Specific HTML Elements<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">></span></span>Hyperlinks<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">></span></span>Inline Textual Elements<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">></span></span>Images and Media<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">></span></span>
+...
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>ARIA for Accessibility<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span></code></pre>
+<p>E’ possibile che una pagina non abbia sezioni o sottosezioni, quindi potrebbe non avere <code>&lt;h2&gt;</code> o elementi piu’ piccoli.</p>
+<p>Poiche’ screen reader e altri sistemi usano i heading per generare un “table of contents” (che aiuta a navigare velocemente la pagina), e’ importante che i heading siano sia significativi che gerarchici. Devono essere <em>significativi</em> nel descrivere il contenuto della sezione che introducono, come un titolo di sezione. Devono essere <em>gerarchici</em> nel non saltare livelli: ogni <code>&lt;h3&gt;</code> deve avere un <code>&lt;h2&gt;</code> sopra — non puoi avere una sottosezione senza una sezione.</p>
+<p>Vedi anche <a href="html-semantico.html#sectioning-elements">Sectioning Elements</a> per maggiori dettagli sulla organizzazione strutturale del contenuto.</p>
+</div>
+<div id="elementi-non-semantici" class="section level3 unnumbered hasAnchor">
+<h3>Elementi non semantici<a href="html-semantico.html#elementi-non-semantici" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Anche se lo scopo di HTML e’ fornire informazioni semantiche sul contenuto, ci sono elementi che non hanno un significato o aspetto proprio. L’elemento <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div"><strong><code>&lt;div&gt;</code></strong></a> (division) serve a “raggruppare” altri contenuti, fornendo un parent o container condiviso per quel contenuto. E’ un block element che non ha impatto semantico o di aspetto da solo; serve solo a organizzare contenuto nell’albero degli elementi HTML.</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- these three paragraphs will all have the same
+     "parent" which can be styled on its own --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Lorem ipsum dolor<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>sit amet consectetur<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Adipisicing elit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token comment">&lt;!-- these paragraphs are in a different "group" --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Lorem ipsum dolor<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>sit amet consectetur<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p>Questo e’ particolarmente utile per organizzare contenuti e applicare styling con CSS:</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- A collection of "cards" on a page --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>card-group<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>card<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>card-header<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Featured<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>card-body<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>Card 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>An information card<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>card<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>card-body<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>Card 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Another information card<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p>Nell’esempio sopra, gli elementi <code>&lt;div&gt;</code> ricevono class CSS diverse per essere stilizzati in modo differente: gli elementi con class <code>card</code> possono essere stilizzati per sembrare una <a href="https://m2.material.io/components/cards">“card”</a> di contenuto, mentre quelli con class <code>card-header</code> possono sembrare header di quelle card. Come nell’esempio, e’ molto comune avere <code>&lt;div&gt;</code> annidati (un <code>&lt;div&gt;</code> dentro un <code>&lt;div&gt;</code> dentro un <code>&lt;div&gt;</code>). In effetti, <code>&lt;div&gt;</code> e’ forse l’elemento HTML piu’ comune sul web.</p>
+<p>Ricorda che un <code>&lt;div&gt;</code> non fornisce alcuna informazione semantica; eventuali cambiamenti di stile applicati tramite esso saranno percepibili solo dagli utenti vedenti. Per questo e’ sempre bene chiedersi se un altro block element — come un paragraph, un heading o un sectioning element — possa essere piu’ appropriato (e potrebbe non esserlo).</p>
+<p>Allo stesso modo, un elemento <strong><code>&lt;span&gt;</code></strong> e’ come un <code>&lt;div&gt;</code> (non ha significato semantico o impatto visivo proprio), ma e’ un elemento <em>inline</em>, quindi si usa all’interno del testo per marcare brevi passaggi:</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Baa baa <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dark<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>black<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span> sheep,
+   have you any wool?<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
+<p>Un <code>&lt;span&gt;</code> puo’ essere usato per applicare styling a contenuto inline, ad esempio per rendere una certa parola di colore diverso. Ma poiche’ di solito c’e’ un motivo per questi cambiamenti di stile, e’ quasi sempre meglio usare un elemento testuale semantico appropriato. Per esempio, se la parola e’ importante, usa <code>&lt;em&gt;</code>. Puoi pensare a <code>&lt;span&gt;</code> come all’elemento da usare quando serve styling inline ma nessun altro elemento e’ appropriato.</p>
+</div>
+<div id="sectioning-elements" class="section level3 unnumbered hasAnchor">
+<h3>Sectioning elements<a href="html-semantico.html#sectioning-elements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Gli elementi heading <code>&lt;h#&gt;</code> fanno parte della specifica HTML originale, quindi sono supportati da <em>tutti</em> i sistemi di screen reader. Tuttavia, HTML 5 ha introdotto elementi aggiuntivi per organizzare il contenuto della pagina e rendere la struttura piu’ esplicita. Questi sono spesso chiamati <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element#content_sectioning"><strong>sectioning elements</strong></a>. Sono tutti elementi <em>block-level</em> che non hanno impatto sull’aspetto, ma forniscono informazioni semantiche sull’organizzazione del loro contenuto. Puoi vederli come <code>&lt;div&gt;</code> specializzati — raggruppano elementi, ma danno anche un significato al motivo del raggruppamento.</p>
+<p>Sono spesso chiamati <a href="https://www.w3schools.com/html/html5_semantic_elements.asp">semantic elements</a> o “sectioning elements”. Sono tutti elementi <strong>block-level</strong> che non producono effetti visivi da soli, ma forniscono struttura semantica al contenuto web. Puoi pensarli come <code>&lt;div&gt;</code> specializzati.</p>
+<p>Gli elementi di sectioning comuni sono descritti qui sotto.</p>
+<!-- #### `<section>` {-} -->
+<ul>
+<li><p>Un <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section"><strong><code>&lt;section&gt;</code></strong></a> rappresenta una sezione specifica di contenuto. In particolare, una “section” e’ una porzione di contenuto che sarebbe identificata da un heading (ad es. un <code>&lt;h2&gt;</code> o <code>&lt;h3&gt;</code>) — una section dovrebbe quasi sempre contenere un heading come child. Quindi questo elemento puo’ essere usato per raggruppare semanticamente tutto il contenuto di quella sezione (che sta sotto l’heading). Se un gruppo di contenuti non avrebbe un heading, probabilmente non e’ un <code>&lt;section&gt;</code> (e sarebbe piu’ probabilmente un <code>&lt;div&gt;</code>).</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>section</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>HTML<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>section</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">></span></span>Introduction<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>....<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>section</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>section</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">></span></span>Syntax<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>....<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>section</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>section</span><span class="token punctuation">></span></span></code></pre>
+<p>Nota che, come nell’esempio sopra, gli elementi <code>&lt;section&gt;</code> possono contenere altri <code>&lt;section&gt;</code> (“subsection”), ciascuno con un heading appropriato.</p>
+<p>Ricorda che <code>&lt;section&gt;</code> non ha aspetto di default, anche se puoi usare CSS per personalizzarlo. Sono usati per fornire semantica organizzativa utilizzabile da screen reader e altri sistemi.</p>
+<p><code>&lt;section&gt;</code> e’ il piu’ generico dei sectioning elements; gli altri possono essere visti come tipi di section piu’ specifici.</p></li>
+<li><p>Un <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/header"><strong><code>&lt;header&gt;</code></strong></a> rappresenta contenuto introduttivo, come heading, titoli o banner image. Pu puo’ includere anche elementi comuni della pagina come navigazione o search bar.</p>
+<div class="alert alert-warning">
+Fai attenzione a non confondere un <code>&lt;header&gt;</code> con un head<strong>ing</strong> (<code>&lt;h1&gt;</code>) o con l’elemento <code>&lt;head&gt;</code>. Un <em><code>&lt;head<strong>er</strong>&gt;</code></em> e’ un sectioning element per contenuto introduttivo mostrato nella pagina e puo’ contenere piu’ child element. Il <code>&lt;head&gt;</code> e’ un elemento che NON fa parte del <code>&lt;body&gt;</code> (quindi non e’ mostrato nella pagina) e contiene <em>metadata</em> sulla pagina.
+</div>
+<p>Una pagina dovrebbe quasi sempre contenere un <code>&lt;header&gt;</code> con contenuto introduttivo, come l’<code>&lt;h1&gt;</code> e banner image. Questo uso implica il landmark role <code>role="banner"</code> (vedi <a href="html-semantico.html#aria-for-accessibility">ARIA for Accessibility</a> sotto). Inoltre, specifici <code>&lt;section&gt;</code> possono includere un <code>&lt;header&gt;</code> per contenere il contenuto introduttivo di quella sezione.</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+  <span class="token comment">&lt;!-- this is is the header ("banner") for the entire page --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>header</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Page Title<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>header</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>section</span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!-- this is the header for this section --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>header</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>About Section<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>header</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>section</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></code></pre>
+<p>Anche se e’ possibile fornire un <code>&lt;header&gt;</code> per ogni sezione (e ogni <code>&lt;section&gt;</code> <em>dovrebbe</em> avere un heading), in pratica una <code>&lt;section&gt;</code> con poco contenuto introduttivo — come un solo heading — spesso non avra’ un <code>&lt;header&gt;</code> separato perche’ non aggiunge molta informazione sulla struttura della pagina. Puo’ essere utile ma non e’ obbligatorio.</p></li>
+<li><p>Un <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/footer"><strong><code>&lt;footer&gt;</code></strong></a> di solito contiene informazioni sull’autore o sulla fonte dei contenuti della pagina, includendo informazioni di copyright. Questo elemento implica il landmark role <code>role="contentinfo"</code> (vedi <a href="html-semantico.html#aria-for-accessibility">ARIA for Accessibility</a> sotto).</p>
+<p>Un <code>&lt;footer&gt;</code> contiene comunque contenuto visibile, quindi va dentro il <code>&lt;body&gt;</code>! Tipicamente le pagine hanno un solo <code>&lt;footer&gt;</code> — e’ posizionato in fondo alla pagina come ultimo elemento del <code>&lt;body&gt;</code>, ma non sempre (usare questo sectioning element aiuta a navigare la pagina anche se il <code>&lt;footer&gt;</code> e’ altrove). Il <code>&lt;footer&gt;</code> contiene informazioni visibili sulla pagina, come autore e copyright. <em>Non</em> contiene la “conclusione” della pagina (quella sarebbe una normale <code>&lt;section&gt;</code>). Le informazioni dell’autore sono spesso dentro un elemento <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/address"><code>&lt;address&gt;</code></a>, che rappresenta informazioni di contatto.</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>footer</span><span class="token punctuation">></span></span>
+  Created by <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>address</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mailto:joel@uw.edu<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>joel@uw.edu<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>address</span><span class="token punctuation">></span></span>.
+  <span class="token entity named-entity" title="&copy;">&amp;copy;</span> 2024
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>footer</span><span class="token punctuation">></span></span></code></pre>
+<p>Anche i singoli <code>&lt;section&gt;</code> possono avere il loro <code>&lt;footer&gt;</code>, ma non e’ comune perche’ le sezioni raramente hanno informazioni d’autore diverse dal resto della pagina. E’ piu’ comune che un elemento <code>&lt;article&gt;</code> abbia un proprio <code>&lt;footer&gt;</code>.</p></li>
+<li><p>L’elemento <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main"><strong><code>&lt;main&gt;</code></strong></a> rappresenta il contenuto “principale” o centrale del documento. Una web page puo’ avere un solo <code>&lt;main&gt;</code>. Questo elemento implica il landmark role <code>role="main"</code> (vedi <a href="html-semantico.html#aria-for-accessibility">ARIA for Accessibility</a> sotto).</p>
+<p>La maggior parte delle pagine ha un <code>&lt;main&gt;</code>. Di solito viene <em>dopo</em> il <code>&lt;header&gt;</code> (ma non dentro — infatti, <code>&lt;main&gt;</code> <em>non</em> puo’ essere discendente di <code>&lt;header&gt;</code>). L’elemento <code>&lt;main&gt;</code> contiene poi i <code>&lt;section&gt;</code> della pagina, ed e’ seguito dal <code>&lt;footer&gt;</code>:</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>header</span><span class="token punctuation">></span></span>
+    introductory content
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>header</span><span class="token punctuation">></span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span><span class="token punctuation">></span></span>
+    ...main content
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>section</span><span class="token punctuation">></span></span>
+      ...section content
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>section</span><span class="token punctuation">></span></span>
+    ... more content (including more sections)
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">></span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>footer</span><span class="token punctuation">></span></span>
+    author and copyright information
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>footer</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></code></pre>
+<p>Questa e’ una struttura tipica per un documento HTML.</p></li>
+<li><p>Un <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav"><strong><code>&lt;nav&gt;</code></strong></a> rappresenta la parte di una pagina che fornisce link di navigazione, come una navigation bar o un table of contents. Non tutti i link devono stare in un <code>&lt;nav&gt;</code>; questo elemento rappresenta una sezione della pagina puramente navigazionale (pensa a un <code>&lt;section&gt;</code> specializzato). Questo elemento implica il landmark role <code>role="navigation"</code> (vedi <a href="html-semantico.html#aria-for-accessibility">ARIA for Accessibility</a> sotto). Un <code>&lt;nav&gt;</code> si trova spesso nel <code>&lt;header&gt;</code> (per la nav bar in cima), ma non e’ obbligatorio — una pagina puo’ avere piu’ sezioni <code>&lt;nav&gt;</code>.</p></li>
+<li><p>Un <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article"><strong><code>&lt;article&gt;</code></strong></a> e’ simile a un <code>&lt;section&gt;</code>, ma rappresenta contenuto autonomo che potrebbe essere pubblicato indipendentemente — come un news article o un blog post. Se una sezione probabilmente verrebbe pubblicata come documento a se’, allora puo’ essere un <code>&lt;article&gt;</code>. Nota che un <code>&lt;section&gt;</code> puo’ raggruppare piu’ <code>&lt;article&gt;</code> (come un blog roll), e un <code>&lt;article&gt;</code> puo’ contenere piu’ <code>&lt;section&gt;</code>. Questo rispecchia come e’ strutturato un giornale (ad es. con una “Sports Section” che contiene articoli, che a loro volta possono avere sezioni).</p></li>
+</ul>
+<p>In generale, usare sectioning elements semantici aiuta a strutturare chiaramente il contenuto, oltre a organizzarlo per gli screen reader e renderlo piu’ accessibile. Quasi ogni pagina dovrebbe avere <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code> e <code>&lt;footer&gt;</code>; pagine con piu’ contenuto saranno divise in <code>&lt;section&gt;</code>; e siti con piu’ pagine organizzeranno la navigazione con un <code>&lt;nav&gt;</code>.</p>
+<!-- ### Lists {-}
+//does this need to be here, since I'm not trying to be comprehensive?
+
+//types of lists
+  //ul, ol, dl
+
+//note that lists can only contain list items (which may contain other lists)
+//lists can also be used for inline content with CSS, though this may be less common -->
+</div>
+<div id="tabelle" class="section level3 unnumbered hasAnchor">
+<h3>Tabelle<a href="html-semantico.html#tabelle" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>L’elemento <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table"><strong><code>&lt;table&gt;</code></strong></a> rappresenta dati tabellari, come una data table tipo foglio di calcolo. Le tabelle sono una delle strutture piu’ complesse in HTML e richiedono diversi elementi e attribute. Questa sezione fornisce un breve esempio per creare tabelle semplici e accessibili; per piu’ esempi e guidance vedi la <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table">documentazione MDN per <code>&lt;table&gt;</code></a> e la <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Tables">MDN Learn HTML tables guide</a>.</p>
+<p>In HTML, una tabella e’ composta da <strong>righe</strong>, ognuna delle quali contiene un numero di <strong>celle</strong>. Celle corrispondenti tra righe implicano una <strong>colonna</strong>, anche se le colonne non sono indicate esplicitamente in HTML.</p>
+<div class="float">
+<img src="img/html-semantics/table-structure.png" alt="A diagram showing the rows, columns, and cells of a table." />
+<div class="figcaption">A diagram showing the rows, columns, and cells of a table.</div>
+</div>
+<p>Le tabelle sono codificate in HTML con l’elemento <code>&lt;table&gt;</code>. Un <code>&lt;table&gt;</code> contiene piu’ elementi <strong><code>&lt;tr&gt;</code></strong> (<strong>t</strong>able <strong>r</strong>ow) che rappresentano le righe. Ogni riga <code>&lt;tr&gt;</code> contiene piu’ elementi <strong><code>&lt;td&gt;</code></strong> (<strong>t</strong>able <strong>d</strong>atum) che rappresentano le singole celle.</p>
+<div class="row">
+<div class="column col2">
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- whole table --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- a row --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>Ada<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- a cell --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>64<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>135<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>Bob<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>74<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>156<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>table</span><span class="token punctuation">></span></span></code></pre>
+</div>
+<div class="column col2">
+<div class="float">
+<img src="img/html-semantics/table-basic.png" alt="La tabella di dati renderizzata prodotta dal codice HTML." />
+<div class="figcaption">La tabella di dati renderizzata prodotta dal codice HTML.</div>
+</div>
+</div>
+</div>
+<p>Un elemento <strong><code>&lt;th&gt;</code></strong> (<strong>t</strong>able <strong>h</strong>eader) rappresenta una <em>cella</em> che si trova nella riga o colonna di intestazione, e puo’ sostituire un <code>&lt;td&gt;</code> (e’ comunque una cella, ma specializzata). Per esempio, la prima riga di una tabella puo’ contenere <code>&lt;th&gt;</code> invece di <code>&lt;td&gt;</code> perche’ quelle celle sono le intestazioni delle colonne. Di default, <code>&lt;th&gt;</code> renderizza il contenuto in bold. Un <code>&lt;th&gt;</code> si aspetta un attribute <code>scope</code> che indica se e’ l’header di una <code>"row"</code> o di una <code>"col"</code> (colonna). Anche se <code>scope</code> puo’ essere ridondante per tabelle semplici, e’ una best practice includerlo per garantire che tecnologie assistive come gli screen reader presentino e navighino la tabella correttamente.</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span> <span class="token attr-name">scope</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>col<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>name<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- header cell --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span> <span class="token attr-name">scope</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>col<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>height<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span> <span class="token attr-name">scope</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>col<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>weight<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>Ada<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>64<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>135<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>table</span><span class="token punctuation">></span></span></code></pre>
+<p>Le tabelle possono essere rese piu’ accessibili includendo elementi di <em>table sectioning</em> (simili concettualmente a <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code> e <code>&lt;footer&gt;</code>). L’elemento <strong><code>&lt;thead&gt;</code></strong> raggruppa le righe di intestazione della tabella con informazioni sulle colonne (di solito con celle <code>&lt;th&gt;</code>); l’elemento <strong><code>&lt;tbody&gt;</code></strong> raggruppa le righe del corpo principale della tabella; l’elemento <strong><code>&lt;tfoot&gt;</code></strong> raggruppa le righe in fondo alla tabella con informazioni sulle colonne (ad es. dati di riepilogo). Questi elementi non impattano l’aspetto, ma aiutano a organizzare e presentare la tabella. Sono anche la cosa piu’ simile a usare un <code>&lt;div&gt;</code> per stilizzare sezioni diverse della tabella.</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>thead</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- the "header" section --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span>name<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span>height<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span>weight<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>thead</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tbody</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- the "main" section --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>Ada<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>64<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>135<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tbody</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>table</span><span class="token punctuation">></span></span></code></pre>
+<p>Le celle (<code>&lt;td&gt;</code> o <code>&lt;tr&gt;</code>) possono estendersi su piu’ righe o colonne specificando gli attribute <code>colspan</code> e <code>rowspan</code>. Se una cella si estende su piu’ colonne o righe, allora ometti le celle <code>&lt;td&gt;</code> che sta sostituendo. Nota che lo spanning di righe o colonne non e’ comune nei dati tabellari (poiche’ un dato non dovrebbe estendersi su piu’ feature o osservazioni) e puo’ rendere difficile per chi usa screen reader capire la struttura dei dati. E’ meglio organizzare i dati per non richiedere questo spanning.</p>
+<!-- could add example here... -->
+<p>Come per altri elementi, le tabelle si stilizzano principalmente con CSS; gli attribute HTML dovrebbero essere usati solo per la <em>struttura</em> della tabella. Nota che le regole CSS di solito si applicano alle <em>celle</em> (<code>&lt;td&gt;</code>, <code>&lt;th&gt;</code>) e non alle righe o sezioni — molte property inaspettatamente <em>non</em> sono ereditate dalle righe, quindi vanno applicate direttamente alle celle. Ci sono anche alcune property CSS specifiche per tabelle, come <code>border-collapse</code> e <code>border-spacing</code> (usate per lo spacing tra celle).</p>
+<p class="alert alert-warning">
+Non usare mai un <code>&lt;table&gt;</code> per strutturare documenti e posizionare contenuti. <code>&lt;table&gt;</code> va usato <strong>solo</strong> per contenuti che sono semanticamente una tabella (ad es. data table). Se vuoi disporre contenuti in colonne o griglia, usa property CSS come <a href="proprieta-css.html#flexbox">flexbox</a> o grid. Ricorda che HTML serve per la semantica, non per l’aspetto.
+</p>
+</div>
+<div id="form" class="section level3 unnumbered hasAnchor">
+<h3>Form<a href="html-semantico.html#form" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Nelle web page, un <strong>form</strong> e’ una parte della pagina che permette all’utente di <em>interagire</em> fornendo informazioni. Gli utenti possono inserire <em>input</em> (testo scritto, caselle selezionate, ecc.) che vengono poi <em>submitted</em> al web server. I form sono una parte comune delle web page che usi ogni giorno — e potresti aver interagito con essi senza accorgertene. Come le tabelle, i form sono strutture complesse in HTML; questa sezione descrive come creare form di base e come renderli <em>accessibili</em>. Per piu’ esempi e guidance vedi la <a href="https://developer.mozilla.org/en-US/docs/Learn/Forms">guida MDN ai web form</a>.</p>
+<p>I web form si definiscono con l’elemento <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form"><strong><code>&lt;form&gt;</code></strong></a>. Questo block element annota una parte della pagina che accetta dati inseriti dall’utente (tramite <code>&lt;input&gt;</code>, descritti sotto) e specifica cosa fare con quei dati quando il form viene submit.</p>
+<p>Quando un form viene submit (ad es. cliccando un <code>&lt;button&gt;</code> di tipo <code>submit</code>), il browser raccoglie i dati inseriti e li invia al server tramite una HTTP request — simile alla request inviata quando l’utente clicca un hyperlink (questo significa che inviare un form carica una nuova pagina). Dove e come i dati vengono inviati dipende da due attribute dell’elemento <code>&lt;form&gt;</code>: <code>action</code> e <code>method</code>.</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- a very simple form --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>result.html<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>GET<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token comment">&lt;!-- labeling text for the input --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>greetInput<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Provide a greeting:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+
+  <span class="token comment">&lt;!-- Where the user provides input data --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>greetInput<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>greeting<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+
+  <span class="token comment">&lt;!-- Submit button --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Submit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span></code></pre>
+<p>L’attribute <code>action</code> specifica l’URL a cui i dati saranno inviati quando il form viene submit. Di solito e’ un URL nello stesso domain della pagina corrente, quindi si fornisce solo un relative path. Quindi nell’esempio sopra, i dati saranno inviati all’URL <code>result.html</code>; il server gestira’ i dati inviati e poi restituira’ una response per quell’URL (in pratica, caricando quella pagina). Nota che i server possono fare molte cose con i dati, incluso <em>redirigere</em> gli utenti, quindi la pagina che si carica per l’utente non e’ necessariamente la stessa specificata in <code>action</code>.</p>
+<p>L’attribute <code>method</code> indica quale <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods">HTTP Method</a> usera’ la request risultante. Opzioni valide sono <code>"GET"</code> (per request <code>GET</code> — usate quando si recuperano dati dal server) o <code>"POST"</code> (per request <code>POST</code> — usate quando si aggiungono o aggiornano dati sul server). I form che inviano <code>GET</code> trasmettono i dati come <strong>query parameter</strong> (uno per ogni <code>&lt;input&gt;</code>) aggiunti all’URL <code>action</code> — ad esempio, inviare il form sopra con il messaggio “Ciao” invierebbe una HTTP request a <code>result.html?greeting=Ciao</code>. I form che inviano <code>POST</code> includono i dati nel body della HTTP request (da cui il server puo’ leggerli).</p>
+<p class="alert alert-info">
+Le app React e sistemi simili spesso gestiscono i dati del form client-side; quindi gli attribute <code>action</code> e <code>method</code> vengono <em>omessi</em> perche’ non sono usati. Puoi impedire a un form di inviare una nuova HTTP request usando <code>event.preventDefault()</code> in JavaScript; vedi <a href="dom.html#dom">DOM Manipulation</a> per dettagli.
+</p>
+<div id="elementi-input" class="section level4 unnumbered hasAnchor">
+<h4>Elementi <code>&lt;input&gt;</code><a href="html-semantico.html#elementi-input" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Gli utenti forniscono dati ai form tramite elementi <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"><strong><code>&lt;input&gt;</code></strong></a>. Un <code>&lt;input&gt;</code> fornisce un controllo interattivo, come un campo di testo o una checkbox. Gli elementi <code>&lt;input&gt;</code> sono inline e <em>empty</em> — come un <code>&lt;img&gt;</code>, non hanno contenuto testuale proprio.</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- elementi di input di esempio --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>usernameInput<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Username:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>usernameInput<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>username<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>passwordInput<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Password:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>passwordInput<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
+<p>Ci sono molti tipi di <code>&lt;input&gt;</code>, specificati dall’attribute <code>type</code>, inclusi:</p>
+<ul>
+<li><code>text</code>: un campo di testo monoriga in cui l’utente puo’ digitare. E’ il <code>type</code> di default per un <code>&lt;input&gt;</code>.</li>
+<li><code>password</code>: come <code>text</code>, ma il testo digitato e’ offuscato (ad es. punti o asterischi).</li>
+<li><code>checkbox</code>: una casella che l’utente puo’ selezionare o deselezionare. Nota che non c’e’ testo associato all’input; devi usare un <code>&lt;label&gt;</code> per dire cosa sta selezionando.</li>
+<li><code>radio</code>: un pulsante selezionabile da un set (il “cerchio”). Si chiama “radio button” perche’ come una radio puoi selezionare solo un canale. I radio button sono raggruppati dando loro lo stesso attribute <code>name</code>.</li>
+<li><code>number</code>: un campo in cui l’utente puo’ inserire un numero</li>
+<li><code>date</code>: un input in cui l’utente puo’ selezionare una data. La maggior parte dei browser fornisce un calendario a discesa, ma permette anche di digitare la data. Un input <code>time</code> funziona in modo simile per l’ora del giorno, e un input <code>datetime-local</code> permette di selezionare entrambi.</li>
+<li><code>file</code>: un input in cui l’utente puo’ scegliere un file dal sistema operativo. Di default appare come un button che, se cliccato, apre un’interfaccia di scelta file.</li>
+<li><code>hidden</code>: un input non mostrato all’utente, ma i cui dati vengono comunque inviati con il form. Gli input <code>hidden</code> si usano per dati non specificati o modificati direttamente dall’utente, ma generati dinamicamente dalla pagina o dal sistema (ad es. via JavaScript).</li>
+</ul>
+<p>Ogni <code>&lt;input&gt;</code> puo’ supportare attribute aggiuntivi in base al tipo. Per esempio, un input <code>number</code> supporta attribute <code>min</code> e <code>max</code> che limitano i numeri consentiti. Questi attribute possono essere usati anche per la <a href="https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation">form validation</a> client-side, informando gli utenti se i valori inseriti sono invalidi.</p>
+<p>Anche se <code>&lt;input&gt;</code> e’ l’elemento piu’ comune per raccogliere input in un <code>&lt;form&gt;</code>, ce ne sono altri. Un elemento <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea"><strong><code>&lt;textarea&gt;</code></strong></a> fornisce una casella di testo piu’ grande in cui l’utente puo’ scrivere piu’ righe. Un elemento <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select"><strong><code>&lt;select&gt;</code></strong></a> fornisce un menu a discesa; ogni voce e’ specificata con un elemento figlio <code>&lt;option&gt;</code>:</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- A simple select dropdown --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>animal<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Choose an Animal<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>lion<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Lion<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>tiger<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Tiger<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>bear<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Bear<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre>
+<p>Vedi la documentazione per altre opzioni nell’uso di questi elementi. Collettivamente, <code>&lt;input&gt;</code>, <code>&lt;select&gt;</code> e simili sono chiamati <em>form control elements</em>.</p>
+<p>Come negli esempi sopra, tutti i form control e gli input supportano e si aspettano un attribute <code>name</code>. Questo attribute fornisce un identificatore per distinguere l’input dagli altri nel form (il form stesso non sa quale testo descrittivo sia attorno o etichetti gli input). Nota che <code>name</code> e’ distinto dall’attribute <code>id</code> — <code>name</code> identifica il <em>valore inserito dall’utente</em> nei dati del form, mentre <code>id</code> identifica l’elemento <code>&lt;input&gt;</code> stesso (indipendentemente dai dati inseriti). Poiche’ gli <code>id</code> sono usati con <code>&lt;label&gt;</code> per accessibilita’, molti <code>&lt;input&gt;</code> avranno entrambi gli attribute — possono anche usare lo stesso identificatore, sembrando ridondanti, ma servono a scopi diversi.</p>
+<p>Tutti gli input supportano anche un attribute <code>value</code>. Questo attribute memorizza il valore inserito o selezionato dall’utente. Puoi usarlo per fornire un valore di default che l’utente puo’ sostituire.</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- input di esempio con nomi diversi e valori di default --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>firstnameInput<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>First Name:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>firstnameInput<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>firstname<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Joel<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>passwordInput<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Last Name:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>lastnameInput<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>lastname<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Ross<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
+<p>Gli input di testo supportano anche un attribute <code>placeholder</code>, che fornisce testo iniziale mostrato all’utente ma <em>non</em> e’ un valore di default (il valore resta vuoto <code>""</code>).</p>
+<p>Checkbox, radio button e select dropdown usano l’attribute <code>value</code> per distinguere tra opzioni selezionate:</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- a set of radio buttons --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>smallRadio<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Small<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>radio<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>smallRadio<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>size<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>small<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mediumRadio<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Medium<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>radio<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mediumRadio<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>size<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>medium<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>largeRadio<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Large<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>radio<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>largeRadio<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>size<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>large<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
+<p>Quando il form viene submit, i dati inseriti dall’utente sono codificati usando l’attribute <code>name</code> come identificatore o “chiave”, e l’attribute <code>value</code> come valore. Questo si vede nei query parameter dell’URL target di una request <code>GET</code>. Per esempio, senza modifiche dell’utente, gli input <code>firstname</code> e <code>lastname</code> dell’esempio sopra produrrebbero una lista di query parameter tipo: <code>?firstname=Joel;lastname=Ross</code> — le chiavi (prima di <code>=</code>) sono i <code>name</code>, e i valori (dopo <code>=</code>) sono i <code>value</code>. Di conseguenza i <code>name</code> sono spesso scelti per produrre identificatori di dati facili da consumare per un server.</p>
+<p>Oltre a <code>&lt;input&gt;</code> e affini, un <code>&lt;form&gt;</code> contiene spesso elementi <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button"><strong><code>&lt;button&gt;</code></strong></a>. In particolare un <code>&lt;button type="submit"&gt;</code> inviera’ il form parent quando cliccato. E’ una best practice avere un submit button esplicito (anche per form di ricerca) e non affidarsi solo all’utente che preme “enter” — questo rende il form piu’ accessibile.</p>
+</div>
+<div id="label-e-accessibilita" class="section level4 unnumbered hasAnchor">
+<h4>Label e accessibilita’<a href="html-semantico.html#label-e-accessibilita" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Essendo strutture complesse e chiave per l’interazione, i form richiedono particolare cura per essere <em>accessibili</em>.</p>
+<p>Uno dei passaggi piu’ importanti per rendere un form accessibile e’ fornire label per tutti i form control e input. Le label si specificano usando l’elemento <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label"><strong><code>&lt;label&gt;</code></strong></a> (che vedi negli esempi sopra). Il testo dentro <code>&lt;label&gt;</code> e’ quello che l’utente vede e che descrive l’input (spesso istruzioni su quali dati inserire). Associ un <code>&lt;label&gt;</code> a un input specifico usando l’attribute <strong><code>for</code></strong> del <code>&lt;label&gt;</code> — questo attribute prende come valore l’<code>id</code> dell’input (l’<code>id</code> identifica univocamente un elemento nella pagina):</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- this label is a description for the element with the `nameInput` id --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nameInput<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Name:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nameInput<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
+<p>Di default, quando l’utente clicca il testo del <code>&lt;label&gt;</code>, il form control associato riceve <strong>focus</strong> (viene selezionato, con il cursore pronto a ricevere input). Questo rende piu’ facile selezionare l’input giusto, ed e’ particolarmente utile per elementi piccoli come le checkbox, che possono essere difficili da colpire (per via della <a href="https://en.wikipedia.org/wiki/Fitts%27s_law">Fitts’ Law</a>).</p>
+<p>Tutti i form control dovrebbero essere etichettati per supportare screen reader e altre tecnologie assistive. Se non vuoi testo descrittivo per utenti vedenti (per altri indizi visivi), puoi usare CSS per nascondere visivamente il <code>&lt;label&gt;</code>, ma dovrebbe essere sempre presente.</p>
+<p>E’ anche possibile associare implicitamente un <code>&lt;label&gt;</code> e un <code>&lt;input&gt;</code> rendendo l’<code>&lt;input&gt;</code> un <em>child element</em> del <code>&lt;label&gt;</code>. Questo puo’ essere utile per contenuti generati dinamicamente quando non puoi specificare un <code>id</code> per l’<code>&lt;input&gt;</code> (ad es. form in cui l’utente aggiunge text box). Tuttavia, l’associazione esplicita con l’attribute <code>for</code> e’ meglio supportata dalle tecnologie assistive, quindi va usata quando possibile.</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- implicitly labeling an input, used only when `id` cannot be specified --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">></span></span>
+  Name:
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span></code></pre>
+<p>Mantenere i form brevi e semplici (con meno input possibile) e’ buono sia per l’accessibilita’ sia per l’usabilita’ complessiva — in genere gli utenti preferiscono form brevi. Per form piu’ complessi, puoi anche raggruppare input mettendoli insieme dentro un elemento <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset"><strong><code>&lt;fieldset&gt;</code></strong></a>. Questo e’ particolarmente utile per i radio button. L’elemento <code>&lt;legend&gt;</code> e’ usato per dare un “titolo” a un <code>&lt;fieldset&gt;</code>.</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>legend</span><span class="token punctuation">></span></span>Programming Language<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>legend</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>radio<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>language<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>htmlInput<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>htmlInput<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>HTML<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>radio<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>language<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>cssInput<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>cssInput<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>CSS<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">></span></span></code></pre>
+<p>Per maggiori indicazioni su form accessibili, vedi il <a href="https://www.w3.org/WAI/tutorials/forms/">WAI Forms Tutorial</a>.</p>
+</div>
+</div>
+</div>
+<div id="aria-for-accessibility" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> ARIA for Accessibility<a href="html-semantico.html#aria-for-accessibility" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Come notato in <span id="web-accessibility">Client-Side-Development</span>, rendere accessibili le web page implica conformarsi alle <a href="https://www.w3.org/WAI/intro/wcag">Web Content Accessibility Guidelines (WCAG)</a> del W3C, sviluppate dalla <a href="https://www.w3.org/WAI/"><strong>Web Accessibility Initiative (WAI)</strong></a> (parte del W3C). Il WAI ha anche creato uno standard web aggiuntivo per supportare l’accessibilita’. Questo standard si chiama <a href="https://w3c.github.io/aria/"><strong>A</strong>ccessible <strong>R</strong>ich <strong>I</strong>nternet <strong>A</strong>pplications Suite</a>, o <strong>ARIA</strong>. ARIA specifica un <em>estensione</em> a HTML, definendo attribute HTML aggiuntivi che possono essere inclusi negli elementi per fornire supporto extra agli screen reader e ad altre tecnologie assistive. Questi attribute aiutano gli screen reader a navigare una pagina (per chi non puo’ semplicemente scrollare visivamente), e forniscono un meccanismo con cui web app “ricche” e interattive (come quelle che creerai con JavaScript) possono comunicare il loro comportamento agli screen reader.</p>
+<p>Questa sezione descrive alcuni degli attribute ARIA piu’ comuni che puoi usare per assicurare che le web page siano accessibili a tutti. Noterai che molti attribute ARIA sono resi ridondanti dall’uso di HTML semantico — HTML come standard e’ evoluto per supportare meglio l’accessibilita’ da quando ARIA e’ stato creato. Detto questo, ci sono ancora casi in cui HTML non basta, e ARIA deve intervenire.</p>
+<div id="aria-labeling" class="section level3 unnumbered hasAnchor">
+<h3>ARIA Labeling<a href="html-semantico.html#aria-labeling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Un passo fondamentale per rendere le web page accessibili e’ assicurarsi che siano <strong>perceivable</strong> per gli screen reader. Questo significa che il contenuto non puo’ essere <em>solo</em> visivo. L’esempio piu’ comune e’ includere attribute <code>alt</code> per gli elementi <code>&lt;img&gt;</code>, che permette a elementi visivi di essere percepiti e compresi dalle tecnologie assistive.</p>
+<p>Ma l’attribute <code>alt</code> e’ supportato solo da <code>&lt;img&gt;</code>, anche se altri elementi possono essere usati per informazioni visive (ad es. un <code>&lt;div&gt;</code> con un background image, o un <code>&lt;svg&gt;</code> con grafica). ARIA permette di fornire “alternate text” per altri elementi usando l’attribute <strong><code>aria-label</code></strong>, che specifica quale testo deve essere letto <em>al posto del contenuto normale</em>.</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>green-rect<span class="token punctuation">"</span></span> <span class="token attr-name">aria-label</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>a giant green rectangle<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p>Nota che <code>aria-label</code> serve solo per elementi puramente visivi (senza testo); non devi mettere <code>aria-label</code> su ogni <code>&lt;div&gt;</code> o su qualsiasi <code>&lt;p&gt;</code>. Se l’elemento contiene testo — anche se annidato tra piu’ child — probabilmente non serve un <code>aria-label</code>.</p>
+<p>Per descrizioni piu’ lunghe (piu’ frasi), puoi usare <strong><code>aria-describedby</code></strong> con un riferimento all’<code>id</code> di un altro elemento <em>nella stessa pagina</em> che contiene la descrizione testuale. <code>aria-describedby</code> prende come valore un riferimento a fragment (simile a un bookmark hyperlink) verso l’elemento contenente la descrizione.</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>green-rect<span class="token punctuation">"</span></span> <span class="token attr-name">aria-describedby</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#rectDetail<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>rectDetail<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>The above rectangle is giant and green.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
+<p>Il testo descrittivo puo’ stare ovunque nella pagina; e’ ok che un elemento visivo sia separato dalla descrizione da altri elementi. Come per i bookmark link, nota che il valore <code>aria-describedby</code> inizia con il simbolo <code>#</code>, ma l’<code>id</code> dell’elemento target non lo include. Inoltre, nota che <code>aria-label</code> <em>sostituisce</em> il contenuto dell’elemento, mentre <code>aria-describedby</code> viene letto <em>dopo</em> il contenuto dell’elemento, perche’ fornisce piu’ informazioni (confronta con l’attribute simile <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby"><code>aria-labelledby</code></a>).</p>
+<p class="alert alert-warning">
+In generale, il modo migliore per rendere accessibili le informazioni puramente visive e’ <em>non avere informazioni puramente visive</em> in primo luogo. Il contenuto di una pagina dovrebbe sempre supportare utenti e browser non visivi: includi descrizioni testuali e caption per le immagini, usa etichette testuali invece di icone per i button, ecc. Questo e’ il modo migliore per supportare il universal design.
+</p>
+<p>Mentre <code>alt</code> e <code>aria-label</code> permettono di rendere percepibili elementi visivi, ci sono immagini (o altri elementi) puramente decorativi: loghi, icone che accompagnano testo nei button, ecc. Puoi rendere questo contenuto piu’ accessibile e fare in modo che uno screen reader lo “salti” usando un altro attribute ARIA <strong><code>aria-hidden="true"</code></strong>. Un elemento con questo attribute appare comunque nella pagina renderizzata, ma viene ignorato dagli screen reader. (Questo attribute e’ un’eccezione alla regola generale che gli attribute boolean non prendono valori).</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- a search button with an icon --></span>
+<span class="token comment">&lt;!-- the icon img will not be read, but the button text will be --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>search_icon.png<span class="token punctuation">"</span></span> <span class="token attr-name">aria-hidden</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  Search
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></code></pre>
+<p>Nota che elementi nascosti via CSS (ad es. con <code>display:none</code>) sono gia’ rimossi da cio’ che uno screen reader legge, quindi non richiedono l’attribute ARIA aggiuntivo.</p>
+</div>
+<div id="aria-roles-and-landmarks" class="section level3 unnumbered hasAnchor">
+<h3>ARIA Roles and Landmarks<a href="html-semantico.html#aria-roles-and-landmarks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La specifica ARIA definisce un attribute <a href="https://www.w3.org/TR/wai-aria/roles"><strong><code>role</code></strong></a> che dettaglia lo <em>scopo semantico</em> di un elemento per gli screen reader quando quello scopo e’ chiaro solo tramite styling visivo.</p>
+<p>Per esempio, una pagina puo’ avere un <code>&lt;div&gt;</code> o un <code>&lt;svg&gt;</code> stilizzato per sembrare e comportarsi come un button; l’attribute ARIA aiuta gli screen reader a capire che quell’elemento puo’ essere premuto per causare un’azione:</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>btn<span class="token punctuation">"</span></span> <span class="token attr-name">role</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Submit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p>Dal punto di vista dello screen reader, questo elemento agisce come un <code>&lt;button&gt;</code>, anche se e’ un elemento diverso per qualche motivo.</p>
+<p>Ci sono <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles">molti ARIA role diversi</a>, inclusi role per struttura e per widget interattivi come <code>dialog</code>, <code>switch</code> o <code>menu</code>. Alcuni, come <code>button</code> nell’esempio sopra, sono ridondanti con elementi semantici introdotti dopo lo standard ARIA. E’ meglio usare elementi che riflettono il loro scopo semantico invece di affidarsi a ARIA role. Se un elemento deve essere cliccato per causare un’azione, usa un <code>&lt;button&gt;</code> invece di <code>role="button"</code> — poi stilizzalo con CSS come vuoi.</p>
+<p>Inoltre, l’attribute ARIA <code>role</code> puo’ essere usato per indicare <a href="https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/"><strong>landmark regions</strong></a>. Un landmark role indica posizioni specifiche nel documento e consente a uno screen reader di “saltare” facilmente a quella sezione. Questo aiuta a garantire che la pagina sia <strong>navigable</strong>. I landmark role includono:</p>
+<ul>
+<li><a href="https://w3c.github.io/aria/#banner"><code>banner</code></a>: contenuto relativo al sito nel suo insieme, piuttosto che alla pagina specifica (nome derivato dal “banner” in cima alla pagina). L’elemento <code>&lt;header&gt;</code> implica questo role.</li>
+<li><a href="https://w3c.github.io/aria/#main"><code>main</code></a>: il contenuto “main”. Utile per far saltare lo screen reader al cuore della pagina, oltre banner e navigazione. L’elemento <code>&lt;main&gt;</code> implica questo role.</li>
+<li><a href="https://w3c.github.io/aria/#contentinfo"><code>contentinfo</code></a>: sezione con informazioni sulla pagina, come contatti autore e copyright. Di solito sta in fondo. L’elemento <code>&lt;footer&gt;</code> implica questo role.</li>
+<li><a href="https://w3c.github.io/aria/#navigation"><code>navigation</code></a>: sezione di link per muoversi nella pagina, come una nav bar. Permette agli screen reader di saltare ai “quick links” e muoversi rapidamente. Nota pero’ che ascoltare tutti i link puo’ richiedere tempo, quindi e’ importante permettere di saltare al resto del contenuto (con una tecnica chiamata <a href="https://webaim.org/techniques/skipnav/">“skip link”</a>). L’elemento <code>&lt;nav&gt;</code> implica questo role.</li>
+</ul>
+<p>Come detto, questi landmark role sono anche impliciti nei <a href="html-semantico.html#sectioning-elements">sectioning elements</a>; non serve includere anche un <code>role</code> su questi elementi, ed e’ best practice usare gli elementi espliciti invece dei landmark role!</p>
+<p class="alert alert-success">
+Considerare il contenuto in termini di questi role puo’ essere un buon trucco di design per organizzare la pagina in modo comprensibile e accessibile per tutti!
+</p>
+</div>
+<div id="aria-e-interattivita" class="section level3 unnumbered hasAnchor">
+<h3>ARIA e interattivita’<a href="html-semantico.html#aria-e-interattivita" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>ARIA fornisce supporto all’accessibilita’ anche per web page <em>interattive</em>, dove il contenuto cambia mentre la pagina viene usata, attraverso attribute che notano esplicitamente lo <em>stato</em> della web application.</p>
+<p>Per esempio, considera una pagina con un <a href="https://en.wikipedia.org/wiki/Hamburger_button">hamburger menu</a>) o un dropdown/“slide-out” simile. Le tecnologie assistive devono informare l’utente se il menu e’ espanso o se il contenuto scorrevole e’ visibile. Questo puo’ essere gestito con <a href="https://w3c.github.io/aria/#states_and_properties">ARIA state attributes</a> come <code>aria-expanded</code>:</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- un esempio di menu hamburger con attributi ARIA --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">aria-expanded</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span> <span class="token attr-name">aria-controls</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>menuContent<span class="token punctuation">"</span></span> <span class="token attr-name">aria-label</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Expand Menu<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hamburger-icon<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>a hamburger menu<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>menuContent<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>collapsed<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>Link 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>Link 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+  ...
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span></code></pre>
+<p>Nell’esempio sopra, l’elemento <code>&lt;button&gt;</code> controlla se il <code>&lt;ul&gt;</code> e’ espanso o no — nell’HTML corrente, il <code>&lt;ul&gt;</code> e’ collassato (nascosto) tramite una class CSS. Usando JavaScript (vedi <a href="dom.html#dom">DOM Manipulation</a>), cliccare il button puo’ cambiare lo styling CSS del <code>&lt;ul&gt;</code> per renderlo visibile.</p>
+<p>L’attribute ARIA <code>aria-expanded</code> e’ sull’elemento button per indicare alle tecnologie assistive che questo button (a) e’ un controllo interattivo per una parte della pagina, e (b) il suo stato corrente e’ “non espanso”. Quando il button viene premuto, il JavaScript cambierebbe anche l’attribute <code>aria-expanded</code> a <code>"true"</code>, indicando ora agli screen reader che il menu e’ aperto. L’attribute <code>aria-controls</code> fa riferimento all’<code>id</code> dell’elemento che il button sta controllando (cosi’ lo screen reader sa quale elemento e’ stato modificato).</p>
+<p>Widget e pattern interattivi diversi possono richiedere altri attribute ARIA per supportare al meglio le tecnologie assistive. Quando guardi esempi di questi widget (ad es. quelli di <a href="https://getbootstrap.com/">Bootstrap</a>), verifica gli attribute ARIA appropriati e consulta la <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA">documentazione ARIA</a> per best practice.</p>
+<!--
+//`aria-live` for parts of the page that will fill with content later -->
+<p class="alert alert-danger">
+Il WAI afferma chiaramente che <a href="https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/"><em>No ARIA is better than Bad ARIA</em></a>. Usare male ARIA puo’ disinformare gravemente gli utenti di tecnologie assistive, rendendo piu’ difficile capire la pagina — invece di semantica poco chiara, avresti semantica sbagliata. Un buon uso di HTML semantico aiuta molto l’accessibilita’; ARIA puo’ e dovrebbe essere usato solo per colmare gap espliciti dove l’HTML semantico non basta.
+</p>
+</div>
+</div>
+<div id="risorse-2" class="section level2 unnumbered hasAnchor">
+<h2>Risorse<a href="html-semantico.html#risorse-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La maggior parte dei dettagli su elementi HTML specifici si trova nelle risorse indicate nei capitoli precedenti (ad es. <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">MDN</a>). Di seguito alcune risorse aggiuntive per scrivere HTML <em>accessibile</em>.</p>
+<div class="list-condensed">
+<ul>
+<li><a href="https://teachaccess.github.io/tutorial/">Teach Access Tutorial</a> per creare web page accessibili. Fornisce molti esempi e dettagli. Dai un’occhiata alla <a href="https://teachaccess.github.io/tutorial/#/12">code checklist</a> e alla <a href="https://teachaccess.github.io/tutorial/#/19">design checklist</a>.</li>
+<li><a href="http://www.washington.edu/accessibility/checklist/">UW Accessibility Checklist</a> una lista completa di considerazioni per sviluppare sistemi accessibili creata da UW. Vedi anche la <a href="http://www.washington.edu/accessibility/web/tools-and-resources/">lista completa di strumenti e risorse</a>.</li>
+<li><a href="https://w3c.github.io/using-aria/">Using ARIA (w3c)</a> guida ufficiale all’uso della specifica ARIA</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA">ARIA Resources (MDN)</a></li>
+<li><a href="http://wave.webaim.org/">WAVE Accessibility Evaluation Service</a></li>
+</ul>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="css-fundamentals.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="selettori-css.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["github", "facebook", "twitter", "google"],
+    "google": false
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/info340/book/edit/master/html-semantics.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

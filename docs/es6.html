@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="it" xml:lang="it">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 14 Sintassi ES6+ | Sviluppo Web lato client</title>
+  <meta name="description" content="Dispensa del corso INFO 340: Client-Side Web Development." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 14 Sintassi ES6+ | Sviluppo Web lato client" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://info340.github.io//img/cover-img.png" />
+  <meta property="og:description" content="Dispensa del corso INFO 340: Client-Side Web Development." />
+  <meta name="github-repo" content="info340/book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 14 Sintassi ES6+ | Sviluppo Web lato client" />
+  
+  <meta name="twitter:description" content="Dispensa del corso INFO 340: Client-Side Web Development." />
+  <meta name="twitter:image" content="https://info340.github.io//img/cover-img.png" />
+
+<meta name="author" content="Joel Ross" />
+
+
+<meta name="date" content="2026-01-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/busy-spider-icon.png" type="image/x-icon" />
+<link rel="prev" href="librerie-javascript.html"/>
+<link rel="next" href="react.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-98444716-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/prism.min.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./" class="title">Client-Side Web Development</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Informazioni sul libro</a></li>
+<li class="chapter" data-level="1" data-path="software-setup.html"><a href="software-setup.html"><i class="fa fa-check"></i><b>1</b> Impostazione iniziale</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="software-setup.html"><a href="software-setup.html#web-browser"><i class="fa fa-check"></i><b>1.1</b> Web Browser</a></li>
+<li class="chapter" data-level="1.2" data-path="software-setup.html"><a href="software-setup.html#code-editor"><i class="fa fa-check"></i><b>1.2</b> Code Editor</a>
+<ul>
+<li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html#visual-studio-code"><i class="fa fa-check"></i>Visual Studio Code</a></li>
+<li class="chapter" data-level="1.2.1" data-path="software-setup.html"><a href="software-setup.html#altri-editor"><i class="fa fa-check"></i><b>1.2.1</b> Altri editor</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="software-setup.html"><a href="software-setup.html#bash-command-line"><i class="fa fa-check"></i><b>1.3</b> Bash (Command Line)</a></li>
+<li class="chapter" data-level="1.4" data-path="software-setup.html"><a href="software-setup.html#node-e-npm"><i class="fa fa-check"></i><b>1.4</b> Node e <code>npm</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html#installare-software-con-npm"><i class="fa fa-check"></i>Installare software con npm</a></li>
+<li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html#gestire-package-locali"><i class="fa fa-check"></i>Gestire package locali</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html"><i class="fa fa-check"></i><b>2</b> Sviluppo lato client</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#client-e-server"><i class="fa fa-check"></i><b>2.1</b> Client e server</a></li>
+<li class="chapter" data-level="2.2" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#url-e-file-web"><i class="fa fa-check"></i><b>2.2</b> URL e file web</a>
+<ul>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#tipi-di-file-client-side"><i class="fa fa-check"></i>Tipi di file client-side</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#server-e-hosting"><i class="fa fa-check"></i><b>2.3</b> Server e hosting</a>
+<ul>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#hosting-con-github-pages"><i class="fa fa-check"></i>Hosting con GitHub Pages</a></li>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#development-server"><i class="fa fa-check"></i>Development server</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#web-standards"><i class="fa fa-check"></i><b>2.4</b> Web standards</a></li>
+<li class="chapter" data-level="2.5" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#accessibilita-web"><i class="fa fa-check"></i><b>2.5</b> Accessibilita’ web</a>
+<ul>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#supportare-laccessibilita"><i class="fa fa-check"></i>Supportare l’accessibilita’</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="html-fundamentals.html"><a href="html-fundamentals.html"><i class="fa fa-check"></i><b>3</b> Fondamenti di HTML</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="html-fundamentals.html"><a href="html-fundamentals.html#elementi-html"><i class="fa fa-check"></i><b>3.1</b> Elementi HTML</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#alcuni-elementi-di-esempio"><i class="fa fa-check"></i>Alcuni elementi di esempio</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#commenti"><i class="fa fa-check"></i>Commenti</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#attributi"><i class="fa fa-check"></i>Attributi</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#elementi-vuoti"><i class="fa fa-check"></i>Elementi vuoti</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="html-fundamentals.html"><a href="html-fundamentals.html#nidificazione-di-elementi"><i class="fa fa-check"></i><b>3.2</b> Nidificazione di elementi</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#elementi-block-vs.-inline"><i class="fa fa-check"></i>Elementi block vs. inline</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="html-fundamentals.html"><a href="html-fundamentals.html#struttura-della-web-page"><i class="fa fa-check"></i><b>3.3</b> Struttura della web page</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#risorse"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="css-fundamentals.html"><a href="css-fundamentals.html"><i class="fa fa-check"></i><b>4</b> Fondamenti di CSS</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="css-fundamentals.html"><a href="css-fundamentals.html#perche-due-linguaggi-diversi"><i class="fa fa-check"></i><b>4.1</b> Perche’ due linguaggi diversi?</a></li>
+<li class="chapter" data-level="4.2" data-path="css-fundamentals.html"><a href="css-fundamentals.html#includere-css"><i class="fa fa-check"></i><b>4.2</b> Includere CSS</a></li>
+<li class="chapter" data-level="4.3" data-path="css-fundamentals.html"><a href="css-fundamentals.html#regole-css"><i class="fa fa-check"></i><b>4.3</b> Regole CSS</a>
+<ul>
+<li class="chapter" data-level="" data-path="css-fundamentals.html"><a href="css-fundamentals.html#fondamenti-dei-css-selector"><i class="fa fa-check"></i>Fondamenti dei CSS selector</a></li>
+<li class="chapter" data-level="" data-path="css-fundamentals.html"><a href="css-fundamentals.html#fondamenti-delle-property-css"><i class="fa fa-check"></i>Fondamenti delle property CSS</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="css-fundamentals.html"><a href="css-fundamentals.html#la-cascade"><i class="fa fa-check"></i><b>4.4</b> La cascade</a></li>
+<li class="chapter" data-level="" data-path="css-fundamentals.html"><a href="css-fundamentals.html#risorse-1"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="html-semantico.html"><a href="html-semantico.html"><i class="fa fa-check"></i><b>5</b> HTML Semantico</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="html-semantico.html"><a href="html-semantico.html#elementi-html-specifici"><i class="fa fa-check"></i><b>5.1</b> Elementi HTML specifici</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#hyperlink"><i class="fa fa-check"></i>Hyperlink</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#elementi-testuali-inline"><i class="fa fa-check"></i>Elementi testuali inline</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#immagini-e-media"><i class="fa fa-check"></i>Immagini e media</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#headings"><i class="fa fa-check"></i>Headings</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#elementi-non-semantici"><i class="fa fa-check"></i>Elementi non semantici</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#sectioning-elements"><i class="fa fa-check"></i>Sectioning elements</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#tabelle"><i class="fa fa-check"></i>Tabelle</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#form"><i class="fa fa-check"></i>Form</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="html-semantico.html"><a href="html-semantico.html#aria-for-accessibility"><i class="fa fa-check"></i><b>5.2</b> ARIA for Accessibility</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#aria-labeling"><i class="fa fa-check"></i>ARIA Labeling</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#aria-roles-and-landmarks"><i class="fa fa-check"></i>ARIA Roles and Landmarks</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#aria-e-interattivita"><i class="fa fa-check"></i>ARIA e interattivita’</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#risorse-2"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="selettori-css.html"><a href="selettori-css.html"><i class="fa fa-check"></i><b>6</b> Selettori CSS</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="selettori-css.html"><a href="selettori-css.html#selector-di-base"><i class="fa fa-check"></i><b>6.1</b> Selector di base</a>
+<ul>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#type-selector"><i class="fa fa-check"></i>Type Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#class-selector"><i class="fa fa-check"></i>Class Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#id-selector"><i class="fa fa-check"></i>Id Selector</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="selettori-css.html"><a href="selettori-css.html#selector-complessi"><i class="fa fa-check"></i><b>6.2</b> Selector complessi</a>
+<ul>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#grouping-selector"><i class="fa fa-check"></i>Grouping Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#compound-selector"><i class="fa fa-check"></i>Compound Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#descendant-selector"><i class="fa fa-check"></i>Descendant Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#pseudo-classi"><i class="fa fa-check"></i>Pseudo-classi</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#altri-selector"><i class="fa fa-check"></i>Altri selector</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="selettori-css.html"><a href="selettori-css.html#specificita-dei-selector"><i class="fa fa-check"></i><b>6.3</b> Specificita’ dei selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#risorse-3"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="proprieta-css.html"><a href="proprieta-css.html"><i class="fa fa-check"></i><b>7</b> Proprieta’ CSS</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="proprieta-css.html"><a href="proprieta-css.html#specificare-i-valori-delle-property"><i class="fa fa-check"></i><b>7.1</b> Specificare i valori delle property</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#valori-di-property-ereditati"><i class="fa fa-check"></i>Valori di property ereditati</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#css-units"><i class="fa fa-check"></i>Unita’ di lunghezza e dimensioni</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="proprieta-css.html"><a href="proprieta-css.html#font-e-testo"><i class="fa fa-check"></i><b>7.2</b> Font e testo</a></li>
+<li class="chapter" data-level="7.3" data-path="proprieta-css.html"><a href="proprieta-css.html#css-colors"><i class="fa fa-check"></i><b>7.3</b> Colori e background</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#background-e-immagini"><i class="fa fa-check"></i>Background e immagini</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="proprieta-css.html"><a href="proprieta-css.html#box-model"><i class="fa fa-check"></i><b>7.4</b> Spaziatura con il Box Model</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#padding"><i class="fa fa-check"></i>Padding</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#border"><i class="fa fa-check"></i>Border</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#margin"><i class="fa fa-check"></i>Margin</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#padding-vs.-margin"><i class="fa fa-check"></i>Padding vs. Margin</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#box-sizing"><i class="fa fa-check"></i>Box-Sizing</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="proprieta-css.html"><a href="proprieta-css.html#flow-layout"><i class="fa fa-check"></i><b>7.5</b> Flow Layout</a></li>
+<li class="chapter" data-level="7.6" data-path="proprieta-css.html"><a href="proprieta-css.html#posizionamento-alternativo"><i class="fa fa-check"></i><b>7.6</b> Posizionamento alternativo</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#floating"><i class="fa fa-check"></i>Floating</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="proprieta-css.html"><a href="proprieta-css.html#flexbox"><i class="fa fa-check"></i><b>7.7</b> Flexbox</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#risorse-4"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="responsive-css.html"><a href="responsive-css.html"><i class="fa fa-check"></i><b>8</b> CSS responsive</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="responsive-css.html"><a href="responsive-css.html#design-mobile-first"><i class="fa fa-check"></i><b>8.1</b> Design mobile-first</a>
+<ul>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#principi-di-mobile-first-design"><i class="fa fa-check"></i>Principi di mobile-first design</a></li>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#specificare-il-viewport"><i class="fa fa-check"></i>Specificare il viewport</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="responsive-css.html"><a href="responsive-css.html#media-query"><i class="fa fa-check"></i><b>8.2</b> Media query</a>
+<ul>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#esempio-flexbox-responsive"><i class="fa fa-check"></i>Esempio: Flexbox responsive</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#risorse-5"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="framework-css.html"><a href="framework-css.html"><i class="fa fa-check"></i><b>9</b> Framework CSS</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="framework-css.html"><a href="framework-css.html#usare-un-framework"><i class="fa fa-check"></i><b>9.1</b> Usare un framework</a>
+<ul>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#includere-un-framework"><i class="fa fa-check"></i>Includere un framework</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="framework-css.html"><a href="framework-css.html#bootstrap"><i class="fa fa-check"></i><b>9.2</b> Bootstrap</a>
+<ul>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#class-di-utilita"><i class="fa fa-check"></i>Class di utilita’</a></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#design-responsive"><i class="fa fa-check"></i>Design responsive</a></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#la-grid"><i class="fa fa-check"></i>La Grid</a></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#componenti"><i class="fa fa-check"></i>Componenti</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#risorse-6"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="javascript.html"><a href="javascript.html"><i class="fa fa-check"></i><b>10</b> Fondamenti di JavaScript</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="javascript.html"><a href="javascript.html#programmare-con-javascript"><i class="fa fa-check"></i><b>10.1</b> Programmare con JavaScript</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#storia-e-versioni"><i class="fa fa-check"></i>Storia e versioni</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="javascript.html"><a href="javascript.html#eseguire-javascript"><i class="fa fa-check"></i><b>10.2</b> Eseguire JavaScript</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#nel-browser"><i class="fa fa-check"></i>Nel Browser</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#da-command-line-con-node.js"><i class="fa fa-check"></i>Da Command-line con Node.js</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="javascript.html"><a href="javascript.html#scrivere-script"><i class="fa fa-check"></i><b>10.3</b> Scrivere Script</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#strict-mode"><i class="fa fa-check"></i>Strict Mode</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="javascript.html"><a href="javascript.html#variabili"><i class="fa fa-check"></i><b>10.4</b> Variabili</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#data-types-di-base"><i class="fa fa-check"></i>Data Types di base</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#array"><i class="fa fa-check"></i>Array</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#object"><i class="fa fa-check"></i>Object</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#type-coercion"><i class="fa fa-check"></i>Type Coercion</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="javascript.html"><a href="javascript.html#strutture-di-controllo"><i class="fa fa-check"></i><b>10.5</b> Strutture di controllo</a></li>
+<li class="chapter" data-level="10.6" data-path="javascript.html"><a href="javascript.html#funzioni"><i class="fa fa-check"></i><b>10.6</b> Funzioni</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#risorse-7"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>11</b> Programmazione funzionale in JS</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="functional-programming.html"><a href="functional-programming.html#functions-are-variables"><i class="fa fa-check"></i><b>11.1</b> Functions ARE Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#anonymous-functions"><i class="fa fa-check"></i>Anonymous Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="functional-programming.html"><a href="functional-programming.html#object-functions"><i class="fa fa-check"></i><b>11.2</b> Object Functions</a></li>
+<li class="chapter" data-level="11.3" data-path="functional-programming.html"><a href="functional-programming.html#callback-functions"><i class="fa fa-check"></i><b>11.3</b> Callback Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#closures"><i class="fa fa-check"></i>Closures</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="functional-programming.html"><a href="functional-programming.html#functional-looping"><i class="fa fa-check"></i><b>11.4</b> Functional Looping</a>
+<ul>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#map"><i class="fa fa-check"></i>Map</a></li>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#filter"><i class="fa fa-check"></i>Filter</a></li>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#reduce"><i class="fa fa-check"></i>Reduce</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="functional-programming.html"><a href="functional-programming.html#pure-functions"><i class="fa fa-check"></i><b>11.5</b> Pure Functions</a></li>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#risorse-8"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="dom.html"><a href="dom.html"><i class="fa fa-check"></i><b>12</b> Modello a oggetti del documento (DOM)</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="dom.html"><a href="dom.html#la-dom-api"><i class="fa fa-check"></i><b>12.1</b> La DOM API</a>
+<ul>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#global-variables"><i class="fa fa-check"></i>Global Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="dom.html"><a href="dom.html#dom-manipulation"><i class="fa fa-check"></i><b>12.2</b> DOM Manipulation</a>
+<ul>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#referenziare-elementi-html"><i class="fa fa-check"></i>Referenziare elementi HTML</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#modificare-elementi-html"><i class="fa fa-check"></i>Modificare elementi HTML</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#modificare-il-dom-tree"><i class="fa fa-check"></i>Modificare il DOM Tree</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#accessibility"><i class="fa fa-check"></i>Accessibility</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="dom.html"><a href="dom.html#ascoltare-gli-eventi"><i class="fa fa-check"></i><b>12.3</b> Ascoltare gli Eventi</a>
+<ul>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#tipi-di-eventi"><i class="fa fa-check"></i>Tipi di Eventi</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#event-driven-programming"><i class="fa fa-check"></i>Event-Driven Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#risorse-9"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="librerie-javascript.html"><a href="librerie-javascript.html"><i class="fa fa-check"></i><b>13</b> Librerie JavaScript</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="librerie-javascript.html"><a href="librerie-javascript.html#includere-una-library"><i class="fa fa-check"></i><b>13.1</b> Includere una Library</a></li>
+<li class="chapter" data-level="13.2" data-path="librerie-javascript.html"><a href="librerie-javascript.html#esempio-jquery"><i class="fa fa-check"></i><b>13.2</b> Esempio: jQuery</a>
+<ul>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#manipolare-il-dom"><i class="fa fa-check"></i>Manipolare il DOM</a></li>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#gestire-gli-eventi"><i class="fa fa-check"></i>Gestire gli eventi</a></li>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#e-altro"><i class="fa fa-check"></i>E altro!</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#risorse-10"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="es6.html"><a href="es6.html"><i class="fa fa-check"></i><b>14</b> Sintassi ES6+</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="es6.html"><a href="es6.html#es6-syntax-features"><i class="fa fa-check"></i><b>14.1</b> ES6+ Syntax Features</a>
+<ul>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#arrow-functions"><i class="fa fa-check"></i>Arrow Functions</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#destructuring"><i class="fa fa-check"></i>Destructuring</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#spreading"><i class="fa fa-check"></i>Spreading</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#template-strings"><i class="fa fa-check"></i>Template Strings</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="es6.html"><a href="es6.html#modules"><i class="fa fa-check"></i><b>14.2</b> Modules</a>
+<ul>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#module-syntax"><i class="fa fa-check"></i>Module Syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="es6.html"><a href="es6.html#es6-classes"><i class="fa fa-check"></i><b>14.3</b> Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#why-classes"><i class="fa fa-check"></i>Why Classes?</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#review-classes-in-java"><i class="fa fa-check"></i>Review: Classes in Java</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#es6-class-syntax"><i class="fa fa-check"></i>ES6 Class Syntax</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#inheritance"><i class="fa fa-check"></i>Inheritance</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#working-with-this"><i class="fa fa-check"></i>Working with <code>this</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="react.html"><a href="react.html"><i class="fa fa-check"></i><b>15</b> Introduzione a React</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="react.html"><a href="react.html#react-vite-setup"><i class="fa fa-check"></i><b>15.1</b> Preparazione: React e Vite</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#eseguire-il-development-server"><i class="fa fa-check"></i>Eseguire il Development Server</a></li>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#struttura-del-progetto"><i class="fa fa-check"></i>Struttura del Progetto</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="react.html"><a href="react.html#jsx"><i class="fa fa-check"></i><b>15.2</b> JSX</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#espressioni-inline"><i class="fa fa-check"></i>Espressioni Inline</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="react.html"><a href="react.html#component-react"><i class="fa fa-check"></i><b>15.3</b> Component React</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#organizzazione-dei-components"><i class="fa fa-check"></i>Organizzazione dei Components</a></li>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#alternativa-deprecata-class-components"><i class="fa fa-check"></i>Alternativa Deprecata: Class Components</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="react.html"><a href="react.html#props"><i class="fa fa-check"></i><b>15.4</b> Proprieta’ (<code>props</code>)</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#props-e-composizione"><i class="fa fa-check"></i>Props e Composizione</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#risorse-11"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="react-interattivo.html"><a href="react-interattivo.html"><i class="fa fa-check"></i><b>16</b> React Interattivo</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="react-interattivo.html"><a href="react-interattivo.html#gestire-gli-eventi-in-react"><i class="fa fa-check"></i><b>16.1</b> Gestire gli Eventi in React</a></li>
+<li class="chapter" data-level="16.2" data-path="react-interattivo.html"><a href="react-interattivo.html#state-e-hooks"><i class="fa fa-check"></i><b>16.2</b> State e Hooks</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#aggiornare-lo-state"><i class="fa fa-check"></i>Aggiornare lo State</a></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#state-vs.-props"><i class="fa fa-check"></i>State vs. Props</a></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#lifting-up-state"><i class="fa fa-check"></i>Lifting Up State</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="react-interattivo.html"><a href="react-interattivo.html#interazioni-specifiche"><i class="fa fa-check"></i><b>16.3</b> Interazioni Specifiche</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#lavorare-con-i-forms"><i class="fa fa-check"></i>Lavorare con i Forms</a></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#caricare-data-via-ajax"><i class="fa fa-check"></i>Caricare Data via AJAX</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#risorse-12"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="routing-lato-client.html"><a href="routing-lato-client.html"><i class="fa fa-check"></i><b>17</b> Routing lato client</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="routing-lato-client.html"><a href="routing-lato-client.html#single-page-applications"><i class="fa fa-check"></i><b>17.1</b> Single-Page Applications</a></li>
+<li class="chapter" data-level="17.2" data-path="routing-lato-client.html"><a href="routing-lato-client.html#react-router"><i class="fa fa-check"></i><b>17.2</b> React-Router</a>
+<ul>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#routing"><i class="fa fa-check"></i>Routing</a></li>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#linking"><i class="fa fa-check"></i>Linking</a></li>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#react-router-e-hosting"><i class="fa fa-check"></i>React Router e Hosting</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#risorse-13"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="ajax.html"><a href="ajax.html"><i class="fa fa-check"></i><b>18</b> Richieste AJAX</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="ajax.html"><a href="ajax.html#ajax-1"><i class="fa fa-check"></i><b>18.1</b> AJAX</a>
+<ul>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#xml-e-json"><i class="fa fa-check"></i>XML e JSON</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="ajax.html"><a href="ajax.html#fetching-data"><i class="fa fa-check"></i><b>18.2</b> Fetching Data</a></li>
+<li class="chapter" data-level="18.3" data-path="ajax.html"><a href="ajax.html#asynchronous-programming"><i class="fa fa-check"></i><b>18.3</b> Asynchronous Programming</a>
+<ul>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#chaining-promises"><i class="fa fa-check"></i>Chaining Promises</a></li>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#handling-errors"><i class="fa fa-check"></i>Handling Errors</a></li>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#altri-data-formats"><i class="fa fa-check"></i>Altri Data Formats</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#risorse-14"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="firebase.html"><a href="firebase.html"><i class="fa fa-check"></i><b>19</b> Firebase</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="firebase.html"><a href="firebase.html#setting-up-firebase"><i class="fa fa-check"></i><b>19.1</b> Setting up Firebase</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#creating-a-project"><i class="fa fa-check"></i>Creating a Project</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#including-firebase-in-react"><i class="fa fa-check"></i>Including Firebase in React</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#adding-collaborators-to-a-project"><i class="fa fa-check"></i>Adding Collaborators to a Project</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="firebase.html"><a href="firebase.html#realtime-database"><i class="fa fa-check"></i><b>19.2</b> Realtime Database</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#setting-up-the-database"><i class="fa fa-check"></i>Setting Up the Database</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#reference-ai-dati"><i class="fa fa-check"></i>Reference ai dati</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#listening-for-data-changes"><i class="fa fa-check"></i>Listening for Data Changes</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#firebase-arrays"><i class="fa fa-check"></i>Firebase Arrays</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="firebase.html"><a href="firebase.html#autenticazione-utenti"><i class="fa fa-check"></i><b>19.3</b> Autenticazione utenti</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#accesso-con-firebaseui"><i class="fa fa-check"></i>Accesso con FirebaseUI</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#managing-the-user"><i class="fa fa-check"></i>Managing the User</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="firebase.html"><a href="firebase.html#firebase-storage"><i class="fa fa-check"></i><b>19.4</b> Firebase Storage</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#file-inputs"><i class="fa fa-check"></i>File Inputs</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#uploading-files"><i class="fa fa-check"></i>Uploading Files</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#risorse-15"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendice-appendici-e-argomenti-speciali.html"><a href="appendice-appendici-e-argomenti-speciali.html"><i class="fa fa-check"></i>(APPENDICE) Appendici e argomenti speciali</a></li>
+<li class="chapter" data-level="20" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html"><i class="fa fa-check"></i><b>20</b> Guida allo stile del codice</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#html-guidelines"><i class="fa fa-check"></i><b>20.1</b> HTML Guidelines</a>
+<ul>
+<li class="chapter" data-level="" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#spacing"><i class="fa fa-check"></i>Spacing</a></li>
+<li class="chapter" data-level="" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#elementi-specifici"><i class="fa fa-check"></i>Elementi specifici</a></li>
+<li class="chapter" data-level="" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#commenti-in-html"><i class="fa fa-check"></i>Commenti in HTML</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#css-guidelines"><i class="fa fa-check"></i><b>20.2</b> CSS Guidelines</a>
+<ul>
+<li class="chapter" data-level="20.2.1" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#spacing-1"><i class="fa fa-check"></i><b>20.2.1</b> Spacing</a></li>
+<li class="chapter" data-level="20.2.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#selectors"><i class="fa fa-check"></i><b>20.2.2</b> Selectors</a></li>
+<li class="chapter" data-level="20.2.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#class-names"><i class="fa fa-check"></i><b>20.2.3</b> Class Names</a></li>
+<li class="chapter" data-level="20.2.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#proprieta-specifiche"><i class="fa fa-check"></i><b>20.2.4</b> Proprieta’ specifiche</a></li>
+<li class="chapter" data-level="20.2.5" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#responsive-css-1"><i class="fa fa-check"></i><b>20.2.5</b> Responsive CSS</a></li>
+<li class="chapter" data-level="20.2.6" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#commenti-in-css"><i class="fa fa-check"></i><b>20.2.6</b> Commenti in CSS</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#javascript-guidelines"><i class="fa fa-check"></i><b>20.3</b> JavaScript Guidelines</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#variables"><i class="fa fa-check"></i><b>20.3.1</b> Variables</a></li>
+<li class="chapter" data-level="20.3.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#functions"><i class="fa fa-check"></i><b>20.3.2</b> Functions</a></li>
+<li class="chapter" data-level="20.3.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#commenti-in-javascript"><i class="fa fa-check"></i><b>20.3.3</b> Commenti in JavaScript</a></li>
+<li class="chapter" data-level="20.3.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#altre-linee-guida-javascript"><i class="fa fa-check"></i><b>20.3.4</b> Altre linee guida JavaScript</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#react-guidelines"><i class="fa fa-check"></i><b>20.4</b> React Guidelines</a>
+<ul>
+<li class="chapter" data-level="20.4.1" data-path="react.html"><a href="react.html#components"><i class="fa fa-check"></i><b>20.4.1</b> Components</a></li>
+<li class="chapter" data-level="20.4.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#mapping-data"><i class="fa fa-check"></i><b>20.4.2</b> Mapping Data</a></li>
+<li class="chapter" data-level="20.4.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#state"><i class="fa fa-check"></i><b>20.4.3</b> State</a></li>
+<li class="chapter" data-level="20.4.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#events-e-forms"><i class="fa fa-check"></i><b>20.4.4</b> Events e Forms</a></li>
+</ul></li>
+<li class="chapter" data-level="20.5" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#linee-guida-varie"><i class="fa fa-check"></i><b>20.5</b> Linee guida varie</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="jest.html"><a href="jest.html"><i class="fa fa-check"></i><b>21</b> Test con Jest</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="jest.html"><a href="jest.html#test"><i class="fa fa-check"></i><b>21.1</b> Test</a></li>
+<li class="chapter" data-level="21.2" data-path="jest.html"><a href="jest.html#testing-con-jest"><i class="fa fa-check"></i><b>21.2</b> Testing con Jest</a></li>
+<li class="chapter" data-level="21.3" data-path="jest.html"><a href="jest.html#scrivere-un-test"><i class="fa fa-check"></i><b>21.3</b> Scrivere un test</a>
+<ul>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#assertion-e-matcher"><i class="fa fa-check"></i>Assertion e matcher</a></li>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#organizzare-i-test"><i class="fa fa-check"></i>Organizzare i test</a></li>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#eseguire-i-test"><i class="fa fa-check"></i>Eseguire i test</a></li>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#esercizio"><i class="fa fa-check"></i>Esercizio</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="jest.html"><a href="jest.html#testing-di-web-app-con-jest"><i class="fa fa-check"></i><b>21.4</b> Testing di web app con Jest</a>
+<ul>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#pratica"><i class="fa fa-check"></i>Pratica</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="webpack.html"><a href="webpack.html"><i class="fa fa-check"></i><b>22</b> Laboratorio: Webpack</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="webpack.html"><a href="webpack.html#che-cose-webpack"><i class="fa fa-check"></i><b>22.1</b> Che cos’e’ Webpack?</a></li>
+<li class="chapter" data-level="22.2" data-path="webpack.html"><a href="webpack.html#getting-started"><i class="fa fa-check"></i><b>22.2</b> Getting Started</a></li>
+<li class="chapter" data-level="22.3" data-path="webpack.html"><a href="webpack.html#webpack.config.js"><i class="fa fa-check"></i><b>22.3</b> <code>webpack.config.js</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#entry-e-output"><i class="fa fa-check"></i><code>entry</code> e <code>output</code></a></li>
+</ul></li>
+<li class="chapter" data-level="22.4" data-path="webpack.html"><a href="webpack.html#loaders"><i class="fa fa-check"></i><b>22.4</b> Loaders</a>
+<ul>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#babel-loader"><i class="fa fa-check"></i>Babel Loader</a></li>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#clean-up-bath"><i class="fa fa-check"></i>Clean up :bath:</a></li>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#ulteriore-pratica-con-i-loader"><i class="fa fa-check"></i>Ulteriore pratica con i Loader</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="class-components.html"><a href="class-components.html"><i class="fa fa-check"></i><b>23</b> Componenti class React</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="class-components.html"><a href="class-components.html#props-nei-class-components"><i class="fa fa-check"></i><b>23.1</b> Props nei Class Components</a></li>
+<li class="chapter" data-level="23.2" data-path="class-components.html"><a href="class-components.html#gestire-gli-eventi-nei-class-components"><i class="fa fa-check"></i><b>23.2</b> Gestire gli Eventi nei Class Components</a>
+<ul>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#accedere-al-this-del-component-dagli-eventi"><i class="fa fa-check"></i>Accedere al <code>this</code> del Component dagli Eventi</a></li>
+</ul></li>
+<li class="chapter" data-level="23.3" data-path="class-components.html"><a href="class-components.html#state-in-class-components"><i class="fa fa-check"></i><b>23.3</b> State nei Class Components</a>
+<ul>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#cambiare-lo-state"><i class="fa fa-check"></i>Cambiare lo State</a></li>
+</ul></li>
+<li class="chapter" data-level="23.4" data-path="class-components.html"><a href="class-components.html#il-lifecycle-del-component"><i class="fa fa-check"></i><b>23.4</b> Il Lifecycle del Component</a>
+<ul>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#esempio-di-lifecycle-caricare-data-via-ajax"><i class="fa fa-check"></i>Esempio di Lifecycle: Caricare Data via AJAX</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#risorse-16"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="css-in-js.html"><a href="css-in-js.html"><i class="fa fa-check"></i><b>24</b> CSS in JS</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="css-in-js.html"><a href="css-in-js.html#perche-css-in-js"><i class="fa fa-check"></i><b>24.1</b> Perche’ CSS in JS?</a></li>
+<li class="chapter" data-level="24.2" data-path="css-in-js.html"><a href="css-in-js.html#stili-inline-in-react"><i class="fa fa-check"></i><b>24.2</b> Stili inline in React</a></li>
+<li class="chapter" data-level="24.3" data-path="css-in-js.html"><a href="css-in-js.html#aphrodite"><i class="fa fa-check"></i><b>24.3</b> Aphrodite</a></li>
+<li class="chapter" data-level="24.4" data-path="css-in-js.html"><a href="css-in-js.html#css-modules"><i class="fa fa-check"></i><b>24.4</b> CSS Modules</a>
+<ul>
+<li class="chapter" data-level="" data-path="css-in-js.html"><a href="css-in-js.html#ejecting-da-create-react-app"><i class="fa fa-check"></i>Ejecting da Create React App</a></li>
+<li class="chapter" data-level="" data-path="css-in-js.html"><a href="css-in-js.html#composizione-delle-class"><i class="fa fa-check"></i>Composizione delle class</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="css-in-js.html"><a href="css-in-js.html#risorse-17"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="redux.html"><a href="redux.html"><i class="fa fa-check"></i><b>25</b> Redux</a></li>
+<li class="chapter" data-level="26" data-path="react-native.html"><a href="react-native.html"><i class="fa fa-check"></i><b>26</b> React Native</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="react-native.html"><a href="react-native.html#getting-setup"><i class="fa fa-check"></i><b>26.1</b> Getting Setup</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#eseguire-react-native-apps"><i class="fa fa-check"></i>Eseguire React Native Apps</a></li>
+</ul></li>
+<li class="chapter" data-level="26.2" data-path="react-native.html"><a href="react-native.html#react-native-apps"><i class="fa fa-check"></i><b>26.2</b> React Native Apps</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#styling-react-native"><i class="fa fa-check"></i>Styling React Native</a></li>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#interaction"><i class="fa fa-check"></i>Interaction</a></li>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#liste-e-data"><i class="fa fa-check"></i>Liste e Data</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Sviluppo Web lato client</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="es6" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">Chapter 14</span> Sintassi ES6+<a href="es6.html#es6" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Come discusso nel <a href="#history-and-versions">Chapter 10</a>, la specifica ECMAScript per il linguaggio JavaScript ha attraversato diverse versioni, ognuna delle quali ha aggiunto nuova sintassi e nuove feature per rendere il linguaggio piu’ potente, espressivo o piu’ facile da usare.</p>
+<p>Dopo che il linguaggio JavaScript fu scritto inizialmente nel 1995 e poi iterato fino alla fine degli anni ‘90, rimase per lo piu’ consistente (con piccoli cambiamenti) per circa un decennio—fino al 2009 con il rilascio di JavaScript v5. La versione successiva importante non usci’ fino al 2015—anche se ufficialmente chiamata “ECMAScript 2015”, la maggior parte dei developer la chiama con il nome di lavoro <strong>“ES6”</strong> (ad es. versione 6 del linguaggio). ES6 ha introdotto molte feature sintattiche notevoli e utili—inclusi <code>let</code> e <code>const</code>! Da allora, il linguaggio e’ stato aggiornato annualmente, con ogni versione chiamata secondo l’anno di rilascio (<em>ES 2016</em> e’ uscito nel 2016, <em>ES 2017</em> nel 2017, ecc).</p>
+<p>Questo capitolo introduce alcune delle feature piu’ notevoli e utili introdotte in ES6 e nelle versioni successive di JavaScript—in particolare quelle necessarie quando si usa il framework React (discusso nei capitoli seguenti).</p>
+<p class="alert alert-warning">
+A questo punto ES6 e’ sufficientemente maturo da essere <a href="https://compat-table.github.io/compat-table/es6/">quasi completamente supportato dai browser moderni</a>, con l’eccezione significativa di Internet Explorer. Tuttavia, l’interpreter JavaScript nei browser piu’ vecchi (e in IE) non riconosce la nuova sintassi introdotta in questa versione. Invece, dovresti convertire quel codice in equivalente ES5 (o precedente), che puo’ essere interpretato. Un modo per farlo e’ usare il compiler <a href="https://babeljs.io/">Babel</a>, che “<em>transpila</em>” il codice JavaScript da una versione a un’altra. Il capitolo successivo discute come fare questo tipo di transpiling con React (spoiler: e’ fatto automaticamente dai build tools forniti), ma e’ anche possibile <a href="https://babeljs.io/docs/setup/#installation">installare</a> e usare Babel da soli.
+</p>
+<div id="es6-syntax-features" class="section level2 hasAnchor" number="14.1">
+<h2><span class="header-section-number">14.1</span> ES6+ Syntax Features<a href="es6.html#es6-syntax-features" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<blockquote>
+<p>Syntactic Sugar causes cancer of the semicolon - <a href="http://www.cs.yale.edu/homes/perlis-alan/quotes.html">Alan Perlis</a></p>
+</blockquote>
+<p>Molte delle feature ES6 sono <em>syntactic shortcuts</em>—forniscono sintassi per scrivere functions e operazioni in modo piu’ conciso. Queste feature non sono necessarie per scrivere JavaScript, ma possono rendere il codice piu’ facile da scrivere e da leggere (una volta appresa la sintassi), e sono considerate il modo “normale” di scrivere JavaScript moderno. Questa sezione discute alcune delle feature sintattiche piu’ comuni.</p>
+<div id="arrow-functions" class="section level3 unnumbered hasAnchor">
+<h3>Arrow Functions<a href="es6.html#arrow-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Come descritto nel <a href="functional-programming.html#functional-programming">Chapter 11</a>, JavaScript permette di definire functions come <em>anonymous values</em>:</p>
+<pre class="language-js"><code><span class="token keyword">const</span> <span class="token function-variable function">sayHello</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token string">'Ciao '</span><span class="token operator">+</span>name<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Come hai visto, l’uso di anonymous functions e’ incredibilmente comune in JavaScript, soprattutto quando usate come anonymous callbacks. Proprio per questo, ES6 ha introdotto una sintassi piu’ semplice e concisa per specificare rapidamente anonymous functions. Anche se ufficialmente chiamate <a href="https://en.wikipedia.org/wiki/Anonymous_function">lambda functions</a>, sono piu’ comunemente note come <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions"><strong>arrow functions</strong></a>, per via dell’uso del simbolo “arrow” <strong><code>=&gt;</code></strong>:</p>
+<pre class="language-js"><code><span class="token keyword">const</span> <span class="token function-variable function">sayHello</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">'Ciao '</span><span class="token operator">+</span>name<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Per trasformare una anonymous function in <em>arrow function</em>, basta rimuovere la keyword <code>function</code> dalla definizione e mettere un arrow <code>=&gt;</code> tra la lista dei parametri e il block (indicando che la lista dei parametri “va verso” il block successivo). Questo fa risparmiare qualche carattere quando digiti!</p>
+<p>E’ anche possibile omettere le <code>()</code> attorno alla lista degli argomenti in una arrow function:</p>
+<pre class="language-js"><code><span class="token comment">//puoi omettere le parentesi attorno all'argomento -- ma non farlo!</span>
+<span class="token keyword">const</span> <span class="token function-variable function">sayHello</span> <span class="token operator">=</span> <span class="token parameter">name</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">'Ciao '</span><span class="token operator">+</span>name<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//le parentesi sono richieste se non ci sono argomenti</span>
+<span class="token keyword">const</span> <span class="token function-variable function">printHello</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Ciao mondo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Tuttavia, questo rende la sintassi piu’ difficile da leggere (leggendo il testo, sembra una dichiarazione di variable finche’ non arrivi al <code>=&gt;</code>). Quindi dovresti includere sempre le parentesi <code>()</code> nella lista dei parametri: aiuta la leggibilita’ e rende piu’ facile aggiungere parametri in seguito—rispettando i requisiti di <a href="#code-style-guide">good code style</a>.</p>
+<p>Le arrow functions sono particolarmente comode quando usi anonymous callback functions (function literals):</p>
+<pre class="language-js"><code><span class="token keyword">const</span> array <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">//un array con cui lavorare</span>
+
+<span class="token comment">//sintassi di dichiarazione della function</span>
+array<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">num</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> num <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span> <span class="token comment">//moltiplica ogni item per 2</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//sintassi arrow function</span>
+array<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">num</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> num <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span> <span class="token comment">//moltiplica ogni item per 2</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Usare una arrow function rende leggermente piu’ ovvio che la function prende un input e poi produce (<code>=&gt;</code>) un output—cosi’ puoi concentrarti sul metodo di interesse (come <code>.map()</code>) invece che sulla callback. Tuttavia, rende meno ovvio che l’argomento di <code>.map()</code> e’ una <em>function</em> finche’ non ti abitui a riconoscere la freccia <code>=&gt;</code>.</p>
+<p class="alert alert-info">
+Le arrow functions sono <em>lexically scoped</em>, cioe’ il value della keyword <code>this</code> viene mantenuto anche dentro la function. Questo puo’ essere importante in alcuni contesti (come le <a href="es6.html#es6-classes">classes</a>) ed e’ uno dei motivi per cui e’ meglio usare arrow functions quando definisci callback functions).
+</p>
+<p>Per functions molto semplici, le arrow functions possono essere scritte in modo ancora piu’ <em>compatto</em>: se il body della function ha solo uno statement, puoi omettere le <code>{}</code> del block e anche il <code>return</code>. Questa si chiama <strong>concise body</strong>. La function restituira’ il risultato del singolo statement, che sara’ un’espressione o <code>undefined</code>. Per esempio:</p>
+<pre class="language-js"><code><span class="token comment">//sintassi di dichiarazione della function</span>
+<span class="token keyword">function</span> <span class="token function">makeFullName</span><span class="token punctuation">(</span><span class="token parameter">first<span class="token punctuation">,</span> last</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> first <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> last<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//sintassi arrow function a block body</span>
+<span class="token keyword">const</span> <span class="token function-variable function">makeFullName</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">first<span class="token punctuation">,</span> last</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> first <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> last<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//sintassi arrow function a concise body</span>
+<span class="token keyword">const</span> <span class="token function-variable function">makeFullName</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">first<span class="token punctuation">,</span> last</span><span class="token punctuation">)</span> <span class="token operator">=></span> first <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> last<span class="token punctuation">;</span></code></pre>
+<p>Nota che se l’espressione di una concise-body arrow function restituisce <code>undefined</code> (ad es. da un <code>console.log</code>), allora anche la arrow function restituira’ <code>undefined</code>.</p>
+<pre class="language-js"><code><span class="token comment">//sintassi arrow function a concise body</span>
+<span class="token keyword">const</span> <span class="token function-variable function">sayHello</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Ciao"</span> <span class="token operator">+</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//questo e' identico all'uso della block body syntax. Si, restituire il risultato di</span>
+<span class="token comment">//console.log() e' strano</span>
+<span class="token keyword">const</span> <span class="token function-variable function">sayHello</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Ciao"</span> <span class="token operator">+</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Usare la concise body synatx potrebbe farti risparmiare qualche carattere (e anche line break!). Tuttavia, puo’ rendere la function <em>piu’ difficile da leggere</em>—soprattutto quando ha piu’ di un argomento—e piu’ difficile da riconoscere come function perche’ il block non e’ evidente. Le concise body functions sono anche <em>piu’ difficili da modificare</em>—possono avere solo uno statement, quindi se vuoi che la function faccia piu’ di una cosa—incluso usare un loop o uno <code>if</code> statment—devi comunque convertirla in block body. (Cercare di rendere quell’unica espressione molto complessa e’ anche poor style). E dato che non puoi aggiungere righe, e’ <em>piu’ difficile fare debug</em> perche’ non puoi aggiungere <code>console.log</code> o altri passi di debugging. Per questo, dovresti quasi mai usare la concise-body arrow function syntax se non per callback molto semplici—e’ sempre meglio usare la block body syntax.</p>
+<p>In generale, le arrow functions (in particolare le block body arrow functions) sono un clean syntactic shortcut che e’ il modo “normale” di scrivere anonymous callback functions—le vedrai in tanti esempi e nel codice professionale. Le “top-level” functions dovrebbero essere scritte con la sintassi regolare di function declaration, ma le callback functions dovrebbero <em>sempre</em> essere scritte usando block-body arrow functions.</p>
+</div>
+<div id="destructuring" class="section level3 unnumbered hasAnchor">
+<h3>Destructuring<a href="es6.html#destructuring" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>ES6 ha introdotto anche i <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment"><strong>destructing assignments</strong></a>, che ti permettono di assegnare ogni elemento di un array (o ogni property di un object) a variables separate in un’unica operazione. Si chiama “destructuring” perche’ stai “unpacking” i values di un array in un insieme di variables.</p>
+<p>Per fare destructuring di un array in JavaScript, scrivi le variables a cui vuoi assegnare i values dentro parentesi quadre <strong><code>[]</code></strong> sul <em>left-hand side</em> dell’assegnazione—quasi come se stessi assegnando a un array!</p>
+<pre class="language-js"><code><span class="token keyword">const</span> myArray <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">[</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> z<span class="token punctuation">]</span> <span class="token operator">=</span> myArray<span class="token punctuation">;</span> <span class="token comment">//assegna gli elementi di myArray a `x`, `y`, `z` rispettivamente</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> 1;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> 2;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>z<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> 3;</span></code></pre>
+<p>Quando fai destructuring di un array, i values sono assegnati <em>in ordine</em>—il value all’index 0 va alla prima variable, il value all’index 1 alla seconda, ecc.</p>
+<p>E’ possibile che la “lista di variables” e la size dell’array destructured non corrispondano. Se nell’array ci sono piu’ values che variables, i values extra non verranno assegnati (saranno ignorati). Se ci sono piu’ variables che values, le variables in eccesso saranno <code>undefined</code> (perche’ il value in quella posizione dell’array e’ <code>undefined</code>).</p>
+<pre class="language-js"><code><span class="token keyword">const</span> bigArray <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">[</span>a<span class="token punctuation">,</span> b<span class="token punctuation">]</span> <span class="token operator">=</span> bigArray<span class="token punctuation">;</span> <span class="token comment">//solo i primi 2 elementi verranno assegnati</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> 1;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> 2;</span>
+<span class="token comment">//gli altri elementi non sono assegnati</span>
+
+<span class="token keyword">const</span> smallArray <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span>
+<span class="token keyword">const</span> <span class="token punctuation">[</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> z<span class="token punctuation">]</span> <span class="token operator">=</span> smallArray<span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> 1;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> 2;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>z<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> undefined; (perche' smallArray[2] e' undefined!)</span></code></pre>
+<p>E’ anche possibile fare destructuring di <em>objects</em> usando una sintassi simile, tranne per il fatto che metti le variables a cui vuoi assegnare dentro <strong><code>{}</code></strong> sul <em>left-hand side</em> dell’assegnazione—come se stessi assegnando a un object!</p>
+<pre class="language-js"><code><span class="token keyword">const</span> myObject <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token literal-property property">a</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token literal-property property">b</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token literal-property property">c</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">}</span> <span class="token operator">=</span> myObject<span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> 1; myObject.a</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> 2; myObject.b</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> 3; myObject.c</span></code></pre>
+<p>Nota che quando fai destructuring di un object, le variables specificate sul lato sinistro dell’assegnazione ricevono il value della <em>property</em> corrispondente nell’object. Quindi in <code>const {a, b, c} = myObject</code>, la <code>a</code> viene assegnata a <code>myObject.a</code>, la <code>b</code> a <code>myObject.b</code>, ecc. L’ordine degli elementi su entrambi i lati dell’equazione non conta, perche’ le object properties sono unordered!</p>
+<pre class="language-js"><code><span class="token keyword">const</span> myObject <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token literal-property property">a</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token literal-property property">b</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token literal-property property">c</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span>c<span class="token punctuation">,</span> b<span class="token punctuation">,</span> a<span class="token punctuation">}</span> <span class="token operator">=</span> myObject<span class="token punctuation">;</span> <span class="token comment">//"ordine" delle variables non importa</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> 1</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> 2;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> 3;</span></code></pre>
+<p>Esiste anche sintassi per assegnare properties dell’object a nomi di variable diversi (vedi <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring">la documentazione sul destructuring</a> per dettagli).</p>
+<p>Come per il destructuring di array, la lista di variables e il numero di object properties non devono per forza coincidere. Le properties non abbinate non verranno assegnate a variables, e le variables senza property corrispondenti resteranno <code>undefined</code>.</p>
+<p>Il destructuring e’ uno syntactic shortcut utile per fare assegnazioni multiple. In React e’ spesso usato per creare variables locali, cosi’ non devi scrivere continuamente <code>object.property</code>:</p>
+<pre class="language-js"><code><span class="token comment">//una function che si aspetta un object come argomento</span>
+<span class="token keyword">function</span> <span class="token function">getBMI</span><span class="token punctuation">(</span><span class="token parameter">personObject</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span>height<span class="token punctuation">,</span> weight<span class="token punctuation">}</span> <span class="token operator">=</span> personObject<span class="token punctuation">;</span> <span class="token comment">//destructuring in variables locali</span>
+  <span class="token comment">//evita di dover riferirsi a `personObject.height`</span>
+
+  <span class="token keyword">return</span> <span class="token number">703</span><span class="token operator">*</span>weight<span class="token operator">/</span><span class="token punctuation">(</span>height<span class="token operator">*</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//calcola e restituisce il value</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> person <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'Ada'</span><span class="token punctuation">,</span> <span class="token literal-property property">height</span><span class="token operator">:</span> <span class="token number">64</span><span class="token punctuation">,</span> <span class="token literal-property property">weight</span><span class="token operator">:</span> <span class="token number">135</span><span class="token punctuation">}</span> <span class="token comment">//una persona di esempio</span>
+<span class="token keyword">const</span> adaBMI <span class="token operator">=</span> <span class="token function">getBMI</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//passa l'object</span></code></pre>
+<p>In effetti, questo comportamento e’ cosi’ comune che e’ possibile <em>fare destructuring dei function parameters</em> nella function declaration stessa! Per farlo, sostituisci il nome dell’object nella lista dei parametri con l’insieme delle variables destructured (cio’ che starebbe sul left-hand side del destructuring):</p>
+<pre class="language-js"><code><span class="token comment">//una function con l'argomento object destructured</span>
+<span class="token comment">//nota il `{} nella lista degli argomenti`</span>
+<span class="token keyword">function</span> <span class="token function">getBMI</span><span class="token punctuation">(</span> <span class="token parameter"><span class="token punctuation">{</span>height<span class="token punctuation">,</span> weight<span class="token punctuation">}</span></span> <span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">//chiama implicitamente `{height, weight} = personObject`</span>
+
+  <span class="token keyword">return</span> <span class="token number">703</span><span class="token operator">*</span>weight<span class="token operator">/</span><span class="token punctuation">(</span>height<span class="token operator">*</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//calcola e restituisce il value</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> person <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'Ada'</span><span class="token punctuation">,</span> <span class="token literal-property property">height</span><span class="token operator">:</span> <span class="token number">64</span><span class="token punctuation">,</span> <span class="token literal-property property">weight</span><span class="token operator">:</span> <span class="token number">135</span><span class="token punctuation">}</span> <span class="token comment">//una persona di esempio</span>
+<span class="token keyword">const</span> adaBMI <span class="token operator">=</span> <span class="token function">getBMI</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//passa l'object</span></code></pre>
+<p>Per essere chiari: nel secondo esempio, la function <code>getBMI()</code> si aspetta <em>solo 1 argomento</em>—quell’unico argomento viene semplicemente destructured in due variables quando la function viene chiamata.</p>
+<p>Questa sintassi puo’ farti risparmiare una riga di codice, ma puo’ anche rendere piu’ facile fraintendere la function e pensare che prenda piu’ argomenti di quanti ne prenda davvero (se ti sfuggono le <code>{}</code> nella lista dei parametri). D’altro canto, questa sintassi rende chiaro esattamente quali properties deve avere l’object atteso—questa function definisce chiaramente la sua API: il “person object” deve avere <code>height</code> e <code>weight</code> (e non solo, ad es., <code>name</code> o <code>age</code>). Come per ogni sintassi alternativa, ci sono trade-off in termini di code style e leggibilita’. Tuttavia, questa forma di sintassi e’ spesso usata in React (dove molte functions si aspettano un singolo object, ma devi accedere alle properties individuali).</p>
+</div>
+<div id="spreading" class="section level3 unnumbered hasAnchor">
+<h3>Spreading<a href="es6.html#spreading" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Introdotto in ES6 e poi ampliato in ES 2018, lo <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator"><strong>spread operator</strong></a> (l’ellissi <strong><code>...</code></strong>) ti permette di riferirti a “gli elementi di” un array o object esistente quando dichiari un nuovo value. “Espande” i contenuti dell’array o dell’object nel nuovo value. Lo scrivi come unary operator, mettendo i tre punti davanti al value che vuoi espandere:</p>
+<pre class="language-js"><code><span class="token keyword">const</span> originalArray <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">//il nuovo array contiene "gli elementi di" `originalArray`</span>
+<span class="token keyword">const</span> newArray <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span>originalArray<span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">,</span> <span class="token string">'f'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>newArray<span class="token punctuation">)</span> <span class="token comment">//['a', 'b', 'c', 'd', 'e', 'f']</span></code></pre>
+<p>In questo esempio il <code>newArray</code> contiene tutti gli elementi di <code>originalArray</code>, oltre a elementi aggiuntivi. E’ particolarmente utile quando vuoi creare una “copy” di un array o object, con o senza values aggiuntivi.</p>
+<pre class="language-js"><code><span class="token comment">//assegnare un array a una variable diversa non crea un nuovo array!</span>
+<span class="token keyword">const</span> myArray <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> secondArray <span class="token operator">=</span> myArray<span class="token punctuation">;</span> <span class="token comment">//solo una nuova etichetta per lo stesso value</span>
+myArray<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'Z'</span><span class="token punctuation">;</span> <span class="token comment">//modificare la variable originale modifica anche la seconda variable</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>secondArray<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment">//'Z'</span>
+
+<span class="token comment">//usa lo spread per creare una vera copia che e' un array diverso</span>
+<span class="token keyword">const</span> clonedArray <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span>myArray<span class="token punctuation">]</span><span class="token punctuation">;</span>
+myArray<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'Q'</span><span class="token punctuation">;</span> <span class="token comment">//modifica la variable originale</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>clonedArray<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//'b'; clonedArray e' diverso</span></code></pre>
+<p>Lo spread operator puo’ essere usato anche per creare nuovi objects; fare spread di un object espande sia le property keys che i values:</p>
+<pre class="language-js"><code><span class="token keyword">const</span> person <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'Ada'</span><span class="token punctuation">,</span> <span class="token literal-property property">height</span><span class="token operator">:</span> <span class="token number">64</span><span class="token punctuation">,</span> <span class="token literal-property property">weight</span><span class="token operator">:</span> <span class="token number">135</span><span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> copyOfPerson <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token operator">...</span>person<span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">//clona l'object</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>copyOfPerson<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// {name: 'Ada', height: 64, weight: 135}</span>
+
+<span class="token comment">//tutte le properties sono "spalmate" nel nuovo object</span>
+<span class="token keyword">const</span> personWithHat <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token literal-property property">hat</span><span class="token operator">:</span> <span class="token string">'bowler'</span><span class="token punctuation">,</span> <span class="token operator">...</span>person<span class="token punctuation">}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//ha properties 'name', 'height', 'weight'</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>personWithHat<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//ha properties 'hat', 'name', 'height', 'weight'</span></code></pre>
+<p>Quando combinato con il <em>destructuring</em>, lo spread operator puo’ riferirsi anche al “resto” degli elementi di un array o object che non sono stati assegnati a specifiche variables. In questa situazione spesso si parla di <strong>rest operator</strong>.</p>
+<pre class="language-js"><code><span class="token keyword">const</span> dimensions <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">//i values extra sono "spalmati" negli slot di destructuring</span>
+<span class="token keyword">const</span> <span class="token punctuation">[</span>width<span class="token punctuation">,</span> height<span class="token punctuation">,</span> <span class="token operator">...</span>others<span class="token punctuation">]</span> <span class="token operator">=</span> dimensions
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>width<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//=> 10</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> 20</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>others<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//=> [30, 40]; il resto dei values!</span></code></pre>
+<p>Infine, lo spread operator puo’ essere usato per specificare che una function puo’ accettare un numero variabile di argomenti e raccogliere tutti questi values in un singolo array. Lo fai includendo lo spreading operator nella function declaration. Gli argomenti verranno raccolti in quella singola variable—quasi il contrario del destructuring! (E si’, il fatto che lo “spread” operator “raccolga” i values e’ un po’ confuso).</p>
+<pre class="language-js"><code><span class="token comment">//una function che stampa tutti gli arguments</span>
+<span class="token keyword">function</span> <span class="token function">printArgs</span><span class="token punctuation">(</span><span class="token parameter"><span class="token operator">...</span>argArray</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment">//tutti gli argomenti saranno raggruppati in un singolo array `args`</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">const</span> arg <span class="token keyword">of</span> argArray<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arg<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//puoi stamparli tutti, non importa quanti!</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">printArgs</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> "a" "b" "c"</span>
+<span class="token function">printArgs</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> "1" "2" "3" "4" "5" "6"</span>
+
+
+<span class="token comment">//una function che somma tutti gli argomenti (non importa quanti!)</span>
+<span class="token keyword">function</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token parameter"><span class="token operator">...</span>numbers</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">//numbers e' un array, quindi possiamo usare `reduce()`!</span>
+    <span class="token keyword">const</span> total <span class="token operator">=</span> numbers<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">runningTotal<span class="token punctuation">,</span> num</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> runningTotal <span class="token operator">+</span> num<span class="token punctuation">;</span> <span class="token comment">//nuovo totale</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//parti da 0</span>
+
+    <span class="token keyword">return</span> total<span class="token punctuation">;</span>
+
+    <span class="token comment">//oppure su una riga con una concise arrow function (non bello!)</span>
+    <span class="token keyword">return</span> numbers<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">total<span class="token punctuation">,</span> n</span><span class="token punctuation">)</span> <span class="token operator">=></span> total<span class="token operator">+</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">3</span> <span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// => 10</span>
+<span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// => 100</span></code></pre>
+<p>Lo spread operator non e’ usato spesso in questo modo con React, ma e’ utile saperlo!</p>
+</div>
+<div id="template-strings" class="section level3 unnumbered hasAnchor">
+<h3>Template Strings<a href="es6.html#template-strings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In ES6, puoi dichiarare Strings che contengono espressioni embedded, permettendoti di “iniettare” un’espressione direttamente in una string (invece di concatenare la String con quell’espressione). Queste si chiamano <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals"><strong>template strings</strong></a> (o <em>template literals</em>). Le template strings si scrivono con i back tick (<strong><code>``</code></strong>) invece delle quotes, con le espressioni inserite dentro il token <strong><code>${}</code></strong>:</p>
+<pre class="language-js"><code><span class="token keyword">const</span> name <span class="token operator">=</span> <span class="token string">'mondo'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> greeting <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Ciao, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">!</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span> <span class="token comment">//template string</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>greeting<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> "Ciao, mondo!"</span></code></pre>
+<p>Le template strings possono anche includere line break, permettendoti di creare stringhe multi-linea!</p>
+<p>Nota che puoi mettere <em>qualsiasi</em> espressione dentro il token <code>${}</code>; tuttavia, e’ best practice mantenere l’espressione il piu’ semplice possibile (ad es. usando una variable locale) per supportare la leggibilita’:</p>
+<pre class="language-js"><code><span class="token keyword">const</span> name <span class="token operator">=</span> <span class="token string">'mondo'</span><span class="token punctuation">;</span>
+
+<span class="token comment">//saluto con capitalizzazione. Non farlo cosi'!</span>
+<span class="token keyword">const</span> greeting <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Ciao, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> name<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">!</span><span class="token template-punctuation string">`</span></span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>greeting<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> "Ciao, Mondo!";</span>
+
+<span class="token comment">//fai invece cosi'!</span>
+<span class="token keyword">const</span> capitalizedName <span class="token operator">=</span> name<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> name<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> greeting <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Ciao, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>capitalizedName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>greeting<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> "Ciao, Mondo!";</span></code></pre>
+<p>Un altro esempio:</p>
+<pre class="language-js"><code><span class="token comment">//la function si aspetta un nome, un animale e un verbo</span>
+<span class="token keyword">function</span> <span class="token function">makeExcuse</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> animal<span class="token punctuation">,</span> verb</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> email <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Ciao Professore </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">,
+
+Per favore scusi il mio compito mancante, perche' il mio </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>animal<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> l'ha mangiato.
+
+</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>verb<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> a presto,
+Uno Studente</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> email<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> excuse <span class="token operator">=</span> <span class="token function">makeExcuse</span><span class="token punctuation">(</span><span class="token string">'Ross'</span><span class="token punctuation">,</span> <span class="token string">'Lemur'</span><span class="token punctuation">,</span> <span class="token string">'Smell'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</div>
+</div>
+<div id="modules" class="section level2 hasAnchor" number="14.2">
+<h2><span class="header-section-number">14.2</span> Modules<a href="es6.html#modules" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Finora hai probabilmente scritto tutto il codice JavaScript in un singolo file di script (ad es. <code>index.js</code>), anche se hai incluso altre librerie come Bootstrap o JQuery tramite tag <code>&lt;script&gt;</code> aggiuntivi. Ma man mano che le application diventano piu’ grandi e complesse, questo singolo file puo’ diventare rapidamente ingestibile con centinaia o migliaia di righe di codice che implementano decine di feature. File cosi’ grandi diventano difficili da leggere e fare debug (“dov’era definita quella function?”), possono introdurre problemi con il global namespace condiviso (“ho gia’ dichiarato una variable <code>user</code>?”), e in generale mescolano il codice in modo che viola il principio di <em>Separation of Concerns</em>.</p>
+<p>La soluzione a questo problema e’ dividere il codice dell’applicazione in <strong>modules</strong> (script) separati, ciascuno responsabile di un pezzo specifico di funzionalita’. E invece di caricare ogni module con un tag <code>&lt;script&gt;</code> separato (con possibili problemi di ordering e dependency, oltre a inquinare il global namespace), puoi definire ogni module come script autonomo che “importa” esplicitamente le functions e le variables di cui ha bisogno da altri moduli. Questo ti permette di organizzare meglio il programma man mano che cresce.</p>
+<p>Anche se separare il codice in moduli e’ comune in ambiente Node.js, ES6 aggiunge una sintassi che permette di trattare i singoli file <code>.js</code> come moduli che possono comunicare tra loro. Questi sono noti come <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"><strong>ES6 Modules</strong></a>.</p>
+<p>Un browser carica i moduli in modo diverso dagli script “regolari”; per caricare codice come module, specifichi l’attribute <code>type="module"</code> nel tag <code>&lt;script&gt;</code> di quel module:</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- carica script che possono importare da altri moduli --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>module<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>path/to/firstModule.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>module<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>path/to/secondModule.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+<p class="alert alert-warning">
+Per motivi di sicurezza, i moduli non possono comunicare quando una web page e’ accessibile tramite protocollo <code>file://</code>. Per usare i moduli, devi accedere alla pagina tramite un web server, ad esempio usando un <a href="sviluppo-lato-client.html#development-server">development server</a> come <code>live-server</code>.
+</p>
+<p>Tuttavia, nella maggior parte dei casi <em>non</em> userai i moduli direttamente nel browser. Invece, i moduli verranno caricati e compilati tramite un build tool esterno come <a href="https://webpack.js.org/">webpack</a>. In queste situazioni userai il <em>module loader</em> fornito dal runtime JavaScript di Node. Questo loader introduce alcune particolarita’ di sintassi, che sono indicate nella spiegazione della sintassi.</p>
+<div class="alert alert-info">
+Questa sezione descrive gli ES6 modules, usati nelle web applications (in quanto parte della specifica ECMAScript). Tuttavia, Node.js usa di default un sistema alternativo di caricamento dei moduli chiamato <a href="https://nodejs.org/docs/latest/api/modules.html#modules_modules">CommonJS</a>. Questo usa il metodo built-in <code>require()</code> per caricare un module (che restituisce una singola variable “exported”). I values vengono esportati da un module assegnandoli al global <code>module.exports</code>. Questo corso usera’ esclusivamente ES6 Modules—non usare <code>require()</code>—ma e’ bene conoscere l’approccio alternativo CommonJS quando cerchi aiuto.
+</div>
+<div id="module-syntax" class="section level3 unnumbered hasAnchor">
+<h3>Module Syntax<a href="es6.html#module-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Come in Java o Python, un module JavaScript puo’ “caricare” moduli o librerie esterne usando la keyword <strong><code>import</code></strong>:</p>
+<pre class="language-java"><code><span class="token comment">//Esempio Java: importa la variable `Random` dal modulo `java.util`</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Random</span></span><span class="token punctuation">;</span></code></pre>
+<pre class="language-python"><code><span class="token comment"># Esempio Python: importa la variable `randint` dal modulo `random`</span>
+<span class="token keyword">from</span> random <span class="token keyword">import</span> randint</code></pre>
+<pre class="language-js"><code><span class="token comment">//JavaScript:</span>
+<span class="token comment">//importa la variable `Random` da un modulo `util.js`</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Random <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./util.js'</span><span class="token punctuation">;</span>
+
+<span class="token comment">//importa le variables `randint` e `randrange` da un modulo `random.js`</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> randint<span class="token punctuation">,</span> randrange <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./random.js'</span></code></pre>
+<p>Questa e’ la versione piu’ comune della sintassi <code>import</code> di ES6 (chiamata <strong>named import</strong>): scrivi la keyword <code>import</code>, seguita da un set di braces <code>{ }</code> contenente una sequenza di variables separate da virgola che vuoi “importare” da un module specifico. Segue la keyword <code>from</code>, seguita da una string che contiene il <strong>relative path</strong> allo script del module da importare. Nota che nei sistemi basati su Node (come l’ambiente di build React) includere l’estensione del module e’ opzionale (di default il module loader cerca file che finiscono in <code>.js</code>).</p>
+<ul>
+<li><p>Assicurati di includere <code>./</code> per indicare che stai caricando un file da una directory specifica. Se lo ometti, il module loader di Node cerchera’ un module installato nel <em>load path</em> (ad es. in <code>node_modules/</code>). Ommetti <code>./</code> quando carichi librerie di terze parti come jQuery o React:</p>
+<pre class="language-js"><code><span class="token comment">//con jquery installato in `node_modules/`</span>
+<span class="token comment">//importa le variables `$` e `jQuery`</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> $<span class="token punctuation">,</span> jQuery <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'jquery'</span><span class="token punctuation">;</span> <span class="token comment">//no `./` in front of library name</span></code></pre></li>
+</ul>
+<p>Nota che le variables importate da un module possono essere di qualsiasi tipo—strings, objects e, piu’ spesso, functions.</p>
+<p>Qualsiasi variable che un module <code>import</code> deve essere dichiarata come disponibile nel module da cui proviene—simile all’uso della keyword <code>public</code> in Java. Per farlo, <strong>exporti</strong> la variable (cosi’ puo’ essere “imported” altrove) usando la keyword <strong><code>export</code></strong>, posta davanti alla dichiarazione della variable:</p>
+<pre class="language-js"><code><span class="token comment">/*** my-module.js ***/</span>
+
+<span class="token comment">//definisci ed esporta variables per usarle altrove</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> question <span class="token operator">=</span> <span class="token string">"Why'd the chicken cross the road?"</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> answer <span class="token operator">=</span> <span class="token string">"To get to the other side"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">laugh</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">//una function esportata</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"hahaha"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Questo si chiama <strong>named export</strong> (in contrasto con il <em>default export</em> descritto sotto). Una volta che le variables sono state exportate, possono essere importate da un altro file di script:</p>
+<pre class="language-js"><code><span class="token comment">/*** index.js ***/</span>
+
+<span class="token comment">//importa tutte e 3 le variables da `my-modules.js`</span>
+<span class="token comment">//ora tutte e 3 le variables esistono in questo modulo e possono essere usate</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> question<span class="token punctuation">,</span> answer<span class="token punctuation">,</span> laugh <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./my-module.js'</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>question<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> "Perche' il pollo ha attraversato la strada?"</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>answer<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> "Per arrivare dall'altra parte"</span>
+<span class="token function">laugh</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//"hahaha"</span></code></pre>
+<p>Importante: <em>solo</em> le variables che <code>export</code> sono rese disponibili agli altri moduli! Qualsiasi cosa che non ha quella keyword non sara’ disponibile—rimarra’ “private” al suo module. La best practice e’ <code>export</code>are solo i values che sai serviranno ad altri moduli.</p>
+<p>Quella sopra e’ la sintassi di base per usare <em>named</em> imports ed exports. Ma ci sono altre opzioni sintattiche quando usi <code>import</code> e <code>export</code>.</p>
+<p>Per esempio, puoi usare la keyword <strong><code>as</code></strong> per “aliasare” un value sia quando viene exportato (cosi’ e’ condiviso con un nome diverso) sia quando viene importato (cosi’ viene caricato e assegnato con un nome diverso). Questo e’ particolarmente utile quando vuoi produrre una API pulita per un module (cosi’ <code>export</code>i values con nomi consistenti, anche se internamente usi altri nomi), o quando vuoi <code>import</code>are una variable con un nome molto lungo.</p>
+<pre class="language-js"><code><span class="token comment">/*** my-module.js ***/</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token string">'foo'</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token comment">//export nominato standard</span>
+
+<span class="token comment">//fornisci un "alias" (nome consumer) per il value quando esporti</span>
+<span class="token keyword">export</span> <span class="token punctuation">{</span> bar <span class="token keyword">as</span> yourBar <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">//non sara' disponibile (una function "private")</span>
+<span class="token keyword">function</span> <span class="token function">baz</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token string">'baz'</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></code></pre>
+<pre class="language-js"><code><span class="token comment">/*** index.js ***/</span>
+
+<span class="token comment">//fornisci un "alias" per il value quando importi!</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>foo <span class="token keyword">as</span> myFoo<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./my-module.js'</span><span class="token punctuation">;</span>
+<span class="token function">myFoo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> 'foo'</span>
+<span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//errore, non esiste (la variable e' aliasata come `myFoo`)</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> yourBar <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./my-module.js'</span><span class="token punctuation">;</span> <span class="token comment">//importa il value col nome exportato</span>
+<span class="token function">yourBar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//=> 'bar'</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> bar <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./my-module.js'</span><span class="token punctuation">;</span> <span class="token comment">//errore, nessun value `bar` esportato</span></code></pre>
+<p>E’ possibile <code>import</code>are <em>tutto</em> cio’ che e’ stato exportato da un module usando la sintassi <strong><code>import * as</code></strong>. Specifichi un nome per l’object che rappresentera’ i values exportati dal module (ad es. <code>theModule</code> nell’esempio sotto), e ogni variable exportata sara’ una <em>property</em> di quell’object. Questo puo’ essere utile quando potresti aggiungere altri <code>exports</code> a un module durante lo sviluppo, ma non vuoi continuare a modificare l’<code>import</code> statement; d’altro canto, il resto del codice puo’ essere piu’ difficile da leggere perche’ devi accedere alle properties dell’object.</p>
+<pre class="language-js"><code><span class="token comment">/*** index.js ***/</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> theModule <span class="token keyword">from</span> <span class="token string">'./my-module'</span><span class="token punctuation">;</span> <span class="token comment">//importa tutto cio' che e' stato exportato</span>
+                                          <span class="token comment">//carica come un singolo object con i values</span>
+                                          <span class="token comment">//come properties</span>
+theModule<span class="token punctuation">.</span><span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> 'foo'</span>
+theModule<span class="token punctuation">.</span><span class="token function">yourBar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> 'bar'</span>
+theModule<span class="token punctuation">.</span><span class="token function">baz</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//Errore (function privata, non exportata)</span></code></pre>
+<p>Infine, ogni module puo’ anche <code>export</code>are una <em>singola</em> (una sola!) variable <strong>default</strong>, che fornisce una scorciatoia quando importi quella variable dal module. Specifichi il <em>default export</em> includendo la keyword <strong><code>default</code></strong> subito dopo <code>export</code>:</p>
+<pre class="language-js"><code><span class="token comment">/*** my-module.js ***/</span>
+<span class="token comment">//questa function e' l'export "default"</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token function">sayHello</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">'Ciao mondo!'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class="language-js"><code><span class="token comment">/*** index.js ***/</span>
+<span class="token keyword">import</span> greet <span class="token keyword">from</span> <span class="token string">'./my-module'</span><span class="token punctuation">;</span> <span class="token comment">//importa il value di default</span>
+                                 <span class="token comment">//`greet` e' l'alias definito in questo modulo</span>
+
+<span class="token function">greet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> "Ciao mondo!"</span></code></pre>
+<p>Quando importi un <code>default</code> export, non includi <code>{}</code> con il nome della variable, ma fornisci invece un nome di variable (“alias”) con cui vuoi riferirti a quel value exportato.</p>
+<p>Nota che e’ anche possibile rendere values anonimi <code>default</code> exports:</p>
+<pre class="language-js"><code><span class="token comment">/*** animals.js ***/</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">[</span><span class="token string">'lion'</span><span class="token punctuation">,</span> <span class="token string">'tiger'</span><span class="token punctuation">,</span> <span class="token string">'bear'</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">//export di array anonimo</span></code></pre>
+<p>La tecnica del <code>default</code> export e’ particolarmente comune in framework object-oriented come React, o in framework grandi come Bootstrap con molti moduli indipendenti. Usare default exports ti permette di far si’ che ogni module JavaScript contenga il codice per una singola function o <code>class</code>; quella function diventa il <code>default</code> export, permettendo ad altri moduli di importarla rapidamente e facilmente, ad es. <code>import MyComponent from './MyComponent.js'</code>.</p>
+<p>Detto questo, in generale ti consiglio di usare <em>named imports</em> nella maggior parte delle situazioni—c’e’ meno sintassi da ricordare e riduce il numero di decisioni su cosa sia default o no. Devi conoscere i <code>default</code> exports perche’ molte librerie di terze parti li usano, ma per il tuo lavoro e’ spesso meglio restare sui named imports.</p>
+</div>
+</div>
+<div id="es6-classes" class="section level2 hasAnchor" number="14.3">
+<h2><span class="header-section-number">14.3</span> Classes<a href="es6.html#es6-classes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p class="alert alert-warning">
+Le classes non sono piu’ comunemente usate in React e sono un po’ sconsigliate in JavaScript. Questa sezione e’ mantenuta per motivi storici e informativi, ma puo’ essere considerata “deprecated” per questo corso.
+</p>
+<p>Anche se JavaScript e’ principalmente un linguaggio <em>scripting</em> e funzionale, supporta una forma di <strong>Object Oriented Programming</strong> simile a quella del linguaggio Java. Cioe’, possiamo definire <strong>classes</strong> di data e metodi che agiscono su quei data, e poi <strong>instantiate</strong> quelle classi in <strong>objects</strong> che possono essere manipolati. ES6 introduce una nuova sintassi <code>class</code> per fare in modo che creare classi in JavaScript <em>sembri</em> come creare classi in Java!</p>
+<div id="why-classes" class="section level3 unnumbered hasAnchor">
+<h3>Why Classes?<a href="es6.html#why-classes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Il punto di usare le classes in programmazione—sia in Java che in JavaScript—e’ fare <strong>abstraction</strong>: vogliamo <em>encapsulate</em> (“raggruppare”) parti del codice in modo da poter ragionare a un livello piu’ alto. Quindi, invece di pensare al programma solo in termini di <code>Numbers</code>, <code>Strings</code> e <code>Arrays</code>, possiamo pensarlo in termini di <code>Dogs</code>, <code>Cats</code> o <code>Persons</code>.</p>
+<p>In particolare, le classes <em>encapsulate</em> due cose:</p>
+<ol style="list-style-type: decimal">
+<li><p>I <strong>data</strong> (variables) che descrivono la cosa. Questi sono chiamati <em>attributes</em>, <em>fields</em> o <em>instance variables</em> (variables che appartengono a una specifica <em>instance</em>, ad esempio, della class). Per esempio, potremmo parlare di un object’s <code>Person</code> con <code>name</code> (una String), <code>age</code> (un Number) e Halloween haul (un array di candy).</p></li>
+<li><p>I <strong>behaviors</strong> (functions) che operano su, usano o cambiano quei data. Questi sono chiamati <em>methods</em> (tecnicamente <em>instance methods</em>, perche’ operano su una specifica instance della class). Per esempio, una <code>Person</code> potrebbe <code>sayHello()</code>, <code>trickOrTreat()</code> o <code>eatCandy()</code>.</p></li>
+</ol>
+<p>In JavaScript, le properties di un Object possono essere viste come gli <em>attributes</em> di quell’object. Per esempio:</p>
+<pre class="language-javascript"><code><span class="token keyword">const</span> person <span class="token operator">=</span> <span class="token punctuation">{</span>
+   <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'Ada'</span><span class="token punctuation">,</span>
+   <span class="token literal-property property">age</span><span class="token operator">:</span> <span class="token number">21</span><span class="token punctuation">,</span>
+   <span class="token literal-property property">costume</span><span class="token operator">:</span> <span class="token string">'Cheshire Cat'</span>
+   <span class="token function-variable function">trickOrTreat</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">newCandy</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>candy<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>newCandy<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//parlami di questa persona!</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">" e' un "</span> <span class="token operator">+</span> person<span class="token punctuation">.</span>costume<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Questo Object rappresenta una cosa con attributes <code>name</code>, <code>age</code> e <code>costume</code> (ma non abbiamo ancora indicato che questo Object ha la <em>class</em>ification di “Person”). Il value della property <code>trickOrTreat()</code> e’ una function (ricorda: le functions sono values!), ed e’ un esempio di come un Object possa “avere” una function.</p>
+<ul>
+<li>JavaScript usa persino la keyword <code>this</code> per riferirsi a <em>quale</em> object quella function viene chiamata, proprio come Java! Vedi <a href="es6.html#working-with-this">sotto</a> per maggiori dettagli sulla keyword <code>this</code> e le sue particolarita’.</li>
+</ul>
+<p>Una <strong>Class</strong> (<em>class</em>ification) agisce come
+<em>template/recipe/blueprint</em> per gli objects individuali. Definisce quali data (attributes) e behaviors (methods) hanno. Un object e’ una “instance of” (esempio di) una class: noi <strong>instantiate</strong> un object a partire da una class. Questo ti permette di creare facilmente piu’ objects, ognuno dei quali puo’ tracciare e modificare i propri data. Le <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">ES6 classes</a> forniscono una sintassi con cui definire questi “template”.</p>
+<p class="alert alert-info">
+Lo styling preferito di React non si basa piu’ molto sulla class syntax, ma e’ comunque una buona idea avere familiarita’ con essa per aiutare la comprensione e nel caso ti serva per lavori piu’ complessi.
+</p>
+</div>
+<div id="review-classes-in-java" class="section level3 unnumbered hasAnchor">
+<h3>Review: Classes in Java<a href="es6.html#review-classes-in-java" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Per prima cosa, considera la seguente class semplice definita in <em>Java</em> (che dovrebbe essere un ripasso dai corsi di programmazione precedenti):</p>
+<pre class="language-java"><code><span class="token comment">//dichiarazione di class</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">//attributi (private)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> firstName<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">int</span> age<span class="token punctuation">;</span>
+
+    <span class="token comment">//un metodo Constructor</span>
+    <span class="token comment">//viene chiamato quando la class e' istanziata (con `new`)</span>
+    <span class="token comment">//e ha il compito di inizializzare gli attributes</span>
+    <span class="token keyword">public</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token class-name">String</span> newName<span class="token punctuation">,</span> <span class="token keyword">int</span> newAge<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment">//assegna i parametri agli attributes</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>firstName <span class="token operator">=</span> newName<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">=</span> newAge<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">//restituisce il nome di questa Person</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>firstName<span class="token punctuation">;</span> <span class="token comment">//restituisce il proprio attribute</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">//cresci di un anno</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">haveBirthday</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>age<span class="token operator">++</span><span class="token punctuation">;</span> <span class="token comment">//aumenta l'eta' di questa Person (accedendo al proprio attribute)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">//un metodo che prende una Person come parametro</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">sayHello</span><span class="token punctuation">(</span><span class="token class-name">Person</span> otherPerson<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">//chiama un metodo sull'object parametro per stampare</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Ciao, "</span> <span class="token operator">+</span> otherPerson<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//accedi al proprio attribute per stampare</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Ho "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">+</span>  <span class="token string">" anni"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Naturalmente puoi usare questa class (instantiarla e chiamarne i methods) in questo modo:</p>
+<pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">//istanzia due nuovi objects Person</span>
+    <span class="token class-name">Person</span> aliceObj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"Alice"</span><span class="token punctuation">,</span> <span class="token number">21</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Person</span> bobObj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"Bob"</span><span class="token punctuation">,</span> <span class="token number">42</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">//chiama il metodo su Alice (cambiando i suoi fields)</span>
+    aliceObj<span class="token punctuation">.</span><span class="token function">haveBirthday</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">//chiama il metodo SU Alice, e PASSA Bob come parametro</span>
+    aliceObj<span class="token punctuation">.</span><span class="token function">sayHello</span><span class="token punctuation">(</span>bobObj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Alcune cose da notare su questa sintassi:</p>
+<ol style="list-style-type: decimal">
+<li>Dichiari (annunci) che stai definendo una class usando la keyword <code>class</code>.</li>
+<li>Gli attributes Java sono <em>dichiarati</em> in cima al block della class (ma assegnati nel constructor).</li>
+<li>Le classes hanno methods <strong>constructor</strong> usati per instanziare gli attributes.</li>
+<li>I class methods sono dichiarati <em>dentro</em> la dichiarazione della class (dentro il block, indentati di un livello).</li>
+<li>I class methods possono accedere (usare) gli attribute variables dell’object riferendosi a <code>this.attributeName</code>.</li>
+<li>Tu <strong>instantiate</strong> objects del tipo della class usando la keyword <code>new</code> e poi chiamando un metodo con il nome della class (ad es. <code>new Person()</code>). Quel metodo <em>e’</em> il constructor, quindi riceve i parametri del constructor.</li>
+<li>Chiami i methods sugli objects usando la <strong>dot notation</strong> (ad es. <code>object.methodName()</code>).</li>
+<li>Gli objects instanziati sono solo variables, quindi possono essere passati ad altri methods.</li>
+</ol>
+</div>
+<div id="es6-class-syntax" class="section level3 unnumbered hasAnchor">
+<h3>ES6 Class Syntax<a href="es6.html#es6-class-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ecco come creeresti <em>la stessa identica class</em> in JavaScript usando la sintassi ES6:</p>
+<pre class="language-javascript"><code><span class="token comment">//dichiarazione di class</span>
+<span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">//un metodo Constructor</span>
+    <span class="token comment">//viene chiamato quando la class e' istanziata (con `new`)</span>
+    <span class="token comment">//e ha il compito di inizializzare gli attributes</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">newName<span class="token punctuation">,</span> newAge</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">//assegna i parametri agli attributes</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>firstName <span class="token operator">=</span> newName<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">=</span> newAge<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">//restituisce il nome di questa Person</span>
+    <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>firstName<span class="token punctuation">;</span> <span class="token comment">//restituisce il proprio attribute</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">//cresci di un anno</span>
+    <span class="token function">haveBirthday</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>age<span class="token operator">++</span><span class="token punctuation">;</span> <span class="token comment">//aumenta l'eta' di questa Person (accedendo al proprio attribute)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">//un metodo che prende una Person come parametro</span>
+    <span class="token function">sayHello</span><span class="token punctuation">(</span><span class="token parameter">otherPerson</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">//chiama un metodo sull'object parametro per stampare</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Ciao, "</span> <span class="token operator">+</span> otherPerson<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//accedi al proprio attribute per stampare</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Ho "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">+</span>  <span class="token string">" anni"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Ed ecco come useresti questa class:</p>
+<pre class="language-javascript"><code><span class="token comment">//istanzia due nuovi objects Person</span>
+<span class="token keyword">const</span> aliceObj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"Alice"</span><span class="token punctuation">,</span> <span class="token number">21</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> bobObj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"Bob"</span><span class="token punctuation">,</span> <span class="token number">42</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//chiama il metodo su Alice (cambiando i suoi attributes)</span>
+aliceObj<span class="token punctuation">.</span><span class="token function">haveBirthday</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//chiama il metodo SU Alice, e PASSA Bob come parametro</span>
+aliceObj<span class="token punctuation">.</span><span class="token function">sayHello</span><span class="token punctuation">(</span>bobObj<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Come puoi vedere, questa sintassi e’ <em>molto, <strong>molto</strong></em> simile a Java! Proprio come per le functions JavaScript, la maggior parte dei cambiamenti riguarda l’eliminazione delle dichiarazioni di tipo. In effetti, puoi scrivere una class in Java e poi cancellare alcune parole per ottenere una class ES6.</p>
+<p>Cose da notare:</p>
+<ol style="list-style-type: decimal">
+<li><p><em>Proprio come in Java</em>, le classes JavaScript si dichiarano usando la keyword <code>class</code> (introdotta in ES6).</p>
+<p class="alert">
+<p>Dai sempre alle classes nomi in PascalCase (iniziando con una lettera maiuscola)!</p>
+</p></li>
+<li><p>Le classes JavaScript <strong>non</strong> dichiarano gli attributes in anticipo (in cima alla class). A differenza di Java, le variables JavaScript esistono sempre, sono solo <code>undefined</code> finche’ non vengono assegnate, quindi non serve dichiararle esplicitamente.</p>
+<ul>
+<li>In JavaScript, niente e’ private; hai di fatto accesso <code>public</code> a tutti gli attributes e functions.</li>
+</ul></li>
+<li><p>Le classes JavaScript hanno sempre un solo <strong>constructor</strong> (se presente), e la function si chiama semplicemente <code>constructor()</code>.</p>
+<ul>
+<li>Questo e’ ancora piu’ chiaro che in Java, dove sai che e’ un constructor solo perche’ manca un return type.</li>
+</ul></li>
+<li><p><em>Proprio come in Java</em>, i class methods JavaScript sono dichiarati <em>dentro</em> la dichiarazione della class (dentro il block, indentati di un livello).</p>
+<p>Nota pero’ che non serve usare la parola <code>function</code> per indicare che un method e’ una function; basta fornire il nome e i parametri. Questo perche’ le uniche cose <em>dentro</em> una class sono functions, quindi dichiararlo sarebbe ridondante.</p></li>
+<li><p><em>Proprio come in Java</em>, i class methods JavaScript possono accedere (usare) le attribute variables dell’object riferendosi a <code>this.attributeName</code>.</p></li>
+<li><p><em>Proprio come in Java</em>, <strong>instantiate</strong> gli objects del tipo della class usando la keyword <code>new</code> e poi chiamando un method con il nome della class (ad es. <code>new Person()</code>). Quel method <em>e’</em> il <code>constructor()</code>, quindi riceve i parametri del constructor.</p></li>
+<li><p><em>Proprio come in Java</em>, chiami i methods sugli objects usando la <strong>dot notation</strong> (ad es. <code>object.methodName()</code>).</p></li>
+<li><p><em>Proprio come in Java</em>, gli objects instanziati sono solo variables, quindi possono essere passati ad altri methods.</p></li>
+</ol>
+<p>Quindi, in pratica, e’ come Java—tranne per le differenze nel modo di dichiarare le functions e per il fatto che usiamo la parola <code>constructor</code> per i constructor methods.</p>
+<p>L’altra differenza e’ che mentre in Java di solito definiamo ogni class nel suo file, in JavaScript spesso crei piu’ classi in un singolo file, allo stesso livello globale in cui dichiari anche le functions non-class:</p>
+<pre class="language-javascript"><code><span class="token comment">//script.js</span>
+<span class="token string">'use strict'</span><span class="token punctuation">;</span>
+
+<span class="token comment">//declare a class</span>
+<span class="token keyword">class</span> <span class="token class-name">Dog</span> <span class="token punctuation">{</span>
+    <span class="token function">bark</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/*...*/</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//declare another class</span>
+<span class="token keyword">class</span> <span class="token class-name">Cat</span> <span class="token punctuation">{</span>
+    <span class="token function">meow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/*...*/</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//dichiara una function (non-class)</span>
+<span class="token keyword">function</span> <span class="token function">petAnimal</span><span class="token punctuation">(</span><span class="token parameter">animal</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/*...*/</span> <span class="token punctuation">}</span>
+
+<span class="token comment">//a livello "main", istanzia le class e chiama le functions</span>
+<span class="token keyword">const</span> fido <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Dog</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">petAnimal</span><span class="token punctuation">(</span>fido<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//passa questo object Dog alla function</span></code></pre>
+<p class="alert alert-warning">
+Anche se la sintassi sopra sembra Java, e’ importante ricordare che le instance di class JavaScript sono ancora <em>semplici Objects come gli altri</em>. Per esempio, puoi aggiungere nuove properties e functions a quell’object, o sovrascrivere il value di qualsiasi property. Anche se sembra una class Java, in realta’ non si comporta come tale.
+</p>
+</div>
+<div id="inheritance" class="section level3 unnumbered hasAnchor">
+<h3>Inheritance<a href="es6.html#inheritance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La sintassi <code>class</code> di ES6 permette anche di specificare <strong>class inheritance</strong>, con cui una class puo’ <code>extend</code>ere un’altra. L’inheritance ti permette di specificare che una class e’ una <em>versione piu’ specializzata</em> di un’altra: cioe’ una versione con “extra abilities” (come methods aggiuntivi).</p>
+<p>Come in Java, usi la keyword <code>extends</code> per indicare che una class deve <strong>inherit</strong> da un’altra:</p>
+<pre class="language-js"><code><span class="token comment">//La class "parent/super"</span>
+<span class="token keyword">class</span> <span class="token class-name">Dog</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">sit</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Il cane '</span><span class="token operator">+</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token operator">+</span><span class="token string">' si siede. Bravo!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">bark</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'"Bau!"'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//La class "child/sub" (eredita abilita' da Dog)</span>
+<span class="token keyword">class</span> <span class="token class-name">Husky</span> <span class="token keyword">extends</span> <span class="token class-name">Dog</span> <span class="token punctuation">{</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> distance</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//chiama il constructor del parent</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>distance <span class="token operator">=</span> distance<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">//un nuovo method ("abilita' speciale")</span>
+    <span class="token function">throwFootball</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Husky '</span><span class="token operator">+</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token operator">+</span><span class="token string">' lancia '</span><span class="token operator">+</span><span class="token keyword">this</span><span class="token punctuation">.</span>dist<span class="token operator">+</span><span class="token string">' yard'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">//override (sostituisce) il method del parent</span>
+    <span class="token function">bark</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">bark</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//chiama il method del parent</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"(Forza husky!)"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//uso</span>
+<span class="token keyword">const</span> dog <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Husky</span><span class="token punctuation">(</span><span class="token string">"Harry"</span><span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//crea un Husky</span>
+dog<span class="token punctuation">.</span><span class="token function">sit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//chiama il method ereditato</span>
+dog<span class="token punctuation">.</span><span class="token function">throwFootball</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//chiama il method proprio</span>
+dog<span class="token punctuation">.</span><span class="token function">bark</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//chiama il method proprio (override)</span></code></pre>
+<p>In questo caso, la class <code>Husky</code> e’ una <em>versione specializzata</em> della class <code>Dog</code>: <strong><em>e’ un</em></strong> <code>Dog</code> con alcune abilita’ speciali (ad es. puo’ lanciare un football). Ci riferiamo alla class base, meno specializzata (<code>Dog</code>), come <strong>parent</strong> o <strong>super class</strong>, e alla class derivata, piu’ specializzata (<code>Husky</code>), come <strong>child</strong> o <strong>sub-class</strong>.</p>
+<p>La sub-class <code>Husky</code> <strong>inherits</strong> i methods definiti nel parent: anche se la class <code>Husky</code> non ha definito un method <code>sit()</code>, lo ha comunque perche’ il <em>parent</em> lo ha definito! Estendendo una class esistente, ottieni molti methods gratis!</p>
+<p>La class <code>Husky</code> puo’ anche <strong>override</strong> i methods del parent, definendo una versione specializzata (ad es. <code>bark()</code>). Questo e’ utile per aggiungere personalizzazione, o per fornire implementazioni specifiche di callback che possono essere usate da un framework—un pattern che vedrai in React.</p>
+<p class="alert alert-info">
+Nota che, nonostante questa discussione, <em>JavaScript non e’ in realta’ un linguaggio object-oriented</em>. JavaScript usa invece un <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes">prototype system</a> per definire tipi di Objects, che permette la cosiddetta <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Inheritance">prototypical inheritance</a>. La keyword <code>class</code> di ES6 non cambia questo: e’ semplicemente una “shortcut syntax” per specificare i prototype Objects nello stesso modo supportato fin dalla prima versione di JavaScript. La keyword <code>class</code> rende facile definire qualcosa che sembra e si comporta come una OOP class, ma JavaScript non e’ object-oriented! Vedi <a href="http://aaditmshah.github.io/why-prototypal-inheritance-matters/">questa spiegazione (dettagliata)</a> per ulteriori dettagli.
+</p>
+</div>
+<div id="working-with-this" class="section level3 unnumbered hasAnchor">
+<h3>Working with <code>this</code><a href="es6.html#working-with-this" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In JavaScript, le functions sono chiamate su <strong>Objects</strong> usando la <em>dot notation</em> (ad es. <code>myObject.myFunction()</code>). Dentro una function, puoi riferirti all’Object su cui e’ stata chiamata usando la keyword <strong><code>this</code></strong>. <code>this</code> e’ una variable locale che viene <em>implicitamente assegnata</em> all’Object come value.</p>
+<pre class="language-js"><code><span class="token keyword">const</span> doggy <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Fido"</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">bark</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">,</span> <span class="token string">"abbaia"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//`this` e' l'object su cui e' stata chiamata la function</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+doggy<span class="token punctuation">.</span><span class="token function">bark</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> "Fido abbaia"</span></code></pre>
+<ul>
+<li>Qui <code>this</code> e’ assegnato all’object <code>doggy</code>, su cui e’ stato chiamato <code>.bark()</code>.</li>
+</ul>
+<p>Ma dato che le functions sono values e possono essere assegnate a piu’ variables (con etichette diverse), l’object su cui una function viene chiamata non e’ necessariamente l’object a cui era stata assegnata inizialmente come property. <code>this</code> si riferisce all’object su cui la function e’ chiamata al momento dell’esecuzione, non al momento della definizione:</p>
+<pre class="language-js"><code><span class="token comment">//Un object che rappresenta un Dog</span>
+<span class="token keyword">const</span> doggy <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Fido"</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">bark</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">" abbaia"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Un object che rappresenta un altro Dog</span>
+<span class="token keyword">const</span> doggo <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Spot"</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">bark</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">" guaisce"</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//Questo e' Fido che abbaia</span>
+doggy<span class="token punctuation">.</span><span class="token function">bark</span><span class="token punctuation">(</span> <span class="token comment">/*this = doggy*/</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> "Fido abbaia"</span>
+
+<span class="token comment">//Questo e' Spot che abbaia</span>
+doggo<span class="token punctuation">.</span><span class="token function">bark</span><span class="token punctuation">(</span> <span class="token comment">/*this = doggo*/</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> "Spot guaisce"</span>
+
+<span class="token comment">//Questo e' Fido che usa l'abbaio di Spot!</span>
+doggy<span class="token punctuation">.</span>bark <span class="token operator">=</span> doggo<span class="token punctuation">.</span>bark<span class="token punctuation">;</span> <span class="token comment">//assegna il value della function a `doggy`</span>
+doggy<span class="token punctuation">.</span><span class="token function">bark</span><span class="token punctuation">(</span> <span class="token comment">/*this = doggy*/</span><span class="token punctuation">)</span> <span class="token comment">//=> "Fido guaisce"</span></code></pre>
+<ul>
+<li>Nota come la variable <code>this</code> viene implicitamente assegnata al value dell’object su cui e’ stata chiamata—anche se la function viene assegnata a un nuovo object in seguito!</li>
+</ul>
+<p>Ma dato che la variable <code>this</code> si riferisce all’object su cui la function e’ chiamata, possono sorgere problemi per le <em>anonymous callback functions</em> che non sono chiamate su un object in particolare:</p>
+<pre class="language-js"><code><span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+   <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token comment">//constructor base</span>
+
+   <span class="token comment">//saluta ogni person nell'array dato</span>
+   <span class="token function">greetAll</span><span class="token punctuation">(</span><span class="token parameter">peopleArray</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">//itera su ogni Person usando una callback</span>
+      peopleArray<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">person</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Ciao "</span><span class="token operator">+</span>person<span class="token punctuation">.</span>name<span class="token operator">+</span><span class="token string">", sono "</span><span class="token operator">+</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>In questo esempio, la function <code>greetAll()</code> produrra’ un errore: <code>TypeError: Cannot read property 'name' of undefined</code>. Questo perche’ <code>this</code> viene usato dentro una anonymous callback function (la <code>function(person){...}</code>)—e quella callback non viene chiamata su un object specifico (nota l’assenza di dot notation). Dato che la callback anonima non viene eseguita su un object, <code>this</code> viene assegnato al value <code>undefined</code> (e non puoi accedere a <code>undefined.name</code>).</p>
+<p>La soluzione a questo problema e’ usare le <em>arrow functions</em>. Una arrow function ha la feature speciale di condividere lo stesso <code>this</code> lessicale del codice circostante: cioe’, <code>this</code> non viene riassegnato a un object (inesistente) quando usato dentro una arrow function:</p>
+<pre class="language-js"><code><span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+   <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+   <span class="token function">greetAll</span><span class="token punctuation">(</span><span class="token parameter">peopleArray</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      peopleArray<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">person</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span> <span class="token comment">//arrow function (differenza sottile)</span>
+         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Ciao "</span><span class="token operator">+</span>person<span class="token punctuation">.</span>name<span class="token operator">+</span><span class="token string">", io sono "</span><span class="token operator">+</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//funziona correttamente!</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Questa proprieta’ rende le arrow functions preziose quando specifichi callback functions, soprattutto quando entrano in gioco classes e objects. <em>Usa sempre arrow functions per le anonymous callbacks!</em></p>
+<div class="alert alert-info">
+<p>In alternativa, e’ possibile associare “permanentemente” un particolare value di <code>this</code> a una function, indipendentemente dall’object su cui quella function viene chiamata. Questo si chiama <strong>binding</strong> di <code>this</code>, e si fa chiamando il metodo <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind"><code>.bind()</code></a> sulla function e passando il value che vuoi assegnare a <code>this</code>. Il metodo <code>.bind()</code> restituisce una <em>nuova function</em> che ha il value associato; spesso poi prendi questa nuova function e la “ri-assegni” alla vecchia variable della function:</p>
+<pre class="language-js"><code><span class="token comment">//ri-assegna la function</span>
+myFunction <span class="token operator">=</span> <span class="token function">myFunction</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>thisValue<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+Questo e’ un pattern comune in React (e ha alcuni minimi benefici di performance), ma per questo corso dovresti restare sulle arrow functions per pulizia e leggibilita’.
+</div>
+<p>Questo capitolo ha descritto alcune delle feature ES6 piu’ comuni e potenzialmente utili. Tuttavia, ricorda che la maggior parte di queste sono solo “syntactic shortcuts” per behavior e funzionalita’ che puoi gia’ ottenere usando JavaScript in stile ES5. Quindi non devi per forza usare queste feature nel tuo codice—anche se possono essere utili e compariranno spesso nel modo in cui usiamo librerie come React.</p>
+<!-- ## Resources {-}
+<div class="list-condensed">
+- [ES6 For Humans](https://github.com/metagrover/ES6-for-humans) un buon testo online su ES6
+- [ECMAScript 6](https://github.com/lukehoban/es6features#readme) Un buon riassunto non ufficiale con esempi
+- [ES6 Features](http://es6-features.org/) (mostra anche la sintassi ES5 equivalente quando possibile)
+- [ECMAScript 2015 Language Specification](http://www.ecma-international.org/ecma-262/6.0/) standard ufficiale
+</div> -->
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="librerie-javascript.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="react.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["github", "facebook", "twitter", "google"],
+    "google": false
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/info340/book/edit/master/es6.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

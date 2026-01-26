@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="it" xml:lang="it">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 Framework CSS | Sviluppo Web lato client</title>
+  <meta name="description" content="Dispensa del corso INFO 340: Client-Side Web Development." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 Framework CSS | Sviluppo Web lato client" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://info340.github.io//img/cover-img.png" />
+  <meta property="og:description" content="Dispensa del corso INFO 340: Client-Side Web Development." />
+  <meta name="github-repo" content="info340/book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 Framework CSS | Sviluppo Web lato client" />
+  
+  <meta name="twitter:description" content="Dispensa del corso INFO 340: Client-Side Web Development." />
+  <meta name="twitter:image" content="https://info340.github.io//img/cover-img.png" />
+
+<meta name="author" content="Joel Ross" />
+
+
+<meta name="date" content="2026-01-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/busy-spider-icon.png" type="image/x-icon" />
+<link rel="prev" href="responsive-css.html"/>
+<link rel="next" href="javascript.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-98444716-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/prism.min.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./" class="title">Client-Side Web Development</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Informazioni sul libro</a></li>
+<li class="chapter" data-level="1" data-path="software-setup.html"><a href="software-setup.html"><i class="fa fa-check"></i><b>1</b> Impostazione iniziale</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="software-setup.html"><a href="software-setup.html#web-browser"><i class="fa fa-check"></i><b>1.1</b> Web Browser</a></li>
+<li class="chapter" data-level="1.2" data-path="software-setup.html"><a href="software-setup.html#code-editor"><i class="fa fa-check"></i><b>1.2</b> Code Editor</a>
+<ul>
+<li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html#visual-studio-code"><i class="fa fa-check"></i>Visual Studio Code</a></li>
+<li class="chapter" data-level="1.2.1" data-path="software-setup.html"><a href="software-setup.html#altri-editor"><i class="fa fa-check"></i><b>1.2.1</b> Altri editor</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="software-setup.html"><a href="software-setup.html#bash-command-line"><i class="fa fa-check"></i><b>1.3</b> Bash (Command Line)</a></li>
+<li class="chapter" data-level="1.4" data-path="software-setup.html"><a href="software-setup.html#node-e-npm"><i class="fa fa-check"></i><b>1.4</b> Node e <code>npm</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html#installare-software-con-npm"><i class="fa fa-check"></i>Installare software con npm</a></li>
+<li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html#gestire-package-locali"><i class="fa fa-check"></i>Gestire package locali</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html"><i class="fa fa-check"></i><b>2</b> Sviluppo lato client</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#client-e-server"><i class="fa fa-check"></i><b>2.1</b> Client e server</a></li>
+<li class="chapter" data-level="2.2" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#url-e-file-web"><i class="fa fa-check"></i><b>2.2</b> URL e file web</a>
+<ul>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#tipi-di-file-client-side"><i class="fa fa-check"></i>Tipi di file client-side</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#server-e-hosting"><i class="fa fa-check"></i><b>2.3</b> Server e hosting</a>
+<ul>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#hosting-con-github-pages"><i class="fa fa-check"></i>Hosting con GitHub Pages</a></li>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#development-server"><i class="fa fa-check"></i>Development server</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#web-standards"><i class="fa fa-check"></i><b>2.4</b> Web standards</a></li>
+<li class="chapter" data-level="2.5" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#accessibilita-web"><i class="fa fa-check"></i><b>2.5</b> Accessibilita’ web</a>
+<ul>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#supportare-laccessibilita"><i class="fa fa-check"></i>Supportare l’accessibilita’</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="html-fundamentals.html"><a href="html-fundamentals.html"><i class="fa fa-check"></i><b>3</b> Fondamenti di HTML</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="html-fundamentals.html"><a href="html-fundamentals.html#elementi-html"><i class="fa fa-check"></i><b>3.1</b> Elementi HTML</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#alcuni-elementi-di-esempio"><i class="fa fa-check"></i>Alcuni elementi di esempio</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#commenti"><i class="fa fa-check"></i>Commenti</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#attributi"><i class="fa fa-check"></i>Attributi</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#elementi-vuoti"><i class="fa fa-check"></i>Elementi vuoti</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="html-fundamentals.html"><a href="html-fundamentals.html#nidificazione-di-elementi"><i class="fa fa-check"></i><b>3.2</b> Nidificazione di elementi</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#elementi-block-vs.-inline"><i class="fa fa-check"></i>Elementi block vs. inline</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="html-fundamentals.html"><a href="html-fundamentals.html#struttura-della-web-page"><i class="fa fa-check"></i><b>3.3</b> Struttura della web page</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#risorse"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="css-fundamentals.html"><a href="css-fundamentals.html"><i class="fa fa-check"></i><b>4</b> Fondamenti di CSS</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="css-fundamentals.html"><a href="css-fundamentals.html#perche-due-linguaggi-diversi"><i class="fa fa-check"></i><b>4.1</b> Perche’ due linguaggi diversi?</a></li>
+<li class="chapter" data-level="4.2" data-path="css-fundamentals.html"><a href="css-fundamentals.html#includere-css"><i class="fa fa-check"></i><b>4.2</b> Includere CSS</a></li>
+<li class="chapter" data-level="4.3" data-path="css-fundamentals.html"><a href="css-fundamentals.html#regole-css"><i class="fa fa-check"></i><b>4.3</b> Regole CSS</a>
+<ul>
+<li class="chapter" data-level="" data-path="css-fundamentals.html"><a href="css-fundamentals.html#fondamenti-dei-css-selector"><i class="fa fa-check"></i>Fondamenti dei CSS selector</a></li>
+<li class="chapter" data-level="" data-path="css-fundamentals.html"><a href="css-fundamentals.html#fondamenti-delle-property-css"><i class="fa fa-check"></i>Fondamenti delle property CSS</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="css-fundamentals.html"><a href="css-fundamentals.html#la-cascade"><i class="fa fa-check"></i><b>4.4</b> La cascade</a></li>
+<li class="chapter" data-level="" data-path="css-fundamentals.html"><a href="css-fundamentals.html#risorse-1"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="html-semantico.html"><a href="html-semantico.html"><i class="fa fa-check"></i><b>5</b> HTML Semantico</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="html-semantico.html"><a href="html-semantico.html#elementi-html-specifici"><i class="fa fa-check"></i><b>5.1</b> Elementi HTML specifici</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#hyperlink"><i class="fa fa-check"></i>Hyperlink</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#elementi-testuali-inline"><i class="fa fa-check"></i>Elementi testuali inline</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#immagini-e-media"><i class="fa fa-check"></i>Immagini e media</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#headings"><i class="fa fa-check"></i>Headings</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#elementi-non-semantici"><i class="fa fa-check"></i>Elementi non semantici</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#sectioning-elements"><i class="fa fa-check"></i>Sectioning elements</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#tabelle"><i class="fa fa-check"></i>Tabelle</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#form"><i class="fa fa-check"></i>Form</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="html-semantico.html"><a href="html-semantico.html#aria-for-accessibility"><i class="fa fa-check"></i><b>5.2</b> ARIA for Accessibility</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#aria-labeling"><i class="fa fa-check"></i>ARIA Labeling</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#aria-roles-and-landmarks"><i class="fa fa-check"></i>ARIA Roles and Landmarks</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#aria-e-interattivita"><i class="fa fa-check"></i>ARIA e interattivita’</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#risorse-2"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="selettori-css.html"><a href="selettori-css.html"><i class="fa fa-check"></i><b>6</b> Selettori CSS</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="selettori-css.html"><a href="selettori-css.html#selector-di-base"><i class="fa fa-check"></i><b>6.1</b> Selector di base</a>
+<ul>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#type-selector"><i class="fa fa-check"></i>Type Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#class-selector"><i class="fa fa-check"></i>Class Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#id-selector"><i class="fa fa-check"></i>Id Selector</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="selettori-css.html"><a href="selettori-css.html#selector-complessi"><i class="fa fa-check"></i><b>6.2</b> Selector complessi</a>
+<ul>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#grouping-selector"><i class="fa fa-check"></i>Grouping Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#compound-selector"><i class="fa fa-check"></i>Compound Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#descendant-selector"><i class="fa fa-check"></i>Descendant Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#pseudo-classi"><i class="fa fa-check"></i>Pseudo-classi</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#altri-selector"><i class="fa fa-check"></i>Altri selector</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="selettori-css.html"><a href="selettori-css.html#specificita-dei-selector"><i class="fa fa-check"></i><b>6.3</b> Specificita’ dei selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#risorse-3"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="proprieta-css.html"><a href="proprieta-css.html"><i class="fa fa-check"></i><b>7</b> Proprieta’ CSS</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="proprieta-css.html"><a href="proprieta-css.html#specificare-i-valori-delle-property"><i class="fa fa-check"></i><b>7.1</b> Specificare i valori delle property</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#valori-di-property-ereditati"><i class="fa fa-check"></i>Valori di property ereditati</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#css-units"><i class="fa fa-check"></i>Unita’ di lunghezza e dimensioni</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="proprieta-css.html"><a href="proprieta-css.html#font-e-testo"><i class="fa fa-check"></i><b>7.2</b> Font e testo</a></li>
+<li class="chapter" data-level="7.3" data-path="proprieta-css.html"><a href="proprieta-css.html#css-colors"><i class="fa fa-check"></i><b>7.3</b> Colori e background</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#background-e-immagini"><i class="fa fa-check"></i>Background e immagini</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="proprieta-css.html"><a href="proprieta-css.html#box-model"><i class="fa fa-check"></i><b>7.4</b> Spaziatura con il Box Model</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#padding"><i class="fa fa-check"></i>Padding</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#border"><i class="fa fa-check"></i>Border</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#margin"><i class="fa fa-check"></i>Margin</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#padding-vs.-margin"><i class="fa fa-check"></i>Padding vs. Margin</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#box-sizing"><i class="fa fa-check"></i>Box-Sizing</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="proprieta-css.html"><a href="proprieta-css.html#flow-layout"><i class="fa fa-check"></i><b>7.5</b> Flow Layout</a></li>
+<li class="chapter" data-level="7.6" data-path="proprieta-css.html"><a href="proprieta-css.html#posizionamento-alternativo"><i class="fa fa-check"></i><b>7.6</b> Posizionamento alternativo</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#floating"><i class="fa fa-check"></i>Floating</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="proprieta-css.html"><a href="proprieta-css.html#flexbox"><i class="fa fa-check"></i><b>7.7</b> Flexbox</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#risorse-4"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="responsive-css.html"><a href="responsive-css.html"><i class="fa fa-check"></i><b>8</b> CSS responsive</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="responsive-css.html"><a href="responsive-css.html#design-mobile-first"><i class="fa fa-check"></i><b>8.1</b> Design mobile-first</a>
+<ul>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#principi-di-mobile-first-design"><i class="fa fa-check"></i>Principi di mobile-first design</a></li>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#specificare-il-viewport"><i class="fa fa-check"></i>Specificare il viewport</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="responsive-css.html"><a href="responsive-css.html#media-query"><i class="fa fa-check"></i><b>8.2</b> Media query</a>
+<ul>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#esempio-flexbox-responsive"><i class="fa fa-check"></i>Esempio: Flexbox responsive</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#risorse-5"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="framework-css.html"><a href="framework-css.html"><i class="fa fa-check"></i><b>9</b> Framework CSS</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="framework-css.html"><a href="framework-css.html#usare-un-framework"><i class="fa fa-check"></i><b>9.1</b> Usare un framework</a>
+<ul>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#includere-un-framework"><i class="fa fa-check"></i>Includere un framework</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="framework-css.html"><a href="framework-css.html#bootstrap"><i class="fa fa-check"></i><b>9.2</b> Bootstrap</a>
+<ul>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#class-di-utilita"><i class="fa fa-check"></i>Class di utilita’</a></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#design-responsive"><i class="fa fa-check"></i>Design responsive</a></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#la-grid"><i class="fa fa-check"></i>La Grid</a></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#componenti"><i class="fa fa-check"></i>Componenti</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#risorse-6"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="javascript.html"><a href="javascript.html"><i class="fa fa-check"></i><b>10</b> Fondamenti di JavaScript</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="javascript.html"><a href="javascript.html#programmare-con-javascript"><i class="fa fa-check"></i><b>10.1</b> Programmare con JavaScript</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#storia-e-versioni"><i class="fa fa-check"></i>Storia e versioni</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="javascript.html"><a href="javascript.html#eseguire-javascript"><i class="fa fa-check"></i><b>10.2</b> Eseguire JavaScript</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#nel-browser"><i class="fa fa-check"></i>Nel Browser</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#da-command-line-con-node.js"><i class="fa fa-check"></i>Da Command-line con Node.js</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="javascript.html"><a href="javascript.html#scrivere-script"><i class="fa fa-check"></i><b>10.3</b> Scrivere Script</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#strict-mode"><i class="fa fa-check"></i>Strict Mode</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="javascript.html"><a href="javascript.html#variabili"><i class="fa fa-check"></i><b>10.4</b> Variabili</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#data-types-di-base"><i class="fa fa-check"></i>Data Types di base</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#array"><i class="fa fa-check"></i>Array</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#object"><i class="fa fa-check"></i>Object</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#type-coercion"><i class="fa fa-check"></i>Type Coercion</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="javascript.html"><a href="javascript.html#strutture-di-controllo"><i class="fa fa-check"></i><b>10.5</b> Strutture di controllo</a></li>
+<li class="chapter" data-level="10.6" data-path="javascript.html"><a href="javascript.html#funzioni"><i class="fa fa-check"></i><b>10.6</b> Funzioni</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#risorse-7"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>11</b> Programmazione funzionale in JS</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="functional-programming.html"><a href="functional-programming.html#functions-are-variables"><i class="fa fa-check"></i><b>11.1</b> Functions ARE Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#anonymous-functions"><i class="fa fa-check"></i>Anonymous Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="functional-programming.html"><a href="functional-programming.html#object-functions"><i class="fa fa-check"></i><b>11.2</b> Object Functions</a></li>
+<li class="chapter" data-level="11.3" data-path="functional-programming.html"><a href="functional-programming.html#callback-functions"><i class="fa fa-check"></i><b>11.3</b> Callback Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#closures"><i class="fa fa-check"></i>Closures</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="functional-programming.html"><a href="functional-programming.html#functional-looping"><i class="fa fa-check"></i><b>11.4</b> Functional Looping</a>
+<ul>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#map"><i class="fa fa-check"></i>Map</a></li>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#filter"><i class="fa fa-check"></i>Filter</a></li>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#reduce"><i class="fa fa-check"></i>Reduce</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="functional-programming.html"><a href="functional-programming.html#pure-functions"><i class="fa fa-check"></i><b>11.5</b> Pure Functions</a></li>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#risorse-8"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="dom.html"><a href="dom.html"><i class="fa fa-check"></i><b>12</b> Modello a oggetti del documento (DOM)</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="dom.html"><a href="dom.html#la-dom-api"><i class="fa fa-check"></i><b>12.1</b> La DOM API</a>
+<ul>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#global-variables"><i class="fa fa-check"></i>Global Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="dom.html"><a href="dom.html#dom-manipulation"><i class="fa fa-check"></i><b>12.2</b> DOM Manipulation</a>
+<ul>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#referenziare-elementi-html"><i class="fa fa-check"></i>Referenziare elementi HTML</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#modificare-elementi-html"><i class="fa fa-check"></i>Modificare elementi HTML</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#modificare-il-dom-tree"><i class="fa fa-check"></i>Modificare il DOM Tree</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#accessibility"><i class="fa fa-check"></i>Accessibility</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="dom.html"><a href="dom.html#ascoltare-gli-eventi"><i class="fa fa-check"></i><b>12.3</b> Ascoltare gli Eventi</a>
+<ul>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#tipi-di-eventi"><i class="fa fa-check"></i>Tipi di Eventi</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#event-driven-programming"><i class="fa fa-check"></i>Event-Driven Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#risorse-9"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="librerie-javascript.html"><a href="librerie-javascript.html"><i class="fa fa-check"></i><b>13</b> Librerie JavaScript</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="librerie-javascript.html"><a href="librerie-javascript.html#includere-una-library"><i class="fa fa-check"></i><b>13.1</b> Includere una Library</a></li>
+<li class="chapter" data-level="13.2" data-path="librerie-javascript.html"><a href="librerie-javascript.html#esempio-jquery"><i class="fa fa-check"></i><b>13.2</b> Esempio: jQuery</a>
+<ul>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#manipolare-il-dom"><i class="fa fa-check"></i>Manipolare il DOM</a></li>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#gestire-gli-eventi"><i class="fa fa-check"></i>Gestire gli eventi</a></li>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#e-altro"><i class="fa fa-check"></i>E altro!</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#risorse-10"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="es6.html"><a href="es6.html"><i class="fa fa-check"></i><b>14</b> Sintassi ES6+</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="es6.html"><a href="es6.html#es6-syntax-features"><i class="fa fa-check"></i><b>14.1</b> ES6+ Syntax Features</a>
+<ul>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#arrow-functions"><i class="fa fa-check"></i>Arrow Functions</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#destructuring"><i class="fa fa-check"></i>Destructuring</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#spreading"><i class="fa fa-check"></i>Spreading</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#template-strings"><i class="fa fa-check"></i>Template Strings</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="es6.html"><a href="es6.html#modules"><i class="fa fa-check"></i><b>14.2</b> Modules</a>
+<ul>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#module-syntax"><i class="fa fa-check"></i>Module Syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="es6.html"><a href="es6.html#es6-classes"><i class="fa fa-check"></i><b>14.3</b> Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#why-classes"><i class="fa fa-check"></i>Why Classes?</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#review-classes-in-java"><i class="fa fa-check"></i>Review: Classes in Java</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#es6-class-syntax"><i class="fa fa-check"></i>ES6 Class Syntax</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#inheritance"><i class="fa fa-check"></i>Inheritance</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#working-with-this"><i class="fa fa-check"></i>Working with <code>this</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="react.html"><a href="react.html"><i class="fa fa-check"></i><b>15</b> Introduzione a React</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="react.html"><a href="react.html#react-vite-setup"><i class="fa fa-check"></i><b>15.1</b> Preparazione: React e Vite</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#eseguire-il-development-server"><i class="fa fa-check"></i>Eseguire il Development Server</a></li>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#struttura-del-progetto"><i class="fa fa-check"></i>Struttura del Progetto</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="react.html"><a href="react.html#jsx"><i class="fa fa-check"></i><b>15.2</b> JSX</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#espressioni-inline"><i class="fa fa-check"></i>Espressioni Inline</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="react.html"><a href="react.html#component-react"><i class="fa fa-check"></i><b>15.3</b> Component React</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#organizzazione-dei-components"><i class="fa fa-check"></i>Organizzazione dei Components</a></li>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#alternativa-deprecata-class-components"><i class="fa fa-check"></i>Alternativa Deprecata: Class Components</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="react.html"><a href="react.html#props"><i class="fa fa-check"></i><b>15.4</b> Proprieta’ (<code>props</code>)</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#props-e-composizione"><i class="fa fa-check"></i>Props e Composizione</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#risorse-11"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="react-interattivo.html"><a href="react-interattivo.html"><i class="fa fa-check"></i><b>16</b> React Interattivo</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="react-interattivo.html"><a href="react-interattivo.html#gestire-gli-eventi-in-react"><i class="fa fa-check"></i><b>16.1</b> Gestire gli Eventi in React</a></li>
+<li class="chapter" data-level="16.2" data-path="react-interattivo.html"><a href="react-interattivo.html#state-e-hooks"><i class="fa fa-check"></i><b>16.2</b> State e Hooks</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#aggiornare-lo-state"><i class="fa fa-check"></i>Aggiornare lo State</a></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#state-vs.-props"><i class="fa fa-check"></i>State vs. Props</a></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#lifting-up-state"><i class="fa fa-check"></i>Lifting Up State</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="react-interattivo.html"><a href="react-interattivo.html#interazioni-specifiche"><i class="fa fa-check"></i><b>16.3</b> Interazioni Specifiche</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#lavorare-con-i-forms"><i class="fa fa-check"></i>Lavorare con i Forms</a></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#caricare-data-via-ajax"><i class="fa fa-check"></i>Caricare Data via AJAX</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#risorse-12"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="routing-lato-client.html"><a href="routing-lato-client.html"><i class="fa fa-check"></i><b>17</b> Routing lato client</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="routing-lato-client.html"><a href="routing-lato-client.html#single-page-applications"><i class="fa fa-check"></i><b>17.1</b> Single-Page Applications</a></li>
+<li class="chapter" data-level="17.2" data-path="routing-lato-client.html"><a href="routing-lato-client.html#react-router"><i class="fa fa-check"></i><b>17.2</b> React-Router</a>
+<ul>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#routing"><i class="fa fa-check"></i>Routing</a></li>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#linking"><i class="fa fa-check"></i>Linking</a></li>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#react-router-e-hosting"><i class="fa fa-check"></i>React Router e Hosting</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#risorse-13"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="ajax.html"><a href="ajax.html"><i class="fa fa-check"></i><b>18</b> Richieste AJAX</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="ajax.html"><a href="ajax.html#ajax-1"><i class="fa fa-check"></i><b>18.1</b> AJAX</a>
+<ul>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#xml-e-json"><i class="fa fa-check"></i>XML e JSON</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="ajax.html"><a href="ajax.html#fetching-data"><i class="fa fa-check"></i><b>18.2</b> Fetching Data</a></li>
+<li class="chapter" data-level="18.3" data-path="ajax.html"><a href="ajax.html#asynchronous-programming"><i class="fa fa-check"></i><b>18.3</b> Asynchronous Programming</a>
+<ul>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#chaining-promises"><i class="fa fa-check"></i>Chaining Promises</a></li>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#handling-errors"><i class="fa fa-check"></i>Handling Errors</a></li>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#altri-data-formats"><i class="fa fa-check"></i>Altri Data Formats</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#risorse-14"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="firebase.html"><a href="firebase.html"><i class="fa fa-check"></i><b>19</b> Firebase</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="firebase.html"><a href="firebase.html#setting-up-firebase"><i class="fa fa-check"></i><b>19.1</b> Setting up Firebase</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#creating-a-project"><i class="fa fa-check"></i>Creating a Project</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#including-firebase-in-react"><i class="fa fa-check"></i>Including Firebase in React</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#adding-collaborators-to-a-project"><i class="fa fa-check"></i>Adding Collaborators to a Project</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="firebase.html"><a href="firebase.html#realtime-database"><i class="fa fa-check"></i><b>19.2</b> Realtime Database</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#setting-up-the-database"><i class="fa fa-check"></i>Setting Up the Database</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#reference-ai-dati"><i class="fa fa-check"></i>Reference ai dati</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#listening-for-data-changes"><i class="fa fa-check"></i>Listening for Data Changes</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#firebase-arrays"><i class="fa fa-check"></i>Firebase Arrays</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="firebase.html"><a href="firebase.html#autenticazione-utenti"><i class="fa fa-check"></i><b>19.3</b> Autenticazione utenti</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#accesso-con-firebaseui"><i class="fa fa-check"></i>Accesso con FirebaseUI</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#managing-the-user"><i class="fa fa-check"></i>Managing the User</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="firebase.html"><a href="firebase.html#firebase-storage"><i class="fa fa-check"></i><b>19.4</b> Firebase Storage</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#file-inputs"><i class="fa fa-check"></i>File Inputs</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#uploading-files"><i class="fa fa-check"></i>Uploading Files</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#risorse-15"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendice-appendici-e-argomenti-speciali.html"><a href="appendice-appendici-e-argomenti-speciali.html"><i class="fa fa-check"></i>(APPENDICE) Appendici e argomenti speciali</a></li>
+<li class="chapter" data-level="20" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html"><i class="fa fa-check"></i><b>20</b> Guida allo stile del codice</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#html-guidelines"><i class="fa fa-check"></i><b>20.1</b> HTML Guidelines</a>
+<ul>
+<li class="chapter" data-level="" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#spacing"><i class="fa fa-check"></i>Spacing</a></li>
+<li class="chapter" data-level="" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#elementi-specifici"><i class="fa fa-check"></i>Elementi specifici</a></li>
+<li class="chapter" data-level="" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#commenti-in-html"><i class="fa fa-check"></i>Commenti in HTML</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#css-guidelines"><i class="fa fa-check"></i><b>20.2</b> CSS Guidelines</a>
+<ul>
+<li class="chapter" data-level="20.2.1" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#spacing-1"><i class="fa fa-check"></i><b>20.2.1</b> Spacing</a></li>
+<li class="chapter" data-level="20.2.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#selectors"><i class="fa fa-check"></i><b>20.2.2</b> Selectors</a></li>
+<li class="chapter" data-level="20.2.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#class-names"><i class="fa fa-check"></i><b>20.2.3</b> Class Names</a></li>
+<li class="chapter" data-level="20.2.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#proprieta-specifiche"><i class="fa fa-check"></i><b>20.2.4</b> Proprieta’ specifiche</a></li>
+<li class="chapter" data-level="20.2.5" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#responsive-css-1"><i class="fa fa-check"></i><b>20.2.5</b> Responsive CSS</a></li>
+<li class="chapter" data-level="20.2.6" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#commenti-in-css"><i class="fa fa-check"></i><b>20.2.6</b> Commenti in CSS</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#javascript-guidelines"><i class="fa fa-check"></i><b>20.3</b> JavaScript Guidelines</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#variables"><i class="fa fa-check"></i><b>20.3.1</b> Variables</a></li>
+<li class="chapter" data-level="20.3.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#functions"><i class="fa fa-check"></i><b>20.3.2</b> Functions</a></li>
+<li class="chapter" data-level="20.3.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#commenti-in-javascript"><i class="fa fa-check"></i><b>20.3.3</b> Commenti in JavaScript</a></li>
+<li class="chapter" data-level="20.3.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#altre-linee-guida-javascript"><i class="fa fa-check"></i><b>20.3.4</b> Altre linee guida JavaScript</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#react-guidelines"><i class="fa fa-check"></i><b>20.4</b> React Guidelines</a>
+<ul>
+<li class="chapter" data-level="20.4.1" data-path="react.html"><a href="react.html#components"><i class="fa fa-check"></i><b>20.4.1</b> Components</a></li>
+<li class="chapter" data-level="20.4.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#mapping-data"><i class="fa fa-check"></i><b>20.4.2</b> Mapping Data</a></li>
+<li class="chapter" data-level="20.4.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#state"><i class="fa fa-check"></i><b>20.4.3</b> State</a></li>
+<li class="chapter" data-level="20.4.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#events-e-forms"><i class="fa fa-check"></i><b>20.4.4</b> Events e Forms</a></li>
+</ul></li>
+<li class="chapter" data-level="20.5" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#linee-guida-varie"><i class="fa fa-check"></i><b>20.5</b> Linee guida varie</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="jest.html"><a href="jest.html"><i class="fa fa-check"></i><b>21</b> Test con Jest</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="jest.html"><a href="jest.html#test"><i class="fa fa-check"></i><b>21.1</b> Test</a></li>
+<li class="chapter" data-level="21.2" data-path="jest.html"><a href="jest.html#testing-con-jest"><i class="fa fa-check"></i><b>21.2</b> Testing con Jest</a></li>
+<li class="chapter" data-level="21.3" data-path="jest.html"><a href="jest.html#scrivere-un-test"><i class="fa fa-check"></i><b>21.3</b> Scrivere un test</a>
+<ul>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#assertion-e-matcher"><i class="fa fa-check"></i>Assertion e matcher</a></li>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#organizzare-i-test"><i class="fa fa-check"></i>Organizzare i test</a></li>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#eseguire-i-test"><i class="fa fa-check"></i>Eseguire i test</a></li>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#esercizio"><i class="fa fa-check"></i>Esercizio</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="jest.html"><a href="jest.html#testing-di-web-app-con-jest"><i class="fa fa-check"></i><b>21.4</b> Testing di web app con Jest</a>
+<ul>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#pratica"><i class="fa fa-check"></i>Pratica</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="webpack.html"><a href="webpack.html"><i class="fa fa-check"></i><b>22</b> Laboratorio: Webpack</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="webpack.html"><a href="webpack.html#che-cose-webpack"><i class="fa fa-check"></i><b>22.1</b> Che cos’e’ Webpack?</a></li>
+<li class="chapter" data-level="22.2" data-path="webpack.html"><a href="webpack.html#getting-started"><i class="fa fa-check"></i><b>22.2</b> Getting Started</a></li>
+<li class="chapter" data-level="22.3" data-path="webpack.html"><a href="webpack.html#webpack.config.js"><i class="fa fa-check"></i><b>22.3</b> <code>webpack.config.js</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#entry-e-output"><i class="fa fa-check"></i><code>entry</code> e <code>output</code></a></li>
+</ul></li>
+<li class="chapter" data-level="22.4" data-path="webpack.html"><a href="webpack.html#loaders"><i class="fa fa-check"></i><b>22.4</b> Loaders</a>
+<ul>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#babel-loader"><i class="fa fa-check"></i>Babel Loader</a></li>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#clean-up-bath"><i class="fa fa-check"></i>Clean up :bath:</a></li>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#ulteriore-pratica-con-i-loader"><i class="fa fa-check"></i>Ulteriore pratica con i Loader</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="class-components.html"><a href="class-components.html"><i class="fa fa-check"></i><b>23</b> Componenti class React</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="class-components.html"><a href="class-components.html#props-nei-class-components"><i class="fa fa-check"></i><b>23.1</b> Props nei Class Components</a></li>
+<li class="chapter" data-level="23.2" data-path="class-components.html"><a href="class-components.html#gestire-gli-eventi-nei-class-components"><i class="fa fa-check"></i><b>23.2</b> Gestire gli Eventi nei Class Components</a>
+<ul>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#accedere-al-this-del-component-dagli-eventi"><i class="fa fa-check"></i>Accedere al <code>this</code> del Component dagli Eventi</a></li>
+</ul></li>
+<li class="chapter" data-level="23.3" data-path="class-components.html"><a href="class-components.html#state-in-class-components"><i class="fa fa-check"></i><b>23.3</b> State nei Class Components</a>
+<ul>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#cambiare-lo-state"><i class="fa fa-check"></i>Cambiare lo State</a></li>
+</ul></li>
+<li class="chapter" data-level="23.4" data-path="class-components.html"><a href="class-components.html#il-lifecycle-del-component"><i class="fa fa-check"></i><b>23.4</b> Il Lifecycle del Component</a>
+<ul>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#esempio-di-lifecycle-caricare-data-via-ajax"><i class="fa fa-check"></i>Esempio di Lifecycle: Caricare Data via AJAX</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#risorse-16"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="css-in-js.html"><a href="css-in-js.html"><i class="fa fa-check"></i><b>24</b> CSS in JS</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="css-in-js.html"><a href="css-in-js.html#perche-css-in-js"><i class="fa fa-check"></i><b>24.1</b> Perche’ CSS in JS?</a></li>
+<li class="chapter" data-level="24.2" data-path="css-in-js.html"><a href="css-in-js.html#stili-inline-in-react"><i class="fa fa-check"></i><b>24.2</b> Stili inline in React</a></li>
+<li class="chapter" data-level="24.3" data-path="css-in-js.html"><a href="css-in-js.html#aphrodite"><i class="fa fa-check"></i><b>24.3</b> Aphrodite</a></li>
+<li class="chapter" data-level="24.4" data-path="css-in-js.html"><a href="css-in-js.html#css-modules"><i class="fa fa-check"></i><b>24.4</b> CSS Modules</a>
+<ul>
+<li class="chapter" data-level="" data-path="css-in-js.html"><a href="css-in-js.html#ejecting-da-create-react-app"><i class="fa fa-check"></i>Ejecting da Create React App</a></li>
+<li class="chapter" data-level="" data-path="css-in-js.html"><a href="css-in-js.html#composizione-delle-class"><i class="fa fa-check"></i>Composizione delle class</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="css-in-js.html"><a href="css-in-js.html#risorse-17"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="redux.html"><a href="redux.html"><i class="fa fa-check"></i><b>25</b> Redux</a></li>
+<li class="chapter" data-level="26" data-path="react-native.html"><a href="react-native.html"><i class="fa fa-check"></i><b>26</b> React Native</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="react-native.html"><a href="react-native.html#getting-setup"><i class="fa fa-check"></i><b>26.1</b> Getting Setup</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#eseguire-react-native-apps"><i class="fa fa-check"></i>Eseguire React Native Apps</a></li>
+</ul></li>
+<li class="chapter" data-level="26.2" data-path="react-native.html"><a href="react-native.html#react-native-apps"><i class="fa fa-check"></i><b>26.2</b> React Native Apps</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#styling-react-native"><i class="fa fa-check"></i>Styling React Native</a></li>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#interaction"><i class="fa fa-check"></i>Interaction</a></li>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#liste-e-data"><i class="fa fa-check"></i>Liste e Data</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Sviluppo Web lato client</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="framework-css" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Framework CSS<a href="framework-css.html#framework-css" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Le lezioni precedenti hanno mostrato come usare CSS per rendere una pagina sia bella sia responsive. Sebbene sia possibile implementare un intero sito creando le proprie regole CSS, questo puo’ diventare rapidamente noioso: spesso vuoi una serie di regole “standard” (perche’ l’aspetto senza stile del browser) e poi personalizzarle a tuo piacimento.</p>
+<p>Per questo motivo, la maggior parte degli sviluppatori web professionisti usa un <strong>CSS Framework</strong> esistente. Un CSS Framework e’ uno stylesheet (un file <code>.css</code>) che contiene molte regole predefinite che puoi applicare alla pagina. I framework offrono diversi benefici:</p>
+<ul>
+<li><em>Applica uno styling di default gradevole a tutti gli elementi HTML</em>: i framework rendono le pagine subito piu’ belle con regole su selector di elementi. Forniscono font piacevoli, interlinea, spaziatura e styling dei link senza sforzo aggiuntivo.</li>
+<li><em>Fornisce class di stile per componenti UI comuni</em>: gli stylesheet dei framework includono class CSS che puoi aggiungere al markup per badge, tab in-page, drop-down button, layout multi-colonna e altro. I framework permettono di stilizzare la pagina con class, invece di scrivere molte regole per lo stesso effetto.</li>
+</ul>
+<p>I CSS framework sono pensati per rendere il lavoro piu’ semplice ed efficiente, pur permettendoti di personalizzare e usare tutta la potenza di CSS.</p>
+<!-- ### Popular Frameworks {-} -->
+<p>Ci sono molti CSS framework tra cui scegliere. Alcuni popolari:</p>
+<ul>
+<li><p><a href="http://getbootstrap.com/"><strong>Bootstrap</strong></a> e’ il framework CSS piu’ usato sul web. A volte chiamato “Twitter Bootstrap”, e’ stato creato in Twitter per dare coerenza agli strumenti interni, poi rilasciato open source nel 2011. La sua popolarita’ ha pro e contro: e’ ben testato, documentato e supportato, ma e’ cosi’ diffuso che il suo look di default e’ diventato un po’ cliche’.</p>
+<p>Al momento, l’ultima release principale di Bootstrap e’ <strong>v5</strong>, rilasciata a maggio 2021. E’ un aggiornamento importante rispetto alla v4 (2017). Nota che Bootstrap 4 ha introdotto Flexbox come base per il grid system, con migliori performance. Per questo e altri motivi, Bootstrap 4+ <strong>non supporta</strong> IE 9 o precedenti. Per browser vecchi dovresti usare una versione ancora piu’ vecchia – o probabilmente evitare il framework.</p>
+<div class="alert alert-warning">
+Questo testo usa Bootstrap 5 come esempio. E’ consigliato usare sempre l’ultima versione di una libreria o framework. Assicurati di leggere la documentazione della versione corretta!
+</div></li>
+<li><p><a href="http://foundation.zurb.com/"><strong>Foundation</strong></a> ha la reputazione di essere piu’ “in anticipo” rispetto a Bootstrap (introduce nuove funzionalita’ prima). Per esempio, e’ stato il primo framework con design responsive mobile-first e ha fornito una grid basata su Flexbox molto prima di Bootstrap. Foundation ha quasi gli stessi elementi UI di Bootstrap ma con un look diverso (personalizzabile con uno <a href="http://foundation.zurb.com/sites/download.html/#customizeFoundation">strumento web</a>).</p></li>
+<li><p><a href="https://material.io/components/web/"><strong>Material Components for the Web (MCW)</strong></a> e’ l’implementazione ufficiale del linguaggio visivo <a href="https://material.google.com/">Material Design</a> di Google. E’ l’aspetto di molti prodotti Google e app Android. Material Design e’ molto opinionato, quindi MCW e’ difficile da personalizzare. I nomi delle class MCW sono molto verbosi perche’ seguono lo schema <a href="https://en.bem.info/methodology/">Block, Element, Modifier (BEM)</a>.</p></li>
+<li><p><a href="http://materializecss.com/"><strong>Materialize</strong></a> e’ l’altra implementazione Material Design popolare. E’ open-source, quindi non fornita da Google. Tuttavia e’ strutturalmente simile a Bootstrap, rendendola facile da imparare e popolare tra chi conosce Bootstrap.</p></li>
+<li><p><a href="http://necolas.github.io/normalize.css/"><strong>normalize.css</strong></a> non e’ un framework completo, ma una utility che fa browser normalization (“reset”). <code>normalize.css</code> standardizza le differenze tra browser e rende lo stesso HTML/CSS piu’ consistente. Nota che molti framework includono una variante di questo pacchetto (ad es. Bootstrap include una fork chiamata <a href="https://medium.com/css-mine/bootstraps-reboot-next-evolutionary-step-for-css-reset-a30f718521b9">Reboot</a>).</p>
+<p>Se scegli <strong>di non</strong> usare un framework, dovresti comunque includere <code>normalize</code> per rendere i siti consistenti tra browser.</p></li>
+</ul>
+<p>Esistono anche altri framework, ciascuno con pro e contro (ad es. <a href="http://getskeleton.com/">Skeleton</a> e’ ultra-leggero ma con meno funzionalita’).</p>
+<div id="usare-un-framework" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Usare un framework<a href="framework-css.html#usare-un-framework" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La cosa importante e’ che un CSS framework e’ <strong>solo uno stylesheet con regole scritte da qualcun altro</strong>. Non c’e’ nulla di magico. Puoi guardare il CSS e vedere tutte le regole – sono cose che potresti scrivere anche tu (anche se alcune sono complesse). Ma queste regole sono state create da professionisti e testate su molti browser per risultati consistenti, quindi conviene costruire sopra di esse invece di reinventare la ruota.</p>
+<p>Per esempio, puoi vedere il file <code>normalize.css</code> su <a href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" class="uri">https://necolas.github.io/normalize.css/8.0.1/normalize.css</a> e notare che e’ esattamente il CSS che potresti scrivere da solo.</p>
+<div id="includere-un-framework" class="section level3 unnumbered hasAnchor">
+<h3>Includere un framework<a href="framework-css.html#includere-un-framework" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Poiche’ un CSS framework e’ <em>solo un file CSS</em>, lo includi con un <code>&lt;link&gt;</code> come qualsiasi stylesheet:</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+  <span class="token comment">&lt;!--... altri elementi qui...--></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span>
+        <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>css/my-style.css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span></code></pre>
+<p><strong>Importante!</strong> Collega il framework <em>prima</em> del tuo stylesheet. CSS e’ letto top-to-bottom, e l’ultima regola vince. Mettendo il tuo CSS dopo, le tue regole <em>sovrascriveranno</em> quelle del framework, permettendoti di personalizzare l’aspetto.</p>
+<!-- sostituire con un esempio Bootstrap?? -->
+<ul>
+<li><p>Per esempio, <code>bootstrap.css</code> imposta <code>font-family</code> del <code>&lt;body&gt;</code> su <code>"Segoe UI"</code> (sans-serif); potresti voler un carattere diverso:</p>
+<pre class="language-css"><code><span class="token comment">/* my-style.css */</span>
+<span class="token selector">body</span> <span class="token punctuation">{</span>
+  <span class="token property">font-family</span><span class="token punctuation">:</span> <span class="token string">'Comic Sans'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Se includessi il tuo stylesheet <em>prima</em> nel <code>&lt;head&gt;</code>, la tua regola verrebbe applicata ma poi sovrascritta da <code>bootstrap.css</code>, facendo sembrare che non funzioni. Quindi metti <strong>sempre</strong> il tuo CSS come ultimo <code>&lt;link&gt;</code>, dopo i framework.</p></li>
+</ul>
+<p>E’ molto comune includere le versioni <strong>minificate</strong> dei framework: di solito chiamate <strong><code>.min.css</code></strong> (es. <code>bootstrap.min.css</code>). Un file minificato ha commenti e spazi rimossi, quindi e’ piu’ piccolo (Bootstrap passa da 160 KB a ~127 KB). Pagina piu’ piccola = download piu’ veloce. Un CSS non minificato non e’ un disastro, ma lo spazio extra non ti serve.</p>
+<ul>
+<li>Quasi sempre puoi passare da minificato a non minificato cambiando il nome file tra <code>file.css</code> e <code>file.min.css</code> (se usi una CDN).</li>
+</ul>
+<p>Ci sono diversi modi per accedere a uno stylesheet di un framework:</p>
+<div id="link-a-una-cdn" class="section level4 unnumbered hasAnchor">
+<h4>Link a una CDN<a href="framework-css.html#link-a-una-cdn" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>L’opzione piu’ semplice e’ collegarsi a una <a href="https://en.wikipedia.org/wiki/Content_delivery_network">Content Delivery Network (CDN)</a>, un servizio pensato per servire rapidamente file comuni usati da molti siti. Basta mettere l’URL della CDN nell’<code>href</code> del <code>&lt;link&gt;</code> (come sopra).</p>
+<p class="alert alert-info">
+<a href="https://cdnjs.com/">CDNJS</a> e’ una CDN per pacchetti e librerie gestita da <a href="https://en.wikipedia.org/wiki/Cloudflare">Cloudflare</a> ed e’ un buon punto di partenza se non sai il link CDN. Altri pacchetti hanno CDN diverse (ad es. Bootstrap consiglia <a href="https://cdn.jsdelivr.net">jsdeliver.net</a>).
+</p>
+<p>Oltre alla semplicita’, le CDN offrono un vantaggio di velocita’: replicano i file in piu’ regioni e usano DNS per servire l’utente dal server piu’ vicino. Un utente in Australia potrebbe scaricare Bootstrap da un server a Singapore, uno in Francia da un server in Irlanda, ecc. Questo accelera il download.</p>
+<p>Inoltre, le CDN sfruttano la <strong>browser cache</strong>: il browser salva versioni scaricate per evitare di riscaricarle. Se piu’ siti usano la versione CDN di Bootstrap, il browser scarica il file solo la prima volta. Con framework popolari, e’ probabile che l’utente abbia gia’ visitato un sito che usa Bootstrap, quindi il file e’ gia’ in cache.</p>
+<p>Infine, le CDN permettono ai framework di essere accessibili <a href="https://en.wikipedia.org/wiki/Software_as_a_service">come servizio</a>, quindi gli autori possono patchare bug rapidamente (se non rompono il codice) senza intervento dello sviluppatore che usa il framework. (Questo puo’ anche essere visto come un contro: devi fidarti degli autori).</p>
+<p>L’unico vero svantaggio delle CDN e’ che non funzionano offline. Se sviluppi offline o costruisci un’app offline, devi usare un altro metodo.</p>
+</div>
+<div id="scaricare-il-sorgente" class="section level4 unnumbered hasAnchor">
+<h4>Scaricare il sorgente<a href="framework-css.html#scaricare-il-sorgente" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Se non puoi usare una CDN, devi scaricare il file sorgente sul computer e salvarlo nel progetto (spesso in <code>lib/</code>). I file si trovano sul sito del framework o nel repo GitHub (cerca il <code>.css</code> o la cartella <code>dist/</code>).</p>
+<p>Oltre a funzionare offline, scaricare i CSS offre altri vantaggi:</p>
+<ul>
+<li>I framework possono permettere di personalizzare il contenuto prima di scaricare: scegli componenti e modifica styling di base prima di ottenere il file.</li>
+<li>Se usi un pre-compiler CSS come <a href="http://sass-lang.com/">SASS</a>, puoi modificare mixin e variabili per personalizzare font, colori, dimensioni, ecc.</li>
+<li>Se usi un build system come <a href="https://webpack.js.org/">webpack</a>, puoi combinare <em>tutti</em> i CSS in un singolo file, riducendo il numero di file da scaricare e aumentando la velocita’ (soprattutto su reti mobili lente).</li>
+</ul>
+<p>Nota che puoi usare un <strong>package manager</strong> come <code>npm</code> per scaricare e gestire i framework. Questo evita di aggiungere file grandi al repo e ti permette di gestire dipendenze facilmente.</p>
+<p>Ricorda che puoi installare un package con <code>npm</code>, salvandolo nel <code>package.json</code>:</p>
+<pre class="language-bash"><code><span class="token comment"># install bootstrap (latest version)</span>
+<span class="token function">npm</span> <span class="token function">install</span> bootstrap</code></pre>
+<p>Questo installa il codice sorgente in <code>node_modules/</code>. Poiche’ la dipendenza e’ in <code>package.json</code>, puoi escludere <code>node_modules/</code> dal repo con <code>.gitignore</code> e far installare le dipendenze agli altri con <code>npm install</code>. Puoi anche usare <code>npm</code> per aggiornare i pacchetti (es. quando esce una nuova versione di Bootstrap).</p>
+<p>Nota che, per includere il framework nella pagina, devi linkare il file <code>.css</code> dentro <code>node_modules</code>. La posizione non e’ uniforme tra framework o versioni, quindi dovrai cercarla:</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- nota il path RELATIVO al file --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>node_modules/bootstrap/dist/css/bootstrap.min.css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
+<div class="alert alert-warning">
+<strong>Importante</strong>, questo <code>&lt;link&gt;</code> relativo funziona solo se <code>node_modules</code> e’ disponibile nel path atteso – e poiche’ non vuoi mai committare <code>node_modules</code> su git (e’ enorme), non e’ una soluzione valida per la pubblicazione (es. GitHub Pages). Per questo, quasi sempre conviene usare una CDN. L’unica eccezione e’ quando usi un build system (come React con Webpack) che incorpora il modulo nel bundle.
+</div>
+</div>
+</div>
+</div>
+<div id="bootstrap" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Bootstrap<a href="framework-css.html#bootstrap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Questa sezione discute <em>alcune</em> funzionalita’ e usi del framework Bootstrap. Molti altri framework si usano in modo simile (con class e componenti diversi).</p>
+<p>Includi Bootstrap linkando il suo <code>.css</code> nella pagina (CDN o file locale). Puoi ottenere il link per l’ultima versione dalla <a href="https://getbootstrap.com/">homepage di Bootstrap</a>.</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span>
+      <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css<span class="token punctuation">"</span></span>
+      <span class="token attr-name">integrity</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65<span class="token punctuation">"</span></span>
+      <span class="token attr-name">crossorigin</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>anonymous<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
+<p>(Questo <code>&lt;link&gt;</code> ha 2 attributi opzionali: <code>integrity</code> fornisce un <a href="https://en.wikipedia.org/wiki/Cryptographic_hash_function">hash crittografico</a> per verificare il file; <code>crossorigin</code> indica che non vengono inviate credenziali al server remoto – vedi <a href="ajax.html#ajax">AJAX</a> per una discussione piu’ dettagliata).</p>
+<p>Quando includi Bootstrap, vedrai subito gli effetti (di solito in meglio): font di default diverso, margin cambiati, ecc. Il file CSS di Bootstrap contiene regole che si applicano agli elementi senza lavoro extra, incluso <code>&lt;body&gt;</code> e header. Vedi la <a href="https://getbootstrap.com/docs/5.2/content/reboot/">documentazione</a> per lo styling di default (e tutta la sezione “Content” della documentazione).</p>
+<div id="class-di-utilita" class="section level3 unnumbered hasAnchor">
+<h3>Class di utilita’<a href="framework-css.html#class-di-utilita" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Oltre alle regole di base, Bootstrap include molte regole applicabili agli elementi con una specifica <strong>class</strong>. Queste <a href="https://getbootstrap.com/docs/5.2/utilities">utility class</a> sono la fonte di potenza e flessibilita’.</p>
+<p>Per esempio, Bootstrap offre <a href="https://getbootstrap.com/docs/5.2/utilities/text/">text utilities</a> per stilizzare testo con class, invece di scrivere nuove regole. Ad esempio, puoi centrare il testo con <code>text-center</code>:</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text-center<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Questo testo sara' centrato su tutte le dimensioni del viewport.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
+<p>Hai solo aggiunto una class all’HTML, come per qualsiasi regola CSS. Bootstrap contiene una regola che si applica a quella class:</p>
+<pre class="language-css"><code><span class="token comment">/* da bootstrap.css */</span>
+<span class="token selector">.text-center</span> <span class="token punctuation">{</span>
+  <span class="token property">text-align</span><span class="token punctuation">:</span> center <span class="token important">!important</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Potresti scrivere la stessa regola, ma Bootstrap la fornisce integrata, cosi’ puoi concentrarti sulla semantica del contenuto invece che sul CSS.</p>
+<p>(Noterai che <code>bootstrap.css</code> usa spesso <code>!important</code>. Serve per sovrascrivere altre regole indipendentemente dalla specificita’. Se vuoi sovrascrivere questa regola – ad es. non vuoi testo centrato – non provare a vincere con <code>!important</code>. <em>Rimuovi la class Bootstrap</em>. Se non vuoi l’effetto, non usare quella class, e <em>mai</em> usare <code>!important</code>.)</p>
+<p>Molti elementi devono avere una utility class per usare lo styling Bootstrap. Per esempio, per dare a un <code>&lt;button&gt;</code> lo stile Bootstrap serve la class <code>btn</code>. Questo ti permette di usare lo stile Bootstrap senza essere obbligato a sovrascriverlo se vuoi un look diverso.</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span><span class="token punctuation">></span></span>Button semplice<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>btn<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Button Bootstrap<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>btn btn-primary<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Button con colore primary<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></code></pre>
+<div class="float">
+<img src="img/css-frameworks/bootstrap-buttons.png" alt="Class dei button Bootstrap. Nota che il secondo button non ha un colore specificato, quindi e’ bianco su sfondo bianco." />
+<div class="figcaption">Class dei button Bootstrap. Nota che il secondo button non ha un colore specificato, quindi e’ bianco su sfondo bianco.</div>
+</div>
+<p>L’ultimo button ha una class aggiuntiva <code>btn-primary</code> che specifica lo <a href="https://getbootstrap.com/docs/5.2/utilities/colors/">stile colore</a>. Bootstrap fornisce vari stili colore predefiniti, con nomi semantici (es. <code>primary</code> o <code>warning</code>).</p>
+<div class="float">
+<img src="img/css-frameworks/bootstrap-buttons-all.png" alt="Colori dei button Bootstrap." />
+<div class="figcaption">Colori dei button Bootstrap.</div>
+</div>
+<p>Le stesse class colore si applicano a testo (es. <code>text-primary</code>), background (es. <code>bg-primary</code>), <a href="https://getbootstrap.com/docs/5.2/components/alerts/">alert</a> (es. <code>alert-warning</code>) e altro. Modificando il sorgente SASS di Bootstrap puoi personalizzare questi colori mantenendo coerenza nel tema.</p>
+<p>Nota che puoi usare la class <code>btn</code> anche su altri elementi (es. <code>&lt;a&gt;</code>) per farli <em>sembrare</em> button.</p>
+<div class="row">
+<div class="column col2">
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>btn btn-primary<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Un link<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
+</div>
+<div class="column">
+<p><img src="img/css-frameworks/bootstrap-button-link.png" alt="Un link che sembra un button"></p>
+</div>
+</div>
+<p>Questo ti permette di mantenere il <em>significato semantico</em> dell’HTML anche se lo stile cambia. Qualcosa che l’utente clicca per navigare e’ un hyperlink (<code>&lt;a&gt;</code>), anche se vuoi che sembri un button.</p>
+<p>“Stackare” utility class e’ comune in Bootstrap: non e’ raro che un elemento abbia 4 o 5 class per specificare l’aspetto. Per esempio, puoi usare le <a href="https://getbootstrap.com/docs/5.2/utilities/spacing/">spacing utilities</a> per impostare lo spacing attorno a un elemento:</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>p-3 pt-1 mx-2 mb-2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Un elemento con padding e spaziatura<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p>Questo elemento ha <code>p-3</code> (3 spacer di <strong>p</strong>adding su tutti i lati), <code>pt-1</code> (1 spacer di <strong>p</strong>adding in alto), <code>mx-2</code> (2 spacer di <strong>m</strong>argin sull’asse <strong>x</strong> sinistra/destra) e <code>mb-2</code> (2 spacer di margin in <strong>b</strong>ottom).</p>
+<p>Bootstrap e’ pieno di utility class, sia per styling generico (es. <a href="https://getbootstrap.com/docs/5.2/utilities/borders/">borders</a> o <a href="https://getbootstrap.com/docs/5.2/utilities/position/">position</a>), sia per contenuti specifici (es. <a href="https://getbootstrap.com/docs/5.2/content/typography/#lists">lists</a>, <a href="https://getbootstrap.com/docs/5.2/content/tables/">tables</a>, <a href="https://getbootstrap.com/docs/5.2/forms/overview/">forms</a>). Offre anche class per gestire i <a href="https://getbootstrap.com/docs/5.2/utilities/flex/">flexbox</a>. Esplora la documentazione per dettagli.</p>
+<p class="alert alert-info">
+Bootstrap include anche linee guida e class che <a href="https://getbootstrap.com/docs/5.2/getting-started/accessibility/">supportano i lettori di schermo</a>. Per esempio, <code>.visually-hidden</code> serve per rendere un elemento percepibile solo ai lettori di schermo.
+</p>
+<p class="alert alert-warning">
+Le utility class <strong>non</strong> significano che non dovrai mai scrivere CSS! Anche se Bootstrap copre molti casi comuni, quasi sempre dovrai aggiungere personalizzazioni per ottenere l’aspetto desiderato. Al minimo, regole CSS che si applicano a molti elementi possono rendere lo styling piu’ leggibile e consistente.
+</p>
+</div>
+<div id="design-responsive" class="section level3 unnumbered hasAnchor">
+<h3>Design responsive<a href="framework-css.html#design-responsive" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Una funzionalita’ importante di Bootstrap (e altri framework) e’ il supporto a <strong>mobile-first, pagine web responsive</strong>. Molte utility class Bootstrap usano <em>media query</em> per reagire alla dimensione dello schermo.</p>
+<p>Bootstrap usa un set predefinito di <a href="https://getbootstrap.com/docs/5.2/layout/breakpoints/">responsive breakpoints</a>: larghezze che segnano i confini tra dispositivi di dimensioni diverse.</p>
+<table>
+<colgroup>
+<col width="13%" />
+<col width="9%" />
+<col width="76%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Larghezza schermo</th>
+<th align="left">Abbreviazione</th>
+<th align="left">Dimensione approssimativa del device</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">&lt; 576px</td>
+<td align="left">(default)</td>
+<td align="left">Dispositivi extra-small (es. telefoni in verticale)</td>
+</tr>
+<tr class="even">
+<td align="left">&gt;= 576px</td>
+<td align="left"><code>sm</code></td>
+<td align="left">Dispositivi small (es. telefoni in orizzontale)</td>
+</tr>
+<tr class="odd">
+<td align="left">&gt;= 768px</td>
+<td align="left"><code>md</code></td>
+<td align="left">Dispositivi medium (es. tablet)</td>
+</tr>
+<tr class="even">
+<td align="left">&gt;= 992px</td>
+<td align="left"><code>lg</code></td>
+<td align="left">Dispositivi large (es. laptop)</td>
+</tr>
+<tr class="odd">
+<td align="left">&gt;= 1200px</td>
+<td align="left"><code>xl</code></td>
+<td align="left">Dispositivi extra-large (es. desktop)</td>
+</tr>
+<tr class="even">
+<td align="left">&gt;= 1400px</td>
+<td align="left"><code>xxl</code></td>
+<td align="left">Dispositivi extra-large (es. desktop grandi)</td>
+</tr>
+</tbody>
+</table>
+<p>Tutte queste specifiche sono “greater than or equal”, seguendo l’approccio mobile-first. Quindi una utility che si applica a <code>md</code> si applica anche a <code>lg</code> e <code>xl</code>.</p>
+<p>Le responsive utilities sono nominate con l’abbreviazione della dimensione per indicare su quali schermi si applicano. Per esempio, la class <code>float-left</code> fa fluttuare un elemento a sinistra su <em>qualsiasi</em> schermo (nessuna dimensione specificata). Invece <code>float-md-left</code> fa fluttuare a sinistra <strong>solo su schermi medium o piu’ grandi</strong>. <code>float-lg-left</code> solo su large o piu’ grandi. Questo permette di far fluttuare un’immagine su schermi grandi, ma lasciarla in flow normale quando non c’e’ spazio. (Non usare <code>float</code>; usa Flexbox.)</p>
+<ul>
+<li>Le abbreviazioni dei breakpoint sono consistenti in Bootstrap (e spesso condivise da altri framework come Materialize) e di solito vanno dopo il nome della property ma prima del valore. Per esempio, <code>d-none</code> applica <code>display:none</code> su tutti i device, mentre <code>d-sm-none</code> solo su small o piu’ grandi.</li>
+</ul>
+<p>Molte (ma non tutte) le class Bootstrap supportano i breakpoint. La classe piu’ comune e’ <a href="https://getbootstrap.com/docs/5.2/layout/containers/"><code>container</code></a>. I container sono l’elemento di layout base di Bootstrap e sono richiesti per layout complessi (come la Grid, sotto). <code>container</code> assegna all’elemento una larghezza fissa con padding laterale, cosi’ il contenuto non e’ a filo finestra. Se la finestra si restringe, <code>container</code> si ridimensiona per mantenere un po’ di padding anche su schermi piccoli.</p>
+<ul>
+<li><p>Vedi <a href="https://codepen.io/drstearns/pen/brKKBK">questo CodePen</a>. Ridimensionando il browser, vedrai il testo “saltare” a larghezze diverse ai breakpoint.</p></li>
+<li><p>Gli elementi <code>.container</code> sono spesso figli diretti di <code>&lt;body&gt;</code> (es. <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>). Se vuoi un background full bleed fino ai bordi del viewport, puoi mettere <code>.container</code> dentro un altro elemento che ha lo sfondo, come nel CodePen.</p></li>
+<li><p>Non mettere un <code>.container</code> dentro un altro. Aggiungerebbe padding multipli quasi sicuramente non desiderati. Inoltre, poiche’ <code>.container</code> e’ un nome generico, fai attenzione a non usarlo per le tue class; ad esempio, un container flexbox potrebbe chiamarsi <code>.flexbox-container</code>.</p></li>
+<li><p>Bootstrap offre anche <code>container-fluid</code>, che mantiene sempre lo stesso padding attorno al contenuto, con reflow in base alla dimensione del browser.</p></li>
+</ul>
+<p>In generale, ogni pagina stile Bootstrap avra’ un Container (di solito <code>.container</code>) per contenere il contenuto.</p>
+</div>
+<div id="la-grid" class="section level3 unnumbered hasAnchor">
+<h3>La Grid<a href="framework-css.html#la-grid" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Dopo i Container, l’uso piu’ comune delle responsive utilities nei framework (come Bootstrap) e’ il <strong>layout a grid</strong>, simile ai layout multi-colonna creati con Flexbox. Il <a href="https://getbootstrap.com/docs/5.2/layout/grid/">sistema Grid di Bootstrap</a> permette di creare layout responsive complessi senza implementare Flexbox manualmente.</p>
+<p class="alert alert-info">
+In Bootstrap 5, la grid e’ implementata con Flexbox – quindi puoi pensarla come un altro modo semantico di definire elementi flexbox.
+</p>
+<p>Per indicare che un insieme di elementi fa parte di una “grid”, li metti dentro un elemento <code>.row</code> (la class <code>row</code> assicura che gli elementi siano allineati). Una <code>.row</code> agisce come un “flex-container” (e infatti ha <code>display:flex</code>), dove i child sono “flex items”.</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- una riga di elementi --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>col-6<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Elemento 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>col-4<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Elemento 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>col<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Elemento 3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p>Per indicare quanto e’ larga ciascuna colonna, specifichi il numero di “colonne” che occupa. Pensa alla grid come a <strong>12</strong> slot:</p>
+<p><img src="img/css-frameworks/bootstrap-grid-12.png" alt="Una riga di colonne della grid"></p>
+<p>Ogni item ha una class che indica quanti slot occupa (simile al merge di celle in un foglio di calcolo):</p>
+<p><img src="img/css-frameworks/bootstrap-grid-example.png" alt="Un esempio di righe della grid di Bootstrap"></p>
+<p>Le class sono nel formato <code>col-#</code>, dove <code>#</code> e’ il numero di colonne. Per esempio, <code>.col-4</code> occupa 4 colonne, <code>.col-6</code> occupa 6. Una class <code>col</code> occupa <em>una quota uguale delle colonne rimanenti</em> (simile a <code>flex-grow</code>).</p>
+<p>Quindi l’HTML sopra produce questo layout:</p>
+<p><img src="img/css-frameworks/bootstrap-grid-manual-example.png" alt="Un esempio di layout a grid con Bootstrap"></p>
+<ul>
+<li>Nota che “Elemento 1” occupa meta’ (6/12), “Elemento 2” un terzo (4/12) e “Elemento 3” il resto (2/12).</li>
+</ul>
+<p>Puoi rendere la grid responsive usando versioni responsive delle class <code>col-#</code>. Per esempio, <code>.col-md-4</code> occupa 4 colonne <em>solo su schermi medium o piu’ grandi</em>, mentre <code>.col-lg-6</code> occupa 6 colonne <em>solo su large o piu’ grandi</em>. Nota che un child di <code>.row</code> senza dimensione colonna agira’ come una riga separata (su una propria linea).</p>
+<p>Infine, puoi specificare <em>piu’ utility responsive</em> per item. Per esempio, puoi farli occupare 6 colonne su small o piu’ grandi (<code>col-sm-6</code>), ma 3 colonne su medium o piu’ grandi (<code>col-md-3</code>):</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>col-sm-6 col-md-3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Elemento 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>col-sm-6 col-md-3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Elemento 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>col-sm-6 col-md-3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Elemento 3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>col-sm-6 col-md-3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Elemento 4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p>(Vedi un <a href="https://codepen.io/drstearns/pen/XaYBXp">CodePen</a> in azione.)</p>
+<p>L’ordine del CSS di Bootstrap significa che <code>col-sm-6</code> viene sovrascritto da <code>col-md-3</code> (perche’ <code>md</code> e’ piu’ specifico di <code>sm</code>), quindi puoi specificare entrambe le class e quella corretta si applichera’ – l’ordine delle class nell’elemento non importa. Nota anche che, per via del concetto “or larger”, non serve specificare una larghezza per <em>ogni</em> breakpoint, solo per il livello minimo in cui vuoi che si applichi (ad es. non serve <code>col-lg-</code> se non e’ diverso da <code>col-md-</code>).</p>
+<p>Bootstrap include molte utility per personalizzare la grid, incluse le funzionalita’ di Flexbox. Per dettagli e opzioni, vedi la <a href="https://getbootstrap.com/docs/5.2/layout/grid/">documentazione della Grid</a>.</p>
+</div>
+<div id="componenti" class="section level3 unnumbered hasAnchor">
+<h3>Componenti<a href="framework-css.html#componenti" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Oltre alle utility di base e responsive, Bootstrap offre class per creare <strong>componenti</strong> o widget piu’ complessi: alert, card, navbars, box collapsibili, carousels, modali, ecc. Ogni componente e’ descritto nella <a href="https://getbootstrap.com/docs/5.2/components">documentazione</a>, con la sua struttura di elementi e class necessarie.</p>
+<p>Per esempio, puoi creare una <a href="https://getbootstrap.com/docs/5.2/components/card/">card</a> (container di contenuto stilizzato) usando un elemento con class <code>card</code> e un child <code>card-body</code>. Poi puoi includere altri elementi con class come <code>card-img-top</code>, <code>card-title</code> o <code>card-text</code> per effetti di stile:</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>card<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- la card --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>card-img-top<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>...<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>immagine in cima alla card<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>card-body<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- il "body" della card --></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h4</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>card-title<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Titolo della card<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h4</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>card-text<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Testo della card che appare sotto il titolo.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>card-link<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Link azione 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>card-link<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Link azione 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p>(Vedi questo codice su <a href="https://codepen.io/drstearns/pen/yoEqRM">CodePen</a>).</p>
+<p>Molti di questi componenti includono <strong>interattivita’</strong>: per esempio, la <a href="https://getbootstrap.com/docs/5.2/components/navbar/">navbar</a> si “collassa” in hamburger menu su schermi piccoli, mentre le <a href="https://getbootstrap.com/docs/5.2/components/modal/">modals</a> aggiungono popup in pagina.</p>
+<p>CSS non puo’ gestire questo livello di interattivita’ – serve <strong>JavaScript</strong>. Quindi per supportare questi componenti devi includere la libreria JavaScript di Bootstrap:</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- la libreria JavaScript di Bootstrap --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+<p>Vedi il capitolo <a href="javascript.html#javascript">JavaScript</a> per dettagli su come includere librerie JS. Nota che non tutti i componenti richiedono JavaScript.</p>
+<p>Tuttavia, con la maggior parte dei componenti Bootstrap non devi scrivere JS. Ti basta aggiungere alcuni <code>data-</code> attribute HTML, e la libreria fa il resto.</p>
+<ul>
+<li>I <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes">data attributes</a> sono attributi HTML che iniziano con <code>data-</code> (es. <code>data-thingamabob</code> o <code>data-my-attribute</code>). Lo standard HTML dice che gli attributi <code>data-</code> sono legali ma non standardizzati, quindi possono essere usati per informazioni specifiche dell’app. Agiscono come “variabili” personalizzate sugli elementi senza violare lo standard HTML.</li>
+</ul>
+<p>Per esempio, ecco il codice dalla documentazione Bootstrap per una <a href="https://getbootstrap.com/docs/5.2/components/modal/">modal</a> e un button per aprirla:</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- nota che l'attributo `id` e' impostato a "exampleModal" --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>modal fade<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>exampleModal<span class="token punctuation">"</span></span> <span class="token attr-name">tabindex</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>-1<span class="token punctuation">"</span></span> <span class="token attr-name">aria-labelledby</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>exampleModalLabel<span class="token punctuation">"</span></span> <span class="token attr-name">aria-hidden</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>modal-dialog<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>modal-content<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>modal-header<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>modal-title fs-5<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>exampleModalLabel<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Titolo della modal<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>btn-close<span class="token punctuation">"</span></span> <span class="token attr-name">data-bs-dismiss</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>modal<span class="token punctuation">"</span></span> <span class="token attr-name">aria-label</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Chiudi<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>modal-body<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        ...
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>modal-footer<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>btn btn-secondary<span class="token punctuation">"</span></span> <span class="token attr-name">data-bs-dismiss</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>modal<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Chiudi<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>btn btn-primary<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Salva modifiche<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token comment">&lt;!-- data-toggle deve essere impostato a "modal" e data-target deve essere impostato
+al valore dell'attributo `id` sull'elemento che avvia il markup della modal --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>btn btn-primary<span class="token punctuation">"</span></span> <span class="token attr-name">data-bs-toggle</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>modal<span class="token punctuation">"</span></span> <span class="token attr-name">data-bs-target</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#exampleModal<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  Apri la modal
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span></code></pre>
+<p>(Provalo su <a href="https://codepen.io/drstearns/pen/dzKqNB">CodePen</a>).</p>
+<p>C’e’ molto da capire in questo codice, incluse class di stile e attribute ARIA (<code>role</code>, <code>aria-labelledby</code>, <code>aria-hidden</code>). La parte importante e’ che l’elemento <code>.modal</code> e’ <em>nascosto</em> (<code>display:none</code>) al caricamento. Quando clicchi il <code>&lt;button&gt;</code>, la libreria JS vede <code>data-toggle="modal"</code> e determina che deve aprire la modal. Usa <code>data-target</code> per capire <em>quale</em> modal aprire (quella con l’<code>id</code>), e la mostra. L’attribute <code>data-dismiss</code> nel button dentro la modal permette di chiuderla.</p>
+<p class="alert alert-info">
+Il modo migliore per capire questi componenti e’ partire dagli esempi in documentazione e poi analizzare ogni elemento e attribute. Leggi la documentazione!
+</p>
+<p class="alert alert-warning">
+Il JavaScript dei CSS framework permette di aggiungere facilmente interattivita’, ma <strong>non si integra bene con framework JavaScript avanzati come React</strong>. Per React, dovresti usare librerie come <a href="https://react-bootstrap.github.io/">react-bootstrap</a>, che usano il CSS di Bootstrap ma re-implementano la parte JS per funzionare con React.
+</p>
+</div>
+</div>
+<div id="risorse-6" class="section level2 unnumbered hasAnchor">
+<h2>Risorse<a href="framework-css.html#risorse-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="list-condensed">
+<ul>
+<li><a href="https://getbootstrap.com/docs/5.2/getting-started/introduction/">Documentazione Bootstrap</a></li>
+<li><a href="http://materializecss.com/getting-started.html">Documentazione Materialize</a></li>
+<li><a href="http://foundation.zurb.com/sites/docs/">Documentazione Foundation</a></li>
+<li><a href="https://material.io/components/web/docs/">Documentazione Material Components for the Web</a></li>
+<li><a href="http://necolas.github.io/normalize.css/">Documentazione <code>normalize.css</code></a></li>
+</ul>
+</div>
+<p><small>Questo capitolo e’ stato preso in larga parte da un <a href="https://drstearns.github.io/tutorials/cssframeworks/">tutorial</a> di <a href="https://ischool.uw.edu/people/faculty/dlsinfo">David Stearns</a>.</small></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="responsive-css.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="javascript.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["github", "facebook", "twitter", "google"],
+    "google": false
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/info340/book/edit/master/css-frameworks.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

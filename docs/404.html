@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="it" xml:lang="it">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Page not found | Sviluppo Web lato client</title>
+  <meta name="description" content="Dispensa del corso INFO 340: Client-Side Web Development." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Page not found | Sviluppo Web lato client" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://info340.github.io//img/cover-img.png" />
+  <meta property="og:description" content="Dispensa del corso INFO 340: Client-Side Web Development." />
+  <meta name="github-repo" content="info340/book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Page not found | Sviluppo Web lato client" />
+  
+  <meta name="twitter:description" content="Dispensa del corso INFO 340: Client-Side Web Development." />
+  <meta name="twitter:image" content="https://info340.github.io//img/cover-img.png" />
+
+<meta name="author" content="Joel Ross" />
+
+
+<meta name="date" content="2026-01-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/busy-spider-icon.png" type="image/x-icon" />
+
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-98444716-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/prism.min.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./" class="title">Client-Side Web Development</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Informazioni sul libro</a></li>
+<li class="chapter" data-level="1" data-path="software-setup.html"><a href="software-setup.html"><i class="fa fa-check"></i><b>1</b> Impostazione iniziale</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="software-setup.html"><a href="software-setup.html#web-browser"><i class="fa fa-check"></i><b>1.1</b> Web Browser</a></li>
+<li class="chapter" data-level="1.2" data-path="software-setup.html"><a href="software-setup.html#code-editor"><i class="fa fa-check"></i><b>1.2</b> Code Editor</a>
+<ul>
+<li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html#visual-studio-code"><i class="fa fa-check"></i>Visual Studio Code</a></li>
+<li class="chapter" data-level="1.2.1" data-path="software-setup.html"><a href="software-setup.html#altri-editor"><i class="fa fa-check"></i><b>1.2.1</b> Altri editor</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="software-setup.html"><a href="software-setup.html#bash-command-line"><i class="fa fa-check"></i><b>1.3</b> Bash (Command Line)</a></li>
+<li class="chapter" data-level="1.4" data-path="software-setup.html"><a href="software-setup.html#node-e-npm"><i class="fa fa-check"></i><b>1.4</b> Node e <code>npm</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html#installare-software-con-npm"><i class="fa fa-check"></i>Installare software con npm</a></li>
+<li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html#gestire-package-locali"><i class="fa fa-check"></i>Gestire package locali</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html"><i class="fa fa-check"></i><b>2</b> Sviluppo lato client</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#client-e-server"><i class="fa fa-check"></i><b>2.1</b> Client e server</a></li>
+<li class="chapter" data-level="2.2" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#url-e-file-web"><i class="fa fa-check"></i><b>2.2</b> URL e file web</a>
+<ul>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#tipi-di-file-client-side"><i class="fa fa-check"></i>Tipi di file client-side</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#server-e-hosting"><i class="fa fa-check"></i><b>2.3</b> Server e hosting</a>
+<ul>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#hosting-con-github-pages"><i class="fa fa-check"></i>Hosting con GitHub Pages</a></li>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#development-server"><i class="fa fa-check"></i>Development server</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#web-standards"><i class="fa fa-check"></i><b>2.4</b> Web standards</a></li>
+<li class="chapter" data-level="2.5" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#accessibilita-web"><i class="fa fa-check"></i><b>2.5</b> Accessibilita’ web</a>
+<ul>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#supportare-laccessibilita"><i class="fa fa-check"></i>Supportare l’accessibilita’</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="html-fundamentals.html"><a href="html-fundamentals.html"><i class="fa fa-check"></i><b>3</b> Fondamenti di HTML</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="html-fundamentals.html"><a href="html-fundamentals.html#elementi-html"><i class="fa fa-check"></i><b>3.1</b> Elementi HTML</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#alcuni-elementi-di-esempio"><i class="fa fa-check"></i>Alcuni elementi di esempio</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#commenti"><i class="fa fa-check"></i>Commenti</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#attributi"><i class="fa fa-check"></i>Attributi</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#elementi-vuoti"><i class="fa fa-check"></i>Elementi vuoti</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="html-fundamentals.html"><a href="html-fundamentals.html#nidificazione-di-elementi"><i class="fa fa-check"></i><b>3.2</b> Nidificazione di elementi</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#elementi-block-vs.-inline"><i class="fa fa-check"></i>Elementi block vs. inline</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="html-fundamentals.html"><a href="html-fundamentals.html#struttura-della-web-page"><i class="fa fa-check"></i><b>3.3</b> Struttura della web page</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#risorse"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="css-fundamentals.html"><a href="css-fundamentals.html"><i class="fa fa-check"></i><b>4</b> Fondamenti di CSS</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="css-fundamentals.html"><a href="css-fundamentals.html#perche-due-linguaggi-diversi"><i class="fa fa-check"></i><b>4.1</b> Perche’ due linguaggi diversi?</a></li>
+<li class="chapter" data-level="4.2" data-path="css-fundamentals.html"><a href="css-fundamentals.html#includere-css"><i class="fa fa-check"></i><b>4.2</b> Includere CSS</a></li>
+<li class="chapter" data-level="4.3" data-path="css-fundamentals.html"><a href="css-fundamentals.html#regole-css"><i class="fa fa-check"></i><b>4.3</b> Regole CSS</a>
+<ul>
+<li class="chapter" data-level="" data-path="css-fundamentals.html"><a href="css-fundamentals.html#fondamenti-dei-css-selector"><i class="fa fa-check"></i>Fondamenti dei CSS selector</a></li>
+<li class="chapter" data-level="" data-path="css-fundamentals.html"><a href="css-fundamentals.html#fondamenti-delle-property-css"><i class="fa fa-check"></i>Fondamenti delle property CSS</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="css-fundamentals.html"><a href="css-fundamentals.html#la-cascade"><i class="fa fa-check"></i><b>4.4</b> La cascade</a></li>
+<li class="chapter" data-level="" data-path="css-fundamentals.html"><a href="css-fundamentals.html#risorse-1"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="html-semantico.html"><a href="html-semantico.html"><i class="fa fa-check"></i><b>5</b> HTML Semantico</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="html-semantico.html"><a href="html-semantico.html#elementi-html-specifici"><i class="fa fa-check"></i><b>5.1</b> Elementi HTML specifici</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#hyperlink"><i class="fa fa-check"></i>Hyperlink</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#elementi-testuali-inline"><i class="fa fa-check"></i>Elementi testuali inline</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#immagini-e-media"><i class="fa fa-check"></i>Immagini e media</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#headings"><i class="fa fa-check"></i>Headings</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#elementi-non-semantici"><i class="fa fa-check"></i>Elementi non semantici</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#sectioning-elements"><i class="fa fa-check"></i>Sectioning elements</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#tabelle"><i class="fa fa-check"></i>Tabelle</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#form"><i class="fa fa-check"></i>Form</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="html-semantico.html"><a href="html-semantico.html#aria-for-accessibility"><i class="fa fa-check"></i><b>5.2</b> ARIA for Accessibility</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#aria-labeling"><i class="fa fa-check"></i>ARIA Labeling</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#aria-roles-and-landmarks"><i class="fa fa-check"></i>ARIA Roles and Landmarks</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#aria-e-interattivita"><i class="fa fa-check"></i>ARIA e interattivita’</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#risorse-2"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="selettori-css.html"><a href="selettori-css.html"><i class="fa fa-check"></i><b>6</b> Selettori CSS</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="selettori-css.html"><a href="selettori-css.html#selector-di-base"><i class="fa fa-check"></i><b>6.1</b> Selector di base</a>
+<ul>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#type-selector"><i class="fa fa-check"></i>Type Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#class-selector"><i class="fa fa-check"></i>Class Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#id-selector"><i class="fa fa-check"></i>Id Selector</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="selettori-css.html"><a href="selettori-css.html#selector-complessi"><i class="fa fa-check"></i><b>6.2</b> Selector complessi</a>
+<ul>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#grouping-selector"><i class="fa fa-check"></i>Grouping Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#compound-selector"><i class="fa fa-check"></i>Compound Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#descendant-selector"><i class="fa fa-check"></i>Descendant Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#pseudo-classi"><i class="fa fa-check"></i>Pseudo-classi</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#altri-selector"><i class="fa fa-check"></i>Altri selector</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="selettori-css.html"><a href="selettori-css.html#specificita-dei-selector"><i class="fa fa-check"></i><b>6.3</b> Specificita’ dei selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#risorse-3"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="proprieta-css.html"><a href="proprieta-css.html"><i class="fa fa-check"></i><b>7</b> Proprieta’ CSS</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="proprieta-css.html"><a href="proprieta-css.html#specificare-i-valori-delle-property"><i class="fa fa-check"></i><b>7.1</b> Specificare i valori delle property</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#valori-di-property-ereditati"><i class="fa fa-check"></i>Valori di property ereditati</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#css-units"><i class="fa fa-check"></i>Unita’ di lunghezza e dimensioni</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="proprieta-css.html"><a href="proprieta-css.html#font-e-testo"><i class="fa fa-check"></i><b>7.2</b> Font e testo</a></li>
+<li class="chapter" data-level="7.3" data-path="proprieta-css.html"><a href="proprieta-css.html#css-colors"><i class="fa fa-check"></i><b>7.3</b> Colori e background</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#background-e-immagini"><i class="fa fa-check"></i>Background e immagini</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="proprieta-css.html"><a href="proprieta-css.html#box-model"><i class="fa fa-check"></i><b>7.4</b> Spaziatura con il Box Model</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#padding"><i class="fa fa-check"></i>Padding</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#border"><i class="fa fa-check"></i>Border</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#margin"><i class="fa fa-check"></i>Margin</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#padding-vs.-margin"><i class="fa fa-check"></i>Padding vs. Margin</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#box-sizing"><i class="fa fa-check"></i>Box-Sizing</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="proprieta-css.html"><a href="proprieta-css.html#flow-layout"><i class="fa fa-check"></i><b>7.5</b> Flow Layout</a></li>
+<li class="chapter" data-level="7.6" data-path="proprieta-css.html"><a href="proprieta-css.html#posizionamento-alternativo"><i class="fa fa-check"></i><b>7.6</b> Posizionamento alternativo</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#floating"><i class="fa fa-check"></i>Floating</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="proprieta-css.html"><a href="proprieta-css.html#flexbox"><i class="fa fa-check"></i><b>7.7</b> Flexbox</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#risorse-4"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="responsive-css.html"><a href="responsive-css.html"><i class="fa fa-check"></i><b>8</b> CSS responsive</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="responsive-css.html"><a href="responsive-css.html#design-mobile-first"><i class="fa fa-check"></i><b>8.1</b> Design mobile-first</a>
+<ul>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#principi-di-mobile-first-design"><i class="fa fa-check"></i>Principi di mobile-first design</a></li>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#specificare-il-viewport"><i class="fa fa-check"></i>Specificare il viewport</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="responsive-css.html"><a href="responsive-css.html#media-query"><i class="fa fa-check"></i><b>8.2</b> Media query</a>
+<ul>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#esempio-flexbox-responsive"><i class="fa fa-check"></i>Esempio: Flexbox responsive</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#risorse-5"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="framework-css.html"><a href="framework-css.html"><i class="fa fa-check"></i><b>9</b> Framework CSS</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="framework-css.html"><a href="framework-css.html#usare-un-framework"><i class="fa fa-check"></i><b>9.1</b> Usare un framework</a>
+<ul>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#includere-un-framework"><i class="fa fa-check"></i>Includere un framework</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="framework-css.html"><a href="framework-css.html#bootstrap"><i class="fa fa-check"></i><b>9.2</b> Bootstrap</a>
+<ul>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#class-di-utilita"><i class="fa fa-check"></i>Class di utilita’</a></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#design-responsive"><i class="fa fa-check"></i>Design responsive</a></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#la-grid"><i class="fa fa-check"></i>La Grid</a></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#componenti"><i class="fa fa-check"></i>Componenti</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#risorse-6"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="javascript.html"><a href="javascript.html"><i class="fa fa-check"></i><b>10</b> Fondamenti di JavaScript</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="javascript.html"><a href="javascript.html#programmare-con-javascript"><i class="fa fa-check"></i><b>10.1</b> Programmare con JavaScript</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#storia-e-versioni"><i class="fa fa-check"></i>Storia e versioni</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="javascript.html"><a href="javascript.html#eseguire-javascript"><i class="fa fa-check"></i><b>10.2</b> Eseguire JavaScript</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#nel-browser"><i class="fa fa-check"></i>Nel Browser</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#da-command-line-con-node.js"><i class="fa fa-check"></i>Da Command-line con Node.js</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="javascript.html"><a href="javascript.html#scrivere-script"><i class="fa fa-check"></i><b>10.3</b> Scrivere Script</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#strict-mode"><i class="fa fa-check"></i>Strict Mode</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="javascript.html"><a href="javascript.html#variabili"><i class="fa fa-check"></i><b>10.4</b> Variabili</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#data-types-di-base"><i class="fa fa-check"></i>Data Types di base</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#array"><i class="fa fa-check"></i>Array</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#object"><i class="fa fa-check"></i>Object</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#type-coercion"><i class="fa fa-check"></i>Type Coercion</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="javascript.html"><a href="javascript.html#strutture-di-controllo"><i class="fa fa-check"></i><b>10.5</b> Strutture di controllo</a></li>
+<li class="chapter" data-level="10.6" data-path="javascript.html"><a href="javascript.html#funzioni"><i class="fa fa-check"></i><b>10.6</b> Funzioni</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#risorse-7"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>11</b> Programmazione funzionale in JS</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="functional-programming.html"><a href="functional-programming.html#functions-are-variables"><i class="fa fa-check"></i><b>11.1</b> Functions ARE Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#anonymous-functions"><i class="fa fa-check"></i>Anonymous Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="functional-programming.html"><a href="functional-programming.html#object-functions"><i class="fa fa-check"></i><b>11.2</b> Object Functions</a></li>
+<li class="chapter" data-level="11.3" data-path="functional-programming.html"><a href="functional-programming.html#callback-functions"><i class="fa fa-check"></i><b>11.3</b> Callback Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#closures"><i class="fa fa-check"></i>Closures</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="functional-programming.html"><a href="functional-programming.html#functional-looping"><i class="fa fa-check"></i><b>11.4</b> Functional Looping</a>
+<ul>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#map"><i class="fa fa-check"></i>Map</a></li>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#filter"><i class="fa fa-check"></i>Filter</a></li>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#reduce"><i class="fa fa-check"></i>Reduce</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="functional-programming.html"><a href="functional-programming.html#pure-functions"><i class="fa fa-check"></i><b>11.5</b> Pure Functions</a></li>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#risorse-8"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="dom.html"><a href="dom.html"><i class="fa fa-check"></i><b>12</b> Modello a oggetti del documento (DOM)</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="dom.html"><a href="dom.html#la-dom-api"><i class="fa fa-check"></i><b>12.1</b> La DOM API</a>
+<ul>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#global-variables"><i class="fa fa-check"></i>Global Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="dom.html"><a href="dom.html#dom-manipulation"><i class="fa fa-check"></i><b>12.2</b> DOM Manipulation</a>
+<ul>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#referenziare-elementi-html"><i class="fa fa-check"></i>Referenziare elementi HTML</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#modificare-elementi-html"><i class="fa fa-check"></i>Modificare elementi HTML</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#modificare-il-dom-tree"><i class="fa fa-check"></i>Modificare il DOM Tree</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#accessibility"><i class="fa fa-check"></i>Accessibility</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="dom.html"><a href="dom.html#ascoltare-gli-eventi"><i class="fa fa-check"></i><b>12.3</b> Ascoltare gli Eventi</a>
+<ul>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#tipi-di-eventi"><i class="fa fa-check"></i>Tipi di Eventi</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#event-driven-programming"><i class="fa fa-check"></i>Event-Driven Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#risorse-9"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="librerie-javascript.html"><a href="librerie-javascript.html"><i class="fa fa-check"></i><b>13</b> Librerie JavaScript</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="librerie-javascript.html"><a href="librerie-javascript.html#includere-una-library"><i class="fa fa-check"></i><b>13.1</b> Includere una Library</a></li>
+<li class="chapter" data-level="13.2" data-path="librerie-javascript.html"><a href="librerie-javascript.html#esempio-jquery"><i class="fa fa-check"></i><b>13.2</b> Esempio: jQuery</a>
+<ul>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#manipolare-il-dom"><i class="fa fa-check"></i>Manipolare il DOM</a></li>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#gestire-gli-eventi"><i class="fa fa-check"></i>Gestire gli eventi</a></li>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#e-altro"><i class="fa fa-check"></i>E altro!</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#risorse-10"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="es6.html"><a href="es6.html"><i class="fa fa-check"></i><b>14</b> Sintassi ES6+</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="es6.html"><a href="es6.html#es6-syntax-features"><i class="fa fa-check"></i><b>14.1</b> ES6+ Syntax Features</a>
+<ul>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#arrow-functions"><i class="fa fa-check"></i>Arrow Functions</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#destructuring"><i class="fa fa-check"></i>Destructuring</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#spreading"><i class="fa fa-check"></i>Spreading</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#template-strings"><i class="fa fa-check"></i>Template Strings</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="es6.html"><a href="es6.html#modules"><i class="fa fa-check"></i><b>14.2</b> Modules</a>
+<ul>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#module-syntax"><i class="fa fa-check"></i>Module Syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="es6.html"><a href="es6.html#es6-classes"><i class="fa fa-check"></i><b>14.3</b> Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#why-classes"><i class="fa fa-check"></i>Why Classes?</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#review-classes-in-java"><i class="fa fa-check"></i>Review: Classes in Java</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#es6-class-syntax"><i class="fa fa-check"></i>ES6 Class Syntax</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#inheritance"><i class="fa fa-check"></i>Inheritance</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#working-with-this"><i class="fa fa-check"></i>Working with <code>this</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="react.html"><a href="react.html"><i class="fa fa-check"></i><b>15</b> Introduzione a React</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="react.html"><a href="react.html#react-vite-setup"><i class="fa fa-check"></i><b>15.1</b> Preparazione: React e Vite</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#eseguire-il-development-server"><i class="fa fa-check"></i>Eseguire il Development Server</a></li>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#struttura-del-progetto"><i class="fa fa-check"></i>Struttura del Progetto</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="react.html"><a href="react.html#jsx"><i class="fa fa-check"></i><b>15.2</b> JSX</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#espressioni-inline"><i class="fa fa-check"></i>Espressioni Inline</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="react.html"><a href="react.html#component-react"><i class="fa fa-check"></i><b>15.3</b> Component React</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#organizzazione-dei-components"><i class="fa fa-check"></i>Organizzazione dei Components</a></li>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#alternativa-deprecata-class-components"><i class="fa fa-check"></i>Alternativa Deprecata: Class Components</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="react.html"><a href="react.html#props"><i class="fa fa-check"></i><b>15.4</b> Proprieta’ (<code>props</code>)</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#props-e-composizione"><i class="fa fa-check"></i>Props e Composizione</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#risorse-11"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="react-interattivo.html"><a href="react-interattivo.html"><i class="fa fa-check"></i><b>16</b> React Interattivo</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="react-interattivo.html"><a href="react-interattivo.html#gestire-gli-eventi-in-react"><i class="fa fa-check"></i><b>16.1</b> Gestire gli Eventi in React</a></li>
+<li class="chapter" data-level="16.2" data-path="react-interattivo.html"><a href="react-interattivo.html#state-e-hooks"><i class="fa fa-check"></i><b>16.2</b> State e Hooks</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#aggiornare-lo-state"><i class="fa fa-check"></i>Aggiornare lo State</a></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#state-vs.-props"><i class="fa fa-check"></i>State vs. Props</a></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#lifting-up-state"><i class="fa fa-check"></i>Lifting Up State</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="react-interattivo.html"><a href="react-interattivo.html#interazioni-specifiche"><i class="fa fa-check"></i><b>16.3</b> Interazioni Specifiche</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#lavorare-con-i-forms"><i class="fa fa-check"></i>Lavorare con i Forms</a></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#caricare-data-via-ajax"><i class="fa fa-check"></i>Caricare Data via AJAX</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#risorse-12"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="routing-lato-client.html"><a href="routing-lato-client.html"><i class="fa fa-check"></i><b>17</b> Routing lato client</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="routing-lato-client.html"><a href="routing-lato-client.html#single-page-applications"><i class="fa fa-check"></i><b>17.1</b> Single-Page Applications</a></li>
+<li class="chapter" data-level="17.2" data-path="routing-lato-client.html"><a href="routing-lato-client.html#react-router"><i class="fa fa-check"></i><b>17.2</b> React-Router</a>
+<ul>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#routing"><i class="fa fa-check"></i>Routing</a></li>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#linking"><i class="fa fa-check"></i>Linking</a></li>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#react-router-e-hosting"><i class="fa fa-check"></i>React Router e Hosting</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#risorse-13"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="ajax.html"><a href="ajax.html"><i class="fa fa-check"></i><b>18</b> Richieste AJAX</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="ajax.html"><a href="ajax.html#ajax-1"><i class="fa fa-check"></i><b>18.1</b> AJAX</a>
+<ul>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#xml-e-json"><i class="fa fa-check"></i>XML e JSON</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="ajax.html"><a href="ajax.html#fetching-data"><i class="fa fa-check"></i><b>18.2</b> Fetching Data</a></li>
+<li class="chapter" data-level="18.3" data-path="ajax.html"><a href="ajax.html#asynchronous-programming"><i class="fa fa-check"></i><b>18.3</b> Asynchronous Programming</a>
+<ul>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#chaining-promises"><i class="fa fa-check"></i>Chaining Promises</a></li>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#handling-errors"><i class="fa fa-check"></i>Handling Errors</a></li>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#altri-data-formats"><i class="fa fa-check"></i>Altri Data Formats</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#risorse-14"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="firebase.html"><a href="firebase.html"><i class="fa fa-check"></i><b>19</b> Firebase</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="firebase.html"><a href="firebase.html#setting-up-firebase"><i class="fa fa-check"></i><b>19.1</b> Setting up Firebase</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#creating-a-project"><i class="fa fa-check"></i>Creating a Project</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#including-firebase-in-react"><i class="fa fa-check"></i>Including Firebase in React</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#adding-collaborators-to-a-project"><i class="fa fa-check"></i>Adding Collaborators to a Project</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="firebase.html"><a href="firebase.html#realtime-database"><i class="fa fa-check"></i><b>19.2</b> Realtime Database</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#setting-up-the-database"><i class="fa fa-check"></i>Setting Up the Database</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#reference-ai-dati"><i class="fa fa-check"></i>Reference ai dati</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#listening-for-data-changes"><i class="fa fa-check"></i>Listening for Data Changes</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#firebase-arrays"><i class="fa fa-check"></i>Firebase Arrays</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="firebase.html"><a href="firebase.html#autenticazione-utenti"><i class="fa fa-check"></i><b>19.3</b> Autenticazione utenti</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#accesso-con-firebaseui"><i class="fa fa-check"></i>Accesso con FirebaseUI</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#managing-the-user"><i class="fa fa-check"></i>Managing the User</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="firebase.html"><a href="firebase.html#firebase-storage"><i class="fa fa-check"></i><b>19.4</b> Firebase Storage</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#file-inputs"><i class="fa fa-check"></i>File Inputs</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#uploading-files"><i class="fa fa-check"></i>Uploading Files</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#risorse-15"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendice-appendici-e-argomenti-speciali.html"><a href="appendice-appendici-e-argomenti-speciali.html"><i class="fa fa-check"></i>(APPENDICE) Appendici e argomenti speciali</a></li>
+<li class="chapter" data-level="20" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html"><i class="fa fa-check"></i><b>20</b> Guida allo stile del codice</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#html-guidelines"><i class="fa fa-check"></i><b>20.1</b> HTML Guidelines</a>
+<ul>
+<li class="chapter" data-level="" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#spacing"><i class="fa fa-check"></i>Spacing</a></li>
+<li class="chapter" data-level="" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#elementi-specifici"><i class="fa fa-check"></i>Elementi specifici</a></li>
+<li class="chapter" data-level="" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#commenti-in-html"><i class="fa fa-check"></i>Commenti in HTML</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#css-guidelines"><i class="fa fa-check"></i><b>20.2</b> CSS Guidelines</a>
+<ul>
+<li class="chapter" data-level="20.2.1" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#spacing-1"><i class="fa fa-check"></i><b>20.2.1</b> Spacing</a></li>
+<li class="chapter" data-level="20.2.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#selectors"><i class="fa fa-check"></i><b>20.2.2</b> Selectors</a></li>
+<li class="chapter" data-level="20.2.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#class-names"><i class="fa fa-check"></i><b>20.2.3</b> Class Names</a></li>
+<li class="chapter" data-level="20.2.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#proprieta-specifiche"><i class="fa fa-check"></i><b>20.2.4</b> Proprieta’ specifiche</a></li>
+<li class="chapter" data-level="20.2.5" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#responsive-css-1"><i class="fa fa-check"></i><b>20.2.5</b> Responsive CSS</a></li>
+<li class="chapter" data-level="20.2.6" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#commenti-in-css"><i class="fa fa-check"></i><b>20.2.6</b> Commenti in CSS</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#javascript-guidelines"><i class="fa fa-check"></i><b>20.3</b> JavaScript Guidelines</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#variables"><i class="fa fa-check"></i><b>20.3.1</b> Variables</a></li>
+<li class="chapter" data-level="20.3.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#functions"><i class="fa fa-check"></i><b>20.3.2</b> Functions</a></li>
+<li class="chapter" data-level="20.3.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#commenti-in-javascript"><i class="fa fa-check"></i><b>20.3.3</b> Commenti in JavaScript</a></li>
+<li class="chapter" data-level="20.3.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#altre-linee-guida-javascript"><i class="fa fa-check"></i><b>20.3.4</b> Altre linee guida JavaScript</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#react-guidelines"><i class="fa fa-check"></i><b>20.4</b> React Guidelines</a>
+<ul>
+<li class="chapter" data-level="20.4.1" data-path="react.html"><a href="react.html#components"><i class="fa fa-check"></i><b>20.4.1</b> Components</a></li>
+<li class="chapter" data-level="20.4.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#mapping-data"><i class="fa fa-check"></i><b>20.4.2</b> Mapping Data</a></li>
+<li class="chapter" data-level="20.4.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#state"><i class="fa fa-check"></i><b>20.4.3</b> State</a></li>
+<li class="chapter" data-level="20.4.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#events-e-forms"><i class="fa fa-check"></i><b>20.4.4</b> Events e Forms</a></li>
+</ul></li>
+<li class="chapter" data-level="20.5" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#linee-guida-varie"><i class="fa fa-check"></i><b>20.5</b> Linee guida varie</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="jest.html"><a href="jest.html"><i class="fa fa-check"></i><b>21</b> Test con Jest</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="jest.html"><a href="jest.html#test"><i class="fa fa-check"></i><b>21.1</b> Test</a></li>
+<li class="chapter" data-level="21.2" data-path="jest.html"><a href="jest.html#testing-con-jest"><i class="fa fa-check"></i><b>21.2</b> Testing con Jest</a></li>
+<li class="chapter" data-level="21.3" data-path="jest.html"><a href="jest.html#scrivere-un-test"><i class="fa fa-check"></i><b>21.3</b> Scrivere un test</a>
+<ul>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#assertion-e-matcher"><i class="fa fa-check"></i>Assertion e matcher</a></li>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#organizzare-i-test"><i class="fa fa-check"></i>Organizzare i test</a></li>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#eseguire-i-test"><i class="fa fa-check"></i>Eseguire i test</a></li>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#esercizio"><i class="fa fa-check"></i>Esercizio</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="jest.html"><a href="jest.html#testing-di-web-app-con-jest"><i class="fa fa-check"></i><b>21.4</b> Testing di web app con Jest</a>
+<ul>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#pratica"><i class="fa fa-check"></i>Pratica</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="webpack.html"><a href="webpack.html"><i class="fa fa-check"></i><b>22</b> Laboratorio: Webpack</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="webpack.html"><a href="webpack.html#che-cose-webpack"><i class="fa fa-check"></i><b>22.1</b> Che cos’e’ Webpack?</a></li>
+<li class="chapter" data-level="22.2" data-path="webpack.html"><a href="webpack.html#getting-started"><i class="fa fa-check"></i><b>22.2</b> Getting Started</a></li>
+<li class="chapter" data-level="22.3" data-path="webpack.html"><a href="webpack.html#webpack.config.js"><i class="fa fa-check"></i><b>22.3</b> <code>webpack.config.js</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#entry-e-output"><i class="fa fa-check"></i><code>entry</code> e <code>output</code></a></li>
+</ul></li>
+<li class="chapter" data-level="22.4" data-path="webpack.html"><a href="webpack.html#loaders"><i class="fa fa-check"></i><b>22.4</b> Loaders</a>
+<ul>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#babel-loader"><i class="fa fa-check"></i>Babel Loader</a></li>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#clean-up-bath"><i class="fa fa-check"></i>Clean up :bath:</a></li>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#ulteriore-pratica-con-i-loader"><i class="fa fa-check"></i>Ulteriore pratica con i Loader</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="class-components.html"><a href="class-components.html"><i class="fa fa-check"></i><b>23</b> Componenti class React</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="class-components.html"><a href="class-components.html#props-nei-class-components"><i class="fa fa-check"></i><b>23.1</b> Props nei Class Components</a></li>
+<li class="chapter" data-level="23.2" data-path="class-components.html"><a href="class-components.html#gestire-gli-eventi-nei-class-components"><i class="fa fa-check"></i><b>23.2</b> Gestire gli Eventi nei Class Components</a>
+<ul>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#accedere-al-this-del-component-dagli-eventi"><i class="fa fa-check"></i>Accedere al <code>this</code> del Component dagli Eventi</a></li>
+</ul></li>
+<li class="chapter" data-level="23.3" data-path="class-components.html"><a href="class-components.html#state-in-class-components"><i class="fa fa-check"></i><b>23.3</b> State nei Class Components</a>
+<ul>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#cambiare-lo-state"><i class="fa fa-check"></i>Cambiare lo State</a></li>
+</ul></li>
+<li class="chapter" data-level="23.4" data-path="class-components.html"><a href="class-components.html#il-lifecycle-del-component"><i class="fa fa-check"></i><b>23.4</b> Il Lifecycle del Component</a>
+<ul>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#esempio-di-lifecycle-caricare-data-via-ajax"><i class="fa fa-check"></i>Esempio di Lifecycle: Caricare Data via AJAX</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#risorse-16"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="css-in-js.html"><a href="css-in-js.html"><i class="fa fa-check"></i><b>24</b> CSS in JS</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="css-in-js.html"><a href="css-in-js.html#perche-css-in-js"><i class="fa fa-check"></i><b>24.1</b> Perche’ CSS in JS?</a></li>
+<li class="chapter" data-level="24.2" data-path="css-in-js.html"><a href="css-in-js.html#stili-inline-in-react"><i class="fa fa-check"></i><b>24.2</b> Stili inline in React</a></li>
+<li class="chapter" data-level="24.3" data-path="css-in-js.html"><a href="css-in-js.html#aphrodite"><i class="fa fa-check"></i><b>24.3</b> Aphrodite</a></li>
+<li class="chapter" data-level="24.4" data-path="css-in-js.html"><a href="css-in-js.html#css-modules"><i class="fa fa-check"></i><b>24.4</b> CSS Modules</a>
+<ul>
+<li class="chapter" data-level="" data-path="css-in-js.html"><a href="css-in-js.html#ejecting-da-create-react-app"><i class="fa fa-check"></i>Ejecting da Create React App</a></li>
+<li class="chapter" data-level="" data-path="css-in-js.html"><a href="css-in-js.html#composizione-delle-class"><i class="fa fa-check"></i>Composizione delle class</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="css-in-js.html"><a href="css-in-js.html#risorse-17"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="redux.html"><a href="redux.html"><i class="fa fa-check"></i><b>25</b> Redux</a></li>
+<li class="chapter" data-level="26" data-path="react-native.html"><a href="react-native.html"><i class="fa fa-check"></i><b>26</b> React Native</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="react-native.html"><a href="react-native.html#getting-setup"><i class="fa fa-check"></i><b>26.1</b> Getting Setup</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#eseguire-react-native-apps"><i class="fa fa-check"></i>Eseguire React Native Apps</a></li>
+</ul></li>
+<li class="chapter" data-level="26.2" data-path="react-native.html"><a href="react-native.html#react-native-apps"><i class="fa fa-check"></i><b>26.2</b> React Native Apps</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#styling-react-native"><i class="fa fa-check"></i>Styling React Native</a></li>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#interaction"><i class="fa fa-check"></i>Interaction</a></li>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#liste-e-data"><i class="fa fa-check"></i>Liste e Data</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Sviluppo Web lato client</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="page-not-found" class="section level1">
+<h1>Page not found</h1>
+<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
+<p>You may want to try searching to find the page's new location, or use
+the table of contents to find the page you are looking for.</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["github", "facebook", "twitter", "google"],
+    "google": false
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/info340/book/edit/master/%s",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

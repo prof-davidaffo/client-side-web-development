@@ -1,5 +1,5 @@
 book_filename: "client-side-web-development"
-output_dir: build
+output_dir: docs
 language:
   ui:
     chapter_name: ["Chapter "]

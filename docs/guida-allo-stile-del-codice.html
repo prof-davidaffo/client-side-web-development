@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="it" xml:lang="it">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 20 Guida allo stile del codice | Sviluppo Web lato client</title>
+  <meta name="description" content="Dispensa del corso INFO 340: Client-Side Web Development." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 20 Guida allo stile del codice | Sviluppo Web lato client" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://info340.github.io//img/cover-img.png" />
+  <meta property="og:description" content="Dispensa del corso INFO 340: Client-Side Web Development." />
+  <meta name="github-repo" content="info340/book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 20 Guida allo stile del codice | Sviluppo Web lato client" />
+  
+  <meta name="twitter:description" content="Dispensa del corso INFO 340: Client-Side Web Development." />
+  <meta name="twitter:image" content="https://info340.github.io//img/cover-img.png" />
+
+<meta name="author" content="Joel Ross" />
+
+
+<meta name="date" content="2026-01-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/busy-spider-icon.png" type="image/x-icon" />
+<link rel="prev" href="appendice-appendici-e-argomenti-speciali.html"/>
+<link rel="next" href="jest.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-98444716-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/prism.min.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./" class="title">Client-Side Web Development</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Informazioni sul libro</a></li>
+<li class="chapter" data-level="1" data-path="software-setup.html"><a href="software-setup.html"><i class="fa fa-check"></i><b>1</b> Impostazione iniziale</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="software-setup.html"><a href="software-setup.html#web-browser"><i class="fa fa-check"></i><b>1.1</b> Web Browser</a></li>
+<li class="chapter" data-level="1.2" data-path="software-setup.html"><a href="software-setup.html#code-editor"><i class="fa fa-check"></i><b>1.2</b> Code Editor</a>
+<ul>
+<li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html#visual-studio-code"><i class="fa fa-check"></i>Visual Studio Code</a></li>
+<li class="chapter" data-level="1.2.1" data-path="software-setup.html"><a href="software-setup.html#altri-editor"><i class="fa fa-check"></i><b>1.2.1</b> Altri editor</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="software-setup.html"><a href="software-setup.html#bash-command-line"><i class="fa fa-check"></i><b>1.3</b> Bash (Command Line)</a></li>
+<li class="chapter" data-level="1.4" data-path="software-setup.html"><a href="software-setup.html#node-e-npm"><i class="fa fa-check"></i><b>1.4</b> Node e <code>npm</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html#installare-software-con-npm"><i class="fa fa-check"></i>Installare software con npm</a></li>
+<li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html#gestire-package-locali"><i class="fa fa-check"></i>Gestire package locali</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html"><i class="fa fa-check"></i><b>2</b> Sviluppo lato client</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#client-e-server"><i class="fa fa-check"></i><b>2.1</b> Client e server</a></li>
+<li class="chapter" data-level="2.2" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#url-e-file-web"><i class="fa fa-check"></i><b>2.2</b> URL e file web</a>
+<ul>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#tipi-di-file-client-side"><i class="fa fa-check"></i>Tipi di file client-side</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#server-e-hosting"><i class="fa fa-check"></i><b>2.3</b> Server e hosting</a>
+<ul>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#hosting-con-github-pages"><i class="fa fa-check"></i>Hosting con GitHub Pages</a></li>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#development-server"><i class="fa fa-check"></i>Development server</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#web-standards"><i class="fa fa-check"></i><b>2.4</b> Web standards</a></li>
+<li class="chapter" data-level="2.5" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#accessibilita-web"><i class="fa fa-check"></i><b>2.5</b> Accessibilita’ web</a>
+<ul>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#supportare-laccessibilita"><i class="fa fa-check"></i>Supportare l’accessibilita’</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="html-fundamentals.html"><a href="html-fundamentals.html"><i class="fa fa-check"></i><b>3</b> Fondamenti di HTML</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="html-fundamentals.html"><a href="html-fundamentals.html#elementi-html"><i class="fa fa-check"></i><b>3.1</b> Elementi HTML</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#alcuni-elementi-di-esempio"><i class="fa fa-check"></i>Alcuni elementi di esempio</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#commenti"><i class="fa fa-check"></i>Commenti</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#attributi"><i class="fa fa-check"></i>Attributi</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#elementi-vuoti"><i class="fa fa-check"></i>Elementi vuoti</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="html-fundamentals.html"><a href="html-fundamentals.html#nidificazione-di-elementi"><i class="fa fa-check"></i><b>3.2</b> Nidificazione di elementi</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#elementi-block-vs.-inline"><i class="fa fa-check"></i>Elementi block vs. inline</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="html-fundamentals.html"><a href="html-fundamentals.html#struttura-della-web-page"><i class="fa fa-check"></i><b>3.3</b> Struttura della web page</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#risorse"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="css-fundamentals.html"><a href="css-fundamentals.html"><i class="fa fa-check"></i><b>4</b> Fondamenti di CSS</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="css-fundamentals.html"><a href="css-fundamentals.html#perche-due-linguaggi-diversi"><i class="fa fa-check"></i><b>4.1</b> Perche’ due linguaggi diversi?</a></li>
+<li class="chapter" data-level="4.2" data-path="css-fundamentals.html"><a href="css-fundamentals.html#includere-css"><i class="fa fa-check"></i><b>4.2</b> Includere CSS</a></li>
+<li class="chapter" data-level="4.3" data-path="css-fundamentals.html"><a href="css-fundamentals.html#regole-css"><i class="fa fa-check"></i><b>4.3</b> Regole CSS</a>
+<ul>
+<li class="chapter" data-level="" data-path="css-fundamentals.html"><a href="css-fundamentals.html#fondamenti-dei-css-selector"><i class="fa fa-check"></i>Fondamenti dei CSS selector</a></li>
+<li class="chapter" data-level="" data-path="css-fundamentals.html"><a href="css-fundamentals.html#fondamenti-delle-property-css"><i class="fa fa-check"></i>Fondamenti delle property CSS</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="css-fundamentals.html"><a href="css-fundamentals.html#la-cascade"><i class="fa fa-check"></i><b>4.4</b> La cascade</a></li>
+<li class="chapter" data-level="" data-path="css-fundamentals.html"><a href="css-fundamentals.html#risorse-1"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="html-semantico.html"><a href="html-semantico.html"><i class="fa fa-check"></i><b>5</b> HTML Semantico</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="html-semantico.html"><a href="html-semantico.html#elementi-html-specifici"><i class="fa fa-check"></i><b>5.1</b> Elementi HTML specifici</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#hyperlink"><i class="fa fa-check"></i>Hyperlink</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#elementi-testuali-inline"><i class="fa fa-check"></i>Elementi testuali inline</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#immagini-e-media"><i class="fa fa-check"></i>Immagini e media</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#headings"><i class="fa fa-check"></i>Headings</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#elementi-non-semantici"><i class="fa fa-check"></i>Elementi non semantici</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#sectioning-elements"><i class="fa fa-check"></i>Sectioning elements</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#tabelle"><i class="fa fa-check"></i>Tabelle</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#form"><i class="fa fa-check"></i>Form</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="html-semantico.html"><a href="html-semantico.html#aria-for-accessibility"><i class="fa fa-check"></i><b>5.2</b> ARIA for Accessibility</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#aria-labeling"><i class="fa fa-check"></i>ARIA Labeling</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#aria-roles-and-landmarks"><i class="fa fa-check"></i>ARIA Roles and Landmarks</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#aria-e-interattivita"><i class="fa fa-check"></i>ARIA e interattivita’</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#risorse-2"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="selettori-css.html"><a href="selettori-css.html"><i class="fa fa-check"></i><b>6</b> Selettori CSS</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="selettori-css.html"><a href="selettori-css.html#selector-di-base"><i class="fa fa-check"></i><b>6.1</b> Selector di base</a>
+<ul>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#type-selector"><i class="fa fa-check"></i>Type Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#class-selector"><i class="fa fa-check"></i>Class Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#id-selector"><i class="fa fa-check"></i>Id Selector</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="selettori-css.html"><a href="selettori-css.html#selector-complessi"><i class="fa fa-check"></i><b>6.2</b> Selector complessi</a>
+<ul>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#grouping-selector"><i class="fa fa-check"></i>Grouping Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#compound-selector"><i class="fa fa-check"></i>Compound Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#descendant-selector"><i class="fa fa-check"></i>Descendant Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#pseudo-classi"><i class="fa fa-check"></i>Pseudo-classi</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#altri-selector"><i class="fa fa-check"></i>Altri selector</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="selettori-css.html"><a href="selettori-css.html#specificita-dei-selector"><i class="fa fa-check"></i><b>6.3</b> Specificita’ dei selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#risorse-3"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="proprieta-css.html"><a href="proprieta-css.html"><i class="fa fa-check"></i><b>7</b> Proprieta’ CSS</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="proprieta-css.html"><a href="proprieta-css.html#specificare-i-valori-delle-property"><i class="fa fa-check"></i><b>7.1</b> Specificare i valori delle property</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#valori-di-property-ereditati"><i class="fa fa-check"></i>Valori di property ereditati</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#css-units"><i class="fa fa-check"></i>Unita’ di lunghezza e dimensioni</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="proprieta-css.html"><a href="proprieta-css.html#font-e-testo"><i class="fa fa-check"></i><b>7.2</b> Font e testo</a></li>
+<li class="chapter" data-level="7.3" data-path="proprieta-css.html"><a href="proprieta-css.html#css-colors"><i class="fa fa-check"></i><b>7.3</b> Colori e background</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#background-e-immagini"><i class="fa fa-check"></i>Background e immagini</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="proprieta-css.html"><a href="proprieta-css.html#box-model"><i class="fa fa-check"></i><b>7.4</b> Spaziatura con il Box Model</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#padding"><i class="fa fa-check"></i>Padding</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#border"><i class="fa fa-check"></i>Border</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#margin"><i class="fa fa-check"></i>Margin</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#padding-vs.-margin"><i class="fa fa-check"></i>Padding vs. Margin</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#box-sizing"><i class="fa fa-check"></i>Box-Sizing</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="proprieta-css.html"><a href="proprieta-css.html#flow-layout"><i class="fa fa-check"></i><b>7.5</b> Flow Layout</a></li>
+<li class="chapter" data-level="7.6" data-path="proprieta-css.html"><a href="proprieta-css.html#posizionamento-alternativo"><i class="fa fa-check"></i><b>7.6</b> Posizionamento alternativo</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#floating"><i class="fa fa-check"></i>Floating</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="proprieta-css.html"><a href="proprieta-css.html#flexbox"><i class="fa fa-check"></i><b>7.7</b> Flexbox</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#risorse-4"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="responsive-css.html"><a href="responsive-css.html"><i class="fa fa-check"></i><b>8</b> CSS responsive</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="responsive-css.html"><a href="responsive-css.html#design-mobile-first"><i class="fa fa-check"></i><b>8.1</b> Design mobile-first</a>
+<ul>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#principi-di-mobile-first-design"><i class="fa fa-check"></i>Principi di mobile-first design</a></li>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#specificare-il-viewport"><i class="fa fa-check"></i>Specificare il viewport</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="responsive-css.html"><a href="responsive-css.html#media-query"><i class="fa fa-check"></i><b>8.2</b> Media query</a>
+<ul>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#esempio-flexbox-responsive"><i class="fa fa-check"></i>Esempio: Flexbox responsive</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#risorse-5"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="framework-css.html"><a href="framework-css.html"><i class="fa fa-check"></i><b>9</b> Framework CSS</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="framework-css.html"><a href="framework-css.html#usare-un-framework"><i class="fa fa-check"></i><b>9.1</b> Usare un framework</a>
+<ul>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#includere-un-framework"><i class="fa fa-check"></i>Includere un framework</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="framework-css.html"><a href="framework-css.html#bootstrap"><i class="fa fa-check"></i><b>9.2</b> Bootstrap</a>
+<ul>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#class-di-utilita"><i class="fa fa-check"></i>Class di utilita’</a></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#design-responsive"><i class="fa fa-check"></i>Design responsive</a></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#la-grid"><i class="fa fa-check"></i>La Grid</a></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#componenti"><i class="fa fa-check"></i>Componenti</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#risorse-6"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="javascript.html"><a href="javascript.html"><i class="fa fa-check"></i><b>10</b> Fondamenti di JavaScript</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="javascript.html"><a href="javascript.html#programmare-con-javascript"><i class="fa fa-check"></i><b>10.1</b> Programmare con JavaScript</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#storia-e-versioni"><i class="fa fa-check"></i>Storia e versioni</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="javascript.html"><a href="javascript.html#eseguire-javascript"><i class="fa fa-check"></i><b>10.2</b> Eseguire JavaScript</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#nel-browser"><i class="fa fa-check"></i>Nel Browser</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#da-command-line-con-node.js"><i class="fa fa-check"></i>Da Command-line con Node.js</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="javascript.html"><a href="javascript.html#scrivere-script"><i class="fa fa-check"></i><b>10.3</b> Scrivere Script</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#strict-mode"><i class="fa fa-check"></i>Strict Mode</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="javascript.html"><a href="javascript.html#variabili"><i class="fa fa-check"></i><b>10.4</b> Variabili</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#data-types-di-base"><i class="fa fa-check"></i>Data Types di base</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#array"><i class="fa fa-check"></i>Array</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#object"><i class="fa fa-check"></i>Object</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#type-coercion"><i class="fa fa-check"></i>Type Coercion</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="javascript.html"><a href="javascript.html#strutture-di-controllo"><i class="fa fa-check"></i><b>10.5</b> Strutture di controllo</a></li>
+<li class="chapter" data-level="10.6" data-path="javascript.html"><a href="javascript.html#funzioni"><i class="fa fa-check"></i><b>10.6</b> Funzioni</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#risorse-7"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>11</b> Programmazione funzionale in JS</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="functional-programming.html"><a href="functional-programming.html#functions-are-variables"><i class="fa fa-check"></i><b>11.1</b> Functions ARE Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#anonymous-functions"><i class="fa fa-check"></i>Anonymous Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="functional-programming.html"><a href="functional-programming.html#object-functions"><i class="fa fa-check"></i><b>11.2</b> Object Functions</a></li>
+<li class="chapter" data-level="11.3" data-path="functional-programming.html"><a href="functional-programming.html#callback-functions"><i class="fa fa-check"></i><b>11.3</b> Callback Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#closures"><i class="fa fa-check"></i>Closures</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="functional-programming.html"><a href="functional-programming.html#functional-looping"><i class="fa fa-check"></i><b>11.4</b> Functional Looping</a>
+<ul>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#map"><i class="fa fa-check"></i>Map</a></li>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#filter"><i class="fa fa-check"></i>Filter</a></li>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#reduce"><i class="fa fa-check"></i>Reduce</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="functional-programming.html"><a href="functional-programming.html#pure-functions"><i class="fa fa-check"></i><b>11.5</b> Pure Functions</a></li>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#risorse-8"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="dom.html"><a href="dom.html"><i class="fa fa-check"></i><b>12</b> Modello a oggetti del documento (DOM)</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="dom.html"><a href="dom.html#la-dom-api"><i class="fa fa-check"></i><b>12.1</b> La DOM API</a>
+<ul>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#global-variables"><i class="fa fa-check"></i>Global Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="dom.html"><a href="dom.html#dom-manipulation"><i class="fa fa-check"></i><b>12.2</b> DOM Manipulation</a>
+<ul>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#referenziare-elementi-html"><i class="fa fa-check"></i>Referenziare elementi HTML</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#modificare-elementi-html"><i class="fa fa-check"></i>Modificare elementi HTML</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#modificare-il-dom-tree"><i class="fa fa-check"></i>Modificare il DOM Tree</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#accessibility"><i class="fa fa-check"></i>Accessibility</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="dom.html"><a href="dom.html#ascoltare-gli-eventi"><i class="fa fa-check"></i><b>12.3</b> Ascoltare gli Eventi</a>
+<ul>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#tipi-di-eventi"><i class="fa fa-check"></i>Tipi di Eventi</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#event-driven-programming"><i class="fa fa-check"></i>Event-Driven Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#risorse-9"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="librerie-javascript.html"><a href="librerie-javascript.html"><i class="fa fa-check"></i><b>13</b> Librerie JavaScript</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="librerie-javascript.html"><a href="librerie-javascript.html#includere-una-library"><i class="fa fa-check"></i><b>13.1</b> Includere una Library</a></li>
+<li class="chapter" data-level="13.2" data-path="librerie-javascript.html"><a href="librerie-javascript.html#esempio-jquery"><i class="fa fa-check"></i><b>13.2</b> Esempio: jQuery</a>
+<ul>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#manipolare-il-dom"><i class="fa fa-check"></i>Manipolare il DOM</a></li>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#gestire-gli-eventi"><i class="fa fa-check"></i>Gestire gli eventi</a></li>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#e-altro"><i class="fa fa-check"></i>E altro!</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#risorse-10"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="es6.html"><a href="es6.html"><i class="fa fa-check"></i><b>14</b> Sintassi ES6+</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="es6.html"><a href="es6.html#es6-syntax-features"><i class="fa fa-check"></i><b>14.1</b> ES6+ Syntax Features</a>
+<ul>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#arrow-functions"><i class="fa fa-check"></i>Arrow Functions</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#destructuring"><i class="fa fa-check"></i>Destructuring</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#spreading"><i class="fa fa-check"></i>Spreading</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#template-strings"><i class="fa fa-check"></i>Template Strings</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="es6.html"><a href="es6.html#modules"><i class="fa fa-check"></i><b>14.2</b> Modules</a>
+<ul>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#module-syntax"><i class="fa fa-check"></i>Module Syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="es6.html"><a href="es6.html#es6-classes"><i class="fa fa-check"></i><b>14.3</b> Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#why-classes"><i class="fa fa-check"></i>Why Classes?</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#review-classes-in-java"><i class="fa fa-check"></i>Review: Classes in Java</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#es6-class-syntax"><i class="fa fa-check"></i>ES6 Class Syntax</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#inheritance"><i class="fa fa-check"></i>Inheritance</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#working-with-this"><i class="fa fa-check"></i>Working with <code>this</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="react.html"><a href="react.html"><i class="fa fa-check"></i><b>15</b> Introduzione a React</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="react.html"><a href="react.html#react-vite-setup"><i class="fa fa-check"></i><b>15.1</b> Preparazione: React e Vite</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#eseguire-il-development-server"><i class="fa fa-check"></i>Eseguire il Development Server</a></li>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#struttura-del-progetto"><i class="fa fa-check"></i>Struttura del Progetto</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="react.html"><a href="react.html#jsx"><i class="fa fa-check"></i><b>15.2</b> JSX</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#espressioni-inline"><i class="fa fa-check"></i>Espressioni Inline</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="react.html"><a href="react.html#component-react"><i class="fa fa-check"></i><b>15.3</b> Component React</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#organizzazione-dei-components"><i class="fa fa-check"></i>Organizzazione dei Components</a></li>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#alternativa-deprecata-class-components"><i class="fa fa-check"></i>Alternativa Deprecata: Class Components</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="react.html"><a href="react.html#props"><i class="fa fa-check"></i><b>15.4</b> Proprieta’ (<code>props</code>)</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#props-e-composizione"><i class="fa fa-check"></i>Props e Composizione</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#risorse-11"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="react-interattivo.html"><a href="react-interattivo.html"><i class="fa fa-check"></i><b>16</b> React Interattivo</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="react-interattivo.html"><a href="react-interattivo.html#gestire-gli-eventi-in-react"><i class="fa fa-check"></i><b>16.1</b> Gestire gli Eventi in React</a></li>
+<li class="chapter" data-level="16.2" data-path="react-interattivo.html"><a href="react-interattivo.html#state-e-hooks"><i class="fa fa-check"></i><b>16.2</b> State e Hooks</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#aggiornare-lo-state"><i class="fa fa-check"></i>Aggiornare lo State</a></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#state-vs.-props"><i class="fa fa-check"></i>State vs. Props</a></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#lifting-up-state"><i class="fa fa-check"></i>Lifting Up State</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="react-interattivo.html"><a href="react-interattivo.html#interazioni-specifiche"><i class="fa fa-check"></i><b>16.3</b> Interazioni Specifiche</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#lavorare-con-i-forms"><i class="fa fa-check"></i>Lavorare con i Forms</a></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#caricare-data-via-ajax"><i class="fa fa-check"></i>Caricare Data via AJAX</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#risorse-12"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="routing-lato-client.html"><a href="routing-lato-client.html"><i class="fa fa-check"></i><b>17</b> Routing lato client</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="routing-lato-client.html"><a href="routing-lato-client.html#single-page-applications"><i class="fa fa-check"></i><b>17.1</b> Single-Page Applications</a></li>
+<li class="chapter" data-level="17.2" data-path="routing-lato-client.html"><a href="routing-lato-client.html#react-router"><i class="fa fa-check"></i><b>17.2</b> React-Router</a>
+<ul>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#routing"><i class="fa fa-check"></i>Routing</a></li>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#linking"><i class="fa fa-check"></i>Linking</a></li>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#react-router-e-hosting"><i class="fa fa-check"></i>React Router e Hosting</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#risorse-13"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="ajax.html"><a href="ajax.html"><i class="fa fa-check"></i><b>18</b> Richieste AJAX</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="ajax.html"><a href="ajax.html#ajax-1"><i class="fa fa-check"></i><b>18.1</b> AJAX</a>
+<ul>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#xml-e-json"><i class="fa fa-check"></i>XML e JSON</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="ajax.html"><a href="ajax.html#fetching-data"><i class="fa fa-check"></i><b>18.2</b> Fetching Data</a></li>
+<li class="chapter" data-level="18.3" data-path="ajax.html"><a href="ajax.html#asynchronous-programming"><i class="fa fa-check"></i><b>18.3</b> Asynchronous Programming</a>
+<ul>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#chaining-promises"><i class="fa fa-check"></i>Chaining Promises</a></li>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#handling-errors"><i class="fa fa-check"></i>Handling Errors</a></li>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#altri-data-formats"><i class="fa fa-check"></i>Altri Data Formats</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#risorse-14"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="firebase.html"><a href="firebase.html"><i class="fa fa-check"></i><b>19</b> Firebase</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="firebase.html"><a href="firebase.html#setting-up-firebase"><i class="fa fa-check"></i><b>19.1</b> Setting up Firebase</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#creating-a-project"><i class="fa fa-check"></i>Creating a Project</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#including-firebase-in-react"><i class="fa fa-check"></i>Including Firebase in React</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#adding-collaborators-to-a-project"><i class="fa fa-check"></i>Adding Collaborators to a Project</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="firebase.html"><a href="firebase.html#realtime-database"><i class="fa fa-check"></i><b>19.2</b> Realtime Database</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#setting-up-the-database"><i class="fa fa-check"></i>Setting Up the Database</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#reference-ai-dati"><i class="fa fa-check"></i>Reference ai dati</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#listening-for-data-changes"><i class="fa fa-check"></i>Listening for Data Changes</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#firebase-arrays"><i class="fa fa-check"></i>Firebase Arrays</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="firebase.html"><a href="firebase.html#autenticazione-utenti"><i class="fa fa-check"></i><b>19.3</b> Autenticazione utenti</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#accesso-con-firebaseui"><i class="fa fa-check"></i>Accesso con FirebaseUI</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#managing-the-user"><i class="fa fa-check"></i>Managing the User</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="firebase.html"><a href="firebase.html#firebase-storage"><i class="fa fa-check"></i><b>19.4</b> Firebase Storage</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#file-inputs"><i class="fa fa-check"></i>File Inputs</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#uploading-files"><i class="fa fa-check"></i>Uploading Files</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#risorse-15"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendice-appendici-e-argomenti-speciali.html"><a href="appendice-appendici-e-argomenti-speciali.html"><i class="fa fa-check"></i>(APPENDICE) Appendici e argomenti speciali</a></li>
+<li class="chapter" data-level="20" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html"><i class="fa fa-check"></i><b>20</b> Guida allo stile del codice</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#html-guidelines"><i class="fa fa-check"></i><b>20.1</b> HTML Guidelines</a>
+<ul>
+<li class="chapter" data-level="" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#spacing"><i class="fa fa-check"></i>Spacing</a></li>
+<li class="chapter" data-level="" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#elementi-specifici"><i class="fa fa-check"></i>Elementi specifici</a></li>
+<li class="chapter" data-level="" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#commenti-in-html"><i class="fa fa-check"></i>Commenti in HTML</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#css-guidelines"><i class="fa fa-check"></i><b>20.2</b> CSS Guidelines</a>
+<ul>
+<li class="chapter" data-level="20.2.1" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#spacing-1"><i class="fa fa-check"></i><b>20.2.1</b> Spacing</a></li>
+<li class="chapter" data-level="20.2.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#selectors"><i class="fa fa-check"></i><b>20.2.2</b> Selectors</a></li>
+<li class="chapter" data-level="20.2.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#class-names"><i class="fa fa-check"></i><b>20.2.3</b> Class Names</a></li>
+<li class="chapter" data-level="20.2.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#proprieta-specifiche"><i class="fa fa-check"></i><b>20.2.4</b> Proprieta’ specifiche</a></li>
+<li class="chapter" data-level="20.2.5" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#responsive-css-1"><i class="fa fa-check"></i><b>20.2.5</b> Responsive CSS</a></li>
+<li class="chapter" data-level="20.2.6" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#commenti-in-css"><i class="fa fa-check"></i><b>20.2.6</b> Commenti in CSS</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#javascript-guidelines"><i class="fa fa-check"></i><b>20.3</b> JavaScript Guidelines</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#variables"><i class="fa fa-check"></i><b>20.3.1</b> Variables</a></li>
+<li class="chapter" data-level="20.3.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#functions"><i class="fa fa-check"></i><b>20.3.2</b> Functions</a></li>
+<li class="chapter" data-level="20.3.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#commenti-in-javascript"><i class="fa fa-check"></i><b>20.3.3</b> Commenti in JavaScript</a></li>
+<li class="chapter" data-level="20.3.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#altre-linee-guida-javascript"><i class="fa fa-check"></i><b>20.3.4</b> Altre linee guida JavaScript</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#react-guidelines"><i class="fa fa-check"></i><b>20.4</b> React Guidelines</a>
+<ul>
+<li class="chapter" data-level="20.4.1" data-path="react.html"><a href="react.html#components"><i class="fa fa-check"></i><b>20.4.1</b> Components</a></li>
+<li class="chapter" data-level="20.4.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#mapping-data"><i class="fa fa-check"></i><b>20.4.2</b> Mapping Data</a></li>
+<li class="chapter" data-level="20.4.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#state"><i class="fa fa-check"></i><b>20.4.3</b> State</a></li>
+<li class="chapter" data-level="20.4.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#events-e-forms"><i class="fa fa-check"></i><b>20.4.4</b> Events e Forms</a></li>
+</ul></li>
+<li class="chapter" data-level="20.5" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#linee-guida-varie"><i class="fa fa-check"></i><b>20.5</b> Linee guida varie</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="jest.html"><a href="jest.html"><i class="fa fa-check"></i><b>21</b> Test con Jest</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="jest.html"><a href="jest.html#test"><i class="fa fa-check"></i><b>21.1</b> Test</a></li>
+<li class="chapter" data-level="21.2" data-path="jest.html"><a href="jest.html#testing-con-jest"><i class="fa fa-check"></i><b>21.2</b> Testing con Jest</a></li>
+<li class="chapter" data-level="21.3" data-path="jest.html"><a href="jest.html#scrivere-un-test"><i class="fa fa-check"></i><b>21.3</b> Scrivere un test</a>
+<ul>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#assertion-e-matcher"><i class="fa fa-check"></i>Assertion e matcher</a></li>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#organizzare-i-test"><i class="fa fa-check"></i>Organizzare i test</a></li>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#eseguire-i-test"><i class="fa fa-check"></i>Eseguire i test</a></li>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#esercizio"><i class="fa fa-check"></i>Esercizio</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="jest.html"><a href="jest.html#testing-di-web-app-con-jest"><i class="fa fa-check"></i><b>21.4</b> Testing di web app con Jest</a>
+<ul>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#pratica"><i class="fa fa-check"></i>Pratica</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="webpack.html"><a href="webpack.html"><i class="fa fa-check"></i><b>22</b> Laboratorio: Webpack</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="webpack.html"><a href="webpack.html#che-cose-webpack"><i class="fa fa-check"></i><b>22.1</b> Che cos’e’ Webpack?</a></li>
+<li class="chapter" data-level="22.2" data-path="webpack.html"><a href="webpack.html#getting-started"><i class="fa fa-check"></i><b>22.2</b> Getting Started</a></li>
+<li class="chapter" data-level="22.3" data-path="webpack.html"><a href="webpack.html#webpack.config.js"><i class="fa fa-check"></i><b>22.3</b> <code>webpack.config.js</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#entry-e-output"><i class="fa fa-check"></i><code>entry</code> e <code>output</code></a></li>
+</ul></li>
+<li class="chapter" data-level="22.4" data-path="webpack.html"><a href="webpack.html#loaders"><i class="fa fa-check"></i><b>22.4</b> Loaders</a>
+<ul>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#babel-loader"><i class="fa fa-check"></i>Babel Loader</a></li>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#clean-up-bath"><i class="fa fa-check"></i>Clean up :bath:</a></li>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#ulteriore-pratica-con-i-loader"><i class="fa fa-check"></i>Ulteriore pratica con i Loader</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="class-components.html"><a href="class-components.html"><i class="fa fa-check"></i><b>23</b> Componenti class React</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="class-components.html"><a href="class-components.html#props-nei-class-components"><i class="fa fa-check"></i><b>23.1</b> Props nei Class Components</a></li>
+<li class="chapter" data-level="23.2" data-path="class-components.html"><a href="class-components.html#gestire-gli-eventi-nei-class-components"><i class="fa fa-check"></i><b>23.2</b> Gestire gli Eventi nei Class Components</a>
+<ul>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#accedere-al-this-del-component-dagli-eventi"><i class="fa fa-check"></i>Accedere al <code>this</code> del Component dagli Eventi</a></li>
+</ul></li>
+<li class="chapter" data-level="23.3" data-path="class-components.html"><a href="class-components.html#state-in-class-components"><i class="fa fa-check"></i><b>23.3</b> State nei Class Components</a>
+<ul>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#cambiare-lo-state"><i class="fa fa-check"></i>Cambiare lo State</a></li>
+</ul></li>
+<li class="chapter" data-level="23.4" data-path="class-components.html"><a href="class-components.html#il-lifecycle-del-component"><i class="fa fa-check"></i><b>23.4</b> Il Lifecycle del Component</a>
+<ul>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#esempio-di-lifecycle-caricare-data-via-ajax"><i class="fa fa-check"></i>Esempio di Lifecycle: Caricare Data via AJAX</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#risorse-16"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="css-in-js.html"><a href="css-in-js.html"><i class="fa fa-check"></i><b>24</b> CSS in JS</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="css-in-js.html"><a href="css-in-js.html#perche-css-in-js"><i class="fa fa-check"></i><b>24.1</b> Perche’ CSS in JS?</a></li>
+<li class="chapter" data-level="24.2" data-path="css-in-js.html"><a href="css-in-js.html#stili-inline-in-react"><i class="fa fa-check"></i><b>24.2</b> Stili inline in React</a></li>
+<li class="chapter" data-level="24.3" data-path="css-in-js.html"><a href="css-in-js.html#aphrodite"><i class="fa fa-check"></i><b>24.3</b> Aphrodite</a></li>
+<li class="chapter" data-level="24.4" data-path="css-in-js.html"><a href="css-in-js.html#css-modules"><i class="fa fa-check"></i><b>24.4</b> CSS Modules</a>
+<ul>
+<li class="chapter" data-level="" data-path="css-in-js.html"><a href="css-in-js.html#ejecting-da-create-react-app"><i class="fa fa-check"></i>Ejecting da Create React App</a></li>
+<li class="chapter" data-level="" data-path="css-in-js.html"><a href="css-in-js.html#composizione-delle-class"><i class="fa fa-check"></i>Composizione delle class</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="css-in-js.html"><a href="css-in-js.html#risorse-17"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="redux.html"><a href="redux.html"><i class="fa fa-check"></i><b>25</b> Redux</a></li>
+<li class="chapter" data-level="26" data-path="react-native.html"><a href="react-native.html"><i class="fa fa-check"></i><b>26</b> React Native</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="react-native.html"><a href="react-native.html#getting-setup"><i class="fa fa-check"></i><b>26.1</b> Getting Setup</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#eseguire-react-native-apps"><i class="fa fa-check"></i>Eseguire React Native Apps</a></li>
+</ul></li>
+<li class="chapter" data-level="26.2" data-path="react-native.html"><a href="react-native.html#react-native-apps"><i class="fa fa-check"></i><b>26.2</b> React Native Apps</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#styling-react-native"><i class="fa fa-check"></i>Styling React Native</a></li>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#interaction"><i class="fa fa-check"></i>Interaction</a></li>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#liste-e-data"><i class="fa fa-check"></i>Liste e Data</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Sviluppo Web lato client</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="guida-allo-stile-del-codice" class="section level1 hasAnchor" number="20">
+<h1><span class="header-section-number">Chapter 20</span> Guida allo stile del codice<a href="guida-allo-stile-del-codice.html#guida-allo-stile-del-codice" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Il codice e’ letto da due audience diverse: i computer, che eseguono gli statements (o renderizzano la web page), e gli esseri umani, che devono interpretare e aggiornare il codice nel tempo. Usare un buon <strong>coding style</strong>—il modo e il formato in cui il codice e’ scritto—e’ fondamentale per supportare gli esseri umani che lo leggono. Il codice scritto male puo’ essere interpretabile dal computer e quindi funzionare correttamente, ma deve anche essere comprensibile alle persone.</p>
+<p>Un codice scritto bene (con “good style”) soddisfa due proprieta’:</p>
+<ul>
+<li>E’ facile da leggere per le persone</li>
+<li>E’ facile da modificare in futuro per le persone</li>
+</ul>
+<p>Tutte le linee guida sul coding style dovrebbero seguire questi due obiettivi. Se ti chiedi se un approccio di styling e’ migliore di un altro, valutalo in termini di questi obiettivi.</p>
+<p>Ognuno ha opinioni diverse su cosa sia “good style”; esistono infatti numerose “style guide” per i linguaggi di web programming: per esempio, Google ha le proprie style guide
+<a href="https://google.github.io/styleguide/htmlcssguide.html" aria-label="Google's HTML/CSS Style Guide">HTML/CSS</a> e <a href="https://google.github.io/styleguide/jsguide.html" aria-label="Google's JavaScript Style Guide">JavaScript</a>, cosi’ come <a href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Writing_style_guide/Code_style_guide" aria-label="Mozilla's Code Style Guide">Mozilla</a>. Esistono anche tools che fanno rispettare le linee guida di stile. I <a href="https://en.wikipedia.org/wiki/Lint_(software)">“linters”</a> come <a href="https://eslint.org/">ESLint</a> identificano errori di sintassi, ma possono anche avere forti opinioni sullo stile, marcando il “poor style” come errore.</p>
+<p class="alert alert-warning">
+Consiglio di essere cauti con i tool o plugin automatici di code styling (“beautifier”). Anche se possono essere utili, e’ possibile che “puliscano” il codice in un modo che non lo migliora davvero. Fai molta attenzione a qualsiasi cosa che scriva o modifichi codice al posto tuo, per essere sicuro che faccia la cosa giusta!
+</p>
+<p>Questo capitolo fornisce diverse linee guida specifiche seguendo le opinioni degli autori (e docenti del corso INFO 340: Client Side Development) per aiutarti a scrivere codice che sia generalmente piu’ facile da leggere e modificare—cioe’ con good style. Non vuole essere esaustivo; e’ piuttosto una raccolta di linee guida che gli studenti spesso mettono in discussione o faticano a seguire intuitivamente. Vedi le style guide linkate sopra per suggerimenti piu’ completi.</p>
+<p class="alert alert-info">
+Questo capitolo e’ un work in progress, con nuove linee guida aggiunte quando emergono.
+</p>
+<div id="html-guidelines" class="section level2 hasAnchor" number="20.1">
+<h2><span class="header-section-number">20.1</span> HTML Guidelines<a href="guida-allo-stile-del-codice.html#html-guidelines" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Usa sempre <strong>lowercase letters</strong> per i tag HTML. Questo aiuta la leggibilita’ e la consistenza.</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- Do this --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>lorem ipsum<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+
+<span class="token comment">&lt;!-- Don't do this --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>P</span><span class="token punctuation">></span></span>lorem ipsum<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>P</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>P</span><span class="token punctuation">></span></span>lorem ipsum<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre></li>
+</ul>
+<div id="spacing" class="section level3 unnumbered hasAnchor">
+<h3>Spacing<a href="guida-allo-stile-del-codice.html#spacing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>In generale, metti i tag dei <strong>block elements</strong> su righe separate, con il contenuto dei block elements su una riga separata (indentata)—a meno che il contenuto di quel block element sia molto breve. I block elements successivi sono indentati di un ulteriore livello. Questo rende il codice piu’ facile da leggere grazie alla struttura a blocchi e piu’ facile da modificare aggiungendo contenuto dentro i blocchi.</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- Do this --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+  lorem ipsum
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token comment">&lt;!-- Do this --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>
+   lorem ipsum
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token comment">&lt;!-- Do this --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Ciao mondo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- contenuto breve, quindi puo' stare sulla stessa riga dei tag --></span>
+
+<span class="token comment">&lt;!-- Don't do this --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>lorem ipsum<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre></li>
+<li><p>Per molti <strong>inline elements</strong>—soprattutto quelli di formattazione testo (ad es. <code>&lt;em&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;a&gt;</code>)—e’ meglio mantenerli inline con il resto del contenuto. Pensa a come scriveresti un paragrafo, con alcune parole formattate nel mezzo. Non separare gli inline elements. Questo rende piu’ facile vederli come “inline” e permette di integrarli nel codice senza preoccuparti della spaziatura. (Questo spesso risolve anche problemi di trailing space). Nota che questa linea guida e’ una di quelle che i tool di beautifying automatici rovinano.</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- Do this --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>
+  There was a farmer who had a dog, and <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>em</span><span class="token punctuation">></span></span>Bingo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>em</span><span class="token punctuation">></span></span> was his name-o...
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+
+<span class="token comment">&lt;!-- Don't do this --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>
+  There was a farmer who had a dog, and
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>em</span><span class="token punctuation">></span></span>Bingo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>em</span><span class="token punctuation">></span></span>
+  was his name-o...
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
+<p>Per gli inline elements “strutturali” (ad es. <code>&lt;img&gt;</code>, <code>&lt;button&gt;</code>), e’ meglio metterli su una riga separata come i block elements. In effetti, questi elementi spesso vogliono essere stilizzati come block elements!</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- Do this --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>
+  Questa e' una foto di un cane:
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>puppy.png<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>un cucciolo<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+
+<span class="token comment">&lt;!-- Don't do this --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>
+  Questa e' una foto di un cane: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>puppy.png<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>un cucciolo<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre></li>
+<li><p>Gli element attributes dovrebbero essere scritti sulla stessa riga del tag a cui si applicano—anche se il valore dell’attribute sembra “lungo” (come un URL).</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- Do this --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://info340.github.io/really/long/path/to/content<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Link<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+
+<span class="token comment">&lt;!-- Don't do this --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span>
+  <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://info340.github.io/really/long/path/to/content<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Link<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
+<p>Nota che non e’ HTML valido inserire whitespace, incluse linee di interruzione, attorno al <code>=</code> quando definisci un attribute.</p>
+<p>L’unica eccezione a questa linea guida e’ quando hai <em>molti</em> attributes per un singolo elemento. In quel caso, e’ accettabile mettere ogni attribute su una riga separata, indentata di 1 livello. Anche se succede raramente in HTML puro, e’ molto comune quando specifichi props per un componente React (e rende piu’ facile modificare quelle props).</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- Do this --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span>
+  <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span>
+  <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>user-input-field<span class="token punctuation">"</span></span>
+  <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>user-input-field<span class="token punctuation">"</span></span>
+  <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span>
+  <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Write something here!<span class="token punctuation">"</span></span>
+  <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>long-form-input<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre></li>
+<li><p>Scrivi tutto il contenuto testuale di un singolo elemento su una singola riga di codice; non inserire manualmente line break nel plain text. Questo ti permette di modificare quel contenuto in seguito senza dover riformattare tutto. <em>Non preoccuparti della lunghezza della riga di codice</em>. Puoi usare la funzionalita’ <strong>“word wrap”</strong> del tuo editor per evitare lo scrolling orizzontale.</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- Do this --></span>
+<span class="token comment">&lt;!-- This *single line of code* can be made to wrap in your editor --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>
+  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur est necessitatibus, rerum atque officiis doloremque porro similique molestias fugit, a repellendus fuga natus, tempora impedit. Dolore repellendus itaque soluta est ad modi corrupti quibusdam tenetur architecto nesciunt harum ipsa consectetur ullam unde, quos sit asperiores corporis vitae pariatur expedita non?
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+
+<span class="token comment">&lt;!-- Don't do this --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>
+  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+  Consectetur est necessitatibus, rerum atque officiis doloremque
+  porro similique molestias fugit, a repellendus fuga natus,
+  tempora impedit. Dolore repellendus itaque soluta est ad modi
+  corrupti quibusdam tenetur architecto nesciunt harum ipsa
+  consectetur ullam unde, quos sit asperiores corporis vitae
+  pariatur expedita non?
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre></li>
+</ul>
+</div>
+<div id="elementi-specifici" class="section level3 unnumbered hasAnchor">
+<h3>Elementi specifici<a href="guida-allo-stile-del-codice.html#elementi-specifici" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Evita elementi di formattazione non semantici (ad es. <code>&lt;i&gt;</code>, <code>&lt;b&gt;</code>), perche’ non sono accessibili agli screen reader.</p></li>
+<li><p>Evita di usare l’elemento <code>&lt;br&gt;</code> per gli a capo. Se stai spezzando una riga di testo, di solito e’ perche’ stai definendo un nuovo <em>paragraph</em>, quindi dovresti usare un altro <code>&lt;p&gt;</code>. Se non c’e’ un significato semantico per il line break, non inserirlo! Se devi regolare la spaziatura tra paragraph (ad es. vuoi una spaziatura singola invece che doppia), usa il CSS per regolare margin o padding.</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- Do this --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>
+  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>
+  Consectetur est necessitatibus, rerum atque officiis doloremque porro similique molestias fugit, a repellendus fuga natus, tempora impedit.
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+
+<span class="token comment">&lt;!-- Don't do this --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>
+  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span> <span class="token punctuation">/></span></span>
+  Consectetur est necessitatibus, rerum atque officiis doloremque porro similique molestias fugit, a repellendus fuga natus, tempora impedit.
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span></code></pre>
+<p>L’unico motivo che mi viene in mente per usare semanticamente un elemento <code>&lt;br&gt;</code> e’ nella poesia:</p>
+<pre class="language-html"><code><span class="token comment">&lt;!-- Do this --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+  Roses are red, <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">></span></span>
+  Violets are blue. <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">></span></span>
+  Unexpected '}' <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">></span></span>
+  on line 32.
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre></li>
+</ul>
+</div>
+<div id="commenti-in-html" class="section level3 unnumbered hasAnchor">
+<h3>Commenti in HTML<a href="guida-allo-stile-del-codice.html#commenti-in-html" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>La maggior parte del contenuto HTML non ha bisogno di commenti; dovrebbe essere comprensibile solo dall’indentazione e dal contenuto. Se il tuo codice ha bisogno di piu’ organizzazione, usa semantic elements (ad es. <code>&lt;section&gt;</code>) o class names per aiutarne la struttura (ad es. <code>&lt;div class="first-post"&gt;</code>).</li>
+</ul>
+</div>
+</div>
+<div id="css-guidelines" class="section level2 hasAnchor" number="20.2">
+<h2><span class="header-section-number">20.2</span> CSS Guidelines<a href="guida-allo-stile-del-codice.html#css-guidelines" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Un buon consiglio per scrivere CSS e’ concentrarsi sulla quantita’ “minima” di CSS necessaria per ottenere l’effetto desiderato. Lavora con il browser e i suoi default, invece di cercare di dominarli. Forse sorprendentemente, <em>rimuovere</em> rules o properties e’ spesso una soluzione migliore di aggiungere ulteriore styling.</p>
+<div id="spacing-1" class="section level3 hasAnchor" number="20.2.1">
+<h3><span class="header-section-number">20.2.1</span> Spacing<a href="guida-allo-stile-del-codice.html#spacing-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Quando scrivi CSS rules, metti la <code>{</code> di una rule sulla stessa riga del selector e indenta le properties della rule di una quantita’ consistente. Metti uno spazio dopo <code>:</code> in una rule, ma non prima. Le rules dovrebbero apparire cosi’:</p>
+<pre class="language-css"><code><span class="token selector">selector</span> <span class="token punctuation">{</span>
+    <span class="token property">property</span><span class="token punctuation">:</span> value<span class="token punctuation">;</span>
+    <span class="token property">property</span><span class="token punctuation">:</span> value<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Nota che puoi usare VS Code per “indentare” automaticamente il codice con il comando <code>format document</code>.</p></li>
+</ul>
+</div>
+<div id="selectors" class="section level3 hasAnchor" number="20.2.2">
+<h3><span class="header-section-number">20.2.2</span> Selectors<a href="guida-allo-stile-del-codice.html#selectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Usa selectors che siano <em>solo quanto basta specifici</em>.</p>
+<pre class="language-css"><code><span class="token comment">/* Do this */</span>
+<span class="token selector">li.selected</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment">/* selected list items, not selected paragraphs */</span>
+
+<span class="token comment">/* Don't do this */</span>
+<span class="token selector">div p</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment">/* paragraphs inside of divs (are there other paragraphs? */</span>
+
+<span class="token comment">/* Don't do this */</span>
+<span class="token selector">body p</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment">/* no paragraphs outside of the body, so redundant */</span></code></pre>
+<p>(E’ difficile mostrare esempi, perche’ la specificita’ richiesta dipende dalla situazione!)</p>
+<p>La maggior parte dei selectors avra’ 1-3 “pezzi” (connessi da selezione discendente o compound). Se ti trovi a usarne di piu’, chiediti se c’e’ un modo piu’ semplice di scrivere il selector—o dai semplicemente all’elemento una <code>class</code> e selezionalo direttamente!</p></li>
+<li><p>Usa class o element selectors invece di id selectors.</p>
+<pre class="language-css"><code><span class="token comment">/* Do this */</span>
+<span class="token selector">.side-nav</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment">/* Don't do this */</span>
+<span class="token selector">#side-nav</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></li>
+<li><p>Se devi usare un selector <code>id</code>, non aggiungere specificita’ extra prima degli id selectors. Un <code>id</code> deve essere unico, quindi non devi distinguere tra piu’ elementi con lo stesso <code>id</code>.</p>
+<pre class="language-css"><code><span class="token comment">/* Don't do this */</span>
+<span class="token selector">nav#side-nav</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></li>
+<li><p><strong>Non</strong> usare la keyword <code>!important</code>. Scrivi invece una rule sufficientemente specifica!</p>
+<pre class="language-css"><code><span class="token comment">/* Don't do this */</span>
+<span class="token selector">.error</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> red <span class="token important">!important</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Do this */</span>
+<span class="token selector">p.alert.error</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></li>
+</ul>
+</div>
+<div id="class-names" class="section level3 hasAnchor" number="20.2.3">
+<h3><span class="header-section-number">20.2.3</span> Class Names<a href="guida-allo-stile-del-codice.html#class-names" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p><strong>Usa class names descrittivi</strong>. Le class dovrebbero descrivere cosa o perche’ quello styling viene applicato.</p>
+<pre class="language-css"><code><span class="token comment">/* Do this */</span>
+<span class="token selector">.side-nav</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment">/* Do this */</span>
+<span class="token selector">.alert-warning</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment">/* Don't do this */</span>
+<span class="token selector">.thingy</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment">/* Don't do this */</span>
+<span class="token selector">.s1</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment">/* Don't do this */</span>
+<span class="token selector">.p</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment">/* use an element selector instead! */</span></code></pre>
+<p>Nota che le class possono essere definite <strong>semanticamente</strong> (ad es. <code>.avatar-icon</code>, <code>.comment-form</code>) oppure <strong>modularmente</strong> (ad es. <code>.font-large</code>, <code>.bg-secondary</code>). Entrambi gli approcci sono accettabili in questa guida, ma cerca di essere <em>consistente</em>.</p>
+<p>Usare uno naming schema come <a href="http://getbem.com/naming/">BEM</a> e’ anche accettabile.</p></li>
+<li><p>Usa i trattini come delimiters per i class names.</p>
+<pre class="language-css"><code><span class="token comment">/* Do this */</span>
+<span class="token selector">.side-nav</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment">/* Do this */</span>
+<span class="token selector">.alert-warning</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre>
+<p>Alcuni framework possono rendere sensato usare il camelCasing per i class names (cosi’ i class names sono anche valid JavaScript identifiers). In quel caso, <strong>sii consistente</strong> con i delimiters. Questo rendera’ piu’ facile scrivere e modificare il codice.</p>
+<pre class="language-css"><code><span class="token comment">/* Don't do this */</span>
+<span class="token selector">.sideNav</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token selector">.alert-warning</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></li>
+</ul>
+</div>
+<div id="proprieta-specifiche" class="section level3 hasAnchor" number="20.2.4">
+<h3><span class="header-section-number">20.2.4</span> Proprieta’ specifiche<a href="guida-allo-stile-del-codice.html#proprieta-specifiche" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Evita di usare <code>float</code>; usa flexboxes o grids per il positioning. E’ raro avere davvero contenuto “floating” (anche se puo’ succedere con immagini inserite in grandi articoli testuali).</p></li>
+<li><p>Evita di usare <code>position: absolute</code>. Questo produce layout non responsive o non accessibili su piu’ dispositivi. Lavora invece con il layout del browser usando layout relativi.</p></li>
+</ul>
+</div>
+<div id="responsive-css-1" class="section level3 hasAnchor" number="20.2.5">
+<h3><span class="header-section-number">20.2.5</span> Responsive CSS<a href="guida-allo-stile-del-codice.html#responsive-css-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Usa un approccio <strong>mobile-first</strong> allo styling. Questo significa che le regole generali vanno in alto e si applicano ai device mobile, e poi usi media queries per specificare modifiche di stile per display piu’ grandi.</p></li>
+<li><p>Le media queries controllano solo la size minima:</p>
+<pre class="language-css"><code><span class="token comment">/* Do this */</span>
+<span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 768px<span class="token punctuation">)</span></span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment">/* Do not do this */</span>
+<span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 768px<span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token property">max-width</span><span class="token punctuation">:</span> 1092px<span class="token punctuation">)</span></span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment">/* Do not do this */</span>
+<span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">max-width</span><span class="token punctuation">:</span> 768px<span class="token punctuation">)</span></span> <span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></li>
+<li><p>Limitare le styling rules a <code>screen</code> non e’ necessario (a meno che tu non voglia esplicitamente che siano diverse dalle regole di stampa)</p>
+<pre class="language-css"><code><span class="token comment">/* Do this */</span>
+<span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 768px<span class="token punctuation">)</span></span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment">/* Do not need to do this */</span>
+<span class="token atrule"><span class="token rule">@media</span> screen <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 768px<span class="token punctuation">)</span></span> <span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></li>
+<li><p>Le media queries dovrebbero essere usate per <em>modificare</em> lo styling mobile, non per sostituirlo completamente. Non “resettare” tutte le rules dello styling mobile, ma sovrascrivi e aggiungi solo le poche rules necessarie per rendere la pagina realmente responsive. La tua pagina dovrebbe avere uno style/theme simile a prescindere dal device usato per visualizzare il contenuto!</p></li>
+</ul>
+</div>
+<div id="commenti-in-css" class="section level3 hasAnchor" number="20.2.6">
+<h3><span class="header-section-number">20.2.6</span> Commenti in CSS<a href="guida-allo-stile-del-codice.html#commenti-in-css" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Non hai bisogno di molti commenti per il codice CSS; le rules dovrebbero essere auto-esplicative perche’ hai usato class names descrittivi.</p></li>
+<li><p>Usa i commenti per organizzare o “segnalare” il codice, raggruppando le rules nel file <code>.css</code>.</p>
+<pre class="language-css"><code><span class="token comment">/* Do this */</span>
+
+<span class="token comment">/* navbar */</span>
+<span class="token selector">nav</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token selector">nav li</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token selector">.tab-selected</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment">/* main content */</span>
+<span class="token selector">section</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token selector">p</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token selector">img.small</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></li>
+</ul>
+</div>
+</div>
+<div id="javascript-guidelines" class="section level2 hasAnchor" number="20.3">
+<h2><span class="header-section-number">20.3</span> JavaScript Guidelines<a href="guida-allo-stile-del-codice.html#javascript-guidelines" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="variables" class="section level3 hasAnchor" number="20.3.1">
+<h3><span class="header-section-number">20.3.1</span> Variables<a href="guida-allo-stile-del-codice.html#variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Dichiara le variables con <code>const</code> o <code>let</code>. In generale, usa <code>const</code> per tutte le variables, e poi <code>let</code> solo se scopri di dover riassegnare la variable in seguito (cosa molto meno comune di quanto pensi)!</p>
+<p>Non usare <code>var</code> per dichiarare variables (questo evita di inquinare il global scope).</p></li>
+<li><p>I nomi delle variables si scrivono in <code>camelCaseFormat</code> (capitalizzando la prima lettera di ogni “word” dopo la prima). Non iniziare i nomi delle variables con una lettera maiuscola.</p>
+<pre class="language-js"><code><span class="token comment">/* Do this */</span>
+<span class="token keyword">const</span> myName <span class="token operator">=</span> <span class="token string">"Joel Ross"</span>
+
+<span class="token comment">/* Do not do this */</span>
+<span class="token keyword">const</span> my_name <span class="token operator">=</span> <span class="token string">"Joel Ross"</span>
+
+<span class="token comment">/* Do not do this */</span>
+<span class="token keyword">const</span> MyName <span class="token operator">=</span> <span class="token string">"Joel Ross"</span></code></pre>
+<p>Puoi usare tutte lettere maiuscole per le global constants. Nota che solo perche’ una variable e’ dichiarata <code>const</code> non significa che sia una “global constant”. Usa tutte lettere maiuscole per nominare valori specificati esternamente al funzionamento del programma; <code>PI</code>, <code>WA_TAX_RATE</code>, <code>SCREEN_WIDTH</code> sono tutte global constants.</p></li>
+<li><p><strong>Usa nomi di variable descrittivi</strong>. I nomi delle variables dovrebbero indicare a cosa si riferisce il value. Non usare nomi come <code>stuff</code>, <code>thing</code> o <code>x</code> perche’ non aiutano nessuno a capire il codice.</p></li>
+<li><p>Dai nome ad arrays e collections usando <strong>nomi plurali</strong>. In alternativa, potresti trovare utile nominare <em>strings</em>, <em>arrays</em>, <em>objects</em> e <em>functions</em> in base al loro data type per aiutarti a ricordare (in particolare se i plurali in inglese sono difficili).</p>
+<pre class="language-js"><code><span class="token comment">/* Do this */</span>
+<span class="token keyword">const</span> names <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"john"</span><span class="token punctuation">,</span> <span class="token string">"paul"</span><span class="token punctuation">,</span> <span class="token string">"george"</span><span class="token punctuation">,</span> <span class="token string">"ringo"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* Do this */</span>
+<span class="token keyword">const</span> dogArray <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"fido"</span><span class="token punctuation">,</span> <span class="token string">"spot"</span><span class="token punctuation">,</span> <span class="token string">"rover"</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">//array of dog names</span>
+<span class="token keyword">const</span> dogObj  <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'Fido'</span><span class="token punctuation">,</span> <span class="token literal-property property">breed</span><span class="token operator">:</span> <span class="token string">'mutt'</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">//single dog object</span>
+
+<span class="token comment">/* Do not do this */</span>
+<span class="token keyword">const</span> dog <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"fido"</span><span class="token punctuation">,</span> <span class="token string">"spot"</span><span class="token punctuation">,</span> <span class="token string">"rover"</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">//an array named by a singular noun</span></code></pre></li>
+</ul>
+</div>
+<div id="functions" class="section level3 hasAnchor" number="20.3.2">
+<h3><span class="header-section-number">20.3.2</span> Functions<a href="guida-allo-stile-del-codice.html#functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Usa function declarations invece di function expressions quando definisci functions—soprattutto le functions “top-level”. Questo aiuta a distinguere tra functions e variables, rendendo il codice piu’ facile da leggere e seguire (anche se richiede piu’ digitazione).</p>
+<pre class="language-js"><code><span class="token comment">/* Do this */</span>
+<span class="token keyword">function</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Do not do this */</span>
+<span class="token keyword">const</span> <span class="token function-variable function">sum</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Do not do this */</span>
+<span class="token keyword">const</span> <span class="token function-variable function">sum</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token operator">=></span> a <span class="token operator">+</span> b<span class="token punctuation">;</span></code></pre></li>
+<li><p>Per le <em>inline functions</em> (come le anonymous callback functions), usa la <strong>arrow notation</strong>. Questo rende il codice piu’ conciso e aiuta a evitare problemi di scope.</p>
+<pre class="language-js"><code><span class="token comment">/* Do this */</span>
+<span class="token keyword">const</span> transformed <span class="token operator">=</span> array<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">item</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token comment">//...</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">/* Do not do this */</span>
+<span class="token keyword">const</span> transformed <span class="token operator">=</span> array<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">item</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">//...</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<p>Quando usi le arrow functions, metti sempre le <code>()</code> attorno alla lista degli argomenti. Questo chiarisce che si tratta di una function e rendera’ piu’ facile aggiungere argomenti in seguito.</p>
+<pre class="language-js"><code><span class="token comment">/* Do this */</span>
+<span class="token keyword">const</span> transformed <span class="token operator">=</span> array<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">item</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token comment">//...</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">/* Do not do this */</span>
+<span class="token keyword">const</span> transformed <span class="token operator">=</span> array<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">item</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token comment">//...</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<p>In generale, evita di usare <em>concise body arrow functions</em>. Includere il block esplicito (<code>{}</code>) rende piu’ facile leggere la function e anche modificarla e fare debug, perche’ puoi aggiungere statements facilmente. Sembra piu’ codice da digitare, ma e’ uno style migliore.</p>
+<pre class="language-js"><code><span class="token comment">/* Do this */</span>
+<span class="token keyword">const</span> exclaimed <span class="token operator">=</span> stringArray<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">aString</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> aString <span class="token operator">+</span> <span class="token string">"!!"</span> <span class="token comment">//add exclamation points</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">/* Do not do this */</span>
+<span class="token keyword">const</span> exclaimed <span class="token operator">=</span> stringArray<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">aString</span><span class="token punctuation">)</span> <span class="token operator">=></span> aString <span class="token operator">+</span> <span class="token string">"!!"</span><span class="token punctuation">)</span></code></pre></li>
+<li><p>Le functions dovrebbero essere definite per essere <em>short</em> e <em>reusable</em>. Usa <a href="https://en.wikipedia.org/wiki/Pure_function"><strong>pure functions</strong></a> quando possibile. Questo significa che evitano <a href="https://en.wikipedia.org/wiki/Side_effect_(computer_science)">side effects</a>—non assegnano o modificano variables non locali.</p></li>
+</ul>
+</div>
+<div id="commenti-in-javascript" class="section level3 hasAnchor" number="20.3.3">
+<h3><span class="header-section-number">20.3.3</span> Commenti in JavaScript<a href="guida-allo-stile-del-codice.html#commenti-in-javascript" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<blockquote>
+<p>“Comments are always failures.” - Robert Martin</p>
+</blockquote>
+<p>In generale, il codice ben scritto si auto-documenta senza bisogno di commenti aggiuntivi. Functions ben nominate con scope piccoli indicano chiaramente cosa fanno senza bisogno di ulteriori note. Se ti accorgi che serve un commento per spiegare cosa fa il codice, probabilmente dovresti riscriverlo per renderlo piu’ leggibile. I commenti dovrebbero fornire informazioni sull’<em>intent</em> del codice (perche’ e’ stato incluso), non sul <em>behavior</em> del codice (cosa fa).</p>
+<p>Questo significa che in generale non dovresti aver bisogno di molti commenti nel codice. Usa i commenti come ultima risorsa per chiarire il behavior del codice o per comunicare con altre persone.</p>
+<p>Non lasciare grandi blocchi di codice commentato nelle versioni <em>production</em> (finali)—mantieni il codice chiaro senza costringere chi legge a scorrere o ignorare tanto codice inutilizzato.</p>
+</div>
+<div id="altre-linee-guida-javascript" class="section level3 hasAnchor" number="20.3.4">
+<h3><span class="header-section-number">20.3.4</span> Altre linee guida JavaScript<a href="guida-allo-stile-del-codice.html#altre-linee-guida-javascript" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Usa confronti di uguaglianza strict (<code>===</code> e <code>!==</code>) invece di confronti di uguaglianza regolari (<code>==</code> e <code>!=</code>).</p></li>
+<li><p>Minimizza l’uso di statements <code>console.log()</code> nelle versioni <em>production</em> (finali). Rallentano il programma, inquinano lo spazio dei log e possono essere fonte di leak di informazioni e sicurezza. Usa <em>molti</em> <code>console.log()</code> quando fai debugging, ma rimuovili quando hai risolto i bug.</p></li>
+</ul>
+</div>
+</div>
+<div id="react-guidelines" class="section level2 hasAnchor" number="20.4">
+<h2><span class="header-section-number">20.4</span> React Guidelines<a href="guida-allo-stile-del-codice.html#react-guidelines" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="components" class="section level3 hasAnchor" number="20.4.1">
+<h3><span class="header-section-number">20.4.1</span> Components<a href="react.html#components" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Usa Component functions (e hooks). Non definire componenti come classi.</p></li>
+<li><p>Usa function declarations invece di function expressions quando definisci Component functions. Questo aiuta la leggibilita’.</p>
+<pre class="language-js"><code><span class="token comment">/* Do this */</span>
+<span class="token keyword">function</span> <span class="token function">Card</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">//...</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Do not do this */</span>
+<span class="token keyword">const</span> <span class="token function-variable function">Card</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token comment">//...</span>
+<span class="token punctuation">}</span></code></pre></li>
+<li><p>Le Component functions si nominano con <strong>nouns</strong> (cosa sono), non con verbi (cosa fanno). Nominale come faresti con <em>classes</em> in Java o altri linguaggi OOP.</p>
+<pre class="language-js"><code><span class="token comment">/* Do this - what the content is */</span>
+<span class="token keyword">function</span> <span class="token function">EntryForm</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span>
+  <span class="token comment">//...</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Do not do this - what it does */</span>
+<span class="token keyword">function</span> <span class="token function">UpdateData</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">//...</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Dai ai Components nomi descrittivi che indicano che “kind” di elemento sono, cosi’ non c’e’ confusione tra nouns e verbi.</p>
+<pre class="language-js"><code><span class="token comment">/* Do this - the component is a form */</span>
+<span class="token keyword">function</span> <span class="token function">FilterForm</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span>
+  <span class="token comment">//...</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Do not do this - unclear what the component is */</span>
+<span class="token keyword">function</span> <span class="token function">Filter</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">//...</span>
+<span class="token punctuation">}</span></code></pre></li>
+<li><p>I Components sono sempre scritti come <em>top level functions</em>. Non definire mai un componente dentro un altro!</p>
+<pre class="language-js"><code><span class="token comment">/* Do this */</span>
+<span class="token keyword">function</span> <span class="token function">Parent</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span>
+  <span class="token comment">//...</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">Child</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span>
+  <span class="token comment">//...</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token comment">/* Do not do this */</span>
+<span class="token keyword">function</span> <span class="token function">Parent</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">function</span> <span class="token function">Child</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">//...</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">//...</span>
+<span class="token punctuation">}</span></code></pre></li>
+<li><p>L’argomento di un Component si chiama <em>sempre</em> <strong><code>props</code></strong> (con la <code>s</code> alla fine!).</p>
+<p>E’ accettabile usare l’object destructuring nell’argomento di una Component function. Ricorda di includere le <code>{}</code>—un Component accetta un solo argomento!</p>
+<pre class="language-js"><code><span class="token comment">/* Acceptable */</span>
+<span class="token keyword">function</span> <span class="token function">SongCard</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span>
+  <span class="token comment">//...</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Also acceptable */</span>
+<span class="token keyword">function</span> <span class="token function">SongCard</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span>artist<span class="token punctuation">,</span> title<span class="token punctuation">,</span> album<span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">//...</span>
+<span class="token punctuation">}</span></code></pre></li>
+<li><p>Quando specifichi props per un Component (o attributes per un elemento HTML), <em>non</em> mettere spazi attorno a <code>=</code> — scrivilo come in HTML!</p>
+<pre><code>/* Do this */
+&lt;Card value={dataItem} /&gt;
+
+/* Do not do this */
+&lt;Card value = {dataItem} /&gt;</code></pre></li>
+<li><p>Organizza i Components in moduli separati (file <code>.js</code>). Puoi includere piu’ componenti correlati (ad es. un <code>Card</code> e un <code>CardList</code>) nello stesso modulo. E’ una buona idea tenere questi file insieme in una cartella <code>components</code> distinta nel tuo source code.</p></li>
+</ul>
+</div>
+<div id="mapping-data" class="section level3 hasAnchor" number="20.4.2">
+<h3><span class="header-section-number">20.4.2</span> Mapping Data<a href="guida-allo-stile-del-codice.html#mapping-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Non <em>dichiarare</em> functions come la callback di <code>.map()</code> inline dentro lo statement <code>return</code> di un Component (o di qualsiasi altra function). Usa statements multipli quando scrivi codice!</p>
+<p>Invece, dichiara i values mappati come una <em>variable separata</em> che puo’ essere inclusa nel DOM restituito. Questo rende il codice piu’ facile da leggere, modificare e fare debug, perche’ puoi aggiungere ulteriore processing o ispezioni dopo la chiamata <code>.map()</code>.</p>
+<pre class="language-js"><code><span class="token comment">/* Do this */</span>
+<span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">//map the data into &lt;Card> elements</span>
+  <span class="token keyword">const</span> cardElemArray <span class="token operator">=</span> data<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">dataItem</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token operator">&lt;</span>Card value<span class="token operator">=</span><span class="token punctuation">{</span>dataItem<span class="token punctuation">}</span> key<span class="token operator">=</span><span class="token punctuation">{</span>dataItem<span class="token punctuation">.</span>id<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>div<span class="token operator">></span>
+      <span class="token punctuation">{</span>cardElemArray<span class="token punctuation">}</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Do not do this */</span>
+<span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">//Questo e' tutto un unico statement (linea) di codice! Non farlo.</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>div<span class="token operator">></span>
+      <span class="token punctuation">{</span>
+        data<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">dataItem</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+          <span class="token keyword">return</span> <span class="token operator">&lt;</span>Card value<span class="token operator">=</span><span class="token punctuation">{</span>dataItem<span class="token punctuation">}</span> key<span class="token operator">=</span><span class="token punctuation">{</span>dataItem<span class="token punctuation">.</span>id<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></li>
+</ul>
+</div>
+<div id="state" class="section level3 hasAnchor" number="20.4.3">
+<h3><span class="header-section-number">20.4.3</span> State<a href="guida-allo-stile-del-codice.html#state" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Usa sempre <code>const</code> quando dichiari state variables (dato che non le riassegni comunque)!</p>
+<pre class="language-js"><code><span class="token comment">/* Do this */</span>
+<span class="token keyword">const</span> <span class="token punctuation">[</span>data<span class="token punctuation">,</span> setData<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* Do not do this */</span>
+<span class="token keyword">let</span> <span class="token punctuation">[</span>data<span class="token punctuation">,</span> setData<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></li>
+<li><p><em>Sempre</em> nomina la function “state setter” a partire dal nome della state variable (<code>set______</code>):</p>
+<pre class="language-js"><code><span class="token comment">/* Do this */</span>
+<span class="token keyword">const</span> <span class="token punctuation">[</span>data<span class="token punctuation">,</span> setData<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">[</span>currentsong<span class="token punctuation">,</span> setCurrentSong<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* Do not do this */</span>
+<span class="token keyword">const</span> <span class="token punctuation">[</span>nowPlaying<span class="token punctuation">,</span> changeSong<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">[</span>lastTrack<span class="token punctuation">,</span> setLast<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//use the full variable name instead!</span></code></pre></li>
+<li><p>Non duplicare i data nello state. E’ cattivo style e causa bug. Mantieni lo state minimale.</p>
+<p>Non definire state variables per values che possono essere calcolati da altre variables.</p>
+<pre class="language-js"><code><span class="token comment">/* Do this */</span>
+<span class="token keyword">const</span> <span class="token punctuation">[</span>myArray<span class="token punctuation">,</span> setMyArray<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> arrayLength <span class="token operator">=</span> myArray<span class="token punctuation">.</span>length<span class="token punctuation">;</span> <span class="token comment">//computed from state, but not a state variable</span>
+
+<span class="token comment">/* Do not do this */</span>
+<span class="token keyword">const</span> <span class="token punctuation">[</span>myArray<span class="token punctuation">,</span> setMyArray<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">[</span>arrayLength<span class="token punctuation">,</span> setArrayLength<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//duplicated data</span></code></pre>
+<p>Non far salvare gli stessi data nello state di piu’ componenti. Invece, fai lift dello state al livello appropriato e passa i data verso il basso come prop.</p>
+<pre class="language-js"><code><span class="token comment">/* Do this */</span>
+<span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>data<span class="token punctuation">,</span> setData<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token punctuation">{</span><span class="token comment">/* pass down the data as a prop */</span><span class="token punctuation">}</span>
+    <span class="token operator">&lt;</span>CardList data<span class="token operator">=</span><span class="token punctuation">{</span>data<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token comment">/* Do not do this */</span>
+<span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>data<span class="token punctuation">,</span> setData<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>CardList data<span class="token operator">=</span><span class="token punctuation">{</span>data<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">CardList</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>data<span class="token punctuation">,</span> setData<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span>props<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">//...</span>
+<span class="token punctuation">}</span></code></pre></li>
+<li><p>Non passare le state setter functions come callback ai child components. Invece, crea una callback function separata che possa chiamare lo state setter. Questo rende piu’ facile aggiungere processing e logica di controllo quando aggiorni lo state, oltre a seguire il <a href="https://en.wikipedia.org/wiki/Law_of_Demeter">Principle of Least Knowledge</a>.</p>
+<pre class="language-js"><code><span class="token comment">/* Do this */</span>
+<span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>data<span class="token punctuation">,</span> setData<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">//a function to update the data</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">updateData</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">newData</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token comment">//can do additional processing here</span>
+    <span class="token function">setData</span><span class="token punctuation">(</span>newData<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//update the state</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token punctuation">{</span><span class="token comment">/* pass down the callback function as a prop */</span><span class="token punctuation">}</span>
+    <span class="token operator">&lt;</span>UpdateForm data<span class="token operator">=</span><span class="token punctuation">{</span>data<span class="token punctuation">}</span> updateCallback<span class="token operator">=</span><span class="token punctuation">{</span>updateData<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token comment">/* Do not do this */</span>
+<span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>data<span class="token punctuation">,</span> setData<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token punctuation">{</span><span class="token comment">/* Do not pass the state setter directly! */</span><span class="token punctuation">}</span>
+    <span class="token operator">&lt;</span>UpdateForm data<span class="token operator">=</span><span class="token punctuation">{</span>data<span class="token punctuation">}</span> updateCallback<span class="token operator">=</span><span class="token punctuation">{</span>setData<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></li>
+</ul>
+</div>
+<div id="events-e-forms" class="section level3 hasAnchor" number="20.4.4">
+<h3><span class="header-section-number">20.4.4</span> Events e Forms<a href="guida-allo-stile-del-codice.html#events-e-forms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Tutti i form dovrebbero essere <a href="https://reactjs.org/docs/forms.html#controlled-components">controlled</a>, gestendo il valore inserito tramite lo state del Component (invece dello state dell’elemento HTML). Questo aiuta a evitare la duplicazione dei data, seguendo il <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">Don’t Repeat Yourself (DRY) Principle</a>.</p>
+<pre class="language-js"><code><span class="token comment">/* Do this */</span>
+<span class="token keyword">function</span> <span class="token function">ExampleForm</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>inputValue<span class="token punctuation">,</span> setInputValue<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">const</span> <span class="token function-variable function">handleChange</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> newValue <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value
+    <span class="token function">setInputValue</span><span class="token punctuation">(</span>newValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"text"</span> onChange<span class="token operator">=</span><span class="token punctuation">{</span>handleChange<span class="token punctuation">}</span> value<span class="token operator">=</span><span class="token punctuation">{</span>inputValue<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></li>
+</ul>
+</div>
+</div>
+<div id="linee-guida-varie" class="section level2 hasAnchor" number="20.5">
+<h2><span class="header-section-number">20.5</span> Linee guida varie<a href="guida-allo-stile-del-codice.html#linee-guida-varie" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Dai a tutti i file e folder (source code o altro) nomi con <strong>tutte lettere minuscole</strong>. Questo mantiene consistenza ed evita bug tra sistemi operativi.</p></li>
+<li><p>Non includere spazi (<code></code>) nei nomi dei file, in particolare per i media assets—non avere un file chiamato <code>my puppy.png</code>. Sostituisci lo spazio con un carattere alternativo, come <code>_</code>, <code>-</code> o <code>+</code>. I whitespace characters devono essere codificati in modo speciale per gli URI, il che puo’ causare problemi e di leggibilita’.</p></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="appendice-appendici-e-argomenti-speciali.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="jest.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["github", "facebook", "twitter", "google"],
+    "google": false
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/info340/book/edit/master/code-style-guide.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

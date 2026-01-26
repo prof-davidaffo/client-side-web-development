@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="it" xml:lang="it">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 19 Firebase | Sviluppo Web lato client</title>
+  <meta name="description" content="Dispensa del corso INFO 340: Client-Side Web Development." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 19 Firebase | Sviluppo Web lato client" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://info340.github.io//img/cover-img.png" />
+  <meta property="og:description" content="Dispensa del corso INFO 340: Client-Side Web Development." />
+  <meta name="github-repo" content="info340/book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 19 Firebase | Sviluppo Web lato client" />
+  
+  <meta name="twitter:description" content="Dispensa del corso INFO 340: Client-Side Web Development." />
+  <meta name="twitter:image" content="https://info340.github.io//img/cover-img.png" />
+
+<meta name="author" content="Joel Ross" />
+
+
+<meta name="date" content="2026-01-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/busy-spider-icon.png" type="image/x-icon" />
+<link rel="prev" href="ajax.html"/>
+<link rel="next" href="appendice-appendici-e-argomenti-speciali.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-98444716-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/prism.min.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./" class="title">Client-Side Web Development</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Informazioni sul libro</a></li>
+<li class="chapter" data-level="1" data-path="software-setup.html"><a href="software-setup.html"><i class="fa fa-check"></i><b>1</b> Impostazione iniziale</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="software-setup.html"><a href="software-setup.html#web-browser"><i class="fa fa-check"></i><b>1.1</b> Web Browser</a></li>
+<li class="chapter" data-level="1.2" data-path="software-setup.html"><a href="software-setup.html#code-editor"><i class="fa fa-check"></i><b>1.2</b> Code Editor</a>
+<ul>
+<li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html#visual-studio-code"><i class="fa fa-check"></i>Visual Studio Code</a></li>
+<li class="chapter" data-level="1.2.1" data-path="software-setup.html"><a href="software-setup.html#altri-editor"><i class="fa fa-check"></i><b>1.2.1</b> Altri editor</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="software-setup.html"><a href="software-setup.html#bash-command-line"><i class="fa fa-check"></i><b>1.3</b> Bash (Command Line)</a></li>
+<li class="chapter" data-level="1.4" data-path="software-setup.html"><a href="software-setup.html#node-e-npm"><i class="fa fa-check"></i><b>1.4</b> Node e <code>npm</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html#installare-software-con-npm"><i class="fa fa-check"></i>Installare software con npm</a></li>
+<li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html#gestire-package-locali"><i class="fa fa-check"></i>Gestire package locali</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html"><i class="fa fa-check"></i><b>2</b> Sviluppo lato client</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#client-e-server"><i class="fa fa-check"></i><b>2.1</b> Client e server</a></li>
+<li class="chapter" data-level="2.2" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#url-e-file-web"><i class="fa fa-check"></i><b>2.2</b> URL e file web</a>
+<ul>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#tipi-di-file-client-side"><i class="fa fa-check"></i>Tipi di file client-side</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#server-e-hosting"><i class="fa fa-check"></i><b>2.3</b> Server e hosting</a>
+<ul>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#hosting-con-github-pages"><i class="fa fa-check"></i>Hosting con GitHub Pages</a></li>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#development-server"><i class="fa fa-check"></i>Development server</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#web-standards"><i class="fa fa-check"></i><b>2.4</b> Web standards</a></li>
+<li class="chapter" data-level="2.5" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#accessibilita-web"><i class="fa fa-check"></i><b>2.5</b> Accessibilita’ web</a>
+<ul>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#supportare-laccessibilita"><i class="fa fa-check"></i>Supportare l’accessibilita’</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="html-fundamentals.html"><a href="html-fundamentals.html"><i class="fa fa-check"></i><b>3</b> Fondamenti di HTML</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="html-fundamentals.html"><a href="html-fundamentals.html#elementi-html"><i class="fa fa-check"></i><b>3.1</b> Elementi HTML</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#alcuni-elementi-di-esempio"><i class="fa fa-check"></i>Alcuni elementi di esempio</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#commenti"><i class="fa fa-check"></i>Commenti</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#attributi"><i class="fa fa-check"></i>Attributi</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#elementi-vuoti"><i class="fa fa-check"></i>Elementi vuoti</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="html-fundamentals.html"><a href="html-fundamentals.html#nidificazione-di-elementi"><i class="fa fa-check"></i><b>3.2</b> Nidificazione di elementi</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#elementi-block-vs.-inline"><i class="fa fa-check"></i>Elementi block vs. inline</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="html-fundamentals.html"><a href="html-fundamentals.html#struttura-della-web-page"><i class="fa fa-check"></i><b>3.3</b> Struttura della web page</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#risorse"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="css-fundamentals.html"><a href="css-fundamentals.html"><i class="fa fa-check"></i><b>4</b> Fondamenti di CSS</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="css-fundamentals.html"><a href="css-fundamentals.html#perche-due-linguaggi-diversi"><i class="fa fa-check"></i><b>4.1</b> Perche’ due linguaggi diversi?</a></li>
+<li class="chapter" data-level="4.2" data-path="css-fundamentals.html"><a href="css-fundamentals.html#includere-css"><i class="fa fa-check"></i><b>4.2</b> Includere CSS</a></li>
+<li class="chapter" data-level="4.3" data-path="css-fundamentals.html"><a href="css-fundamentals.html#regole-css"><i class="fa fa-check"></i><b>4.3</b> Regole CSS</a>
+<ul>
+<li class="chapter" data-level="" data-path="css-fundamentals.html"><a href="css-fundamentals.html#fondamenti-dei-css-selector"><i class="fa fa-check"></i>Fondamenti dei CSS selector</a></li>
+<li class="chapter" data-level="" data-path="css-fundamentals.html"><a href="css-fundamentals.html#fondamenti-delle-property-css"><i class="fa fa-check"></i>Fondamenti delle property CSS</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="css-fundamentals.html"><a href="css-fundamentals.html#la-cascade"><i class="fa fa-check"></i><b>4.4</b> La cascade</a></li>
+<li class="chapter" data-level="" data-path="css-fundamentals.html"><a href="css-fundamentals.html#risorse-1"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="html-semantico.html"><a href="html-semantico.html"><i class="fa fa-check"></i><b>5</b> HTML Semantico</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="html-semantico.html"><a href="html-semantico.html#elementi-html-specifici"><i class="fa fa-check"></i><b>5.1</b> Elementi HTML specifici</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#hyperlink"><i class="fa fa-check"></i>Hyperlink</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#elementi-testuali-inline"><i class="fa fa-check"></i>Elementi testuali inline</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#immagini-e-media"><i class="fa fa-check"></i>Immagini e media</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#headings"><i class="fa fa-check"></i>Headings</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#elementi-non-semantici"><i class="fa fa-check"></i>Elementi non semantici</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#sectioning-elements"><i class="fa fa-check"></i>Sectioning elements</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#tabelle"><i class="fa fa-check"></i>Tabelle</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#form"><i class="fa fa-check"></i>Form</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="html-semantico.html"><a href="html-semantico.html#aria-for-accessibility"><i class="fa fa-check"></i><b>5.2</b> ARIA for Accessibility</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#aria-labeling"><i class="fa fa-check"></i>ARIA Labeling</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#aria-roles-and-landmarks"><i class="fa fa-check"></i>ARIA Roles and Landmarks</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#aria-e-interattivita"><i class="fa fa-check"></i>ARIA e interattivita’</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#risorse-2"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="selettori-css.html"><a href="selettori-css.html"><i class="fa fa-check"></i><b>6</b> Selettori CSS</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="selettori-css.html"><a href="selettori-css.html#selector-di-base"><i class="fa fa-check"></i><b>6.1</b> Selector di base</a>
+<ul>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#type-selector"><i class="fa fa-check"></i>Type Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#class-selector"><i class="fa fa-check"></i>Class Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#id-selector"><i class="fa fa-check"></i>Id Selector</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="selettori-css.html"><a href="selettori-css.html#selector-complessi"><i class="fa fa-check"></i><b>6.2</b> Selector complessi</a>
+<ul>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#grouping-selector"><i class="fa fa-check"></i>Grouping Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#compound-selector"><i class="fa fa-check"></i>Compound Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#descendant-selector"><i class="fa fa-check"></i>Descendant Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#pseudo-classi"><i class="fa fa-check"></i>Pseudo-classi</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#altri-selector"><i class="fa fa-check"></i>Altri selector</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="selettori-css.html"><a href="selettori-css.html#specificita-dei-selector"><i class="fa fa-check"></i><b>6.3</b> Specificita’ dei selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#risorse-3"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="proprieta-css.html"><a href="proprieta-css.html"><i class="fa fa-check"></i><b>7</b> Proprieta’ CSS</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="proprieta-css.html"><a href="proprieta-css.html#specificare-i-valori-delle-property"><i class="fa fa-check"></i><b>7.1</b> Specificare i valori delle property</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#valori-di-property-ereditati"><i class="fa fa-check"></i>Valori di property ereditati</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#css-units"><i class="fa fa-check"></i>Unita’ di lunghezza e dimensioni</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="proprieta-css.html"><a href="proprieta-css.html#font-e-testo"><i class="fa fa-check"></i><b>7.2</b> Font e testo</a></li>
+<li class="chapter" data-level="7.3" data-path="proprieta-css.html"><a href="proprieta-css.html#css-colors"><i class="fa fa-check"></i><b>7.3</b> Colori e background</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#background-e-immagini"><i class="fa fa-check"></i>Background e immagini</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="proprieta-css.html"><a href="proprieta-css.html#box-model"><i class="fa fa-check"></i><b>7.4</b> Spaziatura con il Box Model</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#padding"><i class="fa fa-check"></i>Padding</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#border"><i class="fa fa-check"></i>Border</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#margin"><i class="fa fa-check"></i>Margin</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#padding-vs.-margin"><i class="fa fa-check"></i>Padding vs. Margin</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#box-sizing"><i class="fa fa-check"></i>Box-Sizing</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="proprieta-css.html"><a href="proprieta-css.html#flow-layout"><i class="fa fa-check"></i><b>7.5</b> Flow Layout</a></li>
+<li class="chapter" data-level="7.6" data-path="proprieta-css.html"><a href="proprieta-css.html#posizionamento-alternativo"><i class="fa fa-check"></i><b>7.6</b> Posizionamento alternativo</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#floating"><i class="fa fa-check"></i>Floating</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="proprieta-css.html"><a href="proprieta-css.html#flexbox"><i class="fa fa-check"></i><b>7.7</b> Flexbox</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#risorse-4"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="responsive-css.html"><a href="responsive-css.html"><i class="fa fa-check"></i><b>8</b> CSS responsive</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="responsive-css.html"><a href="responsive-css.html#design-mobile-first"><i class="fa fa-check"></i><b>8.1</b> Design mobile-first</a>
+<ul>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#principi-di-mobile-first-design"><i class="fa fa-check"></i>Principi di mobile-first design</a></li>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#specificare-il-viewport"><i class="fa fa-check"></i>Specificare il viewport</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="responsive-css.html"><a href="responsive-css.html#media-query"><i class="fa fa-check"></i><b>8.2</b> Media query</a>
+<ul>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#esempio-flexbox-responsive"><i class="fa fa-check"></i>Esempio: Flexbox responsive</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#risorse-5"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="framework-css.html"><a href="framework-css.html"><i class="fa fa-check"></i><b>9</b> Framework CSS</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="framework-css.html"><a href="framework-css.html#usare-un-framework"><i class="fa fa-check"></i><b>9.1</b> Usare un framework</a>
+<ul>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#includere-un-framework"><i class="fa fa-check"></i>Includere un framework</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="framework-css.html"><a href="framework-css.html#bootstrap"><i class="fa fa-check"></i><b>9.2</b> Bootstrap</a>
+<ul>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#class-di-utilita"><i class="fa fa-check"></i>Class di utilita’</a></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#design-responsive"><i class="fa fa-check"></i>Design responsive</a></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#la-grid"><i class="fa fa-check"></i>La Grid</a></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#componenti"><i class="fa fa-check"></i>Componenti</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#risorse-6"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="javascript.html"><a href="javascript.html"><i class="fa fa-check"></i><b>10</b> Fondamenti di JavaScript</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="javascript.html"><a href="javascript.html#programmare-con-javascript"><i class="fa fa-check"></i><b>10.1</b> Programmare con JavaScript</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#storia-e-versioni"><i class="fa fa-check"></i>Storia e versioni</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="javascript.html"><a href="javascript.html#eseguire-javascript"><i class="fa fa-check"></i><b>10.2</b> Eseguire JavaScript</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#nel-browser"><i class="fa fa-check"></i>Nel Browser</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#da-command-line-con-node.js"><i class="fa fa-check"></i>Da Command-line con Node.js</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="javascript.html"><a href="javascript.html#scrivere-script"><i class="fa fa-check"></i><b>10.3</b> Scrivere Script</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#strict-mode"><i class="fa fa-check"></i>Strict Mode</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="javascript.html"><a href="javascript.html#variabili"><i class="fa fa-check"></i><b>10.4</b> Variabili</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#data-types-di-base"><i class="fa fa-check"></i>Data Types di base</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#array"><i class="fa fa-check"></i>Array</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#object"><i class="fa fa-check"></i>Object</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#type-coercion"><i class="fa fa-check"></i>Type Coercion</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="javascript.html"><a href="javascript.html#strutture-di-controllo"><i class="fa fa-check"></i><b>10.5</b> Strutture di controllo</a></li>
+<li class="chapter" data-level="10.6" data-path="javascript.html"><a href="javascript.html#funzioni"><i class="fa fa-check"></i><b>10.6</b> Funzioni</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#risorse-7"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>11</b> Programmazione funzionale in JS</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="functional-programming.html"><a href="functional-programming.html#functions-are-variables"><i class="fa fa-check"></i><b>11.1</b> Functions ARE Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#anonymous-functions"><i class="fa fa-check"></i>Anonymous Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="functional-programming.html"><a href="functional-programming.html#object-functions"><i class="fa fa-check"></i><b>11.2</b> Object Functions</a></li>
+<li class="chapter" data-level="11.3" data-path="functional-programming.html"><a href="functional-programming.html#callback-functions"><i class="fa fa-check"></i><b>11.3</b> Callback Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#closures"><i class="fa fa-check"></i>Closures</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="functional-programming.html"><a href="functional-programming.html#functional-looping"><i class="fa fa-check"></i><b>11.4</b> Functional Looping</a>
+<ul>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#map"><i class="fa fa-check"></i>Map</a></li>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#filter"><i class="fa fa-check"></i>Filter</a></li>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#reduce"><i class="fa fa-check"></i>Reduce</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="functional-programming.html"><a href="functional-programming.html#pure-functions"><i class="fa fa-check"></i><b>11.5</b> Pure Functions</a></li>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#risorse-8"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="dom.html"><a href="dom.html"><i class="fa fa-check"></i><b>12</b> Modello a oggetti del documento (DOM)</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="dom.html"><a href="dom.html#la-dom-api"><i class="fa fa-check"></i><b>12.1</b> La DOM API</a>
+<ul>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#global-variables"><i class="fa fa-check"></i>Global Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="dom.html"><a href="dom.html#dom-manipulation"><i class="fa fa-check"></i><b>12.2</b> DOM Manipulation</a>
+<ul>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#referenziare-elementi-html"><i class="fa fa-check"></i>Referenziare elementi HTML</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#modificare-elementi-html"><i class="fa fa-check"></i>Modificare elementi HTML</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#modificare-il-dom-tree"><i class="fa fa-check"></i>Modificare il DOM Tree</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#accessibility"><i class="fa fa-check"></i>Accessibility</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="dom.html"><a href="dom.html#ascoltare-gli-eventi"><i class="fa fa-check"></i><b>12.3</b> Ascoltare gli Eventi</a>
+<ul>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#tipi-di-eventi"><i class="fa fa-check"></i>Tipi di Eventi</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#event-driven-programming"><i class="fa fa-check"></i>Event-Driven Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#risorse-9"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="librerie-javascript.html"><a href="librerie-javascript.html"><i class="fa fa-check"></i><b>13</b> Librerie JavaScript</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="librerie-javascript.html"><a href="librerie-javascript.html#includere-una-library"><i class="fa fa-check"></i><b>13.1</b> Includere una Library</a></li>
+<li class="chapter" data-level="13.2" data-path="librerie-javascript.html"><a href="librerie-javascript.html#esempio-jquery"><i class="fa fa-check"></i><b>13.2</b> Esempio: jQuery</a>
+<ul>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#manipolare-il-dom"><i class="fa fa-check"></i>Manipolare il DOM</a></li>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#gestire-gli-eventi"><i class="fa fa-check"></i>Gestire gli eventi</a></li>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#e-altro"><i class="fa fa-check"></i>E altro!</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#risorse-10"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="es6.html"><a href="es6.html"><i class="fa fa-check"></i><b>14</b> Sintassi ES6+</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="es6.html"><a href="es6.html#es6-syntax-features"><i class="fa fa-check"></i><b>14.1</b> ES6+ Syntax Features</a>
+<ul>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#arrow-functions"><i class="fa fa-check"></i>Arrow Functions</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#destructuring"><i class="fa fa-check"></i>Destructuring</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#spreading"><i class="fa fa-check"></i>Spreading</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#template-strings"><i class="fa fa-check"></i>Template Strings</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="es6.html"><a href="es6.html#modules"><i class="fa fa-check"></i><b>14.2</b> Modules</a>
+<ul>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#module-syntax"><i class="fa fa-check"></i>Module Syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="es6.html"><a href="es6.html#es6-classes"><i class="fa fa-check"></i><b>14.3</b> Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#why-classes"><i class="fa fa-check"></i>Why Classes?</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#review-classes-in-java"><i class="fa fa-check"></i>Review: Classes in Java</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#es6-class-syntax"><i class="fa fa-check"></i>ES6 Class Syntax</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#inheritance"><i class="fa fa-check"></i>Inheritance</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#working-with-this"><i class="fa fa-check"></i>Working with <code>this</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="react.html"><a href="react.html"><i class="fa fa-check"></i><b>15</b> Introduzione a React</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="react.html"><a href="react.html#react-vite-setup"><i class="fa fa-check"></i><b>15.1</b> Preparazione: React e Vite</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#eseguire-il-development-server"><i class="fa fa-check"></i>Eseguire il Development Server</a></li>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#struttura-del-progetto"><i class="fa fa-check"></i>Struttura del Progetto</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="react.html"><a href="react.html#jsx"><i class="fa fa-check"></i><b>15.2</b> JSX</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#espressioni-inline"><i class="fa fa-check"></i>Espressioni Inline</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="react.html"><a href="react.html#component-react"><i class="fa fa-check"></i><b>15.3</b> Component React</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#organizzazione-dei-components"><i class="fa fa-check"></i>Organizzazione dei Components</a></li>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#alternativa-deprecata-class-components"><i class="fa fa-check"></i>Alternativa Deprecata: Class Components</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="react.html"><a href="react.html#props"><i class="fa fa-check"></i><b>15.4</b> Proprieta’ (<code>props</code>)</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#props-e-composizione"><i class="fa fa-check"></i>Props e Composizione</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#risorse-11"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="react-interattivo.html"><a href="react-interattivo.html"><i class="fa fa-check"></i><b>16</b> React Interattivo</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="react-interattivo.html"><a href="react-interattivo.html#gestire-gli-eventi-in-react"><i class="fa fa-check"></i><b>16.1</b> Gestire gli Eventi in React</a></li>
+<li class="chapter" data-level="16.2" data-path="react-interattivo.html"><a href="react-interattivo.html#state-e-hooks"><i class="fa fa-check"></i><b>16.2</b> State e Hooks</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#aggiornare-lo-state"><i class="fa fa-check"></i>Aggiornare lo State</a></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#state-vs.-props"><i class="fa fa-check"></i>State vs. Props</a></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#lifting-up-state"><i class="fa fa-check"></i>Lifting Up State</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="react-interattivo.html"><a href="react-interattivo.html#interazioni-specifiche"><i class="fa fa-check"></i><b>16.3</b> Interazioni Specifiche</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#lavorare-con-i-forms"><i class="fa fa-check"></i>Lavorare con i Forms</a></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#caricare-data-via-ajax"><i class="fa fa-check"></i>Caricare Data via AJAX</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#risorse-12"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="routing-lato-client.html"><a href="routing-lato-client.html"><i class="fa fa-check"></i><b>17</b> Routing lato client</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="routing-lato-client.html"><a href="routing-lato-client.html#single-page-applications"><i class="fa fa-check"></i><b>17.1</b> Single-Page Applications</a></li>
+<li class="chapter" data-level="17.2" data-path="routing-lato-client.html"><a href="routing-lato-client.html#react-router"><i class="fa fa-check"></i><b>17.2</b> React-Router</a>
+<ul>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#routing"><i class="fa fa-check"></i>Routing</a></li>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#linking"><i class="fa fa-check"></i>Linking</a></li>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#react-router-e-hosting"><i class="fa fa-check"></i>React Router e Hosting</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#risorse-13"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="ajax.html"><a href="ajax.html"><i class="fa fa-check"></i><b>18</b> Richieste AJAX</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="ajax.html"><a href="ajax.html#ajax-1"><i class="fa fa-check"></i><b>18.1</b> AJAX</a>
+<ul>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#xml-e-json"><i class="fa fa-check"></i>XML e JSON</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="ajax.html"><a href="ajax.html#fetching-data"><i class="fa fa-check"></i><b>18.2</b> Fetching Data</a></li>
+<li class="chapter" data-level="18.3" data-path="ajax.html"><a href="ajax.html#asynchronous-programming"><i class="fa fa-check"></i><b>18.3</b> Asynchronous Programming</a>
+<ul>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#chaining-promises"><i class="fa fa-check"></i>Chaining Promises</a></li>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#handling-errors"><i class="fa fa-check"></i>Handling Errors</a></li>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#altri-data-formats"><i class="fa fa-check"></i>Altri Data Formats</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#risorse-14"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="firebase.html"><a href="firebase.html"><i class="fa fa-check"></i><b>19</b> Firebase</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="firebase.html"><a href="firebase.html#setting-up-firebase"><i class="fa fa-check"></i><b>19.1</b> Setting up Firebase</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#creating-a-project"><i class="fa fa-check"></i>Creating a Project</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#including-firebase-in-react"><i class="fa fa-check"></i>Including Firebase in React</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#adding-collaborators-to-a-project"><i class="fa fa-check"></i>Adding Collaborators to a Project</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="firebase.html"><a href="firebase.html#realtime-database"><i class="fa fa-check"></i><b>19.2</b> Realtime Database</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#setting-up-the-database"><i class="fa fa-check"></i>Setting Up the Database</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#reference-ai-dati"><i class="fa fa-check"></i>Reference ai dati</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#listening-for-data-changes"><i class="fa fa-check"></i>Listening for Data Changes</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#firebase-arrays"><i class="fa fa-check"></i>Firebase Arrays</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="firebase.html"><a href="firebase.html#autenticazione-utenti"><i class="fa fa-check"></i><b>19.3</b> Autenticazione utenti</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#accesso-con-firebaseui"><i class="fa fa-check"></i>Accesso con FirebaseUI</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#managing-the-user"><i class="fa fa-check"></i>Managing the User</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="firebase.html"><a href="firebase.html#firebase-storage"><i class="fa fa-check"></i><b>19.4</b> Firebase Storage</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#file-inputs"><i class="fa fa-check"></i>File Inputs</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#uploading-files"><i class="fa fa-check"></i>Uploading Files</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#risorse-15"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendice-appendici-e-argomenti-speciali.html"><a href="appendice-appendici-e-argomenti-speciali.html"><i class="fa fa-check"></i>(APPENDICE) Appendici e argomenti speciali</a></li>
+<li class="chapter" data-level="20" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html"><i class="fa fa-check"></i><b>20</b> Guida allo stile del codice</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#html-guidelines"><i class="fa fa-check"></i><b>20.1</b> HTML Guidelines</a>
+<ul>
+<li class="chapter" data-level="" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#spacing"><i class="fa fa-check"></i>Spacing</a></li>
+<li class="chapter" data-level="" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#elementi-specifici"><i class="fa fa-check"></i>Elementi specifici</a></li>
+<li class="chapter" data-level="" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#commenti-in-html"><i class="fa fa-check"></i>Commenti in HTML</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#css-guidelines"><i class="fa fa-check"></i><b>20.2</b> CSS Guidelines</a>
+<ul>
+<li class="chapter" data-level="20.2.1" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#spacing-1"><i class="fa fa-check"></i><b>20.2.1</b> Spacing</a></li>
+<li class="chapter" data-level="20.2.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#selectors"><i class="fa fa-check"></i><b>20.2.2</b> Selectors</a></li>
+<li class="chapter" data-level="20.2.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#class-names"><i class="fa fa-check"></i><b>20.2.3</b> Class Names</a></li>
+<li class="chapter" data-level="20.2.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#proprieta-specifiche"><i class="fa fa-check"></i><b>20.2.4</b> Proprieta’ specifiche</a></li>
+<li class="chapter" data-level="20.2.5" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#responsive-css-1"><i class="fa fa-check"></i><b>20.2.5</b> Responsive CSS</a></li>
+<li class="chapter" data-level="20.2.6" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#commenti-in-css"><i class="fa fa-check"></i><b>20.2.6</b> Commenti in CSS</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#javascript-guidelines"><i class="fa fa-check"></i><b>20.3</b> JavaScript Guidelines</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#variables"><i class="fa fa-check"></i><b>20.3.1</b> Variables</a></li>
+<li class="chapter" data-level="20.3.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#functions"><i class="fa fa-check"></i><b>20.3.2</b> Functions</a></li>
+<li class="chapter" data-level="20.3.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#commenti-in-javascript"><i class="fa fa-check"></i><b>20.3.3</b> Commenti in JavaScript</a></li>
+<li class="chapter" data-level="20.3.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#altre-linee-guida-javascript"><i class="fa fa-check"></i><b>20.3.4</b> Altre linee guida JavaScript</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#react-guidelines"><i class="fa fa-check"></i><b>20.4</b> React Guidelines</a>
+<ul>
+<li class="chapter" data-level="20.4.1" data-path="react.html"><a href="react.html#components"><i class="fa fa-check"></i><b>20.4.1</b> Components</a></li>
+<li class="chapter" data-level="20.4.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#mapping-data"><i class="fa fa-check"></i><b>20.4.2</b> Mapping Data</a></li>
+<li class="chapter" data-level="20.4.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#state"><i class="fa fa-check"></i><b>20.4.3</b> State</a></li>
+<li class="chapter" data-level="20.4.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#events-e-forms"><i class="fa fa-check"></i><b>20.4.4</b> Events e Forms</a></li>
+</ul></li>
+<li class="chapter" data-level="20.5" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#linee-guida-varie"><i class="fa fa-check"></i><b>20.5</b> Linee guida varie</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="jest.html"><a href="jest.html"><i class="fa fa-check"></i><b>21</b> Test con Jest</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="jest.html"><a href="jest.html#test"><i class="fa fa-check"></i><b>21.1</b> Test</a></li>
+<li class="chapter" data-level="21.2" data-path="jest.html"><a href="jest.html#testing-con-jest"><i class="fa fa-check"></i><b>21.2</b> Testing con Jest</a></li>
+<li class="chapter" data-level="21.3" data-path="jest.html"><a href="jest.html#scrivere-un-test"><i class="fa fa-check"></i><b>21.3</b> Scrivere un test</a>
+<ul>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#assertion-e-matcher"><i class="fa fa-check"></i>Assertion e matcher</a></li>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#organizzare-i-test"><i class="fa fa-check"></i>Organizzare i test</a></li>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#eseguire-i-test"><i class="fa fa-check"></i>Eseguire i test</a></li>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#esercizio"><i class="fa fa-check"></i>Esercizio</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="jest.html"><a href="jest.html#testing-di-web-app-con-jest"><i class="fa fa-check"></i><b>21.4</b> Testing di web app con Jest</a>
+<ul>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#pratica"><i class="fa fa-check"></i>Pratica</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="webpack.html"><a href="webpack.html"><i class="fa fa-check"></i><b>22</b> Laboratorio: Webpack</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="webpack.html"><a href="webpack.html#che-cose-webpack"><i class="fa fa-check"></i><b>22.1</b> Che cos’e’ Webpack?</a></li>
+<li class="chapter" data-level="22.2" data-path="webpack.html"><a href="webpack.html#getting-started"><i class="fa fa-check"></i><b>22.2</b> Getting Started</a></li>
+<li class="chapter" data-level="22.3" data-path="webpack.html"><a href="webpack.html#webpack.config.js"><i class="fa fa-check"></i><b>22.3</b> <code>webpack.config.js</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#entry-e-output"><i class="fa fa-check"></i><code>entry</code> e <code>output</code></a></li>
+</ul></li>
+<li class="chapter" data-level="22.4" data-path="webpack.html"><a href="webpack.html#loaders"><i class="fa fa-check"></i><b>22.4</b> Loaders</a>
+<ul>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#babel-loader"><i class="fa fa-check"></i>Babel Loader</a></li>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#clean-up-bath"><i class="fa fa-check"></i>Clean up :bath:</a></li>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#ulteriore-pratica-con-i-loader"><i class="fa fa-check"></i>Ulteriore pratica con i Loader</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="class-components.html"><a href="class-components.html"><i class="fa fa-check"></i><b>23</b> Componenti class React</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="class-components.html"><a href="class-components.html#props-nei-class-components"><i class="fa fa-check"></i><b>23.1</b> Props nei Class Components</a></li>
+<li class="chapter" data-level="23.2" data-path="class-components.html"><a href="class-components.html#gestire-gli-eventi-nei-class-components"><i class="fa fa-check"></i><b>23.2</b> Gestire gli Eventi nei Class Components</a>
+<ul>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#accedere-al-this-del-component-dagli-eventi"><i class="fa fa-check"></i>Accedere al <code>this</code> del Component dagli Eventi</a></li>
+</ul></li>
+<li class="chapter" data-level="23.3" data-path="class-components.html"><a href="class-components.html#state-in-class-components"><i class="fa fa-check"></i><b>23.3</b> State nei Class Components</a>
+<ul>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#cambiare-lo-state"><i class="fa fa-check"></i>Cambiare lo State</a></li>
+</ul></li>
+<li class="chapter" data-level="23.4" data-path="class-components.html"><a href="class-components.html#il-lifecycle-del-component"><i class="fa fa-check"></i><b>23.4</b> Il Lifecycle del Component</a>
+<ul>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#esempio-di-lifecycle-caricare-data-via-ajax"><i class="fa fa-check"></i>Esempio di Lifecycle: Caricare Data via AJAX</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#risorse-16"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="css-in-js.html"><a href="css-in-js.html"><i class="fa fa-check"></i><b>24</b> CSS in JS</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="css-in-js.html"><a href="css-in-js.html#perche-css-in-js"><i class="fa fa-check"></i><b>24.1</b> Perche’ CSS in JS?</a></li>
+<li class="chapter" data-level="24.2" data-path="css-in-js.html"><a href="css-in-js.html#stili-inline-in-react"><i class="fa fa-check"></i><b>24.2</b> Stili inline in React</a></li>
+<li class="chapter" data-level="24.3" data-path="css-in-js.html"><a href="css-in-js.html#aphrodite"><i class="fa fa-check"></i><b>24.3</b> Aphrodite</a></li>
+<li class="chapter" data-level="24.4" data-path="css-in-js.html"><a href="css-in-js.html#css-modules"><i class="fa fa-check"></i><b>24.4</b> CSS Modules</a>
+<ul>
+<li class="chapter" data-level="" data-path="css-in-js.html"><a href="css-in-js.html#ejecting-da-create-react-app"><i class="fa fa-check"></i>Ejecting da Create React App</a></li>
+<li class="chapter" data-level="" data-path="css-in-js.html"><a href="css-in-js.html#composizione-delle-class"><i class="fa fa-check"></i>Composizione delle class</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="css-in-js.html"><a href="css-in-js.html#risorse-17"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="redux.html"><a href="redux.html"><i class="fa fa-check"></i><b>25</b> Redux</a></li>
+<li class="chapter" data-level="26" data-path="react-native.html"><a href="react-native.html"><i class="fa fa-check"></i><b>26</b> React Native</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="react-native.html"><a href="react-native.html#getting-setup"><i class="fa fa-check"></i><b>26.1</b> Getting Setup</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#eseguire-react-native-apps"><i class="fa fa-check"></i>Eseguire React Native Apps</a></li>
+</ul></li>
+<li class="chapter" data-level="26.2" data-path="react-native.html"><a href="react-native.html#react-native-apps"><i class="fa fa-check"></i><b>26.2</b> React Native Apps</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#styling-react-native"><i class="fa fa-check"></i>Styling React Native</a></li>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#interaction"><i class="fa fa-check"></i>Interaction</a></li>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#liste-e-data"><i class="fa fa-check"></i>Liste e Data</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Sviluppo Web lato client</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="firebase" class="section level1 hasAnchor" number="19">
+<h1><span class="header-section-number">Chapter 19</span> Firebase<a href="firebase.html#firebase" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Questo capitolo discute come integrare e usare il web service <a href="https://firebase.google.com/"><strong>Firebase</strong></a> in una client-side application (usando React). Firebase e’ un web service che fornisce strumenti e infrastrutture per creare web e mobile apps che salvano data online nel cloud (una “web backend solution”). In pratica, Firebase agisce come un <em>server</em> che puo’ ospitare informazioni per te, cosi’ puoi costruire client-side applications senza dover programmare un web server.</p>
+<ul>
+<li>Firebase e’ di proprieta’ e manutenzione Google, ma funziona perfettamente con il framework React di Facebook.</li>
+</ul>
+<p>In particolare, questo capitolo discutera’ le seguenti feature di Firebase:</p>
+<ol style="list-style-type: decimal">
+<li><p>Il servizio Firebase fornisce anche diversi sistemi di “database”. Questo capitolo descrive come usare il <a href="https://firebase.google.com/docs/database/"><strong>realtime database</strong></a>, che offre un database in stile <a href="https://en.wikipedia.org/wiki/NoSQL">NoSql</a> semplice: puoi pensarlo come un <em>unico gigantesco JSON object nel Cloud</em>. Firebase fornisce methods che puoi usare per riferirti a questo object e alle sue properties, e fare modifiche all’object. Soprattutto, fornisce la possibilita’ di “ascoltare” le modifiche fatte da altri cosi’ la pagina puo’ aggiornarsi automaticamente in base alle azioni di altri utenti. In pratica puoi creare una <strong>data binding</strong> tra client e server, cosi’ se aggiorni i data su una macchina, il cambiamento appare automaticamente su un’altra.</p>
+<p>Firebase offre anche altre strutture di database. <a href="https://firebase.google.com/docs/firestore">Firestore</a> e’ un altro database NoSQL (document-based), ma piu’ focalizzato su query di fetch una tantum invece del data binding continuo fornito dal realtime database. Questo capitolo si concentra sul Realtime Database come sistema piu’ semplice da imparare e per esercitarsi con il data binding. <a href="https://firebase.google.com/docs/storage">Firebase Storage</a> si usa per salvare data di dimensioni maggiori (tutto cio’ che non puoi definire in JSON), come immagini o video, ed e’ descritto alla fine del capitolo.</p></li>
+<li><p>Il servizio Firebase offre anche un sistema client-side per eseguire <a href="https://firebase.google.com/docs/auth/"><strong>user authentication</strong></a>, cioe’ permettere agli utenti di “sign in” nella tua application e avere informazioni associate a loro. E’ possibile far registrare gli utenti con email e password, o anche usando un servizio esterno (ad es. “sign in with Google”). Firebase fornisce anche un modo per gestire tutte le interazioni extra associate agli account, come resettare password o confermare email. E tutto questo avviene in modo sicuro dal client-side, senza bisogno di impostare un server aggiuntivo per il lavoro OAuth.</p></li>
+</ol>
+<p>Queste feature significano che Firebase puo’ essere un back-end di riferimento per produrre una client-side app che coinvolge data persistenti (come gli account utente). E il suo <a href="https://firebase.google.com/pricing/">free service tier</a> e’ adatto a qualsiasi development app.</p>
+<p class="alert alert-warning">
+Questo capitolo descrive come usare <strong>version 9+</strong> della libreria Firebase, rilasciata in <em>August 2021</em>—e in particolare la sua <a href="https://firebase.google.com/docs/web/modular-upgrade"><em>modular API</em></a> (che permette bundle piu’ piccoli ed efficienti quando usi webpack e React). Nota che, anche se questa versione e’ concettualmente la stessa delle versioni precedenti, la sintassi dei moduli per chiamare e importare functions e’ diversa. Vedi la upgrade guide per dettagli. Fai attenzione quando cerchi esempi e risorse: devono usare la stessa versione che usi tu!
+</p>
+<p>Nota che Firebase fornisce anche <a href="https://firebase.google.com/docs/hosting"><strong>Firebase Hosting</strong></a> per fare hosting e servire web applications. Questo e’ particolarmente utile per hostare single-page-applications, come quelle <a href="#react-router-and-hosting">costruite con React Router</a>. Hosting non richiede modifiche al tuo source code, quindi non e’ discusso qui.</p>
+<div id="setting-up-firebase" class="section level2 hasAnchor" number="19.1">
+<h2><span class="header-section-number">19.1</span> Setting up Firebase<a href="firebase.html#setting-up-firebase" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Dato che Firebase e’ un cloud service, devi configurarlo esternamente per poterlo usare nella tua web application. Il setup e la configurazione di Firebase sono gestiti sul sito di Firebase all’indirizzo <a href="https://firebase.google.com/" class="uri">https://firebase.google.com/</a>, e in particolare nella <a href="https://console.firebase.google.com"><strong>Firebase Web Console</strong></a> dove puoi gestire i singoli progetti.</p>
+<p class="alert alert-success">
+Quando sviluppi una Firebase app, tieni sempre aperta la Web Console cosi’ puoi controllare database, user list, ecc!
+</p>
+<div id="creating-a-project" class="section level3 unnumbered hasAnchor">
+<h3>Creating a Project<a href="firebase.html#creating-a-project" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Per usare Firebase nella tua web app, devi <em>sign up</em> al servizio. Visita <strong><a href="https://firebase.google.com/" class="uri">https://firebase.google.com/</a></strong> e clicca il pulsante “Get Started”. Dovrai fare sign in con un Google account (ad es. un account UW se hai impostato l’integrazione Google). Il sign up ti portera’ alla Firebase Web Console.</p>
+<p>Nella Web Console, puoi gestire tutti i tuoi “projects”—uno per ogni application che hai creato (pensa: per repository). Ogni project traccia il proprio database di informazioni, il proprio set di utenti, ecc.</p>
+<p>Puoi creare un project cliccando il pulsante <em>“Add Project”</em>. Nella schermata successiva, dovrai dare all’app un nome <em>unico</em>. Dare al project il nome della tua app e’ una buona idea. Questo nome e’ usato internamente dal sistema Firebase; non sara’ necessariamente visibile agli utenti, anche se se usi <a href="https://firebase.google.com/docs/hosting"><strong>Firebase Hosting</strong></a> il nome del project fara’ parte dell’URL di default dell’application.</p>
+<ul>
+<li><em>Recommendation</em>: <strong>non</strong> abilitare Google Analytics per i tuoi projects!</li>
+</ul>
+<p>Dopo aver creato il project, verrai portato alla <strong>Web Console</strong> per quel project. Questa e’ una web page dove potrai gestire la configurazione del project, gli utenti che si sono registrati e qualsiasi data nel database. In particolare, nota il menu di navigazione a sinistra: lo userai per accedere alle diverse parti del project (<em>Realtime Database</em> per gestire il database e <em>Authentication</em> per gestire gli utenti)—espandi il dropdown <em>“Build”</em> per navigare.</p>
+<div class="float">
+<img src="img/firebase/firebase-nav3.png" alt="Firebase navigation menu" />
+<div class="figcaption">Firebase navigation menu</div>
+</div>
+</div>
+<div id="including-firebase-in-react" class="section level3 unnumbered hasAnchor">
+<h3>Including Firebase in React<a href="firebase.html#including-firebase-in-react" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Per usare Firebase in una web app (inclusa una React app), devi aggiungere la libreria Firebase alla web page e specificare alcuni data di configurazione per connetterti al project Firebase corretto.</p>
+<p>Dalla pagina della Web Console del project, clicca il pulsante (sembra <code>&lt;/&gt;</code> nell’immagine sopra) per aggiungere Firebase a una web app. Questo ti portera’ a una nuova pagina dove dovrai inserire un nickname per l’app e verra’ mostrato del codice JavaScript per caricare la libreria Firebase (assicurati che “Use npm” sia selezionato—non vuoi includere un elemento <code>&lt;script&gt;</code>!).</p>
+<p>In una React app integrerai Firebase direttamente nel source code modificando il file <strong><code>index.js</code></strong>:</p>
+<ol style="list-style-type: decimal">
+<li><p>Per prima cosa, installa la <a href="https://www.npmjs.com/package/firebase">Firebase library</a> usando <code>npm</code>:</p>
+<pre class="language-bash"><code><span class="token comment"># Note: do this in your app's repo (the folder with the `package.json` file)</span>
+
+<span class="token function">npm</span> <span class="token function">install</span> firebase</code></pre></li>
+<li><p>Poi copia lo statement <code>import</code>, la variable <code>firebaseConfig</code> e la chiamata <code>initializeApp()</code> nel file <strong><code>index.js</code></strong>. Questo specifica <em>quale</em> project Firebase deve connettere la tua web app quando chiami le functions per accedere a Firebase.</p>
+<p>Nota che dovrai incollare questo codice <em>prima</em> della chiamata <code>ReactDOM.render()</code>. Il file <code>index.js</code> contiene spesso questi data di configurazione che sono rilevanti per l’<em>app</em> e non per un component specifico.</p></li>
+</ol>
+</div>
+<div id="adding-collaborators-to-a-project" class="section level3 unnumbered hasAnchor">
+<h3>Adding Collaborators to a Project<a href="firebase.html#adding-collaborators-to-a-project" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>L’accesso alla Firebase Web Console e’ fondamentale per chiunque lavori con il backend Firebase in un project. Se lavori con un gruppo di developer, assicurati che tutti i team members abbiano accesso a questa console.</p>
+<p>Puoi aggiungere altri team members a un project Firebase selezionando “Users and permissions” dal gear icon di “Project Overview”:</p>
+<div class="float">
+<img src="img/firebase/firebase-nav-users.png" alt="Users and permissions navigation" />
+<div class="figcaption">Users and permissions navigation</div>
+</div>
+<p>Da li’ puoi cliccare “Add Member” per aggiungere nuovi membri al project.</p>
+</div>
+</div>
+<div id="realtime-database" class="section level2 hasAnchor" number="19.2">
+<h2><span class="header-section-number">19.2</span> Realtime Database<a href="firebase.html#realtime-database" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Il web service Firebase fornisce un <a href="https://firebase.google.com/docs/database"><strong>realtime database</strong></a> per salvare e accedere ai data nel cloud. Puoi pensare a questo database come a un <em>unico gigantesco JSON object nel Cloud</em> che puo’ essere acceduto e modificato simultaneamente da piu’ client—e dato che ogni client legge lo stesso database, le modifiche fatte da un utente saranno viste dagli altri come <em>real-time updates</em>.</p>
+<p>Per esempio, potresti avere un database strutturato cosi’:</p>
+<pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">"people"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"amit"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"age"</span> <span class="token operator">:</span> <span class="token number">35</span><span class="token punctuation">,</span>
+      <span class="token property">"petName"</span> <span class="token operator">:</span> <span class="token string">"Spot"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"sarah"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"age"</span> <span class="token operator">:</span> <span class="token number">42</span><span class="token punctuation">,</span>
+      <span class="token property">"petName"</span> <span class="token operator">:</span> <span class="token string">"Rover"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"zhang"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"age"</span> <span class="token operator">:</span> <span class="token number">13</span><span class="token punctuation">,</span>
+      <span class="token property">"petName"</span> <span class="token operator">:</span> <span class="token string">"Fluffy"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Questo database object ha una key <code>people</code> che si riferisce a un object, che a sua volta contiene keys che si riferiscono a singoli objects “person” (ognuno con una property <code>age</code> e <code>petName</code>).</p>
+<p>Nella Firebase Web Console (sotto la tab “Database” nel menu di navigazione), questa struttura di data viene mostrata cosi’:</p>
+<div class="float">
+<img src="img/firebase/firebase-people-db.png" alt="A Firebase database with sample people data" />
+<div class="figcaption">A Firebase database with sample people data</div>
+</div>
+<ul>
+<li>Nota che nella Firebase Web Console puoi modificare questo database direttamente: visualizzare, aggiungere, modificare e cancellare elementi nel JSON. Questo e’ utile per debugging—sia per controllare che il codice modifichi correttamente il database, sia per ripulire eventuali errori.</li>
+</ul>
+<p class="alert alert-warning">
+Anche se il database JSON puo’ avere molti livelli di objects annidati, la best practice e’ cercare di mantenere la struttura il piu’ “flat” possibile ed evitare di annidare troppi data. Questo evita di dover scaricare i “dettagli” annidati per un value se ti serve solo conoscere, ad es., i nomi delle keys. Vedi <a href="https://firebase.google.com/docs/database/web/structure-data">Structure Your Data</a> per piu’ dettagli ed esempi.
+</p>
+<div id="setting-up-the-database" class="section level3 unnumbered hasAnchor">
+<h3>Setting Up the Database<a href="firebase.html#setting-up-the-database" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Per abilitare il realtime database per il tuo project, vai alla pagina della console del database e clicca il pulsante “Create Database”.</p>
+<p class="alert alert-warning">
+Assicurati di creare il <em>Realtime Database</em>, non il Firestore Database!
+</p>
+<p>Dopo aver selezionato la local region, ti verra’ chiesto di impostare le <a href="firebase.html#security-rules"><strong>Security Rules</strong></a>. Scegli di partire in <em>test mode</em> per iniziare subito; vedi la sezione sotto per maggiori dettagli sulle security rules.</p>
+<div id="security-rules" class="section level4 unnumbered hasAnchor">
+<h4>Security Rules<a href="firebase.html#security-rules" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Dato che il database Firebase e’ solo un gigantesco JSON object nel cloud e puo’ essere usato da un sistema client-side, tecnicamente <em>chiunque</em> puo’ accedervi. Ogni elemento del JSON object e’ accessibile via AJAX requests (che vengono inviate tramite functions <code>firebase</code>).</p>
+<p>Per limitare quali informazioni possono accedere i client (read o write dei values nel JSON), Firebase ti permette di definire <a href="https://firebase.google.com/docs/database/security/">security rules</a> che specificano quali utenti possono accedere a quali elementi. Per esempio, puoi fare in modo che solo <em>authenticated users</em> possano aggiungere nuove entries nel database, o che solo utenti specifici possano aggiornare entries specifiche (ad es. i commenti che hanno scritto su un blog).</p>
+<ul>
+<li>Di default, nessuno puo’ accedere o modificare i data (in <em>locked mode</em>). Se scegli di avviare il project in <em>test mode</em>, allora chiunque potra’ accedere o modificare l’intero database per un periodo di tempo limitato.</li>
+</ul>
+<p>Per modificare o configurare le security rules, vai alla tab “Rules” della pagina Realtime Database nella Firebase Web Console. Puoi modificare le rules editando i data JSON mostrati; ricordati di cliccare “Publish” quando hai finito di editare.</p>
+<p>Le Firebase Security Rules sono definite in JSON usando uno schema particolare (e un po’ awkward). In pratica, dentro la property <code>"rules"</code> specifichi un JSON tree che rispecchia la struttura del database. Ma invece di avere un value per le keys del database, specifichi un object con le properties <code>".read"</code> e <code>".write"</code>. I values di queste properties sono espressioni booleane che indicano se l’utente corrente puo’ leggere (access) o scrivere (modify) quel value. Per maggiori dettagli su come scrivere le rules, come gestire l’autorizzazione degli utenti (solo certi utenti possono read/write) o la data validation (assicurare che i data siano di un certo tipo), vedi <a href="https://firebase.google.com/docs/database/security/">la documentazione ufficiale</a>.</p>
+</div>
+</div>
+<div id="reference-ai-dati" class="section level3 unnumbered hasAnchor">
+<h3>Reference ai dati<a href="firebase.html#reference-ai-dati" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Per iniziare a lavorare con il tuo database, devi ottenere una <strong>reference</strong> a quel value nel database.</p>
+<p>Inizi ottenendo una reference al database stesso, usando la function <strong><code>getDatabase()</code></strong> fornita dal database module <code>firebase/database</code> di Firebase:</p>
+<pre class="language-js"><code><span class="token comment">//importa la function dal modulo realtime database</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> getDatabase <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'firebase/database'</span><span class="token punctuation">;</span>
+
+<span class="token comment">//ottieni una reference al servizio database</span>
+<span class="token keyword">const</span> db <span class="token operator">=</span> <span class="token function">getDatabase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Importante: il value <code>db</code> nell’esempio <strong>non</strong> e’ una copia dei data ne’ del database stesso! E’ solo un reference pointer a dove quel database risiede—puoi pensarlo come un “URL” del database.</p>
+<ul>
+<li>La function <code>getDatabase()</code> e’ un semplice accessor <em>singleton</em> che gira in tempo costante; e’ best practice chiamarla nello scope funzionale in cui ti serve riferirti al database. Non devi passarla in giro come prop, ne’ provare a creare una variable <code>db</code> globale o “top level”. Richiama la function quando ti serve accedere al database da uno scope diverso.</li>
+</ul>
+<p>Per modificare specifici values nel database, devi ottenere una <a href="https://firebase.google.com/docs/reference/js/database.databasereference"><strong>reference</strong></a> a quel value. Lo fai usando la function <strong><code>ref()</code></strong>, passando la reference al database e il “path” (una string) al value nel JSON del database:</p>
+<pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> getDatabase<span class="token punctuation">,</span> ref <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'firebase/database'</span><span class="token punctuation">;</span>
+
+<span class="token comment">//ottieni una reference al servizio database</span>
+<span class="token keyword">const</span> db <span class="token operator">=</span> <span class="token function">getDatabase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//ottieni una reference alla property "people" nel database</span>
+<span class="token keyword">const</span> peopleRef <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"people"</span><span class="token punctuation">)</span>
+
+<span class="token comment">//ottieni una reference alla property "sarah" dentro la property "people" nel database</span>
+<span class="token comment">//simile a `database.people.sarah` usando la dot notation</span>
+<span class="token keyword">const</span> sarahRef <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"people/sarah"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Ancora una volta, queste reference <strong>non</strong> sono i data! Sono solo reference pointer a dove risiedono i data—come l’“URL” di quel value.</p>
+<p>I “path” ai values annidati nel database sono scritti in una “path notation” stile URI, dove ogni key annidata e’ indicata con uno slash <strong><code>/</code></strong> (invece del <code>.</code> della dot notation che useresti nel formato JSON). Quindi <code>"people/sarah"</code> si riferisce alla key <code>sarah</code> dentro la key <code>people</code> nel database; <code>"people/sarah/pet"</code> si riferisce alla key <code>pet</code> dentro la key <code>sarah</code> dentro la key <code>people</code>—la posizione nel database con il value <code>"Rover"</code> nell’esempio sopra.</p>
+<p>Dato che questo path e’ solo una string, puoi usare la string concatenation per costruire il path al value specifico che vuoi referenziare (ad es. se vuoi lavorare solo con il value di una persona specifica):</p>
+<pre class="language-js"><code><span class="token comment">//nome della variable da usare per accedere</span>
+<span class="token keyword">const</span> personName <span class="token operator">=</span> <span class="token string">"Ada"</span><span class="token punctuation">;</span>
+
+<span class="token comment">//accedi alla property "Ada" dentro la property "people" nel database</span>
+<span class="token keyword">const</span> personOfInterestRef <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"people/"</span><span class="token operator">+</span>personName<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>In alternativa, puoi usare la function <strong><code>child()</code></strong> per ottenere una reference a uno specifico elemento “child” nel database:</p>
+<pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> ref<span class="token punctuation">,</span> child <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'firebase/database'</span><span class="token punctuation">;</span>
+
+<span class="token comment">//equivalente all'esempio sopra</span>
+
+<span class="token comment">//ottieni una reference alla property "people" nel database</span>
+<span class="token keyword">const</span> peopleRef <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"people"</span><span class="token punctuation">)</span>
+
+<span class="token comment">//ottieni una reference alla property "sarah" dentro il value referenziato di "people"</span>
+<span class="token keyword">const</span> sarahRef <span class="token operator">=</span> <span class="token function">child</span><span class="token punctuation">(</span>peopleRef<span class="token punctuation">,</span> <span class="token string">"sarah"</span><span class="token punctuation">)</span></code></pre>
+<p>In generale, vuoi lavorare con il subset di data piu’ piccolo possibile. Quindi e’ meglio ottenere una reference a <code>"person/sarah"</code> se devi solo leggere o scrivere quel value, invece di ottenere la reference all’intero <code>"people"</code> e poi leggere/scrivere la key <code>sarah</code> al suo interno.</p>
+</div>
+<div id="writing-data" class="section level3 unnumbered hasAnchor">
+<h3>Writing Data<a href="firebase.html#writing-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Puoi modificare i values nel database usando la function <strong><code>set()</code></strong>. Questa function prende due argomenti: una <em>database reference</em> e il nuovo value che vuoi assegnare a quella location nel database:</p>
+<pre class="language-js"><code><span class="token comment">//aliasa la function `set` come `firebaseSet`</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ref<span class="token punctuation">,</span> <span class="token keyword">set</span> <span class="token keyword">as</span> firebaseSet <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'firebase/database'</span>
+
+<span class="token comment">//ottieni una reference a dove e' memorizzata l'eta' di sarah nel database</span>
+<span class="token keyword">const</span> sarahAgeRef <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"people/sarah/age"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//cambia l'eta' di Sarah a 43 (buon compleanno!)</span>
+<span class="token keyword">const</span> newValueForSarahAge <span class="token operator">=</span> <span class="token number">43</span><span class="token punctuation">;</span>
+
+<span class="token comment">//assegna il nuovo value nel database</span>
+<span class="token function">firebaseSet</span><span class="token punctuation">(</span>sarahRef<span class="token punctuation">,</span> newValueForSarahAge<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Questo cambiera’ il value nel database a <code>"people/sarah/age"</code> in <code>43</code>.</p>
+<p>Nota che in questo esempio uso la keyword <code>as</code> per <em>aliasare</em> la function <code>set</code> quando la importo, chiamandola <code>firebaseSet</code>. Questo e’ per chiarezza, dato che “set” e’ un nome troppo generico per una function.</p>
+<p>Nota che, come per i normali JSON objects, puoi anche “set”are values per entries del database che non esistevano prima—non devi “dichiarare” un value nel database in anticipo.</p>
+<pre class="language-js"><code><span class="token comment">//una reference all'entry "people" nel database</span>
+<span class="token keyword">const</span> peopleRef <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"people"</span><span class="token punctuation">)</span>
+
+<span class="token comment">//una reference a una location senza value definito</span>
+<span class="token keyword">const</span> adaRef <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span>peopleRef<span class="token punctuation">,</span> <span class="token string">"ada"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//imposta un object in quella location nel database</span>
+<span class="token function">firebaseSet</span><span class="token punctuation">(</span>adaRef<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token literal-property property">age</span><span class="token operator">:</span> <span class="token string">"206"</span><span class="token punctuation">,</span> <span class="token literal-property property">pet</span><span class="token operator">:</span> <span class="token string">"Charlie"</span><span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<p>Firebase fornisce anche un metodo equivalente <code>update()</code>, che “mergea” i cambiamenti nel value esistente a quella reference. Questo ti permette di <code>update()</code> una reference passando un object con alcune properties da modificare, mantenendo le properties esistenti (invece di sostituire l’intero value).</p>
+<p>Infine, nota che il metodo <code>set()</code> restituisce una <em>Promise</em>. Quindi puoi usare <code>.then()</code> (o <code>await</code>) per eseguire statements dopo che il database e’ stato aggiornato, e puoi intercettare eventuali errori che possono verificarsi durante l’update di un value. Questo e’ particolarmente utile per debugging, ma anche per fornire feedback all’utente.</p>
+<pre class="language-js"><code><span class="token keyword">const</span> sarahPetRef <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"people/sarah/pet"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//cambia il pet di Sarah</span>
+<span class="token function">firebaseSet</span><span class="token punctuation">(</span>sarahPetRef<span class="token punctuation">,</span> <span class="token string">"Sparky"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"dati salvati con successo!"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">err</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//logga eventuali errori per debugging</span></code></pre>
+</div>
+<div id="listening-for-data-changes" class="section level3 unnumbered hasAnchor">
+<h3>Listening for Data Changes<a href="firebase.html#listening-for-data-changes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Dato che il database di Firebase e’ pensato per accesso <em>realtime</em> (che puo’ cambiare nel tempo), leggi i data e stabilisci <em>data binding</em> registrando un <strong>event listener</strong> per ascoltare i cambiamenti nel database. In pratica, qualsiasi modifica ai data causa un “database change event” che attiva il listener, permettendoti di accedere ai data aggiornati.</p>
+<p>Registri un database change listener usando la function <strong><code>onValue()</code></strong>. Questa function prende come argomenti una database reference (il value di cui vuoi ascoltare i cambiamenti) e una callback function che verra’ eseguita in risposta all’event (simile alla function DOM <code>addEventListener()</code>):</p>
+<pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> ref<span class="token punctuation">,</span> onValue <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"firebase/database"</span>
+
+<span class="token comment">//ottieni una reference a una particolare posizione di value nel database</span>
+<span class="token keyword">const</span> amitRef <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">'people/amit'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//registra un listener per i cambiamenti in quella location di value</span>
+<span class="token function">onValue</span><span class="token punctuation">(</span>amitRef<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">snapshot</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> amitValue <span class="token operator">=</span> snapshot<span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>amitValue<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//=> ad es., { age: 35, petName: "Spot" }</span>
+    <span class="token comment">//puoi fare altro con amitValue (ad es. assegnarlo a una state variable)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Alla callback function verra’ passato come parametro lo <a href="https://firebase.google.com/docs/reference/js/firebase.database.DataSnapshot"><strong>snapshot</strong></a> piu’ recente del value di data nella location ascoltata. Questo e’ un wrapper attorno al JSON tree del database (che ti permette di navigarlo, ad es. con <code>child()</code>). Di solito, vorrai convertire lo snapshot in un vero object JavaScript chiamando il metodo <strong><code>.val()</code></strong>.</p>
+<p>Il listener si attiva ogni volta che cambia un child node della reference target. Quindi anche se viene aggiornato solo <code>people/amit/pet</code>, il listener sopra si attivera’.</p>
+<p>Importante: dato che questo listener coinvolge accesso di rete e puo’ attivarsi per tutta la vita dell’application, in una React app dovrai registrarlo dentro un <em>effect hook</em>. La “cleanup function” dell’effect hook dovra’ anche rimuovere il listener—altrimenti avrai un memory leak e potresti avere errori se il component viene rimosso (ad es. cambiando route). La function <code>onValue()</code> <em>restituisce</em> una nuova function che puo’ essere usata per “unregister” il listener:</p>
+<pre class="language-jsx"><code><span class="token keyword">function</span> <span class="token function">MyComponent</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">//effect hook</span>
+  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> db <span class="token operator">=</span> <span class="token function">getDatabase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> amitRef <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"people/amit"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">//restituisce una function che fara' "unregister" (spegne) il listener</span>
+    <span class="token keyword">const</span> unregisterFunction <span class="token operator">=</span> <span class="token function">onValue</span><span class="token punctuation">(</span>amitRef<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">snapshot</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> amitValue <span class="token operator">=</span> snapshot<span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">//...imposta la state variable, ecc...</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    <span class="token comment">//function di cleanup quando il component viene rimosso</span>
+    <span class="token keyword">function</span> <span class="token function">cleanup</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">unregisterFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//chiama la function di unregister</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> cleanup<span class="token punctuation">;</span> <span class="token comment">//la callback dell'effect hook restituisce la function di cleanup</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Nota che e’ possibile leggere un singolo value una sola volta (senza registrare un listener) usando il metodo <code>get()</code>. Questo metodo restituisce una promise che conterra’ lo snapshot letto (una volta scaricato). <em>Tuttavia</em>, il Realtime Database e’ pensato e ottimizzato per data binding e notifications. Quindi dovresti praticamente sempre usare <code>onValue()</code> per leggere i data dal database. Se ti trovi a voler leggere un singolo value una sola volta, non stai pensando correttamente al realtime database!</p>
+</div>
+<div id="firebase-arrays" class="section level3 unnumbered hasAnchor">
+<h3>Firebase Arrays<a href="firebase.html#firebase-arrays" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Quando lavori e memorizzi data nel cloud, spesso vuoi organizzare quei data in liste usando <em>arrays</em>. Tuttavia, Firebase <strong>non</strong> supporta direttamente gli arrays: il JSON object nel cloud contiene solo objects, non arrays! Questo perche’ Firebase deve supportare <strong>concurrent access</strong>: piu’ persone devono poter accedere ai data nello stesso momento. Ma dato che gli arrays si accedono per <em>index</em>, questo puo’ creare problemi se due persone provano a modificare l’array allo stesso tempo.</p>
+<ul>
+<li>Il problema e’ che con un array, un numero di index non si riferisce sempre allo stesso elemento! Per esempio, se hai un array <code>['a', 'b' 'c']</code>, l’index <code>1</code> inizialmente si riferisce a <code>'b'</code>. Tuttavia, se aggiungi un elemento all’inizio dell’array, improvvisamente l’index <code>1</code> si riferisce a <code>'a'</code>. Quindi, se un utente stava provando a modificare <code>'b'</code> prima che la sua macchina fosse consapevole del cambiamento, potrebbe finire per modificare il value sbagliato quando chiede di cambiare il value all’index <code>1</code>! Questo bug e’ un esempio di <a href="https://en.wikipedia.org/wiki/Race_condition">race condition</a>, che puo’ verificarsi quando due processi modificano i data <em>concurrently</em> (allo stesso tempo).</li>
+</ul>
+<!-- si potrebbe mettere la versione del codice dell'esempio ?? -->
+<p>Per evitare questo problema, Firebase tratta tutte le data structures come Objects, cosi’ ogni value nel JSON tree ha una key <em>unique</em>. In questo modo ogni client modifica sempre il value che si aspetta. Tuttavia, Firebase offre un modo per trattare gli Objects come arrays, tramite la function <strong><code>push()</code></strong>(<a href="https://firebase.google.com/docs/reference/js/firebase.database.Reference#push" class="uri">https://firebase.google.com/docs/reference/js/firebase.database.Reference#push</a>) che aggiunge un value a un object con una <strong>auto-generated key</strong>.</p>
+<pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> getDatabase<span class="token punctuation">,</span> ref<span class="token punctuation">,</span> push <span class="token keyword">as</span> firebasePush <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'firebase/database'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> db <span class="token operator">=</span> getDatabase<span class="token punctuation">;</span>
+<span class="token keyword">const</span> tasksRef <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span>db<span class="token punctuation">,</span> <span class="token string">"tasks"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//un object di task</span>
+
+<span class="token function">firebasePush</span><span class="token punctuation">(</span>taskRef<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token literal-property property">description</span><span class="token operator">:</span><span class="token string">'First things first'</span><span class="token punctuation">}</span> <span class="token punctuation">)</span> <span class="token comment">//aggiungi un task</span>
+<span class="token function">firebasePush</span><span class="token punctuation">(</span>taskRef<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token literal-property property">description</span><span class="token operator">:</span><span class="token string">'Next things next'</span><span class="token punctuation">}</span> <span class="token punctuation">)</span> <span class="token comment">//aggiungi un altro task</span></code></pre>
+<p>Questo produrra’ un database con una struttura:</p>
+<pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">"tasks"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"-KyxgJhKOVeAj2ibPxrO"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"description"</span> <span class="token operator">:</span> <span class="token string">"First things first"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"-KyxgMDJueu17348NxDF"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"description"</span> <span class="token operator">:</span> <span class="token string">"Next things next"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Nota come la property <code>tasks</code> sia un Object (anche se abbiamo “pushato” elementi dentro), e ogni “task” ha una auto-generated key (basata sul timestamp in cui e’ stato pushato). Puoi comunque interagire con <code>tasks</code> come se fosse una lista simile a un array, ma invece di usare un value da <code>0</code> a <code>length</code> come index, userai una “key” generata come index.</p>
+<p class="alert alert-warning">
+<strong>Always</strong> usa la function <code>push()</code> per far gestire automaticamente a Firebase i data arrays. <strong>Never</strong> provare a creare manualmente un “array” dando ai values keys “0”, “1”, “2” ecc.
+</p>
+<p>Gli <em>snapshots</em> Firebase supportano una function <code>forEach()</code> che puoi usare per iterare gli elementi, permettendoti di fare loop sugli elementi di un array. Tuttavia, se vuoi fare qualcosa di piu’ complesso (come <code>map()</code>, <code>filter()</code> o <code>reduce()</code>), ti serve un vero array. Il modo migliore per ottenerlo e’ usare <code>Objects.keys()</code> su <code>snapshot.val()</code> per ottenere un array di keys, e poi puoi iterare/mappare quelle keys in un array di values (accedendo a ogni elemento dell’“array” con la bracket notation).</p>
+<pre class="language-js"><code><span class="token comment">//`tasksSnapshot` e' uno snapshot dell'"array" `tasks`</span>
+<span class="token keyword">const</span> allTasksObject <span class="token operator">=</span> tasksSnapshot<span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//converti lo snapshot in value</span>
+
+<span class="token comment">//un array delle keys nell'object ["-KyxgJhKOVeAj2ibPxrO", "-KyxgMDJueu17348NxDF"]</span>
+<span class="token keyword">const</span> allTasksKeys <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>allTasksObject<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//mappa l'array di keys in un array di task</span>
+<span class="token keyword">const</span> allTasksArray <span class="token operator">=</span> allTasksKeys<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">key</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> singleTaskCopy <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token operator">...</span>allTasksObject<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">//copia l'elemento a quella key</span>
+    singleTaskCopy<span class="token punctuation">.</span>key <span class="token operator">=</span> key<span class="token punctuation">;</span> <span class="token comment">//salva localmente la key come "id" per dopo</span>
+    <span class="token keyword">return</span> singleTaskCopy<span class="token punctuation">;</span> <span class="token comment">//l'object trasformato da salvare nell'array</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+allTasksArray<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">taskObject</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<p>Nota che quando fai loop su un “array”, ogni elemento viene gestito separatamente dalla sua key (allo stesso modo in cui un <code>forEach()</code> ti permette di lavorare con gli elementi separatamente dal loro index). Ma dato che potresti aver bisogno di quella key come identificatore per fare <code>ref()</code> e modificare l’elemento JSON piu’ avanti, assicurati di “salvare” la key nell’object mentre lo processi come property locale aggiuntiva. Questo non modifica il value nel database, solo la variable locale su cui sta lavorando il codice. <em>Non perdere la key!</em>.</p>
+</div>
+</div>
+<div id="autenticazione-utenti" class="section level2 hasAnchor" number="19.3">
+<h2><span class="header-section-number">19.3</span> Autenticazione utenti<a href="firebase.html#autenticazione-utenti" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Firebase fornisce la possibilita’ di <strong>authenticate</strong> gli utenti: permettere alle persone di sign up nella tua application e poi verificare che siano chi dicono di essere (ad es. hanno fornito la password corretta). Firebase supporta diverse forme di authentication: gli utenti possono fare sign up con email e password, log in con un social media service come Google o Facebook, o anche autenticarsi “anonymously” (cosi’ puoi almeno tenere traccia di persone diverse anche se non sai chi sono).</p>
+<p>Per supportare la user authentication, devi abilitare questa feature nella Firebase Web Console. Clicca il link “Authentication” nel menu laterale sotto la categoria Build per andare alla pagina di gestione authentication, poi scegli “Get started”. Nella tab “Sign-In Method”, puoi scegliere quali forme di authentication abilitare.</p>
+<ul>
+<li><p>Per esempio, clicca l’opzione “Email/Password” e poi attiva lo switch per “Enable” quel metodo. Ricordati di salvare i cambiamenti!</p></li>
+<li><p>Ogni metodo di sign-in usa quello che si chiama “Provider”—un servizio che fornisce le informazioni per verificare se l’utente e’ chi dice di essere. Il check email/password di Firebase e’ un possibile Provider; Google e’ un altro Provider; ecc. Puoi abilitare piu’ Providers, ciascuno dei quali puo’ autenticare gli utenti (cioe’ permettere loro di sign in con le credenziali rilevanti).</p></li>
+</ul>
+<p>Nota che potrai usare questa pagina per vedere e gestire gli utenti che si sono registrati con il tuo project Firebase. Qui puoi vedere se gli utenti sono stati creati correttamente, cercare il loro <strong>User UID</strong> per debugging o eliminare utenti dal project:</p>
+<div class="float">
+<img src="img/firebase/firebase-users.png" alt="Utenti Firebase come presentati nella web console di authentication" />
+<div class="figcaption">Utenti Firebase come presentati nella web console di authentication</div>
+</div>
+<div id="accesso-con-firebaseui" class="section level3 unnumbered hasAnchor">
+<h3>Accesso con FirebaseUI<a href="firebase.html#accesso-con-firebaseui" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>E’ possibile chiamare functions fornite da Firebase per creare e loggare utenti. Tuttavia, questo richiederebbe implementare il “log in form” da soli—e supporterebbe facilmente solo l’opzione Email/Password.</p>
+<p>Invece, un approccio migliore e’ usare la libreria <a href="https://firebase.google.com/docs/auth/web/firebaseui"><strong>FirebaseUI</strong></a>, gestita da Firebase. Questa libreria fornisce un set di elementi UI predefiniti come un “login form”, inclusi quelli che supportano diversi metodi di authentication.</p>
+<div class="float">
+<img src="img/firebase/firebaseui-example.png" alt="Esempio di authentication con FirebaseUI" />
+<div class="figcaption">Esempio di authentication con FirebaseUI</div>
+</div>
+<p>Esistono diverse librerie FirebaseUI per piattaforme diverse; in passato per React si usava <a href="https://github.com/firebase/firebaseui-web-react"><code>firebaseui-web-react</code></a>. Tuttavia, a novembre 2022 questa libreria non e’ stata aggiornata per funzionare con l’ultima versione di React (React 18), e sembra essere stata abbandonata invece di <a href="https://github.com/firebase/firebaseui-web-react/pull/173">applicare il fix necessario</a>. Ci sono due possibili workaround:</p>
+<ol style="list-style-type: decimal">
+<li><p>Puoi installare una versione della libreria aggiornata da <a href="https://github.com/gvillenave">Gabriel Villenave</a> (che non e’ stata ancora accettata come pull request):</p>
+<pre class="language-bash"><code><span class="token comment"># installa la libreria dalla command line</span>
+<span class="token function">npm</span> <span class="token function">install</span> https://gitpkg.now.sh/gvillenave/firebaseui-web-react/dist --legacy-peer-deps</code></pre>
+<p>(Il flag <code>legacy-peer-deps</code> permette al package di installarsi con React 19, anche se e’ indicato compatibile solo fino alla versione 18).</p>
+<p>Conferma che il file <code>package.json</code> abbia la dependency corretta:</p>
+<pre><code>&quot;react-firebaseui&quot;: &quot;https://gitpkg.now.sh/gvillenave/firebaseui-web-react/dist&quot;</code></pre></li>
+<li><p>Puoi installare la versione non-React della libreria (<code>firebaseui</code>) e poi definire manualmente il Component necessario (<code>StyledFirebaseUI</code>):</p>
+<pre class="language-bash"><code><span class="token function">npm</span> <span class="token function">install</span> firebaseui</code></pre>
+<p>Crea il file <code>StyledFirebaseAuth.txs</code> definito <a href="https://github.com/firebase/firebaseui-web-react/pull/173#issuecomment-1224404146">in questo commento</a>.</p></li>
+</ol>
+<p>La libreria React FirebaseUI fornisce un Component chiamato <code>&lt;StyledFirebaseAuth&gt;</code>, che puoi renderizzare nella pagina come qualsiasi altro Component. Puoi pensare a questo Component come al “login form”. Un esempio completo di come si usa questo Component e’ mostrato sotto, seguito da una spiegazione.</p>
+<pre class="language-jsx"><code><span class="token comment">//importa functions e variables di auth da Firebase</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> getAuth<span class="token punctuation">,</span> EmailAuthProvider<span class="token punctuation">,</span> GoogleAuthProvider <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'firebase/auth'</span>
+
+<span class="token comment">//importa il component -- scegline uno!</span>
+<span class="token keyword">import</span> StyledFirebaseAuth <span class="token keyword">from</span> <span class="token string">'react-firebaseui/StyledFirebaseAuth'</span><span class="token punctuation">;</span> <span class="token comment">//install option 1</span>
+<span class="token keyword">import</span> StyledFirebaseAuth <span class="token keyword">from</span> <span class="token string">'./StyledFirebaseAuth'</span><span class="token punctuation">;</span> <span class="token comment">//install option 2</span>
+
+<span class="token comment">//un object di valori di configurazione</span>
+<span class="token keyword">const</span> firebaseUIConfig <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">signInOptions</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token comment">//array di opzioni di sign in supportate</span>
+    <span class="token comment">//l'array puo' includere solo "Provider IDs", o objects con gli ID e le options</span>
+    GoogleAuthProvider<span class="token punctuation">.</span><span class="token constant">PROVIDER_ID</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token literal-property property">provider</span><span class="token operator">:</span> EmailAuthProvider<span class="token punctuation">.</span><span class="token constant">PROVIDER_ID</span><span class="token punctuation">,</span> <span class="token literal-property property">requiredDisplayName</span><span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">signInFlow</span><span class="token operator">:</span> <span class="token string">'popup'</span><span class="token punctuation">,</span> <span class="token comment">//non fare redirect per autenticare</span>
+  <span class="token literal-property property">credentialHelper</span><span class="token operator">:</span> <span class="token string">'none'</span><span class="token punctuation">,</span> <span class="token comment">//non mostrare il selettore email</span>
+  <span class="token literal-property property">callbacks</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token comment">//callbacks di "lifecycle"</span>
+    <span class="token function-variable function">signInSuccessWithAuthResult</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span> <span class="token comment">//non fare redirect dopo l'autenticazione</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//il component React da renderizzare</span>
+<span class="token keyword">function</span> <span class="token function">MySignInScreen</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">const</span> auth <span class="token operator">=</span> <span class="token function">getAuth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//accedi all'"authenticator"</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>La mia app<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Per favore fai sign<span class="token operator">-</span><span class="token keyword">in</span><span class="token operator">:</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">StyledFirebaseAuth</span></span> <span class="token attr-name">uiConfig</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>firebaseUIConfig<span class="token punctuation">}</span></span> <span class="token attr-name">firebaseAuth</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>auth<span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Ci sono alcuni passi per usare questo Component:</p>
+<ul>
+<li><p>Il <code>&lt;StyledFirebaseAuth&gt;</code> richiede una prop <code>uiConfig</code>, che e’ un object contenente i valori di configurazione per il login form (l’object ha properties specifiche che corrispondono alle opzioni di configurazione). L’object di config e’ di solito definito come constant globale.</p>
+<p>L’opzione di configurazione piu’ importante e’ <code>signInOptions</code>, che elenca i diversi authentication providers supportati (quali opzioni devono apparire nel login form). Gli ID di questi provider sono importati dalla libreria <code>'firebase/auth'</code>—anche se sono values numerici, non functions.</p>
+<p>Altre opzioni comuni/utili sono mostrate nell’esempio; per la lista completa vedi <a href="https://github.com/firebase/firebaseui-web#configuration">la documentazione firebaseui-web</a>.</p></li>
+<li><p>Il <code>&lt;StyledFirebaseAuth&gt;</code> richiede anche una prop <code>firebaseAuth</code>, che e’ una reference al servizio “authenticator”—quello che gestisce il processo di login e logout dell’utente. Puoi ottenere questo value tramite la function <strong><code>getAuth()</code></strong> fornita da <code>'firebase/auth'</code> (simile a come accedi al Realtime Database tramite <code>getDatabase()</code>).</p>
+<p>Nota che, come per <code>getDatabase()</code>, l’authenticator e’ un value <em>singleton</em>—puoi chiamare <code>getAuth()</code> da piu’ modules/files/scopes senza problemi. Non devi passarlo come prop o dichiararlo come constant “top-level”.</p></li>
+</ul>
+<p>Con questo Component, gli utenti potranno fare “log in”, ma vedi la sezione <a href="firebase.html#managing-the-user">Managing the User</a> sotto. Potrai vedere una lista di utenti che si sono collegati alla tua app nella Firebase Web Console. Nota in particolare che puoi vedere il loro <em>uid</em> (unique identifier), che e’ usato per distinguere tra utenti. (Non puoi usare le email come identificatori, perche’ chi fa log in con Facebook non fornira’ il proprio indirizzo email!).</p>
+<p class="alert alert-info">
+<strong>Pro-tip:</strong> non servono email reali per i test. Prova <code>a@a.com</code>, <code>b@a.com</code>, <code>c@a.com</code>, ecc. Allo stesso modo, <code>password</code> va bene per testare le password (ma non farlo mai nella vita reale!)
+</p>
+<p>La Firebase Web Console mostra la “user list”—ma, importantemente, <em>non e’ la stessa cosa del Realtime Database</em>. La user list contiene informazioni <em>molto</em> limitate: l’authentication provider, un “display name” e forse un “photo url” (ad es. dove trovare un avatar). Ma non puoi salvare informazioni aggiuntive nel “user database”—non immagini profilo, non nomi o pronomi preferiti, non pesci preferiti. Qualsiasi informazione specifica dell’utente va salvata nel Realtime Database, di solito usando una “key” che e’ l’<code>uid</code> dell’utente. Per esempio, il tuo Realtime Database potrebbe salvare dati come:</p>
+<pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">"userData"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"userId1"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"pronouns"</span> <span class="token operator">:</span> <span class="token string">"they/them"</span><span class="token punctuation">,</span>
+      <span class="token property">"favoriteFish"</span> <span class="token operator">:</span> <span class="token string">"sea bass"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"userId2"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"pronouns"</span> <span class="token operator">:</span> <span class="token string">"he/him"</span><span class="token punctuation">,</span>
+      <span class="token property">"favoriteFish"</span> <span class="token operator">:</span> <span class="token string">"cuttle fish"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Poi puoi accedere ai data dell’utente usando lo stesso processo di qualsiasi altro data nel realtime database, ascoltando la reference <code>"userData/"+userId</code>.</p>
+<p>Per fare sign out di un utente, puoi usare un’altra function built-in di Firebase: <strong><code>signOut()</code></strong>:</p>
+<pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> getAuth<span class="token punctuation">,</span> signOut <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'firebase/auth'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> auth <span class="token operator">=</span> <span class="token function">getAuth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">signOut</span><span class="token punctuation">(</span>auth<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">err</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//logga eventuali errori per debugging</span></code></pre>
+<p>Nota che il metodo <code>signOut()</code> restituisce una Promise, quindi puoi fare <code>.catch()</code> e mostrare eventuali errori.</p>
+</div>
+<div id="managing-the-user" class="section level3 unnumbered hasAnchor">
+<h3>Managing the User<a href="firebase.html#managing-the-user" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Anche se FirebaseUI fa il log in dell’utente, devi fare ulteriore lavoro per far sapere alla tua app chi e’ l’utente loggato.</p>
+<p>L’<em>authenticator</em> (da <code>getAuth()</code>) tiene traccia di quale Firebase User e’ attualmente loggato—e questa informazione persiste <a href="https://firebase.google.com/docs/auth/web/auth-state-persistence">anche dopo che il browser e’ chiuso</a>. Questo significa che ogni volta che ricarichi la pagina, l’authenticator eseguira’ automaticamente l’authentication e “re-login” dell’utente.</p>
+<p>Il modo consigliato per <a href="https://firebase.google.com/docs/auth/web/manage-users#get_the_currently_signed-in_user">determinare chi e’ attualmente logged in</a> e’ registrare un <em>event listener</em> che ascolta gli eventi quando lo “state” dell’authentication cambia (ad es. un utente fa log in o log out). Questo event avviene quando la pagina si carica e Firebase determina che un utente si e’ registrato in precedenza (viene impostato lo “initial state”), oppure quando un utente fa log in o log out. Puoi registrare questo listener usando la function <strong><code>onAuthStateChanged()</code></strong> di Firebase:</p>
+<pre class="language-js"><code><span class="token comment">//importa le functions</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> getAuth<span class="token punctuation">,</span> onAuthStateChanged <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'firebase/auth'</span>
+
+<span class="token keyword">const</span> auth <span class="token operator">=</span> <span class="token function">getAuth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">onAuthStateChanged</span><span class="token punctuation">(</span>auth<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">firebaseUser</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>firebaseUser<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment">//firebaseUser definito: e' loggato</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'loggato'</span><span class="token punctuation">,</span> firebaseUser<span class="token punctuation">.</span>displayName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//fai qualcosa con firebaseUser (ad es. assegnarlo a una state variable)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span> <span class="token comment">//firebaseUser e' undefined: non e' loggato</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'log out'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>La function <code>onAuthStateChanged()</code> prende due argomenti: l’authenticator e una callback function che verra’ eseguita ogni volta che lo “authentication state” cambia (ad es. quando l’utente fa log in o log out). La callback ricevera’ un object che rappresenta il <a href="https://firebase.google.com/docs/reference/js/firebase.User">“Firebase User”</a>. Questo object contiene properties sull’utente, tra cui:</p>
+<ul>
+<li><code>uid</code>, che e’ lo <em>unique id</em> dell’utente</li>
+<li><code>displayName</code>, che e’ il nome visualizzabile dell’utente indipendente dal provider</li>
+</ul>
+<p>La pratica piu’ comune e’ prendere questo object e assegnarlo a una variable piu’ globale, come una state variable in un component React (ad es. <code>setCurrentUser(firebaseUser)</code>).</p>
+<p>Se l’utente ha fatto “log out”, il value <code>firebaseUser</code> passato sara’ <code>null</code>; questa informazione puo’ essere salvata nella state variable React.</p>
+<p>Importante: dato che questo listener coinvolge accesso di rete e puo’ attivarsi durante la vita dell’application, in una React app dovrai registrarlo dentro un <em>effect hook</em>. La “cleanup function” dell’effect hook dovra’ anche rimuovere il listener. La function <code>onAuthStateChanged()</code> <em>restituisce</em> una nuova function che puo’ essere usata per “unregister” il listener:</p>
+<pre class="language-jsx"><code><span class="token keyword">function</span> <span class="token function">MyComponent</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">//effect hook</span>
+  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> auth <span class="token operator">=</span> <span class="token function">getAuth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">//restituisce una function che fara' "unregister" (spegne) il listener</span>
+    <span class="token keyword">const</span> unregisterFunction <span class="token operator">=</span> <span class="token function">onAuthStateChanged</span><span class="token punctuation">(</span>auth<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">firebaseUser</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+      <span class="token comment">//gestisci il cambio di stato dell'utente</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>firebaseUser<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment">//...</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    <span class="token comment">//function di cleanup quando il component viene rimosso</span>
+    <span class="token keyword">function</span> <span class="token function">cleanup</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">unregisterFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//chiama la function di unregister</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> cleanup<span class="token punctuation">;</span> <span class="token comment">//la callback dell'effect hook restituisce la function di cleanup</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+<div id="firebase-react-hooks" class="section level4 unnumbered hasAnchor">
+<h4>Firebase React Hooks<a href="firebase.html#firebase-react-hooks" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Nei sistemi React e’ comune renderizzare contenuti diversi a seconda che l’utente sia loggato o meno. Questo puo’ essere fatto con conditional rendering, o con una “protected route” come descritto in <a href="routing-lato-client.html#redirecting">Client-Side Routing</a>.</p>
+<p>Tuttavia, Firebase impiega alcuni secondi per autenticare un utente quando la pagina si carica per la prima volta. Quindi il conditional rendering spesso deve gestire 3 casi: quando l’utente e’ loggato, quando l’utente non e’ loggato, e quando lo user status e’ “loading” e l’app non ha ancora finito di controllare.</p>
+<p>Anche se esistono workaround un po’ goffi (ad es. usare un value speciale nello state per indicare che un utente e’ in “loading”), questa situazione e’ abbastanza comune da poter usare soluzioni implementate da altri. Una di queste e’ la libreria <a href="https://github.com/CSFrequency/react-firebase-hooks"><code>firebase-react-hooks</code></a>. Questa libreria fornisce un hook semplice (come <code>useState</code> o <code>useParams</code>) che ti permette di accedere allo user status. In particolare, l’hook <code>useAuthState</code> implementa per te il listener dello authentication state:</p>
+<pre class="language-jsx"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> getAuth <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'firebase/auth'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> useAuthState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-firebase-hooks/auth'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">MyComponent</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> auth <span class="token operator">=</span> <span class="token function">getAuth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>user<span class="token punctuation">,</span> loading<span class="token punctuation">,</span> error<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useAuthState</span><span class="token punctuation">(</span>auth<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span><span class="token punctuation">(</span>loading<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment">//ancora in attesa</span>
+    <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Initializing user<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">if</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">//errore durante il log in</span>
+    <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token literal-property property">Error</span><span class="token operator">:</span> <span class="token punctuation">{</span>error<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">if</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">//user definito, quindi loggato</span>
+    <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Benvenuto <span class="token punctuation">{</span>user<span class="token punctuation">.</span>displayName<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span> <span class="token comment">//user e' undefined</span>
+    <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Per favore fai sign <span class="token keyword">in</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">//...</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Questo hook restituisce un array di 3 values (destructured nell’esempio sopra), indicando l’utente corrente (o <code>null</code> se non c’e’), se lo auth state e’ ancora in loading, e se c’e’ stato un errore.</p>
+<p>Anche se usare questa libreria non e’ necessario, e’ un buon esempio di come l’architettura di React permetta librerie esterne che riducono il boilerplate code.</p>
+</div>
+</div>
+</div>
+<div id="firebase-storage" class="section level2 hasAnchor" number="19.4">
+<h2><span class="header-section-number">19.4</span> Firebase Storage<a href="firebase.html#firebase-storage" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Il Realtime Database di Firebase persiste data JSON: quindi alla fine solo strings, numbers e booleans (anche se quei values sono organizzati in objects). Se vuoi persistere <em>file</em> di data—come musica, video, pdf, ecc—devi usare un servizio diverso chiamato <a href="https://firebase.google.com/docs/storage"><strong>Firebase Storage</strong></a>. Storage e’ progettato per salvare file piu’ grandi invece di data types primitivi. Alla fine funziona in modo abbastanza simile al realtime database, ma senza data binding.</p>
+<div class="alert alert-warning">
+<p>
+A ottobre 2024, Firebase richiede un piano “pay-as-you-go” per creare un storage bucket. Questo richiede di fornire informazioni di carta di credito. Gli studenti del corso INFO 340 non devono iscriversi a questo piano; parla con il docente per dettagli.
+</p>
+<p>
+Con questo piano hai fino a 5 GB di storage gratis (con 1 GB/giorno di download consentito). Sono circa 5000 immagini hi-res, 1000 file musicali o circa 20 ore di video compresso. Questo significa che il free storage service funziona benissimo per la maggior parte delle versioni di sviluppo delle media applications—anche se potresti esaurire lo spazio rapidamente se lavori con video, soprattutto in fase di test. Considera sempre la quantita’ di data che dovrai salvare prima di scegliere un cloud storage service.
+</p>
+</div>
+<p>Per usare Firebase Storage, devi abilitare questa feature nella Firebase Web Console. Clicca il link “Storage” nel menu laterale sotto la categoria Build per andare alla pagina di gestione, poi scegli “Get started”. Come per il realtime database, dovrai scegliere le security rules (probabilmente in <em>test mode</em> per lo sviluppo). Quando ti viene chiesto un Cloud Storage bucket location, scegli qualcosa di vicino per velocizzare l’accesso un po’, ma per la maggior parte dei progetti studenteschi non importa molto.</p>
+<p>Dopo aver configurato Storage, puoi usare la Firebase Web Console per vedere e gestire i file caricati (inclusa la loro eliminazione, se vuoi).</p>
+<div id="file-inputs" class="section level3 unnumbered hasAnchor">
+<h3>File Inputs<a href="firebase.html#file-inputs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Per permettere a un utente di caricare un file su Storage, l’utente deve prima scegliere quale file vuole salvare. Il modo corretto per farlo e’ usare un elemento <code>&lt;input&gt;</code> di tipo <code>"file"</code>:</p>
+<pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>file<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
+<p>Questo elemento funziona come gli altri <code>&lt;input&gt;</code> che hai usato (di solito con il <code>type</code> di default <code>"text"</code>). Ma invece di fornire un’interfaccia per inserire una string come value, l’input fornisce un’interfaccia per scegliere un file dal sistema operativo.</p>
+<p class="alert alert-success">
+Questo e’ un <code>&lt;input&gt;</code> come qualsiasi altro, quindi in React dovresti usare una state variable per controllarlo!
+</p>
+<p>Dopo che l’utente sceglie un file, puoi accedere ai file scelti tramite la property <code>.files</code> dell’elemento <code>&lt;input&gt;</code>—simile alla property <code>.value</code> usata con i <code>&lt;input&gt;</code> di default. Nota che la finestra di scelta file del sistema operativo puo’ permettere di scegliere piu’ file (o nessuno!); vorrai controllare questo quando rispondi ai cambiamenti dell’input:</p>
+<pre class="language-js"><code><span class="token comment">//una event handler function che risponde al cambio in un `&lt;input type="file">`</span>
+<span class="token keyword">const</span> <span class="token function-variable function">handleChange</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token comment">//event.target e' l'elemento &lt;input></span>
+  <span class="token comment">//controlla, ad es., che l'utente abbia scelto almeno 1 file e che il file esista davvero</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>files<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>files<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> chosenFile <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>files<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">//il primo file scelto</span>
+    <span class="token comment">//... fai qualcosa con quel value, ad es. salvarlo nello state di React</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Nota che <code>chosenFile</code> sara’ un value di tipo <a href="https://developer.mozilla.org/en-US/docs/Web/API/File"><code>File</code></a>, che ha i propri methods e properties. In modo critico, il value <code>File</code> e’ in realta’ solo una reference a una location nel sistema operativo del computer; se il file viene spostato o rinominato allora <code>File</code> puntera’ a qualcosa senza size, quindi non potrai caricarlo.</p>
+</div>
+<div id="uploading-files" class="section level3 unnumbered hasAnchor">
+<h3>Uploading Files<a href="firebase.html#uploading-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Una volta che hai il <code>File</code> che l’utente vuole caricare, puoi caricare quei data su Firebase usando un metodo simile a come fai <code>set</code> dei data nel realtime database.</p>
+<p>Per prima cosa, devi ottenere una <em>reference</em> alla location in Storage dove vuoi caricare il file. Lo fai usando la function <strong><code>ref()</code></strong> dalla libreria <code>firebase/storage</code>:</p>
+<pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>getStorage<span class="token punctuation">,</span> ref <span class="token keyword">as</span> storageRef <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'firebase/storage'</span><span class="token punctuation">;</span>
+
+<span class="token comment">//ottieni una reference al servizio storage</span>
+<span class="token keyword">const</span> storage <span class="token operator">=</span> <span class="token function">getStorage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//ottieni una reference a dove andra' il file nello storage</span>
+<span class="token keyword">const</span> fileRef <span class="token operator">=</span> <span class="token function">storageRef</span><span class="token punctuation">(</span>storage<span class="token punctuation">,</span> <span class="token string">"path/to/myfile.png"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Importante: questa e’ una function <code>ref()</code> <em>diversa</em> da quella usata con il realtime database! Non sono intercambiabili. Per questo motivo, puoi aliasare il <code>ref</code> di storage come, ad es., <code>storageRef</code> per usarle entrambe nello stesso module.</p>
+<p>La function <code>ref()</code> prende come argomenti la reference al servizio di storage e una string che rappresenta il “file path” per il nuovo file—cioe’ dove andra’ nello Storage bucket. Scrivi questa string come qualsiasi altro relative file path; include sia eventuali directory intermedie sia il nome del file risultante. Qualsiasi directory inclusa nel path verra’ creata quando il file viene caricato (non deve esistere in precedenza), e se un file esiste gia’ in quella location, verra’ sovrascritto. Assicurati di includere l’estensione del file quando lo nomini (e che l’estensione corrisponda al file type reale!).</p>
+<p>Dopo aver ottenuto la reference alla location del file nello storage, puoi usare la function <strong><code>uploadBytes()</code></strong> per caricare il file:</p>
+<pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>getStorage<span class="token punctuation">,</span> ref <span class="token keyword">as</span> storageRef<span class="token punctuation">,</span> uploadBytes <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'firebase/storage'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> storage <span class="token operator">=</span> <span class="token function">getStorage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> fileRef <span class="token operator">=</span> <span class="token function">storageRef</span><span class="token punctuation">(</span>storage<span class="token punctuation">,</span> <span class="token string">"path/to/myfile.png"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">uploadBytes</span><span class="token punctuation">(</span>fileRef<span class="token punctuation">,</span> myFile<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"file caricato con successo!"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">err</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//logga eventuali errori per debugging</span></code></pre>
+<p>La function <code>uploadBytes()</code> e’ asynchronous (puo’ richiedere tempo per caricare file grandi!) e restituisce una Promise che puoi usare per reagire quando il file ha finito di caricarsi o per catturare e gestire gli errori.</p>
+<p>Dopo che un file e’ stato caricato, Firebase gli assegna un URL pubblico (con il solito protocollo <code>https://</code>) da cui siti e utenti possono accedervi. Questo URL pubblico e’ diverso ed e’ costruito a partire dal path <code>ref</code> specificato, e puo’ variare in base ai parametri di storage usati da Firebase. Quindi, per ottenere l’URL risultante di questo file (ad es. per mostrarlo di nuovo all’utente), devi richiederlo a Firebase. Lo fai usando un’altra function chiamata <strong><code>getDownloadURL()</code></strong>. La function prende come argomento il <code>ref</code> del file e interroga Firebase per l’URL pubblico del file.</p>
+<p>Ma interrogare Firebase e’ un’operazione di rete, quindi richiede tempo… Per questo <code>getDownloadURL()</code> e’ <em>asynchronous</em> e non restituisce l’URL vero, ma una <em>Promise</em> di quell’URL; devi attendere che la promise si risolva per accedere alla string URL. Dato che il caricamento del file e l’ottenimento dell’URL pubblico sono entrambe functions asincrone che restituiscono Promises, questa e’ una buona situazione per usare la sintassi <code>async/await</code> per mantenere il codice leggibile invece di una sequenza di Promises.</p>
+<pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>getStorage<span class="token punctuation">,</span> ref <span class="token keyword">as</span> storageRef<span class="token punctuation">,</span> uploadBytes<span class="token punctuation">,</span> getDownloadURL <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'firebase/storage'</span><span class="token punctuation">;</span>
+
+<span class="token comment">//le chiamate await devono stare in una function async</span>
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">uploadFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> storage <span class="token operator">=</span> <span class="token function">getStorage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> fileRef <span class="token operator">=</span> <span class="token function">storageRef</span><span class="token punctuation">(</span>storage<span class="token punctuation">,</span> <span class="token string">"path/to/myfile.png"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">try</span> <span class="token punctuation">{</span> <span class="token comment">//try/catch per gestire errori</span>
+    <span class="token keyword">await</span> <span class="token function">uploadBytes</span><span class="token punctuation">(</span>fileRef<span class="token punctuation">,</span> myFile<span class="token punctuation">)</span> <span class="token comment">//upload asincrono</span>
+    <span class="token keyword">const</span> url <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">getDownloadURL</span><span class="token punctuation">(</span>fileRef<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//query asincrona per URL pubblico</span>
+    <span class="token comment">//...fai qualcosa con l'url, ad es. salvarlo nello state per il rendering</span>
+    <span class="token comment">//...oppure salva quell'url nel realtime database</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//logga eventuali errori per debugging</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Nota che e’ normale prendere l’URL pubblico e anche fare <code>set</code> di quell’URL in una location del realtime database; questo permette di associare un’immagine caricata ad altri data values. Il realtime database salva l’<em>url</em> del file (una string, salvata in JSON), ma il file stesso e’ conservato in Firebase Storage.</p>
+</div>
+</div>
+<div id="risorse-15" class="section level2 unnumbered hasAnchor">
+<h2>Risorse<a href="firebase.html#risorse-15" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="list-condensed">
+<ul>
+<li><a href="https://firebase.google.com/docs/web/setup">Firebase Web Documentation</a></li>
+<li><a href="https://firebase.google.com/docs/database/web/start">Firebase Realtime Database</a></li>
+<li><a href="https://firebase.google.com/docs/auth/web/start">Firebase Authentication</a></li>
+</ul>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ajax.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendice-appendici-e-argomenti-speciali.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["github", "facebook", "twitter", "google"],
+    "google": false
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/info340/book/edit/master/firebase.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

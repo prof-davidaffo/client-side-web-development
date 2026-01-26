@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="it" xml:lang="it">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Sviluppo lato client | Sviluppo Web lato client</title>
+  <meta name="description" content="Dispensa del corso INFO 340: Client-Side Web Development." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Sviluppo lato client | Sviluppo Web lato client" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://info340.github.io//img/cover-img.png" />
+  <meta property="og:description" content="Dispensa del corso INFO 340: Client-Side Web Development." />
+  <meta name="github-repo" content="info340/book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Sviluppo lato client | Sviluppo Web lato client" />
+  
+  <meta name="twitter:description" content="Dispensa del corso INFO 340: Client-Side Web Development." />
+  <meta name="twitter:image" content="https://info340.github.io//img/cover-img.png" />
+
+<meta name="author" content="Joel Ross" />
+
+
+<meta name="date" content="2026-01-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="img/busy-spider-icon.png" type="image/x-icon" />
+<link rel="prev" href="software-setup.html"/>
+<link rel="next" href="html-fundamentals.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-98444716-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/prism.min.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./" class="title">Client-Side Web Development</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Informazioni sul libro</a></li>
+<li class="chapter" data-level="1" data-path="software-setup.html"><a href="software-setup.html"><i class="fa fa-check"></i><b>1</b> Impostazione iniziale</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="software-setup.html"><a href="software-setup.html#web-browser"><i class="fa fa-check"></i><b>1.1</b> Web Browser</a></li>
+<li class="chapter" data-level="1.2" data-path="software-setup.html"><a href="software-setup.html#code-editor"><i class="fa fa-check"></i><b>1.2</b> Code Editor</a>
+<ul>
+<li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html#visual-studio-code"><i class="fa fa-check"></i>Visual Studio Code</a></li>
+<li class="chapter" data-level="1.2.1" data-path="software-setup.html"><a href="software-setup.html#altri-editor"><i class="fa fa-check"></i><b>1.2.1</b> Altri editor</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="software-setup.html"><a href="software-setup.html#bash-command-line"><i class="fa fa-check"></i><b>1.3</b> Bash (Command Line)</a></li>
+<li class="chapter" data-level="1.4" data-path="software-setup.html"><a href="software-setup.html#node-e-npm"><i class="fa fa-check"></i><b>1.4</b> Node e <code>npm</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html#installare-software-con-npm"><i class="fa fa-check"></i>Installare software con npm</a></li>
+<li class="chapter" data-level="" data-path="software-setup.html"><a href="software-setup.html#gestire-package-locali"><i class="fa fa-check"></i>Gestire package locali</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html"><i class="fa fa-check"></i><b>2</b> Sviluppo lato client</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#client-e-server"><i class="fa fa-check"></i><b>2.1</b> Client e server</a></li>
+<li class="chapter" data-level="2.2" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#url-e-file-web"><i class="fa fa-check"></i><b>2.2</b> URL e file web</a>
+<ul>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#tipi-di-file-client-side"><i class="fa fa-check"></i>Tipi di file client-side</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#server-e-hosting"><i class="fa fa-check"></i><b>2.3</b> Server e hosting</a>
+<ul>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#hosting-con-github-pages"><i class="fa fa-check"></i>Hosting con GitHub Pages</a></li>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#development-server"><i class="fa fa-check"></i>Development server</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#web-standards"><i class="fa fa-check"></i><b>2.4</b> Web standards</a></li>
+<li class="chapter" data-level="2.5" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#accessibilita-web"><i class="fa fa-check"></i><b>2.5</b> Accessibilita’ web</a>
+<ul>
+<li class="chapter" data-level="" data-path="sviluppo-lato-client.html"><a href="sviluppo-lato-client.html#supportare-laccessibilita"><i class="fa fa-check"></i>Supportare l’accessibilita’</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="html-fundamentals.html"><a href="html-fundamentals.html"><i class="fa fa-check"></i><b>3</b> Fondamenti di HTML</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="html-fundamentals.html"><a href="html-fundamentals.html#elementi-html"><i class="fa fa-check"></i><b>3.1</b> Elementi HTML</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#alcuni-elementi-di-esempio"><i class="fa fa-check"></i>Alcuni elementi di esempio</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#commenti"><i class="fa fa-check"></i>Commenti</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#attributi"><i class="fa fa-check"></i>Attributi</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#elementi-vuoti"><i class="fa fa-check"></i>Elementi vuoti</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="html-fundamentals.html"><a href="html-fundamentals.html#nidificazione-di-elementi"><i class="fa fa-check"></i><b>3.2</b> Nidificazione di elementi</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#elementi-block-vs.-inline"><i class="fa fa-check"></i>Elementi block vs. inline</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="html-fundamentals.html"><a href="html-fundamentals.html#struttura-della-web-page"><i class="fa fa-check"></i><b>3.3</b> Struttura della web page</a></li>
+<li class="chapter" data-level="" data-path="html-fundamentals.html"><a href="html-fundamentals.html#risorse"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="css-fundamentals.html"><a href="css-fundamentals.html"><i class="fa fa-check"></i><b>4</b> Fondamenti di CSS</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="css-fundamentals.html"><a href="css-fundamentals.html#perche-due-linguaggi-diversi"><i class="fa fa-check"></i><b>4.1</b> Perche’ due linguaggi diversi?</a></li>
+<li class="chapter" data-level="4.2" data-path="css-fundamentals.html"><a href="css-fundamentals.html#includere-css"><i class="fa fa-check"></i><b>4.2</b> Includere CSS</a></li>
+<li class="chapter" data-level="4.3" data-path="css-fundamentals.html"><a href="css-fundamentals.html#regole-css"><i class="fa fa-check"></i><b>4.3</b> Regole CSS</a>
+<ul>
+<li class="chapter" data-level="" data-path="css-fundamentals.html"><a href="css-fundamentals.html#fondamenti-dei-css-selector"><i class="fa fa-check"></i>Fondamenti dei CSS selector</a></li>
+<li class="chapter" data-level="" data-path="css-fundamentals.html"><a href="css-fundamentals.html#fondamenti-delle-property-css"><i class="fa fa-check"></i>Fondamenti delle property CSS</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="css-fundamentals.html"><a href="css-fundamentals.html#la-cascade"><i class="fa fa-check"></i><b>4.4</b> La cascade</a></li>
+<li class="chapter" data-level="" data-path="css-fundamentals.html"><a href="css-fundamentals.html#risorse-1"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="html-semantico.html"><a href="html-semantico.html"><i class="fa fa-check"></i><b>5</b> HTML Semantico</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="html-semantico.html"><a href="html-semantico.html#elementi-html-specifici"><i class="fa fa-check"></i><b>5.1</b> Elementi HTML specifici</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#hyperlink"><i class="fa fa-check"></i>Hyperlink</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#elementi-testuali-inline"><i class="fa fa-check"></i>Elementi testuali inline</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#immagini-e-media"><i class="fa fa-check"></i>Immagini e media</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#headings"><i class="fa fa-check"></i>Headings</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#elementi-non-semantici"><i class="fa fa-check"></i>Elementi non semantici</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#sectioning-elements"><i class="fa fa-check"></i>Sectioning elements</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#tabelle"><i class="fa fa-check"></i>Tabelle</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#form"><i class="fa fa-check"></i>Form</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="html-semantico.html"><a href="html-semantico.html#aria-for-accessibility"><i class="fa fa-check"></i><b>5.2</b> ARIA for Accessibility</a>
+<ul>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#aria-labeling"><i class="fa fa-check"></i>ARIA Labeling</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#aria-roles-and-landmarks"><i class="fa fa-check"></i>ARIA Roles and Landmarks</a></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#aria-e-interattivita"><i class="fa fa-check"></i>ARIA e interattivita’</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="html-semantico.html"><a href="html-semantico.html#risorse-2"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="selettori-css.html"><a href="selettori-css.html"><i class="fa fa-check"></i><b>6</b> Selettori CSS</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="selettori-css.html"><a href="selettori-css.html#selector-di-base"><i class="fa fa-check"></i><b>6.1</b> Selector di base</a>
+<ul>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#type-selector"><i class="fa fa-check"></i>Type Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#class-selector"><i class="fa fa-check"></i>Class Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#id-selector"><i class="fa fa-check"></i>Id Selector</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="selettori-css.html"><a href="selettori-css.html#selector-complessi"><i class="fa fa-check"></i><b>6.2</b> Selector complessi</a>
+<ul>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#grouping-selector"><i class="fa fa-check"></i>Grouping Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#compound-selector"><i class="fa fa-check"></i>Compound Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#descendant-selector"><i class="fa fa-check"></i>Descendant Selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#pseudo-classi"><i class="fa fa-check"></i>Pseudo-classi</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#altri-selector"><i class="fa fa-check"></i>Altri selector</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="selettori-css.html"><a href="selettori-css.html#specificita-dei-selector"><i class="fa fa-check"></i><b>6.3</b> Specificita’ dei selector</a></li>
+<li class="chapter" data-level="" data-path="selettori-css.html"><a href="selettori-css.html#risorse-3"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="proprieta-css.html"><a href="proprieta-css.html"><i class="fa fa-check"></i><b>7</b> Proprieta’ CSS</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="proprieta-css.html"><a href="proprieta-css.html#specificare-i-valori-delle-property"><i class="fa fa-check"></i><b>7.1</b> Specificare i valori delle property</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#valori-di-property-ereditati"><i class="fa fa-check"></i>Valori di property ereditati</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#css-units"><i class="fa fa-check"></i>Unita’ di lunghezza e dimensioni</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="proprieta-css.html"><a href="proprieta-css.html#font-e-testo"><i class="fa fa-check"></i><b>7.2</b> Font e testo</a></li>
+<li class="chapter" data-level="7.3" data-path="proprieta-css.html"><a href="proprieta-css.html#css-colors"><i class="fa fa-check"></i><b>7.3</b> Colori e background</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#background-e-immagini"><i class="fa fa-check"></i>Background e immagini</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="proprieta-css.html"><a href="proprieta-css.html#box-model"><i class="fa fa-check"></i><b>7.4</b> Spaziatura con il Box Model</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#padding"><i class="fa fa-check"></i>Padding</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#border"><i class="fa fa-check"></i>Border</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#margin"><i class="fa fa-check"></i>Margin</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#padding-vs.-margin"><i class="fa fa-check"></i>Padding vs. Margin</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#box-sizing"><i class="fa fa-check"></i>Box-Sizing</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="proprieta-css.html"><a href="proprieta-css.html#flow-layout"><i class="fa fa-check"></i><b>7.5</b> Flow Layout</a></li>
+<li class="chapter" data-level="7.6" data-path="proprieta-css.html"><a href="proprieta-css.html#posizionamento-alternativo"><i class="fa fa-check"></i><b>7.6</b> Posizionamento alternativo</a>
+<ul>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#floating"><i class="fa fa-check"></i>Floating</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="proprieta-css.html"><a href="proprieta-css.html#flexbox"><i class="fa fa-check"></i><b>7.7</b> Flexbox</a></li>
+<li class="chapter" data-level="" data-path="proprieta-css.html"><a href="proprieta-css.html#risorse-4"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="responsive-css.html"><a href="responsive-css.html"><i class="fa fa-check"></i><b>8</b> CSS responsive</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="responsive-css.html"><a href="responsive-css.html#design-mobile-first"><i class="fa fa-check"></i><b>8.1</b> Design mobile-first</a>
+<ul>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#principi-di-mobile-first-design"><i class="fa fa-check"></i>Principi di mobile-first design</a></li>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#specificare-il-viewport"><i class="fa fa-check"></i>Specificare il viewport</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="responsive-css.html"><a href="responsive-css.html#media-query"><i class="fa fa-check"></i><b>8.2</b> Media query</a>
+<ul>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#esempio-flexbox-responsive"><i class="fa fa-check"></i>Esempio: Flexbox responsive</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="responsive-css.html"><a href="responsive-css.html#risorse-5"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="framework-css.html"><a href="framework-css.html"><i class="fa fa-check"></i><b>9</b> Framework CSS</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="framework-css.html"><a href="framework-css.html#usare-un-framework"><i class="fa fa-check"></i><b>9.1</b> Usare un framework</a>
+<ul>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#includere-un-framework"><i class="fa fa-check"></i>Includere un framework</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="framework-css.html"><a href="framework-css.html#bootstrap"><i class="fa fa-check"></i><b>9.2</b> Bootstrap</a>
+<ul>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#class-di-utilita"><i class="fa fa-check"></i>Class di utilita’</a></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#design-responsive"><i class="fa fa-check"></i>Design responsive</a></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#la-grid"><i class="fa fa-check"></i>La Grid</a></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#componenti"><i class="fa fa-check"></i>Componenti</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="framework-css.html"><a href="framework-css.html#risorse-6"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="javascript.html"><a href="javascript.html"><i class="fa fa-check"></i><b>10</b> Fondamenti di JavaScript</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="javascript.html"><a href="javascript.html#programmare-con-javascript"><i class="fa fa-check"></i><b>10.1</b> Programmare con JavaScript</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#storia-e-versioni"><i class="fa fa-check"></i>Storia e versioni</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="javascript.html"><a href="javascript.html#eseguire-javascript"><i class="fa fa-check"></i><b>10.2</b> Eseguire JavaScript</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#nel-browser"><i class="fa fa-check"></i>Nel Browser</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#da-command-line-con-node.js"><i class="fa fa-check"></i>Da Command-line con Node.js</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="javascript.html"><a href="javascript.html#scrivere-script"><i class="fa fa-check"></i><b>10.3</b> Scrivere Script</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#strict-mode"><i class="fa fa-check"></i>Strict Mode</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="javascript.html"><a href="javascript.html#variabili"><i class="fa fa-check"></i><b>10.4</b> Variabili</a>
+<ul>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#data-types-di-base"><i class="fa fa-check"></i>Data Types di base</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#array"><i class="fa fa-check"></i>Array</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#object"><i class="fa fa-check"></i>Object</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#type-coercion"><i class="fa fa-check"></i>Type Coercion</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="javascript.html"><a href="javascript.html#strutture-di-controllo"><i class="fa fa-check"></i><b>10.5</b> Strutture di controllo</a></li>
+<li class="chapter" data-level="10.6" data-path="javascript.html"><a href="javascript.html#funzioni"><i class="fa fa-check"></i><b>10.6</b> Funzioni</a></li>
+<li class="chapter" data-level="" data-path="javascript.html"><a href="javascript.html#risorse-7"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="functional-programming.html"><a href="functional-programming.html"><i class="fa fa-check"></i><b>11</b> Programmazione funzionale in JS</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="functional-programming.html"><a href="functional-programming.html#functions-are-variables"><i class="fa fa-check"></i><b>11.1</b> Functions ARE Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#anonymous-functions"><i class="fa fa-check"></i>Anonymous Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="functional-programming.html"><a href="functional-programming.html#object-functions"><i class="fa fa-check"></i><b>11.2</b> Object Functions</a></li>
+<li class="chapter" data-level="11.3" data-path="functional-programming.html"><a href="functional-programming.html#callback-functions"><i class="fa fa-check"></i><b>11.3</b> Callback Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#closures"><i class="fa fa-check"></i>Closures</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="functional-programming.html"><a href="functional-programming.html#functional-looping"><i class="fa fa-check"></i><b>11.4</b> Functional Looping</a>
+<ul>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#map"><i class="fa fa-check"></i>Map</a></li>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#filter"><i class="fa fa-check"></i>Filter</a></li>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#reduce"><i class="fa fa-check"></i>Reduce</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="functional-programming.html"><a href="functional-programming.html#pure-functions"><i class="fa fa-check"></i><b>11.5</b> Pure Functions</a></li>
+<li class="chapter" data-level="" data-path="functional-programming.html"><a href="functional-programming.html#risorse-8"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="dom.html"><a href="dom.html"><i class="fa fa-check"></i><b>12</b> Modello a oggetti del documento (DOM)</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="dom.html"><a href="dom.html#la-dom-api"><i class="fa fa-check"></i><b>12.1</b> La DOM API</a>
+<ul>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#global-variables"><i class="fa fa-check"></i>Global Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="dom.html"><a href="dom.html#dom-manipulation"><i class="fa fa-check"></i><b>12.2</b> DOM Manipulation</a>
+<ul>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#referenziare-elementi-html"><i class="fa fa-check"></i>Referenziare elementi HTML</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#modificare-elementi-html"><i class="fa fa-check"></i>Modificare elementi HTML</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#modificare-il-dom-tree"><i class="fa fa-check"></i>Modificare il DOM Tree</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#accessibility"><i class="fa fa-check"></i>Accessibility</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="dom.html"><a href="dom.html#ascoltare-gli-eventi"><i class="fa fa-check"></i><b>12.3</b> Ascoltare gli Eventi</a>
+<ul>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#tipi-di-eventi"><i class="fa fa-check"></i>Tipi di Eventi</a></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#event-driven-programming"><i class="fa fa-check"></i>Event-Driven Programming</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="dom.html"><a href="dom.html#risorse-9"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="librerie-javascript.html"><a href="librerie-javascript.html"><i class="fa fa-check"></i><b>13</b> Librerie JavaScript</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="librerie-javascript.html"><a href="librerie-javascript.html#includere-una-library"><i class="fa fa-check"></i><b>13.1</b> Includere una Library</a></li>
+<li class="chapter" data-level="13.2" data-path="librerie-javascript.html"><a href="librerie-javascript.html#esempio-jquery"><i class="fa fa-check"></i><b>13.2</b> Esempio: jQuery</a>
+<ul>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#manipolare-il-dom"><i class="fa fa-check"></i>Manipolare il DOM</a></li>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#gestire-gli-eventi"><i class="fa fa-check"></i>Gestire gli eventi</a></li>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#e-altro"><i class="fa fa-check"></i>E altro!</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="librerie-javascript.html"><a href="librerie-javascript.html#risorse-10"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="es6.html"><a href="es6.html"><i class="fa fa-check"></i><b>14</b> Sintassi ES6+</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="es6.html"><a href="es6.html#es6-syntax-features"><i class="fa fa-check"></i><b>14.1</b> ES6+ Syntax Features</a>
+<ul>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#arrow-functions"><i class="fa fa-check"></i>Arrow Functions</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#destructuring"><i class="fa fa-check"></i>Destructuring</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#spreading"><i class="fa fa-check"></i>Spreading</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#template-strings"><i class="fa fa-check"></i>Template Strings</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="es6.html"><a href="es6.html#modules"><i class="fa fa-check"></i><b>14.2</b> Modules</a>
+<ul>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#module-syntax"><i class="fa fa-check"></i>Module Syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="es6.html"><a href="es6.html#es6-classes"><i class="fa fa-check"></i><b>14.3</b> Classes</a>
+<ul>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#why-classes"><i class="fa fa-check"></i>Why Classes?</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#review-classes-in-java"><i class="fa fa-check"></i>Review: Classes in Java</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#es6-class-syntax"><i class="fa fa-check"></i>ES6 Class Syntax</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#inheritance"><i class="fa fa-check"></i>Inheritance</a></li>
+<li class="chapter" data-level="" data-path="es6.html"><a href="es6.html#working-with-this"><i class="fa fa-check"></i>Working with <code>this</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="react.html"><a href="react.html"><i class="fa fa-check"></i><b>15</b> Introduzione a React</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="react.html"><a href="react.html#react-vite-setup"><i class="fa fa-check"></i><b>15.1</b> Preparazione: React e Vite</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#eseguire-il-development-server"><i class="fa fa-check"></i>Eseguire il Development Server</a></li>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#struttura-del-progetto"><i class="fa fa-check"></i>Struttura del Progetto</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="react.html"><a href="react.html#jsx"><i class="fa fa-check"></i><b>15.2</b> JSX</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#espressioni-inline"><i class="fa fa-check"></i>Espressioni Inline</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="react.html"><a href="react.html#component-react"><i class="fa fa-check"></i><b>15.3</b> Component React</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#organizzazione-dei-components"><i class="fa fa-check"></i>Organizzazione dei Components</a></li>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#alternativa-deprecata-class-components"><i class="fa fa-check"></i>Alternativa Deprecata: Class Components</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="react.html"><a href="react.html#props"><i class="fa fa-check"></i><b>15.4</b> Proprieta’ (<code>props</code>)</a>
+<ul>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#props-e-composizione"><i class="fa fa-check"></i>Props e Composizione</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="react.html"><a href="react.html#risorse-11"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="react-interattivo.html"><a href="react-interattivo.html"><i class="fa fa-check"></i><b>16</b> React Interattivo</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="react-interattivo.html"><a href="react-interattivo.html#gestire-gli-eventi-in-react"><i class="fa fa-check"></i><b>16.1</b> Gestire gli Eventi in React</a></li>
+<li class="chapter" data-level="16.2" data-path="react-interattivo.html"><a href="react-interattivo.html#state-e-hooks"><i class="fa fa-check"></i><b>16.2</b> State e Hooks</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#aggiornare-lo-state"><i class="fa fa-check"></i>Aggiornare lo State</a></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#state-vs.-props"><i class="fa fa-check"></i>State vs. Props</a></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#lifting-up-state"><i class="fa fa-check"></i>Lifting Up State</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="react-interattivo.html"><a href="react-interattivo.html#interazioni-specifiche"><i class="fa fa-check"></i><b>16.3</b> Interazioni Specifiche</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#lavorare-con-i-forms"><i class="fa fa-check"></i>Lavorare con i Forms</a></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#caricare-data-via-ajax"><i class="fa fa-check"></i>Caricare Data via AJAX</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="react-interattivo.html"><a href="react-interattivo.html#risorse-12"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="routing-lato-client.html"><a href="routing-lato-client.html"><i class="fa fa-check"></i><b>17</b> Routing lato client</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="routing-lato-client.html"><a href="routing-lato-client.html#single-page-applications"><i class="fa fa-check"></i><b>17.1</b> Single-Page Applications</a></li>
+<li class="chapter" data-level="17.2" data-path="routing-lato-client.html"><a href="routing-lato-client.html#react-router"><i class="fa fa-check"></i><b>17.2</b> React-Router</a>
+<ul>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#routing"><i class="fa fa-check"></i>Routing</a></li>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#linking"><i class="fa fa-check"></i>Linking</a></li>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#react-router-e-hosting"><i class="fa fa-check"></i>React Router e Hosting</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="routing-lato-client.html"><a href="routing-lato-client.html#risorse-13"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="ajax.html"><a href="ajax.html"><i class="fa fa-check"></i><b>18</b> Richieste AJAX</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="ajax.html"><a href="ajax.html#ajax-1"><i class="fa fa-check"></i><b>18.1</b> AJAX</a>
+<ul>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#xml-e-json"><i class="fa fa-check"></i>XML e JSON</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="ajax.html"><a href="ajax.html#fetching-data"><i class="fa fa-check"></i><b>18.2</b> Fetching Data</a></li>
+<li class="chapter" data-level="18.3" data-path="ajax.html"><a href="ajax.html#asynchronous-programming"><i class="fa fa-check"></i><b>18.3</b> Asynchronous Programming</a>
+<ul>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#chaining-promises"><i class="fa fa-check"></i>Chaining Promises</a></li>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#handling-errors"><i class="fa fa-check"></i>Handling Errors</a></li>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#altri-data-formats"><i class="fa fa-check"></i>Altri Data Formats</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ajax.html"><a href="ajax.html#risorse-14"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="firebase.html"><a href="firebase.html"><i class="fa fa-check"></i><b>19</b> Firebase</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="firebase.html"><a href="firebase.html#setting-up-firebase"><i class="fa fa-check"></i><b>19.1</b> Setting up Firebase</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#creating-a-project"><i class="fa fa-check"></i>Creating a Project</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#including-firebase-in-react"><i class="fa fa-check"></i>Including Firebase in React</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#adding-collaborators-to-a-project"><i class="fa fa-check"></i>Adding Collaborators to a Project</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="firebase.html"><a href="firebase.html#realtime-database"><i class="fa fa-check"></i><b>19.2</b> Realtime Database</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#setting-up-the-database"><i class="fa fa-check"></i>Setting Up the Database</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#reference-ai-dati"><i class="fa fa-check"></i>Reference ai dati</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#writing-data"><i class="fa fa-check"></i>Writing Data</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#listening-for-data-changes"><i class="fa fa-check"></i>Listening for Data Changes</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#firebase-arrays"><i class="fa fa-check"></i>Firebase Arrays</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="firebase.html"><a href="firebase.html#autenticazione-utenti"><i class="fa fa-check"></i><b>19.3</b> Autenticazione utenti</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#accesso-con-firebaseui"><i class="fa fa-check"></i>Accesso con FirebaseUI</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#managing-the-user"><i class="fa fa-check"></i>Managing the User</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="firebase.html"><a href="firebase.html#firebase-storage"><i class="fa fa-check"></i><b>19.4</b> Firebase Storage</a>
+<ul>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#file-inputs"><i class="fa fa-check"></i>File Inputs</a></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#uploading-files"><i class="fa fa-check"></i>Uploading Files</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="firebase.html"><a href="firebase.html#risorse-15"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendice-appendici-e-argomenti-speciali.html"><a href="appendice-appendici-e-argomenti-speciali.html"><i class="fa fa-check"></i>(APPENDICE) Appendici e argomenti speciali</a></li>
+<li class="chapter" data-level="20" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html"><i class="fa fa-check"></i><b>20</b> Guida allo stile del codice</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#html-guidelines"><i class="fa fa-check"></i><b>20.1</b> HTML Guidelines</a>
+<ul>
+<li class="chapter" data-level="" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#spacing"><i class="fa fa-check"></i>Spacing</a></li>
+<li class="chapter" data-level="" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#elementi-specifici"><i class="fa fa-check"></i>Elementi specifici</a></li>
+<li class="chapter" data-level="" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#commenti-in-html"><i class="fa fa-check"></i>Commenti in HTML</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#css-guidelines"><i class="fa fa-check"></i><b>20.2</b> CSS Guidelines</a>
+<ul>
+<li class="chapter" data-level="20.2.1" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#spacing-1"><i class="fa fa-check"></i><b>20.2.1</b> Spacing</a></li>
+<li class="chapter" data-level="20.2.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#selectors"><i class="fa fa-check"></i><b>20.2.2</b> Selectors</a></li>
+<li class="chapter" data-level="20.2.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#class-names"><i class="fa fa-check"></i><b>20.2.3</b> Class Names</a></li>
+<li class="chapter" data-level="20.2.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#proprieta-specifiche"><i class="fa fa-check"></i><b>20.2.4</b> Proprieta’ specifiche</a></li>
+<li class="chapter" data-level="20.2.5" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#responsive-css-1"><i class="fa fa-check"></i><b>20.2.5</b> Responsive CSS</a></li>
+<li class="chapter" data-level="20.2.6" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#commenti-in-css"><i class="fa fa-check"></i><b>20.2.6</b> Commenti in CSS</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#javascript-guidelines"><i class="fa fa-check"></i><b>20.3</b> JavaScript Guidelines</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#variables"><i class="fa fa-check"></i><b>20.3.1</b> Variables</a></li>
+<li class="chapter" data-level="20.3.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#functions"><i class="fa fa-check"></i><b>20.3.2</b> Functions</a></li>
+<li class="chapter" data-level="20.3.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#commenti-in-javascript"><i class="fa fa-check"></i><b>20.3.3</b> Commenti in JavaScript</a></li>
+<li class="chapter" data-level="20.3.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#altre-linee-guida-javascript"><i class="fa fa-check"></i><b>20.3.4</b> Altre linee guida JavaScript</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#react-guidelines"><i class="fa fa-check"></i><b>20.4</b> React Guidelines</a>
+<ul>
+<li class="chapter" data-level="20.4.1" data-path="react.html"><a href="react.html#components"><i class="fa fa-check"></i><b>20.4.1</b> Components</a></li>
+<li class="chapter" data-level="20.4.2" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#mapping-data"><i class="fa fa-check"></i><b>20.4.2</b> Mapping Data</a></li>
+<li class="chapter" data-level="20.4.3" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#state"><i class="fa fa-check"></i><b>20.4.3</b> State</a></li>
+<li class="chapter" data-level="20.4.4" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#events-e-forms"><i class="fa fa-check"></i><b>20.4.4</b> Events e Forms</a></li>
+</ul></li>
+<li class="chapter" data-level="20.5" data-path="guida-allo-stile-del-codice.html"><a href="guida-allo-stile-del-codice.html#linee-guida-varie"><i class="fa fa-check"></i><b>20.5</b> Linee guida varie</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="jest.html"><a href="jest.html"><i class="fa fa-check"></i><b>21</b> Test con Jest</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="jest.html"><a href="jest.html#test"><i class="fa fa-check"></i><b>21.1</b> Test</a></li>
+<li class="chapter" data-level="21.2" data-path="jest.html"><a href="jest.html#testing-con-jest"><i class="fa fa-check"></i><b>21.2</b> Testing con Jest</a></li>
+<li class="chapter" data-level="21.3" data-path="jest.html"><a href="jest.html#scrivere-un-test"><i class="fa fa-check"></i><b>21.3</b> Scrivere un test</a>
+<ul>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#assertion-e-matcher"><i class="fa fa-check"></i>Assertion e matcher</a></li>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#organizzare-i-test"><i class="fa fa-check"></i>Organizzare i test</a></li>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#eseguire-i-test"><i class="fa fa-check"></i>Eseguire i test</a></li>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#esercizio"><i class="fa fa-check"></i>Esercizio</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="jest.html"><a href="jest.html#testing-di-web-app-con-jest"><i class="fa fa-check"></i><b>21.4</b> Testing di web app con Jest</a>
+<ul>
+<li class="chapter" data-level="" data-path="jest.html"><a href="jest.html#pratica"><i class="fa fa-check"></i>Pratica</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="webpack.html"><a href="webpack.html"><i class="fa fa-check"></i><b>22</b> Laboratorio: Webpack</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="webpack.html"><a href="webpack.html#che-cose-webpack"><i class="fa fa-check"></i><b>22.1</b> Che cos’e’ Webpack?</a></li>
+<li class="chapter" data-level="22.2" data-path="webpack.html"><a href="webpack.html#getting-started"><i class="fa fa-check"></i><b>22.2</b> Getting Started</a></li>
+<li class="chapter" data-level="22.3" data-path="webpack.html"><a href="webpack.html#webpack.config.js"><i class="fa fa-check"></i><b>22.3</b> <code>webpack.config.js</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#entry-e-output"><i class="fa fa-check"></i><code>entry</code> e <code>output</code></a></li>
+</ul></li>
+<li class="chapter" data-level="22.4" data-path="webpack.html"><a href="webpack.html#loaders"><i class="fa fa-check"></i><b>22.4</b> Loaders</a>
+<ul>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#babel-loader"><i class="fa fa-check"></i>Babel Loader</a></li>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#clean-up-bath"><i class="fa fa-check"></i>Clean up :bath:</a></li>
+<li class="chapter" data-level="" data-path="webpack.html"><a href="webpack.html#ulteriore-pratica-con-i-loader"><i class="fa fa-check"></i>Ulteriore pratica con i Loader</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="class-components.html"><a href="class-components.html"><i class="fa fa-check"></i><b>23</b> Componenti class React</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="class-components.html"><a href="class-components.html#props-nei-class-components"><i class="fa fa-check"></i><b>23.1</b> Props nei Class Components</a></li>
+<li class="chapter" data-level="23.2" data-path="class-components.html"><a href="class-components.html#gestire-gli-eventi-nei-class-components"><i class="fa fa-check"></i><b>23.2</b> Gestire gli Eventi nei Class Components</a>
+<ul>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#accedere-al-this-del-component-dagli-eventi"><i class="fa fa-check"></i>Accedere al <code>this</code> del Component dagli Eventi</a></li>
+</ul></li>
+<li class="chapter" data-level="23.3" data-path="class-components.html"><a href="class-components.html#state-in-class-components"><i class="fa fa-check"></i><b>23.3</b> State nei Class Components</a>
+<ul>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#cambiare-lo-state"><i class="fa fa-check"></i>Cambiare lo State</a></li>
+</ul></li>
+<li class="chapter" data-level="23.4" data-path="class-components.html"><a href="class-components.html#il-lifecycle-del-component"><i class="fa fa-check"></i><b>23.4</b> Il Lifecycle del Component</a>
+<ul>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#esempio-di-lifecycle-caricare-data-via-ajax"><i class="fa fa-check"></i>Esempio di Lifecycle: Caricare Data via AJAX</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="class-components.html"><a href="class-components.html#risorse-16"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="css-in-js.html"><a href="css-in-js.html"><i class="fa fa-check"></i><b>24</b> CSS in JS</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="css-in-js.html"><a href="css-in-js.html#perche-css-in-js"><i class="fa fa-check"></i><b>24.1</b> Perche’ CSS in JS?</a></li>
+<li class="chapter" data-level="24.2" data-path="css-in-js.html"><a href="css-in-js.html#stili-inline-in-react"><i class="fa fa-check"></i><b>24.2</b> Stili inline in React</a></li>
+<li class="chapter" data-level="24.3" data-path="css-in-js.html"><a href="css-in-js.html#aphrodite"><i class="fa fa-check"></i><b>24.3</b> Aphrodite</a></li>
+<li class="chapter" data-level="24.4" data-path="css-in-js.html"><a href="css-in-js.html#css-modules"><i class="fa fa-check"></i><b>24.4</b> CSS Modules</a>
+<ul>
+<li class="chapter" data-level="" data-path="css-in-js.html"><a href="css-in-js.html#ejecting-da-create-react-app"><i class="fa fa-check"></i>Ejecting da Create React App</a></li>
+<li class="chapter" data-level="" data-path="css-in-js.html"><a href="css-in-js.html#composizione-delle-class"><i class="fa fa-check"></i>Composizione delle class</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="css-in-js.html"><a href="css-in-js.html#risorse-17"><i class="fa fa-check"></i>Risorse</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="redux.html"><a href="redux.html"><i class="fa fa-check"></i><b>25</b> Redux</a></li>
+<li class="chapter" data-level="26" data-path="react-native.html"><a href="react-native.html"><i class="fa fa-check"></i><b>26</b> React Native</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="react-native.html"><a href="react-native.html#getting-setup"><i class="fa fa-check"></i><b>26.1</b> Getting Setup</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#eseguire-react-native-apps"><i class="fa fa-check"></i>Eseguire React Native Apps</a></li>
+</ul></li>
+<li class="chapter" data-level="26.2" data-path="react-native.html"><a href="react-native.html#react-native-apps"><i class="fa fa-check"></i><b>26.2</b> React Native Apps</a>
+<ul>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#styling-react-native"><i class="fa fa-check"></i>Styling React Native</a></li>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#interaction"><i class="fa fa-check"></i>Interaction</a></li>
+<li class="chapter" data-level="" data-path="react-native.html"><a href="react-native.html#liste-e-data"><i class="fa fa-check"></i>Liste e Data</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Sviluppo Web lato client</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sviluppo-lato-client" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Sviluppo lato client<a href="sviluppo-lato-client.html#sviluppo-lato-client" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Questo capitolo offre una panoramica del contesto per lo sviluppo web lato client: una breve introduzione a come funziona Internet e a dove si colloca la programmazione client-side. Fornisce un background utile per apprendere le tecnologie web specifiche.</p>
+<div id="client-e-server" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Client e server<a href="sviluppo-lato-client.html#client-e-server" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Lo web development e’ il processo di implementazione (programmazione) di siti web e applicazioni che gli utenti possono accedere tramite Internet. Tuttavia Internet e’ una rete che coinvolge <em>molti</em> computer che comunicano tra loro. Questi computer possono essere divisi in due gruppi: i <strong>server</strong> memorizzano (“host”) i contenuti e li forniscono (“serve”) ad altri computer, mentre i <strong>client</strong> richiedono quei contenuti ai server e poi li presentano agli utenti umani. In generale, i server sono computer posseduti e gestiti da grandi organizzazioni, mentre i client sono dispositivi individuali (laptop, telefoni, ecc.) di proprieta’ di singoli utenti.</p>
+<!-- add client-server diagram? -->
+<p>Come interagiscono client e server? Consideriamo il processo di visualizzazione di una web page di base, come <a href="https://en.wikipedia.org/wiki/Informatics">la voce Wikipedia su Informatics</a>. Per visitare questa pagina, l’utente digita l’indirizzo web (<code>https://en.wikipedia.org/wiki/Informatics</code>) nella barra degli indirizzi, oppure clicca un link per arrivarci. In entrambi i casi, il computer dell’utente e’ il <strong>client</strong>, e il browser prende quell’indirizzo o link e lo usa per creare una <strong>HTTP Request</strong> — una <em>richiesta</em> di dati inviata seguendo l’<strong>H</strong>yper<strong>T</strong>ext <strong>T</strong>ransfer <strong>P</strong>rotocol. Questa richiesta e’ come una lettera che chiede informazioni, ed e’ inviata a un altro computer: il <strong>web server</strong> che contiene quelle informazioni.</p>
+<div class="float">
+<img src="img/client-side/client-server-comm.png" alt="A diagram of client/server communication." />
+<div class="figcaption">A diagram of client/server communication.</div>
+</div>
+<p>Il web server riceve la richiesta e, in base al contenuto della richiesta (inclusi i dettagli dell’indirizzo web), decide quali informazioni inviare come <strong>response</strong> al client. In generale, questa response e’ composta da molti file diversi: il contenuto testuale della pagina, informazioni di styling (font, colore) su come deve apparire, istruzioni per rispondere alle interazioni dell’utente (click di bottoni), immagini o altri asset da mostrare, e cosi’ via.</p>
+<p>Il browser del client prende tutti questi file nella response e li usa per <strong>renderizzare</strong> (creare/presentare) la web page per l’utente: determina quale testo mostrare, quale font e colore usare per quel testo, dove posizionare le immagini ed e’ pronto a fare altro quando l’utente clicca su una di quelle immagini. In effetti, nella sua forma piu’ basilare un web browser e’ un programma che fa due cose: (1) invia HTTP request per conto dell’utente, e (2) renderizza la response risultante dal server.</p>
+<p>Data questa interazione, lo <strong>sviluppo web lato client</strong> consiste nell’implementare programmi (scrivere codice) che vengono interpretati dal <em>browser</em> ed eseguiti dal <em>client</em>. E’ il processo di scrittura del codice che viene inviato nella response del server. Questo codice specifica come i siti web devono apparire e come l’utente deve interagire con essi. Al contrario, lo <strong>sviluppo web lato server</strong> consiste nell’implementare programmi che il <em>server</em> usa per determinare quale codice client-side viene consegnato. Per esempio, un programma server-side contiene la logica per decidere quale foto di un gatto inviare con la richiesta, mentre un programma client-side contiene la logica su dove e come quella foto deve apparire nella pagina.</p>
+<p>Questo corso si concentra sullo <em>sviluppo web lato client</em>, ovvero lo sviluppo di programmi eseguiti dal browser (generalmente come risposta a una richiesta a un web server). Anche se trattera’ come i programmi client-side possono interagire con un server, molti dei concetti discussi qui possono essere eseguiti anche dentro un browser senza affidarsi a un server esterno (si dice “running locally”, perche’ il codice gira sulla macchina “locale” senza andare su un server).</p>
+</div>
+<div id="url-e-file-web" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> URL e file web<a href="sviluppo-lato-client.html#url-e-file-web" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Che l’utente digiti un indirizzo nella barra o clicchi un link (che semplicemente naviga verso un altro indirizzo), il server determina quale contenuto inviare al browser per renderizzarlo in base all’URL nella barra degli indirizzi. L’<strong>URL</strong> (<strong><em>U</em>niform <em>R</em>esource <em>L</em>ocator</strong>) e’ simile all’indirizzo su una lettera postale inviata all’interno di una grande organizzazione come un’universita’: indichi l’indirizzo aziendale, il dipartimento e la persona, e otterrai una response (e dati) diversa da Alice in Accounting rispetto a Sally in Sales. L’URL funge da <em>identificatore</em> (pensa: nome di variabile) per la pagina che vuoi vedere, mentre la pagina o i dati a cui vuoi accedere sono la <em>risorsa</em> che viene identificata/localizzata. In realta’, piu’ propriamente gli URL sono una forma specializzata di <em>URI</em> (<em>Uniform Resource Identifier</em>), anche se i due termini sono spesso usati in modo intercambiabile.</p>
+<p>Come gli indirizzi postali, gli URL hanno un formato specifico usato per indirizzare la richiesta alla risorsa corretta.</p>
+<div class="float">
+<img src="img/client-side/uri-schema.png" alt="Diagram of the format (schema) of a URL." />
+<div class="figcaption">Diagram of the format (schema) of a URL.</div>
+</div>
+<p>Un URL e’ in genere composto dalle seguenti parti (anche se non tutte devono essere incluse):</p>
+<ul>
+<li><p><strong><code>scheme</code></strong> (anche <strong><code>protocol</code></strong>): il “linguaggio” che il computer usera’ per inviare la richiesta della risorsa (file). Nel web, e’ spesso <code>http</code> (HyperText Transfer Protocol). Ma e’ una best practice usare invece <code>https</code> (<strong>s</strong>ecure HTTP), che cripta la comunicazione. <em>Non usare <code>http</code> non sicuro!</em></p>
+<p>Esistono anche altri protocolli. Se fai doppio click su un file web dal tuo computer locale, il file si apre con il protocollo <code>file</code>, cioe’ il computer sta accedendo alla risorsa dal file system.</p>
+<p>Gli <em>hyperlink</em> delle web page includono spesso URI con il protocollo <a href="https://css-tricks.com/snippets/html/mailto-links/"><code>mailto</code></a> per link email, o il protocollo <a href="https://developers.google.com/web/fundamentals/device-access/click-to-call/click-to-call"><code>tel</code></a> per numeri di telefono.</p>
+<p>Lavorando con sistemi web, potresti incontrare indirizzi <code>ftp</code> (File Transfer Protocol), usati quando si caricano file su alcuni webhost. Quando usi <code>git</code>, potresti incontrare indirizzi <code>ssh</code> (Secure Shell protocol). E ci sono molti altri protocolli di rete, ma sul web di solito useremo solo <code>https</code>.</p></li>
+<li><p><strong><code>domain</code></strong> (anche <strong><code>host</code></strong>): l’indirizzo del web server da cui richiedere informazioni. Puoi pensarlo come il destinatario della lettera. Sono gli indirizzi <code>.com</code> a cui pensi di solito, come <code>google.com</code> o <code>ischool.uw.edu</code>.</p>
+<p>(Il <code>www</code> spesso non e’ necessario; indica che l’indirizzo e’ un web address, e la maggior parte dei server tratta qualsiasi richiesta <code>https</code> come web address). E’ anche possibile scrivere il domain in un URL usando un <a href="https://en.wikipedia.org/wiki/IP_address">IP address</a>, ma non e’ comune nel web programming.</p>
+<p>L’host puo’ includere piu’ <em>subdomain</em>, che sono scritti prima di ogni <code>.</code>. Quindi <code>ischool.uw.edu</code> si riferisce al subdomain <code>ischool</code> del domain <code>uw.edu</code>.</p>
+<p>Il domain <code>localhost</code> (IP <code>127.0.0.1</code>) e’ un nome speciale che si riferisce all’indirizzo del <em>computer corrente</em>; lo userai quando accedi a pagine su development server locali.</p></li>
+<li><p><strong><code>port</code></strong> (<em>opzionale</em>): usata per determinare dove connettersi al web server. Per default, le web request usano la porta <code>80</code>, ma alcuni web server accettano connessioni su altre porte — ad es. <code>8080</code>, <code>8000</code> e <code>3000</code> sono comuni nei development server descritti sotto.</p></li>
+<li><p><strong><code>path</code></strong>: quale risorsa su quel web server vuoi accedere. Per molti web server, puoi pensarla come il <em>relative path</em> al file a partire dalla cartella “root” di quel server (che potrebbe non essere la root del computer). Quindi nel diagramma sopra il path <code>/example/info/page.html</code> si puo’ intendere come riferimento al file <code>page.html</code> nella cartella <code>info</code> nella cartella <code>example</code> dentro la root del server.</p>
+<p>Se specifichi un path a una cartella invece che a un file (incluso <code>/</code> come cartella “root”), la maggior parte dei web server servira’ il file chiamato <code>index.html</code> da quella cartella (cioe’ il path “di default” e’ <code>index.html</code>). Quindi <code>https://google.com</code> e’ in realta’ lo stesso di <code>https://google.com/index.html</code>. Per questo, <code>index.html</code> e’ il nome tradizionale del file che contiene la home page di un sito.</p>
+<p>Anche se il path si puo’ capire come un percorso di file, non corrisponde necessariamente alla struttura dei file del server — infatti, piu’ avanti nel corso imparerai a specificare <em>routes</em> per il path che non riflettono affatto file!</p>
+<div class="alert alert-warning">
+Come in qualsiasi programma, dovresti sempre usare path <strong>relativi</strong> nel web programming, e questi path sono spesso (ma non sempre!) relativi alla <em>root folder</em> del web server.
+</div></li>
+<li><p><strong><code>query</code></strong> (<em>opzionale</em>): <strong>parameters</strong> extra (argomenti) inclusi nella request su quale risorsa accedere. Il <code>?</code> iniziale fa parte della query, seguito da coppie chiave-valore di parameter separate da <code>&amp;</code>. Sono comunemente usate quando includi cose come “search query” in un motore di ricerca.</p></li>
+<li><p><strong><code>fragment</code></strong> (<em>opzionale</em>): indica quale parte (“fragment”) della risorsa accedere. E’ usato, per esempio, per far “saltare” l’utente a meta’ pagina. Il <code>#</code> iniziale fa parte del fragment.</p></li>
+</ul>
+<div id="tipi-di-file-client-side" class="section level3 unnumbered hasAnchor">
+<h3>Tipi di file client-side<a href="sviluppo-lato-client.html#tipi-di-file-client-side" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>E’ compito del browser interpretare e renderizzare i file di source code inviati da un server come parte di una HTTP response. Come programmatore client-side, il tuo compito e’ scrivere questo source code per essere interpretato dal browser. Esistono vari tipi di file di source code, tra cui:</p>
+<ul>
+<li><p><strong><code>.html</code></strong> file che contengono codice scritto in HTML (HyperText Markup Language). Questo codice specifica il contenuto testuale e <em>semantico</em> della web page. Vedi il capitolo <a href="html-fundamentals.html#html-fundamentals">HTML Fundamentals</a> per dettagli su HTML. Nota che aprire uno di questi file dal tuo file system (ad esempio con doppio click) aprira’ la web page che rappresenta in un browser.</p></li>
+<li><p><strong><code>.css</code></strong> file che contengono codice scritto in CSS (Cascading Style Sheets). Questo codice e’ usato per specificare proprieta’ di styling e <em>aspetto visivo</em> (ad es. colore e font) del contenuto HTML. Vedi il capitolo <a href="css-fundamentals.html#css-fundamentals">CSS Fundamentals</a> per dettagli su CSS.</p></li>
+<li><p><strong><code>.js</code></strong> file che contengono codice scritto in JavaScript. Questo codice e’ usato per specificare <em>comportamenti interattivi</em> che il sito eseguira’ — per esempio, cosa deve cambiare quando l’utente clicca un bottone. Nota che il codice JavaScript sono “programmi” inviati dal web server come parte della response, ma che vengono <em>eseguiti</em> dal browser sul computer del client. Vedi il capitolo <a href="#javascript-fundamentals">JavaScript Fundamentals</a> per dettagli su JavaScript.</p></li>
+</ul>
+<p>Le HTTP response possono includere anche file <strong>asset</strong> aggiuntivi, come immagini (<code>.png</code>, <code>.jpg</code>, <code>.gif</code>, ecc.), font, video o file musicali, ecc.</p>
+<p>I moderni web browser sono in grado di <em>renderizzare</em> (interpretare e visualizzare) tutti questi tipi di file, combinandoli in pagine web moderne e interattive che usi ogni giorno. In effetti, puoi aprire quasi qualsiasi file dentro un browser, ad esempio facendo click destro sul file e selezionando “Open With”, oppure trascinando il file nel browser. I file HTML sono la base delle web page, quindi puoi aprire un file <code>.html</code> nel browser con doppio click (come apriresti un file <code>.docx</code> in MS Word):</p>
+</div>
+</div>
+<div id="server-e-hosting" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Server e hosting<a href="sviluppo-lato-client.html#server-e-hosting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Anche se il corso si concentra sullo sviluppo client-side (scrivere codice che verra’ renderizzato da un browser), e’ impossibile fare web development senza interagire in qualche modo con un server. Come detto sopra, un <strong>server</strong> e’ un computer che “serve” (fornisce) le risorse, i file e i dati richiesti da un browser.</p>
+<p>Questi file sono memorizzati sul server prima di essere serviti — questo si chiama <strong>hosting</strong> della risorsa (la risorsa “vive” sul server). Anche quando ti concentri sullo sviluppo client-side, i file che vuoi far renderizzare al browser devono essere ospitati (devono “vivere”) da qualche parte. Potresti fare sviluppo e test “locali”, in cui i file restano sul tuo computer invece che su una macchina remota su Internet. In questo caso, e’ possibile usare il file system del tuo computer come “host”, oppure usare un <a href="#development-servers">development web server (vedi sotto)</a>.</p>
+<p>Ma quando vuoi rendere il tuo sito disponibile ad altri (“pubblicarlo”, cioe’ metterlo in <em>production</em>), avrai bisogno di un server dedicato in grado di ospitare quei file con un URL a cui gli altri possono accedere. Esiste una grande varieta’ di <strong>web hosting service</strong> su Internet. Alcuni sono gratuiti (spesso con storage o bandwidth limitati — quanti dati possono servire e quante request possono gestire), altri richiedono una tariffa mensile o annuale. Non c’e’ un prezzo standard: dovrai valutare quale servizio puo’ adattarsi alle tue esigenze e al tuo budget. Disponibilita’ e qualita’ dei web hosting service cambiano frequentemente; consigliare host esula da questo testo — ma vedi <a href="#hosting-with-github-pages">Hosting with GitHub Pages</a> per un metodo semplice e gratuito (usato per questo libro).</p>
+<p>Nota che, oltre a <em>ospitare</em> i file su un server specifico, rendere un sito disponibile richiede anche un URL a cui gli altri possano accedere. Molti hosting service forniscono un URL — ma se vuoi un nome specifico per la parte di domain dell’URL (ad es. un tuo “.com”), dovrai acquistare e registrare quel <strong>domain name</strong>. Come per il web hosting, ci sono servizi che facilitano l’acquisto e la registrazione di domain name. Quando registri un domain, puoi impostarlo in modo che punti alla posizione (IP) del tuo hosting server, cosi’ gli utenti che vanno a quell’URL saranno indirizzati al tuo server, che potra’ servire i file. Quindi se vuoi creare un tuo sito ci sono spesso due cose da acquistare: web hosting (spazio e banda) e un domain name. Acquistare un domain name non e’ necessario per ospitare un sito se sei disposto ad accettare i limiti dello schema di naming dell’host — per esempio, questo libro e’ ospitato su <code>info340.github.io</code>, che e’ gratuito come <em>subdomain</em> di <code>github.io</code> (GitHub Pages).</p>
+<div id="hosting-con-github-pages" class="section level3 unnumbered hasAnchor">
+<h3>Hosting con GitHub Pages<a href="sviluppo-lato-client.html#hosting-con-github-pages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Come modo facile e gratuito per rendere disponibili siti web, GitHub offre un web hosting gratuito tramite un servizio chiamato <a href="https://pages.github.com/">Github Pages</a>. Poiche’ i repository GitHub gia’ memorizzano il codice online, e’ semplice rendere quel codice disponibile come risorsa ai browser (ospitarlo sul web). Puoi ospitare un sito per un account utente o organizzazione, oppure creare piu’ siti per progetti diversi (repo). I siti di progetto saranno disponibili su <code>https://username.github.io/reponame</code> — questo serve la root folder del repo (in particolare il file <code>index.html</code> che si trova li’).</p>
+<p>E’ possibile configurare GitHub Pages per un repo specifico tramite le Settings del repo. Tuttavia, uno dei modi migliori per pubblicare un progetto web con GitHub Pages e’ usare il <em>branching</em>: in particolare, qualsiasi contenuto in un branch chiamato <strong><code>gh-pages</code></strong> verra’ automaticamente servito come pagina web hostata. Questa e’ una feature speciale fornita da GitHub per i branch con questo nome.</p>
+<p>Usare un branch separato aiuta a distinguere tra il tuo <em>development code</em> (il branch <code>main</code> — quello su cui stai lavorando, e che puo’ contenere bug, errori o parti non finite) e il <em>production code</em> (il branch <code>gh-pages</code> — una versione “funzionante” che puoi condividere con altri). Tenendo questi branch separati, puoi fare development e apportare cambiamenti potenzialmente breaking senza rompere il sito per gli utenti che lo stanno accedendo. Anche se e’ possibile servire direttamente il branch <code>main</code>, e’ una best practice di software engineering tenere separate le versioni di development e production. Non fare mai modifiche in production!</p>
+<p>Quindi per pubblicare un sito il cui codice e’ in un repository GitHub, crea un <em>nuovo branch</em> per il repo chiamato esattamente <code>gh-pages</code> (usando <code>git checkout -b gh-pages</code>). Questo e’ il tuo branch di produzione — qualsiasi codice su questo branch puo’ essere <em>pushed</em> su GitHub e reso disponibile agli utenti. Nota che dovrai fare push del branch su GitHub affinche’ venga servito (usando <code>git push origin gh-pages</code> mentre sei su quel branch).</p>
+<div class="alert alert-warning">
+<p><strong>IMPORTANTE:</strong> Non fare mai modifiche sul branch di produzione <code>gh-pages</code>! Devi sempre fare qualsiasi modifica al codice sul branch <code>main</code>, e poi fare <code>merge</code> di quelle modifiche nel branch <code>gh-pages</code>. Di fatto, non ricordo di essere mai rimasto sul branch <code>gh-pages</code> piu’ del tempo necessario per fare merge e push. Quindi il tuo workflow dovrebbe essere:</p>
+<pre class="language-bash"><code><span class="token comment">## do all your coding on `main`!</span>
+
+<span class="token comment"># switch to gh-pages to publish</span>
+<span class="token function">git</span> checkout gh-pages
+
+<span class="token comment"># merge the changes from main</span>
+<span class="token function">git</span> merge main
+
+<span class="token comment"># push to GitHub to publish</span>
+<span class="token function">git</span> push origin gh-pages
+
+<span class="token comment"># IMMEDIATELY switch back to main branch for more coding</span>
+<span class="token function">git</span> checkout main</code></pre>
+<p>Nota che se pubblichi in produzione (push su <code>gh-pages</code>) e trovi un bug o un problema nel tuo sito, devi comunque correggerlo sul branch <code>main</code> seguendo la procedura sopra. Si’, puo’ sembrare macchinoso e noioso, ma e’ per questo che devi testare accuratamente il tuo lavoro in development (sul branch <code>main</code>) prima di fare push in production. Questa e’ una pratica importante di software engineering!</p>
+</div>
+</div>
+<div id="development-server" class="section level3 unnumbered hasAnchor">
+<h3>Development server<a href="sviluppo-lato-client.html#development-server" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Come detto sopra, e’ possibile richiedere un file <code>.html</code> (aprire una web page) usando il protocollo <code>file</code> semplicemente aprendo quel file nel browser. Questo va bene per testare molti programmi client-side. Tuttavia, ci sono alcune interazioni client-side che per <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">ragioni di sicurezza</a> funzionano solo se una web page viene richiesta da un web server (ad es. tramite protocollo <code>http</code> o <code>https</code>).</p>
+<p>In queste situazioni, dovrai sviluppare web application client-side usando un <strong>local development web server</strong>. E’ un web server che esegui dal tuo computer — la tua macchina agisce come web server, e usi il browser per far inviare al tuo computer una request <em>a se stesso</em> per la web page. Pensa a mandarti una lettera. I development web server aiutano ad aggirare le restrizioni sulle richieste cross-origin, e offrono benefici aggiuntivi per accelerare lo sviluppo — come ricaricare automaticamente il browser quando cambia il source code.</p>
+<p>Ci sono vari development server semplici che puoi usare:</p>
+<ul>
+<li><p><a href="https://github.com/tapio/live-server"><strong><code>live-server</code></strong></a> e’ un package Node che esegue un semplice web server da command line. Puoi eseguire il programma e “servire” i file dalla cartella corrente con <code>npx live-server .</code> (il <code>.</code> indica la cartella corrente). Questo aprira’ il tuo file <code>index.html</code> in un browser (se non succede, puoi visualizzare la pagina su <a href="http://localhost:8080" class="uri">http://localhost:8080</a> di default). Inoltre aggiornera’ <em>automaticamente</em> la pagina ogni volta che cambi un file nella cartella.</p></li>
+<li><p>L’applicazione <a href="https://vitejs.dev/"><strong>Vite</strong></a> per creare app React fornisce un webserver in grado di transpile del codice React. Si usa nello sviluppo di app React (e solo in quel caso). Vedi <a href="react.html#react-vite-setup">Getting Set Up: React and Vite</a> per dettagli.</p></li>
+<li><p>Il modulo Python [<strong><code>http.server</code></strong>] e’ in grado di eseguire un semplice web server. Devi avere Python 3 installato e disponibile sulla tua macchina. Puoi quindi usare il comando <code>python -m http.server</code> per servire il contenuto della cartella corrente, di default su <a href="http://localhost:8080" class="uri">http://localhost:8080</a>.</p></li>
+<li><p>Esistono varie estensioni per VS Code che forniscono questa funzionalita’, incluse <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer"><code>LiveServer</code></a> e <a href="https://marketplace.visualstudio.com/items?itemName=yuichinukiyama.vscode-preview-server"><code>vscode-previw-server</code></a>.</p></li>
+</ul>
+<p>Quando esegui un web server locale, ricorda che l’indirizzo <code>127.0.0.1</code> e’ l’IP di <code>localhost</code>, che e’ il domain della tua macchina (il “local host”). La maggior parte dei development server, quando avviati, ti dira’ l’URL della root directory del server.</p>
+<p>Piu’ comunemente, vorrai avviare il web server dalla root directory del tuo <em>progetto</em>, in modo che il relative path <code>index.html</code> trovi il file giusto.</p>
+<p>Di solito puoi fermare un development server da command line con il comando universale <code>ctrl + c</code>. Altrimenti, ti conviene lasciare il server in esecuzione in un terminale in background per tutto il tempo in cui lavori al progetto.</p>
+</div>
+</div>
+<div id="web-standards" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Web standards<a href="sviluppo-lato-client.html#web-standards" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Nello sviluppo client-side, i file web (<code>.html</code>, <code>.css</code> e <code>.js</code>) che scrivi vengono consegnati ai client su richiesta e poi <em>interpretati</em> e renderizzati dal browser. In effetti, un web browser e’ qualsiasi software capace di renderizzare questi file (e inviare HTTP request per recuperarli). E ci sono moltissimi web browser diversi nel mondo. Il grafico seguente di StatCounter mostra la popolarita’ relativa dei vari browser:</p>
+<div id="all-browser-ww-monthly-202301-202401" width="600" height="400" style="width:600px; height: 400px;">
+
+</div>
+<!-- You may change the values of width and height above to resize the chart -->
+<p class="caption">
+Source: <a href="https://gs.statcounter.com/browser-market-share">StatCounter Global Stats - Browser Market Share. See also <a href="http://caniuse.com/usage-table">caniuse.com’s usage table</a> for information on mobile and older browsers.</a>
+</p>
+<script type="text/javascript" src="https://www.statcounter.com/js/fusioncharts.js"></script>
+<script type="text/javascript" src="https://gs.statcounter.com/chart.php?all-browser-ww-monthly-202301-202401&chartWidth=600"></script>
+<p>Questi browser sono creati da sviluppatori diversi, che lavorano per organizzazioni diverse (spesso rivali). E anche se possono esserci “vincitori” chiari in termini di popolarita’, non puoi ignorare i browser meno popolari. Ad esempio, anche se solo lo 0,1% degli utenti usa un browser specifico (come Internet Explorer), sono comunque piu’ di 5 milioni di persone nel mondo. Quindi, per assicurarsi che tutti possano renderizzare le stesse risorse servite, tutti cercano di seguire un insieme di web standards.</p>
+<p>I <strong>web standards</strong> sono specifiche concordate su come il source code di una web page deve essere renderizzato dal browser. I web standards definiscono sia la sintassi del linguaggio (ad es. come scrivere elementi HTML) sia la semantica (ad es. quali elementi HTML usare), in modo che sia comprensibile da qualunque browser che segua (accetti) quello standard. E siccome come developer vuoi che le pagine vengano renderizzate allo stesso modo su tutti i browser, i web standards indicano i requisiti per scrivere il codice affinche’ le pagine si renderizzino correttamente.</p>
+<p>I web standards moderni sono creati e mantenuti da un grande gruppo di stakeholder noto come <a href="https://www.w3.org/"><strong>World Wide Web Consortium (W3C)</strong></a>, che include sviluppatori di browser maggiori come Google, Apple e Mozilla. Tuttavia questo gruppo non ha poteri di enforcement: quindi i browser spesso deviano dagli standard pubblicati! Un browser puo’ ignorare uno standard per “aiutare” i developer (ad es. facendo una “best guess” per renderizzare HTML malformato), o per introdurre nuove feature (ad es. una nuova proprieta’ CSS che produce un effetto speciale). Alcuni browser sono migliori di altri nel conformarsi agli standard. Internet Explorer — in particolare IE 6 — e’ noto per non rispettare gli standard e richiedere sforzo extra ai developer per far renderizzare correttamente le pagine su quei browser. Questo e’ parte del motivo per cui IE ha una cattiva reputazione e riceve tanto sarcasmo dagli sviluppatori. (Questo problema non vale per Microsoft Edge).</p>
+<p>Far accordare cosi’ tante persone su uno standard di comunicazione richiede tempo; quindi i web standards cambiano relativamente lentamente: lo standard HTML 4 e’ stato adottato nel 1997, ma lo standard <strong>HTML 5</strong> (che questo corso insegna) non e’ stato finalizzato <a href="https://en.wikipedia.org/wiki/HTML#History">fino al 2014</a>. Lo standard <strong>CSS 3</strong> e’ diviso in piu’ di 50 <em>module</em> diversi sviluppati e introdotti indipendentemente, e quindi viene adottato in modo continuo e a pezzi.</p>
+<p class="alert alert-info">
+Quando si introducono nuove proprieta’ CSS sperimentali, storicamente i browser hanno usato <a href="https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix">vendor prefix</a> nei nomi delle proprieta’. Mentre si decidono gli standard, ogni browser puo’ trattare quella proprieta’ in modo leggermente diverso, costringendo i developer che vogliono usare il “latest and greatest” a fornire una definizione o un valore diverso per ogni vendor. I prefix sono una convenzione di naming che fa si’ che la proprieta’ sia compresa e applicata solo da un browser specifico; ad es. <span style="white-space: nowrap"><code>-webkit-hyphens</code></span> usa la versione <a href="https://en.wikipedia.org/wiki/WebKit">Webkit</a> della proprieta’ <code>hyphens</code> (per controllare i word break), mentre <span style="white-space: nowrap"><code>-ms-hyphens</code></span> usa la versione IE (Microsoft). Questa pratica e’ attualmente scoraggiata (con i browser che usano flag interni per gestire le feature sperimentali) ed e’ in fase di dismissione, anche se i prefix possono essere richiesti quando si supportano browser piu’ vecchi. Tool come <a href="https://github.com/postcss/autoprefixer">Autoprefixer</a> possono aiutare a gestire automaticamente i prefix.
+</p>
+<p>Scrivere codice “corretto” nel web development significa scrivere codice conforme ai web standards. Quindi anche se il contenuto puo’ sembrare renderizzato correttamente nel tuo browser, se non segue lo standard potrebbe non funzionare sul computer di qualcun altro (o sul tuo dopo un aggiornamento software). Per questo il requisito di correttezza nel web development e’ non solo che il contenuto appaia corretto, ma che segua le specifiche sintattiche e semantiche dei web standards. In generale, finche’ il sito e’ conforme agli standard, si renderizzera’ correttamente su tutti i “modern browsers” (Chrome, Safari, Edge, Firefox, ecc.) — anche se potrebbero ancora esserci differenze tra browser o sistemi operativi.</p>
+<p>Per verificare quali feature sono disponibili su un determinato browser, puoi usare un tool come <a href="https://caniuse.com/"><strong>caniuse.com</strong></a>. Questo sito permette di cercare feature web (ad es. “flexbox”) e mostra quali browser — e quali versioni di quei browser — supportano quella feature. I riquadri verdi indicano supporto, i gialli supporto parziale, e i marroni non supportato. E’ probabilmente la migliore fonte di informazioni sul supporto delle feature. <a href="https://compat-table.github.io/compat-table/es6/" class="uri">https://compat-table.github.io/compat-table/es6/</a> ha una tabella simile per le ultime feature JavaScript, e la documentazione della <a href="https://developer.mozilla.org/en-US/docs/Web">Mozilla Developer Network (MDN)</a> elenca anche la compatibilita’ dei browser alla fine di ogni pagina.</p>
+<p class="alert alert-danger">
+Sviluppa sempre pensando ai browser degli altri, non solo al tuo! Testa il codice rispetto agli standard, non solo rispetto al fatto che sembri ok in un singolo browser.
+</p>
+<p>Un modo per verificare che il codice che stai scrivendo segua gli standard e’ <strong>validarlo</strong> usando un tool automatico. Il W3C fornisce tool online che aiutano a validare il codice:</p>
+<div class="list-condensed">
+<ul>
+<li><a href="https://validator.w3.org/nu/">W3C HTML Validation Service</a></li>
+<li><a href="http://jigsaw.w3.org/css-validator/">W3C CSS Validation Service</a></li>
+<li><a href="http://w3c.github.io/developers/tools/">W3C Developer Tools</a> per un elenco completo di validator</li>
+</ul>
+</div>
+<p>Per usare questi servizi, inserisci semplicemente l’URL pubblico della tua web page (oppure copia e incolla il contenuto dei tuoi file <code>.html</code> o <code>.css</code>), poi avvia la validazione. Dovrai sicuramente correggere eventuali <em>error</em> che ricevi. Le <em>warning</em> vanno considerate; tuttavia e’ possibile avere false positive. Leggi attentamente la warning e valuta se si tratta davvero di un “bug” nel tuo codice.</p>
+<p>Questo testo non include dettagli specifici necessari a garantire che le web page funzionino su ogni singolo browser — piuttosto il focus e’ introdurre tecniche di web development conformi agli standard. Supportare browser piu’ vecchi che non rispettano gli standard (e garantire che <em>tutti</em> possano accedere al tuo sito) e’ lasciato come esercizio al lettore.</p>
+</div>
+<div id="accessibilita-web" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Accessibilita’ web<a href="sviluppo-lato-client.html#accessibilita-web" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>I web standards fanno piu’ che stabilire la sintassi corretta del web code. Considera il seguente utente ipotetico:</p>
+<blockquote>
+<p>Tracy e’ una studentessa universitaria di 19 anni ed e’ nata cieca. Durante le superiori ha fatto bene come poteva affidandosi a audiolibri e al supporto di tutor, quindi non si e’ mai davvero preoccupata di imparare il Braille. E’ interessata alla letteratura inglese ed e’ molto appassionata di short stories; il suo sogno e’ diventare autrice di audiobook.
+Tracy usa Internet per condividere i suoi scritti e per connettersi con altri autori tramite social network. Possiede un laptop e usa uno screen reader chiamato <a href="http://www.freedomscientific.com/Products/Blindness/JAWS">JAWS</a>: un programma che legge ad alta voce lo schermo con una voce artificiale.
+<cite><small>(Adattato da <a href="http://scidok.sulb.uni-saarland.de/volltexte/2007/1098/pdf/personas_access.pdf">qui</a>)</small></i></p>
+</blockquote>
+<p>Una delle limitazioni piu’ spesso trascurate sull’usabilita’ di un sito e’ se puo’ essere usato da persone con qualche forma di disabilita’. Esistono diverse forme di disabilita’ o impairment che possono influire sull’accesso a una web page, tra cui:</p>
+<ul>
+<li><em>Vision Impairments</em>: Circa il 2% della popolazione e’ cieca, quindi usa mezzi alternativi per leggere le web page. La presbiopia e altri problemi di vista sono molto comuni (soprattutto tra gli anziani), richiedendo testo piu’ grande e piu’ chiaro. Inoltre, circa il 4,5% della popolazione e’ daltonica.</li>
+<li><em>Motor Impairments</em>: L’artrite si presenta in circa l’1% della popolazione e puo’ limitare la facilita’ d’uso di mouse, tastiera o touchscreen. Altri impairment come tremori, patologie dei motoneuroni e paralisi possono impattare ulteriormente l’accesso.</li>
+<li><em>Cognitive Impairments</em>: Autismo, dislessia e barriere linguistiche possono escludere persone dall’uso del tuo sito.</li>
+</ul>
+<p>Se non rendi il tuo sito accessibile, stai escludendo il 2% o piu’ degli utenti, riducendo la disponibilita’ e l’uso del sito. In effetti, anche aziende web con una visione capitalista considerano questa popolazione come un mercato importante ma escluso; per esempio, Meta ha un <a href="https://www.facebook.com/accessibility">intero team</a> dedicato all’accessibilita’ e al supporto di utenti con disabilita’. Gli <em>“Accessibility Engineer”</em> hanno buone prospettive lavorative.</p>
+<p>Supportare utenti con disabilita’ non e’ solo la cosa moralmente giusta da fare, e’ anche <em>la legge</em>. I tribunali USA hanno <a href="https://www.forbes.com/sites/legalnewsline/2017/06/13/first-of-its-kind-trial-goes-plaintiffs-way-winn-dixie-must-update-website-for-the-blind/#c4b8ce61b38a">stabilito</a> che i siti pubblici sono soggetti al <a href="https://www.ada.gov/ada_title_III.htm">Title III of the Americans with Disabilities Act (ADA)</a>, cioe’ e’ possibile (e non raro) che grandi organizzazioni vengano citate in giudizio per discriminazione se i loro siti non sono accessibili. Finora, “accessibility” ha significato legalmente conformita’ alle <a href="https://www.w3.org/WAI/intro/wcag">Web Content Accessibility Guidelines (WCAG)</a> del W3C (vedi sotto), uno standard web non eccessivamente oneroso se consideri l’accessibilita’ fin dall’inizio.</p>
+<p>Infine, progettare il tuo sito (o qualsiasi sistema) pensando all’accessibilita’ non lo rende solo piu’ usabile per chi ha disabilita’ — lo rende piu’ usabile per <em>tutti</em>. Questo e’ il principio dietro il <a href="https://en.wikipedia.org/wiki/Universal_design"><strong>Universal Design</strong></a> (a.k.a. <em>universal usability</em>): progettare per <em>accessibility</em> — essere usabili da tutte le persone, indipendentemente dalle loro capacita’ (fisiche o meno) — beneficia non solo chi ha limitazioni, ma tutti. Un classico esempio reale di universal design sono i <a href="https://en.wikipedia.org/wiki/Curb_cut">curb cuts</a>: le “rampe” nei marciapiedi per facilitare le persone in sedia a rotelle. Tuttavia queste rampe rendono la vita migliore per tutti: persone con trolley, passeggini, infortuni temporanei, bambini piccoli che imparano ad andare in bici, ecc.</p>
+<p>Il universal design si applica anche ai siti web:</p>
+<ul>
+<li>Se supporti persone che non possono vedere, allora potresti supportare anche persone che non possono vedere <em>in quel momento</em> (ad es. per un forte riflesso sullo schermo).</li>
+<li>Se supporti persone con motor impairment, allora potresti supportare anche persone che cercano di usare il sito senza mouse (ad es. da un laptop su un autobus che sobbalza).</li>
+<li>Se supporti persone con cognitive impairments, allora potresti supportare anche persone che sono temporaneamente impaired (ad es. intossicate o prive di sonno).</li>
+</ul>
+<p>Se assicuri che la tua web page sia ben strutturata e navigabile da screen reader, assicuri anche che sia navigabile da <em>altre</em> macchine, come gli indicizzatori dei motori di ricerca. O da browser insoliti o futuri (come i browser per realta’ virtuale, forse).</p>
+<p>Quindi supportare l’accessibilita’ nello sviluppo client-side e’ importante sia per aiutare una popolazione spesso trascurata (una forma di giustizia sociale), sia per supportare nuove tecnologie e sistemi. Questo fatto e’ <a href="http://www.fastcodesign.com/3054927/the-big-idea/microsofts-inspiring-bet-on-a-radical-new-type-of-design-thinking">sempre piu’ riconosciuto</a> dalle aziende come chiave per l’usabilita’, ed e’ quindi importante applicarlo al tuo design e al tuo lavoro web.</p>
+<p class="alert alert-info">
+Oltre alle capacita’ individuali, le persone dipendono anche da una grande quantita’ di <strong>infrastruttura</strong> esistente per assicurarsi di avere connessione Internet e che le loro request possano raggiungere il tuo web server. La mancanza di questo accesso e’ spesso legata a disuguaglianze economiche o sociali, formando quello che si chiama <a href="https://en.wikipedia.org/wiki/Digital_divide"><strong>digital divide</strong></a>. Considerare la disponibilita’ di accesso alla rete e altre esigenze infrastrutturali e’ fondamentale quando si sviluppano information technologies. Nello sviluppo client-side, questo puo’ includere ad esempio considerazioni come la quantita’ di dati serviti (ad es. la dimensione delle immagini usate). Vedi anche <a href="responsive-css.html#responsive-css">Responsive Design</a> per considerazioni di design per dispositivi con limitazioni di connettivita’.
+</p>
+<div id="supportare-laccessibilita" class="section level3 unnumbered hasAnchor">
+<h3>Supportare l’accessibilita’<a href="sviluppo-lato-client.html#supportare-laccessibilita" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Rendere le web page accessibili e’ importante. In questo testo, discuteremo principalmente come supportare l’accessibilita’ per utenti con impairment visivi come quelli che usano screen reader. Uno <a href="https://en.wikipedia.org/wiki/Screen_reader"><strong>screen reader</strong></a> e’ un software che sintetizza e “legge” il contenuto dello schermo ad alta voce tramite gli speaker, cosi’ gli utenti possono navigare e controllare il computer senza dover vedere lo schermo. Gli screen reader sono spesso combinati con <em>keyboard controls</em>, cosi’ gli utenti usano solo la tastiera per controllare il computer e non il mouse (quasi come una command line interface!).</p>
+<p>Esistono diversi software di screen reader:</p>
+<ul>
+<li>I Mac hanno <a href="https://help.apple.com/voiceover/info/guide">VoiceOver</a> integrato nel sistema operativo dal 2005, anche se e’ stato raffinato ad ogni nuova versione dell’OS.</li>
+<li>Windows ha un screen reader integrato chiamato <a href="https://support.microsoft.com/en-us/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1">Microsoft Narrator</a> da Windows 10. Ma i screen reader piu’ popolari restano applicazioni piu’ consolidate: <a href="http://www.freedomscientific.com/Products/Blindness/JAWS">JAWS</a> e <a href="https://www.nvaccess.org/">NDVA</a>.</li>
+</ul>
+<p class="alert alert-success">
+Dovresti provare questo software! Segui i link sopra per capire come attivare lo screen reader sul tuo computer, poi prova a navigare Internet <em>senza guardare lo schermo</em>. Questo ti dara’ la sensazione di come sia usare un computer da ciechi.
+</p>
+<p>Gli screen reader sono semplicemente software che interpretano l’HTML di un sito per permettere all’utente di ascoltare e navigare il contenuto — sono fondamentalmente <em>web browser non visuali</em>. Quindi supportare gli screen reader significa implementare il tuo sito in modo che funzioni con questo browser. Puoi farlo assicurandoti che il tuo sito segua i web standards — e in particolare che sia conforme alle <a href="https://www.w3.org/WAI/intro/wcag"><strong>Web Accessibility Content Guidelines (WCAG)</strong></a>. Questo e’ un <a href="https://www.w3.org/WAI/WCAG20/quickref/">elenco di principi e tecniche</a> da usare quando si scrivono documenti web per garantirne l’accessibilita’. Le linee guida sono guidate da 4 principi principali:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Perceivable</strong>: le informazioni e i componenti dell’interfaccia utente devono essere presentabili in modi che gli utenti possano percepire.</li>
+<li><strong>Operable</strong>: i componenti dell’interfaccia utente e la navigazione devono essere operabili.</li>
+<li><strong>Understandable</strong>: le informazioni e il funzionamento delle interfacce utente devono essere comprensibili.</li>
+<li><strong>Robust</strong>: il contenuto deve essere abbastanza robusto da poter essere interpretato in modo affidabile da una varieta’ di user agent, incluse le tecnologie assistive.</li>
+</ol>
+<p>In modo piu’ concreto, le web page accessibili sono quelle che possono essere <strong>navigated</strong> dagli screen reader (cosi’ le persone possono arrivare facilmente alle informazioni che interessano), e hanno contenuto che puo’ essere <strong>perceived</strong> dagli screen reader (quindi non solo presentato visivamente).</p>
+<p>Nel resto del testo (in particolare in <a href="#semantic-html">Semantic HTML</a>), imparerai passaggi di implementazione semplici e specifici che puoi usare per seguire questi principi e assicurare che i tuoi siti web siano accessibili a tutti gli utenti.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="software-setup.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="html-fundamentals.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["github", "facebook", "twitter", "google"],
+    "google": false
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/info340/book/edit/master/client-side.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
