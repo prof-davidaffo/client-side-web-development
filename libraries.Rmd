@@ -1,22 +1,22 @@
 # JavaScript Libraries
-Many web programmers encounter the same programming requirements as they develop interactive web sites. For example, many websites will need to wrangle and manipulate objects and arrays, show standard components (such as modal windows or collapsible content), or do similar forms of complex DOM manipulation. Since one of the main principles of software development is [___reuse___](https://en.wikipedia.org/wiki/Reusability), developers will often make the code solving these problems available for others to use in the form of **libraries and frameworks**. These are publicly release script files that you can download and include in your project, allowing you to more quickly and easily develop complex applications. This is the amazing thing about the open-source community: people solve problems and then make those solutions available to others.
+Molti web programmer incontrano gli stessi requisiti di programmazione mentre sviluppano web sites interattivi. Per esempio, molti siti devono gestire e manipolare objects e arrays, mostrare componenti standard (come modal windows o contenuti collapsible) o fare forme simili di complessa DOM manipulation. Poiche' uno dei principi principali dello sviluppo software e' il [___reuse___](https://en.wikipedia.org/wiki/Reusability), i developer spesso rendono disponibile ad altri il codice che risolve questi problemi sotto forma di **libraries e frameworks**. Sono file script rilasciati pubblicamente che puoi scaricare e includere nel tuo project, permettendoti di sviluppare applicazioni complesse piu' rapidamente e facilmente. Questa e' la cosa fantastica della comunita' open-source: le persone risolvono problemi e poi rendono quelle soluzioni disponibili agli altri.
 
-Modern web applications make _extensive_ use of external libraries, whether by integrating many different libraries into a single app, or by relying on a particular framework (which may itself be comprised of many different libraries)! This chapter describes how to include and utilize external JavaScript libraries in your web page, and presents the popular [jQuery](https://jquery.com/) library as an example.
+Le web applications moderne fanno un uso _esteso_ di librerie esterne, sia integrando molte librerie diverse in una sola app, sia facendo affidamento su un framework specifico (che puo' a sua volta essere composto da molte librerie diverse)! Questo capitolo descrive come includere e utilizzare librerie JavaScript esterne nella tua web page, e presenta la popolare libreria [jQuery](https://jquery.com/) come esempio.
 
-- For a sense of scale, the [**npm**](https://www.npmjs.com/) package manager's directory lists almost _half a million_ different JavaScript libraries!
+- Per un'idea di scala, la directory del package manager [**npm**](https://www.npmjs.com/) elenca quasi _mezzo milione_ di librerie JavaScript diverse!
 
-Note that external scripts are generally referred to as either _libraries_ or _frameworks_. However, these terms are not entirely interchangeable. A **library** is a set of behaviors (functions) that you are able to utilize and call within your code. For example, `Lodash` (described below) is a library that provides utility functions you can use. You call a library's code at your whim. A **framework**, on the other hand, provides a set of code into which you insert your _own_ behaviors, either by subclassing provided components or by specifying your own callback functions. The framework calls _your_ code at its whim. [Martin Fowler](http://martinfowler.com/bliki/InversionOfControl.html) refers to this as an _"Inversion of control"_. Frameworks often seem to be easier to use (they do more with less work on your part!), but can be hard to customize to achieve your exact goals. Libraries may be harder to use, but can likely be deployed exactly as needed. This chapter focuses mainly on _libraries_; [React](https://reactjs.org/) (detailed in later chapters) is more of a framework.
+Nota che gli script esterni sono in genere chiamati _libraries_ o _frameworks_. Tuttavia, questi termini non sono completamente intercambiabili. Una **library** e' un insieme di behaviors (functions) che puoi usare e chiamare nel tuo codice. Per esempio, `Lodash` (descritto sotto) e' una library che fornisce utility functions utilizzabili. Chiami il codice della library quando vuoi. Un **framework**, invece, fornisce un insieme di codice in cui inserisci i tuoi _behaviors_, per esempio subclassando componenti forniti o specificando le tue callback functions. Il framework chiama _il tuo_ codice quando vuole lui. [Martin Fowler](http://martinfowler.com/bliki/InversionOfControl.html) si riferisce a questo come _"Inversion of control"_. I framework spesso sembrano piu' facili da usare (fanno di piu' con meno lavoro da parte tua!), ma possono essere difficili da personalizzare per raggiungere obiettivi precisi. Le libraries possono essere piu' difficili da usare, ma probabilmente puoi impiegarle esattamente come serve. Questo capitolo si concentra principalmente sulle _libraries_; [React](https://reactjs.org/) (descritto nei capitoli successivi) e' piu' un framework.
 
 
 ## Including a Library
-Just like you can include multiple CSS files in a page with multiple `<link>` elements, you can include multiple JavaScript scripts with multiple `<script>` elements.
+Proprio come puoi includere piu' file CSS in una pagina con elementi `<link>` multipli, puoi includere piu' script JavaScript con elementi `<script>` multipli.
 
 ```html
 <script src="alpha.js"></script> <!-- run this script first -->
 <script src="beta.js"></script> <!-- run this script second -->
 ```
 
-_Importantly_, script files are executed in the order in which they appear in the DOM. This matters because all scripts included via the `<script>` element are all run within the same [namespace](https://en.wikipedia.org/wiki/Namespace). This means variables and functions declared in one script file are also available in later scripts&mdash; it's almost as if all the script files have been combined into a single file.
+_Importante_, i file script vengono eseguiti nell'ordine in cui appaiono nel DOM. Questo conta perche' tutti gli script inclusi tramite l'elemento `<script>` vengono eseguiti nello stesso [namespace](https://en.wikipedia.org/wiki/Namespace). Questo significa che variables e functions dichiarate in uno script sono disponibili negli script successivi&mdash;e' quasi come se tutti i file script fossero combinati in un unico file.
 
 ```js
 /* alpha.js */
@@ -29,11 +29,11 @@ console.log(message); //=> "Hello World"
                       //variable was defined in previous script!
 ```
 
-The order matters: if `beta.js` were included _before_ `alpha.js`, then when it is run the `message` variable won't have been defined yet, causing an error.
+L'ordine conta: se `beta.js` fosse incluso _prima_ di `alpha.js`, quando viene eseguito la variable `message` non sarebbe ancora definita, causando un errore.
 
-<p class="alert alert-info">Other techniques for managing and organizing large numbers of script files will be discussed in [Chapter 15](#es6).</p>
+<p class="alert alert-info">Altre tecniche per gestire e organizzare grandi numeri di file script saranno discusse nel [Chapter 15](#es6).</p>
 
-Like CSS frameworks, JavaScript libraries are thus included in a page by providing a `<script>` tag that references the JavaScript file that contains that library's code. For example, you can include the [Lodash](https://lodash.com/) of helpful data processing functions:
+Come per i CSS frameworks, le JavaScript libraries si includono in una pagina fornendo un tag `<script>` che referenzia il file JavaScript che contiene il codice della library. Per esempio, puoi includere [Lodash](https://lodash.com/) con utili funzioni di data processing:
 
 ```html
 <body>
@@ -45,14 +45,14 @@ Like CSS frameworks, JavaScript libraries are thus included in a page by providi
 </body>
 ```
 
-- Like CSS frameworks, JavaScript libraries can be accessed by referencing the file on a **CDN**, by downloading the source code directly (check for the `.js` file; you may need to unpack a `.zip` file), or by installing the library via a package manager like `npm`. Refer to [Chapter 3](#including-a-framework) for details&mdash;just change `.css` to `.js`!
+- Come per i CSS frameworks, le JavaScript libraries possono essere usate referenziando il file su un **CDN**, scaricando direttamente il source code (cerca il file `.js`; potresti dover estrarre un file `.zip`), oppure installando la library tramite un package manager come `npm`. Vedi il [Chapter 3](#including-a-framework) per i dettagli&mdash;basta sostituire `.css` con `.js`!
 
 
-- Like CSS, JavaScript files can be _minimized_ (usually named as `.min.js` files). Minimizing JavaScript files not only removes whitespace, but also often replaces local variable names with shorter, meaningless ones such as `a` or `x`.
+- Come per il CSS, i file JavaScript possono essere _minimized_ (di solito chiamati `.min.js`). Minimizzare i file JavaScript non solo rimuove il whitespace, ma spesso sostituisce anche i nomi delle variables locali con nomi piu' corti e senza significato come `a` o `x`.
 
-You **always** want to load external libraries before your script, so that any variables and functions they define will be available to your code! If you put your script first, then those functions won't be available yet!
+Vuoi **sempre** caricare le libraries esterne prima del tuo script, cosi' le variables e functions che definiscono saranno disponibili al tuo codice! Se metti prima il tuo script, quelle functions non saranno ancora disponibili!
 
-Because all JavaScript files share the same namespace, most popular libraries make all of their functions available as properties of a single **global variable**. For example, Lodash provides a global variable called **`_`** (a single underscore&mdash;a "low dash"). You use this variable to call the provided functions:
+Dato che tutti i file JavaScript condividono lo stesso namespace, la maggior parte delle libraries popolari rende tutte le sue functions disponibili come properties di una singola **global variable**. Per esempio, Lodash fornisce una global variable chiamata **`_`** (un singolo underscore&mdash;un "low dash"). Usi questa variable per chiamare le functions fornite:
 
 ```js
 let array = [3,4,3];
@@ -62,9 +62,9 @@ let unique = _.uniq(array); //call function of lodash object
 console.log(unique); //[3,4], the unique elements!
 ```
 
-- Once the library is loaded, the globals it provide can be accessed just like built-in globals `window`, `document`, `Math`, etc.
+- Una volta caricata la library, i globals che fornisce possono essere accessi come i built-in globals `window`, `document`, `Math`, ecc.
 
-- Lodash uses an otherwise silly variable name so that it's quick and easy to type, and to avoid conflicts with other variables you might create.
+- Lodash usa un nome di variable apparentemente strano per essere rapido e facile da digitare, e per evitare conflitti con altre variables che potresti creare.
 
 Lodash provides [lots of useful functions](https://lodash.com/docs/) that can be called on the global `_` object. For example:
 
@@ -76,13 +76,13 @@ Lodash provides [lots of useful functions](https://lodash.com/docs/) that can be
 - [`_.merge()`](https://lodash.com/docs/4.17.4#merge) to combine the properties of two objects into a single new object
 </div>
 
-Note that exactly what global object is provided (and what functions it has) is different for every different library. You need to look through the documentation (often the `README.md` file on Github) for instructions and examples on how to call and utilize that library.
+Nota che quale object globale viene fornito (e quali functions ha) e' diverso per ogni library. Devi guardare la documentazione (spesso il file `README.md` su Github) per istruzioni ed esempi su come chiamare e utilizzare quella library.
 
-- "Knowing" a library or framework is just about being familiar with what functions you can call from it!
+- "Conoscere" una library o framework significa solo essere familiari con le functions che puoi chiamare!
 
-<p class="alert alert-info">**Pro-tip**: Visual Studio Code will [automatically download the type definitions](https://code.visualstudio.com/docs/editor/intellisense) for any library listed as a dependency in the project's `package.json`. For example, if you include Lodash as a dependency (by installing it with `npm install --save lodash`), then just typing the `_.` will cause VS Code to provide autocomplete options. This makes it a good idea to install JavaScript libraries via `npm`, even if you plan on loading the library from a CDN instead of from a local file.</p>
+<p class="alert alert-info">**Pro-tip**: Visual Studio Code [scarichera' automaticamente le type definitions](https://code.visualstudio.com/docs/editor/intellisense) per qualsiasi library elencata come dependency nel `package.json` del progetto. Per esempio, se includi Lodash come dependency (installandola con `npm install --save lodash`), allora digitando `_.` VS Code mostrera' opzioni di autocomplete. Questo rende una buona idea installare le JavaScript libraries via `npm`, anche se poi pianifichi di caricare la library da un CDN invece che da un file locale.</p>
 
-<p class="alert alert-info">If you're using something a linter to check your coding style, you'll need to let the linter know about any global variables loaded in other scripts so that the linter doesn't think those variables are undefined. See [the documentation](https://eslint.org/docs/user-guide/configuring#specifying-globals) for details about how to do this in ESLint.</p>
+<p class="alert alert-info">Se stai usando un linter per controllare il coding style, devi far sapere al linter di qualsiasi global variable caricata in altri script cosi' il linter non pensi che quelle variables siano undefined. Vedi [la documentazione](https://eslint.org/docs/user-guide/configuring#specifying-globals) per dettagli su come farlo in ESLint.</p>
 
 
 ## Example: jQuery
@@ -159,11 +159,11 @@ $('body').css( {'font-size':'24px',
                 'font-family':'Helvetica'} ); //set multiple properties via an object
 ```
 
-If you compare this to the equivalent operations using the DOM, you'll notice that (a) jQuery is much more concise. jQuery is also more powerful: for example, you can set multiple attributes with a single call to `.attr()` by passing in an _object_ containing the attributes you wish to set (the keys are the attribute names). This lets you easily change lots of attributes at once!
+Se confronti questo con le operazioni equivalenti usando il DOM, noterai che (a) jQuery e' molto piu' conciso. jQuery e' anche piu' potente: per esempio, puoi impostare piu' attributes con una singola chiamata a `.attr()` passando un _object_ che contiene gli attributes da impostare (le keys sono i nomi degli attribute). Questo ti permette di cambiare facilmente molti attributes in una volta!
 
-<p class="alert alert-warning">Importantly, note that all of these methods apply the change to ___all___ elements selected by the jQuery selector function. You do not need to use a loop to apply changes to multiple elements; you can just select the elements you wish to modify and change them all at once. This does mean that you may need to be careful about your selector&mdash;only select the elements you actually wish to work with!</p>
+<p class="alert alert-warning">Importante: nota che tutti questi metodi applicano il cambiamento a ___tutti___ gli elementi selezionati dalla funzione selector di jQuery. Non devi usare un loop per applicare cambiamenti a piu' elementi; puoi semplicemente selezionare gli elementi che vuoi modificare e cambiarli tutti insieme. Questo significa che devi fare attenzione al selector&mdash;seleziona solo gli elementi su cui vuoi davvero lavorare!</p>
 
-jQuery also provides methods that allow you to [manipulate](https://api.jquery.com/category/manipulation/) the DOM tree (e.g., to add, move, or remove elements):
+jQuery fornisce anche metodi che permettono di [manipolare](https://api.jquery.com/category/manipulation/) il DOM tree (ad es. per aggiungere, spostare o rimuovere elementi):
 
 ```js
 //create an element (not yet in the DOM)
@@ -187,15 +187,15 @@ $('footer').remove(); //remove selected <footer> element
 $('main').empty(); //remove all child elements of <main>
 ```
 
-The first important thing to note is that you create new elements by provided the HTML content (including the tag `<>`) to the `$()` function. This is distinct from `document.createElement()`, which explicitly does _not_ include the `<>` angle brackets. If creating an element with no content, you can even just specify the start tag!
+La prima cosa importante da notare e' che crei nuovi elementi passando il contenuto HTML (incluso il tag `<>`) alla function `$()`. Questo e' diverso da `document.createElement()`, che esplicitamente _non_ include le parentesi angolari `<>`. Se crei un elemento senza contenuto, puoi anche specificare solo il tag di apertura!
 
-jQuery also provides much more powerful manipulation methods, allowing you to easily position elements [inside](http://api.jquery.com/category/manipulation/dom-insertion-inside/), [outside](http://api.jquery.com/category/manipulation/dom-insertion-outside/), [around](http://api.jquery.com/category/manipulation/dom-insertion-around/), and [in place of](http://api.jquery.com/category/manipulation/dom-replacement/) other elements.
+jQuery offre anche metodi di manipolazione piu' potenti, permettendoti di posizionare elementi facilmente [inside](http://api.jquery.com/category/manipulation/dom-insertion-inside/), [outside](http://api.jquery.com/category/manipulation/dom-insertion-outside/), [around](http://api.jquery.com/category/manipulation/dom-insertion-around/) e [in place of](http://api.jquery.com/category/manipulation/dom-replacement/) altri elementi.
 
-<p class="alert alert-warning">Although jQuery will allow you to create arbitrarily complex HTML elements to add to the DOM, you should **avoid** writing large chunks of HTML inside your `.js` file to append via jQuery (e.g., don't add an entire DOM tree at once!). This violates the separation of concerns, and makes your code difficult to read, interpret, and modify (because your HTML is now in two places!). If you do need to dynamically insert large amounts of "hard-coded" HTML, you should instead write that content inside the `.html` file, make it invisible (e.g., `display:none`), and then use jQuery to move and show the element when needed.</p>
+<p class="alert alert-warning">Anche se jQuery ti permette di creare elementi HTML arbitrariamente complessi da aggiungere al DOM, dovresti **evitare** di scrivere grandi blocchi di HTML dentro il file `.js` da appendere via jQuery (ad es. non aggiungere un intero DOM tree in una volta!). Questo viola la separation of concerns e rende il codice difficile da leggere, interpretare e modificare (perche' ora l'HTML e' in due posti!). Se devi inserire dinamicamente grandi quantita' di HTML "hard-coded", scrivi invece quel contenuto nel file `.html`, rendilo invisibile (ad es. `display:none`), e poi usa jQuery per spostare e mostrare l'elemento quando serve.</p>
 
 
 ### Handling Events {-}
-jQuery also provides _convenience methods_ for registering event listeners:
+jQuery fornisce anche _convenience methods_ per registrare event listeners:
 
 ```js
 $('#button').click(function(event) {
@@ -206,19 +206,19 @@ $('#button').click(function(event) {
 });
 ```
 
-- There are equivalent methods for other events: `.mousedown()` `.keypress()`, etc. If you want to listen for an event that jQuery doesn't provide a convenience method for, you can use the `.on()` function:
+- Esistono metodi equivalenti per altri eventi: `.mousedown()`, `.keypress()`, ecc. Se vuoi ascoltare un event per cui jQuery non fornisce un convenience method, puoi usare la function `.on()`:
 
     ```js
     $('#search-input').on('input', callback);
     ```
 
-By using a method such as `.click(callback)` rather than `.addEventListener('click', callback)` or event `.on('click', callback)`, you avoid potential hard-to-catch bugs that may get introduced from misspelling `'click'`&mdash;rather than having the browser listen for `'clik'` events and then never seeming to respond to your actions, it will instead report an error (`.clik()` is not a known function!)
+Usando un metodo come `.click(callback)` invece di `.addEventListener('click', callback)` o `.on('click', callback)`, eviti bug difficili da catturare dovuti a typo di `'click'`&mdash;invece di far ascoltare al browser eventi `'clik'` e non vedere mai risposta alle tue azioni, verra' riportato un errore (`.clik()` non e' una function conosciuta!).
 
-The [`event`](http://api.jquery.com/category/events/event-object/) parameter passed into the `.click()` function's callback is exactly like the `event` passed to callbacks of `addEventListener()` (though jQuery standardizes cross-browser quirks)&mdash;thus you can access the source of the event with the `event.target` property. However, this property refers to a DOM element, _not_ a jQuery selector. DOM elements don't support the jQuery methods described above&mdash;those are only available to "jQuery selection objects". Thus if you want to work with a DOM element, you need to "select" it again using the `$()` function, thus providing a jQuery selection that has all the useful jQuery methods.
+Il parametro [`event`](http://api.jquery.com/category/events/event-object/) passato alla callback di `.click()` e' esattamente come l'`event` passato alle callback di `addEventListener()` (anche se jQuery standardizza le differenze cross-browser)&mdash;quindi puoi accedere alla sorgente dell'event con la property `event.target`. Tuttavia, questa property si riferisce a un elemento DOM, _non_ a un selector jQuery. Gli elementi DOM non supportano i metodi jQuery descritti sopra&mdash;quelli sono disponibili solo sugli "jQuery selection objects". Quindi se vuoi lavorare con un elemento DOM, devi "selezionarlo" di nuovo usando la function `$()`, ottenendo una jQuery selection che ha tutti i metodi utili.
 
-- Additionally, jQuery assigns the `this` variable inside an event callback to the event's target; this you can equivalently use `$(this)` to select the element.
+- Inoltre, jQuery assegna la variable `this` dentro una event callback al target dell'event; quindi puoi usare `$(this)` per selezionare l'elemento.
 
-The previous chapter noted the `window.onload` even listener, which was used to determine when the DOM had finished loading and so was ready to be manipulated. jQuery provides a similar functionality via the `.ready()` listener (usually called on the whole `document`):
+Il capitolo precedente ha citato l'event listener `window.onload`, usato per determinare quando il DOM ha finito di caricarsi ed e' pronto per essere manipolato. jQuery fornisce una funzionalita' simile tramite il listener `.ready()` (di solito chiamato su tutto il `document`):
 
 ```js
 $(document).ready(function() { //this need not be an anonymous function
@@ -229,7 +229,7 @@ $(document).ready(function() { //this need not be an anonymous function
 });
 ```
 
-This is a very common pattern: often with jQuery entire programs will be specified inside the `.ready()` callback, so that the `<script>` tags can be placed in the `<head>` and downloaded quickly but still run only when the DOM is available. This pattern is _so_ common in fact, that the jQuery selector function can serve as a shortcut to it:
+Questo e' un pattern molto comune: spesso con jQuery interi programmi sono scritti dentro la callback `.ready()`, cosi' i tag `<script>` possono stare nel `<head>` ed essere scaricati rapidamente ma eseguiti solo quando il DOM e' disponibile. Questo pattern e' _cosi'_ comune che la function selector di jQuery puo' essere usata come scorciatoia:
 
 ```js
 //equivalent to the above
@@ -240,10 +240,10 @@ $(function() {
     //...
 });
 ```
-- If you pass a _function_ rather than a Selector string to the `$()` jQuery function, it will be interpreted as specifying a callback function to run when the document is ready! This is something to be aware of if you look at someone else's code and see it just start with a random `$(function)`.
+- Se passi una _function_ invece di una string Selector alla function jQuery `$()`, verra' interpretata come callback da eseguire quando il document e' pronto! Tienilo presente se guardi codice altrui e vedi che inizia con un `$(function)` a caso.
 
 ### And more! {-}
-This is only the tip of the iceberg for what jQuery can do. For example, jQuery also provides a number of [utility](http://api.jquery.com/category/utilities/) functions that can be called on the `jQuery` (or `$`) global:
+Questo e' solo la punta dell'iceberg di cio' che jQuery puo' fare. Per esempio, jQuery fornisce anche diverse [utility](http://api.jquery.com/category/utilities/) functions che possono essere chiamate sul global `jQuery` (o `$`):
 
 ```js
 //check if an item is in an array
@@ -266,9 +266,9 @@ $.each( {first:'Joel',last:'Ross'}, function(key, value) {
 });
 ```
 
-- This can be useful, though JavaScript native functions or Lodash methods will often be easier and (computationally) faster.
+- Questo puo' essere utile, ma le functions native di JavaScript o i metodi Lodash saranno spesso piu' semplici e (computationally) piu' veloci.
 
-But as a final fun example: jQuery also provides functions that allow you to easily produce [animated effects](http://api.jquery.com/category/effects/)!
+E come ultimo esempio divertente: jQuery fornisce anche functions che permettono di creare facilmente [animated effects](http://api.jquery.com/category/effects/)!
 
 ```js
 $('#id').fadeIn(1000);   //fade in over 1 second
@@ -291,7 +291,7 @@ $("#box").animate({
 //another example: Bootstrap's JS
 //example: collapse? -->
 
-## Resources {-}
+## Risorse {-}
 <div class="list-condensed">
 - [Lodash Documentation](https://lodash.com/docs/)
 - [jQuery Documentation](http://api.jquery.com/)

@@ -1,10 +1,10 @@
 # Fondamenti di HTML {#html-fundamentals}
 
-Una web page su Internet e' fondamentalmente un insieme di file che il browser _renderizza_ (mostra) in un certo modo, permettendo all'utente di interagire. Il modo piu' basilare per controllare come un browser visualizza i contenuti (ad es. parole, immagini, ecc.) e' _codificare_ quel contenuto in HTML.
+Una pagina web su Internet e' fondamentalmente un insieme di file che il browser _renderizza_ (mostra) in un certo modo, permettendo all'utente di interagire. Il modo piu' basilare per controllare come un browser visualizza i contenuti (ad es. parole, immagini, ecc.) e' _codificare_ quel contenuto in HTML.
 
-**HTML** (**H**yper**T**ext **M**arkup **L**anguage) e' un linguaggio usato per dare significato a testo altrimenti semplice, che il browser puo' poi usare per determinare come visualizzare quel testo. HTML non e' un linguaggio di programmazione ma un _markup language_: aggiunge dettagli aggiuntivi alle informazioni (come note a margine di un libro), ma non contiene logica. HTML e' un linguaggio di markup "hypertext" perche' era [originariamente pensato](https://en.wikipedia.org/wiki/HTML#Development) per annotare un documento con [hyperlink](https://en.wikipedia.org/wiki/Hyperlink), ovvero link ad altri documenti. Nell'uso moderno, HTML descrive il **significato semantico** del contenuto testuale: indica quale testo e' un _heading_, quale testo e' un _paragraph_, quale contenuto e' un _image_, quale testo e' un _hyperlink_, e cosi' via. In questo senso HTML svolge una funzione simile al markup language [Markdown](https://info201.github.io/markdown.html), ma e' molto piu' espressivo e potente.
+**HTML** (**H**yper**T**ext **M**arkup **L**anguage) e' un linguaggio usato per dare significato a testo altrimenti semplice, che il browser puo' poi usare per determinare come visualizzare quel testo. HTML non e' un linguaggio di programmazione ma un _linguaggio di markup_: aggiunge dettagli aggiuntivi alle informazioni (come note a margine di un libro), ma non contiene logica. HTML e' un linguaggio di markup "hypertext" perche' era [originariamente pensato](https://en.wikipedia.org/wiki/HTML#Development) per annotare un documento con [hyperlink](https://en.wikipedia.org/wiki/Hyperlink), ovvero link ad altri documenti. Nell'uso moderno, HTML descrive il **significato semantico** del contenuto testuale: indica quale testo e' un _heading_, quale testo e' un _paragrafo_, quale contenuto e' un _immagine_, quale testo e' un _hyperlink_, e cosi' via. In questo senso HTML svolge una funzione simile al linguaggio di markup [Markdown](https://info201.github.io/markdown.html), ma e' molto piu' espressivo e potente.
 
-Questo capitolo fornisce una panoramica e una spiegazione della sintassi di HTML (come scriverlo per annotare i contenuti). La sintassi di HTML e' molto semplice e in genere si impara rapidamente — anche se usarlo in modo efficace richiede piu' pratica. Per maggiori dettagli su come usare HTML in modo efficace, vedi [Semantic HTML](#semantic-html).
+Questo capitolo fornisce una panoramica e una spiegazione della sintassi di HTML (come scriverlo per annotare i contenuti). La sintassi di HTML e' molto semplice e in genere si impara rapidamente -- anche se usarlo in modo efficace richiede piu' pratica. Per maggiori dettagli su come usare HTML in modo efficace, vedi [Semantic HTML](#semantic-html).
 
 ## Elementi HTML
 Il contenuto HTML di solito e' scritto in file `.html`. Usando l'estensione `.html`, il tuo editor, computer e browser dovrebbero capire automaticamente che questo file contiene testo con markup HTML.
@@ -13,28 +13,28 @@ Il contenuto HTML di solito e' scritto in file `.html`. Usando l'estensione `.ht
 
 Come per tutti i linguaggi di programmazione, i file `.html` sono in realta' semplici file di testo con un'estensione speciale, quindi possono essere creati in qualsiasi editor di testo. Tuttavia, usare un editor per il codice come [VS Code](#visual-studio-code) offre [funzionalita' aggiuntive utili](https://code.visualstudio.com/docs/languages/html) che possono accelerare lo sviluppo.
 
-I file HTML contengono il **contenuto** della tua web page: il testo che vuoi mostrare sulla pagina. Questo contenuto viene poi annotato ("marked up") circondandolo con **tag**:
+I file HTML contengono il **contenuto** della tua pagina web: il testo che vuoi mostrare sulla pagina. Questo contenuto viene poi annotato ("marked up") circondandolo con **tag**:
 
-![Basic syntax for an HTML element.](img/html/element-diagram.png)
+![Sintassi base per un elemento HTML.](img/html/element-diagram.png)
 
-Il **opening/start tag** viene prima del contenuto e dice al computer "sto per darti contenuto con un certo significato", mentre il **closing/end tag** viene dopo il contenuto per dire "ho finito di dare contenuto con quel significato". Per esempio, il tag `<h1>` rappresenta un [top-level heading](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements) (equivalente a un `#` in Markdown), quindi l'opening tag dice "ecco l'inizio dell'heading" e il closing tag dice "questa e' la fine dell'heading".
+Il **tag di apertura** viene prima del contenuto e dice al computer "sto per darti contenuto con un certo significato", mentre il **tag di chiusura** viene dopo il contenuto per dire "ho finito di dare contenuto con quel significato". Per esempio, il tag `<h1>` rappresenta un [heading di primo livello](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements) (equivalente a un `#` in Markdown), quindi il tag di apertura dice "ecco l'inizio dell'heading" e il tag di chiusura dice "questa e' la fine dell'heading".
 
-I tag si scrivono con il simbolo minore **```<```**, poi il nome del tag (spesso una singola lettera), poi il simbolo maggiore **```>```**. Un _closing tag_ si scrive come un _opening tag_, ma include una barra `/` subito dopo il simbolo minore — questo indica che il tag sta chiudendo l'annotazione.
-I nomi dei tag HTML non sono case sensitive, ma dovresti sempre scriverli in lowercase — vedi la [Code Style Guide](#code-style-guide) per i dettagli.
+I tag si scrivono con il simbolo minore **```<```**, poi il nome del tag (spesso una singola lettera), poi il simbolo maggiore **```>```**. Un _tag di chiusura_ si scrive come un _tag di apertura_, ma include una barra `/` subito dopo il simbolo minore -- questo indica che il tag sta chiudendo l'annotazione.
+I nomi dei tag HTML non sono case sensitive, ma dovresti sempre scriverli in lowercase -- vedi la [Code Style Guide](#code-style-guide) per i dettagli.
 
-Le interruzioni di riga e gli spazi bianchi intorno ai tag (inclusa l'indentazione) sono ignorati. I tag possono quindi essere scritti su una riga propria o _inline_ con il contenuto. Questi due usi del tag `<p>` (che indica un _paragraph_ di contenuto) sono equivalenti:
+Le interruzioni di riga e gli spazi bianchi intorno ai tag (inclusa l'indentazione) sono ignorati. I tag possono quindi essere scritti su una riga propria o _inline_ con il contenuto. Questi due usi del tag `<p>` (che indica un _paragrafo_ di contenuto) sono equivalenti:
 
 ```html
 <p>
-   The itsy bitsy spider went up the water spout.
+   Il ragnetto, pian pianino, sali' lungo il tubo.
 </p>
 
-<p>The itsy bitsy spider went up the water spout.</p>
+<p>Il ragnetto, pian pianino, sali' lungo il tubo.</p>
 ```
 
-Tuttavia, quando scrivi codice HTML, usa interruzioni di riga e spaziatura per leggibilita' (per rendere chiaro quale contenuto appartiene a quale elemento) — di nuovo, vedi la [Code Style Guide](#code-style-guide).
+Tuttavia, quando scrivi codice HTML, usa interruzioni di riga e spaziatura per leggibilita' (per rendere chiaro quale contenuto appartiene a quale elemento) -- di nuovo, vedi la [Code Style Guide](#code-style-guide).
 
-Presi insieme, i tag e il contenuto che _contengono_ si chiamano **HTML Element**. Un sito e' composto da molti di questi elementi — in effetti, tutto il contenuto e' annotato in modo che faccia parte di qualche elemento.
+Presi insieme, i tag e il contenuto che _contengono_ si chiamano **HTML Element**. Un sito e' composto da molti di questi elementi -- in effetti, tutto il contenuto e' annotato in modo che faccia parte di qualche elemento.
 
 
 ### Alcuni elementi di esempio {-}
@@ -43,22 +43,22 @@ Lo standard HTML definisce [molti elementi diversi](https://developer.mozilla.or
 <div class="list-condensed">
 - `<h1>`: un heading di livello 1
 - `<h2>`: un heading di livello 2 (e cosi' via, fino a `<h6>`)
-- `<p>`: un paragraph di testo
-- `<a>`: un "anchor", ovvero un hyperlink
+- `<p>`: un paragrafo di testo
+- `<a>`: un "anchor", ovvero un collegamento ipertestuale
 - `<img>`: un'immagine
-- `<button>`: un button
-- `<em>`: contenuto enfatizzato. Nota che non significa _italic_ (che non e' semantico), ma _emphasized_ (che e' semantico). Come `_text_` in Markdown.
+- `<button>`: un button (pulsante)
+- `<em>`: contenuto enfatizzato. Nota che non significa _corsivo_ (che non e' semantico), ma _enfatizzato_ (che e' semantico). Come `_text_` in Markdown.
 - `<strong>`: contenuto importante, fortemente espresso. Come `**text**` in Markdown
-- `<ul>`: una unordered list (e `<ol>` e' una ordered list)
-- `<li>`: un list item (un elemento in una lista)
-- `<table>`: una data table
+- `<ul>`: una lista non ordinata (e `<ol>` e' una lista ordinata)
+- `<li>`: un elemento di lista (un elemento in una lista)
+- `<table>`: una tabella di dati
 - `<form>`: un form che l'utente deve compilare
 - `<div>`: una division (sezione) di contenuto. Funziona anche come elemento _block_ vuoto (seguito da un line break)
 </div>
 
 E molti altri.
 
-I nomi degli elementi sono definiti dalla specifica HTML — spesso sono abbreviazioni di cio' che rappresentano (ad es. `<p>` per paragraph). In HTML standard puoi usare solo elementi definiti dalla specifica; non puoi "inventarti" tag. Provare a usare `<paragraph>` al posto di `<p>` sarebbe non standard e non verrebbe capito o renderizzato correttamente dal browser.
+I nomi degli elementi sono definiti dalla specifica HTML -- spesso sono abbreviazioni di cio' che rappresentano (ad es. `<p>` per paragrafo). In HTML standard puoi usare solo elementi definiti dalla specifica; non puoi "inventarti" tag. Provare a usare `<paragraph>` al posto di `<p>` sarebbe non standard e non verrebbe capito o renderizzato correttamente dal browser.
 
 Non devi memorizzare ogni tipo di elemento HTML (anche se imparerai quelli comuni col tempo); puoi sempre cercare i dettagli sui singoli elementi. Per molte persone "conoscere" HTML significa sapere quali elementi esistono nello standard e come combinarli correttamente.
 
@@ -69,55 +69,55 @@ Vedi [Semantic HTML](#semantic-html) per altri esempi e discussioni su elementi 
 Come in ogni linguaggio di programmazione, HTML include un modo per aggiungere commenti al codice. Lo fa usando un tag con sintassi speciale:
 
 ```html
-<!-- this is a comment -->
-<p>this is is not a comment</p>
+<!-- questo e' un commento -->
+<p>questo non e' un commento</p>
 ```
 
 Il contenuto del tag commento (tra `<!--` e `-->`) puo' estendersi su piu' righe, quindi puoi commentare piu' righe racchiudendole tra `<!--` e `-->`.
 
-Poiche' la sintassi dei commenti e' un po' scomoda da digitare, la maggior parte degli editor ti permette di commentare il testo selezionato premendo `cmd + /` (o `ctrl + /` su Windows). Se usi un code editor, prova a posizionare il cursore su una riga e usare quel comando da tastiera per commentare e de-commentare la riga.
+Poiche' la sintassi dei commenti e' un po' scomoda da digitare, la maggior parte degli editor ti permette di commentare il testo selezionato premendo `cmd + /` (o `ctrl + /` su Windows). Se usi un editor di codice, prova a posizionare il cursore su una riga e usare quel comando da tastiera per commentare e de-commentare la riga.
 
-I commenti possono comparire ovunque nel file. Come in altri linguaggi, vengono ignorati da qualsiasi programma che legge il file, ma restano nella pagina e sono visibili quando [visualizzi il page source](https://support.google.com/surveys/answer/6172725).
+I commenti possono comparire ovunque nel file. Come in altri linguaggi, vengono ignorati da qualsiasi programma che legge il file, ma restano nella pagina e sono visibili quando [visualizzi il sorgente della pagina](https://support.google.com/surveys/answer/6172725).
 
 
 ### Attributi {-}
-Il tag di apertura di un elemento puo' contenere uno o piu' **attributes**. Sono simili agli attributi nella programmazione a oggetti: specificano _proprieta'_, opzioni o aggiungono significato a un elemento. Come i named parameter in `R` o `python`, gli attribute si scrivono nel formato `attributeName=value` (senza spazi attorno a `=`); i valori sono quasi sempre stringhe, quindi si scrivono tra virgolette. Piu' attribute sono separati da spazi:
+Il tag di apertura di un elemento puo' contenere uno o piu' **attributi**. Sono simili agli attributi nella programmazione a oggetti: specificano _proprieta'_, opzioni o aggiungono significato a un elemento. Come i parametri nominati in `R` o `python`, gli attributi si scrivono nel formato `attributeName=value` (senza spazi attorno a `=`); i valori sono quasi sempre stringhe, quindi si scrivono tra virgolette. Piu' attributi sono separati da spazi:
 
 ```html
 <tag attributeA="value" attributeB="value">
-   content
+   contenuto
 </tag>
 ```
 
-Per esempio, un anchor (`<a>`) usa l'attribute `href` ("**h**ypertext **ref**erence") per specificare dove il browser deve navigare quando il contenuto viene cliccato:
+Per esempio, un anchor (`<a>`) usa l'attributo `href` ("**h**ypertext **ref**erence") per specificare dove il browser deve navigare quando il contenuto viene cliccato:
 
 ```html
-<a href="https://ischool.uw.edu">iSchool homepage</a>
+<a href="https://ischool.uw.edu">Homepage iSchool</a>
 ```
 
-In un hyperlink, il _contenuto_ del tag e' il testo visualizzato, e l'_attribute_ specifica l'URL del link. Questo significa che l'URL viene "prima" del testo visualizzato — l'opposto della sintassi dei link in Markdown.
+In un hyperlink, il _contenuto_ del tag e' il testo visualizzato, e l'_attributo_ specifica l'URL del link. Questo significa che l'URL viene "prima" del testo visualizzato -- l'opposto della sintassi dei link in Markdown.
 
-Allo stesso modo, un'immagine (`<img>`) usa l'attribute `src` (**s**ou**rc**e) per specificare quale immagine mostra. (Il fatto che i link usino `href` e le immagini usino `src` e' una delle tante particolarita' della sintassi HTML). L'attribute `alt` di un'immagine contiene testo alternativo da usare se il browser non puo' mostrare immagini — ad esempio con screen reader (per persone con impairment visivi) e per gli indicizzatori dei motori di ricerca.
+Allo stesso modo, un'immagine (`<img>`) usa l'attributo `src` (**s**ou**rc**e) per specificare quale immagine mostra. (Il fatto che i link usino `href` e le immagini usino `src` e' una delle tante particolarita' della sintassi HTML). L'attributo `alt` di un'immagine contiene testo alternativo da usare se il browser non puo' mostrare immagini -- ad esempio con lettori di schermo (per persone con disabilita' visive) e per gli indicizzatori dei motori di ricerca.
 
 ```html
-<img src="baby_picture.jpg" alt="a cute baby">
+<img src="baby_picture.jpg" alt="un bel bimbo">
 ```
 
-Poiche' `<img>` non ha contenuto testuale, e' un _empty element_ (vedi sotto).
+Poiche' `<img>` non ha contenuto testuale, e' un _elemento vuoto_ (vedi sotto).
 
-Gli attribute consentiti e i loro nomi sono determinati dalla specifica HTML — ogni elemento supporta un certo set di attribute (vedi il [HTML attribute reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes)). Molti attribute sono supportati da alcuni elementi e non da altri. Tuttavia, esistono anche dei [global attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) che possono essere usati su qualsiasi elemento. Per esempio:
+Gli attributi consentiti e i loro nomi sono determinati dalla specifica HTML -- ogni elemento supporta un certo set di attributi (vedi il [HTML attribute reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes)). Molti attributi sono supportati da alcuni elementi e non da altri. Tuttavia, esistono anche dei [global attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) che possono essere usati su qualsiasi elemento. Per esempio:
 
-- Ogni elemento HTML puo' includere un attribute **`id`**, usato per dare un identificatore univoco cosi' da poterlo riferire in seguito (ad es. da JavaScript). Gli attribute `id` sono nominati come variabili e devono essere **unici** nella pagina.
+- Ogni elemento HTML puo' includere un attributo **`id`**, usato per dare un identificatore univoco cosi' da poterlo riferire in seguito (ad es. da JavaScript). Gli attributi `id` sono nominati come variabili e devono essere **unici** nella pagina.
 
     ```html
-    <h1 id="title">My Web Page</h1>
+    <h1 id="title">La mia pagina web</h1>
     ```
 
-    L'attribute `id` e' usato piu' spesso per creare ["bookmark hyperlink"](https://www.w3.org/TR/html4/struct/links.html#h-12.2.3), ovvero hyperlink a una posizione specifica della pagina (cioe' che fanno scorrere la pagina fino a quel punto). Lo fai includendo l'`id` come **fragment** dell'URL (ad es. dopo `#` nell'URL).
+    L'attributo `id` e' usato piu' spesso per creare ["bookmark hyperlink"](https://www.w3.org/TR/html4/struct/links.html#h-12.2.3), ovvero hyperlink a una posizione specifica della pagina (cioe' che fanno scorrere la pagina fino a quel punto). Lo fai includendo l'`id` come **fragment** dell'URL (ad es. dopo `#` nell'URL).
 
     ```html
-    <a href="index.html#nav">Link to element on `index.html` with `id="nav"`</a>
-    <a href="#title">Link to element on current page with `id="title"`</a>
+    <a href="index.html#nav">Link a un elemento in `index.html` con `id="nav"`</a>
+    <a href="#title">Link a un elemento nella pagina corrente con `id="title"`</a>
     ```
 
     Nota che, quando specifichi un id (cioe' `<h1 id="title">`) non includi il simbolo `#`. Tuttavia, per _linkare_ a un elemento con id `title`, includi il simbolo `#` prima dell'id (cioe' `<a href="#title">`)

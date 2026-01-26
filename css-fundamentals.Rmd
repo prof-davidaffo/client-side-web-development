@@ -1,33 +1,33 @@
 # Fondamenti di CSS {#css-fundamentals}
 
-**CSS** (**C**ascading **S**tyle **S**heets) e' un linguaggio dichiarativo usato per modificare l'aspetto o lo _styling_ di una web page. CSS definisce un insieme di **rule** di formattazione che il browser applica quando renderizza la pagina. Quindi CSS puo' dire al browser di usare un certo _font_ per il testo, un certo _colore_ per il primo paragraph di un articolo, o un'immagine per il _background_ della pagina. I file di regole CSS (chiamati **stylesheet**) sono un po' come Styles o Themes in PowerPoint, ma sono molto piu' personalizzabili. Puoi controllare quasi ogni aspetto dell'aspetto di un elemento, inclusa la sua posizione complessiva nella pagina.
+**CSS** (**C**ascading **S**tyle **S**heets) e' un linguaggio dichiarativo usato per modificare l'aspetto o lo _styling_ di una pagina web. CSS definisce un insieme di **regole** di formattazione che il browser applica quando renderizza la pagina. Quindi CSS puo' dire al browser di usare un certo _font_ per il testo, un certo _colore_ per il primo paragrafo di un articolo, o un'immagine per lo _sfondo_ della pagina. I file di regole CSS (chiamati **stylesheet**) sono un po' come stili o temi in PowerPoint, ma sono molto piu' personalizzabili. Puoi controllare quasi ogni aspetto dell'aspetto di un elemento, inclusa la sua posizione complessiva nella pagina.
 
 <p class="alert alert-info">Per farti un'idea di quanto si possa fare con CSS, guarda gli esempi di [CSS Zen Garden](http://www.csszengarden.com/). Ogni esempio usa esattamente lo stesso contenuto HTML, ma appaiono completamente diversi perche' ognuno usa uno stylesheet CSS diverso.</p>
 
-Questo capitolo introduce come includere CSS nella web page e la sintassi per dichiarare regole CSS di base. Ulteriore sintassi, dettagli e opzioni CSS saranno discussi nei capitoli successivi.
+Questo capitolo introduce come includere CSS nella pagina web e la sintassi per dichiarare regole CSS di base. Ulteriore sintassi, dettagli e opzioni CSS saranno discussi nei capitoli successivi.
 
 ## Perche' due linguaggi diversi?
-Se sei nuovo al web programming, potresti chiederti perche' ci sono due linguaggi diversi: HTML per il contenuto della pagina, e CSS per le regole di formattazione. Perche' non includere direttamente la formattazione nel contenuto?
+Se sei nuovo alla programmazione web, potresti chiederti perche' ci sono due linguaggi diversi: HTML per il contenuto della pagina, e CSS per le regole di formattazione. Perche' non includere direttamente la formattazione nel contenuto?
 
-Esiste un vecchio principio della programmazione chiamato [**"separation of concerns"**](https://en.wikipedia.org/wiki/Separation_of_concerns). Un software ben progettato tiene separate le cose separate, cosi' e' facile cambiare una senza preoccuparsi dell'altra. E una delle separazioni piu' comuni e' mantenere separati i **data** (contenuto) dalla **presentation** (aspetto) di quei dati.
+Esiste un vecchio principio della programmazione chiamato [**"separation of concerns"**](https://en.wikipedia.org/wiki/Separation_of_concerns). Un software ben progettato tiene separate le cose separate, cosi' e' facile cambiare una senza preoccuparsi dell'altra. E una delle separazioni piu' comuni e' mantenere separati i **dati** (contenuto) dalla **presentazione** (aspetto) di quei dati.
 
 Separando il contenuto (HTML) dal suo aspetto (CSS), ottieni diversi benefici:
 
-- Lo stesso contenuto puo' essere presentato facilmente in modi diversi (come nel CSS Zen Garden). Nel web development, potresti permettere all'utente di scegliere temi diversi per un sito, oppure cambiare la formattazione per audience differenti (ad es. testo piu' grande per utenti con impairment visivi, testo piu' compatto per utenti mobile, o stili diversi per culture con sensibilita' estetiche diverse).
+- Lo stesso contenuto puo' essere presentato facilmente in modi diversi (come nel CSS Zen Garden). Nello sviluppo web, potresti permettere all'utente di scegliere temi diversi per un sito, oppure cambiare la formattazione per audience differenti (ad es. testo piu' grande per utenti con disabilita' visive, testo piu' compatto per utenti mobile, o stili diversi per culture con sensibilita' estetiche diverse).
 
 - Puoi avere piu' pagine HTML che condividono lo stesso stylesheet CSS, permettendoti di cambiare l'aspetto di un intero sito modificando un solo file. Questa e' un'applicazione del principio [Don't Repeat Yourself (DRY)](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
 
 - Puoi anche regolare dinamicamente l'aspetto della pagina applicando nuove regole di stile agli elementi in risposta a interazioni dell'utente (click, hover, scroll, ecc.), senza cambiare il contenuto.
 
-- Gli utenti che non sono interessati all'aspetto visivo (ad es. utenti ciechi con screen reader, web indexer automatici) possono interagire piu' velocemente ed efficacemente con il contenuto senza dover determinare cosa e' "contenuto" e cosa e' solo "estetica".
+- Gli utenti che non sono interessati all'aspetto visivo (ad es. utenti ciechi con lettori di schermo, indicizzatori web automatici) possono interagire piu' velocemente ed efficacemente con il contenuto senza dover determinare cosa e' "contenuto" e cosa e' solo "estetica".
 
-Un buon stile di programmazione nel web development mantiene quindi separate **semantica** (HTML) e **aspetto** (CSS). Il tuo HTML dovrebbe descrivere solo il significato del contenuto, non come appare.
+Un buon stile di programmazione nello sviluppo web mantiene quindi separate **semantica** (HTML) e **aspetto** (CSS). Il tuo HTML dovrebbe descrivere solo il significato del contenuto, non come appare.
 
-Per esempio, anche se i browser mostrano di solito il testo `<em>` in italic, puoi usare CSS per renderlo sottolineato, evidenziato, piu' grande, lampeggiante o con un altro aspetto. Il tag `<em>` non dice nulla sull'aspetto visivo, solo che il testo e' enfatizzato; e spetta allo styling determinare come quell'enfasi debba essere resa _visivamente_.
+Per esempio, anche se i browser mostrano di solito il testo `<em>` in corsivo, puoi usare CSS per renderlo sottolineato, evidenziato, piu' grande, lampeggiante o con un altro aspetto. Il tag `<em>` non dice nulla sull'aspetto visivo, solo che il testo e' enfatizzato; e spetta allo styling determinare come quell'enfasi debba essere resa _visivamente_.
 
 
 ## Includere CSS
-La best practice per aggiungere styling CSS in una pagina HTML e' creare un file CSS **stylesheet** separato e referenziarlo dal contenuto HTML. Questi file hanno estensione **`.css`** e spesso sono messi in una cartella `css/` nella directory del progetto, come nella seguente struttura:
+La buona pratica per aggiungere styling CSS in una pagina HTML e' creare un file CSS **stylesheet** separato e referenziarlo dal contenuto HTML. Questi file hanno estensione **`.css`** e spesso sono messi in una cartella `css/` nella directory del progetto, come nella seguente struttura:
 
 ```
 my-project/
@@ -42,72 +42,72 @@ Includi lo stylesheet nel tuo HTML aggiungendo un elemento **`<link>`** nel `<he
 
 ```html
 <head>
-  <!--... other elements here...-->
+  <!--... altri elementi qui...-->
 
   <link rel="stylesheet" href="css/style.css">
 </head>
 ```
 
-L'elemento [**`<link>`**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) rappresenta una connessione a un'altra risorsa. L'elemento include un attribute **`rel`** che indica la **rel**azione tra le risorse (ad es. che il file linkato e' uno stylesheet). L'attribute `href` dovrebbe essere un _relative path_ dal file `.html` alla risorsa `.css`. Nota anche che `<link>` e' un empty element, quindi non ha closing tag.
+L'elemento [**`<link>`**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) rappresenta una connessione a un'altra risorsa. L'elemento include un attributo **`rel`** che indica la **rel**azione tra le risorse (ad es. che il file linkato e' uno stylesheet). L'attributo `href` dovrebbe essere un _percorso relativo_ dal file `.html` alla risorsa `.css`. Nota anche che `<link>` e' un elemento vuoto, quindi non ha tag di chiusura.
 
-E' possibile, ed e' comune, che una web page includa _piu'_ stylesheet, ognuno specificato con il proprio `<link>` nel `<head>`. Il codice CSS viene applicato in ordine: prima lo stylesheet linkato per primo, poi il secondo, ecc.
+E' possibile, ed e' comune, che una pagina web includa _piu'_ stylesheet, ognuno specificato con il proprio `<link>` nel `<head>`. Il codice CSS viene applicato in ordine: prima lo stylesheet linkato per primo, poi il secondo, ecc.
 
-Nota che `<link>` _non_ e' un hyperlink — e' diverso dall'elemento `<a>` usato per i link di navigazione. Quando qualcuno dice "aggiungi un link a una pagina", dovrai capire dal contesto se intende un hyperlink (`<a>`) o un link a uno stylesheet (`<link>`).
+Nota che `<link>` _non_ e' un hyperlink -- e' diverso dall'elemento `<a>` usato per i link di navigazione. Quando qualcuno dice "aggiungi un link a una pagina", dovrai capire dal contesto se intende un hyperlink (`<a>`) o un link a uno stylesheet (`<link>`).
 
-<p class="alert alert-success">Se lo styling non compare nella pagina, controlla che il file CSS sia linkato correttamente — in particolare che il path sia corretto.</p>
+<p class="alert alert-success">Se lo styling non compare nella pagina, controlla che il file CSS sia linkato correttamente -- in particolare che il percorso sia corretto.</p>
 
-Anche se usare uno stylesheet separato e' la best practice per mantenere il codice separato e organizzato, e' anche possibile includere codice CSS direttamente nell'HTML. Puoi farlo mettendo il codice dentro un elemento **`<style>`** (di solito dentro il `<head>`):
+Anche se usare uno stylesheet separato e' una buona pratica per mantenere il codice separato e organizzato, e' anche possibile includere codice CSS direttamente nell'HTML. Puoi farlo mettendo il codice dentro un elemento **`<style>`** (di solito dentro il `<head>`):
 
 ```html
 <head>
   <style>
-    /* CSS code goes here */
+    /* il codice CSS va qui */
   </style>
 </head>
 ```
 
-Tuttavia questo significa che lo styling CSS che scrivi si applichera' _solo_ a quella pagina (non puo' essere condiviso tra piu' file) e viola il principio di separazione delle responsabilita'. Il CSS embedded dovrebbe essere usato solo per esperimenti rapidi.
+Tuttavia questo significa che lo styling CSS che scrivi si applichera' _solo_ a quella pagina (non puo' essere condiviso tra piu' file) e viola il principio di separazione delle responsabilita'. Il CSS incorporato dovrebbe essere usato solo per esperimenti rapidi.
 
-E' anche possibile specificare styling CSS per un elemento specifico usando un attribute **`style`** il cui valore e' l'elenco delle proprieta' CSS da applicare a quell'elemento. Tuttavia questo e' meno flessibile (e piu' ripetitivo) rispetto all'uso di regole CSS separate, quindi e' considerata una bad practice e va evitata.
+E' anche possibile specificare styling CSS per un elemento specifico usando un attributo **`style`** il cui valore e' l'elenco delle proprieta' CSS da applicare a quell'elemento. Tuttavia questo e' meno flessibile (e piu' ripetitivo) rispetto all'uso di regole CSS separate, quindi e' considerata una pratica scorretta e va evitata.
 
 <p class="alert alert-success">Definisci sempre il codice CSS in file stylesheet separati.</p>
 
 
 ## Regole CSS
-Uno stylesheet CSS elenca **rule** per formattare elementi specifici in una pagina HTML. La sintassi base di una regola CSS e' questa:
+Uno stylesheet CSS elenca **regole** per formattare elementi specifici in una pagina HTML. La sintassi base di una regola CSS e' questa:
 
 ```css
-/* This is pseudocode for a CSS rule */
+/* Questo e' pseudocodice per una regola CSS */
 selector {
    property: value;
    property: value;
 }
 
-/* This would be another, second rule */
+/* Questa sarebbe un'altra, seconda regola */
 selector {
    property: value;
 }
 ```
 
-Una **rule** CSS inizia con un **selector**, che specifica a quali elementi si applica la regola. Il selector e' seguito da una coppia di parentesi graffe **`{}`**, dentro cui c'e' una lista di **property** di formattazione. Le property sono composte dal nome della property (ad es. `color`), seguito da due punti (**`:`**), seguito da un _value_ assegnato a quella property (ad es. `purple`). Ogni coppia nome-valore deve terminare con un punto e virgola (**`;`**). Se dimentichi il punto e virgola, il browser probabilmente ignorera' la property e tutte quelle successive — e lo fara' silenziosamente senza mostrare errori nei developer tools.
+Una **regola** CSS inizia con un **selector**, che specifica a quali elementi si applica la regola. Il selector e' seguito da una coppia di parentesi graffe **`{}`**, dentro cui c'e' una lista di **property** di formattazione. Le property sono composte dal nome della property (ad es. `color`), seguito da due punti (**`:`**), seguito da un _value_ assegnato a quella property (ad es. `purple`). Ogni coppia nome-valore deve terminare con un punto e virgola (**`;`**). Se dimentichi il punto e virgola, il browser probabilmente ignorera' la property e tutte quelle successive -- e lo fara' silenziosamente senza mostrare errori negli strumenti di sviluppo.
 
-Come la maggior parte dei linguaggi, CSS ignora le nuove righe e gli spazi bianchi. Tuttavia, la maggior parte dei developer usa la formattazione mostrata sopra, con la parentesi sulla stessa riga del selector e le property indentate.
+Come la maggior parte dei linguaggi, CSS ignora le nuove righe e gli spazi bianchi. Tuttavia, la maggior parte degli sviluppatori usa la formattazione mostrata sopra, con la parentesi sulla stessa riga del selector e le property indentate.
 
-Come esempio concreto, la regola sotto si applica a tutti gli elementi `h1` e li rende in font 'Helvetica' con testo bianco su background grigio scuro:
+Come esempio concreto, la regola sotto si applica a tutti gli elementi `h1` e li rende in font 'Helvetica' con testo bianco su sfondo grigio scuro:
 
 ```css
 h1 {
   font-family: 'Helvetica';
   color: white;
-  background-color: #333; /* dark gray */
+  background-color: #333; /* grigio scuro */
 }
 ```
 
-Nota che i **commenti** CSS sono scritti usando la stessa sintassi dei block comment usata in Java (`/* a comment */`), ma _non_ possono essere scritti con la sintassi dei commenti inline (`//a comment`).
+Nota che i **commenti** CSS sono scritti usando la stessa sintassi dei commenti a blocco usata in Java (`/* a comment */`), ma _non_ possono essere scritti con la sintassi dei commenti inline (`//a comment`).
 
 I file stylesheet CSS spesso contengono decine, o anche centinaia o migliaia di regole. Non cercare di mantenere basso il numero di regole; definisci tutte le regole necessarie per ottenere l'aspetto desiderato.
 
-<p class="alert alert-warning">Quando modifichi un file CSS, devi _ricaricare la pagina nel browser_ per vedere l'aspetto aggiornato. Alcuni development server come `live-server` possono fare il reload automaticamente.</p>
+<p class="alert alert-warning">Quando modifichi un file CSS, devi _ricaricare la pagina nel browser_ per vedere l'aspetto aggiornato. Alcuni server di sviluppo come `live-server` possono fare il reload automaticamente.</p>
 
 
 ### Fondamenti dei CSS selector {-}
@@ -126,34 +126,34 @@ p {
 Le regole CSS possono usare il type selector per stilizzare qualsiasi tipo di elemento:
 
 ```css
-/* style all h1 elements to be purple */
+/* stilizza tutti gli elementi h1 rendendoli viola */
 h1 {
   color: purple;
 }
 
-/* style all h2 elements to be gold and italic */
+/* stilizza tutti gli elementi h2 rendendoli oro e in corsivo */
 h2 {
   color: gold;
   font-style: italic;
 }
 
-/* style all images to fit within a maximum width */
+/* stilizza tutte le immagini per stare entro una larghezza massima */
 img {
   max-width: 300px;
 }
 ```
 
-E' importante notare che le regole CSS si applicano a _tutti_ gli elementi nella pagina che corrispondono al selector. Quindi le regole sopra stilizzeranno _tutti_ gli `<h1>`, tutti gli `<h2>` e tutte le immagini `<img>`, indipendentemente da dove si trovano. Questo significa che puoi scrivere una regola per stilizzare molte parti della pagina — una regola puo' cambiare tutti gli heading `<h1>`.
+E' importante notare che le regole CSS si applicano a _tutti_ gli elementi nella pagina che corrispondono al selector. Quindi le regole sopra stilizzeranno _tutti_ gli `<h1>`, tutti gli `<h2>` e tutte le immagini `<img>`, indipendentemente da dove si trovano. Questo significa che puoi scrivere una regola per stilizzare molte parti della pagina -- una regola puo' cambiare tutti gli heading `<h1>`.
 
-Ma a volte vuoi che una regola si applichi solo ad _alcuni_ elementi di un certo tipo — solo ad alcuni `<p>` o solo ad alcune immagini `<img>`. Di solito farai queste selezioni piu' limitate usando un **class selector**. Un class selector seleziona elementi con un attribute **`class`** che contiene il nome specificato. Per esempio, se avessi HTML:
+Ma a volte vuoi che una regola si applichi solo ad _alcuni_ elementi di un certo tipo -- solo ad alcuni `<p>` o solo ad alcune immagini `<img>`. Di solito farai queste selezioni piu' limitate usando un **class selector**. Un class selector seleziona elementi con un attribute **`class`** che contiene il nome specificato. Per esempio, se avessi HTML:
 
 ```html
 <!-- HTML -->
-<p class="highlighted">This text is highlighted!</p>
-<p>This text is not highlighted</p>
+<p class="highlighted">Questo testo e' evidenziato!</p>
+<p>Questo testo non e' evidenziato</p>
 ```
 
-Potresti colorare solo il paragraph corretto usando il class selector:
+Potresti colorare solo il paragrafo corretto usando il class selector:
 
 ```css
 /* CSS */
@@ -164,45 +164,45 @@ Potresti colorare solo il paragraph corretto usando il class selector:
 
 I class selector si scrivono con un punto (**`.`**) prima del _nome della class_ (non del nome del tag). Il `.` si usa solo nella regola CSS, non nell'attribute `class` HTML. Nell'esempio sopra, l'elemento HTML ha la class `highlighted` (senza punto), e il selector CSS usa `.highlighted` per dire "elementi con class `highlighted`".
 
-<div class="alert alert-warning">Se provi a usare un class selector e dimentichi il punto, il browser pensera' che stai usando un type selector — probabilmente selezionando un tipo di elemento che non esiste in HTML.
+<div class="alert alert-warning">Se provi a usare un class selector e dimentichi il punto, il browser pensera' che stai usando un type selector -- probabilmente selezionando un tipo di elemento che non esiste in HTML.
 
 ```css
-/* Bug: forgot the dot . in the class selector
-Instead selects elements of type <highlighted> (do not exist in HTML) */
+/* Bug: dimenticato il punto . nel class selector
+Invece seleziona elementi di tipo <highlighted> (non esistono in HTML) */
 highlighted {
   background-color: yellow;
 }
 ```
 </div>
 
-I nomi delle class CSS dovrebbero iniziare con una lettera e possono contenere trattini, underscore e numeri. Le parole di solito si scrivono in lowercase e separate da trattini invece che in camelCase o snake_case. Le class dovrebbero avere nomi _informativi_ — come daresti un nome a una variabile. Vedi [Naming CSS Classes](#naming-css-classes) per piu' dettagli.
+I nomi delle class CSS dovrebbero iniziare con una lettera e possono contenere trattini, underscore e numeri. Le parole di solito si scrivono in lowercase e separate da trattini invece che in camelCase o snake_case. Le class dovrebbero avere nomi _informativi_ -- come daresti un nome a una variabile. Vedi [Naming CSS Classes](#naming-css-classes) per piu' dettagli.
 
 I class selector si applicano a qualsiasi elemento che contiene quella class, indipendentemente dal tipo dell'elemento. Questo permette di applicare uno styling coerente a tipi diversi di elementi:
 
 ```html
-<h1 class="alert-flashing">I am a flashing alert!</h1>
-<p class="alert-flashing">So am I!<p>
+<h1 class="alert-flashing">Sono un alert lampeggiante!</h1>
+<p class="alert-flashing">Anch'io!</p>
 ```
 
 Gli elementi HTML possono avere **piu' class**; ogni nome di class e' separato da uno **spazio** (non da una virgola):
 
 ```html
-<p class="alert flashing">I have TWO classes: "alert" and "flashing"</p>
-<p class="alert-flashing">I have ONE class: "alert-flashing"</p>
-<p class="alert flashing fast">I have THREE classes: "alert", "flashing", and "fast"</p>
+<p class="alert flashing">Ho DUE class: "alert" e "flashing"</p>
+<p class="alert-flashing">Ho UNA class: "alert-flashing"</p>
+<p class="alert flashing fast">Ho TRE class: "alert", "flashing" e "fast"</p>
 ```
 
-Il class selector selezionera' qualsiasi elemento che _contiene_ quella class nell'elenco. Quindi il primo paragraph nell'esempio sopra verrebbe stilizzato dal selector `.alert` _o_ dal selector `.flashing`. Il secondo paragraph non sarebbe stilizzato da nessuno dei due selector, perche' "alert-flashing" non e' la class "alert" o "flashing".
+Il class selector selezionera' qualsiasi elemento che _contiene_ quella class nell'elenco. Quindi il primo paragrafo nell'esempio sopra verrebbe stilizzato dal selector `.alert` _o_ dal selector `.flashing`. Il secondo paragrafo non sarebbe stilizzato da nessuno dei due selector, perche' "alert-flashing" non e' la class "alert" o "flashing".
 
 E' comune che gli elementi HTML abbiano molte class, soprattutto con uno _schema modulare di naming_.
 
 I class selector sono il modo migliore per stilizzare un singolo elemento specifico (assegnagli una `class` e poi scrivi una regola che lo selezioni), oltre a essere uno dei modi piu' chiari ed efficaci per stilizzare grandi _porzioni_ della pagina.
 
 
-### Fondamenti delle CSS property {-}
-Ci sono [molte, moltissime property CSS di formattazione](http://www.w3schools.com/cssref/default.asp) che puoi usare per stilizzare elementi HTML. Tutte le property si specificano con la sintassi `name: value;` descritta sopra. Il compito e' determinare quale property produce l'aspetto desiderato e fornire un value valido per quella property. Creare web page belle implica combinare molte property diverse per stilizzare molti elementi HTML diversi.
+### Fondamenti delle property CSS {-}
+Ci sono [molte, moltissime property CSS di formattazione](http://www.w3schools.com/cssref/default.asp) che puoi usare per stilizzare elementi HTML. Tutte le property si specificano con la sintassi `name: value;` descritta sopra. Il compito e' determinare quale property produce l'aspetto desiderato e fornire un value valido per quella property. Creare pagine web belle implica combinare molte property diverse per stilizzare molti elementi HTML diversi.
 
-<p class="alert alert-success">Pro Tip: editor moderni come VS Code offrono suggerimenti di auto-complete per nomi e valori validi delle property. Guardali attentamente per scoprire altro.</p>
+<p class="alert alert-success">Suggerimento: editor moderni come VS Code offrono suggerimenti di auto-complete per nomi e valori validi delle property. Guardali attentamente per scoprire altro.</p>
 
 Discutere ogni singola property CSS e' oltre lo scopo di questo libro (soprattutto perche' ne vengono introdotte di nuove ogni anno). I capitoli successivi discuteranno alcune property comuni o importanti in maggiore dettaglio. Per ora, sotto c'e' una breve lista di property di styling comuni per iniziare:
 
@@ -211,8 +211,8 @@ Discutere ogni singola property CSS e' oltre lo scopo di questo libro (soprattut
     Nota che il value della property `font-family` puo' anche essere una _lista separata da virgole_ di font, con il browser che sceglie il primo elemento disponibile su quel computer:
 
     ```css
-    /* pick Helvetic Nue if exists, else Helvetica, else Arial, else the generic
-       sans-serif font */
+    /* scegli Helvetica Nue se esiste, altrimenti Helvetica, altrimenti Arial, altrimenti
+       il font generico sans-serif */
     p {
       font-family: 'Helvetica Nue', 'Helvetica', 'Arial', sans-serif;
     }
@@ -222,15 +222,15 @@ Discutere ogni singola property CSS e' oltre lo scopo di questo libro (soprattut
 
 - [`font-size`](https://developer.mozilla.org/en-US/docs/Web/CSS/font-size): la dimensione del testo (ad es. `12px` per 12 pixel). Il value deve includere le unita' (quindi `12px`, non `12`). Vedi [CSS Units](#css-units) per dettagli su unita' e dimensioni.
 
-- [`color`](https://developer.mozilla.org/en-US/docs/Web/CSS/color): il colore del testo (ad es. un [named color](http://www.w3schools.com/colors/colors_names.asp) come `red` o un valore esadecimale come `#4b2e83`). Vedi [CSS Colors](#css-colors) per dettagli sui colori in CSS. La property [`background-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/background-color) specifica il colore di background per l'elemento.
+- [`color`](https://developer.mozilla.org/en-US/docs/Web/CSS/color): il colore del testo (ad es. un [nome colore](http://www.w3schools.com/colors/colors_names.asp) come `red` o un valore esadecimale come `#4b2e83`). Vedi [CSS Colors](#css-colors) per dettagli sui colori in CSS. La property [`background-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/background-color) specifica il colore di sfondo per l'elemento.
 
-- [`width`](https://developer.mozilla.org/en-US/docs/Web/CSS/width): la larghezza di un block element. Il value e' di solito definito in unita' `px` (ad es. `300px`). Questa property puo' essere utile soprattutto per dimensionare le immagini. Esiste anche una property simile `height`.
+- [`width`](https://developer.mozilla.org/en-US/docs/Web/CSS/width): la larghezza di un elemento a blocco. Il value e' di solito definito in unita' `px` (ad es. `300px`). Questa property puo' essere utile soprattutto per dimensionare le immagini. Esiste anche una property simile `height`.
 
-- [`border`](https://developer.mozilla.org/en-US/docs/Web/CSS/border): un bordo per l'elemento (vedi ["Box Model"](box-model)). Nota che `border` e' una [short-hand property](https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties) che in realta' imposta piu' property correlate contemporaneamente. Quindi il value e' una lista _ordinata_ di valori separati da **spazi**:
+- [`border`](https://developer.mozilla.org/en-US/docs/Web/CSS/border): un bordo per l'elemento (vedi ["Box Model"](box-model)). Nota che `border` e' una [property abbreviata](https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties) che in realta' imposta piu' property correlate contemporaneamente. Quindi il value e' una lista _ordinata_ di valori separati da **spazi**:
 
     ```css
-    /* border-width should be 3px, border-style should be dashed, and border-color
-       should be red */
+    /* border-width deve essere 3px, border-style deve essere dashed e border-color
+       deve essere red */
     p {
       border: 3px dashed red;
     }
@@ -238,48 +238,48 @@ Discutere ogni singola property CSS e' oltre lo scopo di questo libro (soprattut
 
 Leggi la documentazione di ogni property per determinare quali valori puo' assumere.
 
-<p class="alert alert-warning">Nota che non tutte le property o i valori sono supportati efficacemente o correttamente da tutti i browser. Controlla la compatibilita' dei browser quando usi le ultime feature CSS.</p>
+<p class="alert alert-warning">Nota che non tutte le property o i valori sono supportati efficacemente o correttamente da tutti i browser. Controlla la compatibilita' dei browser quando usi le ultime funzionalita' CSS.</p>
 
 
 ## La cascade
 CSS si chiama **Cascading** Style Sheets perche' piu' regole possono applicarsi allo stesso elemento (in una "cascade" di stili).
 
-Le regole CSS sono _additive_ — se piu' regole selezionano lo stesso elemento, il browser combinera' tutte le property di stile di quelle regole quando renderizza il contenuto:
+Le regole CSS sono _cumulative_ -- se piu' regole selezionano lo stesso elemento, il browser combinera' tutte le property di stile di quelle regole quando renderizza il contenuto:
 
 ```css
 /* CSS */
-p { /* applies to all <p> elements */
+p { /* si applica a tutti gli elementi <p> */
   font-family: 'Helvetica'
 }
 
-.alert { /* applies to all elements with class="alert" */
+.alert { /* si applica a tutti gli elementi con class="alert" */
   font-size: larger;
 }
 
-.success { /* applies to all elements with class="success" */
-  color: #28a745; /* a pleasant green */
+.success { /* si applica a tutti gli elementi con class="success" */
+  color: #28a745; /* un verde gradevole */
 }
 ```
 
 ```html
 <!-- HTML -->
 <p class="alert success">
-  This paragraph will be in Helvetica font, a larger font-size, and green color,
-  because all 3 of the above rules apply to it.
+  Questo paragrafo sara' in Helvetica, con font-size maggiore e colore verde,
+  perche' si applicano tutte e 3 le regole sopra.
 </p>
 ```
 
-Questo significa che puoi scrivere una regola che si applica a un tipo di elemento in generale (ad es. "tutti i paragraph hanno il font Helvetica"), e poi scrivere un'altra regola che regola o personalizza elementi specifici (ad es. "questo paragraph e' (anche) verde"). Combinare regole in questo modo ti permette di creare styling molto complesso a partire da parti semplici e comprensibili. Inoltre ti permette di _riusare_ facilmente quello styling in piu' pagine o contesti.
+Questo significa che puoi scrivere una regola che si applica a un tipo di elemento in generale (ad es. "tutti i paragrafi hanno il font Helvetica"), e poi scrivere un'altra regola che regola o personalizza elementi specifici (ad es. "questo paragrafo e' (anche) verde"). Combinare regole in questo modo ti permette di creare styling molto complesso a partire da parti semplici e comprensibili. Inoltre ti permette di _riusare_ facilmente quello styling in piu' pagine o contesti.
 
-Oltre al fatto che piu' regole possono specificare valori di property per un elemento, un elemento puo' anche [**inherit**](https://developer.mozilla.org/en-US/docs/Web/CSS/inheritance) valori di property dal suo parent.
+Oltre al fatto che piu' regole possono specificare valori di property per un elemento, un elemento puo' anche [**ereditare**](https://developer.mozilla.org/en-US/docs/Web/CSS/inheritance) valori di property dal suo genitore.
 
 ```css
 /* CSS */
-ul { /* applies to all <ul> elements */
+ul { /* si applica a tutti gli elementi <ul> */
   font-size: larger;
 }
 
-li { /* applies to all <li> elements */
+li { /* si applica a tutti gli elementi <li> */
   color: red;
 }
 ```
@@ -288,14 +288,14 @@ li { /* applies to all <li> elements */
 <!-- HTML -->
 <ul>
   <li>
-    This element's content will be in a larger font size (inherited from the
-    parent), as well as red (specified directly).
+    Il contenuto di questo elemento sara' con font piu' grande (ereditato dal
+    genitore), e anche rosso (specificato direttamente).
   </li>
-  <li>(So will this element's content because the same rules apply)</li>
+  <li>(Anche il contenuto di questo elemento, perche' valgono le stesse regole)</li>
 </ul>
 ```
 
-Nell'esempio sopra, gli elementi `<li>` saranno in un font piu' grande anche se una regola non applica quella property direttamente a loro — il parent `<ul>` riceve quel valore, e poi i child `<li>` lo ereditano.
+Nell'esempio sopra, gli elementi `<li>` saranno in un font piu' grande anche se una regola non applica quella property direttamente a loro -- il genitore `<ul>` riceve quel valore, e poi i figli `<li>` lo ereditano.
 
 L'ereditarieta' delle property significa che le regole possono applicarsi a intere "sezioni" della pagina, e tutto il contenuto in quella sezione sara' stilizzato nello stesso modo. In effetti, puoi usare l'ereditarieta' per applicare regole di formattazione all'_intera pagina_ selezionando l'elemento `<body>`. (Nota che per chiarezza/velocita', in genere _non_ si applica formattazione all'elemento `<html>`.)
 
@@ -303,11 +303,11 @@ Nota che se una regola specifica esplicitamente un valore di property, quel valo
 
 ```css
 /* CSS */
-p { /* applies to all <ul> elements */
+p { /* si applica a tutti gli elementi <p> */
   color: purple;
 }
 
-em { /* applies to all <em> elements */
+em { /* si applica a tutti gli elementi <em> */
   color: gold
 }
 ```
@@ -315,12 +315,12 @@ em { /* applies to all <em> elements */
 ```html
 <!-- HTML -->
 <p>
-  This text will be purple <em>(but this text will be gold; it does not
-  inherit the purple)</em>
+  Questo testo sara' viola <em>(ma questo testo sara' oro; non
+  eredita il viola)</em>
 </p>
 ```
 
-<p class="alert alert-warning">I valori delle property possono essere ereditati, ma le _class_ di styling no. Un elemento non e' considerato avere una particolare class solo perche' il suo parent ce l'ha (anche se puo' ereditare le property applicate al parent da quella class).</p>
+<p class="alert alert-warning">I valori delle property possono essere ereditati, ma le _class_ di styling no. Un elemento non e' considerato avere una particolare class solo perche' il suo genitore ce l'ha (anche se puo' ereditare le property applicate al genitore da quella class).</p>
 
 Poiche' piu' regole possono applicarsi a un singolo elemento, e' possibile che piu' valori per la stessa property vengano specificati per quell'elemento:
 
@@ -333,29 +333,29 @@ p { color: blue; }
 ```html
 <!-- html -->
 <p class="alert">
-  This element is styled by both rules, both of change its `color`. The text
-  will be red, because the `.alert` selector has higher specificity. The `p`
-  rule's property will be overridden.
+  Questo elemento e' stilizzato da entrambe le regole, entrambe cambiano `color`.
+  Il testo sara' rosso, perche' il selector `.alert` ha specificita' piu' alta.
+  La property della regola `p` verra' sovrascritta.
 </p>
 ```
 
-Se piu' regole cercano di specificare la stessa property, il _value della regola piu' **specifica** viene applicato_. I class selector sono considerati piu' specifici dei type selector, quindi la regola con class selector "vince". Se due regole sono ugualmente specifiche (ad es. due regole con class selector), allora viene applicata l'_ultima regola dichiarata_. Vedi [Selector Specificity](#selector-specificity) per maggiori dettagli. Il value della regola meno specifica si dice **overridden**. Nota che i valori di property che non entrano in conflitto verranno comunque applicati anche se un valore e' overridden.
+Se piu' regole cercano di specificare la stessa property, il _value della regola piu' **specifica** viene applicato_. I class selector sono considerati piu' specifici dei type selector, quindi la regola con class selector "vince". Se due regole sono ugualmente specifiche (ad es. due regole con class selector), allora viene applicata l'_ultima regola dichiarata_. Vedi [Selector Specificity](#selector-specificity) per maggiori dettagli. Il value della regola meno specifica si dice **sovrascritto**. Nota che i valori di property che non entrano in conflitto verranno comunque applicati anche se un valore e' sovrascritto.
 
 
 La cascade di regole resa possibile da CSS lo rende potente ed espressivo, permettendoti di scrivere regole flessibili e riusabili che possono essere combinate per produrre aspetti visivi sorprendenti. E' come fare i tuoi mattoncini Lego.
 
-Detto questo, la cascade di regole crea un trade-off: puoi avere molte regole riusabili che si applicano a piu' elementi, ma queste regole possono combinarsi in modo disperso che rende difficile intuire come apparira' la pagina solo guardando il codice. Avere componenti riusabili aumenta la complessita' — a volte troppo. Gestire questa complessita' — determinare quando le regole devono applicarsi a quali elementi e quando combinarle — e' parte della "skill" nel lavorare con CSS. Le euristiche per progettare regole sono discusse in un capitolo successivo; svilupperai anche un'intuizione lavorando con CSS nel tempo.
+Detto questo, la cascade di regole crea un compromesso: puoi avere molte regole riusabili che si applicano a piu' elementi, ma queste regole possono combinarsi in modo disperso che rende difficile intuire come apparira' la pagina solo guardando il codice. Avere componenti riusabili aumenta la complessita' -- a volte troppo. Gestire questa complessita' -- determinare quando le regole devono applicarsi a quali elementi e quando combinarle -- e' parte dell'abilita' nel lavorare con CSS. Le euristiche per progettare regole sono discusse in un capitolo successivo; svilupperai anche un'intuizione lavorando con CSS nel tempo.
 
-<p class="alert alert-success">Il mio miglior consiglio per gestire il grande numero di regole CSS usate nelle web page e' seguire il principio [KISS](https://en.wikipedia.org/wiki/KISS_principle): _"Keep it simple, silly!"_. Le regole CSS non devono essere complesse; pensa a regole che si applicano a elementi generali o a "sezioni" di una pagina. Molti elementi possono avere solo una o due regole applicate — ed e' ok!</p>
+<p class="alert alert-success">Il mio miglior consiglio per gestire il grande numero di regole CSS usate nelle pagine web e' seguire il principio [KISS](https://en.wikipedia.org/wiki/KISS_principle): _"Keep it simple, silly!"_. Le regole CSS non devono essere complesse; pensa a regole che si applicano a elementi generali o a "sezioni" di una pagina. Molti elementi possono avere solo una o due regole applicate -- ed e' ok!</p>
 
 
 ## Risorse {-}
 Alcuni riferimenti e documentazione utili per CSS (in generale); risorse piu' specifiche saranno incluse nei capitoli successivi.
 
 <div class="list-condensed">
-- [CSS Reference (MDN)](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference) un riferimento alfabetico completo per tutti i concetti CSS.
-- [CSS Selectors Reference](http://www.w3schools.com/cssref/css_selectors.asp) una tabella utile dei CSS selector.
-- [CSS Properties Reference](http://www.w3schools.com/cssref/default.asp) una tabella di property CSS, organizzata per categoria.
-- [Getting started with CSS (MDN)](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_started) - una guida MDN per imparare CSS
+- [Riferimento CSS (MDN)](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference) un riferimento alfabetico completo per tutti i concetti CSS.
+- [Riferimento CSS Selectors](http://www.w3schools.com/cssref/css_selectors.asp) una tabella utile dei CSS selector.
+- [Riferimento CSS Properties](http://www.w3schools.com/cssref/default.asp) una tabella di property CSS, organizzata per categoria.
+- [Guida introduttiva a CSS (MDN)](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_started) - una guida MDN per imparare CSS
 - [CSS-Tricks](https://css-tricks.com/) un blog con suggerimenti per usare CSS in tanti modi. Contiene molte guide e spiegazioni utili.
 </div>

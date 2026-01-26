@@ -1,47 +1,47 @@
-# React Class Components {#class-components}
+# Component Class React {#class-components}
 
-As mentioned in [_Introduction to React_](#react), it's also possible to define React Components using ES 6 class syntax:
+Come menzionato in [_Introduzione a React_](#react), e' anche possibile definire React Components usando la sintassi class ES6:
 
 ```jsx
-//Define a class component representing information about a user
+//Definisci un class component che rappresenta informazioni su un user
 class UserInfo extends React.Component {
-    //Components MUST override the `render()` function, which must return a
-    //DOM element
+    //I Components DEVONO fare override della function `render()`, che deve restituire un
+    //elemento DOM
     render() {
-        //This is an everyday function; you can include any code you want here
+        //Questa e' una function normale; puoi includere qui qualsiasi codice vuoi
         let name = "Ethel";
         let descriptor = "Aardvark";
 
-        //Return a React element (JSX) that is how the component will appear
+        //Restituisci un React element (JSX) che e' come apparira' il component
         return (
             <div>
                 <h1>{name}</h1>
-                <p>Hello, my name is {name} and I am a {descriptor}</p>
+                <p>Ciao, mi chiamo {name} e sono un {descriptor}</p>
             </div>
         )        
     }
 }
 ```
 
-This chapter contains further details on working with this style of **Class Components**, in particular how to manage manage _state_ within such components. This chapter can thus be read as a mirror of [_Interactive React_], just using class components instead of function components.
+Questo capitolo contiene ulteriori dettagli su come lavorare con questo stile di **Class Components**, in particolare su come gestire lo _state_ all'interno di tali components. Questo capitolo puo' quindi essere letto come uno specchio di [_React Interattivo_], solo usando class components invece di function components.
 
-<p class="alert alert-info">This chapter is taken from an earlier version of the text that emphasized class components instead of function components.</p>
+<p class="alert alert-info">Questo capitolo e' tratto da una versione precedente del testo che enfatizzava i class components invece dei function components.</p>
 
-## Props in Class Components 
-When defining a Class component, all of the passed in props are automatically assigned to the `props` instance variable, accessible as **`this.props`**. The `this.props` variable contains the object that would be passed as an argument to a function version of the component. 
+## Props nei Class Components 
+Quando definisci un Class component, tutte le props passate vengono assegnate automaticamente alla instance variable `props`, accessibile come **`this.props`**. La variable `this.props` contiene l'object che verrebbe passato come argomento a una versione function del component. 
 
 ```jsx
-//Define a component representing information about a user
+//Definisci un component che rappresenta informazioni su un user
 class UserInfo extends Component {
     render() {
-        //access the individual props from inside the `this.props` object
+        //accedi alle singole props dall'interno dell'object `this.props`
         let userName = this.props.userName;
         let descriptor = this.props.descriptor;
 
         return (
             <div>
                 <h1>{userName}</h1>
-                <p>Hello, my name is {name} and I am a {descriptor}</p>
+                <p>Ciao, mi chiamo {name} e sono un {descriptor}</p>
             </div>
         )        
     }
@@ -50,62 +50,62 @@ class UserInfo extends Component {
 let userInfo = <UserInfo userName="Ethel" descriptor="Aardvark" />;
 ```
 
-Note that the `this.props` object is **read only**&mdash;meaning that you cannot assign new values to it, nor modify its props directly. You should just think of props as immutable data that is coming in from outside of the component (again, similar to function arguments). A component doesn't create or change is own props, it just uses those to determine how to render its content.
+Nota che l'object `this.props` e' **read only**&mdash;cioe' non puoi assegnargli nuovi values, ne' modificare direttamente le sue props. Dovresti pensare alle props come data immutabili che arrivano dall'esterno del component (di nuovo, simile agli argomenti di una function). Un component non crea o cambia le proprie props, le usa solo per determinare come renderizzare il suo contenuto.
 
-## Handling Events in Class Components
-When using class components, events are handled in the same way as with function components (e.g., using the `onClick` prop). The main difference is that event handler callbacks are usually defined as separate _methods_ of the class:
+## Gestire gli Eventi nei Class Components
+Quando usi class components, gli eventi vengono gestiti nello stesso modo dei function components (per esempio, usando la prop `onClick`). La differenza principale e' che le callback di event handler sono di solito definite come _methods_ separati della class:
 
 ```jsx
-//A component representing a button that logs a message when clicked
+//Un component che rappresenta un button che logga un messaggio quando viene cliccato
 class MyButton extends Component {
-  //method to call when clicked. The name is conventional, but arbitrary
-  //the callback function will be passed the DOM event
+  //method da chiamare quando si clicca. Il nome e' convenzionale, ma arbitrario
+  //la callback function ricevera' l'event del DOM
   handleClick(event) {
-     console.log('clicky clicky');
+     console.log('clic clic');
   }
   render() {
-    //make a button with an `onClick` attribute!
-    //this "registers" the listener and sets the callback
-    return <button onClick={this.handleClick}>Click me!</button>;
+    //crea un button con un attribute `onClick`!
+    //questo "registra" il listener e imposta la callback
+    return <button onClick={this.handleClick}>Cliccami!</button>;
   }
 }
 ```
 
-Note that when assigning the method to the `onClick` prop, the method is referenced using the `this` keyword (and no parentheses!), because the reference is to _this Component**'s**_ `handleClick()` method.
+Nota che quando assegni il method alla prop `onClick`, il method viene referenziato usando la keyword `this` (e senza parentesi!), perche' il riferimento e' al method `handleClick()` di _questo Component_.
 
-### Accessing `this` Component from Events {-}
-It is very common to have a Component's event callback functions need to reference the instance variables or methods of that component&mdash;such as to do something based with a prop (found in `this.props`) or to call an additional helper method (called as `this.otherMethod()`). In short&mdash;the event callback will need to have access to the `this` context. 
+### Accedere al `this` del Component dagli Eventi {-}
+E' molto comune che le event callback functions di un Component debbano referenziare le instance variables o i methods di quel component&mdash;per esempio, per fare qualcosa in base a una prop (trovata in `this.props`) o per chiamare un helper method aggiuntivo (chiamato come `this.otherMethod()`). In breve&mdash;la event callback dovra' avere accesso al contesto `this`. 
 
-But as discussed in [Section 15.2](#working-with-this), callback functions are not called on any particular object, and thus do not have a value assigned to their `this` variable. In the example above, although you're using the word `this` to _refer to_ the method `this.handleClick` (to tell JavaScript where to find the function), that function is not actually being called on the class. As described in Section 15.2, just because the method was defined inside a class doesn't mean it needs to be called on an instance of that class!
+Ma come discusso in [Sezione 15.2](#working-with-this), le callback functions non vengono chiamate su alcun object specifico, e quindi non hanno un value assegnato alla loro variable `this`. Nell'esempio sopra, anche se stai usando la parola `this` per _referenziare_ il method `this.handleClick` (per dire a JavaScript dove trovare la function), quella function non viene realmente chiamata sulla class. Come descritto nella Sezione 15.2, solo perche' il method e' stato definito dentro una class non significa che debba essere chiamato su una instance di quella class!
 
 ```jsx
-//BUGGY CODE: A button that causes and error when clicked!
+//BUGGY CODE: Un button che causa un errore quando viene cliccato!
 class MyButton extends Component {
   handleClick(event) {
-     //Reference the object's `this.props` instance variable. But since `this`
-     //is undefined when executed as a callback, it will cause a
+     //Riferisci la instance variable `this.props` dell'object. Ma dato che `this`
+     //e' undefined quando viene eseguita come callback, causerebbe un
      //TypeError: Cannot read property 'props' of undefined
-     console.log("You clicked on", this.props.text)
+     console.log("Hai cliccato su", this.props.text)
   }
 
   render() {
-    //Specifies function (which happens to be a class method) as a callback
+    //Specifica una function (che capita essere un class method) come callback
     return <button onClick={this.handleClick}>{this.props.text}</button>;
   }
 }
 
-//Render the component, passing it a prop
-ReactDOM.render(<MyButton text="Click me!"/>, document.getElementById('root'));
+//Renderizza il component, passandogli una prop
+ReactDOM.render(<MyButton text="Cliccami!"/>, document.getElementById('root'));
 ```
 
-As such, you will need to make sure to "retain" the `this` context when specifying an event callback function. There are a few ways to do this. 
+Quindi, dovrai assicurarti di "mantenere" il contesto `this` quando specifichi una event callback function. Ci sono alcuni modi per farlo. 
 
-- First, as described in Chapter 15, an _arrow function_ will utilize the same lexical `this` as the context it is defined in. Thus you can "wrap" the event callback function in an arrow function in order to keep the `this`, calling that method on the `this` instance explicitly:
+- Primo, come descritto nel Chapter 15, una _arrow function_ usera' lo stesso `this` lessicale del contesto in cui e' definita. Quindi puoi "wrappare" la event callback function in una arrow function per mantenere il `this`, chiamando quel method sulla instance `this` in modo esplicito:
 
     ```jsx
     class MyButton extends Component {
       handleClick(event) {
-         console.log("You clicked on", this.props.text) //functions as expected!
+         console.log("Hai cliccato su", this.props.text) //funziona come previsto!
       }
 
       render() {
@@ -118,36 +118,36 @@ As such, you will need to make sure to "retain" the `this` context when specifyi
     }
     ```
 
-    In this example, the `onClick` listener is passed an anonymous callback function (in the form of an arrow function), which does the work of calling the `handleClick()` method on the instance (`this`). In effect, you're defining a "temporary" recipe to register with the event listener, whose one instruction is "follow this other recipe". Notice that this approach also has the bonus feature of enabling you to pass additional arguments to the event callback!
+    In questo esempio, al listener `onClick` viene passata una callback function anonima (sotto forma di arrow function), che fa il lavoro di chiamare il method `handleClick()` sulla instance (`this`). In effetti, stai definendo una "ricetta temporanea" da registrare con l'event listener, la cui unica istruzione e' "segui quest'altra ricetta". Nota che questo approccio ha anche il vantaggio di permetterti di passare argomenti aggiuntivi alla event callback!
 
-    React does note that this approach can have a performance penalty&mdash;you are creating a new function (the arrow function) every time the component gets rendered, and components may be rendered _a lot_ as you make React apps interactive! This won't be noticeable as you are just getting started, but can begin to make a difference for large-scale applications.
+    React nota che questo approccio puo' avere una penalita' di performance&mdash;stai creando una nuova function (la arrow function) ogni volta che il component viene renderizzato, e i components possono essere renderizzati _molte_ volte quando rendi interattive le React apps! Questo non sara' evidente all'inizio, ma puo' iniziare a fare la differenza per applications su larga scala.
     
-- An alternative approach is to use a [**public class field**](https://github.com/tc39/proposal-class-fields) to define the method. This is an _experimental_ JavaScript syntax&mdash;it is currently being considered for official inclusion in the JavaScript language. However, the Babel transpiler supports this syntax (transforming it into a bound class function), and that support is enabled in Create React App allowing you to use the syntax _for React apps_.
+- Un approccio alternativo e' usare un [**public class field**](https://github.com/tc39/proposal-class-fields) per definire il method. Questa e' una sintassi JavaScript _sperimentale_&mdash;attualmente e' in considerazione per l'inclusione ufficiale nel linguaggio JavaScript. Tuttavia, il transpiler Babel supporta questa sintassi (trasformandola in una class function bound), e questo supporto e' abilitato in Create React App, permettendoti di usare la sintassi _per React apps_.
 
-    A _public class field_ is a field (instance variable) that is assigned at value the "top level" of a class, rather than explicitly assigning to a property of `this` in the constructor.
+    Un _public class field_ e' un field (instance variable) a cui viene assegnato un value al "top level" di una class, invece di assegnarlo esplicitamente a una property di `this` nel constructor.
 
     ```js
-    //A class with a public class field
+    //Una class con un public class field
     class Counter {
-        x = 0; //assign the value here, not in the constructor
+        x = 0; //assegna il value qui, non nel constructor
         
         increment() {
-            this.x = this.x + 1; //can access the field as usual
+            this.x = this.x + 1; //puoi accedere al field come al solito
         }    
     }
     
     let counter = new Counter();
     counter.increment();
-    console.log(counter.x); //outputs 1    
+    console.log(counter.x); //stampa 1    
     ```
 
-    But since you can assign any type of value to a field&mdash;including functions&mdash;you can use a public class field and define the event callback, using an arrow function to maintain the bound `this` context:
+    Ma dato che puoi assegnare qualsiasi tipo di value a un field&mdash;incluse le functions&mdash;puoi usare un public class field e definire la event callback, usando una arrow function per mantenere il contesto `this` bound:
     
     ```jsx
     class MyButton extends Component {
-      //define event callback as a public class field (using an arrow function)
+      //definisci la event callback come public class field (usando una arrow function)
       handleClick = (event) => {
-         console.log("You clicked on", this.props.text) //functions as expected!
+         console.log("Hai cliccato su", this.props.text) //funziona come previsto!
       }
 
       render() {
@@ -156,143 +156,143 @@ As such, you will need to make sure to "retain" the `this` context when specifyi
     }
     ```
     
-    Although somewhat more tricky to read and interpret (particularly if the callback takes no parameters), this approach allows you to specify a bound function (which will have the correct value for `this`), while still being able to reference the function directly when registering the event listener&mdash;without having to wrap it in a separate arrow function. At the time of writing, this approach is the "cool" way that callback functions are specified in React.
+    Anche se e' un po' piu' difficile da leggere e interpretare (in particolare se la callback non prende parametri), questo approccio ti permette di specificare una function bound (che avra' il value corretto di `this`), pur potendo referenziare la function direttamente quando registri l'event listener&mdash;senza doverla wrappare in una arrow function separata. Al momento della scrittura, questo approccio e' il modo "cool" in cui le callback functions vengono specificate in React.
 
 
-## State in Class Components {#state-in-class-components}
-React Components store their state in the `state` instance variable (accessed as **`this.state`**). Unlike props that are specified as inputs to the Component, the state must be initially assigned a value, which should be done in the Component's _constructor_:
+## State nei Class Components {#state-in-class-components}
+I React Components memorizzano il loro state nella instance variable `state` (accessibile come **`this.state`**). A differenza delle props che sono specificate come input al Component, lo state deve essere inizialmente assegnato a un value, cosa che dovrebbe essere fatta nel _constructor_ del Component:
 
 ```jsx
-//A button that tracks how many times it was clicked
+//Un button che traccia quante volte e' stato cliccato
 class CountingButton extends Component {
-  constructor(props) { //the constructor must take a `props` parameter
-     super(props)      //the constructor must call superclass constructor
+  constructor(props) { //il constructor deve prendere un parametro `props`
+     super(props)      //il constructor deve chiamare il superclass constructor
 
-     //initialize the Component's state
+     //inizializza lo state del Component
      this.state = {
-         count: 0 //a value contained in the state
+         count: 0 //un value contenuto nello state
      }
   }
 
   render() {
-    //can _access_ values from the state in the `render()` function
-    return <button>You clicked me {this.state.count} times</button>;
+    //puoi _accedere_ ai values dello state nella function `render()`
+    return <button>Mi hai cliccato {this.state.count} volte</button>;
   }
 }
 ```
 
-Because Components _inherit_ (extend) the `React.Component` class, their constructors must do the same work as the parent class (so that they can function in the same way). In particular, the constructor must take in a single parameter (representing the props that are passed into the Component). It must then immediately call the parent's version of the constructor (and pass in those props) using `super(props)`. This will cause the props to be setup correctly, so that you can use them as normal.
+Poiche' i Components _ereditano_ (extend) la class `React.Component`, i loro constructors devono fare lo stesso lavoro della parent class (cosi' possono funzionare nello stesso modo). In particolare, il constructor deve prendere un singolo parametro (che rappresenta le props passate al Component). Deve poi chiamare immediatamente la versione del constructor del parent (e passare quelle props) usando `super(props)`. Questo fara' si' che le props siano impostate correttamente, cosi' puoi usarle normalmente.
  
-Inside the constructor, you _initialize_ the `this.state` value (and this is usually all you do in the constructor!). The `this.state` value must be a JavaScript Object which can store specific data&mdash;you can't make the state a String or a Number, but an object that can contain Strings and/or Numbers (with keys to label them).
+Dentro il constructor, _inizializzi_ il value `this.state` (e di solito e' tutto cio' che fai nel constructor!). Il value `this.state` deve essere un Object JavaScript che puo' memorizzare data specifici&mdash;non puoi fare dello state una String o un Number, ma un object che puo' contenere Strings e/o Numbers (con keys per etichettarli).
 
-You can access the values currently stored in the state through the `this.state` instance variable. You will usually do this in the `render()` (or in a helper method called by the `render()` function). If a value doesn't get used for rendering, it probably doesn't need to be part of the state!
+Puoi accedere ai values attualmente memorizzati nello state tramite la instance variable `this.state`. Di solito lo fai in `render()` (o in un helper method chiamato dalla function `render()`). Se un value non viene usato per il rendering, probabilmente non deve far parte dello state!
 
-React Components must store their state in the `state` instance variable (accessed as **`this.state`**). Unlike props that are specified as inputs to the Component, the state must be initially assigned a value, which should be done in the Component's _constructor_:
+I React Components devono memorizzare il loro state nella instance variable `state` (accessibile come **`this.state`**). A differenza delle props che sono specificate come input al Component, lo state deve essere inizialmente assegnato a un value, cosa che dovrebbe essere fatta nel _constructor_ del Component:
 
 ```jsx
-//A button that tracks how many times it was clicked
+//Un button che traccia quante volte e' stato cliccato
 class CountingButton extends Component {
-  constructor(props) { //the constructor must take a `props` parameter
-     super(props)      //the constructor must call superclass constructor
+  constructor(props) { //il constructor deve prendere un parametro `props`
+     super(props)      //il constructor deve chiamare il superclass constructor
 
-     //initialize the Component's state
+     //inizializza lo state del Component
      this.state = {
-         count: 0 //a value contained in the state
+         count: 0 //un value contenuto nello state
      }
   }
 
   render() {
-    //can _access_ values from the state in the `render()` function
-    return <button>You clicked me {this.state.count} times</button>;
+    //puoi _accedere_ ai values dello state nella function `render()`
+    return <button>Mi hai cliccato {this.state.count} volte</button>;
   }
 }
 ```
 
-Because Components _inherit_ (extend) the `React.Component` class, their constructors must do the same work as the parent class (so that they can function in the same way). In particular, the constructor must take in a single parameter (representing the props that are passed into the Component). It must then immediately call the parent's version of the constructor (and pass in those props) using `super(props)`. This will cause the props to be setup correctly, so that you can use them as normal.
+Poiche' i Components _ereditano_ (extend) la class `React.Component`, i loro constructors devono fare lo stesso lavoro della parent class (cosi' possono funzionare nello stesso modo). In particolare, il constructor deve prendere un singolo parametro (che rappresenta le props passate al Component). Deve poi chiamare immediatamente la versione del constructor del parent (e passare quelle props) usando `super(props)`. Questo fara' si' che le props siano impostate correttamente, cosi' puoi usarle normalmente.
  
-Inside the constructor, you _initialize_ the `this.state` value (and this is usually all you do in the constructor!). The `this.state` value must be a JavaScript Object which can store specific data&mdash;you can't make the state a String or a Number, but an object that can contain Strings and/or Numbers (with keys to label them).
+Dentro il constructor, _inizializzi_ il value `this.state` (e di solito e' tutto cio' che fai nel constructor!). Il value `this.state` deve essere un Object JavaScript che puo' memorizzare data specifici&mdash;non puoi fare dello state una String o un Number, ma un object che puo' contenere Strings e/o Numbers (con keys per etichettarli).
 
-You can access the values currently stored in the state through the `this.state` instance variable. You will usually do this in the `render()` (or in a helper method called by the `render()` function). If a value doesn't get used for rendering, it probably doesn't need to be part of the state!
+Puoi accedere ai values attualmente memorizzati nello state tramite la instance variable `this.state`. Di solito lo fai in `render()` (o in un helper method chiamato dalla function `render()`). Se un value non viene usato per il rendering, probabilmente non deve far parte dello state!
 
-### Changing the State {-}
-Data is stored in the state so that can be changed over time. You can modify a Component's state by calling the [**`setState()`**](https://reactjs.org/docs/react-component.html#setstate) method on that Component. This method usually takes as a parameter an object that contains the new desired values for the state; this set of new values will be "merged" into the existing state, changing only the indicated values (other values will be left alone):
+### Cambiare lo State {-}
+I data sono memorizzati nello state cosi' possono essere cambiati nel tempo. Puoi modificare lo state di un Component chiamando il method [**`setState()`**](https://reactjs.org/docs/react-component.html#setstate) su quel Component. Questo method di solito prende come parametro un object che contiene i nuovi values desiderati per lo state; questo set di nuovi values verra' "merged" nello state esistente, cambiando solo i values indicati (gli altri values rimarranno invariati):
 
 ```jsx
-//An element that displays the time when asked
+//Un elemento che mostra l'orario quando richiesto
 class Clock extends Component {
   constructor(props) {
      super(props)
      this.state = {
-         currentTime: new Date(), //current time
-         alarmSound: "annoying_buzz.mp3" //changeable alarm sound
+         currentTime: new Date(), //orario corrente
+         alarmSound: "annoying_buzz.mp3" //suono allarme modificabile
      }
   }
 
-  //callback function for the button (public class field)
+  //callback function per il button (public class field)
   handleClick = (props) => {
      let stateChanges = { 
-          currentTime: new Date() //new value to save in the state
+          currentTime: new Date() //nuovo value da salvare nello state
      };
-     this.setState(stateChanges); //apply the state changes and re-render!
+     this.setState(stateChanges); //applica i cambiamenti di state e re-renderizza!
   }
   
   render() {
       return (
           <div>
-            <button onClick={this.handleClick}>What time is it right now</button>
-            <p>The time is {this.state.currentTime.toLocaleTimeString()}</p>
+            <button onClick={this.handleClick}>Che ore sono adesso</button>
+            <p>L'ora e' {this.state.currentTime.toLocaleTimeString()}</p>
           </div>
       );
   }
 }
 ```
 
-The `setState()` method will ["merge"](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-are-merged) the values of its parameter into the Component's `state` field; in the above example, the `alarmSound` value will not be modified when the button is pressed; only the value for `currentTime` will be changed. If you want to change multiple values at the same time, you can include multiple keys in the parameter to `setState()`. Also note that this merging is "shallow"&mdash;if you wanted to change a state value that was an array (e.g., `this.state = { comments:[...] }`), you would need to set a brand new version of that array (that could be a modified version of the previous state; see below).
+Il method `setState()` ["merge"](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-are-merged) i values del suo parametro nel field `state` del Component; nell'esempio sopra, il value `alarmSound` non verra' modificato quando il button viene premuto; solo il value di `currentTime` verra' cambiato. Se vuoi cambiare piu' values allo stesso tempo, puoi includere piu' keys nel parametro di `setState()`. Nota anche che questo merging e' "shallow"&mdash;se volessi cambiare un value di state che e' un array (per esempio, `this.state = { comments:[...] }`), dovresti impostare una versione completamente nuova di quell'array (che puo' essere una versione modificata dello state precedente; vedi sotto).
  
-Importantly, you _must_ use the `setState()` method to change the state; you [_cannot_](https://reactjs.org/docs/state-and-lifecycle.html#do-not-modify-state-directly) assign a new value to the `this.state` instance variable directly. This is because the React framework uses that method to not only adjust the instance variable, but also to cause the Component to "re-render". When the state has finished being updated, React will re-render the Component (causing it's `render()` method to be called again), and merging the updated rendering into the page's DOM. React does this merging in a highly efficient manner, changing the elements that have actually updated&mdash;this is what makes React so effective for large scale systems.
+In modo importante, _devi_ usare il method `setState()` per cambiare lo state; [_non puoi_](https://reactjs.org/docs/state-and-lifecycle.html#do-not-modify-state-directly) assegnare direttamente un nuovo value alla instance variable `this.state`. Questo perche' il framework React usa quel method non solo per aggiornare la instance variable, ma anche per far "re-renderizzare" il Component. Quando lo state ha finito di aggiornarsi, React re-renderizza il Component (facendo richiamare il method `render()`), e mergea il rendering aggiornato nel DOM della pagina. React fa questo merging in modo altamente efficiente, cambiando gli elementi che sono effettivamente aggiornati&mdash;questo e' cio' che rende React cosi' efficace per sistemi su larga scala.
 
-<p class="alert alert-info">Remember: calling `setState()` will cause the `render()` method to be called again, and it will access the updated `this.state` values!</p>
+<p class="alert alert-info">Ricorda: chiamare `setState()` fara' chiamare di nuovo il method `render()`, e accedera' ai values `this.state` aggiornati!</p>
 
-<p class="alert alert-danger">Never call `setState()` directly from inside of `render()`! That will cause an infinite recursive loop. The `render()` method must remain "pure" with no side effects.</p>
+<p class="alert alert-danger">Never chiamare `setState()` direttamente dall'interno di `render()`! Causerebbe un loop ricorsivo infinito. Il method `render()` deve rimanere "pure" senza side effects.</p>
 
-Moreover, the `setState()` method is [_asynchronous_](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous). Calling the method only sends a "request" to update the state; it doesn't happen immediately. This is because React will "batch" multiple requests to update the state of Components (and so to rerender them) together&mdash;that way if your app needs to make lots of small changes at the same time, React only needs to regenerate the DOM once, providing a significant performance boost.
+Inoltre, il method `setState()` e' [_asynchronous_](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous). Chiamare il method invia solo una "request" per aggiornare lo state; non avviene immediatamente. Questo perche' React "batcha" piu' request per aggiornare lo state dei Components (e quindi per rerenderizzarli) insieme&mdash;in questo modo se la tua app deve fare molti piccoli cambiamenti nello stesso momento, React ha bisogno di rigenerare il DOM solo una volta, fornendo un notevole boost di performance.
 
 ```jsx
-//An Component with a callback that doesn't handle asynchronous state changes
+//Un Component con una callback che non gestisce i cambiamenti di state asincroni
 class CounterWithError extends Component {
   constructor(props) {
      super(props)
      this.state = {
-         count: 3 //initial value
+         count: 3 //value iniziale
      }
   }
 
   handleClick = () => {
-     this.setState({count: 4}); //change `count` to 4
-     console.log(this.state.count); //will output "3"; state has not changed yet!
+     this.setState({count: 4}); //cambia `count` a 4
+     console.log(this.state.count); //stampera' "3"; lo state non e' ancora cambiato!
   }
   
   //...
 }
 ```
 
-In this example, because `setState()` is asynchronous, you can't immediately access the updated state after calling the function. If you want to use that updated value, you need to do so in the `render()` method, which will be called again once the state has finished being updated.
+In questo esempio, poiche' `setState()` e' asynchronous, non puoi accedere immediatamente allo state aggiornato dopo aver chiamato la function. Se vuoi usare quel value aggiornato, devi farlo nel method `render()`, che verra' chiamato di nuovo una volta che lo state ha finito di aggiornarsi.
 
-Because `setState()` calls are asynchronous and may be batched, if you wish to update a state value based on the _current_ state (e.g., to have a counter increase), you need to instead pass the `setState()` method a [_callback function_](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous) as an argument (instead of an Object of new values). The callback function will be passed the "current" state (and props), and must `return` the Object that you wish to merge into the state:
+Poiche' le chiamate a `setState()` sono asynchronous e possono essere batchate, se vuoi aggiornare un value di state basato sullo state _corrente_ (per esempio, per aumentare un contatore), devi invece passare al method `setState()` una [_callback function_](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous) come argomento (invece di un Object di nuovi values). La callback function ricevera' lo state "corrente" (e le props), e deve `return`are l'Object che vuoi mergeare nello state:
 
 ```jsx
-//An example button click callback
+//Un esempio di callback per il click del button
 class Counter extends Component {
   constructor(props) {
      super(props)
-     this.state = { count: 0 } //initial value
+     this.state = { count: 0 } //value iniziale
   }
 
   handleClick = () => {
-     //setState is passed an anonymous callback function
+     //setState riceve una callback function anonima
      this.setState((currentState, currentProps) => {
-         //return the Object to "merge" into the state
-         let stateChanges = {count: currentState.count + 1}; //increment count
+         //restituisci l'Object da "mergeare" nello state
+         let stateChanges = {count: currentState.count + 1}; //incrementa count
          return stateChanges;
      })
   } 
@@ -301,96 +301,96 @@ class Counter extends Component {
 }
 ```
 
-While trying to use `this.state` directly in a call to `setState()` will _sometimes_ work, best practice is to instead use a callback function as above when the new state value depends on the old.
+Anche se provare a usare `this.state` direttamente in una chiamata a `setState()` _a volte_ funziona, la best practice e' usare una callback function come sopra quando il nuovo value di state dipende dal vecchio.
 
-## The Component Lifecycle
-A react component's state is initialized in the constructor (when the component is first instantiated), and then usually modified in response to user events (by calling the `setState()` method). But there are a number of other "events" that occur during the life of a Component&mdash;such as the "events" of when the Component is added to the DOM ("mounted") or removed from the DOM ("unmounted"). For example, you should only download data when there is a Component on the screen to display that data (after the Component has been added to the DOM), and to "clean up" any listeners or timers when the Component is removed.
-It is possible to define functions will execute at such these events, allowing you to perform specific actions as the React framework manipulates the DOM. These functions are called [**lifecycle methods**](https://reactjs.org/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class)&mdash;they are methods that are executed at different stages of the Component's "lifecycle". You _override_ these lifecycle methods in order to specify what code you want to run at those events. Lifecycle methods will be _automatically executed by the React framework_; you never directly call these methods (the same way you never directly call `render()`&mdash;which is itself a lifecycle method!)
+## Il Lifecycle del Component
+Lo state di un react component viene inizializzato nel constructor (quando il component viene istanziato per la prima volta), e poi di solito modificato in risposta a eventi dello user (chiamando il method `setState()`). Ma ci sono molti altri "eventi" che avvengono durante la vita di un Component&mdash;come gli "eventi" di quando il Component viene aggiunto al DOM ("mounted") o rimosso dal DOM ("unmounted"). Per esempio, dovresti scaricare i data solo quando c'e' un Component sullo schermo per mostrare quei data (dopo che il Component e' stato aggiunto al DOM), e "pulire" qualsiasi listener o timer quando il Component viene rimosso.
+E' possibile definire functions che verranno eseguite in questi eventi, permettendoti di eseguire azioni specifiche mentre il framework React manipola il DOM. Queste functions sono chiamate [**lifecycle methods**](https://reactjs.org/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class)&mdash;sono methods che vengono eseguiti in diverse fasi del "lifecycle" del Component. Tu _override_ questi lifecycle methods per specificare quale codice vuoi eseguire in quegli eventi. I lifecycle methods verranno _automaticamente eseguiti dal framework React_; non li chiami mai direttamente (allo stesso modo in cui non chiami mai direttamente `render()`&mdash;che e' essa stessa un lifecycle method!)
 
-React components have a number of different lifecycle methods, the most common of which are illustrated below:
+I react components hanno diversi lifecycle methods, i piu' comuni dei quali sono illustrati qui sotto:
 
 ```jsx
-//A generic component
+//Un component generico
 class MyComponent extends Component {
-  //The constructor is called when the Component is instantiated, but before_body
-  //it is added to the DOM (on the screen)  
+  //Il constructor viene chiamato quando il Component e' istanziato, ma prima
+  //che venga aggiunto al DOM (sullo schermo)  
   constructor(props){
     super(props)
-    //initialize state here!
+    //inizializza lo state qui!
   }
 
-  //This method is called when the Component has been added to the DOM (and
-  //is visible on the screen). This occurs _after_ the first `render()` call.
+  //Questo method viene chiamato quando il Component e' stato aggiunto al DOM (ed
+  //e' visibile sullo schermo). Questo avviene _dopo_ la prima chiamata a `render()`.
   componentDidMount() {
-    //do (asynchronous) setup work, including AJAX requests, here!
+    //fai qui il lavoro di setup (asynchronous), incluse le request AJAX!
   }
   
-  //This method is called when a Component is being "re-rendered" with a
-  //new set of props. This is a less common method to override
+  //Questo method viene chiamato quando un Component viene "re-renderizzato" con un
+  //nuovo set di props. Questo e' un method meno comune da override
   componentDidUpdate(prevProps, prevState, snapshot) {
-    //do additional "re-setup" work (including updated AJAX requests) here!
+    //fai qui lavoro aggiuntivo di "re-setup" (incluse request AJAX aggiornate)!
   }
 
-  //This method is called when the Component is about to be removed from the DOM
-  //(and thus will no longer be visible on the screen)
+  //Questo method viene chiamato quando il Component sta per essere rimosso dal DOM
+  //(e quindi non sara' piu' visibile sullo schermo)
   componentWillUnmount() {
-    //do (asynchronous) cleanup work here!
+    //fai qui il lavoro di cleanup (asynchronous)!
   }  
 }
 ```
 
-For more details on the specific usages (and parameters!) of these methods, see the [official API documentation](https://reactjs.org/docs/react-component.html#the-component-lifecycle). 
+Per maggiori dettagli sugli usi specifici (e i parametri!) di questi methods, vedi la [documentazione ufficiale API](https://reactjs.org/docs/react-component.html#the-component-lifecycle). 
 
 <!-- Is there more to say about this? :/ -->
 
-Note that you are not _required_ to include these methods in a Component. However, they are required to correctly perform asynchronous functions such as AJAX requests, as described below.
+Nota che non sei _obbligato_ a includere questi methods in un Component. Tuttavia, sono necessari per eseguire correttamente functions asynchronous come le request AJAX, come descritto sotto.
 
 
-### Lifecycle Example: Fetching Data via AJAX {-}
-One of the most common use of lifecycle callback functions is when accessing data asynchronously, such as when fetching data via an AJAX request (such a described in [Chapter 14](#ajax)). This section provides details about how to asynchronously load data within a React class component.
+### Esempio di Lifecycle: Caricare Data via AJAX {-}
+Uno degli usi piu' comuni delle lifecycle callback functions e' quando si accede a data in modo asincrono, ad esempio quando si scaricano data tramite una request AJAX (come descritto in [Chapter 14](#ajax)). Questa sezione fornisce dettagli su come caricare data in modo asincrono dentro un React class component.
 
-Remember that the `fetch()` function downloads data _asynchronously_. Thus if you want to download some data to display, it may take a while to arrive. You don't want React to have to "wait" for the data (since React is designed to be _fast_). Thus the best practice is to send the `fetch()` request for data, and `then` when the data has been downloaded, call the `setState()` method to update the Component with the downloaded data. (The Component can initialize its state as an "empty array" of data).
+Ricorda che la function `fetch()` scarica i data in modo _asynchronous_. Quindi se vuoi scaricare dei data da mostrare, potrebbero impiegare un po' ad arrivare. Non vuoi che React debba "aspettare" i data (dato che React e' progettato per essere _fast_). Quindi la best practice e' inviare la request `fetch()` per i data e poi, `then`, quando i data sono stati scaricati, chiamare il method `setState()` per aggiornare il Component con i data scaricati. (Il Component puo' inizializzare il suo state come un "array vuoto" di data).
 
-Because `fetch()` will eventually call the `setState()` method, you can't send the AJAX from the Component's constructor. That's because `setState()` will eventually render the Component, which involves updating something that has been added to the DOM. In the constructor, the Component has been instantiated, but has not yet been added to the DOM&mdash;thus you can't update its state yet! If the data ends up downloading before the Component is mounted, you will get an error that you cannot re-render an unmounted Component!
+Poiche' `fetch()` alla fine chiamera' il method `setState()`, non puoi inviare l'AJAX dal constructor del Component. Questo perche' `setState()` alla fine renderizzera' il Component, il che implica aggiornare qualcosa che e' stato aggiunto al DOM. Nel constructor, il Component e' stato istanziato, ma non e' ancora stato aggiunto al DOM&mdash;quindi non puoi ancora aggiornare il suo state! Se i data finiscono per scaricarsi prima che il Component sia mounted, otterrai un errore che dice che non puoi re-renderizzare un Component non mounted!
 
-Instead, you should always send your (initial) `fetch()` requests from the `componentDidMount()` lifecycle method. This way the data will only be downloaded once the Component has actually been added to the DOM, and so is available for re-rendering. This structure is shown in the example below:
+Invece, dovresti sempre inviare le tue (iniziali) request `fetch()` dal lifecycle method `componentDidMount()`. In questo modo i data verranno scaricati solo quando il Component e' stato effettivamente aggiunto al DOM, e quindi e' disponibile per il re-rendering. Questa struttura e' mostrata nell'esempio sotto:
 
 ```jsx
 class MyComponent extends Componet {
   constructor(props){
     super(props);
     this.state = {
-        data: [] //initialize data as "empty"
+        data: [] //inizializza i data come "vuoti"
     }; 
   }
 
   componentDidMount() {    
-    fetch(dataUri) //send AJAX request
+    fetch(dataUri) //invia una request AJAX
       .then((res) => res.json())
       .then((data) => {
-        let processedData = data.filter(...).map(...) //do desired processing
-        this.setState({data: processedData}) //change the state, and re-render
+        let processedData = data.filter(...).map(...) //fai il processing desiderato
+        this.setState({data: processedData}) //cambia lo state, e re-renderizza
       })
   }
 
   render() {
-    //Map the data values into DOM elements
-    //Note that this works even before data is loaded (when the array is empty!)
+    //Mappa i data values in elementi DOM
+    //Nota che questo funziona anche prima che i data siano caricati (quando l'array e' vuoto!)
     let dataItems = this.state.data.map((item) => {
-      return <li key={item.id}>{item.value}</li>; //return DOM version of datum
+      return <li key={item.id}>{item.value}</li>; //restituisce la versione DOM del datum
     })
 
-    //render the data items (e.g., as a list)
+    //renderizza i data items (per esempio, come list)
     return <ul>{dataItems}</ul>; 
   }
 }
 ```
 
-In the above example, the `this.state.data` is initialized as an empty array; this will `render()` just fine (it produces an empty list). Once the Component is mounted, the data will be downloaded and processed, and then saved as an updated state value. Calling `setState()` will cause the Component to re-render, so that the data will be displayed as desired! While technically it means the Component is rendering twice, React can batch these requests together so that if the data downloads fast enough, the user will not notice.
+Nell'esempio sopra, `this.state.data` e' inizializzato come array vuoto; questo `render()` funziona benissimo (produce una list vuota). Una volta che il Component e' mounted, i data verranno scaricati e processati, e poi salvati come value di state aggiornato. Chiamare `setState()` fara' re-renderizzare il Component, cosi' che i data vengano mostrati come desiderato! Anche se tecnicamente significa che il Component renderizza due volte, React puo' batchare queste request insieme cosi' se i data si scaricano abbastanza velocemente, lo user non se ne accorgera'.
 
-## Resources {-}
+## Risorse {-}
 
 <div class="list-condensed">
-- [The Component Lifecycle](https://reactjs.org/docs/react-component.html#the-component-lifecycle)
-- [State and Lifecycle](https://reactjs.org/docs/state-and-lifecycle.html)
+- [Il Lifecycle del Component](https://reactjs.org/docs/react-component.html#the-component-lifecycle)
+- [State e Lifecycle](https://reactjs.org/docs/state-and-lifecycle.html)
 </div>

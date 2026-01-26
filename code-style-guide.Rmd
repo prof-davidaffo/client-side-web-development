@@ -1,27 +1,27 @@
 # Code Style Guide
 
-Computer code is read by two different audiences: computers, which execute the code statements (or render the web page), and humans who need to interpret and update the code over time. Using good **coding style**&mdash;the manner and format in which code is written&mdash;is vital for supporting the humans who read it. Poorly written code may be interpretable by the computer and thus work correctly, but it also needs to be understandale by people.
+Il codice e' letto da due audience diverse: i computer, che eseguono gli statements (o renderizzano la web page), e gli esseri umani, che devono interpretare e aggiornare il codice nel tempo. Usare un buon **coding style**&mdash;il modo e il formato in cui il codice e' scritto&mdash;e' fondamentale per supportare gli esseri umani che lo leggono. Il codice scritto male puo' essere interpretabile dal computer e quindi funzionare correttamente, ma deve anche essere comprensibile alle persone.
 
-Code that is well written (has "good style") fulfills two properties:
+Un codice scritto bene (con "good style") soddisfa due proprieta':
 
-- It is easy for people to read
-- It is easy for people to modify in the future
+- E' facile da leggere per le persone
+- E' facile da modificare in futuro per le persone
 
-All coding style guidelines should follow from these two goals. If you ever wonder whether one styling approach is better than another, consider it in terms of those goals.
+Tutte le linee guida sul coding style dovrebbero seguire questi due obiettivi. Se ti chiedi se un approccio di styling e' migliore di un altro, valutalo in termini di questi obiettivi.
 
-Everyone has a differnet opinions on what is considered "good style"; indeed there are numerous existing "style guides" written for web programming languages: for example, Google has their own
-<a href="https://google.github.io/styleguide/htmlcssguide.html" aria-label="Google's HTML/CSS Style Guide">HTML/CSS</a> and <a href="https://google.github.io/styleguide/jsguide.html" aria-label="Google's JavaScript Style Guide">JavaScript</a> style guides, as does <a href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Writing_style_guide/Code_style_guide" aria-label="Mozilla's Code Style Guide">Mozilla</a>. There are also tools that enforce styling guidelines. ["linters"](https://en.wikipedia.org/wiki/Lint_(software)) such as [ESLint](https://eslint.org/) will both identify syntactic errors, but also may have strong opinions on style, marking "poor style" as an error.
+Ognuno ha opinioni diverse su cosa sia "good style"; esistono infatti numerose "style guide" per i linguaggi di web programming: per esempio, Google ha le proprie style guide
+<a href="https://google.github.io/styleguide/htmlcssguide.html" aria-label="Google's HTML/CSS Style Guide">HTML/CSS</a> e <a href="https://google.github.io/styleguide/jsguide.html" aria-label="Google's JavaScript Style Guide">JavaScript</a>, cosi' come <a href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Writing_style_guide/Code_style_guide" aria-label="Mozilla's Code Style Guide">Mozilla</a>. Esistono anche tools che fanno rispettare le linee guida di stile. I ["linters"](https://en.wikipedia.org/wiki/Lint_(software)) come [ESLint](https://eslint.org/) identificano errori di sintassi, ma possono anche avere forti opinioni sullo stile, marcando il "poor style" come errore.
 
-<p class="alert alert-warning">I recommend being cautious with automatic code styling ("beautifier") tools or plugins. While these can be useful, it's also possible that they will "clean" your code in a way that doesn't actually improve it. Be very careful with anything that writes or changes code for you to ensure that it's doing the right thing!</p>
+<p class="alert alert-warning">Consiglio di essere cauti con i tool o plugin automatici di code styling ("beautifier"). Anche se possono essere utili, e' possibile che "puliscano" il codice in un modo che non lo migliora davvero. Fai molta attenzione a qualsiasi cosa che scriva o modifichi codice al posto tuo, per essere sicuro che faccia la cosa giusta!</p>
 
-This chapter provides a number of specific guidelines following the opinions of the authors (and instructors of the INFO 340: Client Side Development course) in order to help you learn to write code that is generally easier to read and modify&mdash;that has good style. It is _not_ intended to be comprehensive; rather it is a collection of guidelines that students often question or have troubles following intuitively. See the above linked style guides for more comprehensive suggestions.
+Questo capitolo fornisce diverse linee guida specifiche seguendo le opinioni degli autori (e docenti del corso INFO 340: Client Side Development) per aiutarti a scrivere codice che sia generalmente piu' facile da leggere e modificare&mdash;cioe' con good style. Non vuole essere esaustivo; e' piuttosto una raccolta di linee guida che gli studenti spesso mettono in discussione o faticano a seguire intuitivamente. Vedi le style guide linkate sopra per suggerimenti piu' completi.
 
-<p class="alert alert-info">This chapter is a work in progress, with more guidelines being added as they come up.</p>
+<p class="alert alert-info">Questo capitolo e' un work in progress, con nuove linee guida aggiunte quando emergono.</p>
 
 
 ## HTML Guidelines
 
-- Always use **lowercase letters** for HTML tags. This helps with readability and consistency.
+- Usa sempre **lowercase letters** per i tag HTML. Questo aiuta la leggibilita' e la consistenza.
 
     ```html
     <!-- Do this -->
@@ -34,7 +34,7 @@ This chapter provides a number of specific guidelines following the opinions of 
 
 ### Spacing {-}
 
-- In general, put tags for **block elements** on their own lines, with the content of block elements as a separate (indented) line&mdash;unless the content of that block element is very short. Subsequent block eleents are indented an additional step. This makes it easier to read the code by seeing the blocks, as well as to modify the code by adding more content inside of blocks.
+- In generale, metti i tag dei **block elements** su righe separate, con il contenuto dei block elements su una riga separata (indentata)&mdash;a meno che il contenuto di quel block element sia molto breve. I block elements successivi sono indentati di un ulteriore livello. Questo rende il codice piu' facile da leggere grazie alla struttura a blocchi e piu' facile da modificare aggiungendo contenuto dentro i blocchi.
 
     ```html
     <!-- Do this -->
@@ -56,7 +56,7 @@ This chapter provides a number of specific guidelines following the opinions of 
     <div><p>lorem ipsum</p></div>
     ```
 
-- For many **inline elements**&mdash;particularly text formatting ones (e.g., `<em>`, `<strong>`, `<a>`)&mdash;it's best to keep them inline with the rest of the content. Think about like writing a paragraph, but some words in the middle are formatted. Don't try to separate out the inline elements. This makes it easier to see them as "inline", and means that you can integrate it into your code without needing to worry about spacing. (This will also often fix trailing space issues). Note that this guideline is one that automated beautifying tools mess up.
+- Per molti **inline elements**&mdash;soprattutto quelli di formattazione testo (ad es. `<em>`, `<strong>`, `<a>`)&mdash;e' meglio mantenerli inline con il resto del contenuto. Pensa a come scriveresti un paragrafo, con alcune parole formattate nel mezzo. Non separare gli inline elements. Questo rende piu' facile vederli come "inline" e permette di integrarli nel codice senza preoccuparti della spaziatura. (Questo spesso risolve anche problemi di trailing space). Nota che questa linea guida e' una di quelle che i tool di beautifying automatici rovinano.
 
     ```html
     <!-- Do this -->
@@ -72,7 +72,7 @@ This chapter provides a number of specific guidelines following the opinions of 
     </p>
     ```
 
-    For "structural" inline elements (e.g., `<img>` , `<button>`), it's better to put them on their own line similar to block elements. Indeed, these elements may often want to be styled as block elements anyway!
+    Per gli inline elements "strutturali" (ad es. `<img>`, `<button>`), e' meglio metterli su una riga separata come i block elements. In effetti, questi elementi spesso vogliono essere stilizzati come block elements!
 
     ```html
     <!-- Do this -->
@@ -87,7 +87,7 @@ This chapter provides a number of specific guidelines following the opinions of 
     </p>
     ```
 
-- Element attributes should be written on the same line as the element tag they apply to&mdash;even if the attribute value seems "long" (like a URL).
+- Gli element attributes dovrebbero essere scritti sulla stessa riga del tag a cui si applicano&mdash;anche se il valore dell'attribute sembra "lungo" (come un URL).
 
     ```html
     <!-- Do this -->
@@ -98,9 +98,9 @@ This chapter provides a number of specific guidelines following the opinions of 
       href="https://info340.github.io/really/long/path/to/content">Link</a>
     ```
 
-    Note that it is not valid HTML to put whitespace, including line breaks, around the `=` when defining an attribute.
+    Nota che non e' HTML valido inserire whitespace, incluse linee di interruzione, attorno al `=` quando definisci un attribute.
 
-    The one exception to this style guideline is when you have _lots of_ attributes for a single element. In that situation, it's acceptible to put each attribute on its own line, indented 1 step. While that rarely happens in straight HTML, it can be very common when specifying props for a React component (and makes it easier to modify those props as well).
+    L'unica eccezione a questa linea guida e' quando hai _molti_ attributes per un singolo elemento. In quel caso, e' accettabile mettere ogni attribute su una riga separata, indentata di 1 livello. Anche se succede raramente in HTML puro, e' molto comune quando specifichi props per un componente React (e rende piu' facile modificare quelle props).
 
     ```html
     <!-- Do this -->
@@ -113,7 +113,7 @@ This chapter provides a number of specific guidelines following the opinions of 
       class="long-form-input">
     ```
 
-- Write all text content of a single element as a single line of code; do not manually put line breaks inside of plain text. This will allow you to modify that text content later without needing to reformat things. _Do not worry about the length of the line of code_. You can use the **"word wrap"** functionality of your editor to avoid horizontal scrolling.
+- Scrivi tutto il contenuto testuale di un singolo elemento su una singola riga di codice; non inserire manualmente line break nel plain text. Questo ti permette di modificare quel contenuto in seguito senza dover riformattare tutto. _Non preoccuparti della lunghezza della riga di codice_. Puoi usare la funzionalita' **"word wrap"** del tuo editor per evitare lo scrolling orizzontale.
 
     ```html
     <!-- Do this -->
@@ -134,11 +134,11 @@ This chapter provides a number of specific guidelines following the opinions of 
     </p>
     ```
 
-### Specific Elements {-}
+### Elementi specifici {-}
 
-- Avoid un-semantic formatting elements (e.g., `<i>`, `<b>`), as they are not accessible to screen readers.
+- Evita elementi di formattazione non semantici (ad es. `<i>`, `<b>`), perche' non sono accessibili agli screen reader.
 
-- Avoid using the `<br>` element for line breaks. If you're breaking a line of text, it's most often because you're defining a new _paragraph_, and so should use an additional `<p>` element. If there isn't a semantic meaning for the line break, don't include one! If you need to adjust the amount of spacing between paragraphs (e.g., you want it to be a single spacing not double spacing), use CSS to adjust the margin or padding.
+- Evita di usare l'elemento `<br>` per gli a capo. Se stai spezzando una riga di testo, di solito e' perche' stai definendo un nuovo _paragraph_, quindi dovresti usare un altro `<p>`. Se non c'e' un significato semantico per il line break, non inserirlo! Se devi regolare la spaziatura tra paragraph (ad es. vuoi una spaziatura singola invece che doppia), usa il CSS per regolare margin o padding.
 
     ```html
     <!-- Do this -->
@@ -157,7 +157,7 @@ This chapter provides a number of specific guidelines following the opinions of 
     <p>
     ```
 
-    The only reason I can think of for semanticaly using a `<br>` element would be in poetry:
+    L'unico motivo che mi viene in mente per usare semanticamente un elemento `<br>` e' nella poesia:
 
     ```html
     <!-- Do this -->
@@ -169,19 +169,19 @@ This chapter provides a number of specific guidelines following the opinions of 
     </div>
     ```
 
-### Comments in HTML {-}
+### Commenti in HTML {-}
 
-- Most HTML content doesn't need comments; it should be understandable just from the indentation and content. If your code needs more organization, use semantic elements (e.g., `<section>`) or class names to help structure it (e.g., `<div class="first-post">`).
+- La maggior parte del contenuto HTML non ha bisogno di commenti; dovrebbe essere comprensibile solo dall'indentazione e dal contenuto. Se il tuo codice ha bisogno di piu' organizzazione, usa semantic elements (ad es. `<section>`) o class names per aiutarne la struttura (ad es. `<div class="first-post">`).
 
 
 
 ## CSS Guidelines
 
-One piece of adviace for writing good CSS is to focus on the "minimal" amount of CSS needed to achieve your effect. Work with the browser and its defaults, rather than trying to overpower it. Perhaps surprisingly, _removing_ rules or properties is usually a better fix to a problem then adding additional styling.
+Un buon consiglio per scrivere CSS e' concentrarsi sulla quantita' "minima" di CSS necessaria per ottenere l'effetto desiderato. Lavora con il browser e i suoi default, invece di cercare di dominarli. Forse sorprendentemente, _rimuovere_ rules o properties e' spesso una soluzione migliore di aggiungere ulteriore styling.
 
 ### Spacing
 
-- When writing CSS rules, put the `{` of a rule on the same line as the selector, and indent the properties of the rule a consistent amount. Put a space after the `:` in a rule, but not before. Rules should thus look like:
+- Quando scrivi CSS rules, metti la `{` di una rule sulla stessa riga del selector e indenta le properties della rule di una quantita' consistente. Metti uno spazio dopo `:` in una rule, ma non prima. Le rules dovrebbero apparire cosi':
 
     ```css
     selector {
@@ -190,11 +190,11 @@ One piece of adviace for writing good CSS is to focus on the "minimal" amount of
     }
     ```
 
-    Note that you can use VS Code to automatically "indent" your code using the `format document` command.
+    Nota che puoi usare VS Code per "indentare" automaticamente il codice con il comando `format document`.
 
 ### Selectors
 
-- Use selectors that are _only as specific as they need to be_.
+- Usa selectors che siano _solo quanto basta specifici_.
 
     ```css
     /* Do this */
@@ -207,11 +207,11 @@ One piece of adviace for writing good CSS is to focus on the "minimal" amount of
     body p {} /* no paragraphs outside of the body, so redundant */
     ```
 
-    (It's hard to show examples, because the required specificity depends on the situation!)
+    (E' difficile mostrare esempi, perche' la specificita' richiesta dipende dalla situazione!)
 
-    Most selectors will involve 1-3 "pieces" (connected by descendant or compound selection). If you find yourself using more than that, ask if there's a simpler way to write the selector&mdash;or just give the element a `class` to select it directly!
+    La maggior parte dei selectors avra' 1-3 "pezzi" (connessi da selezione discendente o compound). Se ti trovi a usarne di piu', chiediti se c'e' un modo piu' semplice di scrivere il selector&mdash;o dai semplicemente all'elemento una `class` e selezionalo direttamente!
 
-- Use class or element selectors instead of id selectors.
+- Usa class o element selectors invece di id selectors.
 
     ```css
     /* Do this */
@@ -221,14 +221,14 @@ One piece of adviace for writing good CSS is to focus on the "minimal" amount of
     #side-nav {}
     ```
 
-- If you must use an `id` selector, don't add extra specificity before id selectors. An `id` has to be unique, so you don't need to distinguish between multiple elements with the same `id`.
+- Se devi usare un selector `id`, non aggiungere specificita' extra prima degli id selectors. Un `id` deve essere unico, quindi non devi distinguere tra piu' elementi con lo stesso `id`.
 
     ```css
     /* Don't do this */
     nav#side-nav {}
     ```
 
-- **Do not** use the `!important` keyword. Write a sufficiently specific rule instead!
+- **Non** usare la keyword `!important`. Scrivi invece una rule sufficientemente specifica!
 
     ```css
     /* Don't do this */
@@ -245,7 +245,7 @@ One piece of adviace for writing good CSS is to focus on the "minimal" amount of
 
 ### Class Names
 
-- **Use descriptive class names**. Classes should describe what or why that styling is being applied.
+- **Usa class names descrittivi**. Le class dovrebbero descrivere cosa o perche' quello styling viene applicato.
 
     ```css
     /* Do this */
@@ -264,12 +264,12 @@ One piece of adviace for writing good CSS is to focus on the "minimal" amount of
     .p {} /* use an element selector instead! */
     ```
 
-    Note that classes could either be defined **semantically** (e.g., `.avatar-icon`, `.comment-form`), or **modularly** (e.g., `.font-large`, `.bg-secondary`). Either approach is acceptable per this guide, but try to be _consistent_.
+    Nota che le class possono essere definite **semanticamente** (ad es. `.avatar-icon`, `.comment-form`) oppure **modularmente** (ad es. `.font-large`, `.bg-secondary`). Entrambi gli approcci sono accettabili in questa guida, ma cerca di essere _consistente_.
 
-    Using naming schema such as [BEM](http://getbem.com/naming/) is also acceptable.
+    Usare uno naming schema come [BEM](http://getbem.com/naming/) e' anche accettabile.
 
 
-- Use hyphens as delimiters for class names.
+- Usa i trattini come delimiters per i class names.
 
     ```css
     /* Do this */
@@ -279,7 +279,7 @@ One piece of adviace for writing good CSS is to focus on the "minimal" amount of
     .alert-warning {}
     ```
 
-    Certain frameworks may make it sensible to use camelCasing for class naming (so class names are also valid JavaScript identifiers). In that case, **be consistent** with delimiters. This will make it easier to write and modify the code.
+    Alcuni framework possono rendere sensato usare il camelCasing per i class names (cosi' i class names sono anche valid JavaScript identifiers). In quel caso, **sii consistente** con i delimiters. Questo rendera' piu' facile scrivere e modificare il codice.
 
     ```css
     /* Don't do this */
@@ -287,19 +287,19 @@ One piece of adviace for writing good CSS is to focus on the "minimal" amount of
     .alert-warning {}
     ```
 
-### Specific Properties
+### Proprieta' specifiche
 
-- Avoid using `float`; use flexboxes or grids for positioning. It is rare to actually have "floating" content (though it can happen with image inserts inside of large text-based articles).
+- Evita di usare `float`; usa flexboxes o grids per il positioning. E' raro avere davvero contenuto "floating" (anche se puo' succedere con immagini inserite in grandi articoli testuali).
 
-- Avoid using `position: absolute`. This will produce layouts that are not responsive or accessible to multiple devices. Work with the browser's layout instead by using relative layouts.
+- Evita di usare `position: absolute`. Questo produce layout non responsive o non accessibili su piu' dispositivi. Lavora invece con il layout del browser usando layout relativi.
 
 
 ### Responsive CSS
 
-- Use a **mobile-first** approach to styling. This means that general rules go at the top and apply to mobile devices, and then use media queries to specify style alterations for larger displays.
+- Usa un approccio **mobile-first** allo styling. Questo significa che le regole generali vanno in alto e si applicano ai device mobile, e poi usi media queries per specificare modifiche di stile per display piu' grandi.
 
 
-- Media queries check against minimize size only:
+- Le media queries controllano solo la size minima:
 
     ```css
     /* Do this */
@@ -312,7 +312,7 @@ One piece of adviace for writing good CSS is to focus on the "minimal" amount of
     @media (max-width: 768px) {}
     ```
 
-- Limiting styling rules to `screen` is not required (unless you distinctly want those to be different from printed rules)
+- Limitare le styling rules a `screen` non e' necessario (a meno che tu non voglia esplicitamente che siano diverse dalle regole di stampa)
 
     ```css
     /* Do this */
@@ -322,13 +322,13 @@ One piece of adviace for writing good CSS is to focus on the "minimal" amount of
     @media screen and (min-width: 768px) {}
     ```
 
-- Media queries should be used to _modify_ the mobile device styling, not to replace it completely. Don't "reset" all of the rules from the mobile styling, just override and add-to the few rules needed to make the page effectively responsive. Your page should have a similar style/theme no matter what device is being used to view the content!
+- Le media queries dovrebbero essere usate per _modificare_ lo styling mobile, non per sostituirlo completamente. Non "resettare" tutte le rules dello styling mobile, ma sovrascrivi e aggiungi solo le poche rules necessarie per rendere la pagina realmente responsive. La tua pagina dovrebbe avere uno style/theme simile a prescindere dal device usato per visualizzare il contenuto!
 
-### Comments in CSS
+### Commenti in CSS
 
-- You do not need a lot of comments for CSS code; your rules should be self-explanatory because you've used descriptive class names.
+- Non hai bisogno di molti commenti per il codice CSS; le rules dovrebbero essere auto-esplicative perche' hai usato class names descrittivi.
 
-- Use comments to help organize or "sign-post" your code, to group rules together in your `.css` file.
+- Usa i commenti per organizzare o "segnalare" il codice, raggruppando le rules nel file `.css`.
 
     ```css
     /* Do this */
@@ -349,11 +349,11 @@ One piece of adviace for writing good CSS is to focus on the "minimal" amount of
 
 ### Variables
 
-- Declare variables using `const` or `let`. In general, use `const` for all variables, and then `let` only if you find you need to reassign the variable later (which is a lot less common then you may think)!
+- Dichiara le variables con `const` o `let`. In generale, usa `const` per tutte le variables, e poi `let` solo se scopri di dover riassegnare la variable in seguito (cosa molto meno comune di quanto pensi)!
 
-    Do not use `var` to declare variables (this avoid polluting the global scope).
+    Non usare `var` per dichiarare variables (questo evita di inquinare il global scope).
 
-- Variable names are written in `camelCaseFormat` (capitalizing the first letter of each "word" in the name after the first). Do not begin variable names with a capital letter.
+- I nomi delle variables si scrivono in `camelCaseFormat` (capitalizzando la prima lettera di ogni "word" dopo la prima). Non iniziare i nomi delle variables con una lettera maiuscola.
 
     ```js
     /* Do this */
@@ -366,11 +366,11 @@ One piece of adviace for writing good CSS is to focus on the "minimal" amount of
     const MyName = "Joel Ross"
     ```
 
-    You can use all capital letters for global constants. Note that just because a variable is declared `const` doesn't mean it is a "global constant". Use all capital letters to name values that are specified external to the functioning of your program; `PI`, `WA_TAX_RATE`, `SCREEN_WIDTH` are all global constants.
+    Puoi usare tutte lettere maiuscole per le global constants. Nota che solo perche' una variable e' dichiarata `const` non significa che sia una "global constant". Usa tutte lettere maiuscole per nominare valori specificati esternamente al funzionamento del programma; `PI`, `WA_TAX_RATE`, `SCREEN_WIDTH` sono tutte global constants.
 
-- **Use descriptive variable names**. Variable names should what the value references. Do not use names like `stuff`, `thing`, or `x` as they won't help anyone understand your code.
+- **Usa nomi di variable descrittivi**. I nomi delle variables dovrebbero indicare a cosa si riferisce il value. Non usare nomi come `stuff`, `thing` o `x` perche' non aiutano nessuno a capire il codice.
 
-- Name arrays and collections using **plural nouns**. Alternatively, you may find it useful to name _strings_, _arrays_, _objects_, and _functions_ after their data type to help you remember (particularly if understanding plurals in English is difficult).
+- Dai nome ad arrays e collections usando **nomi plurali**. In alternativa, potresti trovare utile nominare _strings_, _arrays_, _objects_ e _functions_ in base al loro data type per aiutarti a ricordare (in particolare se i plurali in inglese sono difficili).
 
     ```js
     /* Do this */
@@ -387,7 +387,7 @@ One piece of adviace for writing good CSS is to focus on the "minimal" amount of
 
 ### Functions
 
-- Use function declarations rather than function expressions when defining functions&mdash;particularly "top-level" functions. This helps distinguish between functions and variables, making it easier to read and follow the code (even if it takes more typing).
+- Usa function declarations invece di function expressions quando definisci functions&mdash;soprattutto le functions "top-level". Questo aiuta a distinguere tra functions e variables, rendendo il codice piu' facile da leggere e seguire (anche se richiede piu' digitazione).
 
     ```js
     /* Do this */
@@ -404,7 +404,7 @@ One piece of adviace for writing good CSS is to focus on the "minimal" amount of
     const sum = (a, b) => a + b;
     ```
 
-- For _inline functions_ (such as anonymous callback functions), use **arrow notation**. This can keep things more concise and also avoid some scoping problems.
+- Per le _inline functions_ (come le anonymous callback functions), usa la **arrow notation**. Questo rende il codice piu' conciso e aiuta a evitare problemi di scope.
 
     ```js
     /* Do this */
@@ -418,7 +418,7 @@ One piece of adviace for writing good CSS is to focus on the "minimal" amount of
     })
     ```
 
-    When using arrow functions, always put the `()` around the argument list. This clarifies that it is a function and will make things easier if/when you want to add additional arguments.
+    Quando usi le arrow functions, metti sempre le `()` attorno alla lista degli argomenti. Questo chiarisce che si tratta di una function e rendera' piu' facile aggiungere argomenti in seguito.
 
     ```js
     /* Do this */
@@ -432,7 +432,7 @@ One piece of adviace for writing good CSS is to focus on the "minimal" amount of
     })
     ```
 
-    In general, avoid using _concise body arrow functions_. Including the explicit block (the `{}`) makes it easier to read as a function, as well as to modify and debug since you can add additional statements easily. It may seem like more code to type, but it's better style.
+    In generale, evita di usare _concise body arrow functions_. Includere il block esplicito (`{}`) rende piu' facile leggere la function e anche modificarla e fare debug, perche' puoi aggiungere statements facilmente. Sembra piu' codice da digitare, ma e' uno style migliore.
 
     ```js
     /* Do this */
@@ -444,25 +444,25 @@ One piece of adviace for writing good CSS is to focus on the "minimal" amount of
     const exclaimed = stringArray.map((aString) => aString + "!!")
     ```
 
-- Functions should be defined to be _short_ and _reusable_. Using [**pure functions**](https://en.wikipedia.org/wiki/Pure_function) whenever possible. This means that they avoid [side effects](https://en.wikipedia.org/wiki/Side_effect_(computer_science))&mdash;they do not assign to or modify non-local variables.
+- Le functions dovrebbero essere definite per essere _short_ e _reusable_. Usa [**pure functions**](https://en.wikipedia.org/wiki/Pure_function) quando possibile. Questo significa che evitano [side effects](https://en.wikipedia.org/wiki/Side_effect_(computer_science))&mdash;non assegnano o modificano variables non locali.
 
 
-### Comments in JavaScript
+### Commenti in JavaScript
 
 > "Comments are always failures." - Robert Martin
 
-In general well-written code documents itself without the need for additional comments. Functions that are well named with small scopes will clearly indicate what they do without the need for further notation. If you find that you need a comment to explain what your code does, then you probably should rewrite that code so that it's more readable. Comments should be used to provide further information about the _intent_ of code (why it has been included), not the _behavior_ of code (what it does).
+In generale, il codice ben scritto si auto-documenta senza bisogno di commenti aggiuntivi. Functions ben nominate con scope piccoli indicano chiaramente cosa fanno senza bisogno di ulteriori note. Se ti accorgi che serve un commento per spiegare cosa fa il codice, probabilmente dovresti riscriverlo per renderlo piu' leggibile. I commenti dovrebbero fornire informazioni sull'_intent_ del codice (perche' e' stato incluso), non sul _behavior_ del codice (cosa fa).
 
-This means that in general you shouldn't need to include a lot of comments in your code. Use comments as a last resort to clarify code behavior or otherwise communicate with other people.
+Questo significa che in generale non dovresti aver bisogno di molti commenti nel codice. Usa i commenti come ultima risorsa per chiarire il behavior del codice o per comunicare con altre persone.
 
-Do not retain large blocks of commented code in _production_ (final) versions&mdash;be clear about the code you're using without requiring the user to scroll past or ignore a lot of code that you're not.
+Non lasciare grandi blocchi di codice commentato nelle versioni _production_ (finali)&mdash;mantieni il codice chiaro senza costringere chi legge a scorrere o ignorare tanto codice inutilizzato.
 
 
-### Miscellaneous JavaScript Guidelines
+### Altre linee guida JavaScript
 
-- Use strict equality comparisons (`===` and `!==`) instead of regular equality comparisons (`==` and `!=`).
+- Usa confronti di uguaglianza strict (`===` e `!==`) invece di confronti di uguaglianza regolari (`==` e `!=`).
 
-- Minimize the use of `console.log()` statements in _production_ (final) versions. These will slow your program down, pollute the logging space, and can be a source of information and security leaks. Use _lots_ of `console.log()` statements when debugging, but remove them when you've fixed the bugs.
+- Minimizza l'uso di statements `console.log()` nelle versioni _production_ (finali). Rallentano il programma, inquinano lo spazio dei log e possono essere fonte di leak di informazioni e sicurezza. Usa _molti_ `console.log()` quando fai debugging, ma rimuovili quando hai risolto i bug.
 
 
 
@@ -470,9 +470,9 @@ Do not retain large blocks of commented code in _production_ (final) versions&md
 
 ### Components
 
-- Use Component functions (and hooks). Do not define components as classes.
+- Usa Component functions (e hooks). Non definire componenti come classi.
 
-- Use function declarations rather than function expressions when defining Component functions. This helps with readability.
+- Usa function declarations invece di function expressions quando definisci Component functions. Questo aiuta la leggibilita'.
 
     ```js
     /* Do this */
@@ -486,7 +486,7 @@ Do not retain large blocks of commented code in _production_ (final) versions&md
     }
     ```
 
-- Component functions are named using **nouns** (what they are), not verbs (what they do). You name then like you would name _classes_ in Java or other OOP languages.
+- Le Component functions si nominano con **nouns** (cosa sono), non con verbi (cosa fanno). Nominale come faresti con _classes_ in Java o altri linguaggi OOP.
 
     ```js
     /* Do this - what the content is */
@@ -500,7 +500,7 @@ Do not retain large blocks of commented code in _production_ (final) versions&md
     }
     ```
 
-    Give Components descripive names that indicate what "kind" of element they are, so there is no confusion about whether they are nouns or verbs.
+    Dai ai Components nomi descrittivi che indicano che "kind" di elemento sono, cosi' non c'e' confusione tra nouns e verbi.
 
     ```js
     /* Do this - the component is a form */
@@ -514,7 +514,7 @@ Do not retain large blocks of commented code in _production_ (final) versions&md
     }
     ```
 
-- Components are always written as _top level functions_. Never define one component inside of another!
+- I Components sono sempre scritti come _top level functions_. Non definire mai un componente dentro un altro!
 
     ```js
     /* Do this */
@@ -538,9 +538,9 @@ Do not retain large blocks of commented code in _production_ (final) versions&md
     }
     ```
 
-- The argument to a Component is _always_ called **`props`** (with an `s` at the end!).
+- L'argomento di un Component si chiama _sempre_ **`props`** (con la `s` alla fine!).
 
-    It is acceptable to use object destructuring in the argument to a Component function. Remember to include the `{}`&mdash;a Component only accepts a single argument!
+    E' accettabile usare l'object destructuring nell'argomento di una Component function. Ricorda di includere le `{}`&mdash;un Component accetta un solo argomento!
 
     ```js
     /* Acceptable */
@@ -554,7 +554,7 @@ Do not retain large blocks of commented code in _production_ (final) versions&md
     }
     ```
 
-- When specifying props to a Component (or attributes for an HTML element), do _not_ put spaces around the `=` &mdash; write it like HTML!
+- Quando specifichi props per un Component (o attributes per un elemento HTML), _non_ mettere spazi attorno a `=` &mdash; scrivilo come in HTML!
 
     ```
     /* Do this */
@@ -565,14 +565,14 @@ Do not retain large blocks of commented code in _production_ (final) versions&md
     ```
 
 
-- Organize Components into separate modules (`.js` files). You can include multiple related components (e.g,. a `Card` and a `CardList`) in the same module. It's a good idea to keep these files together inside of a distinct `components` folder in your source code.
+- Organizza i Components in moduli separati (file `.js`). Puoi includere piu' componenti correlati (ad es. un `Card` e un `CardList`) nello stesso modulo. E' una buona idea tenere questi file insieme in una cartella `components` distinta nel tuo source code.
 
 
 ### Mapping Data
 
-- Do not _declare_ functions such as the `.map()` callback inline inside the `return` statement of a Component (or any other function). Use multiple statements when writing code!
+- Non _dichiarare_ functions come la callback di `.map()` inline dentro lo statement `return` di un Component (o di qualsiasi altra function). Usa statements multipli quando scrivi codice!
 
-    Instead, declare the mapped values as a _separate variable_ that can be included inside of the returned DOM. This will make your code easier to read, modify, and debug since you can add additional processing or inspections after the `.map()` call.
+    Invece, dichiara i values mappati come una _variable separata_ che puo' essere inclusa nel DOM restituito. Questo rende il codice piu' facile da leggere, modificare e fare debug, perche' puoi aggiungere ulteriore processing o ispezioni dopo la chiamata `.map()`.
 
     ```js
     /* Do this */
@@ -606,7 +606,7 @@ Do not retain large blocks of commented code in _production_ (final) versions&md
 
 ### State
 
-- Always use `const` when declaring state variables (since you don't reassign them anyway)!
+- Usa sempre `const` quando dichiari state variables (dato che non le riassegni comunque)!
 
     ```js
     /* Do this */
@@ -616,7 +616,7 @@ Do not retain large blocks of commented code in _production_ (final) versions&md
     let [data, setData] = useState([]);
     ```
 
-- _Always_ name the "state setter" function after the name of the state variable (`set______`):
+- _Sempre_ nomina la function "state setter" a partire dal nome della state variable (`set______`):
 
     ```js
     /* Do this */
@@ -628,9 +628,9 @@ Do not retain large blocks of commented code in _production_ (final) versions&md
     const [lastTrack, setLast] = useState({}); //use the full variable name instead!
     ```
 
-- Do not duplicate data in state. It's both bad style and will cause bugs. Keep state minimal.
+- Non duplicare i data nello state. E' cattivo style e causa bug. Mantieni lo state minimale.
 
-    Do not define state variables for values that can be computed from other variables.
+    Non definire state variables per values che possono essere calcolati da altre variables.
 
     ```js
     /* Do this */
@@ -642,7 +642,7 @@ Do not retain large blocks of commented code in _production_ (final) versions&md
     const [arrayLength, setArrayLength] = useState(0); //duplicated data
     ```
 
-    Do not have multiple components save the same data in their state. Instead, lift the state up to the appropriate level and pass the data down as a prop.
+    Non far salvare gli stessi data nello state di piu' componenti. Invece, fai lift dello state al livello appropriato e passa i data verso il basso come prop.
 
     ```js
     /* Do this */
@@ -671,7 +671,7 @@ Do not retain large blocks of commented code in _production_ (final) versions&md
     }
     ```
 
-- Do not pass state setter functions as callbacks to child components. Instead, create a separate callback function which can call the state setter. This makes it easier to add additional processing and control logic when updating state, as well as following the [Principle of Least Knowledge](https://en.wikipedia.org/wiki/Law_of_Demeter)
+- Non passare le state setter functions come callback ai child components. Invece, crea una callback function separata che possa chiamare lo state setter. Questo rende piu' facile aggiungere processing e logica di controllo quando aggiorni lo state, oltre a seguire il [Principle of Least Knowledge](https://en.wikipedia.org/wiki/Law_of_Demeter).
 
     ```js
     /* Do this */
@@ -703,9 +703,9 @@ Do not retain large blocks of commented code in _production_ (final) versions&md
     ```
 
 
-### Events and Forms
+### Events e Forms
 
-- All forms should be [controlled](https://reactjs.org/docs/forms.html#controlled-components), managing the inputted value through the Component's state (instead of the HTML element's state). This helps avoid data duplication, following the [Don't Repeat Yourself (DRY) Principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
+- Tutti i form dovrebbero essere [controlled](https://reactjs.org/docs/forms.html#controlled-components), gestendo il valore inserito tramite lo state del Component (invece dello state dell'elemento HTML). Questo aiuta a evitare la duplicazione dei data, seguendo il [Don't Repeat Yourself (DRY) Principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
 
     ```js
     /* Do this */
@@ -724,8 +724,8 @@ Do not retain large blocks of commented code in _production_ (final) versions&md
     ```
 
 
-## Miscellaneous Guidelines
+## Linee guida varie
 
-- Name all files and folder (source code or otherwise) with **all lowercase letters**. This will keep things consistent and avoid bugs across operating systems.
+- Dai a tutti i file e folder (source code o altro) nomi con **tutte lettere minuscole**. Questo mantiene consistenza ed evita bug tra sistemi operativi.
 
-- Do not include spaces (` `) in file names, particular for media assets&mdash;do not have a file named `my puppy.png`. Instead replace the space with an alternate character, such as an `_`, a `-`, or a `+`. Whitespace characters need to be specially encoded for URIs, which can cause problems and readability issues.
+- Non includere spazi (` `) nei nomi dei file, in particolare per i media assets&mdash;non avere un file chiamato `my puppy.png`. Sostituisci lo spazio con un carattere alternativo, come `_`, `-` o `+`. I whitespace characters devono essere codificati in modo speciale per gli URI, il che puo' causare problemi e di leggibilita'.

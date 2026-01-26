@@ -1,10 +1,10 @@
-# CSS Layouts
+# Layout CSS
 
-The previous chapters have discussed how to use CSS to specify the appearance of individual html elements (e.g., text size, color, backgrounds, etc). This chapter details how to use CSS to declare where HTML elements should _appear_ on a web page! Placing elements exactly how you want them can be surprisingly difficult. Elements are arranged from the **top left corner** of the page, and are arranged based on three related (but distinct) concepts:
+I capitoli precedenti hanno discusso come usare CSS per specificare l'aspetto dei singoli elementi HTML (per esempio, dimensione del testo, colore, background, ecc.). Questo capitolo dettaglia come usare CSS per dichiarare dove gli elementi HTML dovrebbero _apparire_ su una web page! Posizionare gli elementi esattamente come li vuoi puo' essere sorprendentemente difficile. Gli elementi sono disposti a partire dall'**angolo in alto a sinistra** della pagina, e sono organizzati in base a tre concetti correlati (ma distinti):
 
-- **Display**: determines how elements share horizontal space
-- **Position**: allows you to adjust the location of the natural flow of elements
-- **Box-model**: describes the amount of 2D space taken up by an element, and how much space is between elements
+- **Display**: determina come gli elementi condividono lo spazio orizzontale
+- **Position**: permette di regolare la posizione del flow naturale degli elementi
+- **Box-model**: descrive la quantita' di spazio 2D occupata da un elemento e quanto spazio c'e' tra gli elementi
 
 ## Display
 
@@ -14,10 +14,10 @@ The previous chapters have discussed how to use CSS to specify the appearance of
 ## Position
 
 
-## Resources {-}
+## Risorse {-}
 <div class="list-condensed">
-- [The Box Model (MDN)](https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Box_model)
-- [The CSS Box Model (CSS-Tricks)](https://css-tricks.com/the-css-box-model/)
-- [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) The best explanation of Flexbox properties you'll find.
-- [A Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid/) A similar explanation, but for the Grid framework (not discussed here).
+- [Il Box Model (MDN)](https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Box_model)
+- [Il CSS Box Model (CSS-Tricks)](https://css-tricks.com/the-css-box-model/)
+- [Guida completa a Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) La migliore spiegazione delle properties Flexbox che troverai.
+- [Guida completa a Grid](https://css-tricks.com/snippets/css/complete-guide-grid/) Una spiegazione simile, ma per il framework Grid (non discusso qui).
 </div>

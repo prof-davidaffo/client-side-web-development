@@ -4,23 +4,23 @@ Oggi la [maggior parte delle persone](http://gs.statcounter.com/platform-market-
 
 La soluzione moderna e' il [**Responsive Web Design**](https://en.wikipedia.org/wiki/Responsive_web_design), che usa CSS per specificare layout _flessibili_ che si adattano alle dimensioni dello schermo: contenuto in una colonna su mobile, ma tre colonne su desktop.
 
-![Example of a responsive web site on multiple devices, with content and layout changing at each size. From [responsivedesign.is](https://responsivedesign.is/examples/outdated-browsers/).](img/responsive/Outdated-Browsers_gdwxre.jpg)
+![Esempio di sito web responsive su dispositivi diversi, con contenuto e layout che cambiano a ogni dimensione. Da [responsivedesign.is](https://responsivedesign.is/examples/outdated-browsers/).](img/responsive/Outdated-Browsers_gdwxre.jpg)
 
 Questo capitolo discute tecniche CSS per creare siti **responsive**. Queste tecniche sono alla base dei CSS framework piu' popolari, quindi e' importante capirle anche se usi tali strumenti.
 
 
-## Mobile-first design
+## Design mobile-first
 Il design responsive viene spesso presentato come un modo per "farlo funzionare _anche_ su mobile". Questo approccio sembra facile perche' i siti vengono sviluppati e testati su desktop, e segue il principio software della [_graceful degradation_](https://en.wikipedia.org/wiki/Fault_tolerance) (i sistemi mantengono funzionalita' quando alcune parti si degradano, ad esempio la "capacita'" di avere piu' spazio a schermo).
 
 Ma poiche' i siti sono piu' spesso visitati da dispositivi mobile, un approccio migliore e' **mobile-first design**. L'idea e' che tu debba sviluppare un sito in modo che contenuto e scopo siano presentati efficacemente su mobile (il contesto piu' limitato per dimensione e capacita'). Solo dopo questa base, aggiungi funzionalita' per farlo apparire bene anche su dispositivi piu' grandi come desktop. Questo approccio e' noto anche come [_progressive enhancement_](https://en.wikipedia.org/wiki/Progressive_enhancement): fornisci la funzionalita' core, poi aggiungi "extra" quando le capacita' aumentano.
 
-<p class="alert alert-info">Invece di vedere i mobile come dispositivi che "perdono" feature, guarda i desktop come dispositivi che "guadagnano" feature. Questo aiuta a concentrarsi sul supporto ai dispositivi mobile piu' comuni.</p>
+<p class="alert alert-info">Invece di vedere i mobile come dispositivi che "perdono" funzionalita', guarda i desktop come dispositivi che "guadagnano" funzionalita'. Questo aiuta a concentrarsi sul supporto ai dispositivi mobile piu' comuni.</p>
 
 <p class="alert alert-warning">Ricorda: lavorare sulla tua macchina non garantisce che funzioni su quella degli altri!</p>
 
 Un ottimo modo per testare la responsivita' e' usare l'icona **Toggle Device Toolbar** nel tuo inspector:
 
-![toggle device toolbar](img/responsive/toggle-device.png)
+![Toggle Device Toolbar](img/responsive/toggle-device.png)
 
 Questo ti permette di scegliere diverse dimensioni di schermo per dispositivi specifici (ad es. iPhone 5s, ecc.).
 
@@ -31,17 +31,17 @@ Non esiste una formula magica, ma ci sono alcuni principi generali:
 
     Con piu' spazio su desktop, vorrai spezzare il contenuto in colonne o [limitare la larghezza](https://developer.mozilla.org/en-US/docs/Web/CSS/max-width) per non avere righe troppo lunghe; questo aiuta la leggibilita'.
 
-- **Media**: Schermi piccoli non richiedono immagini o video enormi ad alta risoluzione. Inoltre, immagini grandi hanno file pesanti, quindi scaricano lentamente su connessioni mobili lente (e consumano dati). Usa immagini [compresse](https://tinypng.com/) o a risoluzione piu' bassa su mobile, e considera background color o [linear gradient](https://developer.mozilla.org/en-US/docs/Web/CSS/linear-gradient) invece di background image. Su desktop puoi usare media ad alta risoluzione (e di piu'), dato che la bandwidth e' maggiore.
+- **Media**: Schermi piccoli non richiedono immagini o video enormi ad alta risoluzione. Inoltre, immagini grandi hanno file pesanti, quindi scaricano lentamente su connessioni mobili lente (e consumano dati). Usa immagini [compresse](https://tinypng.com/) o a risoluzione piu' bassa su mobile, e considera un colore di sfondo o un [linear gradient](https://developer.mozilla.org/en-US/docs/Web/CSS/linear-gradient) invece di un'immagine di sfondo. Su desktop puoi usare media ad alta risoluzione (e di piu'), dato che la larghezza di banda e' maggiore.
 
     <div class="alert alert-info">Il [page bloat](http://idlewords.com/talks/website_obesity.htm) e' un problema reale. Non servono immagini enormi... o magari nessuna immagine.</div>
 
-- **Font**: Assicurati che il font sia abbastanza grande da essere leggibile su schermi piccoli... ma non renderlo _troppo_ grande per non perdere spazio utile! Su desktop puoi renderli piu' elaborati e prominenti. Usa [unita' relative](https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Values_and_units) per accomodare preferenze utente e variazioni di dimensione schermo. Ricorda anche che i web font scaricati consumano bandwidth.
+- **Font**: Assicurati che il font sia abbastanza grande da essere leggibile su schermi piccoli... ma non renderlo _troppo_ grande per non perdere spazio utile! Su desktop puoi renderli piu' elaborati e prominenti. Usa [unita' relative](https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Values_and_units) per accomodare preferenze utente e variazioni di dimensione schermo. Ricorda anche che i web font scaricati consumano larghezza di banda.
 
-- **Navigation**: I link di navigazione occupano molto spazio su schermi piccoli e possono andare a capo. Usa tab bar piccole o icone menu (es. la ["hamburger icon"](https://techcrunch.com/2014/05/24/before-the-hamburger-button-kills-you/)) per mostrare menu complessi su richiesta. La maggior parte dei CSS framework offre una navigazione collapsible per mobile.
+- **Navigazione**: I link di navigazione occupano molto spazio su schermi piccoli e possono andare a capo. Usa tab bar piccole o icone menu (es. la ["hamburger icon"](https://techcrunch.com/2014/05/24/before-the-hamburger-button-kills-you/)) per mostrare menu complessi su richiesta. La maggior parte dei CSS framework offre una navigazione collassabile per mobile.
 
-- **Input and Interaction**: I target tap/click devono essere abbastanza grandi per un dito, soprattutto per persone con problemi di vista o dita grandi. Icone minuscole vicine o hyperlink di una parola sono difficili da toccare. Specificare il data type nei campi form (email, phone, date, integer) genera tastiere on-screen ottimizzate e rende l'inserimento piu' semplice.
+- **Input e interazione**: I target tap/click devono essere abbastanza grandi per un dito, soprattutto per persone con problemi di vista o dita grandi. Icone minuscole vicine o link di una parola sono difficili da toccare. Specificare il tipo di dato nei campi form (email, telefono, data, intero) genera tastiere su schermo ottimizzate e rende l'inserimento piu' semplice.
 
-- **Content**: Per alcuni siti, potresti voler adattare il contenuto mostrato su mobile rispetto al desktop. Per esempio, un numero di telefono potrebbe diventare un'icona grande con hyperlink `tel:` su mobile, ma restare testo normale su desktop.
+- **Contenuto**: Per alcuni siti, potresti voler adattare il contenuto mostrato su mobile rispetto al desktop. Per esempio, un numero di telefono potrebbe diventare un'icona grande con hyperlink `tel:` su mobile, ma restare testo normale su desktop.
 
 
 ### Specificare il viewport {-}
@@ -51,16 +51,16 @@ Per risolvere, devi specificare [viewport size e scale](https://developer.mozill
 
 ```html
 <head>
-  <meta charset="utf-8"> <!-- always need this -->
+  <meta charset="utf-8"> <!-- necessario sempre -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- more head elements, including <link> ... -->
+  <!-- altri elementi head, incluso <link> ... -->
 </head>
 ```
 
 Questo evita che il testo si adatti automaticamente alla larghezza del browser (anche se browser _molto_ stretti possono comunque ridurre il testo).
 
-Anche se non fa parte di uno standard ufficiale, il meta `viewport` e' stato introdotto da Safari ed e' supportato dalla [maggior parte dei browser mobile](https://www.quirksmode.org/mobile/metaviewport/). L'attribute `content` imposta 3 [proprieta'](https://css-tricks.com/snippets/html/responsive-meta-tag/) per i browser mobile: `width` (quanto grande deve essere il viewport, impostato alla dimensione dello schermo), `initial-scale` (quanto zoom iniziale, qui 1x), e `shrink-to-fit` (dice a Safari 9.0+ [di non ridurre il contenuto](https://bitsofco.de/ios-safari-and-shrink-to-fit/)).
+Anche se non fa parte di uno standard ufficiale, il meta `viewport` e' stato introdotto da Safari ed e' supportato dalla [maggior parte dei browser mobile](https://www.quirksmode.org/mobile/metaviewport/). L'attributo `content` imposta 3 [proprieta'](https://css-tricks.com/snippets/html/responsive-meta-tag/) per i browser mobile: `width` (quanto grande deve essere il viewport, impostato alla dimensione dello schermo), `initial-scale` (quanto zoom iniziale, qui 1x), e `shrink-to-fit` (dice a Safari 9.0+ [di non ridurre il contenuto](https://bitsofco.de/ios-safari-and-shrink-to-fit/)).
 
 <p class="alert alert-success">Includi il meta `viewport` in tutte le pagine responsive. Fallo parte del tuo template HTML di default.</p>
 
@@ -71,24 +71,24 @@ Per definire un layout responsive, devi poter cambiare _condizionalmente_ le reg
 La sintassi e' simile a questa:
 
 ```css
-/* A normal CSS rule, will apply to all screen sizes */
+/* Una regola CSS normale, si applica a tutte le dimensioni schermo */
 body {
     font-size: 14px;
 }
 
-/* A Media Query */
+/* Una Media Query */
 @media (min-width: 768px)
 {
-    /* these rules apply ONLY on screens 768px and wider */
+    /* queste regole si applicano SOLO su schermi 768px e piu' larghi */
 
-    /* a normal CSS rule */
+    /* una regola CSS normale */
     body {
         font-size: 18px;
         background-color: beige;
     }
-    /* another CSS rule */
+    /* un'altra regola CSS */
     .mobile-call-icon {
-        display: none; /* don't show on large displays */
+        display: none; /* non mostrare su schermi grandi */
     }
 }
 ```
@@ -100,10 +100,10 @@ Una media query e' simile a una regola CSS normale. Il "selector" e' **`@media`*
 - Si possono usare gli operatori logici `and` e `not`. Per un "or" si usa una lista separata da virgole.
 
     ```css
-    /* style rules for screens between 768px and 992px */
+    /* regole di stile per schermi tra 768px e 992px */
     @media (min-width: 768px) and (max-width: 992px) { }
 
-    /* style rules for screens larger than 700px OR in landscape orientation */
+    /* regole di stile per schermi piu' larghi di 700px OPPURE in orientamento landscape */
     @media (min-width: 700px), (orientation: landscape) { }
     ```
 
@@ -116,30 +116,30 @@ Le media query seguono lo stesso comportamento di ordinamento delle altre regole
 Seguendo l'approccio **mobile-first**, il tuo CSS "normale" definisce lo stile per mobile. Le media query aggiungono poi set di regole che sostituiscono lo stile mobile con uno specifico per schermi piu' grandi.
 
 ```css
-/* on small mobile devices, the header has a purple background */
+/* su piccoli dispositivi mobile, l'header ha uno sfondo viola */
 header {
     font-size: 1.2rem;
     background-color: mediumpurple;
 }
 
-/* on 768px OR LARGER displays */
+/* su schermi 768px O PIU' GRANDI */
 @media (min-width: 768px) {
     header {
-        font-size: 1.5rem; /* make the header larger font on larger displays */
+        font-size: 1.5rem; /* rende il font dell'header piu' grande su schermi larghi */
     }
 }
 
-/* on 992px OR LARGER displays */
+/* su schermi 992px O PIU' GRANDI */
 @media (min-width: 992px) {
     header {
-        background-image: url('../img/banner.png') /* use background image */
+        background-image: url('../img/banner.png') /* usa un'immagine di sfondo */
     }
 }
 ```
 
-- In questo esempio, `<header>` ha un background purple e un font-size di default. Su mobile, questa e' l'unica regola che si applica (le media query non si attivano), quindi lo stile e' quello.
-- Ma su dispositivi `768px` _o piu' larghi_ (tablet), la prima media query si attiva. Applica una seconda regola su `<header>`, che sovrascrive il font a `1.5rem`. La prima regola continua a valere, mantenendo il background purple.
-- Infine, su dispositivi `992px` _o piu' larghi_ (desktop), si attivano _entrambe_ le media query. Quindi `<header>` ha background purple e font-size default, poi il font viene ingrandito dalla prima media query, e la seconda aggiunge l'immagine di background. Su grandi schermi, quindi, c'e' un banner image sopra il purple, con testo piu' grande.
+- In questo esempio, `<header>` ha uno sfondo viola e un font-size di default. Su mobile, questa e' l'unica regola che si applica (le media query non si attivano), quindi lo stile e' quello.
+- Ma su dispositivi `768px` _o piu' larghi_ (tablet), la prima media query si attiva. Applica una seconda regola su `<header>`, che sovrascrive il font a `1.5rem`. La prima regola continua a valere, mantenendo lo sfondo viola.
+- Infine, su dispositivi `992px` _o piu' larghi_ (desktop), si attivano _entrambe_ le media query. Quindi `<header>` ha sfondo viola e font-size di default, poi il font viene ingrandito dalla prima media query, e la seconda aggiunge l'immagine di sfondo. Su grandi schermi, quindi, c'e' un'immagine banner sopra il viola, con testo piu' grande.
 
 Questa struttura (regole mobile di default e media query con `min-width` crescenti) produce un efficace approccio mobile-first e un modo pulito per organizzare i cambi di aspetto al crescere dello schermo. Puoi definire quante media query vuoi, ma in genere se ne usano poche in corrispondenza dei breakpoint comuni tra phone, tablet e desktop. Poiche' le media query devono venire **dopo** le regole mobile, spesso si mettono alla fine dello stylesheet -- prima tutte le regole mobile, poi tutte le media query. (Puoi e dovresti mettere piu' regole dentro ogni media query).
 
@@ -152,27 +152,27 @@ Considera un HTML semplice:
 
 ```html
 <div class="row">
-  <div class="column">column ONE content</div>
-  <div class="column">column TWO content</div>
-  <div class="column">column THREE content</div>
-  <div class="column">column FOUR content</div>
+  <div class="column">contenuto colonna UNO</div>
+  <div class="column">contenuto colonna DUE</div>
+  <div class="column">contenuto colonna TRE</div>
+  <div class="column">contenuto colonna QUATTRO</div>
 </div>
 ```
 
-Di default (senza regole su `.row` o `.column`), i quattro `<div>` interni (block) si impilano verticalmente. Questo e' il comportamento desiderato su mobile; quindi non servono altri stili per quello.
+Di default (senza regole su `.row` o `.column`), i quattro `<div>` interni (blocchi) si impilano verticalmente. Questo e' il comportamento desiderato su mobile; quindi non servono altri stili per quello.
 
 Per trasformare questi div in colonne su schermi grandi, aggiungi una media query che applica `flex` a `.row` (il _container_), allineando le `.column` (gli _item_).
 
 ```css
-/* on devices 768px OR WIDER */
+/* su dispositivi 768px O PIU' LARGHI */
 @media (min-width: 768px)
 {
-    .row { /* row becomes a flexbox container */
+    .row { /* la row diventa un container flexbox */
         display: flex;
     }
 
-    .column  { /* column becomes a flexbox item */
-        flex-grow: 1; /* make the columns grow equally to fill the row */
+    .column  { /* la column diventa un item flexbox */
+        flex-grow: 1; /* fa crescere le colonne in modo uguale per riempire la row */
     }
 }
 ```
@@ -180,23 +180,23 @@ Per trasformare questi div in colonne su schermi grandi, aggiungi una media quer
 Puoi anche aggiungere un'altra media query per ottenere un layout a due colonne su schermi medi (griglia 2x2), e poi quattro colonne su schermi grandi:
 
 ```css
-/* on devices 768px OR WIDER */
+/* su dispositivi 768px O PIU' LARGHI */
 @media (min-width: 768px)
 {
-    .row { /* row is a flexbox container */
+    .row { /* la row e' un container flexbox */
         display: flex;
-        flex-wrap: wrap; /* wrap extra items to the next "line" */
+        flex-wrap: wrap; /* manda gli item extra alla riga successiva */
     }
 
-    .column  { /* column is a flexbox item */
-        flex-basis: 50%; /* columns take up 50% of parent by default */
+    .column  { /* la column e' un item flexbox */
+        flex-basis: 50%; /* le colonne occupano il 50% del parent di default */
         flex-grow: 1;
     }
 }
 
 @media (min-width: 1200px) {
     .column {
-        flex-basis: auto; /* columns are automatically sized based on content */
+        flex-basis: auto; /* le colonne sono dimensionate automaticamente in base al contenuto */
     }
 }
 ```
@@ -211,6 +211,6 @@ Le media query sono un modo potente e dichiarativo per creare una singola pagina
 
 ## Risorse {-}
 <div class="list-condensed">
-- [Responsive Web Design Basics (Google)](https://developers.google.com/web/fundamentals/design-and-ui/responsive/)
-- [Using media queries (MDN)](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
+- [Fondamenti di Responsive Web Design (Google)](https://developers.google.com/web/fundamentals/design-and-ui/responsive/)
+- [Uso delle media query (MDN)](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
 </div>

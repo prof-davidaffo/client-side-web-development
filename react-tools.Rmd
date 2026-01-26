@@ -1,144 +1,144 @@
-# React Tools
+# Strumenti React
 
-React and other modern JavaScript development approaches require leveraging a variety of external libraries, and often require other compilation steps such as **transpiling** to ES6, or **bundling** your JavaScript into a single file. There are a variety of tools available to make these steps easier, some of which we'll introduce here.
+React e altri approcci moderni di sviluppo JavaScript richiedono di sfruttare una varieta' di libraries esterne, e spesso richiedono altri passi di compilazione come il **transpiling** a ES6, o il **bundling** del tuo JavaScript in un singolo file. Esistono diversi tools disponibili per rendere questi passi piu' facili, alcuni dei quali introdurremo qui.
 
 
-## Importing and Exporting in ES6
-One of the most powerful features of ES6 is the ability to import and export functions from files. This allows you to create reusable blocks of code that are easily integrated to multiple projects. You no longer need to consider if a different JavaScript file has been loaded into the `index.html` file. Instead, we can import desired functions directly into our scripts. Moreover, it means that you don't need to include an entire library -- you can just import the functions you want, and leave out the rest. This will help prevent namespace collisions and limit the file-size of your project.
+## Importare ed Esportare in ES6
+Una delle feature piu' potenti di ES6 e' la possibilita' di importare ed esportare functions dai file. Questo ti permette di creare blocchi di codice riusabili che sono facilmente integrabili in piu' progetti. Non devi piu' considerare se un file JavaScript diverso e' stato caricato nel file `index.html`. Invece, possiamo importare le functions desiderate direttamente nei nostri script. Inoltre, significa che non devi includere un'intera library -- puoi importare solo le functions che vuoi, e lasciare fuori il resto. Questo aiuta a prevenire collisioni di namespace e a limitare la dimensione dei file del tuo progetto.
 
-This [article](http://wesbos.com/javascript-modules/) provides us with a working definition of _JavaScript Modules_:
+Questo [articolo](http://wesbos.com/javascript-modules/) fornisce una definizione operativa di _JavaScript Modules_:
 
->JavaScript modules allow us to chunk our code into separate files inside our project or to use open source modules that we can install via npm. Writing your code in modules helps with organization, maintenance, testing, and most importantly, dependency management.
+>I JavaScript modules ci permettono di spezzare il nostro codice in file separati dentro il nostro project o di usare moduli open source che possiamo installare tramite npm. Scrivere il tuo codice in moduli aiuta con l'organizzazione, la manutenzione, i test e, soprattutto, la gestione delle dependencies.
 
-We'll begin by writing a simple function that we can _export_ -- this will make the functions available to other scripts that _import_ them:
+Inizieremo scrivendo una function semplice che possiamo _exportare_ -- questo rendera' le functions disponibili ad altri script che le _importano_:
 
 ```javascript
-// In our utility.js file, write a function that converts feet to meters
+// Nel nostro file utility.js, scrivi una function che converte feet in meters
 function feetToMeters(feet) {
     return feet / 3.28084
 }
 
-// Write another function metersToFeet
+// Scrivi un'altra function metersToFeet
 function metersToFeet(meters) {
     return meters * 3.28084
 }
 
-// Export each named function
+// Esporta ogni function nominata
 export {feetToMeters, metersToFeet} // named exports
 
 ```
 
-If we then wish to use `feetToMeters` in another function, we can simply import it:
+Se poi vogliamo usare `feetToMeters` in un'altra function, possiamo semplicemente importarla:
 
 ```javascript
-// In our main.js file, import the feetToMeters function
-import {feetToMeters} from './utility' // assuming we're in the same directory
+// Nel nostro file main.js, importa la function feetToMeters
+import {feetToMeters} from './utility' // assumendo che siamo nella stessa directory
 
 ```
 
-### Named v.s. default exports
-The above example demonstrates the use of _named_ exports, in which we explicitly name each object we wish to export, and then explicitly name it to import it.
+### Named vs. default exports
+L'esempio sopra dimostra l'uso di _named_ exports, in cui nominiamo esplicitamente ogni object che vogliamo esportare, e poi lo nominiamo esplicitamente per importarlo.
 
 
 ```javascript
 // Utility.js ----------
-// Write a function that converts feet to meters
-// In our utility.js file, write a function that converts feet to meters
+// Scrivi una function che converte feet in meters
+// Nel nostro file utility.js, scrivi una function che converte feet in meters
 function feetToMeters(feet) {
     return feet / 3.28084
 }
 
-// Export each named function
+// Esporta ogni function nominata
 export {feetToMeters} // named exports
 
 ```
 
-There are then three syntax options for _importing_ **named exports**:
+Ci sono poi tre opzioni di sintassi per _importare_ i **named exports**:
 
 ```javascript
-// Importing options for a named export (see above)
+// Opzioni di importazione per un named export (vedi sopra)
 
-// Option 1 -------- import named exports by name
+// Opzione 1 -------- importa named exports per nome
 import {feetToMeters, metersToFeet} from './Utility';
-let meters = feetToMeters(30); // use function
+let meters = feetToMeters(30); // usa la function
 
 
-// Option 2 -------- import named exports by name AS a shorter name
+// Opzione 2 -------- importa named exports per nome CON un nome piu' corto
 import feetToMeters as f2m from './Utility'
-let meters = f2m(30); // use function
+let meters = f2m(30); // usa la function
 
 
-// Option 3 -------- import all named exports with a prefix
-// Import our own components
+// Opzione 3 -------- importa tutti i named exports con un prefisso
+// Importa i nostri components
 import * as Utilities from './Utility';
-let meters = Utilities.feetToMeters(30); // use function
+let meters = Utilities.feetToMeters(30); // usa la function
 ```
 
-Alternatively, you can export a **single default object** from a module:
+In alternativa, puoi esportare un **single default object** da un modulo:
 
 
 ```javascript
 // Utility.js ----------
-// In our utility.js file, write a function that converts feet to meters
+// Nel nostro file utility.js, scrivi una function che converte feet in meters
 function feetToMeters(feet) {
     return feet / 3.28084
 }
 
-// Export a default module
+// Esporta un modulo di default
 export default feetToMeters; // single default export
 
 ```
 
-Then, to import the **default export**, you can use the following syntax:
+Poi, per importare la **default export**, puoi usare la seguente sintassi:
 
 ```javascript
 import feetToMeters from './Utility.js'
 ```
 
-You'll use this syntax to import // export your own functions, and you'll also use them to import functions from **external libraries**.
+Userai questa sintassi per importare // esportare le tue functions, e la userai anche per importare functions da **libraries esterne**.
 
-## Installing with NPM
+## Installare con NPM
 
-We introduced the use of NPM in an [earlier chapter](machine-setup.html#node-and-npm), largely to install packages that were described in the `package.json` file. As we move forward, we'll use NPM to **install additional packages** and **deploy our code**.
+Abbiamo introdotto l'uso di NPM in un [capitolo precedente](machine-setup.html#node-and-npm), principalmente per installare packages che erano descritti nel file `package.json`. Man mano che procediamo, useremo NPM per **installare packages aggiuntivi** e **deployare il nostro codice**.
 
-It's a common occurrence that, part way through a project, you identify **additional libraries** that you would like to use in your project. You can use NPM to install a package and **add it to your list of packages** if you use the `--save` option:
+E' comune che, a meta' di un progetto, tu identifichi **libraries aggiuntive** che vuoi usare nel tuo progetto. Puoi usare NPM per installare un package e **aggiungerlo alla tua lista di packages** se usi l'opzione `--save`:
 
 ```bash
-# Download the lodash library, and add it to your list of packages
+# Scarica la library lodash e aggiungila alla tua lista di packages
 npm install lodash --save  # make sure to run this in your project folder
 ```
 
-Adding it to your list of packages enables others to install the necessary files to use your program. When you start using a compiling program (like the functionality built into `create-react-app`) you'll be able to import functionality from your `node_modules` folder as you would other functions (i.e., `import `):
+Aggiungerlo alla tua lista di packages permette ad altri di installare i file necessari per usare il tuo programma. Quando inizi a usare un programma di compilazione (come la funzionalita' integrata in `create-react-app`) potrai importare funzionalita' dalla tua cartella `node_modules` come faresti con altre functions (cioe', `import `):
 
 ```javascript
-// In a JS file in a project that gets compiled (using create-react-app)
+// In un file JS in un progetto che viene compilato (usando create-react-app)
 import {uniq} from 'lodash';   // import a named export
-let vals = uniq([1, 2, 3, 1]); // returns [1, 2, 3]
+let vals = uniq([1, 2, 3, 1]); // restituisce [1, 2, 3]
 ```
 
 
 ## Create-React-App
-In order to leverage a more complex structure for our code (such as importing and exporting functions), we need to **compile our JavaScript** before loading it into the browser. There are a variety of tools that people use to do this such as [Gulp](http://gulpjs.com/), [Browserify](http://browserify.org/), and [Webpack](https://webpack.github.io/). These tools are great for configuring a build system for your project, but they can be time-consuming to configure (especially if you don't have any custom specifications that you're trying to make).
+Per sfruttare una struttura piu' complessa per il nostro codice (come importare ed esportare functions), dobbiamo **compilare il nostro JavaScript** prima di caricarlo nel browser. Ci sono vari tools che le persone usano per farlo, come [Gulp](http://gulpjs.com/), [Browserify](http://browserify.org/) e [Webpack](https://webpack.github.io/). Questi tools sono ottimi per configurare un build system per il tuo progetto, ma possono richiedere tempo per essere configurati (soprattutto se non hai specifiche custom che stai cercando di ottenere).
 
-So, the folks over at React built an amazing tool called [create-react-app](https://github.com/facebookincubator/create-react-app), which combines multiple tools (including Webpack) to compile your code for you. It's super easy to get started:
+Quindi, le persone di React hanno costruito un tool fantastico chiamato [create-react-app](https://github.com/facebookincubator/create-react-app), che combina piu' tools (incluso Webpack) per compilare il tuo codice per te. E' super facile iniziare:
 
 
 ```bash
-# Globally install the create-react-app command line utility: only do this once!
-# Depending on your permissions on your machine, you might need to `sudo npm install....`
+# Installa globalmente l'utility da command line create-react-app: fallo solo una volta!
+# A seconda dei permessi sulla tua macchina, potresti dover usare `sudo npm install....`
 npm install -g create-react-app
 
-# Create a project called my-app (a child of your current directory)
+# Crea un project chiamato my-app (un child della tua directory corrente)
 create-react-app my-app
 
-# Change your directory to my-app
+# Cambia la tua directory in my-app
 cd my-app/
 
-# Start running a local server with your project: visible at localhost:3000
+# Avvia un server locale con il tuo project: visibile su localhost:3000
 npm start  # this functionality is defined in the package.json file that was created
 ```
 
-Create React App is somewhat opinionated about the structure of your code, but comes with a number of advantages. For example, it will display **errors and warnings in your browser** window, will **automatically reload** when your JavaScript changes, and will **inject CSS changes** without reloading your page. When you create a new project, the following files will be created:
+Create React App e' un po' opinionated sulla struttura del tuo codice, ma offre diversi vantaggi. Per esempio, mostrera' **errors e warnings nella finestra del tuo browser**, **ricarichera' automaticamente** quando il tuo JavaScript cambia, e **iniettera' cambiamenti CSS** senza ricaricare la tua pagina. Quando crei un nuovo project, verranno creati i seguenti file:
 
 
 ```bash
@@ -159,26 +159,26 @@ my-app/
     logo.svg
 ```
 
-From there, you can begin editing your `App.js` file. Your `<App/>` component is rendered on the page, so you should augment it as you see fit. You can now import functions directly into a JavaScript file from libraries **or** your own modules:
+Da li', puoi iniziare a modificare il tuo file `App.js`. Il tuo component `<App/>` viene renderizzato nella pagina, quindi dovresti estenderlo come preferisci. Ora puoi importare functions direttamente in un file JavaScript da libraries **o** dai tuoi moduli:
 
 ```javascript
-// Import desired files
+// Importa i file desiderati
 import {Component} from 'react' // import the Component class from the react library
 import {uniq} from 'lodash';    // import a named export from the lodash library
 
-// Create a class App by extending Component
+// Crea una class App estendendo Component
 class App extends Component {
   render() {
     return <div>My App</div>
   }
 }
 
-// Export the App component to be imported in other files
+// Esporta il component App per importarlo in altri file
 export default App;
 ```
 
 ### Building
-In order to build your app for deployment, you will use the `npm run build` command (you can see what function this does by looking at the `package.json` file). This will appropriately compile your files (including JavaScript, CSS, images, etc.) into an optimized format. The only tricky thing is if you're trying to host your build at a particular location, you'll need to **specify that location** in your `package.json` file. For example, imagine you're going to host your site at `http://students.washington.edu/YOUR-NAME/info-340/project-name`. Create React App assumes that you'll be hosting your project in the **root of your server**. In other words, when it builds, it will construct relative paths that assume resources are at the root. To adjust this, you'll need to edit your `package.json` file:
+Per fare il build della tua app per il deployment, userai il comando `npm run build` (puoi vedere che function esegue guardando il file `package.json`). Questo compilera' correttamente i tuoi file (inclusi JavaScript, CSS, immagini, ecc.) in un formato ottimizzato. L'unica cosa complicata e' che se stai cercando di ospitare il tuo build in una location specifica, dovrai **specificare quella location** nel tuo file `package.json`. Per esempio, immagina che tu stia ospitando il tuo sito su `http://students.washington.edu/YOUR-NAME/info-340/project-name`. Create React App assume che ospiterai il tuo progetto nella **root del tuo server**. In altre parole, quando fa il build, costruira' path relativi che assumono che le risorse siano nella root. Per adattare questo, dovrai modificare il tuo file `package.json`:
 
 ```javascript
 {
@@ -191,16 +191,16 @@ In order to build your app for deployment, you will use the `npm run build` comm
 
 ```
 
-By setting the `homepage`, the relative paths will be properly constructed. This will create for you a folder called `build/`, in which you'll have the necessary files. You can then **move these up a directory** (i.e., out of the `build/` folder) if you're going to use your GitHub repo for hosting (this is an unfortunate manual step). Then you should be ready to deploy!
+Impostando `homepage`, i path relativi verranno costruiti correttamente. Questo creera' per te una cartella chiamata `build/`, in cui avrai i file necessari. Puoi poi **spostare questi file su di una directory** (cioe', fuori dalla cartella `build/`) se stai usando il tuo repo GitHub per l'hosting (questo e' un passaggio manuale sfortunato). Poi dovresti essere pronto per deployare!
 
-Another option is to use the `gh-pages` library. This will provide you with a command line tool to create a `gh-pages` branch, and move the files in your `build/` folder up a directory (meaning that you don't need to go to the URL `project-nanme/build/`). Here are the steps for using the `gh-pages` package:
+Un'altra opzione e' usare la library `gh-pages`. Questo ti fornira' un tool da command line per creare un branch `gh-pages`, e spostare i file nella tua cartella `build/` su di una directory (il che significa che non devi andare all'URL `project-nanme/build/`). Ecco i passi per usare il package `gh-pages`:
 
 ```bash
-# Install the gh-pages package in your project
+# Installa il package gh-pages nel tuo progetto
 npm install gh-pages --save
 ```
 
-Then, edit your `package.json` file to **add a new command** in the `scripts` section. You'll add the `"deploy"` line of code.
+Poi, modifica il tuo file `package.json` per **aggiungere un nuovo comando** nella sezione `scripts`. Aggiungerai la linea di codice `"deploy"`.
 
 ```json
 "scripts": {
@@ -212,30 +212,30 @@ Then, edit your `package.json` file to **add a new command** in the `scripts` se
  }
 ```
 
-Then, to deploy a project to the `gh-pages`_branch_ on GitHub, you can simply run this line of code (this will `build` your project, and `commit` and `push` the built project to your branch):
+Poi, per deployare un progetto nel _branch_ `gh-pages` su GitHub, puoi semplicemente eseguire questa riga di codice (questa fara' il `build` del tuo progetto e fara' `commit` e `push` del progetto buildato nel tuo branch):
 
 ```bash
 npm run deploy
 ```
 
-Then, on your server, you should pull down the code and checkout your `gh-pages` branch:
+Poi, sul tuo server, dovresti scaricare il codice e fare checkout del tuo branch `gh-pages`:
 
 ```bash
-# On your server, such as a UW student server
+# Sul tuo server, come un server studenti UW
 git clone PROJECT-URL
 git checkout gh-pages
 
-# To update:
+# Per aggiornare:
 git pull origin gh-pages
 ```
 
-## Resources
+## Risorse
 
 - [React Create App](https://github.com/facebookincubator/create-react-app)
-- [Export Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)
-- [Import Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
-- [Getting Started with WebPack](https://webpack.github.io/docs/tutorials/getting-started/)
-- [Node Package Manage (NPM) Documentation](https://docs.npmjs.com/)
-- [Node Download Page](https://nodejs.org/en/download/)
-- [Using a Package.json File](https://docs.npmjs.com/getting-started/using-a-package.json)
-- [An Intro to ES6 and NPM](http://wesbos.com/javascript-modules/)
+- [Documentazione Export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)
+- [Documentazione Import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
+- [Getting Started con WebPack](https://webpack.github.io/docs/tutorials/getting-started/)
+- [Documentazione Node Package Manager (NPM)](https://docs.npmjs.com/)
+- [Pagina di download Node](https://nodejs.org/en/download/)
+- [Usare un file Package.json](https://docs.npmjs.com/getting-started/using-a-package.json)
+- [Un'introduzione a ES6 e NPM](http://wesbos.com/javascript-modules/)

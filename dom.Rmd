@@ -1,36 +1,36 @@
 # Document Object Model (DOM) {#dom}
 
-The primary purpose of using JavaScript in a web page is to make that page **interactive**: the JavaScript language is used to program logical decisions that will effect what is shown on the page. It does this primarily by _changing the HTML rendered by the browser_. For example, JavaScript can be used to change the text inside a `<p>`, add addition `<li>` elements to a list, or to give a `<div>` a new CSS `class` attribute. The programmatic representation of the HTML elements currently being shown by the browser is known as the **Document Object Model (DOM)**. In web programming JavaScript code is used to modify the DOM (HTML elements currently being shown by the browser) in response to user input, thereby making the page interactive. This chapter introduces the Document Object Model and how to use JavaScript to manipulate it through user-driven interaction.
+Lo scopo principale di usare JavaScript in una web page e' rendere quella pagina **interattiva**: il linguaggio JavaScript e' usato per programmare decisioni logiche che influenzeranno cio' che viene mostrato nella pagina. Lo fa principalmente _cambiando l'HTML renderizzato dal browser_. Per esempio, JavaScript puo' essere usato per cambiare il testo dentro un `<p>`, aggiungere altri elementi `<li>` a una lista, o dare a un `<div>` un nuovo attribute CSS `class`. La rappresentazione programmatica degli elementi HTML attualmente mostrati dal browser e' conosciuta come **Document Object Model (DOM)**. Nel web programming, il codice JavaScript e' usato per modificare il DOM (gli elementi HTML attualmente mostrati dal browser) in risposta all'input dell'utente, rendendo cosi' la pagina interattiva. Questo capitolo introduce il Document Object Model e come usare JavaScript per manipolarlo tramite interazioni guidate dall'utente.
 
 
-## The DOM API
-As you should recall from [Chapter 3](#html), HTML elements can be nested, allowing us to consider a webpage as a <a href="https://en.wikipedia.org/wiki/Tree_(data_structure)">**"tree"**</a> of elements:
+## La DOM API
+Come dovresti ricordare dal [Capitolo 3](#html), gli elementi HTML possono essere annidati, permettendoci di considerare una web page come un <a href="https://en.wikipedia.org/wiki/Tree_(data_structure)">**"tree"**</a> di elementi:
 
-![An example DOM tree (a tree of HTML elements).](img/html/dom-tree.jpg)
+![Un esempio di DOM tree (un tree di elementi HTML).](img/html/dom-tree.jpg)
 
-- A **tree** is a hierarchical data structure, where each element (called a _node_) contains references to _child_ elements. Following the arboreal metaphor, the "start" of the tree is called the _root note_, hierarchical sequences of nodes are called _branches_, and a _node_ that does not have any children is called a _leaf_.
+- Un **tree** e' una data structure gerarchica, in cui ogni elemento (chiamato _node_) contiene riferimenti a elementi _child_. Seguendo la metafora arborea, l'"inizio" del tree si chiama _root node_, le sequenze gerarchiche di nodi si chiamano _branches_, e un _node_ che non ha children si chiama _leaf_.
 
-Considering a web page's content to be a tree of HTML elements is one way to _model_ (represent) the structure of that information. This particular model of a web _document_ (as a tree of _object_ nodes) is called the **Document Object Model**, or **DOM** for short. In many ways the DOM _is_ the HTML (though the HTML rendered in the browser, not the `.html` source code you've written)! Thus we can refer to the web page's content as "the DOM", and an HTML element as a "DOM element".
+Considerare il contenuto di una web page come un tree di elementi HTML e' un modo per _model_ (rappresentare) la struttura di quelle informazioni. Questo particolare modello di un web _document_ (come tree di _object_ nodes) si chiama **Document Object Model**, o **DOM** in breve. Per molti aspetti il DOM _e'_ l'HTML (anche se l'HTML renderizzato nel browser, non il source code `.html` che hai scritto)! Quindi possiamo riferirci al contenuto della web page come "il DOM", e a un elemento HTML come a un "DOM element".
 
-- Note that even "plain text" content (e.g., what is inside a `<p>` tag) are considered nodes in the DOM tree&mdash;they are "text content" nodes (instead of "element nodes").
+- Nota che anche il contenuto "plain text" (ad es. quello dentro un tag `<p>`) e' considerato un node nel DOM tree&mdash;sono "text content" nodes (invece di "element nodes").
 
-Moreover, the DOM also provides an **Application Programming Interface (API)** which allows computer _applications_ to _programmatically_ (e.g., through JavaScript code) _interact_ with it: accessing and manipulating the tree of elements. As you may recall from [previous courses](https://info201.github.io/apis.html), an API is often a set of _functions_ and _variables_ that can be used give instructions to a program. The DOM API is no different: it is a group of functions you can call and variables (usually Object properties) you can adjust to change the rendered web content. You write code to call these functions in order to make a page interactive.
+Inoltre, il DOM fornisce anche una **Application Programming Interface (API)** che permette alle _applications_ di _interagire programmaticamente_ (ad es. tramite codice JavaScript) con esso: accedendo e manipolando il tree di elementi. Come potresti ricordare da [corsi precedenti](https://info201.github.io/apis.html), un'API e' spesso un insieme di _functions_ e _variables_ che possono essere usate per dare istruzioni a un programma. La DOM API non fa eccezione: e' un gruppo di functions che puoi chiamare e di variables (di solito properties di un Object) che puoi modificare per cambiare il contenuto web renderizzato. Scrivi codice per chiamare queste functions allo scopo di rendere una pagina interattiva.
 
 ### Global Variables {-}
-You can programmatically access the API in JavaScript by utilizing a set of global variables. **Global variables** are variables that are "globally" scoped: they are available anywhere in the program (not just within a particular function).
+Puoi accedere programmaticamente all'API in JavaScript usando un set di global variables. Le **global variables** sono variables con scope "globale": sono disponibili ovunque nel programma (non solo dentro una function particolare).
 
-<p class="alert alert-warning">An important programming style rule is to **minimize** the use of global variables. Try to avoid creating too many new globals yourself!</p>
+<p class="alert alert-warning">Una regola importante di programming style e' **minimizzare** l'uso delle global variables. Cerca di evitare di creare troppi nuovi globals!</p>
 
-Global variables in JavaScript are almost always _Objects_ that have methods as their values. For example, the JavaScript language itself provides a global [**`Math`**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math) object that has includes a number of function properties (e.g., `sqrt()`, `floor()`, etc.).
+Le global variables in JavaScript sono quasi sempre _Objects_ che hanno methods come values. Per esempio, il linguaggio JavaScript stesso fornisce un object globale [**`Math`**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math) che include diverse function properties (ad es. `sqrt()`, `floor()`, ecc.).
 
 ```js
 console.log( typeof Math );  //=> 'object'
 console.log( typeof Math.sqrt );  //=> 'function'
 console.log( Math.sqrt(25) ); //=> 5
 ```
-- In fact, the `console` object is _another_ global variable provided by the JavaScript runtime (whether inside the browser or inside Node.js)!
+- Infatti, l'oggetto `console` e' _un'altra_ global variable fornita dal JavaScript runtime (sia nel browser sia in Node.js)!
 
-The _web browser_ also provides a number of global variables that you can use. For example [**`window`**](https://developer.mozilla.org/en-US/docs/Web/API/Window) is a global object that represents the browser itself. You can use this object to get information about the browser:
+Il _web browser_ fornisce anche diverse global variables che puoi usare. Per esempio [**`window`**](https://developer.mozilla.org/en-US/docs/Web/API/Window) e' un object globale che rappresenta il browser stesso. Puoi usare questo object per ottenere informazioni sul browser:
 
 ```js
 /* example properties */
@@ -45,14 +45,14 @@ window.setTimeout(callback, 1000); //execute callback after an delay
 window.setInterval(callback, 1000); //execute callback repeatedly after interval
 ```
 
-<p class="alert alert-warning">While these examples are included for completeness, most `window` functions are rarely used and should be avoided. Popups with the `window.alert()` function are inelegant, interrupt the user's actions, and produce a bad user experience&mdash;you should instead use in-window alerting options instead (such as showing a `<p class="alert">`). Browser control functions such as `scrollTo()` are non-standard and can vary drastically across systems and platforms. Proceed with caution when using `window` functions!</p>
+<p class="alert alert-warning">Anche se questi esempi sono inclusi per completezza, la maggior parte delle functions di `window` sono usate raramente e andrebbero evitate. I popup con la function `window.alert()` sono ineleganti, interrompono le azioni dell'utente e producono una bad user experience&mdash;dovresti invece usare opzioni di alerting dentro la finestra (come mostrare un `<p class="alert">`). Le functions di controllo del browser come `scrollTo()` sono non standard e possono variare drasticamente tra sistemi e piattaforme. Usa cautela quando usi le functions di `window`!</p>
 
 
 ## DOM Manipulation
-While `window` represents the Browser, the **DOM** itself is represented by the [**`document`**](https://developer.mozilla.org/en-US/docs/Web/API/Document) global object&mdash;`document` _is_ the DOM (the _current_ HTML rendered in the browser). You access properties and call methods of this object in order to manipulate the content displayed in the browser!
+Mentre `window` rappresenta il Browser, il **DOM** stesso e' rappresentato dall'object globale [**`document`**](https://developer.mozilla.org/en-US/docs/Web/API/Document)&mdash;`document` _e'_ il DOM (l'HTML _corrente_ renderizzato nel browser). Accedi alle properties e chiami i methods di questo object per manipolare il contenuto mostrato nel browser!
 
-### Referencing HTML Elements {-}
-In order to manipulate the DOM elements in a page, you first need to get a _reference_ to the element you want to change&mdash;that is, you need a variable that refers to that element. You can get these variable references by using one of the `document` "selector" functions:
+### Referenziare elementi HTML {-}
+Per manipolare gli elementi DOM in una pagina, devi prima ottenere un _reference_ all'elemento che vuoi cambiare&mdash;cioe' ti serve una variable che si riferisca a quell'elemento. Puoi ottenere queste references usando una delle "selector" functions di `document`:
 
 ```js
 //element with id="foo"
@@ -74,17 +74,17 @@ let elem = document.querySelector(cssSelector);
 let elems = document.querySelectorAll(cssSelector);
 ```
 
-- The `document.querySelector()` is _by far_ the most flexible and easy to use of these methods: it can easily do the same as all the other methods (just put in an id, class, or element selector). **You should always use `querySelector()`**.
+- `document.querySelector()` e' _di gran lunga_ il metodo piu' flessibile e facile da usare: puo' fare tutto cio' che fanno gli altri metodi (basta passare un selector di id, class o element). **Dovresti usare sempre `querySelector()`**.
 
-- Note that the methods that return multiple nodes (e.g., `querySelectorAll`) return a [`NodeList`](https://developer.mozilla.org/en-US/docs/Web/API/NodeList) object. While this is like an array (you can access elements via index through bracket notation and it has a `.length` property), it is **not** an array: meaning it doesn't support methods like `forEach()` and `map()` across all browsers. If you need to iterate through a `NodeList`, you should use a regular `for` loop. But in practice, you're much more likely to only work with single elements at a time.
+- Nota che i metodi che restituiscono piu' nodes (ad es. `querySelectorAll`) restituiscono un object [`NodeList`](https://developer.mozilla.org/en-US/docs/Web/API/NodeList). Anche se e' simile a un array (puoi accedere agli elementi via index con bracket notation e ha una property `.length`), **non** e' un array: quindi non supporta methods come `forEach()` e `map()` su tutti i browser. Se devi iterare su una `NodeList`, usa un `for` loop normale. Ma in pratica, e' molto piu' probabile lavorare con un singolo elemento alla volta.
 
-### Modifying HTML Elements {-}
-Once you have a reference to an element, you access properties and call methods on that object in order to modify its state in the DOM&mdash;which will in turn modify how it _currently_ is displayed on the page. Thus by modifying these objects, you are dynamically changing the web page's content!
+### Modificare elementi HTML {-}
+Una volta ottenuto un reference a un elemento, accedi alle properties e chiami i methods su quell'object per modificarne lo stato nel DOM&mdash;che a sua volta modifichera' come e' _attualmente_ visualizzato nella pagina. Quindi, modificando questi objects, stai cambiando dinamicamente il contenuto della web page!
 
-<p class="alert alert-warning">**Important**: setting these properties do not change the `.html` source code file! Instead, they just change the _rendered DOM elements_ (think: the content stored in the computer's memory rather than in a file). If you refresh the page, the content will go back to how the `.html` source code file specifies it should appear&mdash;unless that also loads the script that modifies the DOM. What is shown on the page is the HTML with the JavaScript modifications added in.</p>
+<p class="alert alert-warning">**Importante**: impostare queste properties non cambia il file `.html` source code! Cambiano solo gli _elementi DOM renderizzati_ (pensa: il contenuto in memoria del computer, non quello in un file). Se ricarichi la pagina, il contenuto tornera' a come e' specificato nel file `.html`&mdash;a meno che non venga caricato anche lo script che modifica il DOM. Cio' che vedi nella pagina e' l'HTML con le modifiche JavaScript applicate.</p>
 
-#### Changing Content {-}
-You can use JavaScript to access and modify the **content** of a DOM element (e.g., the stuff between the start and close tags):
+#### Cambiare il contenuto {-}
+Puoi usare JavaScript per accedere e modificare il **contenuto** di un elemento DOM (ad es. cio' che sta tra start e close tag):
 
 ```js
 //get a reference to the FIRST <p> element
@@ -99,19 +99,19 @@ let html = elem.innerHTML; //content including HTML
 elem.innerHTML = "This is <em>different</em> content!"; //interpreted as HTML
 ```
 
-The `textContent` property of the element refers to _all_ of the content, but considered as "plain text" this means that it is considered a "safe" property: you can assign strings that contain's HTML code (e.g., `<em>Hello</em>`), but that code will be escaped and not interpreted as HTML (instead the `<` and `>` will be written out as if you had used [HTML entities](https://www.w3schools.com/html/html_entities.asp)). The `.innerHTML` property, on the other hand, is "not safe": any HTML included in the String you assign to it will be converted into DOM elements. This makes it not a great property to use unless unless you are absolutely certain the content came from a trusted source.
+La property `textContent` dell'elemento si riferisce a _tutto_ il contenuto, ma considerato come "plain text": questo significa che e' una property "safe": puoi assegnare stringhe che contengono codice HTML (ad es. `<em>Hello</em>`), ma quel codice verra' escaped e non interpretato come HTML (invece i simboli `<` e `>` saranno scritti come se avessi usato le [HTML entities](https://www.w3schools.com/html/html_entities.asp)). La property `.innerHTML`, invece, non e' "safe": qualsiasi HTML incluso nella String che assegni verra' convertito in elementi DOM. Questo la rende una property da evitare a meno che tu non sia assolutamente certo che il contenuto provenga da una fonte affidabile.
 
-- The `innerHTML` property should be used primarily for including _inline_ elements such as `<em>` or `<strong>`. For more complex HTML content, it is cleaner code (separation of concerns!) to explicitly create new elements&mdash;see below for details.
+- La property `innerHTML` andrebbe usata principalmente per includere elementi _inline_ come `<em>` o `<strong>`. Per contenuti HTML piu' complessi, e' piu' pulito (separation of concerns!) creare esplicitamente nuovi elementi&mdash;vedi sotto per dettagli.
 
-- You can "clear" the content of an element by setting it's content to be an empty string (`''`):
+- Puoi "svuotare" il contenuto di un elemento impostando il suo contenuto a una stringa vuota (`''`):
 
     ```js
     let alertElem = document.querySelector('.alert');
     alertElem.textContent = ''; //no more alert!
     ```
 
-#### Changing Attributes {-}
-You can also change the **attributes** of individual elements. Each attribute defined in the HTML specification is typically exposed as a _property_ of the element object:
+#### Cambiare gli attributes {-}
+Puoi anche cambiare gli **attributes** dei singoli elementi. Ogni attribute definito nella specifica HTML e' tipicamente esposto come _property_ dell'object elemento:
 
 ```js
 //get a reference to the `#picture` element
@@ -124,9 +124,9 @@ console.log( imgElem.src ); //logs the source of the image
 imgElem.src = 'my-picture.png';
 ```
 
-<p class="alert alert-warning">You **cannot** access `element.class` or `element.style` attributes directly in this way; see below for specifics on changing the CSS of an element.</p>
+<p class="alert alert-warning">Non puoi accedere direttamente agli attributes `element.class` o `element.style` in questo modo; vedi sotto per i dettagli su come cambiare il CSS di un elemento.</p>
 
-You can alternatively modify element attributes by using the methods `getAttribute()` (passing it which attribute to access) and `setAttribute()` (passing it which attribute to modify and what value to assign to that attribute):
+In alternativa puoi modificare gli attributes degli elementi usando i metodi `getAttribute()` (passando quale attribute accedere) e `setAttribute()` (passando quale attribute modificare e che value assegnare):
 
 ```js
 let imgElem = document.querySelector('#picture');
@@ -139,10 +139,10 @@ let isThick = document.querySelector('svg rect')
                       .hasAttribute('stroke-width'); //chained anonymous variables
 ```
 
-These methods will let you interact with attributes that are _not_ defined by the HTML spec, such as `data-` attribute. However, they _don't_ work with certain element attributes (such as the `value` attribute of an `<input>` element). Other elements may have their own special DOM properties: see the [DOM Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) for a list of [HTML interfaces](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model#HTML_interfaces).
+Questi metodi ti permettono di interagire con attributes _non_ definiti dalla spec HTML, come gli attribute `data-`. Tuttavia, _non_ funzionano con alcuni attributes degli elementi (come l'attribute `value` di un elemento `<input>`). Altri elementi possono avere DOM properties speciali: vedi la [DOM Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) per una lista delle [HTML interfaces](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model#HTML_interfaces).
 
-#### Changing Element CSS {-}
-It is possible to modify the **CSS classes** (and even inline styling) of an element. But rather than using the `class` property like with other attributes, you instead access the **`classList`** property. On modern browsers (IE 10 or later), this property supports methods `.add()` and `.remove()` for adding and removing classes from the list:
+#### Cambiare il CSS di un elemento {-}
+E' possibile modificare le **CSS classes** (e anche lo styling inline) di un elemento. Ma invece di usare la property `class` come con gli altri attributes, accedi alla property **`classList`**. Nei browser moderni (IE 10 o successivi), questa property supporta i metodi `.add()` e `.remove()` per aggiungere e rimuovere class dalla lista:
 
 ```js
 //access list of classes
@@ -159,7 +159,7 @@ elem.classList.remove('small');
 elem.classList.toggle('small');
 ```
 
-- While IE 10+ does support these methods, it doesn't support _multiple arguments_ for them (so you can't add multiple classes in a single method call). If you need to support older browsers (including any version of IE), you can instead modify the `.className` property as if it were a String:
+- Anche se IE 10+ supporta questi metodi, non supporta _multiple arguments_ (quindi non puoi aggiungere piu' class in una singola chiamata). Se devi supportare browser piu' vecchi (inclusa qualsiasi versione di IE), puoi invece modificare la property `.className` come se fosse una String:
 
     ```js
     //fallback for IE (all)
@@ -168,9 +168,9 @@ elem.classList.toggle('small');
     elem.className = classes;     //reassign
     ```
 
-    The `classList` methods work perfectly on Microsoft Edge.
+    I metodi `classList` funzionano perfettamente su Microsoft Edge.
 
-It is also possible to access and modify individual CSS properties of elements through the DOM element's `style` property. `.style` references an Object whose keys are the CSS property names (but written in _camelCase_ instead of _kabob-case_)
+E' anche possibile accedere e modificare singole CSS properties di elementi tramite la property `style` dell'elemento DOM. `.style` fa riferimento a un Object le cui keys sono i nomi delle CSS property (scritti in _camelCase_ invece che in _kabob-case_)
 
 ```js
 let h1 = document.querySelector('h1');
@@ -178,13 +178,13 @@ h1.style.color = 'green';
 h1.style.backgroundColor = 'black'; //not `.background-color`
 ```
 
-<p class="alert alert-info">In general, you should modify element CSS by changing the class of the element, rather than specific style properties.</p>
+<p class="alert alert-info">In generale, dovresti modificare il CSS di un elemento cambiandone la class, piuttosto che modificando specifiche style properties.</p>
 
 
-### Modifying the DOM Tree {-}
-In addition to modifying the individual DOM elements, it is also possible to access and modify the _DOM tree itself!_ That is, you can create new elements and add them to the tree (read: webpage), remove elements from the tree, or pluck them out of the tree and insert them somewhere else!
+### Modificare il DOM Tree {-}
+Oltre a modificare i singoli elementi DOM, e' anche possibile accedere e modificare _il DOM tree stesso!_ Cioe', puoi creare nuovi elementi e aggiungerli al tree (leggi: web page), rimuovere elementi dal tree, o estrarli dal tree e inserirli da un'altra parte!
 
-First, note that each JavaScript DOM element has [ _read-only_ properties](https://www.w3schools.com/js/js_htmldom_navigation.asp) referring to its parent, children, and sibling elements:
+Per prima cosa, nota che ogni elemento DOM JavaScript ha [properties _read-only_](https://www.w3schools.com/js/js_htmldom_navigation.asp) che si riferiscono al suo parent, ai children e ai sibling elements:
 
 ```html
 <main>
@@ -214,11 +214,11 @@ let sectionSection = firstSection.nextElementSibling;
 console.log(secondSection); //<section id="second-section"></section>
 ```
 
-- Note that these properties only deal with _HTML elements_&mdash;text content nodes are ignored. You can instead use equivalent properties `parentNode` and `childNodes` to also consider text content nodes.
+- Nota che queste properties riguardano solo gli _elementi HTML_&mdash;i text content nodes vengono ignorati. Puoi invece usare le properties equivalenti `parentNode` e `childNodes` per considerare anche i text content nodes.
 
-    SVG content doesn't support `parentElement`, but does support `parentNode`.
+    Il contenuto SVG non supporta `parentElement`, ma supporta `parentNode`.
 
-You can also call methods to create and add new HTML DOM elements to the tree. The `document.createElement()` function is used to create a new HTML element. However this element is _not_ created as a part of the tree (after all, you haven't specified where it would put into the page)! Thus you need to also use a method such as `appendChild` to add that new element as a child of another element:
+Puoi anche chiamare methods per creare e aggiungere nuovi elementi DOM HTML al tree. La function `document.createElement()` e' usata per creare un nuovo elemento HTML. Tuttavia questo elemento _non_ viene creato come parte del tree (dopotutto non hai specificato dove inserirlo nella pagina)! Quindi devi anche usare un metodo come `appendChild` per aggiungere quel nuovo elemento come child di un altro elemento:
 
 ```js
 //create a new <p> (not yet in the tree)
@@ -242,14 +242,14 @@ main.replaceChild(document.createTextNode('boo'), newText);
 main.removeChild(main.querySelector('p'));
 ```
 
-The `appendChild()` method is considered a cleaner approach than just modifying the `innerHTML` property, as it allows you to adjust the DOM tree without erasing what was previously there. A common practice is to use `document.createElement()` to create a _block_ element, then set the `innerHTML` of that element to its content (which can include _inline_ elements), and then use `appendChild` to add the new block element to the tree at the desired location.
+Il metodo `appendChild()` e' considerato piu' pulito che modificare direttamente la property `innerHTML`, perche' permette di modificare il DOM tree senza cancellare cio' che c'era prima. Una pratica comune e' usare `document.createElement()` per creare un elemento _block_, poi impostare il `innerHTML` di quell'elemento con il suo contenuto (che puo' includere elementi _inline_), e infine usare `appendChild` per aggiungere il nuovo block element al tree nella posizione desiderata.
 
 ### Accessibility {-}
-Whenever you learn a new technology, you should ask: **how does this affect accessibility?** With the JavaScript code modifying the rendered DOM, it is possible that the content of a page will change _after_ it has been read by a screen reader. And while a sighted user will likely be able to see the change visually, a screen reader has no way of knowing that something on the page is different unless you tell it.
+Ogni volta che impari una nuova tecnologia, dovresti chiederti: **come influisce sull'accessibilita'?** Con il codice JavaScript che modifica il DOM renderizzato, e' possibile che il contenuto di una pagina cambi _dopo_ che e' stato letto da uno screen reader. E mentre un utente vedente probabilmente vedra' il cambiamento visivamente, uno screen reader non ha modo di sapere che qualcosa nella pagina e' diverso a meno che tu non glielo dica.
 
-You can let screen readers know that an element in a page may have its content change _in the future_ by making that element into an [ARIA Live Region](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions). Live regions are "watched" by assistive technologies, and whenever the content changes they will speak the new content to the reader as if it were being read for the first time.
+Puoi far sapere agli screen reader che un elemento di una pagina potrebbe cambiare il suo contenuto _in futuro_ trasformando quell'elemento in una [ARIA Live Region](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions). Le live region vengono "osservate" dalle tecnologie assistive, e quando il contenuto cambia leggono il nuovo contenuto all'utente come se fosse letto per la prima volta.
 
-You make an element into a live region by giving it the `aria-live` attribute:
+Rendi un elemento una live region assegnandogli l'attribute `aria-live`:
 
 ```html
 <div aria-live="polite">
@@ -257,21 +257,21 @@ You make an element into a live region by giving it the `aria-live` attribute:
 </div>
 ```
 
-The value assigned to the `aria-live` attribute is the "politeness level", which specifies the priority by which the screen reader should read the change. The most common option (that you should almost always use) is `"polite"`, which indicates that the changed text will be read only once the user has _paused_ whatever is currently being read. A `"polite"` alert doesn't interrupt the currently being read text or description, but instead will be injected when there is a break (if the current reading goes on for too long, then the new content will not be spoken).
+Il value assegnato all'attribute `aria-live` e' il "politeness level", che specifica la priorita' con cui lo screen reader dovrebbe leggere il cambiamento. L'opzione piu' comune (che dovresti quasi sempre usare) e' `"polite"`, che indica che il testo cambiato verra' letto solo quando l'utente ha _messo in pausa_ cio' che e' attualmente in lettura. Un alert `"polite"` non interrompe il testo o la descrizione in corso, ma viene inserito quando c'e' una pausa (se la lettura corrente va avanti troppo a lungo, il nuovo contenuto non verra' letto).
 
-- The other option is `"assertive"`, which indicates that the new content should be spoken as soon as it changes, possibly interrupting other content. This should only be used for important information (like alerts, warnings, or errors), as it can interrupt the user's flow in ways that are very disorienting. In short: _always be polite!_
+- L'altra opzione e' `"assertive"`, che indica che il nuovo contenuto va letto non appena cambia, interrompendo potenzialmente altri contenuti. Questo dovrebbe essere usato solo per informazioni importanti (come alerts, warnings o errors), perche' puo' interrompere il flusso dell'utente in modo molto disorientante. In breve: _sempre essere polite!_
 
 
-## Listening for Events
-In order to make a page **interactive** (that is, able to change in response to user actions), you need to be able to respond to _user events_. Whenever a user interacts with a computer, the operating system announces that interaction as an **event**&mdash;the _event_ of a button being clicked, the _event_ of the mouse being moved, the _event_ of a keyboard key being pressed, etc. These events are **broadcast** to the entire system, allowing any application (including the browser) to "respond" the occurrence of the event, such as by executing a particular JavaScript function.
+## Ascoltare gli Eventi
+Per rendere una pagina **interattiva** (cioe' capace di cambiare in risposta alle azioni dell'utente), devi essere in grado di rispondere agli _user events_. Ogni volta che un utente interagisce con un computer, il sistema operativo annuncia quell'interazione come un **event**&mdash;l'_event_ di un button cliccato, l'_event_ del mouse che si muove, l'_event_ di un tasto della tastiera premuto, ecc. Questi eventi vengono **broadcast** a tutto il sistema, permettendo a qualsiasi application (incluso il browser) di "respond" all'occorrenza dell'event, ad esempio eseguendo una specifica function JavaScript.
 
-Thus in order to respond to user actions (and the _events_ those actions generate), we need to define a function that will be executed **when the event occurs**. You will define a function as normal, but the function will not get called by you as a particular step in your script. Instead, the function you specify will be executed _by the system_ when an event occurs, which will be at some indeterminate time in the future. This process is known as [event-driven programming](https://en.wikipedia.org/wiki/Event-driven_programming). It is also an example of <a href="https://en.wikipedia.org/wiki/Asynchrony_(computer_programming)">**asynchronous programming**</a>: in which statements are not executed in a single order one after another ("synchronously"), but may occur "out of order" or even at the same time! (For more about working with asynchronous programming, see [Chapter 14](#ajax)).
+Quindi, per rispondere alle azioni dell'utente (e agli _events_ che queste azioni generano), dobbiamo definire una function che verra' eseguita **quando l'event si verifica**. Definisci una function normalmente, ma la function non verra' chiamata da te come passo specifico dello script. Invece, la function che specifichi verra' eseguita _dal sistema_ quando si verifica un event, in un momento indeterminato nel futuro. Questo processo e' noto come [event-driven programming](https://en.wikipedia.org/wiki/Event-driven_programming). E' anche un esempio di <a href="https://en.wikipedia.org/wiki/Asynchrony_(computer_programming)">**asynchronous programming**</a>: in cui gli statements non sono eseguiti in un singolo ordine uno dopo l'altro ("synchronously"), ma possono avvenire "out of order" o persino allo stesso tempo! (Per maggiori dettagli su asynchronous programming, vedi [Chapter 14](#ajax)).
 
-In order for your script to respond to user events, you need to _register an event listener_. This is a bit like following someone on social media: you specify that you want to "listen" for updates from that person, as well as what you want to do when you "hear" some news from that person.
+Per fare in modo che il tuo script risponda agli user events, devi _register an event listener_. E' un po' come seguire qualcuno sui social media: specifichi che vuoi "ascoltare" gli aggiornamenti da quella persona e cosa vuoi fare quando "senti" qualche novita'.
 
-- Specifying that you want Slack to notify you when your name is mentioned is another good analogy!
+- Specificare che vuoi che Slack ti notifichi quando il tuo nome viene menzionato e' un'altra buona analogia!
 
-The DOM API allows you to register an event listener by call the **`.addEventListener()`** on a selected element (e.g., on the element that you want to listen to). This method takes two arguments: a string representing what kind of event you want to listen for, and a _callback function_ to execute when you hear that event:
+La DOM API ti permette di registrare un event listener chiamando **`.addEventListener()`** su un elemento selezionato (ad es. sull'elemento che vuoi ascoltare). Questo metodo prende due argomenti: una string che rappresenta il tipo di event che vuoi ascoltare, e una _callback function_ da eseguire quando senti quell'event:
 
 ```js
 //a (named) callback function
@@ -286,11 +286,11 @@ let button = document.querySelector('button');
 button.addEventListener('click', onClickCallback);
 ```
 
-- When the button is clicked by the user, it will "shout" out a `'click'` event ("I was clicked! I was clicked!"). Because you have set up a listener (an alert/notification) for such an occurrence, your script will be able to do something&mdash;and that something that it will do is run the specified callback function.
+- Quando il button viene cliccato dall'utente, "gridera'" un event `'click'` ("I was clicked! I was clicked!"). Poiche' hai configurato un listener (un alert/notification) per questa occorrenza, il tuo script potra' fare qualcosa&mdash;e quel qualcosa sara' eseguire la callback function specificata.
 
-    It's like you handed someone a recipe and told them "when I call you, bake this cake!"
+    E' come se avessi dato a qualcuno una ricetta dicendo: "quando ti chiamo, prepara questa torta!"
 
-- It is **much** more common to use an _anonymous function_ as the callback:
+- E' **molto** piu' comune usare una _anonymous function_ come callback:
 
     ```js
     let button = document.querySelect.select('button');
@@ -299,9 +299,9 @@ button.addEventListener('click', onClickCallback);
     });
     ```
 
-- Note that this listener _only_ applies to that particular button&mdash;if you wanted to respond to a different button, you'd need to register a separate listener! Also, as the method name implies, it is possible to add multiple listeners (callbacks) to the same element for the same event: all of them will be executed "at once".
+- Nota che questo listener si applica _solo_ a quel particolare button&mdash;se vuoi rispondere a un button diverso, devi registrare un listener separato! Inoltre, come implica il nome del metodo, e' possibile aggiungere piu' listeners (callback) allo stesso elemento per lo stesso event: verranno eseguiti tutti "insieme".
 
-The event callback will be passed in a single argument: an object representing the _"event"_ that occurred. (Since all parameters are optional in JavaScript, and it wasn't used in the above example, it wasn't included in the callback definition). This event includes information such as where the event occurred (in x,y coordinates), what DOM element caused the event, and more:
+Alla callback dell'event viene passato un singolo argomento: un object che rappresenta l'_event_ che si e' verificato. (Dato che tutti i parameters sono opzionali in JavaScript, e non era usato nell'esempio sopra, non e' stato incluso nella definizione della callback). Questo event include informazioni come dove si e' verificato (coordinate x,y), quale elemento DOM ha causato l'event, e altro:
 
 ```js
 elem.addEventListener('click', function(event) {
@@ -311,7 +311,7 @@ elem.addEventListener('click', function(event) {
 });
 ```
 
-Also note that sometimes you want to stop the "normal" results of an event from occurring. For example, perhaps you don't want a button to do it's normal button thing (such as submitting a form), and instead want to provide your own custom behavior. To support this, you can "interrupt the event" by calling the following methods on the event:
+Nota anche che a volte vuoi fermare gli effetti "normali" di un event. Per esempio, magari non vuoi che un button faccia la sua azione normale (come inviare un form), e vuoi invece fornire il tuo behavior personalizzato. Per supportare questo, puoi "interrompere l'event" chiamando i seguenti metodi sull'event:
 
 ```js
 submitBtn.addEventListener('click', function(event) {
@@ -326,14 +326,14 @@ submitBtn.addEventListener('click', function(event) {
 ```
 
 
-### Types of Events {-}
-There are [numerous different events](https://developer.mozilla.org/en-US/docs/Web/Events) that you can listen for, including:
+### Tipi di Eventi {-}
+Ci sono [numerosi eventi diversi](https://developer.mozilla.org/en-US/docs/Web/Events) che puoi ascoltare, tra cui:
 
-- [Mouse Events](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) such as **`'click'`**. The `event.offsetX` and `event.offsetY` will provide (x,y) coordinates for the clicks location _relative to the target element_; you can use `clientX/Y` for coordinates relative to the browser window, or `pageX/Y` for coordinates relative to the document (regardless of scrolling). See [this post](http://www.quirksmode.org/mobile/viewports.html) for details, and [this page](http://www.quirksmode.org/m/tests/mouseprops.html) for an example.
+- [Mouse Events](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) come **`'click'`**. `event.offsetX` e `event.offsetY` forniscono coordinate (x,y) per la posizione del click _relativa all'elemento target_; puoi usare `clientX/Y` per coordinate relative alla finestra del browser, o `pageX/Y` per coordinate relative al document (indipendentemente dallo scroll). Vedi [questo post](http://www.quirksmode.org/mobile/viewports.html) per dettagli e [questa pagina](http://www.quirksmode.org/m/tests/mouseprops.html) per un esempio.
 
-    Other mouse events include `'dblclick'` (double-click), `'mousedown'` (mouse button is pressed down, may be held), `'hover'` (mouse hover), `'mouseenter'` (mouse moves over element), `'mousemove'` (mouse moves over element), and `'mouseleave'` (mouse moves of of element).
+    Altri mouse events includono `'dblclick'` (double-click), `'mousedown'` (mouse button premuto, puo' restare premuto), `'hover'` (mouse hover), `'mouseenter'` (mouse si muove sopra l'elemento), `'mousemove'` (mouse si muove sopra l'elemento) e `'mouseleave'` (mouse esce dall'elemento).
 
-- [Keyboard Events](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent) such as **`'keydown'`**. The `event.key` property is used to determine _which key_ was pressed, giving a [predefined key value](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) you can check:
+- [Keyboard Events](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent) come **`'keydown'`**. La property `event.key` si usa per determinare _quale tasto_ e' stato premuto, fornendo un [predefined key value](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) che puoi controllare:
 
     ```js
     elem.addEventListener('keydown', function(event){
@@ -344,11 +344,11 @@ There are [numerous different events](https://developer.mozilla.org/en-US/docs/W
     });
     ```
 
-    The `event` object also has properties to check if any "modifier keys" such as shift, control, or meta (Windows/command) are held when the event occurs.
+    L'object `event` ha anche properties per controllare se ci sono "modifier keys" come shift, control o meta (Windows/command) premuti quando si verifica l'event.
 
-    Note that you almost always want to respond to the `'keydown'` and `'keyup'` events; the `'keypressed'` event is sent later and only applies to non-modifier keys.
+    Nota che quasi sempre vuoi rispondere agli eventi `'keydown'` e `'keyup'`; l'evento `'keypressed'` viene inviato piu' tardi e si applica solo a tasti non-modifier.
 
-- [Window Events](https://developer.mozilla.org/en-US/docs/Web/API/Window#Event_handlers) are event created by the `window` global, which we are also able to register event listeners on! For example, the `'resize'` event can be used to identify when the window has changed size (e.g., if you want to make the content responsive as well as the CSS):
+- I [Window Events](https://developer.mozilla.org/en-US/docs/Web/API/Window#Event_handlers) sono eventi creati dal global `window`, su cui possiamo registrare event listeners! Per esempio, l'evento `'resize'` puo' essere usato per identificare quando la finestra ha cambiato dimensione (ad es. se vuoi rendere il contenuto responsive oltre che il CSS):
 
     ```js
     window.addEventListener("resize", function() {
@@ -356,9 +356,9 @@ There are [numerous different events](https://developer.mozilla.org/en-US/docs/W
     });
     ```
 
-    (See [the documentation](https://developer.mozilla.org/en-US/docs/Web/Events/resize) for advise on using this callback)
+    (Vedi [la documentazione](https://developer.mozilla.org/en-US/docs/Web/Events/resize) per consigli su come usare questa callback)
 
-    Additionally, the `window` global defines a special event callback that occurs when the web page has finished loading. You can assign your own function to this callback to run code only _after_ the webpage has loaded (e.g., for scripts specified in the `<head>`):
+    Inoltre, il global `window` definisce una speciale event callback che si attiva quando la web page ha finito di caricarsi. Puoi assegnare la tua function a questa callback per eseguire codice solo _dopo_ che la pagina e' stata caricata (ad es. per script specificati nel `<head>`):
 
     ```js
     window.onload = function() {
@@ -366,21 +366,21 @@ There are [numerous different events](https://developer.mozilla.org/en-US/docs/W
     }
     ```
 
-<p class="alert alert-warning">**Style guideline**: always register event listeners in the JavaScript&mdash;do _not_ utilize the HTML attributes such as `onclick`. This is to help keep concerns separated: the HTML should not need to know anything about the JavaScript that is utilized (since the browser may not even support JavaScript!), but it's okay for the JavaScript to rely on and modify the HTML.</p>
+<p class="alert alert-warning">**Style guideline**: registra sempre gli event listeners nel JavaScript&mdash;non usare gli HTML attributes come `onclick`. Questo aiuta a mantenere separati i concerns: l'HTML non deve sapere nulla del JavaScript usato (il browser potrebbe anche non supportarlo!), ma e' ok che il JavaScript si appoggi e modifichi l'HTML.</p>
 
 ### Event-Driven Programming {-}
-In a typical web program event callback functions can occur repeatedly, over and over again (e.g., every time the user clicks a button). This makes them potentially act a bit like the body of a `while` loop. However, because these callbacks are _functions_, any variables defined within them are **scoped** to that function, and will not be available on subsequent executions. Thus if you want to keep track of some additional information (e.g., how many times the button was clicked), you will need to use a variable declared _outside_ of the function (e.g., a **global** ). Such variables can be used to represent the **state** (situation) of the program, which can then be used to determine what behavior to perform when an event occurs, following the below pattern:
+In un tipico web program, le event callback functions possono verificarsi ripetutamente, ancora e ancora (ad es. ogni volta che l'utente clicca un button). Questo le fa comportare un po' come il body di un `while` loop. Tuttavia, poiche' queste callback sono _functions_, qualsiasi variable definita al loro interno e' **scoped** a quella function e non sara' disponibile nelle esecuzioni successive. Quindi, se vuoi tenere traccia di informazioni aggiuntive (ad es. quante volte e' stato cliccato un button), devi usare una variable dichiarata _fuori_ dalla function (ad es. una **global**). Queste variables possono rappresentare lo **state** (situazione) del programma, che puo' poi essere usato per determinare quale behavior eseguire quando si verifica un event, seguendo il pattern sotto:
 
 ```
 //pseudocode
-WHEN an event occurs {
-   check the STATE of the program;
-   DECIDE what to do based on that state;
-   UPDATE the state as necessary for the next event;
+QUANDO si verifica un event {
+   controlla lo STATE del programma;
+   DECIDE cosa fare in base a quello state;
+   AGGIORNA lo state se necessario per il prossimo event;
 }
 ```
 
-For example:
+Per esempio:
 
 ```js
 let clickCount = 0;  //keep track of the "state" (global)
@@ -395,14 +395,14 @@ document.querySelector('button').addEventListener('click', function() {
 });
 ```
 
-- These "state" variables can be global, or can simply be declared within a containing function as a closure. State variables are often objects, with individual values stored as the properties. This provides a name-spacing feature, and helps to keep the code from being cluttered with many variables.
+- Queste variables di "state" possono essere global, oppure possono essere dichiarate in una function contenitore come closure. Le state variables sono spesso objects, con values individuali memorizzati come properties. Questo fornisce una feature di name-spacing e aiuta a evitare che il codice si riempia di molte variables.
 
 
 
-## Resources {-}
+## Risorse {-}
 <div class="list-condensed">
 - [What is the DOM? (CSS-Tricks)](https://css-tricks.com/dom/)
-- [Document Object Model reference (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) complete DOM reference
+- [Document Object Model reference (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) riferimento completo al DOM
 - [JavaScript HTML DOM reference (w3c)](https://www.w3schools.com/js/js_htmldom.asp)
 - [Introduction to Events (MDN)](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events)
 </div>

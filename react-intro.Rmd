@@ -1,28 +1,28 @@
-# Introduction to React {#react}
+# Introduzione a React {#react}
 
-This chapter introduces the [**React**](https://reactjs.org/) JavaScript library. React is "a JavaScript library for building user interfaces" developed by Facebook (though it is released as open-source software). At its core, React allows you to dynamically generate and interact with the DOM, similar to what you might do with jQuery. However, React was [created](https://reactjs.org/blog/2013/06/05/why-react.html) to make it much easier to define and manipulate lots of different parts of the DOM, and to do so _quickly_ (in terms of computer speed). It does this by enabling you to declare a web app in terms of different **components** (think: "things" or "parts" of a web page) that can be independently managed&mdash;this lets you design and implement web apps at a higher level of abstraction. Moreover, components are usually associated with some set of data, and React will automatically "re-render" (show) the updated component when the data changes&mdash;and to do so in a computationally efficient manner.
+Questo capitolo introduce la libreria JavaScript [**React**](https://reactjs.org/). React e' "una JavaScript library per costruire user interfaces" sviluppata da Facebook (anche se e' rilasciata come open-source software). Al suo core, React permette di generare dinamicamente e interagire con il DOM, in modo simile a quanto potresti fare con jQuery. Tuttavia, React e' stato [creato](https://reactjs.org/blog/2013/06/05/why-react.html) per rendere molto piu' facile definire e manipolare molte parti diverse del DOM, e farlo _rapidamente_ (in termini di velocita' del computer). Lo fa permettendoti di dichiarare una web app in termini di **components** diversi (pensa a "things" o "parts" di una web page) che possono essere gestiti in modo indipendente&mdash;questo ti permette di progettare e implementare web apps a un livello piu' alto di astrazione. Inoltre, i components sono di solito associati a un set di data, e React "re-renderizza" automaticamente (mostra) il component aggiornato quando i data cambiano&mdash;in modo computazionalmente efficiente.
 
-React is currently the most popular "framework" for building large-scale web applications (its chief competitors being [Angular](https://angular.io/) and [Vue.js](https://vuejs.org/), though there are [scores](https://javascriptreport.com/the-ultimate-guide-to-javascript-frameworks/) of similar frameworks that are also used. Check out [TodoMVC](http://todomvc.com/) for an example of the same application in each!). This means that React is generally very well documented; there are hundreds of tutorials, videos, and examples for building React applications (of which this chapter will be yet another). Some general resources are included at the end of the chapter, but in general we recommend you start with the [official documentation](https://reactjs.org/docs/getting-started.html), particularly the set of [main concepts](https://reactjs.org/docs/hello-world.html). Note that this book more or less follows the approach used by Facebooks's [Intro to React Tutorial](https://reactjs.org/tutorial/tutorial.html).
+React e' attualmente il "framework" piu' popolare per costruire web applications su larga scala (i principali concorrenti sono [Angular](https://angular.io/) e [Vue.js](https://vuejs.org/), anche se esistono [molti](https://javascriptreport.com/the-ultimate-guide-to-javascript-frameworks/) framework simili). Dai un'occhiata a [TodoMVC](http://todomvc.com/) per un esempio della stessa application in ciascuno!). Questo significa che React e' molto ben documentato; esistono centinaia di tutorial, video ed esempi per costruire applicazioni React (di cui questo capitolo e' solo un altro). Alcune risorse generali sono incluse alla fine del capitolo, ma in generale consigliamo di partire dalla [documentazione ufficiale](https://reactjs.org/docs/getting-started.html), in particolare dal set di [main concepts](https://reactjs.org/docs/hello-world.html). Nota che questo libro segue piu' o meno l'approccio usato dal [Intro to React Tutorial](https://reactjs.org/tutorial/tutorial.html) di Facebook.
 
-<p class="alert alert-warning">React has gone through a number of different major versions in its short life. What's more: the "style" in which React is written has also evolved over time as new features are added to both the React library and the JavaScript language. This book introduces and emphasizes an approach that prioritizes clarity of concepts and readability of code, rather than conciseness of syntax or use of advanced options, while also attempting to reflect the current practices in React development.</p>
+<p class="alert alert-warning">React ha attraversato diverse major versions nella sua breve vita. Inoltre: lo "stile" con cui React viene scritto e' evoluto nel tempo man mano che nuove feature venivano aggiunte sia alla libreria React che al linguaggio JavaScript. Questo libro introduce e enfatizza un approccio che privilegia chiarezza dei concetti e leggibilita' del codice, piuttosto che concisione della sintassi o uso di opzioni avanzate, cercando al contempo di riflettere le pratiche attuali nello sviluppo React.</p>
 
-<p class="alert alert-info">React is developed and maintained by Facebook (Meta). Facebook as a company has a long history of
+<p class="alert alert-info">React e' sviluppato e mantenuto da Facebook (Meta). Facebook come azienda ha una lunga storia di
 [violating the Fair Housing Act](https://www.propublica.org/article/facebook-lets-advertisers-exclude-users-by-race),
 [leaking or selling personal private data](https://techcrunch.com/2019/11/06/california-attorney-general-investigation-cambridge-analytica),
 [allowing the spread of misinformation](https://www.cnn.com/2019/11/01/tech/facebook-false-ads-uk/index.html),
 [enabling](https://www.theguardian.com/technology/2021/dec/06/rohingya-sue-facebook-myanmar-genocide-us-uk-legal-action-social-media-violence) [genocide](https://www.theguardian.com/technology/2022/feb/20/facebook-lets-vigilantes-in-ethiopia-incite-ethnic-killing)
-and in general
-[choosing profits over safety](https://www.nytimes.com/2021/10/03/technology/whistle-blower-facebook-frances-haugen.html). You may be understandably concerned about whether learning and using React implicitly supports and thus condones this company and its behavior. Whenever you adopt any software tool or library, it is worth investigating _who_ created it (and _why_) and how that may impact your own willingness to use it as a dependency.</p>
+e in generale
+[scegliere il profitto rispetto alla sicurezza](https://www.nytimes.com/2021/10/03/technology/whistle-blower-facebook-frances-haugen.html). Potresti comprensibilmente preoccuparti del fatto che imparare e usare React supporti implicitamente questa azienda e i suoi comportamenti. Ogni volta che adotti un tool o una library software, vale la pena investigare _chi_ l'ha creata (e _perche'_) e come questo possa influire sulla tua disponibilita' a usarla come dependency.</p>
 
 
-## Getting Set Up: React and Vite {#react-vite-setup}
-React is a JavaScript library similar to those discussed in previous chapters&mdash;you load the library and then can call upon its methods. However, React makes use of a significant amount of advanced and custom JavaScript syntax called _JSX_ (described below), as well as extensive use of [ES6 Modules](#modules). Thus in practice, developing React apps requires using a number of different development tools&mdash;just getting setup and started is one of the major hurdles in learning React!
+## Preparazione: React e Vite {#react-vite-setup}
+React e' una JavaScript library simile a quelle discusse nei capitoli precedenti&mdash;carichi la library e poi puoi chiamarne i methods. Tuttavia, React fa uso di molta sintassi JavaScript avanzata e custom chiamata _JSX_ (descritta sotto), oltre a un uso esteso di [ES6 Modules](#modules). Quindi, in pratica, sviluppare app React richiede usare diversi development tools&mdash;il semplice setup iniziale e' uno degli ostacoli principali nell'imparare React!
 
-Most React apps are structured using a [production framework](https://react.dev/learn/start-a-new-react-project). Such frameworks collect and scaffold the different dependency libraries and build tools needed to start a React project. There are numerous such frameworks, each of which has its own opinions and restrictions on how React apps should be structured. For this course you'll use [**Vite**](https://vitejs.dev/) as a build tool framework. Vite (pronounced "veet") provides a quick a simple build environment that allows you to easily write "pure" React without needing to also learn additional framwork quirks. Once you have a foundational understanding of React, you can easily explore and learn additional frameworks and tools.
+La maggior parte delle app React e' strutturata usando un [production framework](https://react.dev/learn/start-a-new-react-project). Questi framework raccolgono e scaffoldano le diverse dependency libraries e build tools necessari per avviare un project React. Esistono molti framework di questo tipo, ognuno con le proprie opinioni e restrizioni su come strutturare le app React. Per questo corso userai [**Vite**](https://vitejs.dev/) come build tool framework. Vite (pronunciato "veet") fornisce un ambiente di build rapido e semplice che ti permette di scrivere facilmente React "puro" senza dover imparare altre quirks del framework. Una volta che hai una comprensione di base di React, puoi esplorare e imparare facilmente altri framework e tools.
 
-<p class="alert alert-warning">Facebook previously provided an official scaffolding tool called [Create React App](https://create-react-app.dev/), though that system has been abandoned (see e.g., [this developer comment](https://github.com/reactjs/react.dev/pull/5487#issuecomment-1409720741) for some context). Older versions of this textbook and course used Create React App, so you may still see some old references to it!</p>
+<p class="alert alert-warning">Facebook in passato forniva un tool ufficiale di scaffolding chiamato [Create React App](https://create-react-app.dev/), ma quel sistema e' stato abbandonato (vedi ad es. [questo commento di un developer](https://github.com/reactjs/react.dev/pull/5487#issuecomment-1409720741) per un po' di contesto). Le versioni piu' vecchie di questo testo e corso usavano Create React App, quindi potresti vedere ancora alcuni riferimenti vecchi!</p>
 
-Vite is a command line application that generates scaffolding ("starter code") for a React application, as well as provides built-in scripts to run, test, and deploy your code. You can use Vite to create a new React app by running the program, specifying name of the folder where you want the app to be created, and that Vite should scaffold a React application (Vite supports multiple different web frameworks). For example, the below command will create a new folder called `my-app` that contains all of the code and tools necessary to create and run a React app:
+Vite e' un'applicazione da command line che genera scaffolding ("starter code") per una React application, e fornisce anche script built-in per eseguire, testare e deployare il codice. Puoi usare Vite per creare una nuova React app eseguendo il programma, specificando il nome della cartella dove vuoi creare l'app, e indicando che Vite deve scaffoldare una React application (Vite supporta diversi web frameworks). Per esempio, il comando qui sotto creera' una nuova cartella chiamata `my-app` che contiene tutto il codice e i tool necessari per creare ed eseguire una React app:
 
 ```bash
 # Create a new React app project in a new `my-app` directory
@@ -36,132 +36,132 @@ cd my-app
 npm install
 ```
 
-- The `npm create <package>` command is actually a shortcut for running `npx create-<package>`&mdash;you could equivalently write `npx create-vite@latest`, though the `create` command is more conventional. You do not need to install the `vite` (or `create-vite`) packages globally.
+- Il comando `npm create <package>` e' in realta' una scorciatoia per eseguire `npx create-<package>`&mdash;potresti scrivere `npx create-vite@latest`, anche se il comando `create` e' piu' convenzionale. Non serve installare i package `vite` (o `create-vite`) globalmente.
 
-- If you specify the current directory (`.`) as the target folder name (where "my-app" is in the above example), Vite will create a new react app in the current folder! This is useful when you want to create a React app inside an existing cloned GitHub repository.
+- Se specifichi la directory corrente (`.`) come nome della target folder (dove "my-app" e' nell'esempio sopra), Vite creera' una nuova React app nella cartella corrente! Questo e' utile quando vuoi creare una React app dentro un repository GitHub gia' clonato.
 
-- The `--template react` argument specifies to use the React "starter" template. Vite supports multiple [community-defined templates](https://github.com/vitejs/awesome-vite#templates). The extra `--` before that argument helps `npm` know which named argument is being passed in.
+- L'argomento `--template react` specifica di usare il template "starter" React. Vite supporta molti [community-defined templates](https://github.com/vitejs/awesome-vite#templates). Il `--` extra prima di quell'argomento aiuta `npm` a capire quale argomento nominato viene passato.
 
 
-### Running the Development Server {-}
-After you create a React app, you can use Vite to start up a _development webserver_ by running the `dev` script:
+### Eseguire il Development Server {-}
+Dopo aver creato una React app, puoi usare Vite per avviare un _development webserver_ eseguendo lo script `dev`:
 
 ```bash
-# Make sure you are in the project directory
+# Assicurati di essere nella directory del project
 cd path/to/project
 
-# Run the development server script
+# Esegui lo script del development server
 npm run dev
 ```
 
-This will start up the webserver. You'll need to open up a browser to view the served content, by default at [http://localhost:5173/](http://localhost:5173/). This development webserver will automatically perform the following whenever you change the source code:
+Questo avviera' il webserver. Dovrai aprire un browser per vedere il contenuto servito, di default su [http://localhost:5173/](http://localhost:5173/). Questo development webserver eseguira' automaticamente quanto segue ogni volta che cambi il source code:
 
-1. It will **transpile** React code into pure JavaScript that can be run in the web browser (see [_JSX_](#jsx) below).
+1. **Transpilera'** il codice React in JavaScript puro che puo' essere eseguito nel web browser (vedi [_JSX_](#jsx) sotto).
 
-2. It will manage and reference different JavaScript modules and dependencies, including external node modules.
+2. Gestira' e referenziera' diversi JavaScript modules e dependencies, incluse node modules esterne.
 
-2. It will display _errors and warnings_ in your browser window&mdash;most errors will show up in the developer console, while fatal errors (e.g., syntax errors that crash the whole app) will be shown as an error web page. Note that the [Chrome React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) will provide further error and debugging options.
+2. Mostrera' _errors e warnings_ nella finestra del browser&mdash;la maggior parte degli errori apparira' nella developer console, mentre gli errori fatali (per esempio, syntax errors che mandano in crash l'intera app) saranno mostrati come una pagina di errore. Nota che i [Chrome React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) forniranno ulteriori opzioni di errore e debugging.
 
-3. It will automatically reload the page whenever you change the source code! (Though it is often good to manually refresh things when testing, just to make sure).
+3. Ricarichera' automaticamente la pagina ogni volta che cambi il source code! (Anche se spesso e' bene fare un refresh manuale quando testi, giusto per essere sicuri).
 
-<p class="alert warning">In order to stop the server, hit `ctrl-c` on the command line.</p>
-
-
-### Project Structure {-}
-A newly created React app using the Vite `react` template will contain a number of different files, including the following:
-
-- The `index.html` file is the home page for your application. If you look at this file, you can see that it contains almost no HTML content&mdash;just the `<head>`, the `<body>` and a single `<div id="root">`. That is because your entire app will be defined using React JavaScrip code; this content will then be injected into that `#root` element. _All of the _content_ of the page will be defined as JavaScript components&mdash;you'll be creating the entire page in JavaScript files. Thus in practice, you rarely modify the `index.html` file (beyond changing the metadata such as the `<title>` and favicon).
-
-    The `index.html` file also loads a script `/src/main.jsx`. The `.jsx` extension represents _JSX_ code (see below); Vite projects conventionally call this file `main.jsx` instead of `index.js`. All JavaScript files are found in the `src/` folder
-
-    The `index.html` file can also include `<link>` elements in the `<head>` in order to laod CSS. However, it is much preferred to instead import load any CSS content through _JavaScript_ code (though Vite will work with either approach). All CSS files are placed in the `src/` folder.
-
-- The `src/` folder contains the source code for your React app. The app is started by the `main.jsx` script, but this script imports and uses other JavaScript modules (such as the provided `App.jsx` script, which defines the "App" module). In general, you'll code React apps by implementing components in one or more modules (e.g., `App.jsx`, `AboutPage.jsx`), which will then be imported and used by the `main.jsx` file. See the [_Components_]{#components} section below for details.
-
-    When starting a new React app, I recommend deleting _all_ of the content of `main.jsx` and `App.jsx` in order to start fresh.
-
-- The `src/index.css` and `src/App.css` are both CSS files used to style the entire page and the individual "App" component respectively. You do not necessarily need both files; I recommend keeping just a single `index.css` file as you get staretd. Notice that the CSS files are imported from _inside the JavaScript files_ (with e.g., `import './index.css'` in the `src/main.jsx` file). This is because the Vite build system knows how to load CSS files, so you can "include" them through the JavaScript rather than needing to link them in the HTML.
-
-    If you want to load an external stylesheet, such as Bootstrap or Font-Awesome, you can still do that by modifying the `public/index.html` file&mdash;but it's better to install them as modules and import them through the JavaScript. See the documentation for [_Adding Bootstrap_](https://facebook.github.io/create-react-app/docs/adding-bootstrap) for an example.
-
-    - Remember that all CSS is global&mdash;rules specified in any `.css` file will apply to the entire app (i.e., the `App.css` rules will also apply to components other than those in `App.js`). The CSS is broken into multiple files to try and keep rules organized. You can instead put all your CSS rules into a single file, using naming schema or other techniques to keep them organized. If you are interested in ways to keep the CSS from being applied globally, look into using [CSS in JS](#css-in-js).
-
-- The `src/assets` folder can be used to store media assets that are imported directly; I recommend deleting this and storing assets in the `public` folder instead. See [the Vite assets guide](https://vitejs.dev/guide/assets) for details.
+<p class="alert warning">Per fermare il server, premi `ctrl-c` nella command line.</p>
 
 
-- The `public/` folder is where you put assets that you want to be available to your page but aren't loaded and compiled through the JavaScript (i.e., they're not "source code"). For example, this is where you would put an `img/` folder to hold pictures to show. The `public/` folder be treated as the "root" of the webpage; a file found at `public/img/picture.jpg` would be referenced in your DOM as `img/picture.jpg`&mdash;using a path relative to the `public/` folder. See [the Vite assets guide](https://vitejs.dev/guide/assets) for details.
+### Struttura del Progetto {-}
+Una React app appena creata usando il template `react` di Vite conterra' diversi file, tra cui i seguenti:
 
-    You can alternatively put assets into the `src/assets` folder, and then `import` them into the JavaScript (treating those images as "source code"). I don't recommend this when starting out; it's simpler to put images into the `public` folder and delete the `src/assets` folder.
+- Il file `index.html` e' la home page della tua application. Se guardi questo file, puoi vedere che contiene quasi nessun contenuto HTML&mdash;solo il `<head>`, il `<body>` e un singolo `<div id="root">`. Questo perche' l'intera app sara' definita usando codice React JavaScript; questo contenuto verra' poi iniettato in quell'elemento `#root`. _Tutto il _contenuto_ della pagina sara' definito come JavaScript components&mdash;creerai l'intera pagina nei file JavaScript. Quindi in pratica, raramente modifichi il file `index.html` (oltre a cambiare metadata come il `<title>` e la favicon).
 
-- The two config files `eslint.config.json` and `vite.config.js` includes configuration information for eslint (for styling checks) and Vite respectively. You don't need to modify either of these, but do not delete them!
+    Il file `index.html` carica anche uno script `/src/main.jsx`. L'estensione `.jsx` rappresenta codice _JSX_ (vedi sotto); i project Vite chiamano convenzionalmente questo file `main.jsx` invece di `index.js`. Tutti i file JavaScript si trovano nella cartella `src/`
 
-Overall, you'll mostly be working with the `.jsx` and `.css` files in the `src/` folder as you develop a React app.
+    Il file `index.html` puo' includere anche elementi `<link>` nel `<head>` per caricare CSS. Tuttavia, e' molto preferibile importare qualsiasi contenuto CSS tramite codice _JavaScript_ (anche se Vite funziona con entrambi gli approcci). Tutti i file CSS sono posizionati nella cartella `src/`.
+
+- La cartella `src/` contiene il source code della tua React app. L'app viene avviata dallo script `main.jsx`, ma questo script importa e usa altri JavaScript modules (come lo script `App.jsx` fornito, che definisce il modulo "App"). In generale, scriverai React apps implementando components in uno o piu' moduli (per esempio, `App.jsx`, `AboutPage.jsx`), che saranno poi importati e usati dal file `main.jsx`. Vedi la sezione [_Components_]{#components} sotto per i dettagli.
+
+    Quando avvii una nuova React app, consiglio di cancellare _tutto_ il contenuto di `main.jsx` e `App.jsx` per partire da zero.
+
+- I file `src/index.css` e `src/App.css` sono entrambi file CSS usati per stilare rispettivamente l'intera pagina e il singolo component "App". Non ti servono necessariamente entrambi i file; consiglio di tenere solo un file `index.css` mentre inizi. Nota che i file CSS sono importati _dall'interno dei file JavaScript_ (con ad es. `import './index.css'` nel file `src/main.jsx`). Questo perche' il build system di Vite sa come caricare i file CSS, quindi puoi "includerli" tramite JavaScript invece di doverli linkare in HTML.
+
+    Se vuoi caricare uno stylesheet esterno, come Bootstrap o Font-Awesome, puoi ancora farlo modificando il file `public/index.html`&mdash;ma e' meglio installarli come moduli e importarli tramite JavaScript. Vedi la documentazione per [_Adding Bootstrap_](https://facebook.github.io/create-react-app/docs/adding-bootstrap) per un esempio.
+
+    - Ricorda che tutto il CSS e' globale&mdash;le regole specificate in qualsiasi file `.css` si applicheranno all'intera app (cioe', le regole di `App.css` si applicheranno anche a components diversi da quelli in `App.js`). Il CSS e' spezzato in piu' file per cercare di mantenere le regole organizzate. In alternativa, puoi mettere tutte le regole CSS in un singolo file, usando uno schema di naming o altre tecniche per mantenerle organizzate. Se ti interessano modi per evitare che il CSS si applichi globalmente, guarda l'uso di [CSS in JS](#css-in-js).
+
+- La cartella `src/assets` puo' essere usata per salvare media assets che vengono importati direttamente; consiglio di eliminarla e di salvare invece gli assets nella cartella `public`. Vedi [la guida agli assets di Vite](https://vitejs.dev/guide/assets) per i dettagli.
+
+
+- La cartella `public/` e' dove metti gli assets che vuoi rendere disponibili nella pagina ma che non sono caricati e compilati tramite JavaScript (cioe', non sono "source code"). Per esempio, qui potresti mettere una cartella `img/` per contenere immagini da mostrare. La cartella `public/` e' trattata come la "root" della webpage; un file trovato in `public/img/picture.jpg` sarebbe referenziato nel DOM come `img/picture.jpg`&mdash;usando un path relativo alla cartella `public/`. Vedi [la guida agli assets di Vite](https://vitejs.dev/guide/assets) per i dettagli.
+
+    In alternativa puoi mettere gli assets nella cartella `src/assets`, e poi `import`arli nel JavaScript (trattando quelle immagini come "source code"). Non lo consiglio quando inizi; e' piu' semplice mettere le immagini nella cartella `public` ed eliminare la cartella `src/assets`.
+
+- I due file di config `eslint.config.json` e `vite.config.js` includono informazioni di configurazione per eslint (per gli styling checks) e per Vite rispettivamente. Non devi modificare nessuno dei due, ma non eliminarli!
+
+In generale, lavorerai soprattutto con i file `.jsx` e `.css` nella cartella `src/` mentre sviluppi una React app.
 
 
 ## JSX
-At its core, React is simply a DOM creation and rendering library&mdash;it allows you to declare new DOM elements (e.g., make a new `<h1>`) and then add that element to the webpage. This is similar to the process you might do with the DOM or the jQuery library:
+Al suo core, React e' semplicemente una library per creare e renderizzare il DOM&mdash;ti permette di dichiarare nuovi elementi DOM (per esempio, creare un nuovo `<h1>`) e poi aggiungere quell'elemento alla webpage. Questo e' simile al processo che potresti fare con il DOM o con la library jQuery:
 
 ```javascript
-//Create and render a new `<h1>` element using DOM methods
-const element = document.createElement('hi'); //create element
-element.id = 'hello'; //specify attributes
+//Crea e renderizza un nuovo elemento `<h1>` usando metodi DOM
+const element = document.createElement('hi'); //crea l'elemento
+element.id = 'hello'; //specifica gli attributes
 element.classList.add('my-class');
-element.textContent = 'Hello World!'; //specify content
+element.textContent = 'Hello World!'; //specifica il contenuto
 
 document.getElementById('root').appendChild(element);
 ```
 
-The React library provides a set of functions that do similar work:
+La library React fornisce un set di functions che fanno un lavoro simile:
 
 ```javascript
-//Import required functions from the React libraries
+//Importa le functions richieste dalle libraries React
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-//Create a new `<h1>` element using React methods. This function takes
-//arguments indicating what the element should be
+//Crea un nuovo elemento `<h1>` usando metodi React. Questa function prende
+//argomenti che indicano cosa dovrebbe essere l'elemento
 const msgElem = React.createElement(
-  //html tag
+  //tag html
   'h1',
-  //object of attributes
+  //object di attributes
   { id: 'hello', className: 'myClass' },
-  //content
+  //contenuto
   'Hello World!'
 );
 
-//Create a "React root" out of the `#root` elemment
+//Crea una "React root" dall'elemento `#root`
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-//render the React element at that root
+//renderizza l'elemento React in quel root
 root.render(element)
 ```
 
-React's `React.createElement()` lets you create an element (a "React element", not a pure DOM element&mdash;they are different!) by specifying the element type/tag, the content, and an object that maps from attribute names to values&mdash;all as a single statement. The **`ReactDOM.createRoot()`** function creates a context in which a React element can then be rendered (shown on the screen)&mdash;usually placing that in the `div#root` on the page. The root's `render()` method will then take a particular React element and insert it as the child content of the React root element . Note that `root.render()` function _replaces_ the content of the root DOM element&mdash;it's a "replace" not an "append" operation.
+La function `React.createElement()` di React ti permette di creare un elemento (un "React element", non un elemento DOM puro&mdash;sono diversi!) specificando il tipo/tag, il contenuto e un object che mappa i nomi degli attribute ai values&mdash;tutto in una singola riga. La function **`ReactDOM.createRoot()`** crea un contesto in cui un React element puo' essere renderizzato (mostrato a schermo)&mdash;di solito posizionandolo nel `div#root` della pagina. Il metodo `render()` del root prende un React element specifico e lo inserisce come contenuto figlio dell'elemento root. Nota che la function `root.render()` _sostituisce_ il contenuto dell'elemento DOM root&mdash;e' un'operazione di "replace", non di "append".
 
-- Notice that the `class` attribute is specified with the **`className`** property. This is because `class` is a reserved keyword in JavaScript (it declares a [class](#es6-classes)).
+- Nota che l'attribute `class` e' specificato con la property **`className`**. Questo perche' `class` e' una keyword riservata in JavaScript (dichiara una [class](#es6-classes)).
 
-<p class="alert alert-warning">The `createRoot()` function was introduced with React v18 (March 2022). Previous versions of React used the `ReactDOM.render()` function directly instead of explicitly creating a root context. Using `ReactDOM.render()` will cause your app to function as if using React v17, preventing some advanced features from working.</p>
+<p class="alert alert-warning">La function `createRoot()` e' stata introdotta con React v18 (March 2022). Le versioni precedenti di React usavano direttamente `ReactDOM.render()` invece di creare esplicitamente un root context. Usare `ReactDOM.render()` fara' funzionare la tua app come se usasse React v17, impedendo ad alcune feature avanzate di funzionare.</p>
 
-The `React.createElement()` function is wordy and awkward to type, particularly if you'll be defining a lot of DOM elements (and in React, you define the entire application in JavaScript!). Thus React lets you create and define elements using [**JSX**](https://reactjs.org/docs/introducing-jsx.html). JSX is a _syntax extension_ to JavaScript: it provide a new way of writing the language&mdash;in particular, the ability to write bare HTML tags (finally!):
+La function `React.createElement()` e' verbosa e scomoda da digitare, soprattutto se devi definire molti elementi DOM (e in React definisci l'intera application in JavaScript!). Quindi React ti permette di creare e definire elementi usando [**JSX**](https://reactjs.org/docs/introducing-jsx.html). JSX e' una _syntax extension_ di JavaScript: fornisce un nuovo modo di scrivere il linguaggio&mdash;in particolare, la possibilita' di scrivere tag HTML nudi (finalmente!):
 
 ```jsx
-//Create a new `<h1>` element using JSX syntax
+//Crea un nuovo elemento `<h1>` usando la sintassi JSX
 const element = <h1 id="hello" className="myClass">Hello World</h1>;
 
-//Create a "React root" out of the `#root` elemment
-//then render the React element at that root
+//Crea una "React root" dall'elemento `#root`
+//poi renderizza l'elemento React in quel root
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(element)
 ```
 
-The value assigned to the `element` variable is _not_ a String (it has no quotes around it). Instead it is a _syntactical shortcut_ for calling the `React.createElement()` function&mdash;the HTML-like syntax can be automatically translated into the actual JavaScript for the method call, allowing you to write the simpler version.
+Il value assegnato alla variable `element` _non_ e' una String (non ha virgolette attorno). Invece e' uno _syntactical shortcut_ per chiamare `React.createElement()`&mdash;la sintassi simile a HTML puo' essere tradotta automaticamente nel JavaScript reale della method call, permettendoti di scrivere una versione piu' semplice.
 
-- Notice that there is still a semicolon (`;`) at the end of the first line. You're not actually writing HTML, but defining a JavaScript value using syntax that mostly _looks_ like HTML!
+- Nota che c'e' ancora un punto e virgola (`;`) alla fine della prima riga. Non stai davvero scrivendo HTML, ma definendo un value JavaScript usando una sintassi che _sembra_ HTML!
 
-- JSX can be used to define nested elements; you are not limited to a single element:
+- JSX puo' essere usato per definire elementi annidati; non sei limitato a un solo elemento:
 
     ```jsx
-    //JSX can define nested elements
+    //JSX puo' definire elementi annidati
     const header = (
       <header className="banner">
         <h1>Hello world!</h1>
@@ -169,76 +169,76 @@ The value assigned to the `element` variable is _not_ a String (it has no quotes
     );
     ```
 
-    It's very common to put elements on their own lines, intended as if you were writing HTML directly. If you do so, you'll need to surround the entire JSX expression in parentheses `()` to tell the interpreter that the line break shouldn't be read as implying a semicolon!
+    E' molto comune mettere gli elementi su righe separate, come se stessi scrivendo HTML direttamente. Se lo fai, devi racchiudere l'intera espressione JSX tra parentesi `()` per dire all'interpreter che il line break non implica un punto e virgola!
 
-- Note that similar to XML, JSX syntax requires that all elements be closed; thus you need to use a closing slash at the end of empty elements:
+- Nota che, come in XML, la sintassi JSX richiede che tutti gli elementi siano chiusi; quindi devi usare uno slash di chiusura alla fine degli elementi vuoti:
 
     ```jsx
-    //JSX elements must be closed
+    //Gli elementi JSX devono essere chiusi
     const picture = <img src="my_picture.png" alt="a picture" />
     ```
 
-Since JSX is not actually valid JavaScript (you can't normally include bare HTML), you need to "translate" it into real JavaScript so that the browser can understand and execute it. This process is called **transpiling**, and is usually performed using a _compiler_ program called [**Babel**](https://babeljs.io/). Babel is yet _another_ piece of the toolchain used to create React applications; however, all the details about transpiling with Babel are automatically handled by the Create React App scaffolding. "Transpile with Babel" is one of the steps performed by Webpack, which is included and run from the scripts provided by Create React App (whew!).
+Dato che JSX non e' JavaScript valido (non puoi includere HTML nudo normalmente), devi "tradurre" JSX in vero JavaScript affinche' il browser possa capirlo ed eseguirlo. Questo processo si chiama **transpiling** e di solito e' eseguito da un programma _compiler_ chiamato [**Babel**](https://babeljs.io/). Babel e' un _altro_ pezzo della toolchain usata per creare React applications; tuttavia, tutti i dettagli sul transpiling con Babel sono gestiti automaticamente dallo scaffolding di Create React App. "Transpile with Babel" e' uno dei passaggi eseguiti da Webpack, che e' incluso ed eseguito dagli script forniti da Create React App (whew!).
 
-- Yes, chaining tools together like this is [how modern web development works](https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f).
+- Si', concatenare tool in questo modo e' [come funziona il modern web development](https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f).
 
-In short: you write JSX code, and when you run your app with Create React App it will be turned into regular old JavaScript code that your browser can actually understand.
+In breve: scrivi codice JSX, e quando esegui la tua app con Create React App viene trasformato in normale JavaScript che il browser puo' capire davvero.
 
-### Inline Expressions {-}
-JSX allows you to include JavaScript expressions (such as variables you want to reference) directly inside of the HTML-like syntax. You do this by putting the expression inside of curly braces (**`{}`**):
+### Espressioni Inline {-}
+JSX ti permette di includere espressioni JavaScript (come variables a cui vuoi riferirti) direttamente dentro la sintassi tipo HTML. Lo fai mettendo l'espressione dentro le parentesi graffe (**`{}`**):
 
 ```jsx
 const message = "Hello world!";
 const element = <h1>{message}</h1>;
 ```
 
-When the element is rendered, the expression and the surrounding braces will be replaced by the value of the expression. So the above JSX would be rendered as the HTML: `<h1>Hello World</h1>`.
+Quando l'elemento viene renderizzato, l'espressione e le parentesi graffe saranno sostituite dal value dell'espressione. Quindi il JSX sopra verrebbe renderizzato come HTML: `<h1>Hello World</h1>`.
 
-You can put any arbitrary expression inside of the `{}`&mdash;that is, any JavaScript code that resolves to a single value (think: anything that you could assign to a variable). This can include math operations, function calls, [ternary expressions](https://en.wikipedia.org/wiki/%3F:), or even an anonymous function values (see the next chapter for examples):
+Puoi mettere qualsiasi espressione dentro `{}`&mdash;cioe' qualsiasi codice JavaScript che risolve a un singolo value (pensa: qualsiasi cosa che potresti assegnare a una variable). Questo puo' includere operazioni matematiche, function calls, [ternary expressions](https://en.wikipedia.org/wiki/%3F:), o anche values di anonymous functions (vedi il prossimo capitolo per esempi):
 
 ```jsx
-//Including an inline expression in JSX. The expressions can be mixed directly
-//into the HTML
+//Includere una inline expression in JSX. Le espressioni possono essere mescolate direttamente
+//nell'HTML
 const element = <p>A leap year has {(365 + 1) * 24 * 60} minutes!</p>;
 ```
 
-You can use inline expressions most anywhere in JSX, including as the value of an attribute. You can even declare element attributes as an object and then use the _spread operator_ (`...`) to specify them as an inline expression.
+Puoi usare inline expressions praticamente ovunque in JSX, inclusi come value di un attribute. Puoi perfino dichiarare gli attributes dell'elemento come un object e poi usare lo _spread operator_ (`...`) per specificarli come inline expression.
 
 ```jsx
-//Define a JavaScript variable
+//Definisci una JavaScript variable
 const imgUrl = 'path/to/my_picture.png';
 
-//Assign that variable to an element attribute
+//Assegna quella variable a un attribute dell'elemento
 const pic = <img src={imgUrl} alt="A picture" />;
 
-//Define an object of element attributes
+//Definisci un object di attributes dell'elemento
 const attributes = {
     src: 'path/to/other_picture.png',
     alt: 'Another picture'
 };
 
-//A DOM element that includes those attributes, among others.
-//The spread operator applies the property names as attributes of the element.
+//Un elemento DOM che include quegli attributes, tra gli altri.
+//Lo spread operator applica i nomi delle properties come attributes dell'elemento.
 const otherPic = <img {...attributes} className="my-class" />;
 ```
 
-Notice that when specifying a JavaScript expression as the value of an attribute (as with the `src` attribute of an `<img>`), you do not include quotes around the `{}`. The value of the inline expression is already a string, and it is that string that you're assigning to the attribute. Inline expressions aren't "copy-pasted" into the HTML-style of JSX; rather the values of those expressions are assigned to the object properties represented by the HTML-style attributes.
+Nota che quando specifichi un'espressione JavaScript come value di un attribute (come l'attribute `src` di un `<img>`), non devi includere virgolette attorno a `{}`. Il value dell'inline expression e' gia' una string, ed e' quella string che assegni all'attribute. Le inline expressions non vengono "copiate e incollate" nello stile HTML di JSX; piuttosto i values di quelle espressioni vengono assegnati alle properties dell'object rappresentate dagli attributes HTML-style.
 
-Importantly, the elements defined with JSX are _also_ valid JavaScript expressions! Thus you can use inline expressions to include one element inside of another.
+Importante: gli elementi definiti con JSX sono _anche_ espressioni JavaScript valide! Quindi puoi usare inline expressions per includere un elemento dentro un altro.
 
 ```jsx
-//Define variable content to display. One is a string, one is a React element.
-const greetingString = "Good morning!";
-const iconElem = <img src="sun.png" alt="A wide awake sun" />;
+//Definisci il contenuto da mostrare. Uno e' una string, uno e' un React element.
+const greetingString = "Buongiorno!";
+const iconElem = <img src="sun.png" alt="Un sole ben sveglio" />;
 
-//Conditionally change values based on an `isEvening` value (defined elsewhere)
+//Cambia i values in modo condizionale in base a un value `isEvening` (definito altrove)
 if(isEvening) {
-    greetingString = "Good evening!";
-    iconElem = <img src="moon.png" alt="A dozing moon" />;
+    greetingString = "Buona sera!";
+    iconElem = <img src="moon.png" alt="Una luna che sonnecchia" />;
 }
 
-//Include the variables inline in another React element
-//Notice how the `icon` element is included as a child of the `<header>`
+//Includi le variables inline in un altro React element
+//Nota come l'elemento `icon` e' incluso come child dell'`<header>`
 const header = (
     <header>
       <h1>{greetingString}</h1>
@@ -247,14 +247,14 @@ const header = (
 );
 ```
 
-If you include an _array_ of React elements in an inline expression, those those elements will be interpreted as all being children of the parent element (siblings of each other):
+Se includi un _array_ di React elements in una inline expression, quegli elementi saranno interpretati come children del parent element (siblings tra loro):
 
 ```jsx
-//An array of React elements. Could also produce via a loop or function
-const listItems = [<li>lions</li>, <li>tigers</li>, <li>bears</li>];
+//Un array di React elements. Potresti anche produrlo tramite un loop o una function
+const listItems = [<li>leoni</li>, <li>tigri</li>, <li>orsi</li>];
 
-//Include the array as an inline expression; each `<li>` element will be
-//included as a child of the `<ul>`
+//Includi l'array come inline expression; ogni elemento `<li>` sara'
+//incluso come child dell'`<ul>`
 const list = (
   <ul>
     {listItems}
@@ -262,36 +262,36 @@ const list = (
 );
 ```
 
-The above sample would produce the HTML:
+L'esempio sopra produrrebbe l'HTML:
 
 ```html
 <ul>
-    <li>lions</li>
-    <li>tigers</li>
-    <li>bears</li>
+    <li>leoni</li>
+    <li>tigri</li>
+    <li>orsi</li>
 </ul>
 ```
 
-This is particularly useful when using a variable number of elements, or generating elements directly from data (see the [_Props and Composition_](#props-and-composition) section below).
+Questo e' particolarmente utile quando usi un numero variabile di elementi, o generi elementi direttamente dai data (vedi la sezione [_Props and Composition_](#props-and-composition) sotto).
 
-As a final note: you _cannot_ include HTML comments (`<!-- -->`) inside of JSX, as this isn't actually an element type. You also can't use inline JavaScript comments (`//`), because even multi-line JSX is still a single expression (that's why the `<header>` example above is written in parentheses). Thus in order to include a comment in JSX, you can use a _JavaScript block comment_ (`/* */`) inside of an inline expression:
+Nota finale: _non_ puoi includere commenti HTML (`<!-- -->`) dentro JSX, perche' non e' un vero element type. Non puoi neppure usare commenti JavaScript inline (`//`), perche' anche JSX multi-linea e' comunque una singola espressione (per questo l'esempio `<header>` sopra e' scritto tra parentesi). Quindi, per includere un commento in JSX, puoi usare un _JavaScript block comment_ (`/* */`) dentro una inline expression:
 
 ```jsx
 const main = (
     <main>
-      { /* A comment: the main part of the page goes here... */ }
+      { /* Un commento: la parte principale della pagina va qui... */ }
     </main>
 )
 ```
 
-## React Components
-When creating React applications, you use JSX to define the HTML content of your webpage directly in the JavaScript. However, writing all of the HTML out as one giant JSX expression doesn't provide much advantage over just putting that content in `.html` files in the first place.
+## Component React
+Quando crei React applications, usi JSX per definire il contenuto HTML della web page direttamente in JavaScript. Tuttavia, scrivere tutto l'HTML come una singola grande espressione JSX non offre grandi vantaggi rispetto a mettere quel contenuto nei file `.html` fin dall'inizio.
 
-Instead, the React library encourages and enables you to describe your web page in terms of _components_, instead of just HTML elements. In this context, a **Component** is a "piece" of a web page. For example, in a social media application, each "status post" on a timeline might be a different Component, the "like" button may be its own Component, the "what are you thinking about?" form would be a Component, the page navigation would be a Component, and so forth. Thus you can almost think of a Component as a semantic abstraction of a `<div>` element&mdash;a "chunk" of the page. But like with `<div>`s, a Component can be seen as made of of _other_ Components&mdash;you might have a "Timeline" Component that is made up of many "StatusPost" Components, and each StatusPost Component may include a "ReactionButton" Component.
+Invece, la libreria React incoraggia e permette di descrivere la web page in termini di _components_, invece che di soli elementi HTML. In questo contesto, un **Component** e' un "pezzo" della web page. Per esempio, in una social media application, ogni "status post" in una timeline puo' essere un Component diverso, il button "like" puo' essere un Component a se', il form "what are you thinking about?" sarebbe un Component, la navigazione della pagina sarebbe un Component, e cosi' via. Quindi puoi pensare a un Component come a un'astrazione semantica di un elemento `<div>`&mdash;un "chunk" della pagina. Ma come per i `<div>`, un Component puo' essere visto come composto da _altri_ Components&mdash;potresti avere un Component "Timeline" composto da molti Components "StatusPost", e ogni StatusPost potrebbe includere un Component "ReactionButton".
 
-Thinking about a page in terms of Components instead of HTML elements can make it much easier to design and reason about your page. You don't need to worry about the code syntax or the specific elements to use, you can just think of your page in terms of its overall layout and content&mdash;what needs to be on the page, and how that content is organized&mdash;the same way you might mock up a web page in a graphic design program. See the documentation article [_Thinking in React_](https://beta.reactjs.org/learn/thinking-in-react) for an example of how to design a page in terms of Components.
+Pensare a una pagina in termini di Components invece che di elementi HTML rende molto piu' semplice progettare e ragionare sulla pagina. Non devi preoccuparti della sintassi o degli elementi specifici da usare; puoi pensare alla pagina in termini di layout e contenuto complessivi&mdash;cosa deve esserci sulla pagina e come quel contenuto e' organizzato&mdash;come faresti in un programma di graphic design. Vedi l'articolo [_Thinking in React_](https://beta.reactjs.org/learn/thinking-in-react) per un esempio di come progettare una pagina in termini di Components.
 
-React enables you to _implement_ your page in terms of [explicit Components](https://reactjs.org/docs/components-and-props.html) by providing a way for you to define your own XML elements! Thus you can define a `<Timeline>` element, which has multiple `<StatusPost>` elements as children. Components will be able to be included directly in your JSX, made up of and mixed in with standard HTML elements.
+React ti permette di _implementare_ la pagina in termini di [explicit Components](https://reactjs.org/docs/components-and-props.html) fornendo un modo per definire i tuoi elementi XML! Quindi puoi definire un elemento `<Timeline>` che ha multipli `<StatusPost>` come children. I Components possono essere inclusi direttamente nel JSX, composti e mescolati con elementi HTML standard.
 
 <div class="row">
 <div class="column col2">
@@ -318,17 +318,17 @@ React enables you to _implement_ your page in terms of [explicit Components](htt
 </div>
 </div>
 
-React components are most commonly defined using **function components**: JavaScript functions that _return_ the DOM elements (the JSX) that will be rendered on the screen to show that Component:
+I React components sono definiti piu' comunemente usando **function components**: functions JavaScript che _restituiscono_ gli elementi DOM (il JSX) che verranno renderizzati sullo schermo per mostrare il Component:
 
 ```jsx
-//Define a Component representing information about a user
+//Definisci un Component che rappresenta informazioni su un user
 function UserInfoCard(props) {
-  //This is an everyday function; you can include any code you want here
-  //including variables, if statements, loops, etc
+  //Questa e' una function normale; puoi includere qui qualsiasi codice vuoi
+  //incluse variables, if statements, loops, ecc.
   const name = "Ethel";
   const descriptor = "Aardvark";
 
-  //Return a React element (JSX) that is how the Component will appear
+  //Restituisci un React element (JSX) che e' come apparira' il Component
   return (
     <div>
       <h1>{name}</h1>
@@ -337,22 +337,22 @@ function UserInfoCard(props) {
   )
 }
 
-//Create a new value (a React element)
-//This syntax in effect "calls" the function
+//Crea un nuovo value (un React element)
+//Questa sintassi di fatto "chiama" la function
 const infoElement = <UserInfoCard />;
 
-//Show the element in the web page (inside #root)
+//Mostra l'elemento nella web page (dentro #root)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(infoElement);
 ```
 
-This function defines a new Component (think: a new HTML element!) called `UserInfoCard`. Things to note about defining this component:
+Questa function definisce un nuovo Component (pensa: un nuovo elemento HTML!) chiamato `UserInfoCard`. Cose da notare sulla definizione di questo component:
 
-1. A Component function **must** be named starting with a Capital letter (and usually in CamelCase). This is to distinguish a custom component from a "normal" React element.
+1. Una Component function **deve** avere un nome che inizia con una lettera maiuscola (e di solito in CamelCase). Questo serve a distinguere un component custom da un normale elemento React.
 
-    - If you see a function with a Capitalized name, know that it's actually a defining a Component!
+    - Se vedi una function con un nome capitalizzato, sappi che sta definendo un Component!
 
-    - It's also possible for function components to be defined as anonymous arrow functions assigned to `const` variables:
+    - E' anche possibile definire function components come anonymous arrow functions assegnate a variables `const`:
 
         ```jsx
         const Example = (props) => {
@@ -360,17 +360,17 @@ This function defines a new Component (think: a new HTML element!) called `UserI
         }
         ```
 
-        This provides some benefits in terms of scoping (because of the arrow function), but otherwise makes Components even harder to read&mdash;its not as readily obviously that this is a function and a Component. You should stick to defining component functions using the `function` keyword (and not arrow functions) for readability, but be aware of the alternate approach which is used in some libraries and examples.
+        Questo offre alcuni vantaggi in termini di scope (per via della arrow function), ma rende i Components piu' difficili da leggere&mdash;non e' subito ovvio che sia una function e un Component. Dovresti restare sul definire i component functions usando la keyword `function` (e non arrow functions) per leggibilita', ma sii consapevole dell'approccio alternativo usato in alcune librerie ed esempi.
 
-2. Component functions take in a single argument representing the [props](#props) (discussed below). As such by convention it is **always** named **`props`** (with an **s**!). While it's possible to omit this argument if it isn't used (as you can with all JavaScript functions), best practice is to always include it.
+2. Le Component functions prendono un singolo argomento che rappresenta i [props](#props) (discusso sotto). Per convenzione e' **sempre** chiamato **`props`** (con la **s**!). Anche se e' possibile omettere questo argomento se non viene usato (come per tutte le functions JavaScript), la best practice e' includerlo sempre.
 
-3. A component function is a regular function like any other that you've written. That means that it can and often does do more than just return a single value! You can include additional code statements (variable declarations, if statements, loops, etc) in order to calculate the values you'd like to include in inline expressions in the returned JSX.
+3. Una component function e' una function normale come qualsiasi altra tu abbia scritto. Questo significa che puo' (e spesso lo fa) fare piu' che restituire un singolo value! Puoi includere statements aggiuntivi (dichiarazioni di variable, if statements, loops, ecc.) per calcolare i values che vuoi includere nelle inline expressions del JSX restituito.
 
-    <div class="alert alert-warning">**Style requirement**: perform any complex logic&mdash;including functional looping such as with `map()` or `filter()`&mdash;outside of the `return` statement. Keep the `return` statement as simple as possible so it remains readable&mdash;and more importantly _debuggable_ (so you can use things like `console.log` statements to check intermediate values before they are returned). **NEVER** include an inline callback function so that you have a `return` statement inside of a `return` statement!</div>
+    <div class="alert alert-warning">**Requisito di stile**: esegui qualsiasi logica complessa&mdash;incluso il functional looping con `map()` o `filter()`&mdash;fuori dallo statement `return`. Mantieni il `return` il piu' semplice possibile cosi' rimane leggibile&mdash;e soprattutto _debuggable_ (cosi' puoi usare `console.log` per controllare valori intermedi prima del return). **NEVER** includere una inline callback function che porta ad avere un `return` dentro un `return`!</div>
 
-4. A Component function can only return a _single_ React element (you can't return more than one value at a time from a JavaScript function). However, that single React element can have as many children as you wish. It's very common to "wrap" all of the content you want a component to include in a single `<div>` to return, as in the above example.
+4. Una Component function puo' restituire solo un _singolo_ React element (non puoi restituire piu' di un value alla volta da una function JavaScript). Tuttavia, quel singolo React element puo' avere tutti i children che vuoi. E' molto comune "wrappare" tutto il contenuto che vuoi includere nel component in un singolo `<div>`, come nell'esempio sopra.
 
-    If you don't want to add an extra div for some reason, it's also possible to "wrap" content in a [Fragment](https://reactjs.org/docs/fragments.html), which can be declared using a shortcut syntax that looks like an element with no name:
+    Se per qualche motivo non vuoi aggiungere un div extra, puoi anche "wrappare" il contenuto in un [Fragment](https://reactjs.org/docs/fragments.html), che puo' essere dichiarato con una sintassi shortcut che sembra un elemento senza nome:
 
     ```jsx
     function FragmentExample(props) {
@@ -383,55 +383,55 @@ This function defines a new Component (think: a new HTML element!) called `UserI
     }
     ```
 
-Once it has been defined, a Component can then be created in JSX using XML-style syntax, just like any other element (i.e., as `<UserInfoCard />`). In effect, this "calls" the function component in order to create it&mdash;you never call the function directly. You can use the created Component like any other React element, such as including it as a child of other HTML (e.g., nest it inside of a `<div>`). A Component thus _encapsulates_ a chunk of HTML, and you can almost think of it as a "shortcut" for including that HTML.
+Una volta definito, un Component puo' essere creato in JSX usando la sintassi XML-style, proprio come qualsiasi altro elemento (ad es. `<UserInfoCard />`). In pratica, questo "chiama" la function component per crearla&mdash;non chiami mai la function direttamente. Puoi usare il Component creato come qualsiasi altro React element, ad esempio includendolo come child di altro HTML (ad es. annidandolo in un `<div>`). Un Component quindi _incapsula_ un pezzo di HTML, e puoi quasi pensarlo come una "scorciatoia" per includere quell'HTML.
 
-<p class="alert alert-warning">**Never** call a component function as a function with `MyComponent()`! **Always** render as an element with `<MyComponent/>`.</p>
+<p class="alert alert-warning">**Never** chiamare una component function come function con `MyComponent()`! **Always** renderizzala come elemento con `<MyComponent/>`.</p>
 
-Because Components are instantiated as React elements, that means that you can use them anywhere you would use a normal HTML element&mdash;including in the returned value of another component! This is called _composing_ components&mdash;you are specifying that one component is "composed" (made up of) others:
+Dato che i Components sono istanziati come React elements, puoi usarli ovunque useresti un normale elemento HTML&mdash;incluso nel value restituito da un altro component! Questo si chiama _composing_ components&mdash;stai specificando che un component e' "composed" (composto) da altri:
 
 ```jsx
-//A component representing a message
+//Un component che rappresenta un messaggio
 function HelloMessage(props) {
   return <p>Hello World!</p>;
 }
 
-//A component representing another message
+//Un component che rappresenta un altro messaggio
 function GoodbyeMessage(props) {
   return <h1>See ya later!</h1>;
 }
 
-//A component that is composed of (renders) other components!
+//Un component che e' composto da (renderizza) altri components!
 function MessageList(props) {
   return (
     <div>
       <h1>Messages for you</h1>
-      <HelloMessage /> {/* include a HelloMessage component */}
-      <GoodbyeMessage /> {/* include a GoodbyeMessage component */}
+      <HelloMessage /> {/* include un component HelloMessage */}
+      <GoodbyeMessage /> {/* include un component GoodbyeMessage */}
     </div>
   );
 }
 
-//Render an instance of the "top-level" ("outer") component
+//Renderizza una instance del component "top-level" ("outer")
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<MessageList />);
 ```
 
-In the above example, the `MessageList` Component is composed of (renders) instances of the `HelloMessage` and `GoodbyeMessage` Components; when the `MessageList` is displayed, the interpreter will create the two other components, rendering each in turn. In the end, all of the content displayed will be standard HTML elements&mdash;they've just been organized into Components.
+Nell'esempio sopra, il Component `MessageList` e' composto da (renderizza) istanze dei Components `HelloMessage` e `GoodbyeMessage`; quando `MessageList` viene mostrato, l'interpreter crea gli altri due components e renderizza ciascuno. Alla fine, tutto il contenuto mostrato sara' fatto di elementi HTML standard&mdash;semplicemente organizzati in Components.
 
-- Components are usually instantiated as empty elements, though it is possible to have them [include child elements](https://reactjs.org/docs/composition-vs-inheritance.html#containment).
+- I Components sono di solito istanziati come elementi vuoti, anche se e' possibile [includere child elements](https://reactjs.org/docs/composition-vs-inheritance.html#containment).
 
-- Notice that you can and do mix standard HTML elements and Components together; Components are just providing a useful abstraction for organizing content, logic, and data!
+- Nota che puoi (e lo fai) mescolare elementi HTML standard e Components insieme; i Components forniscono solo una utile astrazione per organizzare contenuto, logica e data!
 
-In practice, React applications are made up of many different Components&mdash;dozens or even hundreds depending on the size of the app! The "top-most" component is commonly called **`App`** (since it represents the whole "app"), with the `App`'s returned value instantiating further components, each of which represents a different part of the page.
+In pratica, le React applications sono composte da molti Components&mdash;decine o centinaia a seconda della dimensione dell'app! Il component piu' in alto e' spesso chiamato **`App`** (perche' rappresenta l'intera "app"), e il value restituito da `App` istanzia ulteriori components, ognuno dei quali rappresenta una parte diversa della pagina.
 
 
-The `App` component will represent the entirety of the website&mdash;all of your app's content will be defined in React components (which will be rendered as children of the `<App>`). But since the React components will be inserted inside of the `<div id="root">` element that is already in the `index.html` file, you _do not_ ever include `<body>` or `<head>` elements in your React components&mdash;those elements are already defined in the HTML file itself, so don't get created by React!
+Il component `App` rappresentera' l'intero website&mdash;tutto il contenuto dell'app sara' definito in React components (che verranno renderizzati come children di `<App>`). Ma dato che i React components saranno inseriti dentro l'elemento `<div id="root">` gia' presente in `index.html`, _non_ devi mai includere elementi `<body>` o `<head>` nei tuoi React components&mdash;questi elementi sono gia' definiti nel file HTML, quindi non vengono creati da React!
 
-See [_Props and Composition_](#props-composition) below for examples of common ways that React components are composed.
+Vedi [_Props and Composition_](#props-composition) sotto per esempi comuni di composizione dei React components.
 
 
 #### Strict Mode {-}
-If you look at the starter code generated by Vite, you will see a common pattern of "wrapping" a rendered `<App>` component in a `<React.StrictMode>` component:
+Se guardi lo starter code generato da Vite, vedrai un pattern comune di "wrapping" di un `<App>` renderizzato dentro un component `<React.StrictMode>`:
 
 ```jsx
 import React from 'react';
@@ -445,35 +445,35 @@ root.render(
 );
 ```
 
-The [**`StrictMode`**](https://reactjs.org/docs/strict-mode.html) component is provided by React (it's a property of the `React` object imported in the first line of the above example). Kind of like the `use strict` declaration for JavaScript, this component enables a number of additional error checking that React can perform&mdash; though most of the issues it identifies are due to using out-of-date practices or errors with features not covered in this course. It can be useful, though it will cause duplicated output of some `console.log()` statements and is not strictly necessary.
+Il component [**`StrictMode`**](https://reactjs.org/docs/strict-mode.html) e' fornito da React (e' una property dell'object `React` importato nella prima riga dell'esempio sopra). Un po' come la dichiarazione `use strict` in JavaScript, questo component abilita ulteriori controlli di errore che React puo' fare&mdash;anche se la maggior parte dei problemi che identifica deriva dall'uso di pratiche outdated o da errori con feature non coperte in questo corso. Puo' essere utile, ma causera' output duplicati di alcuni `console.log()` e non e' strettamente necessario.
 
 
-### Component Organization {-}
-React applications will often have dozen of components, quickly growing more complex than the basic starting examples in the previous section. If you tried to define all of these components in a single `index.js` file, your code would quickly become unmanageable.
+### Organizzazione dei Components {-}
+Le React applications spesso hanno decine di components, e diventano rapidamente piu' complesse degli esempi base della sezione precedente. Se provassi a definire tutti questi components in un singolo file `index.js`, il codice diventerebbe rapidamente ingestibile.
 
-Thus individual components are usually defined inside of separate [**modules**](#modules) (files), and then _imported_ by the modules that need them&mdash;other components or the root `index.js` file.
+Quindi i singoli components di solito sono definiti dentro [**modules**](#modules) (file) separati, e poi _importati_ dai moduli che ne hanno bisogno&mdash;altri components o il file root `index.js`.
 
-Recall that in order to make a variable or function (e.g., a Component) available to other modules, you will need to `export` that component from its own module, and then `import` that value elsewhere:
+Ricorda che per rendere una variable o function (ad es. un Component) disponibile ad altri moduli, devi `export`are quel component dal suo module, e poi `import`are quel value altrove:
 
 ```jsx
-/* in Messages.js file */
+/* nel file Messages.js */
 
-//Export the defined components (as named exports)
+//Exporta i components definiti (come named exports)
 export function HelloMessage() { /* ... */ }
 
 export function GoodByeMessage() { /* ... */ }
 ```
 ```jsx
-/* in App.js file */
+/* nel file App.js */
 
-//Import components needed from other modules
+//Importa i components necessari da altri moduli
 import { HelloMessage, GoodbyeMessage } from `./Messages.js`; //named imports!
 
-//Can also export as a _default_ export; common if the file has only one component
+//Puoi anche exportare come _default_ export; comune se il file ha un solo component
 export default function App() {
     return (
         <div>
-            {/* Use the imported components */}
+            {/* Usa i components importati */}
             <HelloMessage />
             <GoodbyeMessage />
         </div>
@@ -481,23 +481,23 @@ export default function App() {
 }
 ```
 ```jsx
-/* in index.js file */
+/* nel file index.js */
 
-//Import components needed from other modules
+//Importa i components necessari da altri moduli
 import App from `./App.js`; //default import!
 
-//Render the imported component
+//Renderizza il component importato
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
 ```
 
-This structure allows you to have each component (or set of related components) in a different file, helping to organize your code.
+Questa struttura ti permette di avere ogni component (o set di components correlati) in un file diverso, aiutandoti a organizzare il codice.
 
-- This "export-import" structure implies a _one-directional_ hierarchy: the `Message` components don't know about the `App` component that will render them (they are self-contained). You should not have two files that import from each other!
+- Questa struttura "export-import" implica una gerarchia _one-directional_: i components `Message` non conoscono il component `App` che li renderizza (sono self-contained). Non dovresti avere due file che si importano a vicenda!
 
-- The `index.js` file will usually just import a single component; that file stays very short and sweet. Put all of your component definitions in other files.
+- Il file `index.js` di solito importa un singolo component; quel file resta molto corto. Metti tutte le definizioni dei components in altri file.
 
-It is common to use the file system to further organize your component modules, such as grouping them into different folders, as in the below example:
+E' comune usare il file system per organizzare ulteriormente i moduli dei components, ad esempio raggruppandoli in cartelle diverse, come nell'esempio sotto:
 
 ```
 src/
@@ -511,44 +511,44 @@ src/
 index.js
 ```
 
-Note that a module such as `Alerts.js` might define a number of different "Alert" components to use; these could be imported into the `NavBar.js` or `App.js` modules as needed. The `App.js` component would be imported by the `index.js` file, which would contain the call to `root.render()`.
+Nota che un module come `Alerts.js` potrebbe definire diversi components "Alert"; questi potrebbero essere importati nei moduli `NavBar.js` o `App.js` secondo necessita'. Il component `App.js` verrebbe importato dal file `index.js`, che contiene la chiamata `root.render()`.
 
-However, it is not necessary to put each different component in a separate module; think about what kind of file organize will make it easy to find your code and help others to understand how your app is structured!
+Tuttavia, non e' necessario mettere ogni component in un modulo separato; pensa a quale organizzazione dei file renda facile trovare il codice e aiuti gli altri a capire come la tua app e' strutturata!
 
-### Deprecated Alternative: Class Components {-}
-In order versions and styles of React, it was alternatively possible to define components as **classes** (using [ES6 Class syntax](#es6-classes)) that acts as a template or blueprint for that content. In particular, you define a class that _inherits_ from the [**`React.Component`**](https://reactjs.org/docs/react-component.html) class&mdash;this inheritance means that the class you define _IS A_ React Component!
+### Alternativa Deprecata: Class Components {-}
+Nelle versioni e negli stili precedenti di React, era possibile definire i components come **classes** (usando la [ES6 Class syntax](#es6-classes)) che agiscono come template o blueprint per quel contenuto. In particolare, definisci una class che _inherits_ dalla class [**`React.Component`**](https://reactjs.org/docs/react-component.html)&mdash;questa inheritance significa che la class definita _E'_ un React Component!
 
 ```jsx
-//Define a class component representing information about a user
+//Definisci un class component che rappresenta informazioni su un user
 class UserInfo extends React.Component {
-    //Components MUST override the `render()` function, which must return a
-    //DOM element
+    //I Components DEVONO fare override della function `render()`, che deve restituire un
+    //elemento DOM
     render() {
-        //This is an everyday function; you can include any code you want here
+        //Questa e' una function normale; puoi includere qui qualsiasi codice vuoi
         const name = "Ethel";
         const descriptor = "Aardvark";
 
-        //Return a React element (JSX) that is how the component will appear
+        //Restituisci un React element (JSX) che e' come apparira' il component
         return (
             <div>
                 <h1>{name}</h1>
-                <p>Hello, my name is {name} and I am a {descriptor}</p>
+                <p>Ciao, mi chiamo {name} e sono un {descriptor}</p>
             </div>
         )
     }
 }
 
-//instantiate the class as a new value (a React element)
+//Istanzia la class come un nuovo value (un React element)
 const infoElement = <UserInfo />;
 
-//Show the element in the web page (inside #root)
+//Mostra l'elemento nella web page (dentro #root)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(infoElement);
 ```
 
-This "class component" example is identical to the previous function component example&mdash;it takes the "body" of the function component and moves that into a (required) `render()` method.
+Questo esempio di "class component" e' identico all'esempio precedente con function component&mdash;prende il "body" del function component e lo sposta dentro un metodo `render()` (obbligatorio).
 
-- Note that the `React.Component` class is often imported as a _named import_, so that you can refer to it directly:
+- Nota che la class `React.Component` e' spesso importata come _named import_, cosi' puoi referenziarla direttamente:
 
     ```jsx
     import {Component} from 'react';
@@ -560,53 +560,53 @@ This "class component" example is identical to the previous function component e
     }
     ```
 
-Current best practices in React are to **only** use function components and to **not** use class components; class components provide no extra functionality, and can introduce some additional complexities (particularly for handling their _state_). However it is good to be aware of the option in case you run across it, and thinking about components as "classes" can be useful for understanding how they are defined and used.
+Le best practice attuali in React sono **usare solo** function components e **non** usare class components; i class components non offrono funzionalita' extra e possono introdurre complessita' aggiuntive (in particolare per la gestione dello _state_). Tuttavia e' bene conoscere questa opzione nel caso tu la incontri, e pensare ai components come "classes" puo' essere utile per capire come vengono definiti e usati.
 
-<div class="alert alert-info">Additionally, older versions of React included a function `React.createClass()` that took in an _object_ whose properties were functions that would act as class methods (see [here](https://toddmotto.com/react-create-class-versus-component/) for details). Although this function has been removed, it's worth being aware of in case you come across older examples of React code that you need to interpret or adapt.</div>
+<div class="alert alert-info">Inoltre, versioni piu' vecchie di React includevano una function `React.createClass()` che prendeva un _object_ le cui properties erano functions che agivano come class methods (vedi [qui](https://toddmotto.com/react-create-class-versus-component/) per i dettagli). Anche se questa function e' stata rimossa, vale la pena esserne consapevoli nel caso tu incontri esempi piu' vecchi di codice React che devi interpretare o adattare.</div>
 
 
-## Properties (`props`) {#props}
-One of the main goals of using a library such as React is to support _data-driven views_&mdash;that is, the content that is rendered on the page can be based on some underlying data, providing a visual representation of that data. And if that underlying data changes, React can automatically and efficiently "re-render" the view, making the page dynamic.
+## Proprieta' (`props`) {#props}
+Uno degli obiettivi principali di usare una library come React e' supportare _data-driven views_&mdash;cioe' il contenuto renderizzato nella pagina puo' basarsi su data sottostanti, fornendo una rappresentazione visiva di quei data. E se quei data cambiano, React puo' "re-renderizzare" automaticamente ed efficientemente la view, rendendo la pagina dinamica.
 
-You can specify the underlying data that a React component will be representing by specifying [**properties**](https://reactjs.org/docs/components-and-props.html) (usually just called **props**) for that component. Props are the "input parameters" to a component&mdash;they are the details you _pass_ to it so that it knows what and how to render its content.
+Puoi specificare i data sottostanti che un component React rappresentera' definendo [**properties**](https://reactjs.org/docs/components-and-props.html) (di solito chiamate **props**) per quel component. Le props sono i "input parameters" di un component&mdash;sono i dettagli che _passi_ al component per far si' che sappia cosa e come renderizzare il contenuto.
 
-You pass a prop to a component when you instantiate it by specifying them as XML attributes (using `name=value` syntax)&mdash;the props are the "attributes" of the component!
+Passi una prop a un component quando lo instanzi specificandola come XML attributes (usando la sintassi `name=value`)&mdash;le props sono gli "attributes" del component!
 
 ```jsx
-//Passing a prop called `message` with value "Hello property"
-const messageA = <MessageItem message="Hello property!" />;
+//Passare una prop chiamata `message` con value "Ciao proprieta'"
+const messageA = <MessageItem message="Ciao proprieta'!" />;
 
-//Passing a prop using an inline expression
-const secret = "Shave and a haircut";
+//Passare una prop usando una inline expression
+const secret = "Due dita sopra, un taglio sotto";
 const messageB = <MessageItem message={secret} />;
 
-//A component can accept multiple props
-//This component takes in a `userName` prop as well as a `descriptor` prop
+//Un component puo' accettare props multiple
+//Questo component prende una prop `userName` e una prop `descriptor`
 const userInfo = <UserInfo userName="Ethel" descriptor="Aardvark" />;
 ```
 
-- Prop names must be valid JavaScript identifiers, and so should be written in camelCase (like variable names).
+- I nomi delle props devono essere valid JavaScript identifiers, quindi vanno scritti in camelCase (come i nomi delle variables).
 
-<p class="alert alert-info">Components are usually defined so that they expect a certain set of props&mdash;similar to how a function is defined to expect a certain set of arguments. It is possible to pass "extra" props to the Component (by specifying additional XML attributes), but if the component doesn't expect those props it won't do anything with them. Similarly, failing to pass an expected prop will likely result in errors&mdash;just like if you didn't pass a function an expected argument!</p>
+<p class="alert alert-info">I Components sono di solito definiti per aspettarsi un certo set di props&mdash;simile a come una function e' definita per aspettarsi un certo set di argomenti. E' possibile passare props "extra" al Component (specificando ulteriori XML attributes), ma se il component non si aspetta quelle props non fara' nulla con esse. Allo stesso modo, non passare una prop attesa probabilmente provochera' errori&mdash;proprio come se non passassi a una function un argomento atteso!</p>
 
-For function components, the `props` are received as a single argument to the function (usually called `props`). This argument is a regular JavaScript _object_ whose keys are the props' "names":
+Per i function components, le `props` sono ricevute come un singolo argomento della function (di solito chiamato `props`). Questo argomento e' un normale _object_ JavaScript le cui keys sono i "nomi" delle props:
 
 ```jsx
-//Define a component representing information about a user
+//Definisci un component che rappresenta informazioni su un user
 function UserInfo(props) {
-  console.log(props) //you can see this is an object!
+  console.log(props) //puoi vedere che e' un object!
 
-  //access the individual props from inside the argument object
+  //accedi alle singole props dall'interno dell'object argomento
   const userName = props.userName;
   const descriptor = props.descriptor;
 
-  //can use props for logic or processing
+  //puoi usare le props per logica o processing
   const userNameUpper = props.userName.toUpperCase();
 
   return (
     <div>
       <h1>{userNameUpper}</h1>
-      <p>Hello, my name is {userName} and I am a {descriptor}</p>
+      <p>Ciao, mi chiamo {userName} e sono un {descriptor}</p>
     </div>
   )
 }
@@ -614,74 +614,74 @@ function UserInfo(props) {
 const userInfo = <UserInfo userName="Ethel" descriptor="Aardvark" />;
 ```
 
-Again, _all_ props are stored in the argument object&mdash;you have to access them through that value.
+Ancora una volta, _tutte_ le props sono memorizzate nell'object argomento&mdash;devi accedervi tramite quel value.
 
-- To avoid having to type `props.___` all the time, it's common to use [object destructuring](#destructuring) to assign all of the props to variables in a single line:
+- Per evitare di digitare `props.___` continuamente, e' comune usare [object destructuring](#destructuring) per assegnare tutte le props a variables in una sola riga:
 
     ```jsx
     function UserInfo(props) {
-        //assign the prop object properties to variables
+        //assegna le properties dell'object prop alle variables
         const {userName, descriptor} = props;
 
         return <h1>{userName}</h1>;
     }
     ```
 
-    It's also possible to specify the object destructuring in the argument declaration!
+    E' anche possibile specificare l'object destructuring nella dichiarazione dell'argomento!
 
     ```jsx
-    //The props object passed in will be destructured into two argument variables
+    //L'object props passato verra' destrutturato in due variables argomento
     function UserInfo({userName, descriptor}) {
         return <h1>{userName}</h1>;
     }
     ```
 
-    This can help make it clear in the source code what props a component expects, though can make the code somewhat more difficult to parse (since there are so many parentheses and curly braces). However, to keep the idea of the `props` clear, all examples in this book will use a single, non-destructured `props` object.
+    Questo puo' aiutare a rendere chiaro nel codice sorgente quali props un component si aspetta, anche se puo' rendere il codice un po' piu' difficile da leggere (dato che ci sono molte parentesi e graffe). Tuttavia, per mantenere chiara l'idea delle `props`, tutti gli esempi in questo libro useranno un singolo object `props` non destrutturato.
 
-Importantly, props can be **any** kind of value! This includes basic types such as Numbers or Strings, data structures such as Arrays or Objects, or even functions or other component instances!
+In modo importante, le props possono essere **qualsiasi** tipo di value! Questo include tipi base come Numbers o Strings, strutture di data come Arrays o Objects, o perfino functions o altre istanze di components!
 
 ```jsx
-//Props can be of any data type!
+//Le props possono essere di qualsiasi data type!
 
-//Pass an array as a prop!
+//Passa un array come prop!
 const array = [1,2,3,4,5];
 const suitcase = <Suitcase luggageCombo={array} />;
 
-//Pass a function as a prop (like a callback)!
+//Passa una function come prop (come una callback)!
 function sayHello() {
-    console.log('Hello world!');
+    console.log('Ciao mondo!');
 }
 const greeting = <Greeting callback={sayHello} />;
 
-//Pass another Component as a prop (not common)!
-const card = <HolidayCard message="Greetings world!" />
+//Passa un altro Component come prop (non comune)!
+const card = <HolidayCard message="Saluti mondo!" />
 const gift = <Gift toMsg="Ethel", fromMsg={card} />
 ```
 
-Indeed, passing _callback functions_ as props to other components is a major step in designing interactive React applications. See the next chapter for more details and examples.
+In effetti, passare _callback functions_ come props ad altri components e' un passo fondamentale nella progettazione di applicazioni React interattive. Vedi il prossimo capitolo per piu' dettagli ed esempi.
 
 
-### Props and Composition {-}
+### Props e Composizione {-}
 
-<!-- > "props are a Component's configuration, its options if you may. They are received from above and immutable as far as the Component receiving them is concerned. A Component cannot change its props, but it is responsible for putting together the props of its child Components." - [props vs. state](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md) -->
+<!-- > "Le props sono la configurazione di un Component, le sue opzioni se vuoi. Vengono ricevute dall'alto e sono immutabili per quanto riguarda il Component che le riceve. Un Component non puo' cambiare le sue props, ma e' responsabile di mettere insieme le props dei suoi child Components." - [props vs. state](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md) -->
 
-Recall that React components are usually _composed_, with one component's returned value including instances of other components (as in the `MessageList` example above). Since props are specified when a component instance is created, this means that a "parent" component will need to specify the props for its children ("passing the props"). Commonly, the props for the child components will be derived from the props of the parent component:
+Ricorda che i React components di solito sono _composti_, con il value restituito da un component che include istanze di altri components (come nell'esempio `MessageList` sopra). Poiche' le props sono specificate quando una instance di component viene creata, questo significa che un component "parent" dovra' specificare le props per i suoi children ("passare le props"). Comunemente, le props per i component children saranno derivate dalle props del component parent:
 
 ```jsx
-//Defines a component representing a message in a list
+//Definisce un component che rappresenta un messaggio in una list
 function MessageItem(props) {
     return <li>{props.message}</li>
 }
 
-//A component that renders a trio of messages
+//Un component che renderizza un trio di messaggi
 function MessageListTrio(props) {
-    const messages = props.messages; //assign prop to a local variable for convenience
+    const messages = props.messages; //assegna la prop a una variable locale per comodita'
 
     return (
         <div>
-            <h1>Messages for you</h1>
+            <h1>Messaggi per te</h1>
             <ul>
-                {/* instantiate child components, passing data from own props */}
+                {/* istanzia i child components, passando data dalle proprie props */}
                 <MessageItem message={messages[0]} />
                 <MessageItem message={messages[1]} />
                 <MessageItem message={messages[2]} />
@@ -690,102 +690,102 @@ function MessageListTrio(props) {
     );
 }
 
-//Define and pass a prop to the parent comment when rendering it
-const messagesArray = ["Hello world", "No borders", "Go huskies!"];
+//Definisci e passa una prop al component parent quando lo renderizzi
+const messagesArray = ["Ciao mondo", "Niente confini", "Forza huskies!"];
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<MessageListTrio messages={messagesArray});
 ```
 
-This creates a **one-directional data flow**&mdash;the data values are passed into the parent, which then passes data down to the children (not vice versa).
+Questo crea un **one-directional data flow**&mdash;i data values vengono passati al parent, che poi passa i data ai children (non il contrario).
 
-The component organization in the previous example is [particularly common](https://reactjs.org/docs/lists-and-keys.html) in React. In order to effectively render a list (array) of data, you should define a Component that declares how to render a _single_ element of that list (e.g., `MessageItem`). This allows you to focus on only a single problem, developing a re-usable solution. Then you define another component that represents how to render a whole list of elements (e.g., `MessageList`). This component will render a child item component for each element&mdash;it just needs to set up the list, without worrying about what each item looks like!
+L'organizzazione dei components nell'esempio precedente e' [particolarmente comune](https://reactjs.org/docs/lists-and-keys.html) in React. Per renderizzare efficacemente una list (array) di data, dovresti definire un Component che dichiara come renderizzare un elemento _singolo_ di quella list (per esempio, `MessageItem`). Questo ti permette di focalizzarti su un singolo problema, sviluppando una soluzione riusabile. Poi definisci un altro component che rappresenta come renderizzare un'intera list di elementi (per esempio, `MessageList`). Questo component renderizzera' un child item component per ogni elemento&mdash;deve solo impostare la list, senza preoccuparsi di come appare ogni item!
 
-The data set can be passed into the parent (List) component as a prop, and each individual element from that data set will be passed into an instance of the child (Item) component. In effect, the List component is tasked with taking the data set (an array of data values) and producing a set Item components (an array of Components). This kind of transformation is a _mapping_ operation (each data value is mapped to a Component), and so can be done effecttively with the **`map()`** method:
+Il data set puo' essere passato al component parent (List) come prop, e ogni elemento individuale da quel data set verra' passato a una instance del component child (Item). In effetti, il component List ha il compito di prendere il data set (un array di data values) e produrre un set di Item components (un array di Components). Questo tipo di trasformazione e' un'operazione di _mapping_ (ogni data value e' mappato a un Component), e quindi puo' essere fatto efficacemente con il metodo **`map()`**:
 
 ```jsx
-//Map an array of message strings to an array of components
+//Mappa un array di message strings a un array di components
 const msgItems = props.messages.map((msgString) => {
-    const component = <MessageItem message={msgString} />; //pass prop down!
-    return component; //add this new component to resulting array
+    const component = <MessageItem message={msgString} />; //passa la prop in giu'!
+    return component; //aggiungi questo nuovo component all'array risultante
 })
 ```
 
-And because including an _array of Components_ as an inline expression in JSX will render those elements as siblings, it's easy to render this list from within the parent:
+E poiche' includere un _array di Components_ come inline expression in JSX renderizza quegli elementi come siblings, e' facile renderizzare questa list dall'interno del parent:
 
 ```jsx
 function MessageList(props) {
-  //the data: an array of strings ["", ""]
+  //i data: un array di strings ["", ""]
   const messageStringArray = props.messages;
 
-  //the renderable content: an array of elements [<>, <>]
+  //il contenuto renderizzabile: un array di elements [<>, <>]
   const msgElemArray = messageStringArray.map((msgString) => {
-    const component = <MessageItem message={msgString} />; //pass prop down!
-    return component; //add this new component to resulting array
+    const component = <MessageItem message={msgString} />; //passa la prop in giu'!
+    return component; //aggiungi questo nuovo component all'array risultante
   })
 
   return (
     <div>
-      <h1>Messages for you</h1>
+      <h1>Messaggi per te</h1>
       <ul>
-        {/* render the array of MessageList components */}
+        {/* renderizza l'array di MessageList components */}
         {msgElemArray}
       </ul>
     </div>
   );
 }
 
-//Define and pass a prop to the parent comment when rendering it
-const messagesArray = ["Hello world", "No borders", "Go huskies!"];
+//Definisci e passa una prop al component parent quando lo renderizzi
+const messagesArray = ["Ciao mondo", "Niente confini", "Forza huskies!"];
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<MessageList messages={messagesArray});
 ```
 
-Note that the above example will issue a warning in the developer console. This is because React requires you to specify an additional prop called [**`key`**](https://reactjs.org/docs/lists-and-keys.html#keys) for each element in an array of components. The `key` should be a _unique string_ for each element in the list, and acts as an identifier for that element (think: what you might give it as an `id` attribute). React will use the `key` to keep track of those elements, so if they change over time (i.e., elements are added or removed from the array) React will be able to more efficiently modify the DOM.
+Nota che l'esempio sopra generera' un warning nella developer console. Questo accade perche' React richiede che tu specifichi una prop aggiuntiva chiamata [**`key`**](https://reactjs.org/docs/lists-and-keys.html#keys) per ogni elemento in un array di components. La `key` dovrebbe essere una _string unica_ per ogni elemento nella list, e agisce come identificatore per quell'elemento (pensa: quello che potresti assegnare come attributo `id`). React usera' la `key` per tenere traccia di quegli elementi, quindi se cambiano nel tempo (cioe', elementi aggiunti o rimossi dall'array) React potra' modificare il DOM in modo piu' efficiente.
 
-If unspecified, the `key` will default to the element's index in the array, but this is considered unstable (since it will change as items are added or removed). Thus a better approach is to determine a unique value based on the data&mdash;which means that data items will need to be uniquely identifiable. The below improved version of the code changes each message from a basic String to an Object that has `content` and `id` properties, allowing each data value to be uniquely identified. Note that the `MessageItem` component need not be changed; it still renders an `<li>` showing the given `message` prop!
+Se non specificata, la `key` sara' l'indice dell'elemento nell'array, ma questo e' considerato instabile (dato che cambia quando gli item vengono aggiunti o rimossi). Quindi un approccio migliore e' determinare un value unico basato sui data&mdash;il che significa che gli item di data dovranno essere identificabili in modo univoco. La versione migliorata del codice qui sotto cambia ogni message da una String base a un Object che ha le properties `content` e `id`, permettendo a ogni data value di essere identificato in modo univoco. Nota che il component `MessageItem` non ha bisogno di essere cambiato; renderizza ancora un `<li>` che mostra la prop `message` data!
 
 ```jsx
 const MESSAGE_DATA = [
-    {content: "Hello world", id: 1}
-    {content: "No borders", id: 2}
-    {content: "Go huskies!", id: 3}
+    {content: "Ciao mondo", id: 1}
+    {content: "Niente confini", id: 2}
+    {content: "Forza huskies!", id: 3}
 ];
 
 function MessageList(props) {
-  //the data: an array of objects [{}, {}]
+  //i data: un array di objects [{}, {}]
   const messageObjArray = props.messages;
 
-  //the renderable content: an array of elements [<>, <>]
+  //il contenuto renderizzabile: un array di elements [<>, <>]
   const msgElemArray = messageObjArray.map((msgObject) => {
-    //return a new MessageItem for each message object
-    //attributes are listed on their own lines for readability
+    //restituisci un nuovo MessageItem per ogni message object
+    //gli attributes sono elencati su righe separate per leggibilita'
     return <MessageItem
               message={msgObject.content}
-              key={msgObject.id.toString()} {/* pass in a key prop! */}
+              key={msgObject.id.toString()} {/* passa una prop key! */}
               />;
-  }) //end of .map()
+  }) //fine di .map()
 
   return (
     <div>
-      <h1>Messages for you</h1>
+      <h1>Messaggi per te</h1>
       <ul>
         {msgElemArray}
       </ul>
     </div>
-  ); //end of return
+  ); //fine del return
 }
 
-//Define and pass a prop to the parent comment when rendering it
+//Definisci e passa una prop al component parent quando lo renderizzi
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<MessageList messages={MESSAGE_DATA});
 ```
 
-This pattern enables you to effectively define your web page's content in terms of individual components that can be composed together, allowing you to quickly render large amounts of data (without needing spend a lot of time thinking about loops!).
+Questo pattern ti permette di definire efficacemente il contenuto della tua pagina web in termini di singoli components che possono essere composti insieme, permettendoti di renderizzare rapidamente grandi quantita' di data (senza dover spendere molto tempo a pensare ai loops!).
 
 
-## Resources {-}
+## Risorse {-}
 
-As mentioned above, there are a large number of different resources for learning React. Below are links to key parts of the official documentation.
+Come accennato sopra, ci sono un gran numero di risorse diverse per imparare React. Di seguito ci sono link a parti chiave della documentazione ufficiale.
 
 <div class="list-condensed">
 - [Thinking in React](https://facebook.github.io/react/docs/thinking-in-react.html)

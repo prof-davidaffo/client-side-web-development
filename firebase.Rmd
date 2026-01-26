@@ -1,50 +1,50 @@
 # Firebase
-This chapter discusses how to integrate and use the [**Firebase**](https://firebase.google.com/) web service in a client-side application (using React). Firebase is a web service that provides tools and infrastructure for use in creating web and mobile apps that store data online in the cloud (a "web backend solution"). In effect, Firebase acts as a _server_ that can host information for you, so that you can just build client-side applications without needing to program a web server.
+Questo capitolo discute come integrare e usare il web service [**Firebase**](https://firebase.google.com/) in una client-side application (usando React). Firebase e' un web service che fornisce strumenti e infrastrutture per creare web e mobile apps che salvano data online nel cloud (una "web backend solution"). In pratica, Firebase agisce come un _server_ che puo' ospitare informazioni per te, cosi' puoi costruire client-side applications senza dover programmare un web server.
 
-- Firebase is owned and maintained by Google, but will still work perfectly fine with Facebook's React framework.
+- Firebase e' di proprieta' e manutenzione Google, ma funziona perfettamente con il framework React di Facebook.
 
-In particular, this chapter will discuss the following features of Firebase:
+In particolare, questo capitolo discutera' le seguenti feature di Firebase:
 
-1. The Firebase service also provide a number of "database" systems. This chapter describes how to use the [**realtime database**](https://firebase.google.com/docs/database/), which provides a simple [NoSql](https://en.wikipedia.org/wiki/NoSQL)-style database: you can think of it as a _single giant JSON object in the Cloud_. Firebase provides methods that can be used to refer to this object and its properties, make changes to the object. Most importantly, it provides the ability to "listen" for changes made by others so that the page can automatically update based on actions taken by other users. In effect you can create a **data binding** between clients and the server, so that if you update data on one machine, that change automatically appears on another.
+1. Il servizio Firebase fornisce anche diversi sistemi di "database". Questo capitolo descrive come usare il [**realtime database**](https://firebase.google.com/docs/database/), che offre un database in stile [NoSql](https://en.wikipedia.org/wiki/NoSQL) semplice: puoi pensarlo come un _unico gigantesco JSON object nel Cloud_. Firebase fornisce methods che puoi usare per riferirti a questo object e alle sue properties, e fare modifiche all'object. Soprattutto, fornisce la possibilita' di "ascoltare" le modifiche fatte da altri cosi' la pagina puo' aggiornarsi automaticamente in base alle azioni di altri utenti. In pratica puoi creare una **data binding** tra client e server, cosi' se aggiorni i data su una macchina, il cambiamento appare automaticamente su un'altra.
 
-    Firebase also offers additional database structures. [Firestore](https://firebase.google.com/docs/firestore) is another NoSQL (document-based) database, but focused more on one-time data fetch queries rather than the continuous data binding provided by the realtime database. This chapter focuses on the Realtime Database as an easier-to-learn system and to practice data binding. [Firebase Storage](https://firebase.google.com/docs/storage) is used for storing larger data elements (anything that can't be defined in JSON), such as images or videos, and is described at the end of the chapter.
+    Firebase offre anche altre strutture di database. [Firestore](https://firebase.google.com/docs/firestore) e' un altro database NoSQL (document-based), ma piu' focalizzato su query di fetch una tantum invece del data binding continuo fornito dal realtime database. Questo capitolo si concentra sul Realtime Database come sistema piu' semplice da imparare e per esercitarsi con il data binding. [Firebase Storage](https://firebase.google.com/docs/storage) si usa per salvare data di dimensioni maggiori (tutto cio' che non puoi definire in JSON), come immagini o video, ed e' descritto alla fine del capitolo.
 
-2. The Firebase service also offers a client-side based system for performing [**user authentication**](https://firebase.google.com/docs/auth/), or allowing users to "sign in" to your application and have particular information associated with them. It's possible to have users sign up with an email and password, or even using an external service (e.g., "sign in with Google"). Firebase also provides a way to manage all those extra interactions associated with accounts, like being able to reset passwords or confirm email addresses. And this is all performed securely from the client-side, without the need to set up an additional server to perform OAuth work.
+2. Il servizio Firebase offre anche un sistema client-side per eseguire [**user authentication**](https://firebase.google.com/docs/auth/), cioe' permettere agli utenti di "sign in" nella tua application e avere informazioni associate a loro. E' possibile far registrare gli utenti con email e password, o anche usando un servizio esterno (ad es. "sign in with Google"). Firebase fornisce anche un modo per gestire tutte le interazioni extra associate agli account, come resettare password o confermare email. E tutto questo avviene in modo sicuro dal client-side, senza bisogno di impostare un server aggiuntivo per il lavoro OAuth.
 
-These features mean that Firebase can be a go-to back-end for producing a client-side app that involves persisted data (like user accounts). And its [free service tier](https://firebase.google.com/pricing/) is well-suited for any development app.
+Queste feature significano che Firebase puo' essere un back-end di riferimento per produrre una client-side app che coinvolge data persistenti (come gli account utente). E il suo [free service tier](https://firebase.google.com/pricing/) e' adatto a qualsiasi development app.
 
-<p class="alert alert-warning">This chapter details how to use **version 9+** of the Firebase library, released in _August 2021_&mdash;and in particular its [_modular API_](https://firebase.google.com/docs/web/modular-upgrade) (which allows for smaller and more efficient bundles when using webpack and React). Note that while this version is conceptually the same as previous versions, the module syntax for calling and importing functions is different. See the upgrade guide for details. Be careful when looking up examples and resources that they're use the same version as you!</p>
+<p class="alert alert-warning">Questo capitolo descrive come usare **version 9+** della libreria Firebase, rilasciata in _August 2021_&mdash;e in particolare la sua [_modular API_](https://firebase.google.com/docs/web/modular-upgrade) (che permette bundle piu' piccoli ed efficienti quando usi webpack e React). Nota che, anche se questa versione e' concettualmente la stessa delle versioni precedenti, la sintassi dei moduli per chiamare e importare functions e' diversa. Vedi la upgrade guide per dettagli. Fai attenzione quando cerchi esempi e risorse: devono usare la stessa versione che usi tu!</p>
 
-Note that Firebase also provides [**Firebase Hosting**](https://firebase.google.com/docs/hosting) for hosting and serving web applications. This is particularly useful for hosting single-page-applications, such as those [built with React Router](#react-router-and-hosting). Hosting does not require any modifications to your source code, so is not discussed here.
+Nota che Firebase fornisce anche [**Firebase Hosting**](https://firebase.google.com/docs/hosting) per fare hosting e servire web applications. Questo e' particolarmente utile per hostare single-page-applications, come quelle [costruite con React Router](#react-router-and-hosting). Hosting non richiede modifiche al tuo source code, quindi non e' discusso qui.
 
 
 ## Setting up Firebase
-Because Firebase is a cloud service, you will need to set it up externally in order to use it in your web application. Firebase setup and configuration is handled on Firebase's website at <https://firebase.google.com/>, and in particular in the [**Firebase Web Console**](https://console.firebase.google.com) where you can manage individual projects.
+Dato che Firebase e' un cloud service, devi configurarlo esternamente per poterlo usare nella tua web application. Il setup e la configurazione di Firebase sono gestiti sul sito di Firebase all'indirizzo <https://firebase.google.com/>, e in particolare nella [**Firebase Web Console**](https://console.firebase.google.com) dove puoi gestire i singoli progetti.
 
-<p class="alert alert-success">When developing a Firebase app, keep the Web Console open all the time so you can check on database, user list, etc!</p>
+<p class="alert alert-success">Quando sviluppi una Firebase app, tieni sempre aperta la Web Console cosi' puoi controllare database, user list, ecc!</p>
 
 ### Creating a Project {-}
-In order to use Firebase in your web app, you will need to _sign up for the service_. Visit **<https://firebase.google.com/>** and click the "Get Started" button to do so. You will need to sign in with a Google account (e.g., a UW account if you've set up Google integration). Signing up will direct you to the Firebase Web Console.
+Per usare Firebase nella tua web app, devi _sign up_ al servizio. Visita **<https://firebase.google.com/>** e clicca il pulsante "Get Started". Dovrai fare sign in con un Google account (ad es. un account UW se hai impostato l'integrazione Google). Il sign up ti portera' alla Firebase Web Console.
 
-In the Web Console, you can manage all of your "projects"&mdash;one per application you've created (think: per repository). Each project will track its own database of information, its own set of users, etc.
+Nella Web Console, puoi gestire tutti i tuoi "projects"&mdash;uno per ogni application che hai creato (pensa: per repository). Ogni project traccia il proprio database di informazioni, il proprio set di utenti, ecc.
 
-You can create a project by clicking the _"Add Project"_ button. On the next screen, you'll need to give the app a _unique_ name. Naming the project after your app is a good idea. This name is used internally by the Firebase syste; it won't necessarily be visible to your users, though if you use [**Firebase Hosting**](https://firebase.google.com/docs/hosting) then the project name will be part of the default URL for the application.
+Puoi creare un project cliccando il pulsante _"Add Project"_. Nella schermata successiva, dovrai dare all'app un nome _unico_. Dare al project il nome della tua app e' una buona idea. Questo nome e' usato internamente dal sistema Firebase; non sara' necessariamente visibile agli utenti, anche se se usi [**Firebase Hosting**](https://firebase.google.com/docs/hosting) il nome del project fara' parte dell'URL di default dell'application.
 
-- _Recommendation_: **do not** enable Google Analytics for your projects!
+- _Recommendation_: **non** abilitare Google Analytics per i tuoi projects!
 
-Once you've created the project, you will be taken to the **Web Console** for that project. This is a web page where you will be able to manage the configuration of the project, the users who have signed up, and any data in the database. In particular, note the navigation menu on the left-hand side: you will use this to access different parts of your project (_Realtime Database_ to manage the database, and _Authentication_ to manage users)&mdash;expand the _"Build"_ dropdown to navigate.
+Dopo aver creato il project, verrai portato alla **Web Console** per quel project. Questa e' una web page dove potrai gestire la configurazione del project, gli utenti che si sono registrati e qualsiasi data nel database. In particolare, nota il menu di navigazione a sinistra: lo userai per accedere alle diverse parti del project (_Realtime Database_ per gestire il database e _Authentication_ per gestire gli utenti)&mdash;espandi il dropdown _"Build"_ per navigare.
 
 ![Firebase navigation menu](img/firebase/firebase-nav3.png)
 
 
 ### Including Firebase in React {-}
-In order to use Firebase in a web app (including a React app), you will need to add the Firebase library to your web page, as well as some specify some configuration data to connect to the correct Firebase project.
+Per usare Firebase in una web app (inclusa una React app), devi aggiungere la libreria Firebase alla web page e specificare alcuni data di configurazione per connetterti al project Firebase corretto.
 
-From the project's Web Console page, click the button (it look like a `</>` in the above image) to add Firebase to a web app. This will take you to a new page where you'll need to put in a nickname for the app and then present some JavaScript code for loading the Firebase library (make sure that "Use npm" is selected&mdash;you don't want to include a `<script>` element!).
+Dalla pagina della Web Console del project, clicca il pulsante (sembra `</>` nell'immagine sopra) per aggiungere Firebase a una web app. Questo ti portera' a una nuova pagina dove dovrai inserire un nickname per l'app e verra' mostrato del codice JavaScript per caricare la libreria Firebase (assicurati che "Use npm" sia selezionato&mdash;non vuoi includere un elemento `<script>`!).
 
-In a React app you you will integrate Firebase directly into your source code by modifying the **`index.js`** file:
+In una React app integrerai Firebase direttamente nel source code modificando il file **`index.js`**:
 
-1. First, install and [Firebase library](https://www.npmjs.com/package/firebase) using `npm`:
+1. Per prima cosa, installa la [Firebase library](https://www.npmjs.com/package/firebase) usando `npm`:
 
     ```bash
     # Note: do this in your app's repo (the folder with the `package.json` file)
@@ -52,25 +52,25 @@ In a React app you you will integrate Firebase directly into your source code by
     npm install firebase
     ```
 
-2. Then, copy the provided `import` statement, `firebaseConfig` variable, and `initializeApp()` function call into your **`index.js`** file. This will specify _which_ Firebase project your web app should connect to whenver you call functions to access Firebase.
+2. Poi copia lo statement `import`, la variable `firebaseConfig` e la chiamata `initializeApp()` nel file **`index.js`**. Questo specifica _quale_ project Firebase deve connettere la tua web app quando chiami le functions per accedere a Firebase.
 
-    Note that you will need to paste this code _before_ the call `ReactDOM.render()`. The `index.js` file will often contain such configuration data that is relevant to the _app_ rather than to a specific component.
+    Nota che dovrai incollare questo codice _prima_ della chiamata `ReactDOM.render()`. Il file `index.js` contiene spesso questi data di configurazione che sono rilevanti per l'_app_ e non per un component specifico.
 
 
 ### Adding Collaborators to a Project {-}
-Referencing the Firebase Web Console is vital for everyone who is working with the Firebase backend on a project. If you're working with a group of developers, you will want to make sure that all team members have access to this console.
+L'accesso alla Firebase Web Console e' fondamentale per chiunque lavori con il backend Firebase in un project. Se lavori con un gruppo di developer, assicurati che tutti i team members abbiano accesso a questa console.
 
-You can add additional team members to a Firebase project by selecting "Users and permissions" from the "Project Overview" gear icon:
+Puoi aggiungere altri team members a un project Firebase selezionando "Users and permissions" dal gear icon di "Project Overview":
 
 ![Users and permissions navigation](img/firebase/firebase-nav-users.png)
 
-From there you can click on "Add Member" to add new members to the project.
+Da li' puoi cliccare "Add Member" per aggiungere nuovi membri al project.
 
 
 ## Realtime Database
-The Firebase web service provides a [**realtime database**](https://firebase.google.com/docs/database) for storing and accessing data in the cloud. You can think of this database as being a _single giant JSON object in the Cloud_ that can be simultaneously accessed and modified by multiple clients&mdash;and since each client reads the same database, changes made by one user will be seen by others as _real-time updates_.
+Il web service Firebase fornisce un [**realtime database**](https://firebase.google.com/docs/database) per salvare e accedere ai data nel cloud. Puoi pensare a questo database come a un _unico gigantesco JSON object nel Cloud_ che puo' essere acceduto e modificato simultaneamente da piu' client&mdash;e dato che ogni client legge lo stesso database, le modifiche fatte da un utente saranno viste dagli altri come _real-time updates_.
 
-For example, you might have a database that is structured like:
+Per esempio, potresti avere un database strutturato cosi':
 
 ```json
 {
@@ -91,39 +91,39 @@ For example, you might have a database that is structured like:
 }
 ```
 
-This database object has a `people` key that refers to an object, which itself contains keys that refer to individual "person" objects (each of which has an `age` and `petName` property).
+Questo database object ha una key `people` che si riferisce a un object, che a sua volta contiene keys che si riferiscono a singoli objects "person" (ognuno con una property `age` e `petName`).
 
-In the Firebase Web Console (under the "Database" tab in the navigation menu), this data structure would be presented as:
+Nella Firebase Web Console (sotto la tab "Database" nel menu di navigazione), questa struttura di data viene mostrata cosi':
 
 ![A Firebase database with sample people data](img/firebase/firebase-people-db.png)
 
-- Note that in the Firebase Web Console you can edit this database directly: viewing, adding, editing, and deleting elements in the JSON. This is useful for debugging&mdash;both to check that your code is editing the database accurately, and to clean up any mistakes.
+- Nota che nella Firebase Web Console puoi modificare questo database direttamente: visualizzare, aggiungere, modificare e cancellare elementi nel JSON. Questo e' utile per debugging&mdash;sia per controllare che il codice modifichi correttamente il database, sia per ripulire eventuali errori.
 
-<p class="alert alert-warning">Although the JSON database can have many levels of nested objects, best practice is to try and keep the structure as "flat" as possible and avoid nesting too much data. This avoids you needing to download the nested "details" for a value if you only need to know e.g., the key names. See [Structure Your Data](https://firebase.google.com/docs/database/web/structure-data) for more details and examples.</p>
+<p class="alert alert-warning">Anche se il database JSON puo' avere molti livelli di objects annidati, la best practice e' cercare di mantenere la struttura il piu' "flat" possibile ed evitare di annidare troppi data. Questo evita di dover scaricare i "dettagli" annidati per un value se ti serve solo conoscere, ad es., i nomi delle keys. Vedi [Structure Your Data](https://firebase.google.com/docs/database/web/structure-data) per piu' dettagli ed esempi.</p>
 
 ### Setting Up the Database {-}
-In order to enable the realtime database for your project, navigate to the console page for the database and click the "Create Database" button.
+Per abilitare il realtime database per il tuo project, vai alla pagina della console del database e clicca il pulsante "Create Database".
 
-<p class="alert alert-warning">Make sure you're creating the _Realtime Database_, not the Firestore Database!</p>
+<p class="alert alert-warning">Assicurati di creare il _Realtime Database_, non il Firestore Database!</p>
 
-After selecting your local region, you'll be prompted to set up the [**Security Rules**](#security-rules). Choose to start in _test mode_ to get started immediately; see the below section for more about security rules.
+Dopo aver selezionato la local region, ti verra' chiesto di impostare le [**Security Rules**](#security-rules). Scegli di partire in _test mode_ per iniziare subito; vedi la sezione sotto per maggiori dettagli sulle security rules.
 
 #### Security Rules {-}
-Because the Firebase database is just a giant JSON object in the cloud and is usable from a client-side system, technically _anyone_ can access it. Each element of the JSON object is accessible via AJAX requests (which are sent via `firebase` functions).
+Dato che il database Firebase e' solo un gigantesco JSON object nel cloud e puo' essere usato da un sistema client-side, tecnicamente _chiunque_ puo' accedervi. Ogni elemento del JSON object e' accessibile via AJAX requests (che vengono inviate tramite functions `firebase`).
 
-In order to restrict what clients can access this information (read or write to values in the JSON), Firebase lets you define [security rules](https://firebase.google.com/docs/database/security/) that specify what users can access which elements. For example, you can make it so that only _authenticated users_ can add new entries the database, or that only specific users can update specific entries (e.g., the comments they wrote on a blog).
+Per limitare quali informazioni possono accedere i client (read o write dei values nel JSON), Firebase ti permette di definire [security rules](https://firebase.google.com/docs/database/security/) che specificano quali utenti possono accedere a quali elementi. Per esempio, puoi fare in modo che solo _authenticated users_ possano aggiungere nuove entries nel database, o che solo utenti specifici possano aggiornare entries specifiche (ad es. i commenti che hanno scritto su un blog).
 
-- By default, no one can access or modify the data (in _locked mode_). If you choose to start your project in _test mode_, then anyone will be able to access or modify the entire database for a limited amount of time.
+- Di default, nessuno puo' accedere o modificare i data (in _locked mode_). Se scegli di avviare il project in _test mode_, allora chiunque potra' accedere o modificare l'intero database per un periodo di tempo limitato.
 
-In order to modify or configure the security rules, navigate to the "Rules" tab of the Realtime Database's page in the Firebase Web Console. You can modify the rules by editing the presented JSON data; remember to hit "Publish" after you're done editing.
+Per modificare o configurare le security rules, vai alla tab "Rules" della pagina Realtime Database nella Firebase Web Console. Puoi modificare le rules editando i data JSON mostrati; ricordati di cliccare "Publish" quando hai finito di editare.
 
-Firebase Security Rules are defined in JSON using a particular (and somewhat awkard) scheme. Basically, inside the `"rules"` property you specify a JSON tree that mirrors the structure of your database. But instead of having a value for the keys in your database, you specify an object with `".read"` and `".write"` properties. The values of these properties are boolean expressions that state whether or not the current user is able to read (access) or write (modify) that value. For more on writing rules, such as how to handle user authorization (only certain users can read/write access) or data validation (making sure all data is written of a certain type), see [the official documentation](https://firebase.google.com/docs/database/security/).
+Le Firebase Security Rules sono definite in JSON usando uno schema particolare (e un po' awkward). In pratica, dentro la property `"rules"` specifichi un JSON tree che rispecchia la struttura del database. Ma invece di avere un value per le keys del database, specifichi un object con le properties `".read"` e `".write"`. I values di queste properties sono espressioni booleane che indicano se l'utente corrente puo' leggere (access) o scrivere (modify) quel value. Per maggiori dettagli su come scrivere le rules, come gestire l'autorizzazione degli utenti (solo certi utenti possono read/write) o la data validation (assicurare che i data siano di un certo tipo), vedi [la documentazione ufficiale](https://firebase.google.com/docs/database/security/).
 
 
 ### Data References {-}
-To start working with your database, you will need to get a **reference** to that value in the database.
+Per iniziare a lavorare con il tuo database, devi ottenere una **reference** a quel value nel database.
 
-You begin by getting a reference to the database itself, using the **`getDatabase()`** function provided by Firebase's database module `firebase/database`:
+Inizi ottenendo una reference al database stesso, usando la function **`getDatabase()`** fornita dal database module `firebase/database` di Firebase:
 
 ```js
 //import the function from the realtime database module
@@ -133,11 +133,11 @@ import { getDatabase } from 'firebase/database';
 const db = getDatabase();
 ```
 
-Importantly, the `db` value in the example is **not** a copy of the data or even the database itself! It's instead just a reference pointer to where that database lives&mdash;you can think of it more like a "URL" for the database.
+Importante: il value `db` nell'esempio **non** e' una copia dei data ne' del database stesso! E' solo un reference pointer a dove quel database risiede&mdash;puoi pensarlo come un "URL" del database.
 
-- The `getDatabase()` function is a simple _singleton_ accessor that runs in constant time; it's best practice to call it scoped in whatever functional scope you need to refer to the database. You do not need topass it around as a prop, nor should you try to make a "top level" or global `db` variable. Just call the function again if you need to access the database from a separate scope.
+- La function `getDatabase()` e' un semplice accessor _singleton_ che gira in tempo costante; e' best practice chiamarla nello scope funzionale in cui ti serve riferirti al database. Non devi passarla in giro come prop, ne' provare a creare una variable `db` globale o "top level". Richiama la function quando ti serve accedere al database da uno scope diverso.
 
-In order to modify any particular values in the database, you will need to get a [**reference**](https://firebase.google.com/docs/reference/js/database.databasereference) to that value. This is done by using the **`ref()`** function, passing in the database reference and the "path" (a string) to the data value in the database's JSON:
+Per modificare specifici values nel database, devi ottenere una [**reference**](https://firebase.google.com/docs/reference/js/database.databasereference) a quel value. Lo fai usando la function **`ref()`**, passando la reference al database e il "path" (una string) al value nel JSON del database:
 
 ```js
 import { getDatabase, ref } from 'firebase/database';
@@ -153,11 +153,11 @@ const peopleRef = ref(db, "people")
 const sarahRef = ref(db, "people/sarah");
 ```
 
-Again, these reference are **not** the data! They are just reference pointers to where the data lives&mdash;like the "URL" for that data value.
+Ancora una volta, queste reference **non** sono i data! Sono solo reference pointer a dove risiedono i data&mdash;come l'"URL" di quel value.
 
-The "path" to nested values in the database are written in a URI-style "path notation", where each nested key is indicated by a slash **`/`** (rather than the `.` in dot notation as you'd normally use with JSON format). Thus `"people/sarah"` refers to the `sarah` key inside of the `people` key inside of the database; `"people/sarah/pet"` refers to the `pet` key inside the `sarah` key inside the `people` key&mdash;the spot in the database with the value `"Rover"` in the above example.
+I "path" ai values annidati nel database sono scritti in una "path notation" stile URI, dove ogni key annidata e' indicata con uno slash **`/`** (invece del `.` della dot notation che useresti nel formato JSON). Quindi `"people/sarah"` si riferisce alla key `sarah` dentro la key `people` nel database; `"people/sarah/pet"` si riferisce alla key `pet` dentro la key `sarah` dentro la key `people`&mdash;la posizione nel database con il value `"Rover"` nell'esempio sopra.
 
-Since this path is just a string, you can use string concatenation to construct the path to a particular value you wish to reference (e.g., if you only want to work with the value for a particular person):
+Dato che questo path e' solo una string, puoi usare la string concatenation per costruire il path al value specifico che vuoi referenziare (ad es. se vuoi lavorare solo con il value di una persona specifica):
 
 ```js
 //variable name to access
@@ -167,7 +167,7 @@ const personName = "Ada";
 const personOfInterestRef = ref(db, "people/"+personName);
 ```
 
-Alternatively, you can use the **`child()`** function to get a reference to a specific "child" element in the database:
+In alternativa, puoi usare la function **`child()`** per ottenere una reference a uno specifico elemento "child" nel database:
 
 ```js
 import { ref, child } from 'firebase/database';
@@ -181,11 +181,11 @@ const peopleRef = ref(db, "people")
 const sarahRef = child(peopleRef, "sarah")
 ```
 
-In general, you want to work with a small a subset the data as possible. Thus it's better to get a reference to `"person/sarah"` if you're only going to read or write to that value, rather than get a reference to the whole `"people"` and then just read/write the `sarah` key in that.
+In generale, vuoi lavorare con il subset di data piu' piccolo possibile. Quindi e' meglio ottenere una reference a `"person/sarah"` se devi solo leggere o scrivere quel value, invece di ottenere la reference all'intero `"people"` e poi leggere/scrivere la key `sarah` al suo interno.
 
 
 ### Writing Data {-}
-You can modify values in the database by using the **`set()`** function. This function takes two arguments: a _database reference_, and then the new value you want to assign to that location in the database:
+Puoi modificare i values nel database usando la function **`set()`**. Questa function prende due argomenti: una _database reference_ e il nuovo value che vuoi assegnare a quella location nel database:
 
 ```js
 //alias the `set` function as `firebaseSet`
@@ -201,11 +201,11 @@ const newValueForSarahAge = 43;
 firebaseSet(sarahRef, newValueForSarahAge);
 ```
 
-This will change the value in the database at `"people/sarah/age"` to `43`.
+Questo cambiera' il value nel database a `"people/sarah/age"` in `43`.
 
-Note that in this example, I use the `as` keyword to _alias_ the `set` function when importing it, instead calling it `firebaseSet`. This is for clarity, as "set" is an overly generic name for a function.
+Nota che in questo esempio uso la keyword `as` per _aliasare_ la function `set` quando la importo, chiamandola `firebaseSet`. Questo e' per chiarezza, dato che "set" e' un nome troppo generico per una function.
 
-Note that as with normal JSON objects, you can also "set" values for database entries that didn't previously exist&mdash;you do not have to "declare" a value in the database ahead of time
+Nota che, come per i normali JSON objects, puoi anche "set"are values per entries del database che non esistevano prima&mdash;non devi "dichiarare" un value nel database in anticipo.
 
 ```js
 //a reference to the people entry in the database
@@ -218,9 +218,9 @@ const adaRef = ref(peopleRef, "ada");
 firebaseSet(adaRef, {age: "206", pet: "Charlie"})
 ```
 
-Firebase also provides an equivalent method `update()`, which will "merge" in changes to the existing value at a reference. This allows you to `update()` the a reference pass in an object with some properties to be modified, while existing properties are be retained (rather than having the entire value at that reference be replaced).
+Firebase fornisce anche un metodo equivalente `update()`, che "mergea" i cambiamenti nel value esistente a quella reference. Questo ti permette di `update()` una reference passando un object con alcune properties da modificare, mantenendo le properties esistenti (invece di sostituire l'intero value).
 
-Finally, note that the `set()` method returns a _Promise_. Thus you can use `.then()` (or `await`) to execute statements after the database has updated, and you can thus catch any errors that may occur when attempting to update a value. This is especially useful for debugging, but also is good for providing user feedback.
+Infine, nota che il metodo `set()` restituisce una _Promise_. Quindi puoi usare `.then()` (o `await`) per eseguire statements dopo che il database e' stato aggiornato, e puoi intercettare eventuali errori che possono verificarsi durante l'update di un value. Questo e' particolarmente utile per debugging, ma anche per fornire feedback all'utente.
 
 ```js
 const sarahPetRef = ref(db, "people/sarah/pet");
@@ -233,9 +233,9 @@ firebaseSet(sarahPetRef, "Sparky")
 
 
 ### Listening for Data Changes {-}
-Because Firebase's database is intended for _realtime_ access (that may change over time), you read data from it and establish _data binding_ by registering an **event listener** to listen for changes to that database. In effect, any modifications to the data causes a "database change event" which triggers your listener, allowing you to acccess the new updated data.
+Dato che il database di Firebase e' pensato per accesso _realtime_ (che puo' cambiare nel tempo), leggi i data e stabilisci _data binding_ registrando un **event listener** per ascoltare i cambiamenti nel database. In pratica, qualsiasi modifica ai data causa un "database change event" che attiva il listener, permettendoti di accedere ai data aggiornati.
 
-You register a database change listener by using the **`onValue()`** function. This function takes as arguments a database reference (which value you want to listen for changes to) and a callback function that will be executed in response to the event (similar to the DOM's `addEventListener()` function):
+Registri un database change listener usando la function **`onValue()`**. Questa function prende come argomenti una database reference (il value di cui vuoi ascoltare i cambiamenti) e una callback function che verra' eseguita in risposta all'event (simile alla function DOM `addEventListener()`):
 
 ```js
 import { ref, onValue } from "firebase/database"
@@ -251,11 +251,11 @@ onValue(amitRef, (snapshot) => {
 });
 ```
 
-The callback function will be passed as a parameter the latest [**snapshot**](https://firebase.google.com/docs/reference/js/firebase.database.DataSnapshot) of the data value at the listening location. This is a wrapper around the database's JSON tree (allowing you to navigate it e.g., with `child()`). Most commonly, you will want to convert the snapshot into an actual JavaScript object by calling the **`.val()`** method on it.
+Alla callback function verra' passato come parametro lo [**snapshot**](https://firebase.google.com/docs/reference/js/firebase.database.DataSnapshot) piu' recente del value di data nella location ascoltata. Questo e' un wrapper attorno al JSON tree del database (che ti permette di navigarlo, ad es. con `child()`). Di solito, vorrai convertire lo snapshot in un vero object JavaScript chiamando il metodo **`.val()`**.
 
-The listener will trigger whenever any child node of the targeted refence location changes. Thus even if just `people/amit/pet` is updated, the above listener will trigger.
+Il listener si attiva ogni volta che cambia un child node della reference target. Quindi anche se viene aggiornato solo `people/amit/pet`, il listener sopra si attivera'.
 
-Importantly, because this listener involves network access and can trigger throughout the life of your application, in a React app you will need to register the listener inside an _effect hook_. The effect hook's "cleanup function" will also need to remove the listener&mdash;otherwise you will have a memory leak and can get errors if your component gets removed (e.g., by changing routes). The `onValue()` function _returns_ a new function that can be used to "unregister" the listener:
+Importante: dato che questo listener coinvolge accesso di rete e puo' attivarsi per tutta la vita dell'application, in una React app dovrai registrarlo dentro un _effect hook_. La "cleanup function" dell'effect hook dovra' anche rimuovere il listener&mdash;altrimenti avrai un memory leak e potresti avere errori se il component viene rimosso (ad es. cambiando route). La function `onValue()` _restituisce_ una nuova function che puo' essere usata per "unregister" il listener:
 
 ```jsx
 function MyComponent(props) {
@@ -279,17 +279,17 @@ function MyComponent(props) {
 }
 ```
 
-Note that it is possble to read a single value once (without needing to register a listener) by using the `get()` method. This method returns a promise that will contain the read snapshot (once it is downloaded). _However_, the Realtime Database is intended and optimized for data binding and notifications. Thus you should pretty much always be using `onValue()` to read data from the database. If you find yourself wanting to just read a single value once, you're not thinking about the realtime database correctly!
+Nota che e' possibile leggere un singolo value una sola volta (senza registrare un listener) usando il metodo `get()`. Questo metodo restituisce una promise che conterra' lo snapshot letto (una volta scaricato). _Tuttavia_, il Realtime Database e' pensato e ottimizzato per data binding e notifications. Quindi dovresti praticamente sempre usare `onValue()` per leggere i data dal database. Se ti trovi a voler leggere un singolo value una sola volta, non stai pensando correttamente al realtime database!
 
 
 ### Firebase Arrays {-}
-When working with and storing data in the cloud, we often want to organize that data into lists using _arrays_. However, Firebase **does not** directly support support arrays: the JSON object in the sky only contains objects, not arrays! This is because Firebase needs to support **concurrent access**: multiple people need to be able to access the data at the same time. But since arrays are accessed by _index_, this can cause problems if two people try to modify the array at the same time.
+Quando lavori e memorizzi data nel cloud, spesso vuoi organizzare quei data in liste usando _arrays_. Tuttavia, Firebase **non** supporta direttamente gli arrays: il JSON object nel cloud contiene solo objects, non arrays! Questo perche' Firebase deve supportare **concurrent access**: piu' persone devono poter accedere ai data nello stesso momento. Ma dato che gli arrays si accedono per _index_, questo puo' creare problemi se due persone provano a modificare l'array allo stesso tempo.
 
-- The problem is that with an array, an index number doesn't always refer to the same element! For example, if you have an array `['a', 'b' 'c']`, then index `1` may initially refer to the `'b'`. However, if you add an element onto the beginning of the array, then suddenly that `1` index refers to the `'a'`. And so if a user was trying to modify the `'b'` before their machine was aware of the change, they may end up editing the wrong value when they ask to change the value at index `1`! This bug is an example of a [race condition](https://en.wikipedia.org/wiki/Race_condition), which can occur when two processes are modifying data _concurrently_ (at the same time).
+- Il problema e' che con un array, un numero di index non si riferisce sempre allo stesso elemento! Per esempio, se hai un array `['a', 'b' 'c']`, l'index `1` inizialmente si riferisce a `'b'`. Tuttavia, se aggiungi un elemento all'inizio dell'array, improvvisamente l'index `1` si riferisce a `'a'`. Quindi, se un utente stava provando a modificare `'b'` prima che la sua macchina fosse consapevole del cambiamento, potrebbe finire per modificare il value sbagliato quando chiede di cambiare il value all'index `1`! Questo bug e' un esempio di [race condition](https://en.wikipedia.org/wiki/Race_condition), che puo' verificarsi quando due processi modificano i data _concurrently_ (allo stesso tempo).
 
 <!-- could put code version of example ?? -->
 
-To avoid this problem, Firebase treats all data structures as Objects, so that each value in the JSON tree has a _unique_ key. That way each client will always be modifying the value they expect. However, Firebase does offer a way that you can treat Objects as arrays, in the form of a **`push()`**(https://firebase.google.com/docs/reference/js/firebase.database.Reference#push) function that will add a value to an object with an **auto-generated key**.
+Per evitare questo problema, Firebase tratta tutte le data structures come Objects, cosi' ogni value nel JSON tree ha una key _unique_. In questo modo ogni client modifica sempre il value che si aspetta. Tuttavia, Firebase offre un modo per trattare gli Objects come arrays, tramite la function **`push()`**(https://firebase.google.com/docs/reference/js/firebase.database.Reference#push) che aggiunge un value a un object con una **auto-generated key**.
 
 ```js
 import { getDatabase, ref, push as firebasePush } from 'firebase/database';
@@ -301,7 +301,7 @@ firebasePush(taskRef, {description:'First things first'} ) //add one task
 firebasePush(taskRef, {description:'Next things next'} ) //add another task
 ```
 
-This will produce a database with a structure:
+Questo produrra' un database con una struttura:
 
 ```json
 {
@@ -316,11 +316,11 @@ This will produce a database with a structure:
 }
 ```
 
-Notice how the `tasks` property is an Object (even though we "pushed" elements into it), and each "task" is assigned an auto-generated key (based on the timestamp it was pushed). You can still interact with `tasks` as if it were an array-like list, but instead of using a value from `0` to `length` as the index, you'll use a generated "key" as the index.
+Nota come la property `tasks` sia un Object (anche se abbiamo "pushato" elementi dentro), e ogni "task" ha una auto-generated key (basata sul timestamp in cui e' stato pushato). Puoi comunque interagire con `tasks` come se fosse una lista simile a un array, ma invece di usare un value da `0` a `length` come index, userai una "key" generata come index.
 
-<p class="alert alert-warning">**Always** use the `push()` function to have Firebase automatically manage data arrays for you. **Never** try to manually create an "array" by giving values keys "0", "1", "2" etc.</p>
+<p class="alert alert-warning">**Always** usa la function `push()` per far gestire automaticamente a Firebase i data arrays. **Never** provare a creare manualmente un "array" dando ai values keys "0", "1", "2" ecc.</p>
 
-Firebase _snapshots_ do support a `forEach()` function that you can use to iterate through their elements, allowing you to loop through the elements in an array. However, if you want to do something more complex (like `map()`, `filter()`, or `reduce()`), you need an actual array. The best way to get this is use call `Objects.keys()` on the `snapshot.val()` in order to get an array of the keys, and then you can iterate/map those keys into an array of values (accessing each element in the "array" using bracket notation).
+Gli _snapshots_ Firebase supportano una function `forEach()` che puoi usare per iterare gli elementi, permettendoti di fare loop sugli elementi di un array. Tuttavia, se vuoi fare qualcosa di piu' complesso (come `map()`, `filter()` o `reduce()`), ti serve un vero array. Il modo migliore per ottenerlo e' usare `Objects.keys()` su `snapshot.val()` per ottenere un array di keys, e poi puoi iterare/mappare quelle keys in un array di values (accedendo a ogni elemento dell'"array" con la bracket notation).
 
 ```js
 //`tasksSnapshot` is a snapshot of the `tasks` "array"
@@ -339,30 +339,30 @@ const allTasksArray = allTasksKeys.map((key) => {
 allTasksArray.map((taskObject) => { ... })
 ```
 
-Note that when looping through an "array", each element is handled separately from its key (the same way that a `forEach()` loop lets you work with array elements separately from their index). But since you may need that key as an identifier in order to `ref()` and modify the JSON element later, you should make sure that you "save" the key in the object as you processing it as an additional local property. This won't modify the value in the database, just the local variable that your code is working with. _Don't lose your key!_.
+Nota che quando fai loop su un "array", ogni elemento viene gestito separatamente dalla sua key (allo stesso modo in cui un `forEach()` ti permette di lavorare con gli elementi separatamente dal loro index). Ma dato che potresti aver bisogno di quella key come identificatore per fare `ref()` e modificare l'elemento JSON piu' avanti, assicurati di "salvare" la key nell'object mentre lo processi come property locale aggiuntiva. Questo non modifica il value nel database, solo la variable locale su cui sta lavorando il codice. _Don't lose your key!_.
 
 
 ## User Authentication
-Firebase provides the ability to **authenticate** users: to let people sign up for you application and then to check that they are who they say (e.g., have provided the right password). Firebase supports multiple different forms of authentication: users can sign up with an email and password, log in with a social media service such as Google or Facebook, or even authenticate "anonymously" (so you can at least keep track of different people even if you don't know who they are).
+Firebase fornisce la possibilita' di **authenticate** gli utenti: permettere alle persone di sign up nella tua application e poi verificare che siano chi dicono di essere (ad es. hanno fornito la password corretta). Firebase supporta diverse forme di authentication: gli utenti possono fare sign up con email e password, log in con un social media service come Google o Facebook, o anche autenticarsi "anonymously" (cosi' puoi almeno tenere traccia di persone diverse anche se non sai chi sono).
 
-In order to support user authentication, you will need to enable this feature in the Firebase Web Console. Click on the "Authentication" link in the side navigation menu's Build capetgory to go to the authentication management page, then choose "Get started". Under the "Sign-In Method" tab, you can choose what forms of authentication you wish to enable.
+Per supportare la user authentication, devi abilitare questa feature nella Firebase Web Console. Clicca il link "Authentication" nel menu laterale sotto la categoria Build per andare alla pagina di gestione authentication, poi scegli "Get started". Nella tab "Sign-In Method", puoi scegliere quali forme di authentication abilitare.
 
-- For example, click on the "Email/Password" option, and then flip the switch to "Enable" that method. Be sure and Save your changes!
+- Per esempio, clicca l'opzione "Email/Password" e poi attiva lo switch per "Enable" quel metodo. Ricordati di salvare i cambiamenti!
 
-- Each different sign-in method uses what is called a "Provider"&mdash;a service that provides the information about whether the user is who they say. Firebase's email/password check is a possible Provider; Google is a possible Provider; etc. You can enable multiple different Providers, each of which will be able to authenticate users (i.e., letting them sign in with the relevat credentials).
+- Ogni metodo di sign-in usa quello che si chiama "Provider"&mdash;un servizio che fornisce le informazioni per verificare se l'utente e' chi dice di essere. Il check email/password di Firebase e' un possibile Provider; Google e' un altro Provider; ecc. Puoi abilitare piu' Providers, ciascuno dei quali puo' autenticare gli utenti (cioe' permettere loro di sign in con le credenziali rilevanti).
 
-Note that you will be able to use this page to see and manage users who have signed up with your Firebase project. This is where you can see if uses have successfully been created, look up their **User UID** for debugging, or delete users from the project:
+Nota che potrai usare questa pagina per vedere e gestire gli utenti che si sono registrati con il tuo project Firebase. Qui puoi vedere se gli utenti sono stati creati correttamente, cercare il loro **User UID** per debugging o eliminare utenti dal project:
 
 ![Firebase users as presented in the authentication web console](img/firebase/firebase-users.png)
 
 ### Signing In with FirebaseUI {-}
-It is possible to call functions provided by Firebase in order to create and log in users. However, this would require you to implement the "log in form" on your own&mdash;and would only easily support the Email/Password authentication option.
+E' possibile chiamare functions fornite da Firebase per creare e loggare utenti. Tuttavia, questo richiederebbe implementare il "log in form" da soli&mdash;e supporterebbe facilmente solo l'opzione Email/Password.
 
-Instead, a nicer approach is to use the [**FireabaseUI**](https://firebase.google.com/docs/auth/web/firebaseui) library, also managed by Firebase. This library provides a set of predefined UI elements like a "login form", including ones which will support different authentication methods.
+Invece, un approccio migliore e' usare la libreria [**FireabaseUI**](https://firebase.google.com/docs/auth/web/firebaseui), gestita da Firebase. Questa libreria fornisce un set di elementi UI predefiniti come un "login form", inclusi quelli che supportano diversi metodi di authentication.
 
 ![Example of FirebaseUI authentication](img/firebase/firebaseui-example.png)
 
-There are different FirebaseUI libraries for different platforms; previously for React you would use [`firebaseui-web-react`](https://github.com/firebase/firebaseui-web-react). However, as of November 2022 this library has not been updated to work with the latest version of React (React 18), and appears to have been been abandoned rather than [applying the needed fix](https://github.com/firebase/firebaseui-web-react/pull/173). There are two possible workarounds to this:
+Esistono diverse librerie FirebaseUI per piattaforme diverse; in passato per React si usava [`firebaseui-web-react`](https://github.com/firebase/firebaseui-web-react). Tuttavia, a novembre 2022 questa libreria non e' stata aggiornata per funzionare con l'ultima versione di React (React 18), e sembra essere stata abbandonata invece di [applicare il fix necessario](https://github.com/firebase/firebaseui-web-react/pull/173). Ci sono due possibili workaround:
 
 1. You can install a version of the library updated by [Gabriel Villenave](https://github.com/gvillenave) (which hasn't been accepted as a pull request yet):
 
@@ -371,24 +371,24 @@ There are different FirebaseUI libraries for different platforms; previously for
     npm install https://gitpkg.now.sh/gvillenave/firebaseui-web-react/dist --legacy-peer-deps
     ```
 
-    (The `legacy-peer-deps` flag allows the package to install with React 19, even though it is only listed as compatible up to version 18).
+    (Il flag `legacy-peer-deps` permette al package di installarsi con React 19, anche se e' indicato compatibile solo fino alla versione 18).
 
 
-    Confirm that your `package.json` file has the correct dependency listed:
+    Conferma che il file `package.json` abbia la dependency corretta:
 
     ```
     "react-firebaseui": "https://gitpkg.now.sh/gvillenave/firebaseui-web-react/dist"
     ```
 
-2. You can install the non-React version of the library (`firebaseui`), and then define the needed Component (`StyledFirebaseUI`) manually:
+2. Puoi installare la versione non-React della libreria (`firebaseui`) e poi definire manualmente il Component necessario (`StyledFirebaseUI`):
 
     ```bash
     npm install firebaseui
     ```
 
-    Create the `StyledFirebaseAuth.txs` file defined [in this comment post](https://github.com/firebase/firebaseui-web-react/pull/173#issuecomment-1224404146).
+    Crea il file `StyledFirebaseAuth.txs` definito [in questo commento](https://github.com/firebase/firebaseui-web-react/pull/173#issuecomment-1224404146).
 
-The React FirebaseUI library provides a Component called `<StyledFirebaseAuth>`, which you can render in your page like any other Component. You can think of this Component as the "login form". A complete example of how this Component is used can be found below, following by an explanation.
+La libreria React FirebaseUI fornisce un Component chiamato `<StyledFirebaseAuth>`, che puoi renderizzare nella pagina come qualsiasi altro Component. Puoi pensare a questo Component come al "login form". Un esempio completo di come si usa questo Component e' mostrato sotto, seguito da una spiegazione.
 
 ```jsx
 //import auth functions and variables from Firebase
@@ -429,23 +429,23 @@ function MySignInScreen() {
 }
 ```
 
-There are a few steps to using this Component:
+Ci sono alcuni passi per usare questo Component:
 
-- The `<StyledFirebaseAuth>` requires a `uiConfig` prop, which is an object containing configuration values for that login form (the object has specific properties which correspond to configuratoin options). The config object is usually defined as a global constant.
+- Il `<StyledFirebaseAuth>` richiede una prop `uiConfig`, che e' un object contenente i valori di configurazione per il login form (l'object ha properties specifiche che corrispondono alle opzioni di configurazione). L'object di config e' di solito definito come constant globale.
 
-    The most important configuration option is the `signInOptions`, listing the different authentication providers supported (what options should show up in the login form). The IDs for these providers are imported from the `'firebase/auth'` library&mdash;though they are numeric values, not functions.
+    L'opzione di configurazione piu' importante e' `signInOptions`, che elenca i diversi authentication providers supportati (quali opzioni devono apparire nel login form). Gli ID di questi provider sono importati dalla libreria `'firebase/auth'`&mdash;anche se sono values numerici, non functions.
 
-    Other common/useful options are shown in the example; for a complete list of options see [the firebaseui-web documentation](https://github.com/firebase/firebaseui-web#configuration).
+    Altre opzioni comuni/utili sono mostrate nell'esempio; per la lista completa vedi [la documentazione firebaseui-web](https://github.com/firebase/firebaseui-web#configuration).
 
-- The `<StyledFirebaseAuth>` also requires a `firebaseAuth` prop, which is a reference to the "authenticator" service&mdash;what will handle the process of the user logging in and out. You can get access to this value via the **`getAuth()`** function provided by `'firebase/auth'` (similar to how you get access to the Realtime Database via the `getDatabase()` function).
+- Il `<StyledFirebaseAuth>` richiede anche una prop `firebaseAuth`, che e' una reference al servizio "authenticator"&mdash;quello che gestisce il processo di login e logout dell'utente. Puoi ottenere questo value tramite la function **`getAuth()`** fornita da `'firebase/auth'` (simile a come accedi al Realtime Database tramite `getDatabase()`).
 
-    Note that as with `getDatabase()` the authenticator is a _singleton_ value&mdash;you can call `getAuth()` from multiple modules/files/scopes without concern. You do not need to pass it around as a prop or declare it as a "top-level" constant.
+    Nota che, come per `getDatabase()`, l'authenticator e' un value _singleton_&mdash;puoi chiamare `getAuth()` da piu' modules/files/scopes senza problemi. Non devi passarlo come prop o dichiararlo come constant "top-level".
 
-With this Component, users will be able to "log in", though see the [Managing the User](#managing-the-user) section below. You will be able to see a list of users who have connected to your app in the Firebase Web Console. Note in particular that you can see their _uid_ (unique identifier), which is what is used to distinguish between users. (You can't use emails as identifiers, because someone who logs in with Facebook won't provide their email address!).
+Con questo Component, gli utenti potranno fare "log in", ma vedi la sezione [Managing the User](#managing-the-user) sotto. Potrai vedere una lista di utenti che si sono collegati alla tua app nella Firebase Web Console. Nota in particolare che puoi vedere il loro _uid_ (unique identifier), che e' usato per distinguere tra utenti. (Non puoi usare le email come identificatori, perche' chi fa log in con Facebook non fornira' il proprio indirizzo email!).
 
-<p class="alert alert-info">**Pro-tip:** You don't need to come up with real email addresses for testing. Try using `a@a.com`, `b@a.com`, `c@a.com`, etc. Similarly, `password` works fine for testing passwords (though you should never do that in real life!)</p>
+<p class="alert alert-info">**Pro-tip:** non servono email reali per i test. Prova `a@a.com`, `b@a.com`, `c@a.com`, ecc. Allo stesso modo, `password` va bene per testare le password (ma non farlo mai nella vita reale!)</p>
 
-The Firebase Web Console will provide a view of the "user list"&mdash;but importantly, this is _not the same as the Realtime Database_. The user list holds _very_ limited information: the authentication provider, a "display name", and possibly a "photo url" (e.g., where to find an avatar image). But you cannot store any additional information in the "user database"&mdash;not profile images, not preferred names or pronouns used, not favorite fish. Any user-specific information will need to be stored in the Realtime Database instead, usually using a "key" that is the user's `uid`. For example, your Realtime Database might store information like:
+La Firebase Web Console mostra la "user list"&mdash;ma, importantemente, _non e' la stessa cosa del Realtime Database_. La user list contiene informazioni _molto_ limitate: l'authentication provider, un "display name" e forse un "photo url" (ad es. dove trovare un avatar). Ma non puoi salvare informazioni aggiuntive nel "user database"&mdash;non immagini profilo, non nomi o pronomi preferiti, non pesci preferiti. Qualsiasi informazione specifica dell'utente va salvata nel Realtime Database, di solito usando una "key" che e' l'`uid` dell'utente. Per esempio, il tuo Realtime Database potrebbe salvare dati come:
 
 ```json
 {
@@ -462,9 +462,9 @@ The Firebase Web Console will provide a view of the "user list"&mdash;but import
 }
 ```
 
-You can then access the user's data using the same process as any other data in the realtime database, listening to the reference `"userData/"+userId`.
+Poi puoi accedere ai data dell'utente usando lo stesso processo di qualsiasi altro data nel realtime database, ascoltando la reference `"userData/"+userId`.
 
-In order to sign out a user, you can use another built-in Firebase function: **`signOut()`**:
+Per fare sign out di un utente, puoi usare un'altra function built-in di Firebase: **`signOut()`**:
 
 ```js
 import { getAuth, signOut } from 'firebase/auth';
@@ -475,15 +475,15 @@ signOut(auth)
     .catch(err => console.log(err)); //log any errors for debugging
 ```
 
-Note that the `signOut()` method returns a Promise, so you can `.catch()` and display any errors.
+Nota che il metodo `signOut()` restituisce una Promise, quindi puoi fare `.catch()` e mostrare eventuali errori.
 
 
 ### Managing the User {-}
-Although FirebaseUI will log in a user, you will need to do further work in order for your app to know who that logged in user is.
+Anche se FirebaseUI fa il log in dell'utente, devi fare ulteriore lavoro per far sapere alla tua app chi e' l'utente loggato.
 
-The _authenticator_ (from `getAuth()`) will keep track of which Firebase User is currently logged in&mdash;and this information persists [even after the browser is closed](https://firebase.google.com/docs/auth/web/auth-state-persistence). This means that every time you reload the page, the authenticator will automatically perform the authentication and "re-login" the user.
+L'_authenticator_ (da `getAuth()`) tiene traccia di quale Firebase User e' attualmente loggato&mdash;e questa informazione persiste [anche dopo che il browser e' chiuso](https://firebase.google.com/docs/auth/web/auth-state-persistence). Questo significa che ogni volta che ricarichi la pagina, l'authenticator eseguira' automaticamente l'authentication e "re-login" dell'utente.
 
-The recommended way to [determine who is currently logged](https://firebase.google.com/docs/auth/web/manage-users#get_the_currently_signed-in_user) in is to register an _event listener_ to listen for events that occur when the "state" of the authentication changes (e.g., a user logs in or logs out). This event will occur when the page first loads and Firebase determines that a user has previously signed up (the "initial state" is set), or when a user logs in or out. You can register this listener by using Firebase's **`onAuthStateChanged()`** function:
+Il modo consigliato per [determinare chi e' attualmente logged in](https://firebase.google.com/docs/auth/web/manage-users#get_the_currently_signed-in_user) e' registrare un _event listener_ che ascolta gli eventi quando lo "state" dell'authentication cambia (ad es. un utente fa log in o log out). Questo event avviene quando la pagina si carica e Firebase determina che un utente si e' registrato in precedenza (viene impostato lo "initial state"), oppure quando un utente fa log in o log out. Puoi registrare questo listener usando la function **`onAuthStateChanged()`** di Firebase:
 
 ```js
 //import functions
@@ -502,16 +502,16 @@ onAuthStateChanged(auth, (firebaseUser) => {
 });
 ```
 
-The `onAuthStateChanged()` function takes in two arguments: the authenticator, and a callback function that will be executed whenever the "authentication state" changes (e.g., whenever the user logs in or out). The callback function will be passed an object representing the ["Firebase User"](https://firebase.google.com/docs/reference/js/firebase.User). This object contains properties about the user, including:
+La function `onAuthStateChanged()` prende due argomenti: l'authenticator e una callback function che verra' eseguita ogni volta che lo "authentication state" cambia (ad es. quando l'utente fa log in o log out). La callback ricevera' un object che rappresenta il ["Firebase User"](https://firebase.google.com/docs/reference/js/firebase.User). Questo object contiene properties sull'utente, tra cui:
 
-- `uid`, which is the _unique id_ for the user
-- `displayName`, which is the user's provider-independent displayable name
+- `uid`, che e' lo _unique id_ dell'utente
+- `displayName`, che e' il nome visualizzabile dell'utente indipendente dal provider
 
-The most common practice is to take this passed in object and assign it to a more global variable, such as a state variable in a React component (e.g., `setCurrentUser(firebaseUser)`).
+La pratica piu' comune e' prendere questo object e assegnarlo a una variable piu' globale, come una state variable in un component React (ad es. `setCurrentUser(firebaseUser)`).
 
-If the user "logged out", then the passed in `firebaseUser` value will be `null`; this information can also be saved to the React state variable.
+Se l'utente ha fatto "log out", il value `firebaseUser` passato sara' `null`; questa informazione puo' essere salvata nella state variable React.
 
-Importantly, because this listener involves network access and can trigger throughout the life of your application, in a React app you will need to register the listener inside an _effect hook_. The effect hook's "cleanup function" will also need to remove the listener. The `onAuthStateChanged()` function _returns_ a new function that can be used to "unregister" the listener:
+Importante: dato che questo listener coinvolge accesso di rete e puo' attivarsi durante la vita dell'application, in una React app dovrai registrarlo dentro un _effect hook_. La "cleanup function" dell'effect hook dovra' anche rimuovere il listener. La function `onAuthStateChanged()` _restituisce_ una nuova function che puo' essere usata per "unregister" il listener:
 
 ```jsx
 function MyComponent(props) {
@@ -537,11 +537,11 @@ function MyComponent(props) {
 ```
 
 #### Firebase React Hooks {-}
-In React systems it is common to render different content depending on whether the user is logged in. This could be done with conditional rendering, or with a "protected route" as described in [Client-Side Routing](#redirecting).
+Nei sistemi React e' comune renderizzare contenuti diversi a seconda che l'utente sia loggato o meno. Questo puo' essere fatto con conditional rendering, o con una "protected route" come descritto in [Client-Side Routing](#redirecting).
 
-However, it takes a few seconds for Firebase to authenticate a user when a page first loads. Thus your conditional rendering will often need to handle 3 cases: when a user is logged in, when a user is not logged in, and when the user status is "loading" and the app hasn't finished checking yet.
+Tuttavia, Firebase impiega alcuni secondi per autenticare un utente quando la pagina si carica per la prima volta. Quindi il conditional rendering spesso deve gestire 3 casi: quando l'utente e' loggato, quando l'utente non e' loggato, e quando lo user status e' "loading" e l'app non ha ancora finito di controllare.
 
-While there are some cludgy workarounds (e.g., use a special value for your state to indicate that a user is "loading"), this is a common enough situation that you can use solutions implemented by other people. One such option is the [`firebase-react-hooks`](https://github.com/CSFrequency/react-firebase-hooks) library. This library provides a simple hook (like `useState` or `useParams`) that lets you access the user status. In particular, the `useAuthState` hook will implement the authentication state listener for you:
+Anche se esistono workaround un po' goffi (ad es. usare un value speciale nello state per indicare che un utente e' in "loading"), questa situazione e' abbastanza comune da poter usare soluzioni implementate da altri. Una di queste e' la libreria [`firebase-react-hooks`](https://github.com/CSFrequency/react-firebase-hooks). Questa libreria fornisce un hook semplice (come `useState` o `useParams`) che ti permette di accedere allo user status. In particolare, l'hook `useAuthState` implementa per te il listener dello authentication state:
 
 ```jsx
 import { getAuth } from 'firebase/auth';
@@ -569,33 +569,33 @@ function MyComponent(props) {
 }
 ```
 
-This hook returns an array of 3 values (which are destructured in the above example), indicating the current user (or `null` for no user), whether the auth state is still loading, and whether there was an error.
+Questo hook restituisce un array di 3 values (destructured nell'esempio sopra), indicando l'utente corrente (o `null` se non c'e'), se lo auth state e' ancora in loading, e se c'e' stato un errore.
 
-While using such a library is not necessary, it is a good example of how React's architecture allows for external libraries that can help reduce boilerplate code.
+Anche se usare questa libreria non e' necessario, e' un buon esempio di come l'architettura di React permetta librerie esterne che riducono il boilerplate code.
 
 
 ## Firebase Storage
-Firebase's Realtime Database persists JSON data: so in the end just strings, numbers, and booleans (even if those values are organized into objects). If you wish to persist data _files_&mdash;such as music, video, pdfs, etc&mdash;you need to use a different service called [**Firebase Storage**](https://firebase.google.com/docs/storage). Storage is designed for storing larger files rather than primitive data types. In the end it works fairly similarly to the realtime database, though without data binding.
+Il Realtime Database di Firebase persiste data JSON: quindi alla fine solo strings, numbers e booleans (anche se quei values sono organizzati in objects). Se vuoi persistere _file_ di data&mdash;come musica, video, pdf, ecc&mdash;devi usare un servizio diverso chiamato [**Firebase Storage**](https://firebase.google.com/docs/storage). Storage e' progettato per salvare file piu' grandi invece di data types primitivi. Alla fine funziona in modo abbastanza simile al realtime database, ma senza data binding.
 
-<div class="alert alert-warning"><p>As of October 2024, Firebase requires you to sign for a "pay-as-you-go" plan to provision a storage bucket. This requires providing credit card information. Students in the INFO 340 course do not need to sign up for this plan; talk to the instructor for details.</p>
-<p>Under this plan you get up to 5 GB of storage for free (with 1 GB/day of downloading allowed). That's about 5000 hi-res images, 1000 music files, or maybe 20 hr of compressed video. This means that the free storage service will work great for most development versions of media applications--though you may run out of space quickly if working with video, especially when testing. Always consider the amount of data you will need to store before choosing a cloud storage service.</p></div>
+<div class="alert alert-warning"><p>Ad October 2024, Firebase richiede un piano "pay-as-you-go" per creare un storage bucket. Questo richiede di fornire informazioni di carta di credito. Gli studenti del corso INFO 340 non devono iscriversi a questo piano; parla con il docente per dettagli.</p>
+<p>Con questo piano hai fino a 5 GB di storage gratis (con 1 GB/giorno di download consentito). Sono circa 5000 immagini hi-res, 1000 file musicali o circa 20 ore di video compresso. Questo significa che il free storage service funziona benissimo per la maggior parte delle versioni di sviluppo delle media applications&mdash;anche se potresti esaurire lo spazio rapidamente se lavori con video, soprattutto in fase di test. Considera sempre la quantita' di data che dovrai salvare prima di scegliere un cloud storage service.</p></div>
 
-In order to use Firebase Storage, you will need to enable this feature in the Firebase Web Console. Click on the "Storage" link in the side navigation menu's Build capetgory to go to the authentication management page, then choose "Get started". Similar to the realtime database, you'll need to choose security rules (probably being in _test mode_ for development). When prompted for a Cloud Storage bucket location, pick something nearby to speed up access a little, but for most student projects it doesn't matter much.
+Per usare Firebase Storage, devi abilitare questa feature nella Firebase Web Console. Clicca il link "Storage" nel menu laterale sotto la categoria Build per andare alla pagina di gestione, poi scegli "Get started". Come per il realtime database, dovrai scegliere le security rules (probabilmente in _test mode_ per lo sviluppo). Quando ti viene chiesto un Cloud Storage bucket location, scegli qualcosa di vicino per velocizzare l'accesso un po', ma per la maggior parte dei progetti studenteschi non importa molto.
 
-Once you have set up Storage, you can use the Firebase Web Console to view and manage files that have been uploaded (including deleting them if desired).
+Dopo aver configurato Storage, puoi usare la Firebase Web Console per vedere e gestire i file caricati (inclusa la loro eliminazione, se vuoi).
 
 ### File Inputs {-}
-In order for a user to upload a file to Storage, the user will need to first choose which file they want to store. The correct way to do this is to use a `"file"` type `<input>` element:
+Per permettere a un utente di caricare un file su Storage, l'utente deve prima scegliere quale file vuole salvare. Il modo corretto per farlo e' usare un elemento `<input>` di tipo `"file"`:
 
 ```html
 <input type="file">
 ```
 
-This element works the same as other `<input>` elements you've used (usually with the default `type` of `"text"`). But rather than providing an interface for the user to provide a string as a value, the input will provide an interface for the user to choose a file from their operating system.
+Questo elemento funziona come gli altri `<input>` che hai usato (di solito con il `type` di default `"text"`). Ma invece di fornire un'interfaccia per inserire una string come value, l'input fornisce un'interfaccia per scegliere un file dal sistema operativo.
 
-<p class="alert alert-success">This is an `<input>` like any other, which means that in React you should use a state variable to control it!</p>
+<p class="alert alert-success">Questo e' un `<input>` come qualsiasi altro, quindi in React dovresti usare una state variable per controllarlo!</p>
 
-Once the user choses a file, you can access that the files chosen through the `.files` property of the `<input>` element&mdash;similar to the `.value` property used with default `<input>` elements. Note that the operating system's file picking dialog may allow the user to choose multiple files (or none at all!); you will will want to check this when responding to any changes to the input:
+Dopo che l'utente sceglie un file, puoi accedere ai file scelti tramite la property `.files` dell'elemento `<input>`&mdash;simile alla property `.value` usata con i `<input>` di default. Nota che la finestra di scelta file del sistema operativo puo' permettere di scegliere piu' file (o nessuno!); vorrai controllare questo quando rispondi ai cambiamenti dell'input:
 
 ```js
 //an event handler function that responds to changing in an `<input type="file">`
@@ -609,12 +609,12 @@ const handleChange = (event) => {
 }
 ```
 
-Note that the `chosenFile` will be a [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File)-type value, which has its own set of methods and properties. Critically, the `File` value is really just a reference to a location in your computer's operating system; if the file gets moved or renamed then the `File` will be pointing at something with no size, so you won't be able to upload it.
+Nota che `chosenFile` sara' un value di tipo [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File), che ha i propri methods e properties. In modo critico, il value `File` e' in realta' solo una reference a una location nel sistema operativo del computer; se il file viene spostato o rinominato allora `File` puntera' a qualcosa senza size, quindi non potrai caricarlo.
 
 ### Uploading Files {-}
-Once you have the `File` the user wants to upload, you can upload that data to Firebase using a method similar to how you `set` data in the realtime database.
+Una volta che hai il `File` che l'utente vuole caricare, puoi caricare quei data su Firebase usando un metodo simile a come fai `set` dei data nel realtime database.
 
-First, you need to get a _reference_ to the location in Storage where you want to upload the file. You do this by using the **`ref()`** function from the `firebase/storage` library:
+Per prima cosa, devi ottenere una _reference_ alla location in Storage dove vuoi caricare il file. Lo fai usando la function **`ref()`** dalla libreria `firebase/storage`:
 
 ```js
 import {getStorage, ref as storageRef } from 'firebase/storage';
@@ -626,11 +626,11 @@ const storage = getStorage();
 const fileRef = storageRef(storage, "path/to/myfile.png");
 ```
 
-Importantly, this is a _different_ `ref()` function than the one used with the realtime database! They are not interchangeable. For that reason, you can alias the storage's `ref` as e.g., `storageRef` in order to use both in the same module.
+Importante: questa e' una function `ref()` _diversa_ da quella usata con il realtime database! Non sono intercambiabili. Per questo motivo, puoi aliasare il `ref` di storage come, ad es., `storageRef` per usarle entrambe nello stesso module.
 
-The `ref()` function takes as arguments the reference to the storage service and a string representing the "file path" for the new file&mdash;where it will go in the Storage bucket. You write this string like any other relative file path; it includes both any intermediate directories as well as the name of the resulting file. Any directories you include in the path will be created when the file is uploaded (they do not have to exist previously), and if a file already exists at that location, it will be overwritten. Be sure to include the file extension when naming the file (and you'll want that file extension to match the actual file type!)
+La function `ref()` prende come argomenti la reference al servizio di storage e una string che rappresenta il "file path" per il nuovo file&mdash;cioe' dove andra' nello Storage bucket. Scrivi questa string come qualsiasi altro relative file path; include sia eventuali directory intermedie sia il nome del file risultante. Qualsiasi directory inclusa nel path verra' creata quando il file viene caricato (non deve esistere in precedenza), e se un file esiste gia' in quella location, verra' sovrascritto. Assicurati di includere l'estensione del file quando lo nomini (e che l'estensione corrisponda al file type reale!).
 
-Once you have a reference to the file's location in storage, you can use the **`uploadBytes()`** function to upload the file:
+Dopo aver ottenuto la reference alla location del file nello storage, puoi usare la function **`uploadBytes()`** per caricare il file:
 
 ```js
 import {getStorage, ref as storageRef, uploadBytes } from 'firebase/storage';
@@ -643,11 +643,11 @@ uploadBytes(fileRef, myFile)
   .catch(err => console.log(err)); //log any errors for debugging
 ```
 
-The `uploadBytes()` function is asynchronous (it can take a while to upload large files!) and returns a Promise that you can use to respond when the file has finished uploading or to catch and process errors.
+La function `uploadBytes()` e' asynchronous (puo' richiedere tempo per caricare file grandi!) e restituisce una Promise che puoi usare per reagire quando il file ha finito di caricarsi o per catturare e gestire gli errori.
 
-Once a file has been uploaded, Firebase will give it a public URL (with the usual `https://` protocol) where websites and users can access it. This public URL is different and constructed from the `ref` path that was specified, and will vary based on the storage parameters used by Firebase. So in order to figure out the resulting URL for this file (e.g., so you can show the file to the user again, you will need to request that URL from Firebase. You do this by using yet another function called **`getDownloadURL()`**. The function takes the file's `ref` as an argument, and will query Firebase for the public URL of the file.
+Dopo che un file e' stato caricato, Firebase gli assegna un URL pubblico (con il solito protocollo `https://`) da cui siti e utenti possono accedervi. Questo URL pubblico e' diverso ed e' costruito a partire dal path `ref` specificato, e puo' variare in base ai parametri di storage usati da Firebase. Quindi, per ottenere l'URL risultante di questo file (ad es. per mostrarlo di nuovo all'utente), devi richiederlo a Firebase. Lo fai usando un'altra function chiamata **`getDownloadURL()`**. La function prende come argomento il `ref` del file e interroga Firebase per l'URL pubblico del file.
 
-But querying Firebase is a network operation, which means that it takes time... Thus `getDownloadURL()` is _asynchronous_ doesn't return the actual URL, but a _Promise_ for that URL; you will need to wait for that promise to resolve to access the URL string. Since uploading the file and getting the public URL are both asynchronous functions that return Promises, this operation is a good place to use `async/await` syntax to help keep the code readable rather than having a sequence of Promises.
+Ma interrogare Firebase e' un'operazione di rete, quindi richiede tempo... Per questo `getDownloadURL()` e' _asynchronous_ e non restituisce l'URL vero, ma una _Promise_ di quell'URL; devi attendere che la promise si risolva per accedere alla string URL. Dato che il caricamento del file e l'ottenimento dell'URL pubblico sono entrambe functions asincrone che restituiscono Promises, questa e' una buona situazione per usare la sintassi `async/await` per mantenere il codice leggibile invece di una sequenza di Promises.
 
 ```js
 import {getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -668,10 +668,10 @@ async function uploadFile() {
 }
 ```
 
-Note that it is normal to take the public URL and to also `set` it to a location in the realtime database; this allows an uploaded image to be associated with some other data values. The realtime database stores the _url_ to the file (a string, stored in JSON), but the file itself is kept in Firebase Storage.
+Nota che e' normale prendere l'URL pubblico e anche fare `set` di quell'URL in una location del realtime database; questo permette di associare un'immagine caricata ad altri data values. Il realtime database salva l'_url_ del file (una string, salvata in JSON), ma il file stesso e' conservato in Firebase Storage.
 
 
-## Resources {-}
+## Risorse {-}
 <div class="list-condensed">
 - [Firebase Web Documentation](https://firebase.google.com/docs/web/setup)
 - [Firebase Realtime Database](https://firebase.google.com/docs/database/web/start)

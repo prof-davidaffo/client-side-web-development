@@ -1,20 +1,20 @@
 # AJAX Requests {#ajax}
-JavaScript allows you to dynamically define the content of a web page, generating the DOM at runtime rather than in `.html` source files. One of the primary reasons we would want to dynamically produce a DOM is if the web page's content is based on some **data** that may change over time: for example, the kind of data that is available through a [**Web API**](https://info201.github.io/apis.html#what-is-a-web-api). By using JavaScript to render the DOM, you can quickly produce large amounts of HTML needed to display large data sets, sure that you have up-to-date data each time the page loads, and even _automatically refresh the page content_ without requiring the user to reload!
+JavaScript ti permette di definire dinamicamente il contenuto di una web page, generando il DOM a runtime invece che nei file `.html` source. Uno dei motivi principali per cui vogliamo produrre dinamicamente un DOM e' quando il contenuto della web page si basa su **data** che possono cambiare nel tempo: per esempio, il tipo di data disponibile tramite una [**Web API**](https://info201.github.io/apis.html#what-is-a-web-api). Usando JavaScript per renderizzare il DOM, puoi produrre rapidamente grandi quantita' di HTML necessarie per mostrare grandi data set, assicurandoti di avere data aggiornati ogni volta che la pagina si carica, e perfino _aggiornare automaticamente il contenuto della pagina_ senza richiedere all'utente di ricaricare!
 
-This chapter describes how to use JavaScript to dynamically send HTTP Requests to download data (without reloading the page!), as well as how to perform the **asynchronous programming** needed when working with web requests and other time-consuming operations.
+Questo capitolo descrive come usare JavaScript per inviare dinamicamente HTTP Requests per scaricare dati (senza ricaricare la pagina!), e come eseguire la **asynchronous programming** necessaria quando si lavora con web requests e altre operazioni che richiedono tempo.
 
-<p class="alert alert-info">Note that this lecture assumes that you have a basic familiarity with RESTful Web APIS, including how to read and access their endpoints. For a review of some of the terminology used in APIS and RESTful requests, see the [INFO 201 course reader](https://info201.github.io/apis.html#restful-requests).</p>
+<p class="alert alert-info">Nota che questa lezione assume che tu abbia una familiarita' di base con le RESTful Web API, incluso come leggere e accedere ai loro endpoint. Per un ripasso della terminologia usata nelle API e nelle RESTful requests, vedi il [INFO 201 course reader](https://info201.github.io/apis.html#restful-requests).</p>
 
 
 ## AJAX
-As discussed in [Chapter 2](#http-requests-and-servers), you download data from the Internet by sending an **HTTP Request** and then processing the **response**. In everyday usage, HTTP Requests are normally sent by the _browser_ when the user enters a URL or clicks on a link. By default, if you wanted to download new data, you'd need to have the browser send a new request, loading a new page (or reloading the current page) in order to show that result.
+Come discusso nel [Chapter 2](#http-requests-and-servers), scarichi data da Internet inviando un **HTTP Request** e poi processando la **response**. Nell'uso quotidiano, gli HTTP Requests sono normalmente inviati dal _browser_ quando l'utente inserisce un URL o clicca un link. Di default, se vuoi scaricare nuovi data, devi far inviare al browser una nuova request, caricando una nuova pagina (o ricaricando la pagina corrente) per mostrare il risultato.
 
-To make modern dynamic web pages that display new data without needing to refresh the browser, we use a technique to send HTTP Requests _from JavaScript code_ rather than from the browser. This allows us to "by-pass" the browser and get new data (and change the webpage) without reloading it! This technique is referred to as **AJAX** (**A**synchronous **J**avaScript **A**nd **X**ML)&mdash;we write code that sends an "request with AJAX" or an "AJAX request".
+Per creare moderne web page dinamiche che mostrano nuovi data senza dover ricaricare il browser, usiamo una tecnica per inviare HTTP Requests _da codice JavaScript_ invece che dal browser. Questo ci permette di "by-passare" il browser e ottenere nuovi data (e cambiare la web page) senza ricaricarla! Questa tecnica e' chiamata **AJAX** (**A**synchronous **J**avaScript **A**nd **X**ML)&mdash;scriviamo codice che invia una "request con AJAX" o una "AJAX request".
 
-<p class="alert alert-info">_Fun fact_: The technology used to send AJAX requests was originally developed by Microsoft in the late 90s to support their fledgling web version of the Outlook email/calendar app. The JavaScript functions used to send these requests were included in Internet Explorer as a _non-standard_ feature&mdash;an example of a browser adding new functionality that it thinks will be useful but that doesn't work on other platforms. However, AJAX quickly gained popularity (particularly when Google showed off what you could do with it via Gmail and Google Maps), and has since become a standard that is now supported by all browsers. This is how standards come into existence!</p>
+<p class="alert alert-info">_Fun fact_: la tecnologia usata per inviare AJAX requests e' stata sviluppata originariamente da Microsoft a fine anni '90 per supportare la loro giovane versione web dell'app Outlook email/calendar. Le functions JavaScript usate per inviare queste request erano incluse in Internet Explorer come feature _non standard_&mdash;un esempio di browser che aggiunge una nuova funzionalita' che pensa utile ma che non funziona su altre piattaforme. Tuttavia, AJAX ha rapidamente guadagnato popolarita' (in particolare quando Google ha mostrato cosa si poteva fare con Gmail e Google Maps), ed e' diventato uno standard supportato da tutti i browser. Cosi' nascono gli standard!</p>
 
-### XML and JSON {-}
-AJAX is called "AJA**X**" because it was originally designed to request data in XML format. **XML** (E**X**tensible **M**arkup **L**anguage) is a markup language (like HTML) that is used to encode meaning in content in a format that is both human _and_ computer readable. The syntax for XML is _exactly_ the same as HTML: in fact, HTML can be seen as a "subset" of the language. You can think of XML as "HTML, but you get to make up your own element names!"
+### XML e JSON {-}
+AJAX si chiama "AJA**X**" perche' era stato progettato originariamente per richiedere data in formato XML. **XML** (E**X**tensible **M**arkup **L**anguage) e' un markup language (come HTML) usato per codificare significato nel contenuto in un formato che sia leggibile sia dagli esseri umani _che_ dai computer. La sintassi dell'XML e' _esattamente_ la stessa dell'HTML: infatti, l'HTML puo' essere visto come un "subset" del linguaggio. Puoi pensare all'XML come "HTML, ma puoi inventare i nomi dei tuoi elementi"!
 
 ```xml
 <!-- Some XML encoding information about a person -->
@@ -32,9 +32,9 @@ AJAX is called "AJA**X**" because it was originally designed to request data in 
 </person>
 ```
 
-- The XML language does not define any particular tags the way HTML does; instead it is up to individual applications to determine what tags it will recognize and interpret (and what tags it would see as gibberish)&mdash;what is referred to as a [XML Schema](https://en.wikipedia.org/wiki/XML_schema).
+- Il linguaggio XML non definisce tag specifici come fa HTML; invece spetta alle singole applications determinare quali tag riconoscere e interpretare (e quali tag considerare incomprensibili)&mdash;cio' che viene chiamato [XML Schema](https://en.wikipedia.org/wiki/XML_schema).
 
-At the time AJAX was first developed, XML was the most common way of encoding generic data for transmission. And because XML is a tree of elements just like the DOM, similar methods could be used to navigate and extract information from the tree. However, XML is a very _verbose_ language: it requires a lot of characters to encode information (meaning that the amount of data being transferred is larger), and traversing an element tree requires a lot of code. As such, JavaScript developers (led by [Douglas Crockford](https://en.wikipedia.org/wiki/Douglas_Crockford)) developed an alternative language called **JSON** (**J**ava**S**cript **O**bject **N**otation) that is more compact than XML and can be _directly_ parsed into JavaScript objects and arrays:
+All'epoca in cui AJAX e' stato sviluppato, XML era il modo piu' comune per codificare data generici per la trasmissione. E poiche' XML e' un tree di elementi proprio come il DOM, si potevano usare metodi simili per navigare ed estrarre informazioni dal tree. Tuttavia, XML e' un linguaggio molto _verbose_: richiede molti caratteri per codificare le informazioni (quindi la quantita' di data trasferiti e' maggiore), e attraversare un element tree richiede molto codice. Per questo, i developer JavaScript (guidati da [Douglas Crockford](https://en.wikipedia.org/wiki/Douglas_Crockford)) hanno sviluppato un linguaggio alternativo chiamato **JSON** (**J**ava**S**cript **O**bject **N**otation) che e' piu' compatto di XML e puo' essere _direttamente_ parsato in objects e arrays JavaScript:
 
 ```json
 {
@@ -48,16 +48,16 @@ At the time AJAX was first developed, XML was the most common way of encoding ge
 }
 ```
 
-JSON format uses a syntax that is almost identical to that for defining Object literals in JavaScript, with a few key differences:
+Il formato JSON usa una sintassi quasi identica a quella per definire Object literals in JavaScript, con alcune differenze chiave:
 
 <div class="list-condensed">
-- JSON always defines an Object `{}` at the "top level".
-- JSON object **keys** (which must be strings) _must_ be written in double-quotes.
-- JSON **values** can only be strings, numbers, booleans (`true` or `false`), arrays (`[]`), or other objects. You cannot include a function in JSON.
-- JSON objects and arrays can't have trailing commas or other extraneous symbols&mdash;no comments!
+- JSON definisce sempre un Object `{}` al "top level".
+- Le **keys** degli object JSON (che devono essere stringhe) _devono_ essere scritte tra double-quotes.
+- I **values** JSON possono essere solo stringhe, numbers, booleans (`true` o `false`), arrays (`[]`) o altri objects. Non puoi includere una function nel JSON.
+- Gli objects e gli arrays JSON non possono avere trailing commas o altri simboli extra&mdash;niente commenti!
 </div>
 
-The JavaScript language provides a global object `JSON` (like the global `Math` object) that can be used to convert from encoded _strings_ of JSON content (e.g., the above code block as a single string variable `'{"firstName":"Alice"}'`) to JavaScript objects, and vice versa:
+Il linguaggio JavaScript fornisce un object globale `JSON` (come il global `Math`) che puo' essere usato per convertire da _strings_ codificate di contenuto JSON (ad es. il blocco di codice sopra come singola string variable `'{"firstName":"Alice"}'`) a objects JavaScript, e viceversa:
 
 ```js
 //convert from Object to encoded String
@@ -73,13 +73,13 @@ console.log(favoritesObj); //=> { music: 'jazz', numbers: [ 12, 42 ] }
 console.log(typeof favoritesObj); //=> 'object'
 ```
 
-- Note that if your JSON string is not properly formatted (e.g., you're missing a quote), the `JSON.parse()` function will throw a `SyntaxError`. The exact error in the JSON string can be hard to find; [online tools](https://jsonformatter.curiousconcept.com/) can help show the problem.
+- Nota che se la tua JSON string non e' formattata correttamente (ad es. manca una virgoletta), la function `JSON.parse()` lancera' un `SyntaxError`. L'errore esatto nella JSON string puo' essere difficile da trovare; gli [online tools](https://jsonformatter.curiousconcept.com/) possono aiutare a mostrare il problema.
 
-JSON has replaced XML as the encoding of choice for working with AJAX requests&mdash;however, the technique is still referred as "AJAX" ("AJA*J*" isn't as easy to say!)
+JSON ha sostituito XML come encoding preferito per lavorare con AJAX requests&mdash;ma la tecnica e' ancora chiamata "AJAX" ("AJA*J*" non e' facile da dire!)
 
 
 ## Fetching Data
-AJAX support is built into browsers through the included `XMLHttpRequest` global variable (the "xml http thing"). This object provides functions that allow you to send an HTTP request to the server, but the object's API is **really complex to use**:
+Il supporto AJAX e' integrato nei browser tramite la global variable `XMLHttpRequest` (la "cosa xml http"). Questo object fornisce functions che permettono di inviare un HTTP request al server, ma l'API dell'object e' **davvero complessa da usare**:
 
 <details>
 <summary>An example `XMLHTTPRequest`</summary>
@@ -108,7 +108,7 @@ request.send();
 ```
 </details>
 
-Instead of needing to understand all that code, developers tended to use functions from external libraries such as jQuery's [`$.getJSON()`](http://api.jquery.com/jQuery.getJSON/) or [`$.ajax()`](http://api.jquery.com/jQuery.ajax/):
+Invece di dover capire tutto quel codice, i developer tendevano a usare functions di librerie esterne come [`$.getJSON()`](http://api.jquery.com/jQuery.getJSON/) o [`$.ajax()`](http://api.jquery.com/jQuery.ajax/) di jQuery:
 
 ```js
 $.getJSON('https://domain.com/data', function(data) {
@@ -117,10 +117,10 @@ $.getJSON('https://domain.com/data', function(data) {
 });
 ```
 
-But this requires including the jQuery library in your page, and [since the need for jQuery is rapidly going away](http://youmightnotneedjquery.com/), other options are now _built in_ to modern browsers. In particular, we will utilize the [**`fetch()`**](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) API to easily send AJAX requests for data!
+Ma questo richiede di includere la libreria jQuery nella pagina, e [dato che la necessita' di jQuery sta rapidamente scomparendo](http://youmightnotneedjquery.com/), ora esistono opzioni _built in_ nei browser moderni. In particolare, useremo la API [**`fetch()`**](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) per inviare facilmente AJAX requests per i data!
 
 <div class="alert alert-warning">
-`fetch()` is an recent standard, so that it is not supported by older browsers (e.g., [Internet Explorer](http://caniuse.com/#feat=fetch). However, we can still use `fetch()` with these browsers by including a [**polyfill**](https://en.wikipedia.org/wiki/Polyfill)&mdash;an external library that replicates an existing API in platforms that don't support it! The [`fetch()` polyfill](https://github.com/github/fetch) will provide a `fetch()` function to browsers that don't provide it (leaving other browsers unchanged) that uses the existing `XMLHttpRequest` without you needing to interact with that object.</p>
+`fetch()` e' uno standard recente, quindi non e' supportato dai browser piu' vecchi (ad es. [Internet Explorer](http://caniuse.com/#feat=fetch)). Tuttavia, possiamo usare comunque `fetch()` con questi browser includendo un [**polyfill**](https://en.wikipedia.org/wiki/Polyfill)&mdash;una libreria esterna che replica una API esistente su piattaforme che non la supportano! Il [`fetch()` polyfill](https://github.com/github/fetch) fornisce una function `fetch()` ai browser che non la includono (lasciando invariati gli altri) e usa l'`XMLHttpRequest` esistente senza che tu debba interagire con quell'object.</p>
 
 It's easiest to just load the polyfill from a [CDN](https://cdnjs.com/libraries/fetch):
 
@@ -130,7 +130,7 @@ It's easiest to just load the polyfill from a [CDN](https://cdnjs.com/libraries/
 ```
 </div>
 
-The `fetch()` function makes it easy to send a request: simply call it and pass in the URL of the data you wish to download:
+La function `fetch()` rende semplice inviare una request: basta chiamarla e passare l'URL dei data che vuoi scaricare:
 
 ```js
 fetch('https://domain.com/data');
@@ -138,12 +138,12 @@ fetch('https://domain.com/data');
 
 <!-- //same origin policy & live-server?? Necessary?? -->
 
-<p class="alert alert-warning">In some browsers, you will not be able to send an AJAX request when the web page is loading via the `file://` protocol (e.g., by double-clicking on the `.html` file). This is a security feature to keep you from accidentally running an HTML file that contains malicious JavaScript that will download a virus onto your computer. Instead, you should run a local web server such as `live-server` for testing AJAX requests.</p>
+<p class="alert alert-warning">In alcuni browser, non potrai inviare una AJAX request quando la web page viene caricata tramite il protocollo `file://` (ad es. facendo doppio click sul file `.html`). Questa e' una feature di sicurezza per evitare di eseguire per errore un file HTML che contiene JavaScript malevolo che scarica un virus sul tuo computer. Invece, dovresti avviare un web server locale come `live-server` per testare le AJAX requests.</p>
 
-<p class="alert alert-success">Remember to always use a **relative path** when specifying what file or API you wish to fetch. Moreover, paths are always relative to the `.html` file that the user is currently viewing, not to the `.js` file that contains the `fetch()` call. So be careful if your JavaScript is in a different folder; the path needs to be relative to the HTML (which should be in the root of your project).</p> 
+<p class="alert alert-success">Ricorda di usare sempre un **relative path** quando specifichi quale file o API vuoi fetchare. Inoltre, i path sono sempre relativi al file `.html` che l'utente sta visualizzando, non al file `.js` che contiene la chiamata `fetch()`. Quindi fai attenzione se il tuo JavaScript e' in una cartella diversa; il path deve essere relativo all'HTML (che dovrebbe essere nella root del progetto).</p>
 
 ## Asynchronous Programming
-However, the `fetch()` function does **NOT** directly return the data you want to download! Downloading data off the internet can take a long time: the network connection may be slow and the amount of data to download may be quite large (metadata for the latest 100 tweets from Twitter involves almost 500k of JSON content). Because fetching data may take time, AJAX requests are made **asynchronously** (that's the "A" in AJAX)&mdash;the download will occur _at the same time_ that the rest of the code is being executed. Thus the download and the remaining script will _not_ be synchronized; they will be "asynchronous".
+Tuttavia, la function `fetch()` **NON** restituisce direttamente i data che vuoi scaricare! Scaricare data da Internet puo' richiedere molto tempo: la connessione di rete potrebbe essere lenta e la quantita' di data da scaricare potrebbe essere molto grande (i metadata degli ultimi 100 tweet di Twitter sono quasi 500k di contenuto JSON). Poiche' il fetching dei data puo' richiedere tempo, le AJAX requests sono eseguite **asincronamente** (questa e' la "A" in AJAX)&mdash;il download avverra' _allo stesso tempo_ in cui il resto del codice viene eseguito. Quindi il download e il resto dello script _non_ saranno sincronizzati; saranno "asynchronous".
 
 ```js
 console.log('About to send request'); //statement 1
@@ -157,15 +157,15 @@ console.log('Sent request'); //statement 3
 //when the JS interpreter is down here!
 ```
 
-- In the above example, the JS interpreter will execute statement 1, then statement 2 (the `fetch()` call). It will then precede _immediately_ to statement 3 (the second `console.log`), without waiting for the request to finish! The download will continue to occur in the background, and will finish at some point later in the program&mdash;though we don't know exactly when.
+- Nell'esempio sopra, l'interpreter JS eseguira' lo statement 1, poi lo statement 2 (la chiamata `fetch()`). Passera' poi _immediatamente_ allo statement 3 (il secondo `console.log`), senza aspettare che la request finisca! Il download continuera' in background e finira' a un certo punto piu' avanti nel programma&mdash;anche se non sappiamo esattamente quando.
 
-- It is best to think of `fetch()` as a function that will just "_start_ to download data", not one that actually downloads data!
+- E' meglio pensare a `fetch()` come a una function che "_avvia_ il download dei data", non come a una function che scarica effettivamente i data!
 
-Because `fetch()` is an **asynchronous function** (it's code is run asynchronously), it returns what is called a [**Promise**](https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise). A Promise is object that holds a value which may not be available yet&mdash;you can think of a Promise as like a placeholder where the result of the asynchronous function call will eventually be stored (it is a "promise" to eventually have some data, though that promise may be kept or broken!).
+Poiche' `fetch()` e' una **asynchronous function** (il suo codice viene eseguito in modo asincrono), restituisce quella che si chiama [**Promise**](https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise). Una Promise e' un object che contiene un value che potrebbe non essere ancora disponibile&mdash;puoi pensare a una Promise come a un placeholder dove il risultato della chiamata asincrona verra' eventualmente memorizzato (e' una "promessa" di avere dei data, ma la promessa puo' essere mantenuta o disattesa!).
 
-- Promises are the modern way of handling asynchronous functions, but as part of the ES6 standard they are [not yet available to all browsers](http://caniuse.com/#feat=promises) (specifically: Internet Explorer). So you'll need to include [_another polyfill_](https://github.com/stefanpenner/es6-promise) to support IE. This is also available from a [CDN](https://cdnjs.com/libraries/es6-promise).
+- Le Promises sono il modo moderno di gestire le asynchronous functions, ma essendo parte dello standard ES6 [non sono ancora disponibili su tutti i browser](http://caniuse.com/#feat=promises) (in particolare: Internet Explorer). Quindi dovrai includere [_un altro polyfill_](https://github.com/stefanpenner/es6-promise) per supportare IE. E' disponibile anche da un [CDN](https://cdnjs.com/libraries/es6-promise).
 
-Promises have three possible states: _pending_ (the data is downloading), _fulfilled_ (the data has finished downloading), or _rejected_ (the data failed to download and the promise was "broken"). We are able to specify _callback functions_ (similar to event listeners) that occur when a pending Promise is either successfully fulfilled or has been rejected. The "on success" callback function is specified by calling the **`.then()`** function on the Promise object, and passing the "on success callback" as a parameter:
+Le Promises hanno tre stati possibili: _pending_ (i data si stanno scaricando), _fulfilled_ (i data hanno finito di scaricarsi) o _rejected_ (il download e' fallito e la promise e' "rotta"). Possiamo specificare _callback functions_ (simili agli event listeners) che si eseguono quando una Promise pending viene fulfilled oppure rejected. La callback "on success" si specifica chiamando la function **`.then()`** sull'object Promise e passando la "on success callback" come parametro:
 
 ```js
 function onSuccessCallback(response) { //what to do when we get the response
@@ -182,7 +182,7 @@ fetch(url).then(function(response) {
 });
 ```
 
-The "on success" callback will be passed a single parameter: the **data value** that the Promise was made for (e.g., the data that will eventually be downloaded from `fetch()`). So when the callback is executed, you will have access to the data! For example, when the `fetch()` Promise is fulfilled, it will pass an object representing the _response_ to the HTTP Request:
+La callback "on success" ricevera' un singolo parametro: il **data value** per cui la Promise era stata creata (ad es. i data che verranno scaricati da `fetch()`). Quindi quando la callback viene eseguita, avrai accesso ai data! Per esempio, quando la Promise di `fetch()` viene fulfilled, passera' un object che rappresenta la _response_ all'HTTP Request:
 
 ```js
 let promise = fetch(url);
@@ -192,14 +192,14 @@ promise.then(function(response){
 });
 ```
 
-This response object does have a `body` property that represents the "body" (data content) of the HTTP response. However, that body stored as a "stream" of 0s and 1s, not as a JavaScript object (or even a string you can `JSON.parse()`)! In order to get the body into a format you can use, you will need to "encode" it into a JavaScript object by calling the **`.json()`** method on it.
+Questo response object ha una property `body` che rappresenta il "body" (data content) della HTTP response. Tuttavia, quel body e' memorizzato come "stream" di 0 e 1, non come un object JavaScript (o anche solo una string che puoi `JSON.parse()`)! Per ottenere il body in un formato utilizzabile, devi "encodarlo" in un object JavaScript chiamando il metodo **`.json()`**.
 
-- There is also an equivalent `.text()` method to encode a response body into plain text.
+- Esiste anche un metodo equivalente `.text()` per encodare il response body in plain text.
 
 ### Chaining Promises {-}
-**But there's a catch**: the "encoding" process performed by the `.json()` might take some time (particularly for a large amount of data). So instead of blocking (pausing) the rest of your program while that encoding occurs, the `.json()` method returns _another Promise_ as a placeholder for when the encoded body is available! So you will then need to specify a `.then()` callback for _that_ Promise as well.
+**Ma c'e' un problema**: il processo di "encoding" fatto da `.json()` puo' richiedere tempo (in particolare per una grande quantita' di data). Quindi, invece di bloccare (mettere in pausa) il resto del programma mentre l'encoding avviene, il metodo `.json()` restituisce _un'altra Promise_ come placeholder di quando il body encodato sara' disponibile! Quindi dovrai specificare una callback `.then()` anche per _quella_ Promise.
 
-However, a Promise's `.then()` function has a neat property that makes this easy to do. Calling the `.then()` function on a Promise returns a new Promise as a placeholder for any data produced by the `.then()` function. This promised data will be whatever value is _returned_ by the "on success" callback function. This allows you to in effect "chain" `.then()` calls together, each of which can perform some kind of transformation on the data:
+Tuttavia, la function `.then()` di una Promise ha una proprieta' interessante che rende tutto piu' semplice. Chiamare `.then()` su una Promise restituisce una nuova Promise come placeholder per i data prodotti dalla function `.then()`. Questi data promessi saranno il value _restituito_ dalla callback "on success". Questo permette di "chainare" le chiamate `.then()`, ognuna delle quali puo' eseguire una trasformazione sui data:
 
 ```js
 function makeQuestion(dataString) { //a function to make a string a question
@@ -221,7 +221,7 @@ questionPromise.then(function(data){
 })
 ```
 
-More commonly, we use _anonymous variables_ for subsequent promises, allowing you to chain them together in a way that almost reads like English!
+Piu' comunemente, usiamo _anonymous variables_ per le promises successive, permettendoti di chainarle in un modo che quasi si legge come inglese!
 
 ```js
 getAsyncString()
@@ -231,7 +231,7 @@ getAsyncString()
     });
 ```
 
-But wait there's more! `.then()` also has a special feature where if the "on success" callback function returns a _Promise_ (rather than another kind of value), then the "outer" promise will take on the state of that new returned Promise. This means that you can just _return_ a Promise from inside a `.then()` callback, and that Promise will be the subject of the subsequent `.then()` call:
+Ma aspetta, c'e' di piu'! `.then()` ha anche una feature speciale: se la callback "on success" restituisce una _Promise_ (invece di un altro tipo di value), allora la promise "esterna" assumera' lo stato di quella nuova Promise restituita. Questo significa che puoi semplicemente _restituire_ una Promise dentro una callback `.then()`, e quella Promise diventera' l'oggetto della chiamata `.then()` successiva:
 
 ```js
 let outerPromise = getAsyncString(myFirstSource).then(function(firstData){
@@ -246,7 +246,7 @@ outerPromise.then(function(secondData){
 });
 ```
 
-Going back to `fetch()` to bring it all together: since the `.json()` encoding function returns a Promise, you can simply _return_ that Promise from the `.then()` callback in order to make it available to subsequent `.then()` calls!
+Tornando a `fetch()` per mettere tutto insieme: dato che la function di encoding `.json()` restituisce una Promise, puoi semplicemente _restituire_ quella Promise dalla callback `.then()` per renderla disponibile alle successive chiamate `.then()`!
 
 ```js
 fetch(url)  //start the download
@@ -260,12 +260,12 @@ fetch(url)  //start the download
     });
 ```
 
-This code example will allow you to download data and encode it into a plain old JavaScript object that you can work with.
+Questo esempio di codice ti permette di scaricare i data e encodarli in un normale object JavaScript con cui puoi lavorare.
 
 ### Handling Errors {-}
-When downloading data from the internet, it is always possible that the HTTP request may fail. The request may be sent to the wrong URL, the client computer may be having connection problems, or the receiving server may be having problems.
+Quando scarichi data da Internet, e' sempre possibile che la HTTP request fallisca. La request potrebbe essere inviata all'URL sbagliato, il computer del client potrebbe avere problemi di connessione, oppure il server potrebbe avere problemi.
 
-In order to deal with inevitable errors, Promises provide a **`.catch()`** method that is used to specify a callback that should occur if the Promise is _rejected_ (an error occurs). This callback function will be passed an [Error object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) that contains details about the error.
+Per gestire errori inevitabili, le Promises forniscono un metodo **`.catch()`** usato per specificare una callback da eseguire se la Promise viene _rejected_ (si verifica un errore). Questa callback ricevera' un [Error object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) con i dettagli dell'errore.
 
 ```js
 fetch(url)
@@ -283,17 +283,17 @@ fetch(url)
 
 ```
 
-- Importantly, the `.catch()` method will "catch" errors from _all previous_ Promises in a `.then()` chain! This means that the above `.catch()` will show both errors in the downloading (`.fetch()`), and errors in the body encoding (`.json()`).
+- E' importante: il metodo `.catch()` "cattura" gli errori di _tutte le Promises precedenti_ nella catena `.then()`! Questo significa che il `.catch()` sopra mostrera' sia gli errori nel download (`.fetch()`), sia gli errori nell'encoding del body (`.json()`).
 
-- You will almost always want to show the error to the user in some way, such as by creating an [alert](http://getbootstrap.com/docs/4.0/components/alerts/) element in the DOM.
+- Quasi sempre vorrai mostrare l'errore all'utente in qualche modo, ad esempio creando un elemento [alert](http://getbootstrap.com/docs/4.0/components/alerts/) nel DOM.
 
-- The `.catch()` function _also_ returns a Promise, so you can continue to chain `.then()` calls after it. These later callbacks will only be executed if no previous Promise has been rejected (that is, there haven't been any errors yet).
+- La function `.catch()` restituisce _anche_ una Promise, quindi puoi continuare a chainare `.then()` dopo. Queste callback successive verranno eseguite solo se nessuna Promise precedente e' stata rejected (cioe' se non ci sono stati errori).
 
-**Important**: a Promise will only be rejected if there is an actual "Error" in sending the request. If the server replies with a [401](https://httpstatuses.com/401) error (e.g., you didn't have permission to access the resource) or just the message "invalid API key", that won't be handled by `.catch()`. From JavaScript's perspective, the request went through perfectly&mdash;it's not fetch's fault that the data you asked for wasn't what you actually wanted!
+**Importante**: una Promise viene rejected solo se c'e' un vero "Error" nell'invio della request. Se il server risponde con un errore [401](https://httpstatuses.com/401) (ad es. non hai il permesso di accedere alla risorsa) o con il messaggio "invalid API key", questo non verra' gestito da `.catch()`. Dal punto di vista di JavaScript, la request e' andata a buon fine&mdash;non e' colpa di fetch se i data che hai richiesto non sono quelli che volevi!
 
-- You can use the `response.status` and `response.ok` properties to check the status of the HTTP response.
+- Puoi usare le properties `response.status` e `response.ok` per controllare lo status della HTTP response.
 
-As such, you will want to make sure to handle things like bad responses or unexpected response bodies, both in testing your application (to make sure the request is sent to the correct URL) and when handling any user input.
+Quindi, vorrai assicurarti di gestire risposte errate o response body inattesi, sia nei test della tua application (per assicurarti che la request sia inviata all'URL corretto) sia quando gestisci l'input dell'utente.
 
 
 <!-- TODO
@@ -314,10 +314,10 @@ https://hackernoon.com/6-reasons-why-javascripts-async-await-blows-promises-away
     //preventing default
 -->
 
-### Other Data Formats {-}
-The above usage of `fetch()` works well for data formatted in JSON (which is the most common format for web-accessible data). However, you may wish to dynamically load data that is presented in a different format, such as plain text or as comma-separated values (CSV). There are a few ways to support this:
+### Altri Data Formats {-}
+L'uso di `fetch()` sopra funziona bene per i data formattati in JSON (che e' il formato piu' comune per data accessibili via web). Tuttavia, potresti voler caricare dinamicamente data in un formato diverso, come plain text o valori separati da virgola (CSV). Ci sono diversi modi per supportare questo:
 
-For downloading **plain text** formatted data, you can use the `fetch()` method as above, but instead of calling `.json()` on the response to encode it as a JavaScript object, you can call the `.text()` method to encode it as a basic string:
+Per scaricare data in formato **plain text**, puoi usare `fetch()` come sopra, ma invece di chiamare `.json()` sulla response per encodarla come object JavaScript, puoi chiamare il metodo `.text()` per encodarla come string di base:
 
 ```js
 fetch(url)  //start the download
@@ -331,20 +331,20 @@ fetch(url)  //start the download
     });
 ```
 
-Encoding as text will support _any_ plaintext formated data&mdash;whether from a `.txt` file, a `.csv` file, or even a `.json` or `.js` file! In fact, if you encode JSON data as plain text using the `.text()` method, you could then explicitly parse that into a JavaScript Object by using the built-in [`JSON.parse()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse) function described above!
+L'encoding come text supporta _qualsiasi_ plaintext formated data&mdash;che provenga da un file `.txt`, un file `.csv`, o perfino un file `.json` o `.js`! In effetti, se encodi data JSON come plain text usando il metodo `.text()`, puoi poi parsarli esplicitamente in un Object JavaScript usando la function built-in [`JSON.parse()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse) descritta sopra!
 
-While the `.text()` method will you encode data into a JavaScript String, that String will often have a particular format that needs to be **parsed** (interpreted) in order to make the data useful. For example, a String in CSV format is not very useful on its own; you would need to parse it into an array of objects (where each object represents a row) to analyze the data.
+Anche se il metodo `.text()` encodera' i data in una String JavaScript, quella String avra' spesso un formato particolare che deve essere **parsed** (interpretato) per rendere i data utili. Per esempio, una String in formato CSV non e' molto utile da sola; dovresti parsarla in un array di objects (dove ogni object rappresenta una row) per analizzare i data.
 
-It is possible ([but complex](https://stackoverflow.com/a/8497474)) to do this parsing using built-in String functions (assuming your CSV data matches official standards), but in general it's easier and more effective to use an external library to do this parsing. One of the best libraries for doing this work is [**`d3.dsv()`**](https://github.com/d3/d3-fetch), a component of the [d3](https://d3js.org/) visualization library. `d3.fetch()` provides convenience wrapper functions for `fetch()` that also perform effective data parsing.
+E' possibile ([ma complesso](https://stackoverflow.com/a/8497474)) fare questo parsing usando functions built-in sulle String (assumendo che i tuoi data CSV rispettino gli standard ufficiali), ma in generale e' piu' semplice ed efficace usare una libreria esterna per questo parsing. Una delle migliori librerie per questo lavoro e' [**`d3.dsv()`**](https://github.com/d3/d3-fetch), un componente della libreria di visualizzazione [d3](https://d3js.org/). `d3.fetch()` fornisce convenience wrapper functions per `fetch()` che eseguono anche un parsing efficace dei data.
 
-In order to use `d3.fetch()`, you will need to load it as an external library:
+Per usare `d3.fetch()`, devi caricarlo come libreria esterna:
 
 ```html
 <script src="https://d3js.org/d3-dsv.v1.min.js"></script>
 <script src="https://d3js.org/d3-fetch.v1.min.js"></script>
 ```
 
-(More details coming soon...)
+(Maggiori dettagli in arrivo...)
 <!-- (the `d3-fetch` )
 
 
@@ -361,7 +361,7 @@ For formatted plain text (such as JSON or CSV data), you will need -->
 
 
 
-## Resources {-}
+## Risorse {-}
 <div class="list-condensed">
 - [An Introduction to AJAX for Front-End Developers (tuts+)](https://webdesign.tutsplus.com/tutorials/an-introduction-to-ajax-for-front-end-designers--cms-25099)
 - [An Introduction to `fetch()` (Google)](https://developers.google.com/web/updates/2015/03/introduction-to-fetch)

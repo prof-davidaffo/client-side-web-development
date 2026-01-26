@@ -2,47 +2,47 @@
 
 > People just aren't as repeatable as computers are. Nor should we expect them to be. A shell script or batch file will execute the same instructions, in the same order, time after time. It can be put under source control, so you can examine changes to the procedure over time as well ("but it used to work..."). - [The Pragmatic Programmer](http://www.amazon.com/The-Pragmatic-Programmer-Journeyman-Master/dp/020161622X)
 
-This chapter introduces **automated testing** using the [Jest](https://facebook.github.io/jest/) framework. By following this tutorial, you will learn how to write and execute simple unit tests on JavaScript functions and DOM manipulating code.
+Questo capitolo introduce l'**automated testing** usando il framework [Jest](https://facebook.github.io/jest/). Seguendo questo tutorial, imparerai come scrivere ed eseguire semplici unit tests su functions JavaScript e codice che manipola il DOM.
 
-<p class="alert alert-info">This tutorial references code found at <https://github.com/info343/jest-tutorial>.</p>
+<p class="alert alert-info">Questo tutorial fa riferimento al codice su <https://github.com/info343/jest-tutorial>.</p>
 
 
 ## Testing
-One of the most important goals when developing computer programs is to make sure that the code you write actually _works_. You can determine if a program works by considering three things:
+Uno degli obiettivi piu' importanti nello sviluppo di programmi e' assicurarsi che il codice scritto _funzioni_ davvero. Puoi determinare se un programma funziona considerando tre cose:
 
-1. What **input** was given to the program? From a user perspective, this is what _actions_ that user took (e.g., "I pressed a button"). From a code perspective, this is often what value was passed to a method.
+1. Quale **input** e' stato dato al programma? Dal punto di vista dell'utente, sono le _azioni_ che l'utente ha fatto (ad es. "ho premuto un button"). Dal punto di vista del codice, e' spesso il value passato a un method.
 
-2. Running the program with a particular _input_ will lead to a **received result**: something will happen because of the input. From a user perspective, this would be this would be like the changes to a web page caused by the button press. From a code perspective, this could be the value _returned_ by that function (or potentially a new value for a _state_ variable).
+2. Eseguire il programma con un certo _input_ porta a un **received result**: qualcosa accade a causa dell'input. Dal punto di vista dell'utente, questo corrisponde ai cambiamenti di una web page causati da un button premuto. Dal punto di vista del codice, puo' essere il value _restituito_ da quella function (o potenzialmente un nuovo value per una _state_ variable).
 
-3. To know if a program worked though, you need to know the **expected result** of that program: what was _supposed_ to happen because of the input? If you don't know what the program was supposed to do, then you'll have no way of knowing if it worked or not!
+3. Per sapere se un programma ha funzionato, devi sapere qual e' l'**expected result**: cosa _doveva_ succedere a causa dell'input? Se non sai cosa il programma doveva fare, non hai modo di sapere se ha funzionato oppure no!
 
-You can test a program by providing the _input_ and then comparing the _received result_. If the _received result_ matches the _expected result_, then you know that the program worked! **Testing** is simply the process of providing the inputs and comparing the _received_ and _expected_ results
+Puoi testare un programma fornendo l'_input_ e poi confrontando il _received result_. Se il _received result_ corrisponde all'_expected result_, allora sai che il programma ha funzionato! **Testing** e' semplicemente il processo di fornire gli input e confrontare i risultati _received_ ed _expected_.
 
-Providing the input and then comparing the received and expected results can get tedious, particularly if you have lots of possible inputs or they require multiple steps (like clicking on multiple buttons). For that reason, it's helpful to use **automation** to let a computer perform the testing for you. You define the expected result of some action, and the computer will check if the received result matches.
+Fornire l'input e poi confrontare i risultati received ed expected puo' diventare noioso, soprattutto se hai molti input possibili o richiedono piu' passaggi (come cliccare su piu' button). Per questo e' utile usare **automation** per far svolgere il testing al computer. Definisci l'expected result di un'azione e il computer verifica se il received result corrisponde.
 
-Because automated testing is so useful and comment, there are a wide variety of **testing frameworks**: external scripts that provide the code to let you easily compare received and expected results.
+Dato che l'automated testing e' cosi' utile e comune, esiste una grande varieta' di **testing frameworks**: script esterni che forniscono il codice per confrontare facilmente received ed expected results.
 
-In JavaScript, the most popular testing frameworks are [Jasmine](https://jasmine.github.io/), [Mocha](https://mochajs.org/) (which is just the framework, it uses [Chai](http://chaijs.com/) to actually compare received and expected results&mdash;hot beverages are a theme), and [Jest](https://facebook.github.io/jest/). The later was developed by Facebook specifically to support testing React applications, and is the framework introduced and used in this course (though its API is almost identical to Jasmine and Mocha/Chai).
+In JavaScript, i testing frameworks piu' popolari sono [Jasmine](https://jasmine.github.io/), [Mocha](https://mochajs.org/) (che e' solo il framework, usa [Chai](http://chaijs.com/) per confrontare received ed expected results&mdash;le bevande calde sono un tema), e [Jest](https://facebook.github.io/jest/). Quest'ultimo e' stato sviluppato da Facebook per supportare il testing di applicazioni React, ed e' il framework introdotto e usato in questo corso (anche se l'API e' quasi identica a Jasmine e Mocha/Chai).
 
 
 ## Testing with Jest
-Jest is a command line program so you will need to have it installed on your machine. It can be installed _globally_ through `npm`:
+Jest e' un programma da command line, quindi devi averlo installato sulla tua macchina. Puoi installarlo _globalmente_ tramite `npm`:
 
 ```bash
 npm install -g jest
 ```
 
-Additionally, you will need to install the dependencies listed in this repository's `package.json` file, which will allow tests to use ES6 module syntax to access the functions in a separate file to test (as well as auto-complete definitions for Jest!)
+Inoltre, devi installare le dependencies elencate nel file `package.json` di questo repository, che permetteranno ai test di usare la sintassi dei moduli ES6 per accedere alle functions in un file separato da testare (e anche le definizioni di auto-complete per Jest!).
 
 ```bash
 # install all dependencies
 npm install
 ```
 
-With Jest, you define "tests", which are just JavaScript code that is used to perform the _action_ and compare the _received_ and _expected_ results. These tests can either be placed in a file whose name ends with `.test.js` (indicating it is a test script), `.spec.js` (for "specification"), or a plain `.js` file inside the `__tests__` folder in your program. In either case, a test script is _just a JavaScript file_, so you include any JavaScript code/variables/functions/etc. you want.
+Con Jest, definisci i "tests", che sono semplicemente codice JavaScript usato per eseguire l'_action_ e confrontare i risultati _received_ ed _expected_. Questi test possono essere messi in un file il cui nome finisce con `.test.js` (indicando che e' uno script di test), `.spec.js` (per "specification"), o in un file `.js` dentro la cartella `__tests__` del programma. In ogni caso, uno script di test e' _solo un file JavaScript_, quindi puoi includere qualsiasi codice/variable/function desideri.
 
 ## Writing a Test
-We define a "test" (a check if a particular piece of functionality works) by calling the [**`test()`**](https://facebook.github.io/jest/docs/en/api.html#testname-fn) function&mdash;a predefined function provided by the Jest framework. This functions take two arguments: a _string_ describing what the test is checking, and a _callback function_ that will contain the code to run which does the action and compares the results.
+Definiamo un "test" (un controllo che una funzionalita' specifica funzioni) chiamando la function [**`test()`**](https://facebook.github.io/jest/docs/en/api.html#testname-fn)&mdash;una function predefinita fornita da Jest. Questa function prende due argomenti: una _string_ che descrive cosa il test sta controllando, e una _callback function_ che contiene il codice da eseguire per fare l'azione e confrontare i risultati.
 
 ```js
 test('should do something...', function() {
@@ -50,18 +50,18 @@ test('should do something...', function() {
 });
 ```
 
-- Test descriptions (the string parameter) are written in _present tense_, and state in plain English what behavior SHOULD happen. Starting the description with the word "should" is a good approach!
+- Le descrizioni dei test (il parametro string) sono scritte al _present tense_ e dichiarano in inglese semplice quale behavior DOVREBBE avvenire. Iniziare la descrizione con la parola "should" e' un buon approccio!
 
-- Jest also provides a function `it()` that is an alias for `test()`, and lets the code read like badly punctuated English:
+- Jest fornisce anche una function `it()` che e' un alias di `test()` e permette al codice di leggere come un inglese con poca punteggiatura:
 
     ```js
     it('should do something', function() { ... });
     ```
 
 ### Assertions and Matchers {-}
-We check that the program actually does what we're testing by writing an **assertion**. An assertion is a _proposition_ that some fact is true. In this case, we are going to _assert_ that the expected result and the actual result are the same. If that proposition is shown to be valid (our claim that the results matched is true), then we know that our claim that the program works must hold and thus we "pass" the test!
+Controlliamo che il programma faccia davvero cio' che stiamo testando scrivendo un'**assertion**. Un'assertion e' una _proposition_ che afferma che un fatto e' vero. In questo caso, _assertiamo_ che l'expected result e l'actual result siano uguali. Se la proposition risulta valida (la nostra affermazione che i risultati coincidono e' vera), allora sappiamo che il programma funziona e quindi il test "passa"!
 
-- You can think of an _assertion_ as a bit like doing the work of an if-else statement:
+- Puoi pensare a un'_assertion_ come a un if-else statement:
 
     ```
     if(received value == expected value){
@@ -71,7 +71,7 @@ We check that the program actually does what we're testing by writing an **asser
     }
     ```
 
-In Jest, we put forth an assertion by calling the [**`expect()`**](https://facebook.github.io/jest/docs/en/expect.html#expectvalue) function with an appropriate [**matcher**](https://facebook.github.io/jest/docs/en/using-matchers.html). The `expect()` function takes a single parameter, which is the _received result_ (produced by doing the action; e.g., calling the function with a particular input). A matcher is _another function_ that is called directly on the returned value of `expect()`, and takes as an argument the _expected result_ that we want to compare. The matcher does the work of actually comparing the values, and then reporting the validity of our claim back to Jest:
+In Jest, facciamo un'assertion chiamando la function [**`expect()`**](https://facebook.github.io/jest/docs/en/expect.html#expectvalue) con un [**matcher**](https://facebook.github.io/jest/docs/en/using-matchers.html) appropriato. La function `expect()` prende un solo parametro, che e' il _received result_ (prodotto eseguendo l'azione; ad es. chiamando la function con un input specifico). Un matcher e' _un'altra function_ chiamata direttamente sul value restituito da `expect()`, e prende come argomento l'_expected result_ che vogliamo confrontare. Il matcher fa il lavoro di confrontare i values e poi riporta la validita' della nostra affermazione a Jest:
 
 ```js
 test('should add numbers correctly', function() {
@@ -79,11 +79,11 @@ test('should add numbers correctly', function() {
 });
 ```
 
-- In this case, `.toEqual()` is the "matcher" which compare the _received_ and _expected_ values to see if they are equal.
+- In questo caso, `.toEqual()` e' il "matcher" che confronta i values _received_ ed _expected_ per vedere se sono uguali.
 
-- Be careful about your parentheses! The `expect()` function should take a single expression (even if that expression includes a function call), and the matcher is called _after_ the `expect()` function. Using local variables can help with readability.
+- Fai attenzione alle parentesi! La function `expect()` dovrebbe prendere una singola espressione (anche se include una function call), e il matcher viene chiamato _dopo_ la function `expect()`. Usare variables locali puo' aiutare la leggibilita'.
 
-Jest supports a wide variety of matchers. For example:
+Jest supporta una grande varieta' di matchers. Per esempio:
 
 ```js
 //can do numerical comparison
@@ -99,12 +99,12 @@ expect(receivedArray).toContain(expectedValue);
 expect(receivedValue).not.toEqual(expectedValue);
 ```
 
-- See [the documentation](https://facebook.github.io/jest/docs/en/expect.html) for a complete list.
+- Vedi [la documentazione](https://facebook.github.io/jest/docs/en/expect.html) per una lista completa.
 
-Note that a single `test()` can include multiple assertions!
+Nota che un singolo `test()` puo' includere piu' assertions!
 
 ### Organizing Tests {-}
-You can "group" tests together by using the [`describe()`](https://facebook.github.io/jest/docs/en/api.html#describename-fn) function. This function takes two parameters: a _string_ that describes what **feature** is being tested, and a _callback function_ that contains the code for the tests:
+Puoi "raggruppare" i test usando la function [`describe()`](https://facebook.github.io/jest/docs/en/api.html#describename-fn). Questa function prende due parametri: una _string_ che descrive quale **feature** viene testata, e una _callback function_ che contiene il codice dei test:
 
 ```js
 describe('Basic math', function() {
@@ -114,69 +114,69 @@ describe('Basic math', function() {
 });
 ```
 
-- You should name your feature and test features so that they read as:
+- Dovresti nominare le feature e i test in modo che si leggano come:
 
     > {Feature name} should {do something specific}
 
-    This will allow the test results to be communicated very clearly, even to non-developers (e.g., to your boss or client).
+    Questo permette di comunicare i risultati dei test in modo molto chiaro, anche a non-developers (ad es. al tuo capo o cliente).
 
-- `describe()` blocks can contain multiple `tests()`, and even other `describe()` blocks if you want to separate subfeatures.
+- I blocchi `describe()` possono contenere piu' `test()` e anche altri `describe()` se vuoi separare sotto-feature.
 
-It is also possible to run particular blocks of code _before_ groups of tests are run by using the `beforeEach()` and `beforeAll()` functions. See [Setup and Teardown](https://facebook.github.io/jest/docs/en/setup-teardown.html) for details.
+E' anche possibile eseguire blocchi di codice _prima_ che gruppi di test vengano eseguiti usando le functions `beforeEach()` e `beforeAll()`. Vedi [Setup and Teardown](https://facebook.github.io/jest/docs/en/setup-teardown.html) per dettagli.
 
 
 ### Running the Tests {-}
-You can **run** the test (have the computer perform the testing work) by using the `jest` command line program, passing it the name of the text script (without the extension) that you wish to run:
+Puoi **run**nare i test (far fare il lavoro di testing al computer) usando il programma da command line `jest`, passando il nome dello script di test (senza estensione) che vuoi eseguire:
 
 ```bash
 # test the app.spec.js file
 jest app
 ```
 
-The command line will print out the results of this test script:
+La command line stampera' i risultati di questo test script:
 
 ![An example passing script](img/jest/pass.png)
 
-This will tell you what tests were run, which "passed" (were green for good to _go_!) and which "failed" (were red). Failed tests will also report which assertion failed, and what the expected and received values were that didn't match.
+Questo ti dira' quali test sono stati eseguiti, quali hanno "passato" (in verde, good to _go_!) e quali hanno "fallito" (in rosso). I test falliti riportano anche quale assertion e' fallita e quali valori expected e received non corrispondevano.
 
 ### Practice {-}
-This repo's `app.js` file contains a function `invertCase()`. In the provides `app.spec.js` file, implement a `describe()` block to contains tests for the function, and write unit tests to check it for bugs (by giving it specific inputs and checking the _received_ vs. the _expected_ result). If you find any bugs, fix them and then re-run your tests!
+Il file `app.js` di questo repo contiene una function `invertCase()`. Nel file `app.spec.js` fornito, implementa un blocco `describe()` che contenga test per la function, e scrivi unit tests per verificare bug (fornendo input specifici e confrontando _received_ vs _expected_). Se trovi bug, correggili e poi ri-esegui i test!
 
 ## Testing Web Apps with Jest
-It is also possible to use Jest to JavaScript code that is used to manipulate the DOM. You can do this because Jest creates a **virtual DOM** that you can interact with. That is, jest provides a global `document` object that you can access and call methods on (e.g., `document.querySelector()`). This isn't a full browser: it won't load external CSS files or allow you to navigate to pages, but it does provide a tree of HTML elements you can modify and inspect. allowing you to test your DOM manipulation.
+E' anche possibile usare Jest per codice JavaScript che manipola il DOM. Puoi farlo perche' Jest crea un **virtual DOM** con cui puoi interagire. Cioe', Jest fornisce un object globale `document` a cui puoi accedere e chiamare methods (ad es. `document.querySelector()`). Non e' un browser completo: non carica file CSS esterni ne' permette di navigare tra pagine, ma fornisce un tree di elementi HTML che puoi modificare e ispezionare, permettendoti di testare la manipolazione del DOM.
 
-There are a few steps to being able to work effectively with the `document` provided by Jest:
+Ci sono alcuni passi per lavorare efficacemente con il `document` fornito da Jest:
 
-1. First, you will want to make sure the content of the DOM includes the HTML elements you wish to test with. This is called **mounting** the content. You can mount some HTML content by assigning it to the `innerHTML` of the DOM's _root element_&mdash;not the `<html>` element, but a virtual element that acts as the ultimate parent of the DOM (similar to the root `/` folder on an operating system). This node can be accessed via the `document.documentElement` property:
+1. Per prima cosa, assicurati che il contenuto del DOM includa gli elementi HTML che vuoi testare. Questo si chiama **mounting** del contenuto. Puoi montare contenuto HTML assegnandolo a `innerHTML` dell'_root element_ del DOM&mdash;non l'elemento `<html>`, ma un elemento virtuale che agisce come parent ultimo del DOM (simile alla cartella root `/` di un sistema operativo). Questo node e' accessibile tramite la property `document.documentElement`:
 
     ```js
     //assign a given HTML content (e.g., as string) to the virtual DOM
     document.documentElement.innerHTML = "<html><head></head><body>...</body></html>";
     ```
 
-    Often, this HTML content is read directly from the file, using Node's `fs` (file system) library.
+    Spesso, questo contenuto HTML viene letto direttamente dal file usando la libreria `fs` (file system) di Node.
 
-2. Because the `document` object only represents the DOM tree (the rendered HTML), it won't apply any embedded `<script>` tags. So in order to run your script on the DOM and modify it, you will need to _manually_ apply those scripts. But since Jest has already defined you a `document` object to modify, you can simply tell Jest to load and run your script! Your code will do the exact same thing it does in the browser, just querying and modifying Jest's virtual DOM (`document`) rather than the browser's DOM.
+2. Poiche' l'object `document` rappresenta solo il DOM tree (l'HTML renderizzato), non applica i tag `<script>` embedded. Quindi, per eseguire il tuo script sul DOM e modificarlo, devi applicare quegli script _manualmente_. Ma dato che Jest ti ha gia' definito un object `document` da modificare, puoi semplicemente dire a Jest di caricare ed eseguire il tuo script! Il tuo codice fara' esattamente le stesse cose che fa nel browser, solo che interroga e modifica il DOM virtuale di Jest (`document`) invece del DOM del browser.
 
-    You load an external script in Jest by using Node's `require()` function, passing it the _relative path_ to the script file you wish to load (this script must be saved locally):
+    Carichi uno script esterno in Jest usando la function `require()` di Node, passando il _relative path_ al file di script che vuoi caricare (questo script deve essere salvato localmente):
 
     ```js
     //load the `index.js` file
     require('../js/index.js');
     ```
 
-    Note that this path is _relative_ to the location of the test script, not relative to the location of the `.html` file (since Jest doesn't use the HTML). If the script file is in the same directory as the spec file, you will need to put a `./` in front of the filename path to indicate that you're giving a path rather than naming a module.
+    Nota che questo path e' _relative_ alla location dello script di test, non alla location del file `.html` (dato che Jest non usa l'HTML). Se il file di script e' nella stessa directory del file spec, devi mettere `./` davanti al path del filename per indicare che stai fornendo un path e non un nome di module.
 
-    You will need to also explicitly have Jest load any external libraries (such as jQuery) you wish to use. These libraries will need to be loaded from a local file (Jest can't access a CDN), but they can usually be installed via `npm`. For example, you would load jQuery with:
+    Devi anche far caricare esplicitamente a Jest qualsiasi libreria esterna (come jQuery) che vuoi usare. Queste librerie devono essere caricate da un file locale (Jest non puo' accedere a un CDN), ma di solito possono essere installate via `npm`. Per esempio, puoi caricare jQuery cosi':
 
     ```js
     $ = require('jquery'); //load the jQuery module (installed from npm)
     window.$ = $; //assign make the jQuery library into a DOM global
     ```
 
-    _Remember to load any external scripts **before** your own!_
+    _Ricorda di caricare gli script esterni **prima** dei tuoi!_
 
-3. Finally, you can use DOM methods (or jQuery helpers!) to trigger _events_ (like button clicks). You can then inspect the DOM with `document.querySelector()` and run assertions about the state of DOM after that user action.
+3. Infine, puoi usare i metodi DOM (o gli helper jQuery!) per triggerare _events_ (come click su button). Poi puoi ispezionare il DOM con `document.querySelector()` e fare assertions sullo stato del DOM dopo quella user action.
 
     ```js
     //for example
@@ -184,12 +184,12 @@ There are a few steps to being able to work effectively with the `document` prov
     expert(h1.textContent).toEqual('Hello world!');
     ```
 
-And with that, you can automatically test if your page's interactivity works as expected without needing to repeatedly click on a button. In particular, these automatic tests can help you make sure that future changes don't _break_ your code (e.g., don't cause the tests to fail), performing what is called [**regression testing**](https://en.wikipedia.org/wiki/Regression_testing).
+Con questo, puoi testare automaticamente se l'interactivity della pagina funziona come previsto senza dover cliccare ripetutamente un button. In particolare, questi test automatici ti aiutano a garantire che cambiamenti futuri non _rompano_ il codice (ad es. non facciano fallire i test), eseguendo quello che si chiama [**regression testing**](https://en.wikipedia.org/wiki/Regression_testing).
 
-- You should still test your page inside the browser, just to catch any platform differences between Jest's virtual DOM and actual web browsers.
+- Dovresti comunque testare la pagina nel browser, per intercettare eventuali differenze tra il DOM virtuale di Jest e i web browser reali.
 
 ### Practice {-}
-Write a test in the provided `index.spec.js` file to confirm that when the "Panic" button is pressed, the HTML's `.alert` element is displayed.
+Scrivi un test nel file `index.spec.js` fornito per confermare che quando il button "Panic" viene premuto, l'elemento `.alert` dell'HTML viene mostrato.
 
 
 <!-- ## Testing React with Enzyme

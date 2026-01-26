@@ -1,49 +1,49 @@
-# JavaScript Fundamentals {#javascript}
+# Fondamenti di JavaScript {#javascript}
 
-HTML and CSS are _markup languages_, used to annotate websites to describe their meaning and appearance. But they are not "full" (i.e., [Turing Complete](https://en.wikipedia.org/wiki/Turing_completeness)) programming languages&mdash;they don't have variables, control structures, or other features required for the computer to execute an _algorithm_. So to make _interactive_ websites or complex web applications, you need a complete programming language. And the language used by browsers is **JavaScript**. This chapter introduces the fundamentals of the JavaScript language as used in web development, focusing on variables, data types, and basic control structures. Functions are introduced, but addressed in more detail in the next chapter.
+HTML e CSS sono _markup languages_, usate per annotare i siti web per descriverne significato e aspetto. Ma non sono linguaggi di programmazione "completi" (cioe' [Turing Complete](https://en.wikipedia.org/wiki/Turing_completeness))&mdash;non hanno variables, control structures o altre feature richieste per far eseguire un _algorithm_ al computer. Quindi, per creare siti web _interattivi_ o web application complesse, serve un linguaggio di programmazione completo. E il linguaggio usato dai browser e' **JavaScript**. Questo capitolo introduce i fondamenti del linguaggio JavaScript per il web development, concentrandosi su variables, data types e control structures di base. Le functions sono introdotte qui, ma trattate piu' in dettaglio nel capitolo successivo.
 
-<p class="alert alert-warning">Note, this course assumes you already are already familiar with introductory programming in a imperative language such as Java. It focuses on how JavaScript differs from languages such as Java, rather than foundational programming concepts. If you need review on those topics, you can check out a [basic programming tutorial](https://en.wikiversity.org/wiki/Introduction_to_Programming) or review your notes from a previous programming course.</p>
+<p class="alert alert-warning">Nota: questo corso assume che tu abbia gia' familiarita' con la programmazione introduttiva in un linguaggio imperativo come Java. Si concentra su come JavaScript differisce da linguaggi come Java, piuttosto che sui concetti fondamentali di programmazione. Se ti serve un ripasso su questi argomenti, puoi consultare un [tutorial di programmazione di base](https://en.wikiversity.org/wiki/Introduction_to_Programming) o rivedere gli appunti di un corso precedente.</p>
 
-## Programming with JavaScript
-JavaScript is a **high-level, general-purpose programming language**, allowing you to declare instructions for the computer in an almost-human readable way (similar to Java). JavaScript is an _imperative_ language, so you write algorithms as step-by-step instructions (lines of code) using JavaScript's syntax, and the computer will interpret these instructions in order to execute the algorithm. Browsers are able to download scripts written in JavaScript, executing them line-by-line and using those instructions to manipulate what content is displayed.
+## Programmare con JavaScript
+JavaScript e' un **high-level, general-purpose programming language**, che ti permette di dichiarare istruzioni per il computer in modo quasi leggibile per gli esseri umani (simile a Java). JavaScript e' un linguaggio _imperative_, quindi scrivi algorithms come istruzioni passo-passo (righe di codice) usando la sintassi di JavaScript, e il computer interpreta queste istruzioni in ordine per eseguire l'algorithm. I browser sono in grado di scaricare script scritti in JavaScript, eseguendoli riga per riga e usando quelle istruzioni per manipolare quale contenuto viene mostrato.
 
-Indeed, JavaScript is an **interpreted language**, in that the computer (specifically a _JavaScript Interpreter_) translates the high-level language into machine language _on the fly at runtime_. The interpreter will read and execute one line of code at a time, executing that line before it even begins to consider the next. This is in contrast with _compiled languages_ like C or Java that have the computer do the translation in one pass (at compile-time), and then only execute the program after the whole thing is converted to machine language.
+Infatti, JavaScript e' un **interpreted language**, nel senso che il computer (in particolare un _JavaScript Interpreter_) traduce il linguaggio di alto livello in linguaggio macchina _on the fly at runtime_. L'interpreter legge ed esegue una riga di codice alla volta, eseguendo quella riga prima ancora di considerare la successiva. Questo e' in contrasto con i _compiled languages_ come C o Java, in cui il computer fa la traduzione in un solo passaggio (a compile-time) e poi esegue il programma solo dopo che tutto e' stato convertito in linguaggio macchina.
 
-- This on-the-fly translation means that interpreted languages like JavaScript are usually slower than compiled languages, but not enough that we'll notice (web browsers include _highly_ optimized interpreters). The bigger drawback is that without the compile step, program errors appear at runtime rather than compile time, making them more difficult to catch and fix. As such, JavaScript developers make heavy use of various [linting](https://en.wikipedia.org/wiki/Lint_%28software%29) tools (which flag common problems that can lead to runtime errors), as well as [automated testing](https://facebook.github.io/jest/) systems to check against a variety of inputs.
+- Questa traduzione on-the-fly significa che i interpreted languages come JavaScript sono di solito piu' lenti dei compiled languages, ma non abbastanza da farcelo notare (i browser includono interpreters _altamente_ ottimizzati). Il problema maggiore e' che senza lo step di compile, gli errori del programma appaiono a runtime invece che a compile time, rendendoli piu' difficili da individuare e correggere. Per questo, i developer JavaScript fanno largo uso di strumenti di [linting](https://en.wikipedia.org/wiki/Lint_%28software%29) (che segnalano problemi comuni che possono portare a errori a runtime), oltre a sistemi di [automated testing](https://facebook.github.io/jest/) per testare una varieta' di input.
 
-    Many JavaScript editors do this kind of error checking&mdash;for example, VS Code provides syntax error checking out of the box, with more [detailed linting](https://code.visualstudio.com/docs/languages/javascript#_linters) available through extensions. See [this article](https://code.visualstudio.com/docs/languages/javascript) for more code features that support programming in JavaScript, including IntelliSense and type checking.
+    Molti editor JavaScript fanno questo tipo di error checking&mdash;per esempio, VS Code fornisce il controllo degli errori di sintassi out of the box, con [linting piu' dettagliato](https://code.visualstudio.com/docs/languages/javascript#_linters) disponibile tramite estensioni. Vedi [questo articolo](https://code.visualstudio.com/docs/languages/javascript) per altre feature che supportano la programmazione in JavaScript, incluse IntelliSense e il type checking.
 
-Although JavaScript was designed for and is most commonly used within web browsers (which contain their own JavaScript Interpreters), it can also be executed on the command line by using [Node.js](https://nodejs.org/en/), allowing JavaScript to be a fully general language. Both techniques are described in this chapter.
-
-
-### History and Versions {-}
-The JavaScript language was developed by [Brendan Eich](https://en.wikipedia.org/wiki/Brendan_Eich) (the co-founder of Mozilla) in 1995 while he was working for Netscape. The original prototype of the language was created in 10 days... a fact which may help explain some of the quirks in the language.
-
-- Despite the names, _JavaScript_ and the _Java_ language have nothing to do with one another (and are in fact totally separate programming languages used in drastically different contexts). JavaScript was named after Java as a marketing ploy to cash in on the popularity of the latter. It is the programming equivalent of the [Transmorphers](https://www.rottentomatoes.com/m/transmorphers_2007/) movie.
-
-- The JavaScript language is officially an implementation of [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript) (named for the European Computer Manufacturers Association) specification. Hence versions of JavaScript are labeled with the prefix "ES". For example, this chapter describes `ES5` (JavaScript 5) syntax.
-
-Like HTML and CSS, the JavaScript language continues to be developed and refined through new versions. Each new version of JavaScript includes additional syntax shorts, specialized keywords, and additional core functions, but otherwise are compatible with previous code. The main limitation on utilizing new JavaScript features is whether the _interpreters_ found in web browsers are able to support them.
-
-This course primarily utilizes syntax and features for `ES5`, which was introduced in 2009 and today is supported by [all modern browsers](http://caniuse.com/#feat=es5) (i.e., IE 10 or later). Later chapters will describe features of `ES6` (also called `ES2015`), which was introduced in 2015 and works on [many browsers](http://kangax.github.io/compat-table/es6/) (e.g., Microsoft Edge but not IE 11). `ES7` was finalized in 2016 but is still not [reliably supported](http://kangax.github.io/compat-table/esnext/).
-
-- Note that Microsoft no longer supports earlier versions of IE, but [a small percentage](https://www.netmarketshare.com/browser-market-share.aspx?qprid=2&qpcustomd=0) of desktops still run Windows XP with IE 8. If you must support these browsers, you can often use a "transpiler" like [Babel](https://babeljs.io/) to translate modern JavaScript source code into an earlier version.
+Anche se JavaScript e' stato progettato per ed e' usato piu' comunemente nei web browser (che contengono i loro JavaScript Interpreters), puo' anche essere eseguito da command line usando [Node.js](https://nodejs.org/en/), permettendo a JavaScript di essere un linguaggio pienamente general-purpose. Entrambe le tecniche sono descritte in questo capitolo.
 
 
-## Running JavaScript
-There are two primary ways of executing code written in JavaScript:
+### Storia e versioni {-}
+Il linguaggio JavaScript e' stato sviluppato da [Brendan Eich](https://en.wikipedia.org/wiki/Brendan_Eich) (co-founder di Mozilla) nel 1995 mentre lavorava per Netscape. Il prototipo originale del linguaggio fu creato in 10 giorni... un fatto che puo' aiutare a spiegare alcune delle stranezze del linguaggio.
 
-### In the Browser {-}
-JavaScript scripts are most commonly executed in a web browser as part of the browser rendering a web page. Since browsers render HTML content (in `.html` files), JavaScript scripts are included in that HTML by using a `<script>` tag and specifying the _relative_ path to the a file containing the code (usually a **`.js`** file) to execute. When the browser renders the HTML (reading top to bottom) and gets to that tag, it will download and execute the specified script file using the JavaScript interpreter:
+- Nonostante i nomi, _JavaScript_ e il linguaggio _Java_ non hanno nulla a che vedere l'uno con l'altro (e sono in effetti linguaggi di programmazione completamente separati usati in contesti molto diversi). JavaScript fu chiamato cosi' per sfruttare la popolarita' di Java in chiave marketing. E' l'equivalente, in programmazione, del film [Transmorphers](https://www.rottentomatoes.com/m/transmorphers_2007/).
+
+- Il linguaggio JavaScript e' ufficialmente un'implementazione della specifica [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript) (cosi' chiamata dalla European Computer Manufacturers Association). Per questo le versioni di JavaScript sono etichettate con il prefisso "ES". Per esempio, questo capitolo descrive la sintassi `ES5` (JavaScript 5).
+
+Come HTML e CSS, il linguaggio JavaScript continua a essere sviluppato e raffinato con nuove versioni. Ogni nuova versione di JavaScript include nuovi syntax shortcuts, specialized keywords e core functions aggiuntive, ma per il resto e' compatibile con il codice precedente. Il limite principale nell'usare nuove feature JavaScript e' se gli _interpreters_ presenti nei browser le supportano.
+
+Questo corso usa principalmente sintassi e feature di `ES5`, introdotto nel 2009 e oggi supportato da [tutti i browser moderni](http://caniuse.com/#feat=es5) (ad es. IE 10 o successivo). I capitoli successivi descriveranno feature di `ES6` (chiamato anche `ES2015`), introdotto nel 2015 e funzionante su [molti browser](http://kangax.github.io/compat-table/es6/) (ad es. Microsoft Edge ma non IE 11). `ES7` e' stato finalizzato nel 2016 ma non e' ancora [supportato in modo affidabile](http://kangax.github.io/compat-table/esnext/).
+
+- Nota che Microsoft non supporta piu' le versioni precedenti di IE, ma [una piccola percentuale](https://www.netmarketshare.com/browser-market-share.aspx?qprid=2&qpcustomd=0) di desktop usa ancora Windows XP con IE 8. Se devi supportare questi browser, puoi spesso usare un "transpiler" come [Babel](https://babeljs.io/) per tradurre codice JavaScript moderno in una versione piu' vecchia.
+
+
+## Eseguire JavaScript
+Ci sono due modi principali per eseguire codice scritto in JavaScript:
+
+### Nel Browser {-}
+Gli script JavaScript sono eseguiti piu' comunemente in un web browser come parte del rendering di una web page. Poiche' i browser renderizzano contenuto HTML (in file `.html`), gli script JavaScript sono inclusi in quell'HTML usando un tag `<script>` e specificando il _relative_ path a un file che contiene il codice (di solito un file **`.js`**) da eseguire. Quando il browser renderizza l'HTML (leggendolo dall'alto verso il basso) e arriva a quel tag, scarica ed esegue il file di script specificato usando il JavaScript interpreter:
 
 ```html
 <!-- execute the script.js file -->
 <script src="path/to/my/script.js"></script>
 ```
 
-- Notice that the `<script>` element is _not_ empty! It is possible to include JavaScript code directly inside the tag, but this is considered bad practice (keep concerns separated!) and should only be used for quick tests.
+- Nota che l'elemento `<script>` _non_ e' empty! E' possibile includere codice JavaScript direttamente dentro il tag, ma e' considerata una bad practice (keep concerns separated!) e dovrebbe essere usata solo per test veloci.
 
-The `<script>` tag can be included anywhere in an HTML page. Most commonly it is either placed in the `<head>` in order for the script to be executed _before_ the page content loads, or at the very end of the `<body>` in order for the script to be executed _after_ the page content loads (and thus allows the JavaScript to immediately interact with the loaded HTML elements). We will (begin by) most commonly be putting `<script>` tags at the end of the `<body>`:
+Il tag `<script>` puo' essere incluso ovunque in una pagina HTML. Piu' comunemente viene messo nel `<head>` per far eseguire lo script _prima_ che il contenuto della pagina venga caricato, oppure alla fine del `<body>` per far eseguire lo script _dopo_ il caricamento del contenuto (e quindi permettere a JavaScript di interagire subito con gli elementi HTML gia' caricati). Noi (all'inizio) metteremo piu' spesso i tag `<script>` alla fine del `<body>`:
 
 ```html
 <!DOCTYPE html>
@@ -62,45 +62,45 @@ The `<script>` tag can be included anywhere in an HTML page. Most commonly it is
 <html>
 ```
 
-- Most browsers also support adding a `defer` attribute to the `<script>` element that tells the browser to defer downloading and running the script until the page is fully loaded and rendered to the screen. With this attribute, you can put the `<script>` element in the `<head>` without any issues. However, this attribute is not supported in IE 9 or earlier; it is thus still best practice to put the `<script>` element at the end of the body.
+- La maggior parte dei browser supporta anche l'attribute `defer` sull'elemento `<script>`, che dice al browser di rimandare il download e l'esecuzione dello script finche' la pagina non e' completamente caricata e renderizzata a schermo. Con questo attribute, puoi mettere l'elemento `<script>` nel `<head>` senza problemi. Tuttavia, questo attribute non e' supportato in IE 9 o precedenti; quindi e' ancora best practice mettere l'elemento `<script>` alla fine del body.
 
-While JavaScript most commonly is used to manipulate the web page content and is thus pretty obvious to the user, it _also_ can produce "terminal-like" output&mdash;including printed text and **error messages**. This output can be viewed through the **JavaScript Console** included as a _developer tool_ in the Chrome browser (other browsers include similar tools):
+Mentre JavaScript e' usato piu' comunemente per manipolare il contenuto della web page ed e' quindi abbastanza evidente per l'utente, puo' _anche_ produrre output "tipo terminale"&mdash;inclusi testo stampato e **error messages**. Questo output puo' essere visualizzato tramite la **JavaScript Console** inclusa come _developer tool_ nel browser Chrome (altri browser includono strumenti simili):
 
 ![Accessing the developer console in Chrome.](img/javascript/chrome-dev-console.png)
 
-<p class="alert alert-warning">**Important:** You should ___always___ have the JavaScript Console open when developing JavaScript code, since this is where any error messages will appear!</p>
+<p class="alert alert-warning">**Importante:** dovresti ___sempre___ avere la JavaScript Console aperta quando sviluppi codice JavaScript, perche' e' qui che compariranno gli error messages!</p>
 
 
-### On the Command-line with Node.js {-}
-It is also possible to execute JavaScript code on the command line using [Node.js](https://nodejs.org/en/). Node is a **command line runtime environment**&mdash;that is, a JavaScript interpreter that can be run on the command line.
+### Da Command-line con Node.js {-}
+E' anche possibile eseguire codice JavaScript dalla command line usando [Node.js](https://nodejs.org/en/). Node e' un **command line runtime environment**&mdash;cioe' un JavaScript interpreter che puo' essere eseguito da command line.
 
-With Node installed on your machine, you can use the **`node`** terminal command to start an _interactive Node session_. This will allow you to type JavaScript code directly in the terminal, and your computer will interpret and execute each line of code:
+Con Node installato sulla tua macchina, puoi usare il comando terminale **`node`** per avviare una _interactive Node session_. Questo ti permette di digitare codice JavaScript direttamente nel terminale, e il computer interpretera' ed eseguira' ogni riga di codice:
 
 ![An interactive Node session.](img/javascript/node-interactive-session.png)
 
-You can enter one line of code at a time at the prompt (`>`). This is a nice way to experiment with the JavaScript language or to quickly run and test some code.
+Puoi inserire una riga di codice alla volta al prompt (`>`). Questo e' un buon modo per sperimentare il linguaggio JavaScript o per eseguire e testare rapidamente del codice.
 
-- You can exit this session by typing the `quit()` command, or hitting `ctrl-z` (followed by Enter on Windows).
+- Puoi uscire da questa sessione digitando il comando `quit()`, oppure premendo `ctrl-z` (seguito da Enter su Windows).
 
-- Note that the JavaScript console in the Chrome Developer tools provides the same interactive functionality.
+- Nota che la JavaScript console nei Chrome Developer tools offre la stessa funzionalita' interattiva.
 
-It is also possible to run entire scripts (`.js` files) from the command line by using the `Node` command and specifying the script file you wish to execute:
+E' anche possibile eseguire interi script (file `.js`) dalla command line usando il comando `Node` e specificando il file di script che vuoi eseguire:
 
 ```bash
 node my-script.js
 ```
 
-This allows you author entire programs in JavaScript (e.g., writing the code using VS Code), and then executing them from the command line. This process is more common when doing _server-side_ web development (such as implementing a web server using Node), but we will still use it for practice and testing.
+Questo ti permette di creare interi programmi in JavaScript (ad es. scrivendo il codice con VS Code) e poi eseguirli dalla command line. Questo processo e' piu' comune quando fai web development _server-side_ (ad esempio implementando un web server con Node), ma lo useremo comunque per pratica e test.
 
 
-## Writing Scripts
-Unlike Java or C, JavaScript has no `main()` method that "starts" the program.
+## Scrivere Script
+A differenza di Java o C, JavaScript non ha un metodo `main()` che "avvia" il programma.
 
-Instead, a JavaScript script (a `.js` file) contains a sequence of **statements** (instructions) that the interpreter executes _in order, one at a time, top to bottom_&mdash;just as if you had typed them into an interactive session one after another. Each line can declare a variable or function, which will then be available to the next statement to use or call. Thus with a JavaScript program, you should think of the _sequence_ of steps you want to be performed, and write lines of code in that order.
+Invece, uno script JavaScript (un file `.js`) contiene una sequenza di **statements** (istruzioni) che l'interpreter esegue _in ordine, una alla volta, dall'alto verso il basso_&mdash;come se le avessi digitate una dopo l'altra in una sessione interattiva. Ogni riga puo' dichiarare una variable o una function, che saranno poi disponibili allo statement successivo per uso o chiamata. Quindi, con un programma JavaScript, dovresti pensare alla _sequenza_ di passi che vuoi eseguire e scrivere le righe di codice in quell'ordine.
 
-- In a way, you can think of the entire file as the "body" of a `main()` method... except that this body will contain further function declarations.
+- In un certo senso, puoi pensare all'intero file come al "body" di un metodo `main()`... con la differenza che questo body conterra' ulteriori function declarations.
 
-For example:
+Per esempio:
 
 ```js
 /* script.js */
@@ -109,32 +109,32 @@ console.log("Hello world!");  //this is executed first
 console.log("I'm doing JavaScript!");  //this is executed second
 ```
 
-The above example code demonstrates the [**`console.log()`**](https://developer.mozilla.org/en-US/docs/Web/API/Console/log) function, which is JavaScript's equivalent to Java's `System.out.println()`&mdash;the output will be shown in the JavaScript console (in the Developer Tools). Thus we talk about "logging out" values in JavaScript, instead of "printing" values in Java.
+Il codice di esempio sopra mostra la function [**`console.log()`**](https://developer.mozilla.org/en-US/docs/Web/API/Console/log), che e' l'equivalente JavaScript di `System.out.println()` in Java&mdash;l'output verra' mostrato nella JavaScript console (nei Developer Tools). Per questo in JavaScript si parla di "logging out" dei valori, invece di "printing" dei valori come in Java.
 
-- The `console.log()` function is technically a `log()` method belonging being called on a _global_ `console` object. Globals and objects will be discussed in more detail below.
+- La function `console.log()` e' tecnicamente un metodo `log()` chiamato su un oggetto `console` _global_. I globals e gli objects saranno discussi in dettaglio piu' avanti.
 
 <div style="float:right;margin-left:1em;">
 ![Don't forget the semicolons!](img/javascript/hunting-semicolons.jpg)
 </div>
 
-As in Java, each statement should end with a semicolon (**`;`**) marking the end of that statement. But unlike Java, JavaScript can be forgiving if you forget a semicolon. The JavaScript interpreter tries to be "helpful" and will often assume that statements end at the end of a line if the next line "looks like" a new statement. However, it occasionally screws up in horrible ways&mdash;and so best practice as a developer is to **always include the semicolons**.
+Come in Java, ogni statement dovrebbe terminare con un punto e virgola (**`;`**) che marca la fine di quello statement. Ma a differenza di Java, JavaScript puo' essere indulgente se dimentichi un punto e virgola. Il JavaScript interpreter cerca di essere "helpful" e spesso assume che uno statement finisca alla fine di una riga se la riga successiva "sembra" un nuovo statement. Tuttavia, a volte sbaglia in modo disastroso&mdash;e quindi la best practice come developer e' **includere sempre i punti e virgola**.
 
 ### Strict Mode {-}
-`ES5` includes the ability for JavaScript to be interpreted in [**strict mode**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode). Strict mode is more "strict" about how the interpreter understands the syntax: it is less likely to assume that certain programmer mistakes were intentional (and so try to run the code anyway). For example, in _strict mode_ the interpreter will produce an _Error_ if you try and use a variable that has not yet been defined, while without strict mode the code will just use an `undefined` value. Thus working in strict mode can help catch a lot of silly mistakes.
+`ES5` include la possibilita' di interpretare JavaScript in [**strict mode**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode). Lo strict mode e' piu' "rigido" nel modo in cui l'interpreter comprende la sintassi: e' meno propenso ad assumere che certi errori del programmatore siano intenzionali (e quindi a tentare comunque di eseguire il codice). Per esempio, in _strict mode_ l'interpreter produrra' un _Error_ se provi a usare una variable che non e' stata ancora definita, mentre senza strict mode il codice userebbe semplicemente il valore `undefined`. Quindi lavorare in strict mode aiuta a intercettare molti errori banali.
 
-You declare that a script or function should be executed in strict mode by putting an _interpreter declaration_ at the top:
+Dichiari che uno script o una function debba essere eseguita in strict mode mettendo una _interpreter declaration_ in cima:
 
 ```js
 'use strict';
 ```
 
-- This is not a String (or even JavaScript code!), but rather a _declaration_ to the interpreter about how that interpreter should behave.
+- Questa non e' una String (neppure codice JavaScript!), ma una _declaration_ all'interpreter su come deve comportarsi.
 
-<p class="alert alert-warning">**ALWAYS USE STRICT MODE!** It will help avoid typo-based bugs, as well as enable your code to run more efficiently.</p>
+<p class="alert alert-warning">**USA SEMPRE LO STRICT MODE!** Ti aiutera' a evitare bug dovuti a typo e a far girare il codice in modo piu' efficiente.</p>
 
 
-## Variables
-Variables in JavaScript are **dynamically typed**. This means that variables are _not_ declared as a particular type (e.g., `int` or `String`), but instead take on the data type (`Number`, `String`, etc.) of the _value_ currently assigned to that variable. As we don't specify the data type, JavaScript variables are declared using the `let` keyword:
+## Variabili
+Le variables in JavaScript sono **dynamically typed**. Questo significa che le variables _non_ sono dichiarate come un tipo particolare (ad es. `int` o `String`), ma assumono il data type (`Number`, `String`, ecc.) del _value_ attualmente assegnato a quella variable. Poiche' non specifichiamo il data type, le variables in JavaScript si dichiarano usando la keyword `let`:
 
 ```js
 let message = 'Hello World';  //a String
@@ -144,13 +144,13 @@ let shoeSize = 7;  //a Number
 console.log(typeof shoeSize);  //=> 'number'
 ```
 
-- The `typeof` operator will return the data type of a variable. It is not widely used outside of debugging.
+- L'operator `typeof` restituisce il data type di una variable. Non e' molto usato al di fuori del debugging.
 
-- As in Java, JavaScript variables should be given descriptive names using [camelCase](https://en.wikipedia.org/wiki/Camel_case).
+- Come in Java, le variables JavaScript dovrebbero avere nomi descrittivi usando [camelCase](https://en.wikipedia.org/wiki/Camel_case).
 
-<p class="alert alert-info">**Pro Tip:** Even though variables in JavaScript loosely typed, the data type of a value is still important! In order to help keep track of the type of each variable in JavaScript, include the type in the variable name. For example: `textString`, `wordsArray`, `totalNum`, `itemStr`, etc..</p>
+<p class="alert alert-info">**Pro Tip:** anche se le variables in JavaScript sono loosely typed, il data type di un value e' comunque importante! Per aiutarti a tenere traccia del type di ogni variable in JavaScript, includi il tipo nel nome della variable. Per esempio: `textString`, `wordsArray`, `totalNum`, `itemStr`, ecc..</p>
 
-Declared variables have a default value of `undefined`&mdash;a value representing that the variable has no value. This is somewhat similar to `null` in Java (though JavaScript _also_ as an `null` value that is not commonly used):
+Le variables dichiarate hanno un valore di default `undefined`&mdash;un value che rappresenta che la variable non ha valore. Questo e' simile a `null` in Java (anche se JavaScript ha _anche_ un value `null` che non e' usato frequentemente):
 
 ```js
 //create a variable (not assigned)
@@ -158,11 +158,11 @@ let hoursSlept;
 console.log(hoursSlept);  //=> undefined
 ```
 
-Note that the `let` keyword is in fact new syntax introduced with `ES6`: older versions of JavaScript used the `var` keyword instead (and you will see `var` in most existing examples and tutorials). The difference is that variables declared with `let` are **"block scoped"**, meaning they are only available within the _block_ (the `{}`) in which they are defined. This is the same way variables are scoped in Java. Variables declared with `var`, on the other hand, are "functionally scoped" so are available anywhere within the _function_ in which they are defined. This means that you could declare a variable within an `if` block, and that variable would continue to be available outside that block! Thus `let` allows for cleaner, more efficient code, and with less bugs.
+Nota che la keyword `let` e' in realta' una nuova sintassi introdotta con `ES6`: le versioni piu' vecchie di JavaScript usavano la keyword `var` (e vedrai `var` nella maggior parte di esempi e tutorial esistenti). La differenza e' che le variables dichiarate con `let` sono **"block scoped"**, cioe' disponibili solo all'interno del _block_ (`{}`) in cui sono definite. Questo e' lo stesso modo in cui le variables sono scoped in Java. Le variables dichiarate con `var`, invece, sono "functionally scoped", quindi disponibili ovunque all'interno della _function_ in cui sono definite. Questo significa che puoi dichiarare una variable dentro un blocco `if` e quella variable continuerebbe a essere disponibile fuori dal blocco! Quindi `let` permette codice piu' pulito, piu' efficiente e con meno bug.
 
-- `let` is the one `ES6` feature supported by IE 11, meaning it can be used with [most current browsers](http://caniuse.com/#search=let). However, if you do need to support an older browser (e.g., IE 10, Safari 9.3, Android 4.4), you should transpile your code or stick to using `var`
+- `let` e' l'unica feature di `ES6` supportata da IE 11, il che significa che puo' essere usata con [la maggior parte dei browser attuali](http://caniuse.com/#search=let). Tuttavia, se devi supportare un browser piu' vecchio (ad es. IE 10, Safari 9.3, Android 4.4), dovresti transpile il tuo codice o usare `var`.
 
-Along with `let`, JavaScript variables can also be declared using the `const` keyword to indicate that they are _constant_ (similar to what the `final` keyword does in Java). A `const` variable is block scoped, but can only be assigned once:
+Oltre a `let`, le variables JavaScript possono anche essere dichiarate usando la keyword `const` per indicare che sono _constant_ (simile a cio' che fa la keyword `final` in Java). Una variable `const` e' block scoped, ma puo' essere assegnata una sola volta:
 
 ```js
 const ISCHOOL_URL = 'https://ischool.uw.edu'; //declare constant
@@ -170,10 +170,10 @@ ISCHOOL_URL = 'https://example.com'; //TypeError: Assignment to constant variabl
 ```
 
 
-### Basic Data Types {-}
-JavaScript supports many of the same basic data types as Java and other languages:
+### Data Types di base {-}
+JavaScript supporta molti degli stessi basic data types di Java e altri linguaggi:
 
-- [**Numbers**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) are used to represent numeric data (JavaScript does not distinguish between integers and floats). Numbers support the same _mathematical_ and operators as Java. Common mathematical functions can be accessed through in the built-in [`Math`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math) global (similar to Java's `Math` class).
+- [**Numbers**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) sono usati per rappresentare dati numerici (JavaScript non distingue tra integer e float). I Numbers supportano gli stessi _mathematical_ operators di Java. Le funzioni matematiche comuni sono disponibili tramite il global [`Math`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math) built-in (simile alla class `Math` di Java).
 
     ```js
     let x = 5;
@@ -191,14 +191,14 @@ JavaScript supports many of the same basic data types as Java and other language
     console.log( Math.sqrt(x) );  //2.23606797749979
     ```
 
-- [**Strings**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) can be written in either single quotes (**`'`**) or double quotes (**`"`**), but most [style guidelines](https://google.github.io/styleguide/jsguide.html) recommend single quotes&mdash;just be consistent! Strings can be concatenated as in Java:
+- [**Strings**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) possono essere scritte con single quotes (**`'`**) o double quotes (**`"`**), ma la maggior parte delle [style guidelines](https://google.github.io/styleguide/jsguide.html) consiglia le single quotes&mdash;basta essere consistenti! Le Strings possono essere concatenate come in Java:
 
     ```js
     let name = 'Joel';
     let greeting = 'Hello, my name is '+name; //concatenation
     ```
 
-    Strings also support many [methods](https://www.w3schools.com/jsref/jsref_obj_string.asp) for working with them. As with Java, JavaScript strings are _immutable_, so most string methods return a new, altered string.
+    Le Strings supportano anche molti [methods](https://www.w3schools.com/jsref/jsref_obj_string.asp) per lavorarci. Come in Java, le stringhe JavaScript sono _immutable_, quindi la maggior parte dei string methods restituisce una nuova stringa modificata.
 
     ```js
     let message = 'Hello World';
@@ -206,7 +206,7 @@ JavaScript supports many of the same basic data types as Java and other language
     console.log(shouted);  //=> 'HELLO WORLD'
     ```
 
-- **Booleans** (`true` and `false`) in JavaScript work the same way as in Java, can be produced using the same _relational operators_ (e.g., `<`, `>=`, `!=`), and support the same _logical operators_ (e.g., `&&`, `||`, and `!`):
+- **Booleans** (`true` e `false`) in JavaScript funzionano allo stesso modo che in Java, possono essere prodotti usando gli stessi _relational operators_ (ad es. `<`, `>=`, `!=`) e supportano gli stessi _logical operators_ (ad es. `&&`, `||` e `!`):
 
     ```js
     //conjunction (and)
@@ -219,10 +219,10 @@ JavaScript supports many of the same basic data types as Java and other language
     !boolOne //not
     ```
 
-    See [Type Coercion](#type-coercion) and [Control Structures](#control-structures) below for more on working with Booleans in JavaScript.
+    Vedi [Type Coercion](#type-coercion) e [Control Structures](#control-structures) piu' sotto per maggiori dettagli su come lavorare con i Booleans in JavaScript.
 
-### Arrays {-}
-JavaScript also supports **arrays**, which are _ordered, one-dimensional sequences of values_. As in Java, JavaScript Arrays are written as literals inside square brackets **`[]`**. Individual elements can be accessed by (0-based) _index_ using **bracket notation**.
+### Array {-}
+JavaScript supporta anche gli **arrays**, che sono _ordered, one-dimensional sequences of values_. Come in Java, gli Arrays JavaScript si scrivono come literal dentro parentesi quadre **`[]`**. Gli elementi individuali possono essere accessi tramite _index_ (0-based) usando la **bracket notation**.
 
 ```js
 //an array of names
@@ -245,7 +245,7 @@ numbers[0] = '340';  //assign new value at index 0
 console.log( numbers );  // [340, 2, 2, 3, 5, 8]
 ```
 
-Note that it is possible to assign a value to _any_ index in the array, even if that index is "out of bounds". This will _grow_ the array (increase its length) to include that index&mdash;intermediate indices will be given values of `undefined`. The _length_ of the array (accessed via the `.length` attribute) will always be the index of the "last" element + 1, even if there are fewer defined values within the array.
+Nota che e' possibile assegnare un valore a _qualsiasi_ index nell'array, anche se quell'index e' "out of bounds". Questo fara' _crescere_ l'array (aumentandone la length) per includere quell'index&mdash;gli index intermedi avranno valore `undefined`. La _length_ dell'array (accessibile tramite l'attribute `.length`) sara' sempre l'index dell'elemento "ultimo" + 1, anche se nell'array ci sono meno valori definiti.
 
 ```js
 let letters = ['a', 'b', 'c'];
@@ -256,7 +256,7 @@ console.log(letters);  // [ 'a', 'b', 'c', , , 'f' ]
 console.log(letters.length);  // 6
 ```
 
-Arrays also support a variety of [methods](https://www.w3schools.com/jsref/jsref_obj_array.asp) that can be used to easily modify their elements, similar to the `ArrayList` class in Java:
+Gli arrays supportano anche diversi [methods](https://www.w3schools.com/jsref/jsref_obj_array.asp) che possono essere usati per modificare facilmente i loro elementi, in modo simile alla class `ArrayList` in Java:
 
 ```js
 //Make a new array
@@ -278,14 +278,14 @@ array.splice(oIndex, 1);
 console.log(array); //=> ['i','n','f','340']
 ```
 
-### Objects {-}
-The most generic and useful data type in JavaScript is the Object data type. An **Object** is a lot like an array in that it is in that it is a (one-dimensional) sequence of values that are all stored in a single variable. However, rather than using _integers_ as the index for each element, an Object uses _Strings_. Thus Objects are _unordered_ sequences of **key-value pairs**, where the keys (called **"properties"**) are arbitrary Strings and the values are any data type&mdash;each property can be used to _look up_ (reference) the value associated with it.
+### Object {-}
+Il data type piu' generico e utile in JavaScript e' l'Object. Un **Object** e' simile a un array nel senso che e' una sequenza (one-dimensional) di values memorizzati in una singola variable. Tuttavia, invece di usare _integers_ come index per ogni elemento, un Object usa _Strings_. Quindi gli Objects sono sequenze _unordered_ di **key-value pairs**, dove le keys (chiamate **"properties"**) sono Strings arbitrarie e i values possono essere di qualsiasi data type&mdash;ogni property puo' essere usata per _look up_ (riferire) il value associato.
 
-- This is a lot like a real-world dictionary or encyclopedia, in which the words (keys) are used to look up the definitions (values). A phone book works the same way (the names are the keys, the phone numbers are the values). A JavaScript Object provides a _mapping_ from properties to values.
+- E' molto simile a un dizionario o un'enciclopedia, in cui le parole (keys) servono a cercare le definizioni (values). Anche una rubrica funziona allo stesso modo (i nomi sono le keys, i numeri di telefono i values). Un Object JavaScript fornisce un _mapping_ da properties a values.
 
-- JavaScript Objects are similar data structures to Java _HashMaps_, Python _dictionaries_, R _lists_, or even an HTML `<dl>` descriptive list! More generally, these are known as _associative arrays_ (they are arrays that "associate" a key and a value). As with other associative arrays, JavaScript Objects are implemented as [hash tables](https://en.wikipedia.org/wiki/Hash_table), making data access very fast.
+- Gli Objects JavaScript sono data structures simili a _HashMaps_ in Java, _dictionaries_ in Python, _lists_ in R, o anche una lista descrittiva HTML `<dl>`! Piu' in generale, sono noti come _associative arrays_ (array che "associano" una key e un value). Come con gli altri associative arrays, gli Objects JavaScript sono implementati come [hash tables](https://en.wikipedia.org/wiki/Hash_table), rendendo l'accesso ai dati molto veloce.
 
-Objects are written as literals inside curly braces **`{}`**. Property-value pairs are written with a _colon_ (**`:`**) between the property name and the value, and each element (pair) in the Object is separated by a  _comma_ (**`,`**). Note that the property names do _not_ need to be written in quotes if they are a single word (the quotes are implied&mdash;properties are always Strings):
+Gli Objects si scrivono come literal dentro parentesi graffe **`{}`**. Le property-value pairs si scrivono con i due punti (**`:`**) tra nome della property e value, e ogni elemento (coppia) nell'Object e' separato da una _comma_ (**`,`**). Nota che i nomi delle property _non_ devono essere scritti tra virgolette se sono una sola parola (le virgolette sono implicite&mdash;le properties sono sempre Strings):
 
 ```js
 //an object of ages (explicit Strings for keys)
@@ -303,9 +303,9 @@ let typeExamples = {number:12, string:'dog', array:[1,2,3]};
 let empty = {}
 ```
 
-_Important note:_ Objects are an **unordered** collection of key-value pairs! Because you reference a value by its _property name_ and not by its position (as you do in an array), the exact ordering of those elements doesn't matter&mdash;the interpreter just goes immediately to the value associated with the property. This almost means that when you log out an Object, the order in which the properties are printed may not match the order in which you specified them in the literal.
+_Nota importante:_ gli Objects sono una collezione **unordered** di key-value pairs! Poiche' fai riferimento a un value tramite il _property name_ e non tramite la sua posizione (come fai in un array), l'ordine esatto di quegli elementi non conta&mdash;l'interpreter va direttamente al value associato alla property. Quasi di conseguenza, quando fai il log di un Object, l'ordine in cui le properties sono stampate potrebbe non corrispondere all'ordine con cui le hai specificate nel literal.
 
-- If you `console.log()` an object, you will usually see a nicely format version of that object. However, if you try to convert that object to a _string_ (e.g., via concatenation: `let output = "my object: "+myObject`), you will instead be presented with the "string version" of that object: `[object Object]`. This is not an array, but the String version of an object (similar to the hash you get when you try and print a Java array directly). You can instead use the fact that `console.log` accepts _multiple parameters_ to output an object with a leading string:
+- Se fai `console.log()` di un object, di solito vedrai una versione ben formattata di quell'object. Tuttavia, se provi a convertire quell'object in _string_ (ad es. via concatenazione: `let output = "my object: "+myObject`), otterrai invece la "string version" di quell'object: `[object Object]`. Questo non e' un array, ma la string version di un object (simile all'hash che ottieni quando provi a stampare direttamente un array Java). Puoi invece sfruttare il fatto che `console.log` accetta _multiple parameters_ per stampare un object con una stringa iniziale:
 
     ```js
     let myObject = {a:1, b:2}
@@ -317,7 +317,7 @@ _Important note:_ Objects are an **unordered** collection of key-value pairs! Be
     console.log("My object ", myObject); //=> My object {a: 1, b: 2}
     ```
 
-Despite the name, JavaScript Objects have nothing to do with Object-Oriented Programing. However, they can be used to represent "things" in the same way as a Java object, with each property acting like an "attribute" (instance variable):
+Nonostante il nome, gli Objects JavaScript non hanno nulla a che fare con l'Object-Oriented Programming. Tuttavia, possono essere usati per rappresentare "things" nello stesso modo di un object Java, con ogni property che agisce come un "attribute" (instance variable):
 
 ```js
 //an object representing a Person (spacing is for readability; white-space is ignored)
@@ -336,8 +336,8 @@ let person = {
 
 
 
-#### Accessing Objects {-}
-Similar to arrays, Object values can be access via **bracket notation**, specifying the _property name_ as the index. If an object does not explicitly have a property value, accessing that key produces `undefined` (the property's value is `undefined`).
+#### Accedere agli Object {-}
+Come per gli arrays, i values di un Object possono essere accessi tramite **bracket notation**, specificando il _property name_ come index. Se un object non ha esplicitamente una property, accedere a quella key produce `undefined` (il value della property e' `undefined`).
 
 ```js
 let favorites = {music: 'jazz', food: 'pizza', numbers: [12, 42]};
@@ -361,7 +361,7 @@ let userInputtedTopic = 'food'; //pretend this value is supplied dynamically
 console.log(favorites[userInputtedTopic]);  //'cake'
 ```
 
-_Additionally_, Object values can also be accessed via **dot notation**, as if the properties were _public attributes_ of a class instance. This is often simpler to write and to read: remember to read the **`.`** as an `'s`!
+_Inoltre_, i values di un Object possono anche essere accessi tramite **dot notation**, come se le properties fossero _public attributes_ di un'istanza di classe. Questo e' spesso piu' semplice da scrivere e da leggere: ricordati di leggere il **`.`** come un `'s`!
 
 ```js
 let favorites = {music: 'jazz', food: 'pizza', numbers: [12, 42]};
@@ -381,19 +381,19 @@ favorites.language = 'javascript'; //assign new key and value
 console.log( favorites.numbers[0] ); //12
 ```
 
-- The only advantage to using _bracket notation_ is that you can specify property names as variables or the results of an expression. But overall, the recommendation is to use _dot notation_ unless the property you wish to access is dynamically determined.
+- L'unico vantaggio di usare la _bracket notation_ e' che puoi specificare i nomi delle property come variables o come risultato di un'espressione. In generale, pero', la raccomandazione e' di usare la _dot notation_ a meno che la property da accedere non sia determinata dinamicamente.
 
-It is possible to get an _array_ of an object's keys calling the `Object.keys()` method and passing in the object you wish to get the keys of. Note that an equivalent function for values is not supported by most browsers; a better approach is to iterate through the keys to identify all the values.
+E' possibile ottenere un _array_ delle keys di un object chiamando il metodo `Object.keys()` e passando l'object di cui vuoi le keys. Nota che una funzione equivalente per i values non e' supportata dalla maggior parte dei browser; un approccio migliore e' iterare sulle keys per identificare tutti i values.
 
 ```js
 let ages = {sarah:42, amit:35, zhang:13};
 let keys = Object.keys(ages);  // [ 'sarah', 'amit', 'zhang' ]
 ```
 
-#### Arrays of Objects {-}
-As noted above, both arrays and objects can have values of any type&mdash;including other arrays or objects! The ability to nest objects inside of objects is incredibly powerful, and allows us to define arbitrarily complex information structurings (schemas). Indeed, most data in computer programs&mdash;as well as public information available on the web&mdash;is structured as a set of nested maps like this (though possibly with some level of abstraction).
+#### Array di Object {-}
+Come notato sopra, sia arrays che objects possono avere values di qualsiasi tipo&mdash;inclusi altri arrays o objects! La capacita' di annidare objects dentro altri objects e' incredibilmente potente e ci permette di definire strutture informative (schemas) di complessita' arbitraria. In effetti, la maggior parte dei data nei programmi&mdash;cosi' come molte informazioni pubbliche disponibili sul web&mdash;e' strutturata come un insieme di mappe annidate di questo tipo (anche se con un certo livello di astrazione).
 
-One of the most common forms of nesting you'll see is to have an **array of objects** where each object has _the same properties_ (but different values). For example:
+Una delle forme di nesting piu' comuni che vedrai e' un **array of objects** in cui ogni object ha _le stesse properties_ (ma values diversi). Per esempio:
 
 ```js
 //an arbitrary list of people's names, heights, and weights
@@ -406,22 +406,22 @@ let people = [
 ]
 ```
 
-This structure can be seen as a list of **records** (the objects), each of which have a number of different **features** (the key-value pairs). This list of feature records is in fact a common way of understanding a **data table** like you would create as an Excel spreadsheet:
+Questa struttura puo' essere vista come una lista di **records** (gli objects), ciascuno con diverse **features** (le key-value pairs). Questa lista di feature records e' di fatto un modo comune di rappresentare una **data table** come quella che creeresti in un foglio Excel:
 
 ![A data table.](img/javascript/excel-table.png)
 
-Each object (record) acts as a "row" in the table, and each property (feature) acts as a "column". As long as all of the objects share the same keys, this array of objects _is_ a table!
+Ogni object (record) agisce come una "row" nella tabella, e ogni property (feature) agisce come una "column". Finche' tutti gli objects condividono le stesse keys, questo array di objects _e'_ una tabella!
 
 
 ### Type Coercion {-}
-As mentioned above, variables in JavaScript are _dynamically typed_, and thus have a data type of the value **currently** assigned to that variable. JavaScript variables are able to "change type" by having a different type of data assignment to them:
+Come detto sopra, le variables in JavaScript sono _dynamically typed_, e quindi hanno il data type del value **attualmente** assegnato a quella variable. Le variables JavaScript possono "cambiare tipo" quando viene assegnato loro un data type diverso:
 
 ```js
 let myVariable = 'hello'; //value is a String
 myVariable = 42; //value is now a Number
 ```
 
-Unlike some other dynamically typed variables, JavaScript will not throw errors if you try to apply operators (such as `+` or `<`) to different types. Instead, the interpreter will try to be "helpful" and **coerce** (convert) a value from one data type into another. While this process is similar to how Java will automatically cast data types into Strings (e.g., `"hello"+4`), JavaScript's type coercion can produce a few quirks:
+A differenza di alcuni altri linguaggi dinamicamente tipati, JavaScript non lancia errori se provi ad applicare operators (come `+` o `<`) a tipi diversi. Invece, l'interpreter tenta di essere "helpful" e **coerce** (convertire) un value da un data type a un altro. Anche se questo processo e' simile a come Java fa automaticamente il cast dei data type in Strings (ad es. `"hello"+4`), la type coercion di JavaScript puo' produrre alcune stranezze:
 
 ```js
 let x = '40' + 2;
@@ -430,7 +430,7 @@ let y = '40' - 4;
 console.log(y);  //=> 36; can't subtract strings so '40' is coerced to a Number!
 ```
 
-JavaScript will also attempt to coerce values when checking for equality with `==`:
+JavaScript tenta anche di coerce i values quando controlla l'uguaglianza con `==`:
 
 ```js
 let num = 10
@@ -439,9 +439,9 @@ let str = '10'
 console.log(num == str) //true, the values can be coerced into one another
 ```
 
-In this case, the interpreter will coerce the Number `10` into the String `'10'` (since numbers can always be made into Strings), and since those Strings are the same, determines that the variables are equal.
+In questo caso, l'interpreter fara' coerce del Number `10` nella String `'10'` (dato che i numbers possono sempre essere trasformati in Strings), e siccome quelle Strings sono uguali, determina che le variables sono uguali.
 
-In general this type of automatic coercion can lead to subtle bugs. Thus you should instead always use the **`===`** operator (and it's partner `!==`), which checks both value _and_ type for equality:
+In generale questo tipo di coercion automatica puo' portare a bug sottili. Quindi dovresti usare sempre l'operator **`===`** (e il suo partner `!==`), che controlla sia il value _che_ il type per l'uguaglianza:
 
 ```js
 let num = 10
@@ -450,19 +450,19 @@ let str = '10'
 console.log(num === str) //false, the values have different types
 ```
 
-JavaScript will do its best to coerce any value when compared. Often this means converting values to Strings, but it will also commonly convert values into _booleans_ to compare them. So for example:
+JavaScript fara' del suo meglio per coerce qualsiasi value quando viene confrontato. Spesso questo significa convertire i values in Strings, ma spesso li converte anche in _booleans_ per confrontarli. Per esempio:
 
 ```js
 //compare an empty String to the number 0
 console.log( '' == 0 ); //true; both can be coerced to a `false` value
 ```
 
-This is because both the empty string `''` and `0` are considered [**"falsey"**](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) values (values that can be coerced to `false`). Other falsy values include `undefined`, `null`, and `NaN` (not a number). All other values will be coerced to `true`.
+Questo perche' sia la stringa vuota `''` sia `0` sono considerati values [**"falsey"**](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) (values che possono essere coerced a `false`). Altri falsy values includono `undefined`, `null` e `NaN` (not a number). Tutti gli altri values verranno coerced a `true`.
 
-<p class="alert">For more examples of the horror of JavaScript coercion, see [this video](https://www.destroyallsoftware.com/talks/wat) (about 1:20 in).</p>
+<p class="alert">Per altri esempi dell'orrore della coercion in JavaScript, vedi [questo video](https://www.destroyallsoftware.com/talks/wat) (intorno a 1:20).</p>
 
-## Control Structures
-JavaScript control structures have a similar syntax to those in Java or C. For example, a JavaScript **`if` statement** is written as:
+## Strutture di controllo
+Le control structures in JavaScript hanno una sintassi simile a quelle in Java o C. Per esempio, un **`if` statement** JavaScript si scrive cosi':
 
 ```js
 if(condition){
@@ -476,7 +476,7 @@ else {
 }
 ```
 
-The **`condition`** can be any expression that evaluates to a Boolean value. But since any value can be _coerced_ into Booleans, you can put any value you want inside the `if` condition. This is actually really useful&mdash;since `undefined` is a falsy value, you can use this coercion to check if a variable has been assigned or not:
+La **`condition`** puo' essere qualsiasi espressione che valuta a un Boolean value. Ma siccome qualsiasi value puo' essere _coerced_ in Booleans, puoi mettere qualsiasi value dentro la condition dell'`if`. Questo e' davvero utile&mdash;dato che `undefined` e' un falsy value, puoi usare questa coercion per controllare se una variable e' stata assegnata oppure no:
 
 ```js
 //check if a `person` variable has a `name` property
@@ -485,11 +485,11 @@ if(person.name){
 }
 ```
 
-In the above example, the condition will only coerce to `true` if `person.name` is defined (_not_ `undefined`) and is not empty. If somehow the variable has not been assigned (e.g., the user didn't fill out the form completely), then the condition will not be true.
+Nell'esempio sopra, la condition verra' coerced a `true` solo se `person.name` e' definita (_non_ `undefined`) e non e' vuota. Se per qualche motivo la variable non e' stata assegnata (ad es. l'utente non ha compilato completamente il form), allora la condition non sara' vera.
 
-- While using `person.name !== undefined` is an equivalent expression, it is more idiomatic to utilize the coercion and have plain variable as the conditional expression.
+- Anche se usare `person.name !== undefined` e' un'espressione equivalente, e' piu' idiomatico sfruttare la coercion e usare la variable pura come espressione condizionale.
 
-Additionally, JavaScript provides a [ternary conditional operator](https://en.wikipedia.org/wiki/%3F:) that lets you write a simple `if` statement as a single expression:
+Inoltre, JavaScript fornisce un [ternary conditional operator](https://en.wikipedia.org/wiki/%3F:) che ti permette di scrivere un semplice `if` statement come una singola espressione:
 
 ```js
 let x; //declare variable
@@ -503,9 +503,9 @@ if(condition) {
 let x = condition ? 'foo' : 'bar';
 ```
 
-- This expression is read as "_if_ `condition` _then_ resolve to `'foo'` _else_ resolve to `bar`". Each part (the condition, the "if true" result, and the "if false" result) can be any expression, though you should keep them simple to avoid confusion.
+- Questa espressione si legge come "_if_ `condition` _then_ restituisce `'foo'` _else_ restituisce `bar`". Ogni parte (la condition, il risultato "if true" e il risultato "if false") puo' essere qualsiasi espressione, anche se dovresti mantenerle semplici per evitare confusione.
 
-JavaScript also supports **`while`** loop (for indefinite iteration) and **`for`** loops (for definite iteration) similar to Java. The only difference is that because JavaScript variables are dynamically typed, the _loop control variables_ are not declared with a type:
+JavaScript supporta anche i **`while`** loop (per iterazione indefinita) e i **`for`** loop (per iterazione definita), simili a Java. L'unica differenza e' che, poiche' le variables JavaScript sono dynamically typed, le _loop control variables_ non sono dichiarate con un type:
 
 ```js
 //an example for loop. The `i` is not declared as an int
@@ -514,13 +514,13 @@ for(let i=0; i<array.length; i++){
 }
 ```
 
-JavaScript _does_ have a `for ... in` syntax. However, it doesn't work as you would expect for arrays (it iterates over "enumerable properties" rather than the specific indices), and so should **not** be used with arrays. `ES6` also introduces a `for ... of` syntax for iterating over arrays, but this is not supported by all browsers and so is not recommended. Instead, the current best practice is to use the above `for` loop, or better yet the `forEach()` method described in the next chapter.
+JavaScript _ha_ una sintassi `for ... in`. Tuttavia, non funziona come ti aspetteresti per gli arrays (itera su "enumerable properties" invece che sugli indici specifici), e quindi **non** dovrebbe essere usata con gli arrays. `ES6` introduce anche una sintassi `for ... of` per iterare sugli arrays, ma non e' supportata da tutti i browser e quindi non e' consigliata. Invece, la best practice attuale e' usare il `for` loop sopra, o meglio ancora il metodo `forEach()` descritto nel prossimo capitolo.
 
-- If you need to iterate over the keys of an object, use the `Object.keys()` method to get an array to loop through!
+- Se devi iterare sulle keys di un object, usa il metodo `Object.keys()` per ottenere un array su cui fare il loop!
 
 
-## Functions
-And of course, JavaScript includes **functions** (named sequences of statements used to _abstract_ code). JavaScript functions are written using the following syntax:
+## Funzioni
+E ovviamente, JavaScript include le **functions** (sequenze di statements con nome usate per _astrarre_ il codice). Le functions JavaScript si scrivono con la seguente sintassi:
 
 ```js
 //A function named `makeFullName` that takes two arguments
@@ -538,11 +538,11 @@ function makeFullName(firstName, lastName) {
 let myName = makeFullName("Alice", "Kim")  // "Alice Kim"
 ```
 
-- Functions are defined by using the **`function`** keyword (placed before the name of the function) instead of Java's `public static`, don't declare a return type (since the language is dynamically typed), and don't indicate types for the parameters. Otherwise, JavaScript functions have identical syntax to Java functions.
+- Le functions sono definite usando la keyword **`function`** (messa prima del nome della function) invece di `public static` di Java, non dichiarano un return type (dato che il linguaggio e' dynamically typed) e non indicano types per i parameters. Per il resto, le functions JavaScript hanno sintassi identica alle funzioni Java.
 
-- If a function lacks a `return` value, then that function returns the value `undefined`.
+- Se una function non ha un valore di `return`, allora quella function restituisce il value `undefined`.
 
-As in other languages, function arguments in JavaScript are implicitly declared _local_ variables. However, in JavaScript **all arguments are optional**. Any argument that is _not_ passed a specific value will be `undefined`. Any passed in value that does not have a variable declared for its position will not be assigned to a variable.
+Come in altri linguaggi, gli arguments di una function in JavaScript sono implicitamente dichiarati variables _local_. Tuttavia, in JavaScript **tutti gli arguments sono opzionali**. Qualsiasi argument a cui _non_ viene passato un valore specifico sara' `undefined`. Qualsiasi valore passato che non ha una variable dichiarata per la sua posizione non verra' assegnato a una variable.
 
 ```js
 function sayHello(name) {
@@ -559,19 +559,19 @@ sayHello();  //"Hello, undefined"
 sayHello("Joel", "y'all");  //"Hello, Joel"
 ```
 
-- If a function has an argument, that doesn't mean it got a value. If a function lacks an argument, that doesn't mean it wasn't given a value!
+- Se una function ha un argument, non significa che abbia ricevuto un value. Se una function non ha un argument, non significa che non le sia stato passato un value!
 
-In addition to this basic structure, JavaScript functions are frequently used for _functional programming_, as described in the next chapter.
+Oltre a questa struttura di base, le functions JavaScript sono spesso usate per il _functional programming_, come descritto nel prossimo capitolo.
 
 
-## Resources {-}
-As the language used for web programming, JavaScript may have more freely available online learning resources than any other language! Some of my favorites include:
+## Risorse {-}
+Essendo il linguaggio usato per il web programming, JavaScript ha forse piu' risorse di apprendimento online gratuite di qualsiasi altro linguaggio! Alcune delle mie preferite includono:
 
 <div class="list-condensed">
-- [A Re-Introduction to JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) a focused tutorial on the primary language features
-- [You Don't Know JS](https://github.com/getify/You-Dont-Know-JS) a free textbook covering all aspects of the JavaScript language. Very readable and thorough, with lots of good examples.
-- [JavaScript for Cats](http://jsforcats.com/) a gentler introduction for "Scaredy-Cats"
-- [MDN JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript) a complete documentation of JavaScript, including tutorials
-- [w3Schools JavaScript Reference](https://www.w3schools.com/js/) a slightly more friendly reference for the language
+- [A Re-Introduction to JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) un tutorial mirato sulle feature principali del linguaggio
+- [You Don't Know JS](https://github.com/getify/You-Dont-Know-JS) un libro di testo gratuito che copre tutti gli aspetti del linguaggio JavaScript. Molto leggibile e approfondito, con tanti buoni esempi.
+- [JavaScript for Cats](http://jsforcats.com/) un'introduzione piu' gentile per "Scaredy-Cats"
+- [MDN JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript) una documentazione completa di JavaScript, incluse guide
+- [w3Schools JavaScript Reference](https://www.w3schools.com/js/) un reference leggermente piu' amichevole per il linguaggio
 - [Google's JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
 </div>

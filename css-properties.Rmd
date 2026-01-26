@@ -10,7 +10,7 @@ Come descritto in [CSS Fundamentals](#css-fundamentals), le property si specific
 
 ```css
 p {
-  /* A basic property */
+  /* Una property di base */
   color: purple;
 }
 ```
@@ -21,7 +21,7 @@ Alcune property si scrivono con _piu' valori_, di solito separati da _spazi_ (no
 
 ```css
 div {
-  /* A property that has 3 values. They are separated by spaces */
+  /* Una property che ha 3 valori. Sono separati da spazi */
   border: 3px dotted red;
 }
 ```
@@ -30,7 +30,7 @@ Molte (ma non tutte) le property con piu' valori sono [**shorthand properties**]
 
 ```css
 div {
-  /* Border set as individual properties; equivalent to the previous example */
+  /* Border impostato come singole properties; equivalente all'esempio precedente */
   border-width: 3px;
   border-style: dotted;
   border-color: red;
@@ -41,12 +41,12 @@ Le shorthand possono essere specificate con un numero variabile di valori, e il 
 
 ```css
 .all-sides-padding {
-  /* Specify padding (spacing) on all 4 sides at once--top, right, bottom, left */
+  /* Specifica il padding (spaziatura) su tutti e 4 i lati in una volta--top, right, bottom, left */
   padding: 1px 2px 3px 4px;
 }
 
 .x-and-y-sides-padding {
-  /* Specify padding on top & bottom, then on left & right */
+  /* Specifica il padding su top & bottom, poi su left & right */
   padding: 10px 20px;
 }
 ```
@@ -58,8 +58,8 @@ Includere una shorthand equivale a scrivere tutte le property che sostituisce; q
 ```css
 body {
     border-color: red;
-    border: 3px solid blue; /* later property override previous ones */
-                            /* border will be blue instead of red */
+    border: 3px solid blue; /* la property successiva override quelle precedenti */
+                            /* il border sara' blu invece che rosso */
 }
 ```
 
@@ -81,10 +81,10 @@ li { /* applies to all <li> elements */
 <!-- HTML -->
 <ul>
   <li>
-    This element's content will be in a larger font size (inherited from the
-    parent), as well as red (specified directly).
+    Il contenuto di questo elemento sara' con un font size piu' grande (ereditato dal
+    parent), oltre che rosso (specificato direttamente).
   </li>
-  <li>(So will this element's content because the same rules apply)</li>
+  <li>(Anche il contenuto di questo elemento lo sara' perche' si applicano le stesse regole)</li>
 </ul>
 ```
 
@@ -96,10 +96,10 @@ Se vuoi indicare esplicitamente che un elemento deve essere stilizzato come il p
 
 ```css
 h1 {
-  /* color should be the same (inherited) from the parent element */
+  /* color dovrebbe essere lo stesso (ereditato) dal parent element */
   color: inherit;
 
-  /* font-size should use the browser-initial value */
+  /* font-size dovrebbe usare il valore iniziale del browser */
   font-size: initial;
 }
 ```
@@ -119,10 +119,10 @@ CSS usa anche diverse **unita' relative**, che producono dimensioni basate sulla
 - **`em`**: un `em` e' misurato rispetto al `font-size` del _parent_:
 
   ```css
-  /* A parent element has a font-size of 16px */
+  /* Un parent element ha un font-size di 16px */
   .parent { font-size: 16px; }
 
-  /* The child element would have a font-size of 32px */
+  /* Il child element avrebbe un font-size di 32px */
   .child { font-size: 2em; }
   ```
 
@@ -241,13 +241,13 @@ Infine, e' piu' comunemente, puoi specificare il valore RGB come numero [esadeci
 
 ```css
 p {
-  color: #9370db; /* medium purple */
+  color: #9370db; /* viola medio */
 }
 ```
 
 In questo formato, il colore inizia con `#`, le prime due cifre rappresentano il rosso (da `00` a `FF`, che e' esadecimale per `255`), le seconde due il verde e le terze due il blu:
 
-![How to reading a hex value, from [Smashing Magazine](https://www.smashingmagazine.com/2012/10/the-code-side-of-color/).](img/css/hex-reading.png)
+![Come leggere un valore hex, da [Smashing Magazine](https://www.smashingmagazine.com/2012/10/the-code-side-of-color/).](img/css/hex-reading.png)
 
 Questo e' un modo piu' compatto ed efficiente per descrivere un colore RGB, ed e' come la maggior parte degli artisti digitali comunica i colori. Vedi [questo articolo](https://www.smashingmagazine.com/2012/10/the-code-side-of-color/) per maggiori dettagli sull'encoding dei colori.
 
@@ -268,12 +268,12 @@ Esistono altre property per personalizzare le immagini di background, inclusa la
 ```css
 header {
     background-image: url('../img/page-banner.png');
-    background-position: center top; /* align to center top */
-    background-size: cover; /* stretch so element is filled; preserves ratio (img may be cropped) */
-    background-repeat: no-repeat; /* don't repeat */
-    background-attachment: fixed; /* stay still when window scrolls */
-    background-color: beige; /* can still have this for anything the image doesn't cover
-                                (or for transparent images) */
+    background-position: center top; /* allinea al centro in alto */
+    background-size: cover; /* stretch per riempire l'elemento; preserva il ratio (l'immagine puo' essere tagliata) */
+    background-repeat: no-repeat; /* non ripetere */
+    background-attachment: fixed; /* resta ferma quando la finestra scorre */
+    background-color: beige; /* puoi ancora averlo per tutto cio' che l'immagine non copre
+                                (o per immagini trasparenti) */
 }
 ```
 
@@ -308,7 +308,7 @@ Queste property si vedono nei Chrome Developer Tools quando selezioni un element
 ### Padding {-}
 Il **padding** e' lo spazio tra il contenuto e il border (il bordo del box). Se pensi al contenuto come dentro una scatola, questo e' lo spazio di "imbottitura" attorno al contenuto.
 
-![An element's padding.](img/css/box-padding.png)
+![Il padding di un elemento.](img/css/box-padding.png)
 
 Il padding si puo' specificare per ogni lato con `padding-top`, ecc., oppure usare la shorthand **`padding`** per piu' lati:
 
@@ -372,7 +372,7 @@ La property [**`border-radius`**](https://developer.mozilla.org/en-US/docs/Web/C
 ### Margin {-}
 Infine, il **margin** specifica lo spazio _tra_ questo box e gli altri box.
 
-![An element's margins.](img/css/box-margin.png)
+![I margini di un elemento.](img/css/box-margin.png)
 
 Il `margin` si dichiara in modo equivalente al `padding`, con property individuali e shorthand simili:
 
@@ -446,14 +446,14 @@ Come descritto in [HTML Fundamentals](#block-vs.-inline-elements), gli elementi 
 <div>Block element</div>
 ```
 
-![Example of block elements, placed on top of each other.](img/css/block-element.png)
+![Esempio di elementi block, posizionati uno sopra l'altro.](img/css/block-element.png)
 
 ```html
-<span>Inline element</span>
-<span>Other inline element</span>
+<span>Elemento inline</span>
+<span>Altro elemento inline</span>
 ```
 
-![Example of inline elements, next to each other (even if the code is on separate lines).](img/css/inline-element.png)
+![Esempio di elementi inline, affiancati (anche se il codice e' su righe separate).](img/css/inline-element.png)
 
 <p class="alert alert-successful">E' buona pratica lasciare al browser il normal flow quando possibile. Se la posizione di un elemento in base al tipo e alla posizione nel codice e' corretta, non cambiarla. E' meglio lasciare al browser fare il suo lavoro e usare CSS per piccoli aggiustamenti (ad es. un po' di padding o margin). Questo mantiene il CSS piu' semplice e aiuta a garantire che il contenuto si renderizzi bene su browser e dispositivi diversi.</p>
 
@@ -466,22 +466,22 @@ Tutti gli elementi HTML sono classificati come block o inline. Tuttavia e' possi
 ```
 
 ```html
-<!-- this will produce the same result as using <span> elements -->
-<div class="inlined">Inline element</div>
-<div class="inlined">Other inline element</div>
+<!-- questo produrra' lo stesso risultato di usare elementi <span> -->
+<div class="inlined">Elemento inline</div>
+<div class="inlined">Altro elemento inline</div>
 ```
 
 Cambiare `display` e' utile se la semantica di un elemento e' appropriata ma vuoi renderizzarlo in modo diverso. Per esempio, puoi far apparire `<li>` come inline per ottenere liste orizzontali.
 
 Oltre a `block` e `inline`, gli elementi possono avere `display: inline-block`. Un elemento `inline-block` e' disposto come `inline` (quindi affiancato ad altri), ma puo' avere `width`, `height` e altre property da block.
 
-![An example of an element with `display: inline-block`.](img/css/inline-block-example.png)
+![Un esempio di un elemento con `display: inline-block`.](img/css/inline-block-example.png)
 
 La property `display` permette anche di rimuovere gli elementi dal flow con `none`. Questo rimuove l'elemento dal normal flow e anche dal contenuto letto da tecnologie assistive come gli screen reader.
 
 ```css
 .hidden {
-  /* do not show element at all */
+  /* non mostrare l'elemento */
   display: none;
 }
 ```
@@ -498,9 +498,9 @@ Per esempio, un elemento con `position: relative` aggiusta la posizione _relativ
 
 ```css
 .relative-element {
-  position: relative; /* position will be relatively changed */
-  top: 10px; /* adjust position 10px down from the top */
-  left: 20px /* adjust position 10px over from the left */
+  position: relative; /* position verra' cambiata relativamente */
+  top: 10px; /* sposta la posizione di 10px verso il basso */
+  left: 20px /* sposta la posizione di 20px verso destra */
 }
 ```
 
@@ -512,9 +512,9 @@ E' anche possibile usare `position: absolute`. Un elemento posizionato `absolute
 
 ```css
 .absolute-element {
-  position: absolute; /* position will be absolutely determined */
-  top: 0; /* position 0px from the top of the page */
-  left: 30% /* position 30% of the page width from the left */
+  position: absolute; /* position verra' determinata in modo assoluto */
+  top: 0; /* posizione a 0px dal top della pagina */
+  left: 30% /* posizione a 30% della width della pagina da sinistra */
 }
 ```
 
@@ -537,7 +537,7 @@ Puoi anche posizionare un elemento fuori dal normal flow facendolo **float**. Qu
 ```css
 .floating-image {
   float: right;
-  margin: 1em; /* for spacing */
+  margin: 1em; /* per lo spacing */
 }
 ```
 
@@ -545,7 +545,7 @@ Il contenuto continuera' a stare accanto a un elemento floating finche' non lo "
 
 ```css
 .clear-float {
-    clear: both; /* do not allow floating elements on either side */
+    clear: both; /* non permettere elementi floating su entrambi i lati */
 }
 ```
 
@@ -564,7 +564,7 @@ Un [**Flexbox**](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) e' una
 Al livello base, un flexbox e' un elemento con la property **`display: flex`**. Un elemento con questa property sara' un _block_ element, ma i suoi _child_ saranno posizionati secondo un "flexbox flow" invece del normal flow. Rendere un elemento flexbox non cambia come l'elemento stesso e' posizionato, ma cambia come sono posizionati i suoi child. Quando si parla di flexbox, l'elemento con `display: flex` e' il **flex container** (o _parent_), e i child sono i **flex items** (o _children_).
 
 ```css
-/* A flex container, or "the flexbox". The class name is not important */
+/* Un flex container, o "il flexbox". Il nome della class non e' importante */
 .my-flex-container {
   display: flex;
 }
@@ -573,14 +573,14 @@ Al livello base, un flexbox e' un elemento con la property **`display: flex`**. 
 Di default, un flexbox posiziona i child _orizzontalmente_ (anche se sono block), ma puoi regolare questo con la property [`flex-direction`](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction). I child saranno dimensionati in modo che la loro width aderisca al contenuto, e le loro altezze saranno tutte uguali all'altezza del flexbox. Quindi, senza altro lavoro, gli elementi dentro il flexbox saranno disposti in "colonne".
 
 ```html
-<div class="flex-container"> <!-- Parent -->
-  <div class="flex-item">Child 1</div>
-  <div class="flex-item">Child 2</div>
-  <div class="flex-item">Child 3</div>
+<div class="flex-container"> <!-- Genitore -->
+  <div class="flex-item">Elemento 1</div>
+  <div class="flex-item">Elemento 2</div>
+  <div class="flex-item">Elemento 3</div>
 </div>
 ```
 
-![An example of a simple Flexbox layout. Additional margin included for illustration.](img/css/flex-nesting.png)
+![Un esempio di un layout Flexbox semplice. Margine aggiuntivo incluso per illustrazione.](img/css/flex-nesting.png)
 
 Ulteriori property possono modificare il flusso dei child nel flexbox, e la dimensione/posizione dei singoli child. Per esempio, queste property possono essere specificate sul _flex container_ (il flexbox stesso -- il parent):
 
@@ -589,9 +589,9 @@ Ulteriori property possono modificare il flusso dei child nel flexbox, e la dime
 
 ```css
 .my-flex-container {
-  display: flex; /* make this element a flexbox */
-  flex-wrap; /* wrap children to next line if larger than the container */
-  justify-content: space-around; /* justify with equal space around the children */
+  display: flex; /* rendi questo elemento un flexbox */
+  flex-wrap; /* wrap dei children alla riga successiva se piu' grandi del container */
+  justify-content: space-around; /* justify con spazio uguale attorno ai children */
 }
 ```
 
@@ -607,7 +607,7 @@ Puoi anche specificare property sui _flex items_ (i child immediati del flexbox)
 
     Esiste anche la property [`flex-shrink`](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink) che specifica di quanto un item deve ridursi per accomodare l'overflow. Questa property non fa nulla quando il container fa wrap (`flex-wrap:wrap`); in pratica si usa raramente. E' meglio progettare per la dimensione minima e dare spazio per crescere, invece di preoccuparsi di quanto possa restringersi. L'uso piu' comune e' impedire il restringimento con `flex-shrink:0`.
 
-    ![Top: visual example of `flex-grow`. Bottom: visual example of `flex-shrink`. Notice how much extra "space" each item has after the text content.](img/css/flex-grow-shrink-vert.png)
+    ![In alto: esempio visivo di `flex-grow`. In basso: esempio visivo di `flex-shrink`. Nota quanto "spazio" extra ha ogni item dopo il contenuto testuale.](img/css/flex-grow-shrink-vert.png)
 
 - [**`flex-basis`**](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#article-header-id-12) permette di specificare le dimensioni "iniziali" di un item. Ha un effetto simile a `width`, ma ha priorita' piu' alta e puo' essere piu' [flessibile](https://stackoverflow.com/questions/34352140/what-are-the-differences-between-flex-basis-and-width). Come `width`, il valore puo' essere una misura (assoluta come `100px` o relativa come `25%`).
 
@@ -629,6 +629,6 @@ Molte risorse sono linkate nel testo per property specifiche. Di seguito alcune 
 - [CSS Reference (MDN)](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference) a complete alphabetical reference for all CSS concepts.
 - [Learn to style HTML using CSS (MDN)](https://developer.mozilla.org/en-US/docs/Learn/CSS)
 - [CSS Units and Values (MDN)](https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Values_and_units)
-- [The Code Side of Color](https://www.smashingmagazine.com/2012/10/the-code-side-of-color/)
+- [Il lato del codice del colore](https://www.smashingmagazine.com/2012/10/the-code-side-of-color/)
 - [CSS Tricks Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 </div>

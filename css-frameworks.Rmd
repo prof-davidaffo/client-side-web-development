@@ -1,9 +1,9 @@
-# CSS Framework
+# Framework CSS
 Le lezioni precedenti hanno mostrato come usare CSS per rendere una pagina sia bella sia responsive. Sebbene sia possibile implementare un intero sito creando le proprie regole CSS, questo puo' diventare rapidamente noioso: spesso vuoi una serie di regole "standard" (perche' l'aspetto senza stile del browser) e poi personalizzarle a tuo piacimento.
 
-Per questo motivo, la maggior parte dei web developer professionisti usa un **CSS Framework** esistente. Un CSS Framework e' uno stylesheet (un file `.css`) che contiene molte regole predefinite che puoi applicare alla pagina. I framework offrono diversi benefici:
+Per questo motivo, la maggior parte degli sviluppatori web professionisti usa un **CSS Framework** esistente. Un CSS Framework e' uno stylesheet (un file `.css`) che contiene molte regole predefinite che puoi applicare alla pagina. I framework offrono diversi benefici:
 
-- _Applica uno styling di default gradevole a tutti gli elementi HTML_: i framework rendono le pagine subito piu' belle con regole su selector di elementi. Forniscono font piacevoli, line-height, spacing e link styling senza sforzo aggiuntivo.
+- _Applica uno styling di default gradevole a tutti gli elementi HTML_: i framework rendono le pagine subito piu' belle con regole su selector di elementi. Forniscono font piacevoli, interlinea, spaziatura e styling dei link senza sforzo aggiuntivo.
 - _Fornisce class di stile per componenti UI comuni_: gli stylesheet dei framework includono class CSS che puoi aggiungere al markup per badge, tab in-page, drop-down button, layout multi-colonna e altro. I framework permettono di stilizzare la pagina con class, invece di scrivere molte regole per lo stesso effetto.
 
 I CSS framework sono pensati per rendere il lavoro piu' semplice ed efficiente, pur permettendoti di personalizzare e usare tutta la potenza di CSS.
@@ -13,13 +13,13 @@ Ci sono molti CSS framework tra cui scegliere. Alcuni popolari:
 
 - [**Bootstrap**](http://getbootstrap.com/) e' il framework CSS piu' usato sul web. A volte chiamato "Twitter Bootstrap", e' stato creato in Twitter per dare coerenza agli strumenti interni, poi rilasciato open source nel 2011. La sua popolarita' ha pro e contro: e' ben testato, documentato e supportato, ma e' cosi' diffuso che il suo look di default e' diventato un po' cliche'.
 
-    Al momento, l'ultima major release di Bootstrap e' **v5**, rilasciata a maggio 2021. E' un aggiornamento importante rispetto alla v4 (2017). Nota che Bootstrap 4 ha introdotto Flexbox come base per il grid system, con migliori performance. Per questo e altri motivi, Bootstrap 4+ **non supporta** IE 9 o precedenti. Per browser vecchi dovresti usare una versione ancora piu' vecchia -- o probabilmente evitare il framework.
+    Al momento, l'ultima release principale di Bootstrap e' **v5**, rilasciata a maggio 2021. E' un aggiornamento importante rispetto alla v4 (2017). Nota che Bootstrap 4 ha introdotto Flexbox come base per il grid system, con migliori performance. Per questo e altri motivi, Bootstrap 4+ **non supporta** IE 9 o precedenti. Per browser vecchi dovresti usare una versione ancora piu' vecchia -- o probabilmente evitare il framework.
 
     <div class="alert alert-warning">Questo testo usa Bootstrap 5 come esempio. E' consigliato usare sempre l'ultima versione di una libreria o framework. Assicurati di leggere la documentazione della versione corretta!</div>
 
-- [**Foundation**](http://foundation.zurb.com/) ha la reputazione di essere piu' "ahead-of-the-curve" rispetto a Bootstrap (introduce nuove feature prima). Per esempio, e' stato il primo framework con design responsive mobile-first e ha fornito una grid basata su Flexbox molto prima di Bootstrap. Foundation ha quasi gli stessi elementi UI di Bootstrap ma con un look diverso (personalizzabile con uno [strumento web](http://foundation.zurb.com/sites/download.html/#customizeFoundation)).
+- [**Foundation**](http://foundation.zurb.com/) ha la reputazione di essere piu' "in anticipo" rispetto a Bootstrap (introduce nuove funzionalita' prima). Per esempio, e' stato il primo framework con design responsive mobile-first e ha fornito una grid basata su Flexbox molto prima di Bootstrap. Foundation ha quasi gli stessi elementi UI di Bootstrap ma con un look diverso (personalizzabile con uno [strumento web](http://foundation.zurb.com/sites/download.html/#customizeFoundation)).
 
-- [**Material Components for the Web (MCW)**](https://material.io/components/web/) e' l'implementazione ufficiale del linguaggio visivo [Material Design](https://material.google.com/) di Google. E' il look&feel di molti prodotti Google e app Android. Material Design e' molto opinionato, quindi MCW e' difficile da personalizzare. I nomi delle class MCW sono molto verbosi perche' seguono lo schema [Block, Element, Modifier (BEM)](https://en.bem.info/methodology/).
+- [**Material Components for the Web (MCW)**](https://material.io/components/web/) e' l'implementazione ufficiale del linguaggio visivo [Material Design](https://material.google.com/) di Google. E' l'aspetto di molti prodotti Google e app Android. Material Design e' molto opinionato, quindi MCW e' difficile da personalizzare. I nomi delle class MCW sono molto verbosi perche' seguono lo schema [Block, Element, Modifier (BEM)](https://en.bem.info/methodology/).
 
 - [**Materialize**](http://materializecss.com/) e' l'altra implementazione Material Design popolare. E' open-source, quindi non fornita da Google. Tuttavia e' strutturalmente simile a Bootstrap, rendendola facile da imparare e popolare tra chi conosce Bootstrap.
 
@@ -27,7 +27,7 @@ Ci sono molti CSS framework tra cui scegliere. Alcuni popolari:
 
     Se scegli **di non** usare un framework, dovresti comunque includere `normalize` per rendere i siti consistenti tra browser.
 
-Esistono anche altri framework, ciascuno con pro e contro (ad es. [Skeleton](http://getskeleton.com/) e' ultra-leggero ma con meno feature).
+Esistono anche altri framework, ciascuno con pro e contro (ad es. [Skeleton](http://getskeleton.com/) e' ultra-leggero ma con meno funzionalita').
 
 ## Usare un framework
 La cosa importante e' che un CSS framework e' **solo uno stylesheet con regole scritte da qualcun altro**. Non c'e' nulla di magico. Puoi guardare il CSS e vedere tutte le regole -- sono cose che potresti scrivere anche tu (anche se alcune sono complesse). Ma queste regole sono state create da professionisti e testate su molti browser per risultati consistenti, quindi conviene costruire sopra di esse invece di reinventare la ruota.
@@ -39,7 +39,7 @@ Poiche' un CSS framework e' _solo un file CSS_, lo includi con un `<link>` come 
 
 ```html
 <head>
-  <!--... other elements here...-->
+  <!--... altri elementi qui...-->
 
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
@@ -49,8 +49,8 @@ Poiche' un CSS framework e' _solo un file CSS_, lo includi con un `<link>` come 
 
 **Importante!** Collega il framework _prima_ del tuo stylesheet. CSS e' letto top-to-bottom, e l'ultima regola vince. Mettendo il tuo CSS dopo, le tue regole _sovrascriveranno_ quelle del framework, permettendoti di personalizzare l'aspetto.
 
-<!-- replace with Bootstrap example?? -->
-- Per esempio, `bootstrap.css` imposta `font-family` del `<body>` su `"Segoe UI"` (sans-serif); potresti voler un typeface diverso:
+<!-- sostituire con un esempio Bootstrap?? -->
+- Per esempio, `bootstrap.css` imposta `font-family` del `<body>` su `"Segoe UI"` (sans-serif); potresti voler un carattere diverso:
 
     ```css
     /* my-style.css */
@@ -61,9 +61,9 @@ Poiche' un CSS framework e' _solo un file CSS_, lo includi con un `<link>` come 
 
     Se includessi il tuo stylesheet _prima_ nel `<head>`, la tua regola verrebbe applicata ma poi sovrascritta da `bootstrap.css`, facendo sembrare che non funzioni. Quindi metti **sempre** il tuo CSS come ultimo `<link>`, dopo i framework.
 
-E' molto comune includere le versioni **minified** dei framework: di solito chiamate **`.min.css`** (es. `bootstrap.min.css`). Un file minified ha commenti e spazi rimossi, quindi e' piu' piccolo (Bootstrap passa da 160 KB a ~127 KB). Pagina piu' piccola = download piu' veloce. Un CSS non minified non e' un disastro, ma lo spazio extra non ti serve.
+E' molto comune includere le versioni **minificate** dei framework: di solito chiamate **`.min.css`** (es. `bootstrap.min.css`). Un file minificato ha commenti e spazi rimossi, quindi e' piu' piccolo (Bootstrap passa da 160 KB a ~127 KB). Pagina piu' piccola = download piu' veloce. Un CSS non minificato non e' un disastro, ma lo spazio extra non ti serve.
 
-- Quasi sempre puoi passare da minified a non-minified cambiando il nome file tra `file.css` e `file.min.css` (se usi una CDN).
+- Quasi sempre puoi passare da minificato a non minificato cambiando il nome file tra `file.css` e `file.min.css` (se usi una CDN).
 
 Ci sono diversi modi per accedere a uno stylesheet di un framework:
 
@@ -76,7 +76,7 @@ Oltre alla semplicita', le CDN offrono un vantaggio di velocita': replicano i fi
 
 Inoltre, le CDN sfruttano la **browser cache**: il browser salva versioni scaricate per evitare di riscaricarle. Se piu' siti usano la versione CDN di Bootstrap, il browser scarica il file solo la prima volta. Con framework popolari, e' probabile che l'utente abbia gia' visitato un sito che usa Bootstrap, quindi il file e' gia' in cache.
 
-Infine, le CDN permettono ai framework di essere accessibili [as a service](https://en.wikipedia.org/wiki/Software_as_a_service), quindi gli autori possono patchare bug rapidamente (se non rompono il codice) senza intervento del developer che usa il framework. (Questo puo' anche essere visto come un contro: devi fidarti degli autori).
+Infine, le CDN permettono ai framework di essere accessibili [come servizio](https://en.wikipedia.org/wiki/Software_as_a_service), quindi gli autori possono patchare bug rapidamente (se non rompono il codice) senza intervento dello sviluppatore che usa il framework. (Questo puo' anche essere visto come un contro: devi fidarti degli autori).
 
 L'unico vero svantaggio delle CDN e' che non funzionano offline. Se sviluppi offline o costruisci un'app offline, devi usare un altro metodo.
 
@@ -103,7 +103,7 @@ Questo installa il codice sorgente in `node_modules/`. Poiche' la dipendenza e' 
 Nota che, per includere il framework nella pagina, devi linkare il file `.css` dentro `node_modules`. La posizione non e' uniforme tra framework o versioni, quindi dovrai cercarla:
 
 ```html
-<!-- notice the RELATIVE path to the file -->
+<!-- nota il path RELATIVO al file -->
 <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 ```
 
@@ -111,9 +111,9 @@ Nota che, per includere il framework nella pagina, devi linkare il file `.css` d
 
 
 ## Bootstrap
-Questa sezione discute _alcune_ feature e usi del framework Bootstrap. Molti altri framework si usano in modo simile (con class e componenti diversi).
+Questa sezione discute _alcune_ funzionalita' e usi del framework Bootstrap. Molti altri framework si usano in modo simile (con class e componenti diversi).
 
-Includi Bootstrap linkando il suo `.css` nella pagina (CDN o file locale). Puoi ottenere il link per l'ultima versione dalla [Bootstrap Home Page](https://getbootstrap.com/).
+Includi Bootstrap linkando il suo `.css` nella pagina (CDN o file locale). Puoi ottenere il link per l'ultima versione dalla [homepage di Bootstrap](https://getbootstrap.com/).
 
 ```html
 <link rel="stylesheet"
@@ -122,58 +122,58 @@ Includi Bootstrap linkando il suo `.css` nella pagina (CDN o file locale). Puoi 
       crossorigin="anonymous">
 ```
 
-(Questo `<link>` ha 2 attribute opzionali: `integrity` fornisce un [hash crittografico](https://en.wikipedia.org/wiki/Cryptographic_hash_function) per verificare il file; `crossorigin` indica che non vengono inviate credenziali al server remoto -- vedi [AJAX](#ajax) per una discussione piu' dettagliata).
+(Questo `<link>` ha 2 attributi opzionali: `integrity` fornisce un [hash crittografico](https://en.wikipedia.org/wiki/Cryptographic_hash_function) per verificare il file; `crossorigin` indica che non vengono inviate credenziali al server remoto -- vedi [AJAX](#ajax) per una discussione piu' dettagliata).
 
 Quando includi Bootstrap, vedrai subito gli effetti (di solito in meglio): font di default diverso, margin cambiati, ecc. Il file CSS di Bootstrap contiene regole che si applicano agli elementi senza lavoro extra, incluso `<body>` e header. Vedi la [documentazione](https://getbootstrap.com/docs/5.2/content/reboot/) per lo styling di default (e tutta la sezione "Content" della documentazione).
 
-### Utility class {-}
+### Class di utilita' {-}
 Oltre alle regole di base, Bootstrap include molte regole applicabili agli elementi con una specifica **class**. Queste [utility class](https://getbootstrap.com/docs/5.2/utilities) sono la fonte di potenza e flessibilita'.
 
 Per esempio, Bootstrap offre [text utilities](https://getbootstrap.com/docs/5.2/utilities/text/) per stilizzare testo con class, invece di scrivere nuove regole. Ad esempio, puoi centrare il testo con `text-center`:
 
 ```html
-<p class="text-center">This text will be centered on all viewport sizes.</p>
+<p class="text-center">Questo testo sara' centrato su tutte le dimensioni del viewport.</p>
 ```
 
 Hai solo aggiunto una class all'HTML, come per qualsiasi regola CSS. Bootstrap contiene una regola che si applica a quella class:
 
 ```css
-/* from bootstrap.css */
+/* da bootstrap.css */
 .text-center {
   text-align: center !important;
 }
 ```
 
-Potresti scrivere la stessa regola, ma Bootstrap la fornisce "built-in", cosi' puoi concentrarti sulla semantica del contenuto invece che sul CSS.
+Potresti scrivere la stessa regola, ma Bootstrap la fornisce integrata, cosi' puoi concentrarti sulla semantica del contenuto invece che sul CSS.
 
 (Noterai che `bootstrap.css` usa spesso `!important`. Serve per sovrascrivere altre regole indipendentemente dalla specificita'. Se vuoi sovrascrivere questa regola -- ad es. non vuoi testo centrato -- non provare a vincere con `!important`. _Rimuovi la class Bootstrap_. Se non vuoi l'effetto, non usare quella class, e _mai_ usare `!important`.)
 
 Molti elementi devono avere una utility class per usare lo styling Bootstrap. Per esempio, per dare a un `<button>` lo stile Bootstrap serve la class `btn`. Questo ti permette di usare lo stile Bootstrap senza essere obbligato a sovrascriverlo se vuoi un look diverso.
 
 ```html
-<button>Plain button</button>
-<button class="btn">Bootstrap button</button>
-<button class="btn btn-primary">Primary colored button</button>
+<button>Button semplice</button>
+<button class="btn">Button Bootstrap</button>
+<button class="btn btn-primary">Button con colore primary</button>
 ```
 
-![Bootstrap button classes. Note that the second button has no color specified, so is white on a white background.](img/css-frameworks/bootstrap-buttons.png)
+![Class dei button Bootstrap. Nota che il secondo button non ha un colore specificato, quindi e' bianco su sfondo bianco.](img/css-frameworks/bootstrap-buttons.png)
 
 L'ultimo button ha una class aggiuntiva `btn-primary` che specifica lo [stile colore](https://getbootstrap.com/docs/5.2/utilities/colors/). Bootstrap fornisce vari stili colore predefiniti, con nomi semantici (es. `primary` o `warning`).
 
-![Bootstrap Button colors.](img/css-frameworks/bootstrap-buttons-all.png)
+![Colori dei button Bootstrap.](img/css-frameworks/bootstrap-buttons-all.png)
 
-Le stesse class colore si applicano a testo (es. `text-primary`), background (es. `bg-primary`), [alert](https://getbootstrap.com/docs/5.2/components/alerts/) (es. `alert-warning`) e altro. Modificando il sorgente SASS di Bootstrap puoi personalizzare questi colori mantenendo coerenza nel theme.
+Le stesse class colore si applicano a testo (es. `text-primary`), background (es. `bg-primary`), [alert](https://getbootstrap.com/docs/5.2/components/alerts/) (es. `alert-warning`) e altro. Modificando il sorgente SASS di Bootstrap puoi personalizzare questi colori mantenendo coerenza nel tema.
 
 Nota che puoi usare la class `btn` anche su altri elementi (es. `<a>`) per farli _sembrare_ button.
 
 <div class="row">
 <div class="column col2">
 ```html
-<a class="btn btn-primary" href="#">A link</a>
+<a class="btn btn-primary" href="#">Un link</a>
 ```
 </div>
 <div class="column">
-<img src="img/css-frameworks/bootstrap-button-link.png" alt="A link that looks like a button">
+<img src="img/css-frameworks/bootstrap-button-link.png" alt="Un link che sembra un button">
 </div>
 </div>
 
@@ -182,31 +182,31 @@ Questo ti permette di mantenere il _significato semantico_ dell'HTML anche se lo
 "Stackare" utility class e' comune in Bootstrap: non e' raro che un elemento abbia 4 o 5 class per specificare l'aspetto. Per esempio, puoi usare le [spacing utilities](https://getbootstrap.com/docs/5.2/utilities/spacing/) per impostare lo spacing attorno a un elemento:
 
 ```html
-<div class="p-3 pt-1 mx-2 mb-2">An element with padding and spacing</div>
+<div class="p-3 pt-1 mx-2 mb-2">Un elemento con padding e spaziatura</div>
 ```
 
 Questo elemento ha `p-3` (3 spacer di **p**adding su tutti i lati), `pt-1` (1 spacer di **p**adding in alto), `mx-2` (2 spacer di **m**argin sull'asse __x__ sinistra/destra) e `mb-2` (2 spacer di margin in **b**ottom).
 
 Bootstrap e' pieno di utility class, sia per styling generico (es. [borders](https://getbootstrap.com/docs/5.2/utilities/borders/) o [position](https://getbootstrap.com/docs/5.2/utilities/position/)), sia per contenuti specifici (es. [lists](https://getbootstrap.com/docs/5.2/content/typography/#lists), [tables](https://getbootstrap.com/docs/5.2/content/tables/), [forms](https://getbootstrap.com/docs/5.2/forms/overview/)). Offre anche class per gestire i [flexbox](https://getbootstrap.com/docs/5.2/utilities/flex/). Esplora la documentazione per dettagli.
 
-<p class="alert alert-info">Bootstrap include anche linee guida e class che [supportano gli screen reader](https://getbootstrap.com/docs/5.2/getting-started/accessibility/). Per esempio, `.visually-hidden` serve per rendere un elemento percepibile solo agli screen reader.</p>
+<p class="alert alert-info">Bootstrap include anche linee guida e class che [supportano i lettori di schermo](https://getbootstrap.com/docs/5.2/getting-started/accessibility/). Per esempio, `.visually-hidden` serve per rendere un elemento percepibile solo ai lettori di schermo.</p>
 
 <p class="alert alert-warning">Le utility class **non** significano che non dovrai mai scrivere CSS! Anche se Bootstrap copre molti casi comuni, quasi sempre dovrai aggiungere personalizzazioni per ottenere l'aspetto desiderato. Al minimo, regole CSS che si applicano a molti elementi possono rendere lo styling piu' leggibile e consistente.</p>
 
 
-### Responsive Design {-}
-Una feature importante di Bootstrap (e altri framework) e' il supporto a **mobile-first, responsive webpages**. Molte utility class Bootstrap usano _media query_ per reagire alla dimensione dello schermo.
+### Design responsive {-}
+Una funzionalita' importante di Bootstrap (e altri framework) e' il supporto a **mobile-first, pagine web responsive**. Molte utility class Bootstrap usano _media query_ per reagire alla dimensione dello schermo.
 
 Bootstrap usa un set predefinito di [responsive breakpoints](https://getbootstrap.com/docs/5.2/layout/breakpoints/): larghezze che segnano i confini tra dispositivi di dimensioni diverse.
 
-| Screen Width | Abbreviation | Approximate Device Size |
+| Larghezza schermo | Abbreviazione | Dimensione approssimativa del device |
 | :----- | :--- | :--------------------------------|
-| < 576px | (default) | Extra-small devices (e.g., portrait phones) |
-| >= 576px | `sm` | Small devices (e.g., landscape phones) |
-| >= 768px | `md` | Medium devices (e.g., tablets) |
-| >= 992px | `lg` | Large devices (e.g., laptops) |
-| >= 1200px | `xl` | Extra-large devices (e.g., desktops) |
-| >= 1400px | `xxl` | Extra-large devices (e.g., big desktops) |
+| < 576px | (default) | Dispositivi extra-small (es. telefoni in verticale) |
+| >= 576px | `sm` | Dispositivi small (es. telefoni in orizzontale) |
+| >= 768px | `md` | Dispositivi medium (es. tablet) |
+| >= 992px | `lg` | Dispositivi large (es. laptop) |
+| >= 1200px | `xl` | Dispositivi extra-large (es. desktop) |
+| >= 1400px | `xxl` | Dispositivi extra-large (es. desktop grandi) |
 
 Tutte queste specifiche sono "greater than or equal", seguendo l'approccio mobile-first. Quindi una utility che si applica a `md` si applica anche a `lg` e `xl`.
 
@@ -227,35 +227,35 @@ Molte (ma non tutte) le class Bootstrap supportano i breakpoint. La classe piu' 
 In generale, ogni pagina stile Bootstrap avra' un Container (di solito `.container`) per contenere il contenuto.
 
 ### La Grid {-}
-Dopo i Container, l'uso piu' comune delle responsive utilities nei framework (come Bootstrap) e' la **grid layout**, simile ai layout multi-colonna creati con Flexbox. Il [Bootstrap Grid system](https://getbootstrap.com/docs/5.2/layout/grid/) permette di creare layout responsive complessi senza implementare Flexbox manualmente.
+Dopo i Container, l'uso piu' comune delle responsive utilities nei framework (come Bootstrap) e' il **layout a grid**, simile ai layout multi-colonna creati con Flexbox. Il [sistema Grid di Bootstrap](https://getbootstrap.com/docs/5.2/layout/grid/) permette di creare layout responsive complessi senza implementare Flexbox manualmente.
 
 <p class="alert alert-info">In Bootstrap 5, la grid e' implementata con Flexbox -- quindi puoi pensarla come un altro modo semantico di definire elementi flexbox.</p>
 
 Per indicare che un insieme di elementi fa parte di una "grid", li metti dentro un elemento `.row` (la class `row` assicura che gli elementi siano allineati). Una `.row` agisce come un "flex-container" (e infatti ha `display:flex`), dove i child sono "flex items".
 
 ```html
-<div class="row"> <!-- a row of items -->
-    <div class="col-6">Item 1</div>
-    <div class="col-4">Item 2</div>
-    <div class="col">Item 3</div>
+<div class="row"> <!-- una riga di elementi -->
+    <div class="col-6">Elemento 1</div>
+    <div class="col-4">Elemento 2</div>
+    <div class="col">Elemento 3</div>
 </div>
 ```
 
 Per indicare quanto e' larga ciascuna colonna, specifichi il numero di "colonne" che occupa. Pensa alla grid come a **12** slot:
 
-<img src="img/css-frameworks/bootstrap-grid-12.png" alt="A row of grid columns">
+<img src="img/css-frameworks/bootstrap-grid-12.png" alt="Una riga di colonne della grid">
 
 Ogni item ha una class che indica quanti slot occupa (simile al merge di celle in un foglio di calcolo):
 
-<img src="img/css-frameworks/bootstrap-grid-example.png" alt="An example of Bootstrap grid rows">
+<img src="img/css-frameworks/bootstrap-grid-example.png" alt="Un esempio di righe della grid di Bootstrap">
 
 Le class sono nel formato `col-#`, dove `#` e' il numero di colonne. Per esempio, `.col-4` occupa 4 colonne, `.col-6` occupa 6. Una class `col` occupa _una quota uguale delle colonne rimanenti_ (simile a `flex-grow`).
 
 Quindi l'HTML sopra produce questo layout:
 
-<img src="img/css-frameworks/bootstrap-grid-manual-example.png" alt="An example of a Bootstrap grid layout">
+<img src="img/css-frameworks/bootstrap-grid-manual-example.png" alt="Un esempio di layout a grid con Bootstrap">
 
-- Nota che "Item 1" occupa meta' (6/12), "Item 2" un terzo (4/12) e "Item 3" il resto (2/12).
+- Nota che "Elemento 1" occupa meta' (6/12), "Elemento 2" un terzo (4/12) e "Elemento 3" il resto (2/12).
 
 Puoi rendere la grid responsive usando versioni responsive delle class `col-#`. Per esempio, `.col-md-4` occupa 4 colonne _solo su schermi medium o piu' grandi_, mentre `.col-lg-6` occupa 6 colonne _solo su large o piu' grandi_. Nota che un child di `.row` senza dimensione colonna agira' come una riga separata (su una propria linea).
 
@@ -263,10 +263,10 @@ Infine, puoi specificare _piu' utility responsive_ per item. Per esempio, puoi f
 
 ```html
 <div class="row">
-    <div class="col-sm-6 col-md-3">Item 1</div>
-    <div class="col-sm-6 col-md-3">Item 2</div>
-    <div class="col-sm-6 col-md-3">Item 3</div>
-    <div class="col-sm-6 col-md-3">Item 4</div>
+    <div class="col-sm-6 col-md-3">Elemento 1</div>
+    <div class="col-sm-6 col-md-3">Elemento 2</div>
+    <div class="col-sm-6 col-md-3">Elemento 3</div>
+    <div class="col-sm-6 col-md-3">Elemento 4</div>
 </div>
 ```
 
@@ -274,7 +274,7 @@ Infine, puoi specificare _piu' utility responsive_ per item. Per esempio, puoi f
 
 L'ordine del CSS di Bootstrap significa che `col-sm-6` viene sovrascritto da `col-md-3` (perche' `md` e' piu' specifico di `sm`), quindi puoi specificare entrambe le class e quella corretta si applichera' -- l'ordine delle class nell'elemento non importa. Nota anche che, per via del concetto "or larger", non serve specificare una larghezza per _ogni_ breakpoint, solo per il livello minimo in cui vuoi che si applichi (ad es. non serve `col-lg-` se non e' diverso da `col-md-`).
 
-Bootstrap include molte utility per personalizzare la grid, inclusi i feature di Flexbox. Per dettagli e opzioni, vedi la [Grid documentation](https://getbootstrap.com/docs/5.2/layout/grid/).
+Bootstrap include molte utility per personalizzare la grid, incluse le funzionalita' di Flexbox. Per dettagli e opzioni, vedi la [documentazione della Grid](https://getbootstrap.com/docs/5.2/layout/grid/).
 
 
 ### Componenti {-}
@@ -283,13 +283,13 @@ Oltre alle utility di base e responsive, Bootstrap offre class per creare **comp
 Per esempio, puoi creare una [card](https://getbootstrap.com/docs/5.2/components/card/) (container di contenuto stilizzato) usando un elemento con class `card` e un child `card-body`. Poi puoi includere altri elementi con class come `card-img-top`, `card-title` o `card-text` per effetti di stile:
 
 ```html
-<div class="card"> <!-- the card -->
-    <img class="card-img-top" src="..." alt="image at top of card image">
-    <div class="card-body"> <!-- the "body" of the card -->
-        <h4 class="card-title">A Card Title</h4>
-        <p class="card-text">Some card text that appears below the card title.</p>
-        <a href="#" class="card-link">Action Link 1</a>
-        <a href="#" class="card-link">Action Link 2</a>
+<div class="card"> <!-- la card -->
+    <img class="card-img-top" src="..." alt="immagine in cima alla card">
+    <div class="card-body"> <!-- il "body" della card -->
+        <h4 class="card-title">Titolo della card</h4>
+        <p class="card-text">Testo della card che appare sotto il titolo.</p>
+        <a href="#" class="card-link">Link azione 1</a>
+        <a href="#" class="card-link">Link azione 2</a>
     </div>
 </div>
 ```
@@ -301,7 +301,7 @@ Molti di questi componenti includono **interattivita'**: per esempio, la [navbar
 CSS non puo' gestire questo livello di interattivita' -- serve **JavaScript**. Quindi per supportare questi componenti devi includere la libreria JavaScript di Bootstrap:
 
 ```html
-<!-- the Bootstrap JavaScript library -->
+<!-- la libreria JavaScript di Bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 ```
 
@@ -309,34 +309,34 @@ Vedi il capitolo [JavaScript](#javascript) per dettagli su come includere librer
 
 Tuttavia, con la maggior parte dei componenti Bootstrap non devi scrivere JS. Ti basta aggiungere alcuni `data-` attribute HTML, e la libreria fa il resto.
 
-- I [data attributes](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes) sono attribute HTML che iniziano con `data-` (es. `data-thingamabob` o `data-my-attribute`). Lo standard HTML dice che gli attribute `data-` sono legali ma non standardizzati, quindi possono essere usati per informazioni app-specific. Agiscono come "variabili" personalizzate sugli elementi senza violare lo standard HTML.
+- I [data attributes](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes) sono attributi HTML che iniziano con `data-` (es. `data-thingamabob` o `data-my-attribute`). Lo standard HTML dice che gli attributi `data-` sono legali ma non standardizzati, quindi possono essere usati per informazioni specifiche dell'app. Agiscono come "variabili" personalizzate sugli elementi senza violare lo standard HTML.
 
 Per esempio, ecco il codice dalla documentazione Bootstrap per una [modal](https://getbootstrap.com/docs/5.2/components/modal/) e un button per aprirla:
 
 ```html
-<!-- note that the `id` attribute is set to "exampleModal" -->
+<!-- nota che l'attributo `id` e' impostato a "exampleModal" -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Titolo della modal</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
       </div>
       <div class="modal-body">
         ...
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+        <button type="button" class="btn btn-primary">Salva modifiche</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- data-toggle must be set to "modal" and data-target must be set to
-the value of the `id` attribute on the element that starts your modal markup -->
+<!-- data-toggle deve essere impostato a "modal" e data-target deve essere impostato
+al valore dell'attributo `id` sull'elemento che avvia il markup della modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Open the Modal
+  Apri la modal
 </button>
 ```
 
@@ -350,11 +350,11 @@ C'e' molto da capire in questo codice, incluse class di stile e attribute ARIA (
 
 ## Risorse {-}
 <div class="list-condensed">
-- [Bootstrap Documentation](https://getbootstrap.com/docs/5.2/getting-started/introduction/)
-- [Materialize Documentation](http://materializecss.com/getting-started.html)
-- [Foundation Documentation](http://foundation.zurb.com/sites/docs/)
-- [Material Components for the Web Documentation](https://material.io/components/web/docs/)
-- [`normalize.css` Documentation](http://necolas.github.io/normalize.css/)
+- [Documentazione Bootstrap](https://getbootstrap.com/docs/5.2/getting-started/introduction/)
+- [Documentazione Materialize](http://materializecss.com/getting-started.html)
+- [Documentazione Foundation](http://foundation.zurb.com/sites/docs/)
+- [Documentazione Material Components for the Web](https://material.io/components/web/docs/)
+- [Documentazione `normalize.css`](http://necolas.github.io/normalize.css/)
 </div>
 
-<small>This chapter was borrowed to a large extent from a [tutorial](https://drstearns.github.io/tutorials/cssframeworks/) by [David Stearns](https://ischool.uw.edu/people/faculty/dlsinfo).</small>
+<small>Questo capitolo e' stato preso in larga parte da un [tutorial](https://drstearns.github.io/tutorials/cssframeworks/) di [David Stearns](https://ischool.uw.edu/people/faculty/dlsinfo).</small>

@@ -1,224 +1,224 @@
-# Interactive React
-This chapter discussed how websites built using the React library can be made interactive, with Components that render different content in response to user actions. Specifically, it details how to idiomatically handle _events_, store dynamic information in a Component's _state_ using _hooks_, as well as perform some specific common interactions (such as using forms and downloading data)
+# React Interattivo
+Questo capitolo discute come i website costruiti usando la library React possano essere resi interattivi, con Components che renderizzano contenuti diversi in risposta alle azioni degli user. In particolare, spiega come gestire in modo idiomatico gli _events_, memorizzare informazioni dinamiche nello _state_ di un Component usando gli _hooks_, e svolgere alcune interazioni comuni specifiche (come usare forms e scaricare data).
 
 
-## Handling Events in React
-You can handle user interaction in React in the same way you would [using the DOM or jQuery](#listening-for-events): you register an _event listener_ and specify a _callback function_ to execute when that event occurs.
+## Gestire gli Eventi in React
+Puoi gestire l'interazione con lo user in React nello stesso modo in cui lo faresti [usando il DOM o jQuery](#listening-for-events): registri un _event listener_ e specifichi una _callback function_ da eseguire quando quell'evento si verifica.
 
-In React, you register event listeners by specifying a React-specific attribute on an element. The attribute is generally named with the word **`on`** followed by the name of the event you want to respond to in _camelCase_ format. For example, `onClick` registers a listener for `click` events, `onMouseOver` for `mouseover` events, and so on. You can see the full list of supported event handling attributes in the documentation for [synthetic events](https://reactjs.org/docs/events.html#supported-events). The attribute should be assigned a value that is a reference to a _callback function_ (specified as an inline expression).
+In React, registri gli event listeners specificando un attribute specifico di React su un elemento. L'attribute di solito e' nominato con la parola **`on`** seguita dal nome dell'event a cui vuoi rispondere in formato _camelCase_. Per esempio, `onClick` registra un listener per gli eventi `click`, `onMouseOver` per gli eventi `mouseover`, e cosi' via. Puoi vedere la lista completa degli attributes di event handling supportati nella documentazione per gli [synthetic events](https://reactjs.org/docs/events.html#supported-events). L'attribute dovrebbe ricevere un value che e' un riferimento a una _callback function_ (specificata come inline expression).
 
 ```jsx
-//A component representing a button that logs a message when clicked
+//Un component che rappresenta un button che logga un messaggio quando viene cliccato
 function MyButton() {
-    //A function to call when clicked. The name is conventional, but arbitrary.
-    //The callback will be passed the DOM event (just like with DOM callbacks)
+    //Una function da chiamare quando si clicca. Il nome e' convenzionale, ma arbitrario.
+    //La callback ricevera' l'event del DOM (proprio come con le DOM callbacks)
     const handleClick = function(event) {
-        console.log("clicky clicky");
+        console.log("clic clic");
     }
 
-    //make a button with an `onClick` attribute!
-    //this "registers" the listener and sets the callback
-    return <button onClick={handleClick}>Click me!</button>;
+    //crea un button con un attribute `onClick`!
+    //questo "registra" il listener e imposta la callback
+    return <button onClick={handleClick}>Cliccami!</button>;
 }
 ```
 
-This component renders a `<button>` in the DOM with a registered click event. Clicking on that DOM element will cause the `handleClick` function to be executed.
+Questo component renderizza un `<button>` nel DOM con un event click registrato. Cliccare quel DOM element fara' eseguire la function `handleClick`.
 
-For readability, the above example specifies the callback function as a separate function (defined inside of the component&mdash;so yes, a function created inside of a function)! Note that it is more common to define nested callbacks using arrow functions:
+Per leggibilita', l'esempio sopra specifica la callback function come una function separata (definita dentro il component&mdash;quindi si', una function creata dentro una function)! Nota che e' piu' comune definire callbacks annidate usando arrow functions:
 
 ```js
 const handleClick = (event) => {
-    console.log('clicky clicky');
+    console.log('clic clic');
 }
 ```
 
-You can also specify a callback function inline in the JSX, though this can quickly get messy and hard to read with complex event handling, so is not recommended.
+Puoi anche specificare una callback function inline nel JSX, anche se questo puo' diventare rapidamente disordinato e difficile da leggere con event handling complesso, quindi non e' consigliato.
 
 ```jsx
 function MyButton() {
-    return <button onClick={(evt) => console.log("clicky clicky")}/>
+    return <button onClick={(evt) => console.log("clic clic")}/>
 }
 ```
 
-Importantly, you can only register events on React elements (HTML elements like `<button>`, that are named with lowercase letters), not on Components. If you tried to specify a `<MyButton onClick={callback}>`, you would be passing a _prop_ that just happened to be called `onClick`, but otherwise has no special meaning!
+In modo importante, puoi registrare eventi solo su React elements (elementi HTML come `<button>`, che hanno nomi in minuscolo), non sui Components. Se provassi a specificare un `<MyButton onClick={callback}>`, staresti passando una _prop_ che si chiama `onClick`, ma che altrimenti non ha alcun significato speciale!
 
-<p class="alert alert-warning">Although functionally similar, React event handling attributes are **NOT** the same as HTML event handles&mdash;React's `onClick` is different from HTML's `onclick`. The React attributes are specialized to work within the React event system. In the end, they're similar to a JSX-based syntactic shortcut for using `addEventListener()`, so we aren't actually mixing concerns more!</p>
+<p class="alert alert-warning">Anche se funzionalmente simili, gli attributes di event handling React **NON** sono gli stessi degli event handlers HTML&mdash;`onClick` di React e' diverso da `onclick` in HTML. Gli attributes di React sono specializzati per funzionare nel sistema di eventi di React. Alla fine, sono simili a una scorciatoia sintattica basata su JSX per usare `addEventListener()`, quindi non stiamo davvero mescolando piu' responsabilita'!</p>
 
 
-## State and Hooks
-The previous section describes how to respond to user-generated events, but in order for the page to be interactive you need to be able to manipulate its rendered content when that event occurs.
-For example, you could click on a button and show how many times it was pressed, select a table column to sort the data by that feature, or select a component in order to show an entirely different "page" of content (see [Chapter 19](#client-side-routing)).
+## State e Hooks
+La sezione precedente descrive come rispondere agli eventi generati dallo user, ma affinche' la pagina sia interattiva devi poter manipolare il contenuto renderizzato quando quell'evento si verifica.
+Per esempio, potresti cliccare un button e mostrare quante volte e' stato premuto, selezionare una colonna di una tabella per ordinare i data in base a quella feature, o selezionare un component per mostrare una "pagina" di contenuto completamente diversa (vedi [Chapter 19](#client-side-routing)).
 
-To achieve these effects, a component will need to keep track of its state or situation&mdash;the number on the counter, how the table is sorted, or which "page" is being shown. In React, a component's **state** represents internal, dynamic information about how that Component should be rendered. The state contains data that _changes over time_ (and _only_ such information&mdash;if the value won't change for that instance of a component, it shouldn't be part of the state!). Moreover, whenever the state is changed, a React component will automatically "rerender"&mdash;the component will be "rerun" and the new, updated DOM elements returned will be displayed on the screen (replacing the previously rendered version). In short: changing the state will "refresh" the component!
+Per ottenere questi effetti, un component dovra' tenere traccia del suo state o situazione&mdash;il numero nel contatore, come la tabella e' ordinata, o quale "pagina" viene mostrata. In React, lo **state** di un component rappresenta informazioni interne e dinamiche su come quel Component deve essere renderizzato. Lo state contiene data che _cambiano nel tempo_ (e _solo_ tali informazioni&mdash;se il value non cambiera' per quella instance di component, non dovrebbe far parte dello state!). Inoltre, ogni volta che lo state cambia, un component React fara' automaticamente un "rerender"&mdash;il component verra' "rieseguito" e i nuovi elementi DOM aggiornati restituiti verranno mostrati sullo schermo (sostituendo la versione renderizzata in precedenza). In breve: cambiare lo state "aggiorna" il component!
 
 <!-- new stuff: Hooks! -->
-State can be specified for a function component by using a _state hook_. [**Hooks**](https://reactjs.org/docs/hooks-intro.html) are
-functions provided by React that let you "hook into" the framework's rendering and displaying processes. The state hook in particular lets you hook into the state of a component, specifying what values should be "tracked" and should cause the component to rerender.
+Lo state puo' essere specificato per un function component usando uno _state hook_. Gli [**Hooks**](https://reactjs.org/docs/hooks-intro.html) sono
+functions fornite da React che ti permettono di "agganciarti" ai processi di rendering e visualizzazione del framework. Lo state hook in particolare ti permette di agganciarti allo state di un component, specificando quali values devono essere "tracciati" e devono causare il rerender del component.
 
-- Hooks were introduced with React v16.8 (October 2018), and thus are the "new" current way of handling state. For details on older techniques (which require using _class components_), see [_State in Class Components_](#state-in-class-components).
+- Gli hooks sono stati introdotti con React v16.8 (October 2018), e quindi sono il modo "nuovo" attuale di gestire lo state. Per dettagli su tecniche piu' vecchie (che richiedono l'uso di _class components_), vedi [_State in Class Components_](#state-in-class-components).
 
-- Fun fact: hooks are basically an example of [_mixins_](https://en.wikipedia.org/wiki/Mixin), which are an object-oriented technique for including/injecting data or behavior in a class without needing to inherit that behavior from a parent class.
+- Curiosita': gli hooks sono fondamentalmente un esempio di [_mixins_](https://en.wikipedia.org/wiki/Mixin), che sono una tecnica object-oriented per includere/iniettare data o behavior in una class senza dover ereditare quel behavior da una parent class.
 
-The [**state hook**](https://reactjs.org/docs/hooks-state.html) is a function provided by React called **`useState()`**. This function will need to be imported from the React library (note that it is a _named export_ so should be imported as such):
+Lo [**state hook**](https://reactjs.org/docs/hooks-state.html) e' una function fornita da React chiamata **`useState()`**. Questa function deve essere importata dalla library React (nota che e' una _named export_ quindi va importata come tale):
 
 ```js
-//import the state hook function
+//importa la function dello state hook
 import React, { useState } from 'react';
 ```
 
-The `useState()` function is then called within the component function (usually at the top of the function so that the resulting variables will be available to use):
+La function `useState()` viene poi chiamata all'interno della component function (di solito all'inizio della function cosi' che le variables risultanti siano disponibili da usare):
 
 ```jsx
 function CountingButton() {
-    //Define a `count` state variable, initially 0
+    //Definisci una state variable `count`, inizialmente 0
     const [count, setCount] = useState(0);
 
-    //an event handling callback
+    //una callback di event handling
     const handleClick = (event) => {
-        setCount(count+1); //update the state to be a new value
+        setCount(count+1); //aggiorna lo state con un nuovo value
     }
 
     return (
-        { /* a button with the event handler that displays the state variable */}
-        <button onClick={handleClick}>You clicked me {count} times</button>
+        { /* un button con l'event handler che mostra la state variable */ }
+        <button onClick={handleClick}>Mi hai cliccato {count} volte</button>
     );
 }
 ```
 
-Calling the `useState()` function creates a "state variable"&mdash;a value that will be tracked and stored between calls to render/rerender the component. You can almost think of a state variable as like an "instance variable" for the function (and indeed, state is stored in object instance variables).
+Chiamare la function `useState()` crea una "state variable"&mdash;un value che verra' tracciato e salvato tra le chiamate di render/rerender del component. Puoi pensare a una state variable come a una "instance variable" per la function (e infatti, lo state e' memorizzato in instance variables di object).
 
-- The `useState()` function is passed the initial starting value for the state variable. In above example, the `count` state variable will be initialized as `0`.
+- La function `useState()` riceve il value iniziale per la state variable. Nell'esempio sopra, la state variable `count` sara' inizializzata a `0`.
 
-- The `useState()` function returns an _array of two values_: the first is the current value of the state (e.g., what it was initialized as), and the second is a function used to modify that particular state variable (a "setter" or mutator). By convention, you use [array destructuring](#destructuring) to assign these two values to two separate variables in a single operation. Thus the above line calling `useState()` can be read as a shorthand for:
+- La function `useState()` restituisce un _array di due values_: il primo e' il value corrente dello state (per esempio, con cui e' stato inizializzato), e il secondo e' una function usata per modificare quella particolare state variable (un "setter" o mutator). Per convenzione, usi l'[array destructuring](#destructuring) per assegnare questi due values a due variables separate in una singola operazione. Quindi la riga sopra che chiama `useState()` puo' essere letta come una scorciatoia per:
 
     ```js
-    const hookArray = useState(0); //the function returns an array of 2 values
-    const count = hookArray[0]; //assign the 1st elem (a value) to `count`
-    const setCount = hookArray[1]; //assign the 2nd elem (a function) to `setCount`
+    const hookArray = useState(0); //la function restituisce un array di 2 values
+    const count = hookArray[0]; //assegna il 1o elem (un value) a `count`
+    const setCount = hookArray[1]; //assegna il 2o elem (una function) a `setCount`
     ```
 
-    Importantly, there is nothing magical about the names of the variables that the `useState()` result is assigned to. It could just as well have been written:
+    In modo importante, non c'e' nulla di magico nei nomi delle variables a cui viene assegnato il risultato di `useState()`. Avrebbe potuto essere scritto anche cosi':
 
     ```js
     const [countVariable, functionToUpdateCount] = useState(0)
     ```
 
-    Because the function is a "setter" it's usually named as such (`setVARIABLE`), but this is not required. It's just a function; you can name it whatever you want.
+    Poiche' la function e' un "setter" di solito viene chiamata cosi' (`setVARIABLE`), ma non e' obbligatorio. E' solo una function; puoi chiamarla come vuoi.
 
-Because the current state value is assigned to a regular variable (e.g., `count` in the above example), you can use it anywhere you would use a variable&mdash;such as in an inline expression to display the value. Note that if the value isn't actually used in the rendered DOM in any way (directly or indirectly), it probably shouldn't be part of the state!
+Poiche' il value corrente dello state e' assegnato a una variable normale (per esempio, `count` nell'esempio sopra), puoi usarlo ovunque useresti una variable&mdash;come in una inline expression per mostrare il value. Nota che se il value non viene effettivamente usato nel DOM renderizzato in alcun modo (direttamente o indirettamente), probabilmente non dovrebbe far parte dello state!
 
-### Updating State {-}
-It's not possible to change the value of a state variable directly (e.g,. you can't do `count = count +1`)&mdash;that's why the variable is declared as `const`! Instead, you need to use the "set state" function that was created (e.g., `setCount()` in the above example). This function will take as an argument the new value to assign to the state variable (overwriting the previous value).
+### Aggiornare lo State {-}
+Non e' possibile cambiare direttamente il value di una state variable (per esempio, non puoi fare `count = count +1`)&mdash;ecco perche' la variable e' dichiarata come `const`! Invece, devi usare la function "set state" che e' stata creata (per esempio, `setCount()` nell'esempio sopra). Questa function prende come argomento il nuovo value da assegnare alla state variable (sovrascrivendo il value precedente).
 
-When the set state function is called, not only will it change the value of the state variable, but it will also "rerender" the component&mdash;it will cause the component function to be called again, returning a new set of DOM elements to be shown on the screen. These DOM elements will replace the previously rendered version of the component; React merges these changes into the page's DOM in a highly efficiency manner, changing only the elements that have actually updated&mdash;this is what makes React so effective for large scale systems.
+Quando la set state function viene chiamata, non solo cambiera' il value della state variable, ma fara' anche il "rerender" del component&mdash;causera' la chiamata di nuovo della component function, restituendo un nuovo set di elementi DOM da mostrare sullo schermo. Questi elementi DOM sostituiranno la versione renderizzata in precedenza del component; React unisce questi cambiamenti nel DOM della pagina in modo altamente efficiente, cambiando solo gli elementi che sono effettivamente aggiornati&mdash;questo e' cio' che rende React cosi' efficace per sistemi su larga scala.
 
-- This is one of the trickier parts to remember in React: when you call a set state function, it will cause your component function to "re-run"&mdash;which means that any logic will execute for a second time (though now the "current" value of the state variable will be updated, rather than the initial value passed into `useState`).
+- Questa e' una delle parti piu' insidiose da ricordare in React: quando chiami una set state function, essa fara' "ri-eseguire" la tua component function&mdash;il che significa che qualsiasi logica verra' eseguita una seconda volta (anche se ora il value "corrente" della state variable sara' aggiornato, invece del value iniziale passato a `useState`).
 
-<p class="alert alert-danger">Never call a set state function directly from inside of your component function; only in callbacks (such as for event handling). Calling `setCount()` directly would cause an infinite recursive loop. Component functions must remain "pure" with no side effects.</p>
+<p class="alert alert-danger">Never chiamare una set state function direttamente dall'interno della tua component function; solo nelle callbacks (come per l'event handling). Chiamare `setCount()` direttamente causerebbe un loop ricorsivo infinito. Le component functions devono rimanere "pure" senza side effects.</p>
 
-Moreover, set state functions are [_asynchronous_](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous). Calling the function only sends a "request" to update the state; it doesn't happen immediately. This is because React will "batch" multiple requests to update the state of components (and so to rerender them) together&mdash;that way if your app needs to make lots of small changes at the same time, React only needs to regenerate the DOM once, providing a significant performance boost.
+Inoltre, le set state functions sono [_asynchronous_](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous). Chiamare la function invia solo una "request" per aggiornare lo state; non avviene immediatamente. Questo perche' React "batcha" piu' request per aggiornare lo state dei components (e quindi per rerenderizzarli) insieme&mdash;in questo modo se la tua app deve fare molti piccoli cambiamenti nello stesso momento, React ha bisogno di rigenerare il DOM solo una volta, fornendo un notevole boost di performance.
 
 ```jsx
-//An Component with a callback that doesn't handle asynchronous state changes
+//Un Component con una callback che non gestisce i cambiamenti di state asincroni
 function CounterWithError(props) {
-    const [count, setCount] = useState(3) //initial value of 3
+    const [count, setCount] = useState(3) //value iniziale di 3
 
     const handleClick = (event) => {
-        setCount(4); //change `count` to 4
-        console.log(count); //will output "3"; state has not changed yet!
+        setCount(4); //cambia `count` a 4
+        console.log(count); //stampera' "3"; lo state non e' ancora cambiato!
     }
 }
 ```
 
-In this example, because `setCount()` is asynchronous, you can't immediately access the updated state variable after calling the function. You instead need to wait for the component to "rerender"&mdash;when the component's DOM is regenerated, it will use the updated value. If you want to see that value, log it out right before you return the DOM (not inside of the click event handler).
+In questo esempio, poiche' `setCount()` e' asynchronous, non puoi accedere immediatamente alla state variable aggiornata dopo aver chiamato la function. Invece devi aspettare che il component faccia "rerender"&mdash;quando il DOM del component viene rigenerato, usera' il value aggiornato. Se vuoi vedere quel value, loggalo subito prima di restituire il DOM (non dentro l'event handler del click).
 
-It is possible to have multiple state variables, each declared with a different call to `useState()`:
+E' possibile avere multiple state variables, ciascuna dichiarata con una chiamata diversa a `useState()`:
 
 ```jsx
-//Example from React documentation
+//Esempio dalla documentazione React
 function ExampleWithManyStates() {
-    //Declare multiple state variables!
+    //Dichiara multiple state variables!
     const [age, setAge] = useState(42);
     const [fruit, setFruit] = useState('banana');
-    const [todos, setTodos] = useState([{ text: 'Learn Hooks' }]);
+    const [todos, setTodos] = useState([{ text: 'Impara Hooks' }]);
 }
 ```
 
-While it's possible for a single state variable to contain complex values (objects and arrays, as in the `todos` variable above), it's often cleaner to use multiple different state variables&mdash;that way React needs to change as little data as possible when you wish to update a variable.
+Anche se e' possibile che una singola state variable contenga values complessi (objects e arrays, come nella variable `todos` sopra), spesso e' piu' pulito usare state variables diverse&mdash;in questo modo React deve cambiare la minima quantita' di data possibile quando vuoi aggiornare una variable.
 
-Importantly, you need to pass a _new value_ into the set state function in order for it to actually update the state and rerender the component. Just changing a value inside of an existing object won't work:
+In modo importante, devi passare un _nuovo value_ alla set state function affinche' aggiorni davvero lo state e rerenderizzi il component. Cambiare solo un value dentro un object esistente non funziona:
 
 ```js
 function TodoListWithError() {
-    //a state value that is an array of objects
-    const [todos, setTodos] = useState([{ text: 'Learn Hooks' }]);
+    //un value di state che e' un array di objects
+    const [todos, setTodos] = useState([{ text: 'Impara Hooks' }]);
 
     const handleClick = (event) => {
-        todos[0].text = "Fix bugs"; //modify the object but don't make a new one
-        setTodos(todos) //This won't work!
+        todos[0].text = "Correggi bug"; //modifica l'object ma non ne crea uno nuovo
+        setTodos(todos) //Questo non funzionera'!
     }
 }
 ```
 
-In the above example, changing a property of the `todos` array-of-objects doesn't actually change the value. This when you call `setTodos(todos)`, React thinks that nothing has updated (it doesn't do a deep inspection of the object) so doesn't update anything. Instead, you'll need to create a _new copy_ of the array or object, and then pass that new value into the set state function:
+Nell'esempio sopra, cambiare una property dell'array-di-objects `todos` non cambia davvero il value. Quindi quando chiami `setTodos(todos)`, React pensa che nulla sia cambiato (non fa una deep inspection dell'object) e quindi non aggiorna nulla. Invece, dovrai creare una _nuova copia_ dell'array o dell'object, e poi passare quel nuovo value alla set state function:
 
 ```jsx
 function TodoList() {
-    //a state value that is an array of objects
-    const [todos, setTodos] = useState([{ text: 'Learn Hooks' }]);
+    //un value di state che e' un array di objects
+    const [todos, setTodos] = useState([{ text: 'Impara Hooks' }]);
 
     const handleClick = (event) => {
-        //create a copy of the array using the `map()` function
+        //crea una copia dell'array usando la function `map()`
         const todosCopy = todos.map((todoObject, index) => {
-            if(index == 0) { //transform objects if needed
-                todoObject.text = "Fix bugs"
+            if(index == 0) { //trasforma gli objects se necessario
+                todoObject.text = "Correggi bug"
             }
-            return todoObject; //return object to go into new array
+            return todoObject; //restituisce l'object da mettere nel nuovo array
         })
-        setTodos(todosCopy) //This works!
+        setTodos(todosCopy) //Questo funziona!
     }
 }
 ```
 
-This is because React wants to encourage data to remain **immutable** (you don't change it, you just make a altered copy) and for functions to avoid **side effects** (where they change something outside of themselves) in order to help maintain consistency of your data.
+Questo perche' React vuole incoraggiare i data a rimanere **immutable** (non li cambi, fai solo una copia alterata) e le functions a evitare **side effects** (dove cambiano qualcosa fuori da se stesse) per aiutare a mantenere la consistenza dei tuoi data.
 
-- The `.map()` function is usually the easiest way to copy an array, though other techniques exist as well. If you wish to copy an _object_, you can do this easily using the _spread operator_ to create a new object using the properties of the first:
+- La function `.map()` e' di solito il modo piu' semplice per copiare un array, anche se esistono altre tecniche. Se vuoi copiare un _object_, puoi farlo facilmente usando lo _spread operator_ per creare un nuovo object usando le properties del primo:
 
     ```js
-    //an original object
+    //un object originale
     const original = {a: 1, b: 2};
 
-    //Create a copy, taking the property of `original` and assigning them into
-    //a fresh object
-    const copy = { ...original } //using the spread operator
+    //Crea una copia, prendendo le properties di `original` e assegnandole a
+    //un object nuovo
+    const copy = { ...original } //usando lo spread operator
     console.log(copy) //{a: 1, b: 2}
     console.log(copy == original) //false, different objects
     ```
 
-    (The [`Object.assign()` function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)) is also used to do a similar operation, but the spread operator is easier to read)
+    (La function [`Object.assign()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) viene usata anche per fare un'operazione simile, ma lo spread operator e' piu' semplice da leggere)
 
 
 ### State vs. Props {-}
-Importantly, a Component's _state_ is different from its _props_. Although state and props make look similar, they have very different roles. Many developers get the two confused&mdash;to the point that React has an [FAQ](https://reactjs.org/docs/faq-state.html#what-is-the-difference-between-state-and-props) entry about the difference!
+In modo importante, lo _state_ di un Component e' diverso dalle sue _props_. Anche se state e props possono sembrare simili, hanno ruoli molto diversi. Molti developer li confondono&mdash;al punto che React ha una voce [FAQ](https://reactjs.org/docs/faq-state.html#what-is-the-difference-between-state-and-props) sulla differenza!
 
-The key difference between props and state is:
+La differenza chiave tra props e state e':
 
-> `props` are for information that doesn't change from the Component's perspective, including "initial" data. `state` is for information that will change, usually due to user interaction.
+> `props` sono per informazioni che non cambiano dalla prospettiva del Component, includendo data "iniziali". `state` e' per informazioni che cambieranno, di solito a causa dell'interazione dello user.
 
-Props are the "inputs" into a component, the values that someone else tells the Component it should. That is why the are passed in as arguments! _Props are immutable_&mdash;from the component's perspective; they cannot be changed once set (though a parent could create a _different_ version of the component with different props).
+Le props sono gli "input" di un component, i values che qualcun altro dice al Component di avere. Ecco perche' vengono passate come argomenti! _Le props sono immutabili_&mdash;dalla prospettiva del component; non possono essere cambiate una volta impostate (anche se un parent potrebbe creare una versione _diversa_ del component con props diverse).
 
-State is "internal" to the Component, and is (only) for values that change over time. If the value doesn't change over the life of the Component (e.g., in response to a user event), it shouldn't be part of the state! To quote from [the documentation](https://reactjs.org/docs/thinking-in-react.html):
+Lo state e' "interno" al Component, ed e' (solo) per values che cambiano nel tempo. Se il value non cambia durante la vita del Component (per esempio, in risposta a un user event), non dovrebbe far parte dello state! Per citare dalla [documentazione](https://reactjs.org/docs/thinking-in-react.html):
 
-> State is reserved only for interactivity, that is, data that changes over time.
+> Lo state e' riservato solo all'interattivita', cioe' ai data che cambiano nel tempo.
 
-For example, a `SortableTable` component might be used to render a list of data. But as the data in the list would come from elsewhere (e.g., the overall `App`) and wouldn't be changed _by the table_, it would be passed in as a `prop`. However, the _order_ in which that data is displayed might change&mdash;thus you could save an `orderBy` value in the state, and then use that to organize what elements are returned by the component function. The data itself doesn't change, but how it is rendered does!
+Per esempio, un component `SortableTable` potrebbe essere usato per renderizzare una list di data. Ma dato che i data nella list arriverebbero da altrove (per esempio, l'`App` complessiva) e non verrebbero cambiati _dalla tabella_, verrebbero passati come `prop`. Tuttavia, l'_ordine_ con cui quei data vengono mostrati potrebbe cambiare&mdash;quindi potresti salvare un value `orderBy` nello state, e poi usarlo per organizzare quali elements vengono restituiti dalla component function. I data stessi non cambiano, ma cambia il modo in cui sono renderizzati!
 
 <!-- Add example? Can do sorting by column-name easily? :/ -->
 
-It is possible to use the props to initialize a state variable (since props are the "initial values" for the Component), though the props would not be changed later:
+E' possibile usare le props per inizializzare una state variable (dato che le props sono i "values iniziali" per il Component), anche se le props non verranno cambiate in seguito:
 
 ```jsx
-//A component representing a count
+//Un component che rappresenta un conteggio
 function Counter(props) {
     const [count, setCount] = useState(props.startAt)
 }
@@ -226,23 +226,23 @@ function Counter(props) {
 let counter = <Counter startAt={5} />
 ```
 
-In this case the state variable keeps track of the count, though the prop specifies an initial number. The `count` variable will change in the future, but the `props.startAt` value will not.
+In questo caso la state variable tiene traccia del conteggio, anche se la prop specifica un numero iniziale. La variable `count` cambiera' in futuro, ma il value `props.startAt` no.
 
-It's important that you _only_ use state to track values that will change over the life of the Component. If you're not sure if a value should be part of the state, consider the following:
+E' importante usare lo state _solo_ per tracciare values che cambieranno durante la vita del Component. Se non sei sicuro se un value debba far parte dello state, considera quanto segue:
 
-1. Is the value passed in from a parent via props? If so, it probably isn't state.
-2. Does the value remain unchanged over time? If so, it definitely isn't state.
-3. Can you compute it based on any other state or props in your component? If so, it definitely isn't state.
+1. Il value e' passato da un parent tramite props? Se si, probabilmente non e' state.
+2. Il value rimane invariato nel tempo? Se si, sicuramente non e' state.
+3. Puoi calcolarlo in base ad altri state o props nel tuo component? Se si, sicuramente non e' state.
 
-The last of these rules is important. In general, you should keep the state as _minimal as possible_&mdash;meaning you want to have as little data as possible in the state. This is to help avoid duplicating information (which can get out of sync), as well as to speed up how React will "re-render" Components when the state changes.
+L'ultima di queste regole e' importante. In generale, dovresti mantenere lo state il piu' _minimale possibile_&mdash;cioe' vuoi avere il minor numero possibile di data nello state. Questo aiuta a evitare la duplicazione di informazioni (che puo' andare out of sync), oltre ad accelerare il modo in cui React "re-renderizza" i Components quando lo state cambia.
 
-<p class="alert alert alert-warning">One of the most difficult parts of architecting a React application is figuring out what information should be stored in the props or state (and in which components). We suggest you practice using simple examples, and think carefully about it as you build more robust applications.</p>
+<p class="alert alert alert-warning">Una delle parti piu' difficili dell'architettura di una React application e' capire quali informazioni debbano essere memorizzate nelle props o nello state (e in quali components). Ti suggeriamo di fare pratica con esempi semplici e di pensarci attentamente mentre costruisci applications piu' robuste.</p>
 
 
 ### Lifting Up State {-}
-In React, a component state is purely _internal_ to that component&mdash;neither the component's parent element nor its children have access to (or are even aware of) that state. State represents only information about that particular component (and that particular _instance_ of the component).
+In React, lo state di un component e' puramente _interno_ a quel component&mdash;ne' l'elemento parent del component ne' i suoi children hanno accesso a (o sono anche solo consapevoli di) quello state. Lo state rappresenta solo informazioni su quel particolare component (e quella particolare _instance_ del component).
 
-Sometimes a child component (i.e., a component instantiated as part of the returned DOM) needs some data that is stored in the state&mdash;for example, a `BlogPost` component might need a data value that is stored in the `Blog`'s `comments` state variable. Components can make information available to their children by passing that data to them as a _prop_:
+A volte un child component (cioe', un component istanziato come parte del DOM restituito) ha bisogno di alcuni data che sono memorizzati nello state&mdash;per esempio, un component `BlogPost` potrebbe aver bisogno di un value di data che e' memorizzato nella state variable `comments` di `Blog`. I Components possono rendere le informazioni disponibili ai loro children passando quei data come _prop_:
 
 ```jsx
 function Blog(props) {
@@ -250,18 +250,18 @@ function Blog(props) {
 
     return (
         <div>
-            <h2>Most Recent Post</h2>
+            <h2>Post piu' recente</h2>
 
-            {/* pass in values from state as a prop */}
+            {/* passa i values dallo state come prop */}
             <BlogPost postText={posts[0]} />
         </div>
     )
 }
 ```
 
-In this example, the `BlogPost` would be passed the individual "post text" data as a normal prop, without being aware that the data was actually stored in the `Blog`'s state. When that data changes (e.g., when a new post is added), the component function will be called again and the `BlogPost` component will be re-instantiated with a new value for its prop&mdash;again, without any knowledge that there was a change. From the perspective of the `BlogPost`, there has only ever been a single `postText` value (the `BlogPost` with a different text is actually a different `BlogPost` object!).
+In questo esempio, al `BlogPost` verrebbero passati i data del singolo "post text" come prop normale, senza sapere che i data erano effettivamente memorizzati nello state di `Blog`. Quando quei data cambiano (per esempio, quando viene aggiunto un nuovo post), la component function verra' chiamata di nuovo e il component `BlogPost` verra' re-istanzato con un nuovo value per la sua prop&mdash;di nuovo, senza sapere che c'e' stato un cambiamento. Dal punto di vista di `BlogPost`, c'e' sempre stato un solo value `postText` (il `BlogPost` con un testo diverso e' in realta' un oggetto `BlogPost` diverso!).
 
-While passing state data to a child (as a prop) is easy, communicating state data to a _parent_ or _sibling_ is more complicated. For example, you may want to have a `SearchForm` component that is able to search for data, but want to then have a sibling `ResultsList` component that is able to display the rendered results:
+Mentre passare data di state a un child (come prop) e' facile, comunicare data di state a un _parent_ o a un _sibling_ e' piu' complicato. Per esempio, potresti voler avere un component `SearchForm` in grado di cercare data, ma poi voler avere un component sibling `ResultsList` in grado di mostrare i risultati renderizzati:
 
 ```jsx
 <App>
@@ -270,44 +270,44 @@ While passing state data to a child (as a prop) is easy, communicating state dat
 </App>
 ```
 
-When confronted with this problem, the best practice in React is to **lift the state up** to the the _closest common ancestor_. This means that instead of having the data be stored in the state of one of the children, you instead store the data in the state of the _parent_. The parent can then pass that information down to the children (as props) for them to use. This way the data always flows "down" the tree.
+Quando ti trovi di fronte a questo problema, la best practice in React e' **lift the state up** al _closest common ancestor_. Questo significa che invece di avere i data memorizzati nello state di uno dei children, memorizzi i data nello state del _parent_. Il parent puo' poi passare quelle informazioni ai children (come props) per farle usare. In questo modo i data fluiscono sempre "verso il basso" nell'albero.
 
 ```{r results='asis', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html')}
 # only in html
 cat('!["Lift up" the state to the closest common ancestor to share data between sibling elements](img/react/lift-up.gif)')
 ```
 
-But with the state stored in the parent, the children elements (e.g., the `SearchForm`) may still need a way to interact with that parent and tell it to change its state. To do this, you can have the parent define a function that changes its state, and then pass the child that _callback function_ as a `prop`. The child will then be able to execute that callback prop, thereby telling the parent to do something (such as update its state!)
+Ma con lo state memorizzato nel parent, i children elements (per esempio, `SearchForm`) potrebbero comunque aver bisogno di un modo per interagire con quel parent e dirgli di cambiare il suo state. Per fare questo, puoi far definire al parent una function che cambia il suo state, e poi passare al child quella _callback function_ come `prop`. Il child potra' poi eseguire quella callback prop, dicendo cosi' al parent di fare qualcosa (come aggiornare il suo state!)
 
-- It's like the parents write down their instructions, and then hand them to the child to do later!
+- E' come se i genitori scrivessero le istruzioni, e poi le consegnassero al child da fare piu' tardi!
 
-In the following example, the parent component (`VotingApp`) stores state data about how many times each button has been pressed, passing a callback function (`countClick`) to its child Components (`CandidateButton`). The `CandidateButton` will then execute that callback when it is clicked. Executing this function causes the `VotingApp` to update its state and re-render the buttons, which show updated text based on the props given to them (namely: who is winning!).
+Nell'esempio seguente, il component parent (`VotingApp`) memorizza data di state su quante volte ogni button e' stato premuto, passando una callback function (`countClick`) ai suoi child Components (`CandidateButton`). Il `CandidateButton` eseguira' poi quella callback quando viene cliccato. Eseguire questa function fa si' che `VotingApp` aggiorni il suo state e re-renderizzi i buttons, che mostrano testo aggiornato in base alle props date (cioe': chi sta vincendo!).
 
 ```jsx
 function VotingApp(props) {
-    //initialize the state counts, one for each color
-    //using a single state value so that there is only one "update" function
+    //inizializza i conteggi di state, uno per ogni colore
+    //usa un solo state value cosi' c'e' una sola function di "update"
     const [counts, setCounts] = useState({red: 0, blue: 0})
 
-    //a function to update the state
-    //expects a "color" for which button was clicked
+    //una function per aggiornare lo state
+    //si aspetta un "color" per quale button e' stato cliccato
     const handleCount = function(color) {
-        console.log(color + " got a vote!");
+        console.log(color + " ha ricevuto un voto!");
 
-        const newCounts = { ...counts } //make a duplicate of the object
-        newCounts[color]++; //update the local copy
+        const newCounts = { ...counts } //crea una copia dell'object
+        newCounts[color]++; //aggiorna la copia locale
 
-        setCounts(newCounts) //update the state with the changed copy
+        setCounts(newCounts) //aggiorna lo state con la copia modificata
     }
 
-    //render based on current state
-    let winner = "tie";
+    //renderizza in base allo state corrente
+    let winner = "pareggio";
     if(counts.red > counts.blue) winner = "red"
     else if(counts.blue > counts.red) winner = "blue"
     return (
         <div>
-            <p>Current winner is: {winner}</p>
-            {/* Pass the callback to each button as a prop */}
+            <p>Il vincitore corrente e': {winner}</p>
+            {/* Passa la callback a ogni button come prop */}
             <CandidateButton color="red" winner={winner} callback={handleCount} />
             <CandidateButton color="blue" winner={winner} callback={handleCount} />
         </div>
@@ -316,14 +316,14 @@ function VotingApp(props) {
 
 function CandidateButton(props) {
     const handleClick = () => {
-        //On click, execute the given callback function (passing in own name)
+        //Al click, esegui la callback function data (passando il proprio nome)
         props.callback(props.color)
     }
 
-    //render based on current props
-    let label = "I am not winning";
+    //renderizza in base alle props correnti
+    let label = "Non sto vincendo";
     if(props.winner === props.color)
-        label = "I am winning!"
+        label = "Sto vincendo!"
 
     return (
         <button className={props.color} onClick={handleClick}>
@@ -333,176 +333,176 @@ function CandidateButton(props) {
 }
 ```
 
-As with many React systems, there are a lot of moving parts that fit together. To understand how this example works, try "tracing" the code that occurs when the `CountingApp` is first rendered, and then what happens when a button is clicked. Remember that calling `setCounts()` causes the component to be re-rendered (the function is re-run)!
+Come con molti sistemi React, ci sono molte parti in movimento che si incastrano. Per capire come funziona questo esempio, prova a "tracciare" il codice che si verifica quando `CountingApp` viene renderizzato per la prima volta, e poi cosa succede quando un button viene cliccato. Ricorda che chiamare `setCounts()` fa re-renderizzare il component (la function viene rieseguita)!
 
-Finally, notice in particular that the `CandidateButton` class knows nothing about its parent or indeed any information about how it is used (or even if there are other `CandidateButton` instances). Instead, it simply renders itself based on its props, and executes whatever `callback` function it was given whenever it is clicked (without carrying about what that function does). Having lots of "simple" components like this is the best way to design React apps.
+Infine, nota in particolare che la class `CandidateButton` non sa nulla del suo parent o di come viene usata (o anche se esistono altre istanze di `CandidateButton`). Invece, renderizza semplicemente se stessa in base alle sue props, ed esegue qualsiasi `callback` function le sia stata data quando viene cliccata (senza preoccuparsi di cosa faccia quella function). Avere tanti components "semplici" come questo e' il modo migliore per progettare React apps.
 
-In summary, in order to make an interactive React application, perform the following steps:
+In sintesi, per realizzare una React application interattiva, esegui i seguenti passi:
 
-1. Start with a "static" (non-interactive) version, with appropriate Components
-2. Identify variables that will change so need to be stored in the state
-3. Define state variables in the "lowest" common ancestor for Components that need it
-4. Pass state information to child Components as `props`
-5. Pass _callback functions_ as `props` to child Components so they can modify the state.
+1. Parti da una versione "statica" (non interattiva), con i Components appropriati
+2. Identifica le variables che cambieranno e quindi devono essere memorizzate nello state
+3. Definisci le state variables nel "lowest" common ancestor dei Components che ne hanno bisogno
+4. Passa le informazioni di state ai child Components come `props`
+5. Passa _callback functions_ come `props` ai child Components cosi' possono modificare lo state.
 
 
-## Specific Interactions
-This section provides some details on specific types of interactions commonly used in React apps but require further details and explanation.
+## Interazioni Specifiche
+Questa sezione fornisce alcuni dettagli su specifici tipi di interazioni comunemente usati nelle React apps ma che richiedono ulteriori dettagli e spiegazioni.
 
-### Working with Forms {-}
-One of the most common reasons to track state in a React app is when developing [forms](https://reactjs.org/docs/forms.html) that the user can fill out to submit information. Forms are a common structure to use when getting user input&mdash;whether it's a "search form" for browsing a data set, or a "login form" for allowing a user access to personalized data.
+### Lavorare con i Forms {-}
+Uno dei motivi piu' comuni per tracciare lo state in una React app e' quando si sviluppano [forms](https://reactjs.org/docs/forms.html) che lo user puo' compilare per inviare informazioni. I forms sono una struttura comune da usare per ottenere input dallo user&mdash;sia che si tratti di un "search form" per esplorare un data set, sia di un "login form" per permettere a uno user l'accesso a data personalizzati.
 
-In normal HTML, form elements such as **`<input>`** keep track of their own "state". For example, whatever the user has typed into a text input will be stored in that input's `value` property:
+In HTML normale, elementi di form come **`<input>`** tengono traccia del proprio "state". Per esempio, qualunque cosa lo user abbia digitato in un text input viene memorizzata nella property `value` di quell'input:
 
 ```js
-//Select the <input type="text"> element
+//Seleziona l'elemento <input type="text">
 let textInput = document.querySelector('input[type="text"]');
 
-//Event that occurs whenever the input is changed
+//Event che si verifica ogni volta che l'input cambia
 textInput.addEventListener('change', (event) => {
     let input = event.target;
-    console.log(input.value); //access that elements "state"
+    console.log(input.value); //accedi allo "state" di quell'elemento
 });
 ```
 
-You will often want React to be able to respond to user data entered into a form&mdash;either because you want to send an AJAX request based on that data, or because you want to perform **form validation** and confirm that the user has entered appropriate input (e.g., that the password is at least 6 characters long). But storing the user input in the `<input>` element's state can cause problem for React: React components won't know that they should "rerender" when that changes, and updating a React component might cause the entire DOM tree to re-render (producing a new `<input>` element with a different `value` state).
+Spesso vuoi che React possa rispondere ai data inseriti dallo user in un form&mdash;sia perche' vuoi inviare una request AJAX basata su quei data, sia perche' vuoi effettuare la **form validation** e confermare che lo user abbia inserito input appropriati (per esempio, che la password sia lunga almeno 6 caratteri). Ma memorizzare l'input dello user nello state dell'elemento `<input>` puo' causare problemi per React: i React components non sapranno che devono "rerenderizzare" quando cambia, e aggiornare un component React potrebbe far re-renderizzare l'intero DOM tree (producendo un nuovo elemento `<input>` con uno state `value` diverso).
 
-Thus the recommended practice for working with forms in React is to use [**controlled Components**](https://reactjs.org/docs/forms.html#controlled-components). In this case, you define a component that will track the state of what the user has typed into the `<input>`, and then will render an `<input>` with an appropriate `value` property. Rather than letting the `<input>` control its own state, the React component controls the state and then dictates to the `<input>` element what value it should be showing. It's like React is snatching the data from the `<input>` and then claiming credit for it.
+Quindi la pratica raccomandata per lavorare con i forms in React e' usare i [**controlled Components**](https://reactjs.org/docs/forms.html#controlled-components). In questo caso, definisci un component che traccia lo state di cio' che lo user ha digitato nell'`<input>`, e poi renderizza un `<input>` con una property `value` appropriata. Invece di lasciare che l'`<input>` controlli il proprio state, il component React controlla lo state e poi dice all'elemento `<input>` quale value dovrebbe mostrare. E' come se React prendesse i data dall'`<input>` e poi si prendesse il merito.
 
 ```jsx
 function MyInput(props) {
-    const [inputValue, setInputValue] = useState('')//initialize as empty string
+    const [inputValue, setInputValue] = useState('')//inizializza come string vuota
 
-    //respond to input changes
+    //rispondi ai cambiamenti dell'input
     const handleChange = (event) => {
-        //get the value that the <input> now has
+        //prendi il value che l'<input> ha ora
         let newValue = event.target.value
 
-        //update the state to use that new value, rendering the component
+        //aggiorna lo state per usare quel nuovo value, renderizzando il component
         setInputValue(newValue);
     }
 
     return (
         <div>
-            {/* The input will be rendered with the React-controlled value */}
+            {/* L'input verra' renderizzato con il value controllato da React */}
             <input type="text" onChange={handleChange} value={inputValue} />
-            <p>You typed: {inputValue}</p>
+            <p>Hai digitato: {inputValue}</p>
         </div>
     );
 }
 ```
 
-The above is an example of a basic controlled Component. When the user enters a different value into the `<input>` element, the `handleChange()` callback is executed. This grabs that updated value and saves it in the component's `inputValue` state variable. Updating that state variable also causes the component to re-render, which recreates a brand new version of the `<input>` element, but now with the React-controlled value for its `value` attribute. This way whatever value the user has entered will always be part of a React Component's state, and so can be manipulated and interacted with in the same manner.
+Quello sopra e' un esempio di controlled Component di base. Quando lo user inserisce un value diverso nell'elemento `<input>`, la callback `handleChange()` viene eseguita. Questa prende quel value aggiornato e lo salva nella state variable `inputValue` del component. Aggiornare quella state variable fa anche re-renderizzare il component, il che ricrea una versione completamente nuova dell'elemento `<input>`, ma ora con il value controllato da React per il suo attribute `value`. In questo modo qualunque value inserito dallo user sara' sempre parte dello state di un React Component, e quindi puo' essere manipolato e gestito nello stesso modo.
 
-- And of course, a controlled form might render multiple `<input>` elements, tracking the values of each one in a separate variable in the state. This also allows the inputs to easily interact with each other, such if you want to confirm that a password was entered correctly twice.
+- E naturalmente, un controlled form potrebbe renderizzare piu' elementi `<input>`, tracciando i values di ognuno in una variable separata nello state. Questo permette anche agli inputs di interagire facilmente tra loro, ad esempio se vuoi confermare che una password sia stata inserita correttamente due volte.
 
-- Robust form validation is actually quite tricky in React (especially when compared to other frameworks such as Angular). Using an external library such as [Formik](https://jaredpalmer.com/formik) can help with developing forms and handling all the edge cases.
+- Una robusta form validation e' in realta' piuttosto complessa in React (soprattutto se confrontata con altri framework come Angular). Usare una library esterna come [Formik](https://jaredpalmer.com/formik) puo' aiutare a sviluppare forms e gestire tutti gli edge cases.
 
 
-### Fetching Data via AJAX {-}
-One of the most common use of lifecycle callback functions is when accessing data asynchronously, such as when fetching data via an AJAX request (such a described in [Chapter 14](#ajax)). This section provides details about how to asynchronously load data within the React framework.
+### Caricare Data via AJAX {-}
+Uno degli usi piu' comuni delle lifecycle callback functions e' quando si accede a data in modo asincrono, ad esempio quando si scaricano data tramite una request AJAX (come descritto in [Chapter 14](#ajax)). Questa sezione fornisce dettagli su come caricare data in modo asincrono nel framework React.
 
-First, remember that React code is _transpiled_ using Webpack. As such, some APIs&mdash;including `fetch()` are not "built-in" to React like they are with a modern browser. As discussed in [Chapter 14](#fetching-data), in order to support these "other" browsers, you will need to load a _polyfill_. You can do that with React by installing the `whatwg-fetch` library, and then `import`ing that polyfill in your React code:
+Per prima cosa, ricorda che il codice React e' _transpiled_ usando Webpack. Di conseguenza, alcune API&mdash;incluso `fetch()` non sono "built-in" in React come lo sono in un browser moderno. Come discusso in [Chapter 14](#fetching-data), per supportare questi "altri" browser, dovrai caricare un _polyfill_. Puoi farlo con React installando la library `whatwg-fetch`, e poi `import`ando quel polyfill nel tuo codice React:
 
 ```bash
-# On command line, install the polyfill
+# In command line, installa il polyfill
 npm install whatwg-fetch
 ```
 
 ```js
-//In your JavaScript, import the polyfill (loading it "globally")
-//This will make the `fetch()` function available
+//Nel tuo JavaScript, importa il polyfill (caricandolo "globalmente")
+//Questo rendera' disponibile la function `fetch()`
 import 'whatwg-fetch';
 ```
 
-Remember that `fetch()` downloads data _asynchronously_. Thus if you want to download some data to display, it may take a while to arrive. You don't want React to have to "wait" for the data (since React is designed to be _fast_). Thus the best practice is to send the `fetch()` request for data, and `then` when the data has been downloaded, call the a set state function to update the component with the downloaded data. (The component can initialize its state as an "empty array" of data).
+Ricorda che `fetch()` scarica i data in modo _asynchronous_. Quindi se vuoi scaricare alcuni data da mostrare, potrebbero impiegare un po' ad arrivare. Non vuoi che React debba "aspettare" i data (dato che React e' progettato per essere _fast_). Quindi la best practice e' inviare la request `fetch()` per i data e poi, `then`, quando i data sono stati scaricati, chiamare una set state function per aggiornare il component con i data scaricati. (Il component puo' inizializzare il suo state come un "array vuoto" di data).
 
-Fetching data from the internet is considered a [**side effect**](https://en.wikipedia.org/wiki/Side_effect_(computer_science)) in React. Function components are supposed to do one thing (as well-designed "pure" functions): they return the DOM that will be rendered on the screen. But downloading data modifies something outside of that framework, in that it modifies network status/information and even the status of the remote server! Thus calling `fetch()` from directly inside the component function would be considered bad programming style, and can cause problems and bugs when the component is rendered. For example, if the fetched data returns too quickly or too slowly, you may try and set the state variable of (and thus rerender) a component that isn't yet attached to the DOM, causing React to crash. And if the state does update and reruns the component, that would cause it to download the data yet again, potentially causing an infinite loop!
+Scaricare data da internet e' considerato un [**side effect**](https://en.wikipedia.org/wiki/Side_effect_(computer_science)) in React. I function components dovrebbero fare una sola cosa (come "pure" functions ben progettate): restituiscono il DOM che verra' renderizzato sullo schermo. Ma scaricare data modifica qualcosa al di fuori di quel framework, in quanto modifica lo stato/informazioni della rete e persino lo stato del server remoto! Quindi chiamare `fetch()` direttamente dentro la component function sarebbe considerato cattivo stile di programmazione, e puo' causare problemi e bug quando il component viene renderizzato. Per esempio, se i data scaricati tornano troppo rapidamente o troppo lentamente, potresti provare a impostare la state variable di (e quindi rerenderizzare) un component che non e' ancora agganciato al DOM, causando il crash di React. E se lo state si aggiorna e riesegue il component, questo lo farebbe scaricare i data di nuovo, potenzialmente causando un loop infinito!
 
-In order to perform side effect operations in React, you need to use another kind of hook called an [**effect hook**](https://reactjs.org/docs/hooks-effect.html), provided by the React function **`useEffect()`**. An effect hook lets you hook into the lifecycle of a component, specifying some code (a function) that should be run _after_ the component finishes rendering. Any code that will produce a side effect (such as downloading data, manipulating the DOM outside of React rendering, or setting up subscriptions to a data source) should be run through an effect hook. That's why they're called _effect_ hooks: because they define a side effect to the component rendering.
+Per eseguire operazioni di side effect in React, devi usare un altro tipo di hook chiamato [**effect hook**](https://reactjs.org/docs/hooks-effect.html), fornito dalla function React **`useEffect()`**. Un effect hook ti permette di agganciarti al lifecycle di un component, specificando del codice (una function) che dovrebbe essere eseguito _dopo_ che il component ha finito di renderizzare. Qualsiasi codice che produca un side effect (come scaricare data, manipolare il DOM al di fuori del rendering di React, o impostare subscription a una data source) dovrebbe essere eseguito tramite un effect hook. Ecco perche' si chiamano _effect_ hooks: perche' definiscono un side effect del rendering del component.
 
-An example of using the event hook to download data is below, followed by an explanation of the syntax.
+Un esempio di uso dell'effect hook per scaricare data e' qui sotto, seguito da una spiegazione della sintassi.
 
 ```jsx
-//import the hooks used
+//importa gli hooks usati
 import React, { useState, useEffect } from 'react';
 
 function MyComponent() {
-    //store the data in a state variable, initialized as an empty array
+    //memorizza i data in una state variable, inizializzata come array vuoto
     const [data, setData] = useState([]);
 
-    //specify the effect hook function
+    //specifica la function dell'effect hook
     useEffect(() => {
-        fetch(dataUri) //send AJAX request
+        fetch(dataUri) //invia una request AJAX
           .then((res) => res.json())
           .then((data) => {
-            let processedData = data.filter(...).map(...) //do desired processing
-            setData(processedData) //change the state and re-render
+            let processedData = data.filter(...).map(...) //fai il processing desiderato
+            setData(processedData) //cambia lo state e re-renderizza
           })
-    }, []) //empty array is the second argument to the `useEffect()` function.
-           //It says to only run this effect on first render
+    }, []) //un array vuoto e' il secondo argomento della function `useEffect()`.
+           //Dice di eseguire questo effect solo al primo render
 
-    //Map the data values into DOM elements
-    //Note that this works even before data is loaded (when the array is empty!)
+    //Mappa i data values in elementi DOM
+    //Nota che questo funziona anche prima che i data siano caricati (quando l'array e' vuoto!)
     let dataItems = data.map((item) => {
-        return <li key={item.id}>{item.value}</li>; //return DOM version of datum
+        return <li key={item.id}>{item.value}</li>; //restituisce la versione DOM del datum
     })
 
-    //render the data items (e.g., as a list)
+    //renderizza i data items (per esempio, come list)
     return <ul>{dataItems}</ul>;
   }
 }
 ```
 
-Calling the `useEffect()` function specifies a callback function that will be run _after_ the component renders. Things to notice about how this function is used:
+Chiamare la function `useEffect()` specifica una callback function che verra' eseguita _dopo_ il rendering del component. Cose da notare su come questa function viene usata:
 
-- As with the state hook, the effect hook function `useEffect` must be imported (as a named import).
+- Come per lo state hook, la function dell'effect hook `useEffect` deve essere importata (come named import).
 
-- The `useEffect()` function takes as an argument the callback function to run after the component renders. This is usually specified as an arrow function, though you could of course give it a named function. Note that the callback takes no arguments.
+- La function `useEffect()` prende come argomento la callback function da eseguire dopo il rendering del component. Di solito viene specificata come arrow function, anche se naturalmente potresti darle una function con nome. Nota che la callback non prende argomenti.
 
-- Inside the `useEffect()` callback goes the normal `fetch()` call. Notice that the downloaded data is then assigned to the component's state variable by calling the set state function (named `setData()` in this example).
+- Dentro la callback di `useEffect()` va la normale chiamata `fetch()`. Nota che i data scaricati vengono poi assegnati alla state variable del component chiamando la set state function (chiamata `setData()` in questo esempio).
 
-    While technically it means the component is rendering twice (once without data, then once with), React can batch these requests together so that if the data downloads fast enough, the user will not notice. This is also a good reason to [conditionally](https://reactjs.org/docs/conditional-rendering.html) include DOM elements like spinners when rendering data.
+    Anche se tecnicamente significa che il component renderizza due volte (una senza data, poi una con), React puo' batchare queste request insieme cosi' se i data si scaricano abbastanza velocemente, lo user non se ne accorgera'. Questa e' anche una buona ragione per includere [conditionalmente](https://reactjs.org/docs/conditional-rendering.html) elementi DOM come gli spinner quando si renderizzano data.
 
-- By default, the effect callback will be executed after _each_ time the component renders. That means that if the component needed to re-render (because a prop changed for example), then the data would be downloaded a second time! To avoid this, you can pass the `useEffect()` function an optional second argument. This argument should be an array of values that the effect "depends on"&mdash;the effect will only be re-run if one of these variables changes between renders:
+- Di default, la callback dell'effect viene eseguita dopo _ogni_ volta che il component renderizza. Questo significa che se il component deve re-renderizzare (per esempio, perche' una prop e' cambiata), allora i data verrebbero scaricati una seconda volta! Per evitarlo, puoi passare alla function `useEffect()` un secondo argomento opzionale. Questo argomento dovrebbe essere un array di values da cui l'effect "dipende"&mdash;l'effect verra' rieseguito solo se una di queste variables cambia tra i render:
 
     ```js
-    //an effect that only re-runs if the `count` variable changes
+    //un effect che si riesegue solo se la variable `count` cambia
     useEffect(() => {
         //...
     }, [count])
     ```
 
-    By passing an empty array as a second argument, you tell the effect that it should only re-run if one of those (non-existent) variables updates&mdash;and since there are no variables listed, it will never run a second time!
+    Passando un array vuoto come secondo argomento, dici all'effect che deve rieseguire solo se una di quelle (inesistenti) variables si aggiorna&mdash;e dato che non ci sono variables elencate, non verra' mai eseguito una seconda volta!
 
-- The `useEffect()` function does not need to return any values. In fact, the only value it can return is a "cleanup" callback function, which React will run whenever the component is removed from the DOM:
+- La function `useEffect()` non deve restituire alcun value. In effetti, l'unico value che puo' restituire e' una callback function di "cleanup", che React eseguira' ogni volta che il component viene rimosso dal DOM:
 
     ```js
     useEffect(() => {
         //...
-        return function cleanup() { //function name is arbitrary
-            console.log("component has been removed!")
+        return function cleanup() { //il nome della function e' arbitrario
+            console.log("il component e' stato rimosso!")
         }
     })
     ```
 
-    This is only necessary for side effects that require cleanup, such as subscribing to a data source or handling some user authentication behaviors. It is not needed for basic `fetch()` calls.
+    Questo e' necessario solo per side effects che richiedono cleanup, come fare subscription a una data source o gestire alcuni behavior di autenticazione dello user. Non e' necessario per le chiamate `fetch()` di base.
 
-<p class="alert alert-info">There are a number of other hooks available in React as well. Check the [documentation](https://reactjs.org/docs/hooks-reference.html) for details. Note that in general, you should only look into a hook if you're hitting an architectural problem (e.g., you have a lot of repeated code)&mdash;otherwise stick with the basic structure of props and state!</p>
+<p class="alert alert-info">Ci sono anche altri hooks disponibili in React. Dai un'occhiata alla [documentazione](https://reactjs.org/docs/hooks-reference.html) per i dettagli. Nota che in generale dovresti considerare un hook solo se stai incontrando un problema architetturale (per esempio, hai molto codice ripetuto)&mdash;altrimenti resta con la struttura base di props e state!</p>
 
 
 <!-- External libraries (e.g., react-strap) should go somewhere... maybe a third React chapter? -->
 
 
 
-## Resources {-}
+## Risorse {-}
 
 <div class="list-condensed">
-- [Handling Events](https://reactjs.org/docs/handling-events.html)
-- [Using the State Hook](https://reactjs.org/docs/hooks-state.html)
+- [Gestire gli Eventi](https://reactjs.org/docs/handling-events.html)
+- [Usare lo State Hook](https://reactjs.org/docs/hooks-state.html)
 - [props vs state (blog)](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md)
-- [FAQ: Component State](https://reactjs.org/docs/faq-state.html)
-- [Lifting State Up](https://reactjs.org/docs/lifting-state-up.html)
-- [React Forms](https://reactjs.org/docs/forms.html)
-- [Thinking in React Hooks](https://wattenberger.com/blog/react-hooks)
+- [FAQ: State del Component](https://reactjs.org/docs/faq-state.html)
+- [Sollevare lo State](https://reactjs.org/docs/lifting-state-up.html)
+- [Forms in React](https://reactjs.org/docs/forms.html)
+- [Pensare con React Hooks](https://wattenberger.com/blog/react-hooks)
 </div>
