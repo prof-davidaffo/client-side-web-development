@@ -4,7 +4,7 @@ title: 'Sviluppo Web lato client'
 author: "[Joel Ross](http://faculty.washington.edu/joelross/)"
 date: "`r format(Sys.Date(), '%B %d, %Y')`"
 description: 'Dispensa del corso INFO 340: Client-Side Web Development.'
-github-repo: info340/book
+github-repo: prof-davidaffo/client-side-web-development
 url: 'https\://info340.github.io/'
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -29,7 +29,7 @@ Questo libro copre le competenze e le tecniche necessarie per creare applicazion
 ![Creative Commons License](img/index/by-nc-sa.png)
 Questo libro è distribuito con licenza [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
-Questo libro è open source. Visita il progetto su [GitHub](https://github.com/info340/book) per contribuire con miglioramenti.
+Questo libro è open source. Visita il progetto su [GitHub](https://github.com/prof-davidaffo/client-side-web-development) per contribuire con miglioramenti.
 
 <h3>Ringraziamenti</h3>
 Alcuni capitoli sono stati originariamente scritti da [Mike Freeman](http://mfviz.com/#/). Alcuni contenuti sono stati adattati da [tutorial](https://drstearns.github.io/tutorials/) di [David Stearns](https://www.linkedin.com/in/david-stearns-09a27319/). Parte della struttura e delle spiegazioni è ispirata a [Learning Web Design](https://learningwebdesign.com/) di Jennifer Robbins.

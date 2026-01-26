@@ -3,7 +3,7 @@ output_dir: docs
 language:
   ui:
     chapter_name: ["Chapter "]
-edit: https://github.com/info340/book/edit/master/%s
+edit: https://github.com/prof-davidaffo/client-side-web-development/edit/master/%s
 rmd_files:
   - index.Rmd
 
