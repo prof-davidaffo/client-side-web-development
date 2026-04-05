@@ -1,4 +1,4 @@
-# Sviluppo lato client
+# Sviluppo lato client {#sviluppo-lato-client}
 
 Questo capitolo offre una panoramica del contesto per lo sviluppo web lato client: una breve introduzione a come funziona Internet e a dove si colloca la programmazione client-side. Fornisce un background utile per apprendere le tecnologie web specifiche.
 

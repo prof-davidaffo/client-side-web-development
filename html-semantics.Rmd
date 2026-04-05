@@ -1,4 +1,4 @@
-# HTML Semantico
+# HTML Semantico {#semantic-html}
 
 Come spiegato nei capitoli precedenti, lo scopo del markup HTML e' **annotare semanticamente** il testo. Quando diciamo che HTML e' "semantico", intendiamo che descrive il significato, la struttura o lo scopo del testo — _non_ l'aspetto visivo del contenuto. Usare HTML solo per la semantica aiuta a seguire il principio di _separation of concerns_ (rendendo il codice piu' flessibile e facile da modificare e mantenere). Inoltre rende le web page piu' **accessibili**, perche' possono essere comprese e navigate meglio da tecnologie assistive come gli screen reader.
 

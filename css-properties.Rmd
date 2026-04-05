@@ -1,4 +1,4 @@
-# Proprieta' CSS
+# Proprieta' CSS {#css-properties}
 
 [CSS Fundamentals](#css-fundamentals) ha introdotto la sintassi base e l'uso di CSS. Questo capitolo fornisce dettagli aggiuntivi su alcune **proprieta'** comuni di aspetto che possono essere modificate con CSS.
 

@@ -1,5 +1,6 @@
 book_filename: "client-side-web-development"
 output_dir: docs
+delete_merged_file: true
 language:
   ui:
     chapter_name: ["Chapter "]
@@ -47,3 +48,4 @@ rmd_files:
   - css-in-js.Rmd
   - redux.Rmd
   - react-native.Rmd
+  - rapid-frontend-liceo.Rmd

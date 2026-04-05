@@ -1,0 +1,862 @@
+# Appendice: dispensa rapida di front end {#rapid-frontend-liceo}
+
+Questa appendice e' una **dispensa operativa** per costruire un piccolo front end partendo da zero. Non sostituisce il libro completo: ne seleziona i concetti indispensabili e li organizza in un percorso breve, adatto a chi deve imparare in poco tempo a realizzare una pagina web chiara, ordinata e funzionante.
+
+L'obiettivo non e' memorizzare tutto il linguaggio. L'obiettivo e' capire:
+
+- che cosa fanno HTML, CSS e JavaScript;
+- come collaborano tra loro dentro il browser;
+- come si costruisce una pagina web passo per passo;
+- come si arriva a un piccolo progetto finale responsive e interattivo.
+
+## Che cosa stai costruendo
+
+Quando apri un sito nel browser, in genere entrano in gioco tre elementi:
+
+- **HTML**: organizza il contenuto;
+- **CSS**: decide come il contenuto appare;
+- **JavaScript**: rende la pagina interattiva.
+
+Una metafora semplice e' questa:
+
+- HTML = lo scheletro e gli oggetti della stanza;
+- CSS = i colori, le dimensioni, la disposizione;
+- JavaScript = le azioni possibili dentro la stanza.
+
+Se vuoi costruire un front end, devi prima imparare a separare bene questi tre compiti.
+
+## Che cosa significa "front end"
+
+Il **front end** e' la parte del sito che vede e usa l'utente. E' cio' che il browser mostra sullo schermo:
+
+- testi;
+- immagini;
+- menu;
+- bottoni;
+- sezioni;
+- effetti visivi;
+- interazioni al click.
+
+In questo percorso non ci occupiamo della parte server o del database. Ci concentriamo su quello che il browser legge e visualizza.
+
+## Il progetto della dispensa
+
+Per tutta la dispensa useremo come riferimento un progetto semplice ma completo: una **landing page responsive per un Open Day scolastico**.
+
+Il progetto finale dovrebbe avere almeno:
+
+- un `header` con titolo e navigazione;
+- una sezione introduttiva;
+- una sezione con contenuti a blocchi o card;
+- una sezione contatti;
+- una piccola interazione JavaScript.
+
+## Strumenti minimi
+
+Per lavorare ti bastano:
+
+- un browser moderno;
+- [Visual Studio Code](https://code.visualstudio.com/);
+- una cartella di progetto organizzata cosi':
+
+```text
+progetto-front-end/
+|-- index.html
+|-- css/
+|   |-- style.css
+|-- js/
+|   |-- script.js
+|-- img/
+```
+
+Questa struttura e' importante per due motivi:
+
+- ti abitua a separare i file in modo ordinato;
+- rende chiaro al browser dove trovare il CSS, il JavaScript e le immagini.
+
+## Primo concetto: il browser legge file
+
+Una pagina web, nella forma piu' semplice, e' un insieme di file collegati tra loro.
+
+Per esempio:
+
+- `index.html` contiene il contenuto;
+- `css/style.css` contiene le regole grafiche;
+- `js/script.js` contiene il comportamento;
+- la cartella `img/` contiene le immagini.
+
+Quando apri `index.html`, il browser legge il file HTML. Se dentro trova un collegamento a un file CSS, lo carica e lo applica. Se trova un collegamento a un file JavaScript, lo esegue.
+
+Quindi il primo punto da capire e' questo: **il browser non "indovina" niente**. Devi dirgli esplicitamente:
+
+- quale contenuto c'e';
+- come deve apparire;
+- quali azioni deve compiere.
+
+## I percorsi dei file
+
+Uno degli errori piu' comuni all'inizio non riguarda il linguaggio, ma i **percorsi**. Se il browser non trova un file, quel file semplicemente non viene caricato.
+
+Per esempio, se `index.html` si trova nella cartella principale del progetto, allora:
+
+- il CSS si collega con `css/style.css`;
+- il JavaScript si collega con `js/script.js`;
+- un'immagine si richiama con `img/foto.jpg`.
+
+Esempio corretto:
+
+```html
+<link rel="stylesheet" href="css/style.css">
+<script src="js/script.js"></script>
+<img src="img/palestra.jpg" alt="Ingresso della palestra">
+```
+
+Se scrivi un percorso sbagliato:
+
+- il CSS non viene applicato;
+- JavaScript non parte;
+- l'immagine non compare.
+
+Per questo, quando qualcosa "non funziona", una delle prime cose da controllare e' sempre il nome del file e il percorso.
+
+## HTML: la struttura della pagina
+
+HTML non serve a "fare grafica". Serve a dire che cosa rappresenta ogni parte del contenuto.
+
+Per esempio:
+
+- un titolo principale si scrive con `h1`;
+- un sottotitolo con `h2`;
+- un paragrafo con `p`;
+- un link con `a`;
+- un'immagine con `img`;
+- una sezione con `section`.
+
+### Una pagina HTML minima
+
+Partiamo da una struttura base:
+
+```html
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Open Day</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <header>
+      <h1>Open Day 2026</h1>
+    </header>
+
+    <main>
+      <section>
+        <h2>Benvenuti</h2>
+        <p>Questa pagina presenta il nostro evento.</p>
+      </section>
+    </main>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
+```
+
+### Che cosa significa questo codice
+
+- `<!doctype html>` dice al browser che il documento e' HTML5.
+- `<html lang="it">` contiene l'intera pagina e indica che la lingua principale e' l'italiano.
+- `<head>` contiene informazioni utili al browser, ma non il contenuto visibile della pagina.
+- `<meta charset="utf-8">` permette di mostrare correttamente i caratteri.
+- `<meta name="viewport" ...>` serve per il comportamento corretto su smartphone.
+- `<title>` imposta il titolo della scheda del browser.
+- `<link rel="stylesheet" href="css/style.css">` collega il file CSS esterno.
+- `<body>` contiene cio' che l'utente vede.
+- `<script src="js/script.js"></script>` collega il file JavaScript.
+
+### Perche' il file JavaScript va in fondo
+
+In questa fase conviene mettere il tag `<script>` alla fine del `body`, perche' il browser prima carica l'HTML e poi esegue lo script. Cosi' JavaScript trova gia' gli elementi presenti nella pagina.
+
+## I tag HTML che devi conoscere subito
+
+Per un primo progetto non ti servono cento tag. Te ne bastano pochi, ma usati bene.
+
+### Titoli e testo
+
+- `h1`: titolo principale della pagina. In genere uno solo.
+- `h2`: titolo di una sezione.
+- `p`: paragrafo.
+
+Esempio:
+
+```html
+<h1>Open Day 2026</h1>
+<h2>Chi siamo</h2>
+<p>Presentiamo gli spazi e le attivita' della scuola.</p>
+```
+
+### Link
+
+Il tag `a` crea un collegamento.
+
+```html
+<a href="#contatti">Vai ai contatti</a>
+<a href="https://example.com">Visita il sito</a>
+```
+
+Che cosa cambia:
+
+- nel primo caso il link porta a una sezione interna della stessa pagina;
+- nel secondo caso porta a un altro sito.
+
+### Immagini
+
+Il tag `img` inserisce un'immagine.
+
+```html
+<img src="img/palestra.jpg" alt="Ingresso della palestra durante l'open day">
+```
+
+Attenzione:
+
+- `src` dice dove si trova il file;
+- `alt` descrive l'immagine in forma testuale.
+
+L'attributo `alt` e' importante per accessibilita' e chiarezza.
+
+### Sezioni semantiche
+
+Questi tag aiutano a organizzare la pagina:
+
+- `header`: intestazione;
+- `main`: contenuto principale;
+- `section`: blocco di contenuto con un tema preciso;
+- `footer`: parte finale della pagina;
+- `nav`: area di navigazione.
+
+Usare questi elementi e' meglio che riempire tutto di `div`, perche' rende la struttura piu' chiara.
+
+### Micro-esercizio
+
+Partendo dall'HTML minimo:
+
+- aggiungi una sezione `Chi siamo`;
+- aggiungi una sezione `Attivita'`;
+- inserisci almeno un link interno che punti ai `Contatti`.
+
+## Costruire la struttura del progetto
+
+Ora possiamo scrivere un HTML un po' piu' completo:
+
+```html
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Open Day</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <header>
+      <h1>Open Day 2026</h1>
+      <nav>
+        <a href="#chi-siamo">Chi siamo</a>
+        <a href="#attivita">Attivita'</a>
+        <a href="#contatti">Contatti</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="chi-siamo">
+        <h2>Chi siamo</h2>
+        <p>Presentiamo i laboratori e gli spazi della scuola.</p>
+      </section>
+
+      <section id="attivita">
+        <h2>Attivita'</h2>
+        <div class="cards">
+          <article class="card">
+            <h3>Laboratori</h3>
+            <p>Visita agli spazi di informatica, chimica e robotica.</p>
+          </article>
+
+          <article class="card">
+            <h3>Incontri</h3>
+            <p>Docenti e studenti raccontano l'esperienza scolastica.</p>
+          </article>
+
+          <article class="card">
+            <h3>Orientamento</h3>
+            <p>Informazioni sui percorsi di studio e sulle iscrizioni.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="contatti">
+        <h2>Contatti</h2>
+        <p>Email: info@scuola.it</p>
+      </section>
+    </main>
+
+    <footer>
+      <p>Open Day 2026</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
+```
+
+### Perche' qui compaiono `class` e `id`
+
+In questo esempio compaiono due attributi molto importanti.
+
+#### `id`
+
+L'attributo `id` identifica un elemento in modo univoco.
+
+```html
+<section id="contatti">
+```
+
+Serve, per esempio, a:
+
+- creare un link interno come `<a href="#contatti">`;
+- selezionare quell'elemento da JavaScript o CSS.
+
+#### `class`
+
+L'attributo `class` serve a raggruppare elementi che devono condividere uno stile.
+
+```html
+<article class="card">
+```
+
+Se piu' elementi hanno la classe `card`, puoi scrivere una regola CSS sola e applicarla a tutti.
+
+## CSS: trasformare struttura in interfaccia
+
+Se apri ora la pagina, vedrai tutto quasi senza stile. Questo e' normale: HTML organizza il contenuto, ma non decide davvero il design.
+
+CSS serve a controllare:
+
+- colori;
+- spaziature;
+- font;
+- larghezze;
+- disposizione degli elementi;
+- aspetto generale.
+
+### Primo file CSS
+
+Partiamo da un file `css/style.css` semplice:
+
+```css
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  color: #222222;
+  background-color: #f4f4f4;
+}
+
+header {
+  background-color: #1f3c88;
+  color: white;
+  padding: 1rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-right: 1rem;
+}
+
+section {
+  background-color: white;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.card {
+  border: 1px solid #dddddd;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+```
+
+### Come si legge una regola CSS
+
+Prendiamo questa regola:
+
+```css
+section {
+  background-color: white;
+  margin: 1rem;
+  padding: 1rem;
+}
+```
+
+Si legge cosi':
+
+- `section` e' il **selettore**: dice a quali elementi si applica la regola;
+- dentro le parentesi graffe ci sono le **proprieta'**;
+- ogni proprieta' ha un nome e un valore.
+
+Quindi:
+
+- `background-color: white;` mette lo sfondo bianco;
+- `margin: 1rem;` crea spazio esterno;
+- `padding: 1rem;` crea spazio interno.
+
+## Due idee fondamentali del CSS
+
+### Tag selector e class selector
+
+Queste due regole sono diverse:
+
+```css
+section {
+  background-color: white;
+}
+
+.card {
+  border: 1px solid #dddddd;
+}
+```
+
+Differenza:
+
+- `section` seleziona tutti gli elementi `section`;
+- `.card` seleziona tutti gli elementi che hanno `class="card"`.
+
+I selettori di classe sono molto utili per riusare uno stile piu' volte.
+
+### Margin e padding
+
+Questa distinzione va capita subito:
+
+- `margin` = spazio esterno all'elemento;
+- `padding` = spazio interno all'elemento.
+
+Se una card e' troppo attaccata alle altre, spesso devi aumentare il `margin`.
+Se il testo dentro la card e' troppo schiacciato, spesso devi aumentare il `padding`.
+
+### Micro-esercizio
+
+Nel file CSS:
+
+- cambia il colore dell'`header`;
+- aggiungi uno sfondo chiaro alle `section`;
+- dai alle `.card` un bordo e un angolo arrotondato.
+
+## Organizzare i contenuti in blocchi
+
+Molti siti moderni usano blocchi ripetuti: card, box, pannelli, riquadri. In HTML questo si realizza mettendo elementi simili dentro un contenitore comune.
+
+Per esempio:
+
+```html
+<div class="cards">
+  <article class="card">
+    <h3>Laboratori</h3>
+    <p>Descrizione.</p>
+  </article>
+
+  <article class="card">
+    <h3>Incontri</h3>
+    <p>Descrizione.</p>
+  </article>
+</div>
+```
+
+Qui:
+
+- `cards` e' il contenitore generale;
+- ogni `card` e' un blocco singolo.
+
+Questa scelta rende molto piu' facile gestire il layout con CSS.
+
+## Responsive: far funzionare la pagina su mobile
+
+Una pagina costruita solo guardando lo schermo del computer puo' rompersi su smartphone. Per questo il front end moderno segue un'idea precisa: prima si costruisce una versione semplice per schermi piccoli, poi si migliora per schermi piu' grandi.
+
+Questa idea si chiama **mobile-first**.
+
+### Il meta viewport
+
+Nel `head` hai gia' inserito:
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1">
+```
+
+Serve a dire al browser mobile che la pagina deve adattarsi correttamente alla larghezza del dispositivo.
+
+### Immagini fluide
+
+Una regola molto utile e':
+
+```css
+img {
+  max-width: 100%;
+  display: block;
+}
+```
+
+Significa:
+
+- l'immagine non diventera' mai piu' larga del contenitore;
+- `display: block;` evita alcuni comportamenti scomodi tipici delle immagini inline.
+
+### Layout a colonne con Flexbox
+
+Per disporre le card si puo' usare Flexbox:
+
+```css
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .cards {
+    flex-direction: row;
+  }
+
+  .card {
+    flex: 1;
+  }
+}
+```
+
+Che cosa succede:
+
+- di default, le card stanno una sotto l'altra;
+- quando lo schermo arriva almeno a `768px`, le card si dispongono in riga;
+- `flex: 1;` fa in modo che occupino lo spazio disponibile in modo equilibrato.
+
+Questa e' gia' una soluzione responsive semplice ma efficace.
+
+### Micro-esercizio
+
+Prova a verificare il layout in due situazioni:
+
+- schermo piccolo: le card devono stare una sotto l'altra;
+- schermo largo: le card devono stare sulla stessa riga.
+
+Se non succede, controlla la media query e la classe `cards`.
+
+## Come controllare se qualcosa non funziona
+
+Nel front end capita spesso che un file non venga caricato, un selettore sia scritto male o JavaScript non trovi l'elemento giusto. Per questo bisogna imparare un minimo di **debug**.
+
+Le operazioni piu' utili sono queste:
+
+- aprire gli strumenti sviluppatore del browser;
+- controllare la scheda `Console`;
+- usare `Ispeziona` sugli elementi HTML;
+- verificare che CSS e JavaScript siano davvero collegati.
+
+### Console
+
+La `Console` mostra errori e messaggi. Se JavaScript si interrompe, spesso qui compare il motivo.
+
+Per esempio, se nel file JS provi a selezionare un elemento che non esiste, potresti vedere un errore collegato a `null`.
+
+### Ispeziona elemento
+
+Con `Ispeziona` puoi:
+
+- vedere l'HTML realmente caricato;
+- controllare se una classe e' presente;
+- verificare quali regole CSS si stanno applicando;
+- capire se un elemento ha dimensioni o spaziature sbagliate.
+
+### Tre controlli rapidi quando qualcosa va male
+
+1. Il file e' collegato con il percorso corretto?
+2. L'`id` o la `class` scritti in HTML corrispondono davvero a quelli usati in CSS o JavaScript?
+3. Nella console del browser compare qualche errore?
+
+## JavaScript: aggiungere una piccola interazione
+
+Fino a qui la pagina e' statica. JavaScript serve a far succedere qualcosa in risposta a un'azione dell'utente.
+
+Esempi:
+
+- cliccare un bottone;
+- aprire un menu;
+- mostrare o nascondere un testo;
+- cambiare il contenuto di una sezione.
+
+## Il DOM: la pagina vista da JavaScript
+
+Quando JavaScript lavora sulla pagina, non ragiona sul file `.html` come testo. Ragiona sugli elementi gia' caricati dal browser.
+
+Questa rappresentazione si chiama **DOM**.
+
+In pratica:
+
+- il browser trasforma l'HTML in una struttura di elementi;
+- JavaScript puo' selezionare questi elementi;
+- JavaScript puo' modificarli.
+
+## Primo script utile
+
+Mettiamo in HTML un bottone e un testo:
+
+```html
+<section>
+  <h2>Informazioni</h2>
+  <p id="message">Clicca il pulsante per aggiornare il testo.</p>
+  <button id="change-text">Aggiorna testo</button>
+</section>
+```
+
+Ora in `js/script.js` scriviamo:
+
+```js
+'use strict';
+
+const button = document.querySelector('#change-text');
+const message = document.querySelector('#message');
+
+button.addEventListener('click', function () {
+  message.textContent = 'Il testo e' stato aggiornato con JavaScript.';
+});
+```
+
+## Spiegazione riga per riga dello script
+
+- `'use strict';` attiva una modalita' piu' rigida che aiuta a evitare errori banali.
+- `document.querySelector('#change-text')` cerca nella pagina l'elemento con `id="change-text"`.
+- il risultato viene salvato nella costante `button`.
+- `document.querySelector('#message')` seleziona il paragrafo da modificare.
+- `addEventListener('click', ...)` dice al browser: quando questo bottone viene cliccato, esegui la funzione.
+- `message.textContent = ...` cambia il testo del paragrafo.
+
+Questo e' uno dei pattern fondamentali del front end:
+
+1. seleziono un elemento;
+2. ascolto un evento;
+3. modifico il DOM.
+
+### Micro-esercizio
+
+Modifica l'esempio in modo che:
+
+- il bottone cambi il testo una prima volta;
+- al secondo click cambi di nuovo;
+- oppure faccia comparire un messaggio di benvenuto piu' lungo.
+
+## Secondo esempio: mostrare e nascondere una sezione
+
+HTML:
+
+```html
+<button id="toggle-info">Mostra dettagli</button>
+<p id="extra-info" class="hidden">
+  I dettagli dell'evento saranno comunicati via email.
+</p>
+```
+
+CSS:
+
+```css
+.hidden {
+  display: none;
+}
+```
+
+JavaScript:
+
+```js
+'use strict';
+
+const toggleButton = document.querySelector('#toggle-info');
+const extraInfo = document.querySelector('#extra-info');
+
+toggleButton.addEventListener('click', function () {
+  extraInfo.classList.toggle('hidden');
+});
+```
+
+Qui JavaScript non cambia il testo: aggiunge o toglie una classe CSS. E' una tecnica molto usata, perche' tiene separati comportamento e presentazione:
+
+- JavaScript decide **quando** cambiare;
+- CSS decide **come** appare il risultato.
+
+## Metodo di lavoro corretto
+
+Quando costruisci una pagina, l'ordine giusto e' questo:
+
+1. scrivi la struttura HTML;
+2. controlla che il contenuto sia presente e ordinato;
+3. aggiungi il CSS per migliorare l'aspetto;
+4. verifica la leggibilita' su schermi diversi;
+5. aggiungi JavaScript solo quando la parte HTML e CSS funziona gia'.
+
+Se provi a fare tutto insieme, gli errori diventano piu' difficili da capire.
+
+## Errori comuni da evitare
+
+### In HTML
+
+- dimenticare di chiudere un tag;
+- usare troppi `div` senza criterio;
+- usare titoli in ordine confuso;
+- dimenticare `alt` nelle immagini;
+- collegare male i file con percorsi sbagliati.
+
+### In CSS
+
+- dimenticare il `;`;
+- confondere `margin` e `padding`;
+- scrivere selettori troppo complessi troppo presto;
+- mettere tutto nello stile inline invece che nel file CSS.
+
+### In JavaScript
+
+- collegare male `script.js`;
+- cercare un elemento che non esiste;
+- scrivere l'`id` in HTML ma selezionare un nome diverso in JavaScript;
+- provare a fare interazioni prima di avere una struttura HTML chiara.
+
+## Form e input essenziali
+
+Molti progetti front end scolastici hanno una sezione contatti o richiesta informazioni. Anche senza backend, e' utile sapere come si costruisce un piccolo form.
+
+Esempio:
+
+```html
+<section id="contatti">
+  <h2>Contatti</h2>
+
+  <form>
+    <label for="nome">Nome</label>
+    <input id="nome" type="text">
+
+    <label for="email">Email</label>
+    <input id="email" type="email">
+
+    <label for="messaggio">Messaggio</label>
+    <textarea id="messaggio"></textarea>
+
+    <button type="submit">Invia</button>
+  </form>
+</section>
+```
+
+Gli elementi principali sono:
+
+- `label`: descrive il campo;
+- `input`: campo di inserimento;
+- `textarea`: area per un testo piu' lungo;
+- `button`: pulsante finale.
+
+Anche se il form non invia dati a un server, resta utile per esercitarsi a costruire interfacce realistiche.
+
+## Regole minime di qualita'
+
+Anche se il progetto e' semplice, deve rispettare alcune regole:
+
+- codice leggibile e ben indentato;
+- file separati per HTML, CSS e JavaScript;
+- titoli in ordine logico;
+- testo leggibile su sfondo adeguato;
+- immagini non troppo pesanti;
+- pagina controllata sia su desktop sia su mobile;
+- almeno una interazione piccola ma sensata.
+
+## Roadmap del progetto
+
+Puoi sviluppare il progetto `Open Day 2026` in quattro versioni successive.
+
+### Versione 1: struttura
+
+Costruisci una pagina con:
+
+- `header` con titolo e menu;
+- sezione `Chi siamo`;
+- sezione `Attivita'`;
+- sezione `Contatti`;
+- `footer`.
+
+### Versione 2: stile
+
+Aggiungi:
+
+- colori coerenti;
+- spaziature;
+- stile del menu;
+- card per le attivita'.
+
+### Versione 3: responsive
+
+Controlla che:
+
+- le immagini restino dentro i contenitori;
+- le card siano verticali su mobile;
+- le card siano affiancate su schermi larghi;
+- i testi restino leggibili.
+
+### Versione 4: interazione
+
+Aggiungi una sola interazione semplice ma utile:
+
+- un testo che cambia;
+- una sezione che compare o scompare;
+- un piccolo menu apri/chiudi;
+- un bottone che evidenzia un contenuto.
+
+## Consegna minima
+
+Il progetto finale `Open Day 2026` dovrebbe avere:
+
+1. una pagina completa e navigabile;
+2. almeno tre sezioni ben distinte;
+3. uno stile CSS coerente;
+4. un layout responsive funzionante;
+5. una interazione JavaScript semplice ma utile.
+
+## Checklist finale
+
+Prima di considerare concluso il progetto, controlla questi punti:
+
+1. Il file `index.html` e' ordinato e ben indentato.
+2. I file CSS e JavaScript sono collegati con il percorso corretto.
+3. Le immagini si caricano e hanno l'attributo `alt`.
+4. I titoli seguono un ordine logico (`h1`, `h2`, `h3`).
+5. Il testo e' leggibile e i colori hanno contrasto sufficiente.
+6. Le sezioni sono visivamente distinte.
+7. La pagina funziona anche su schermo piccolo.
+8. I link interni ed esterni funzionano.
+9. La piccola interazione JavaScript funziona davvero.
+10. Nella console del browser non compaiono errori evidenti.
+
+## Per approfondire nel libro
+
+Quando hai capito questa dispensa, puoi usare il libro completo per andare oltre:
+
+- [Fondamenti di HTML](#html-fundamentals) per la sintassi di base;
+- [HTML Semantico](#semantic-html) per usare meglio i tag;
+- [Fondamenti di CSS](#css-fundamentals) per regole e selettori;
+- [CSS responsive](#responsive-css) per il layout su schermi diversi;
+- [Fondamenti di JavaScript](#javascript) per variabili e strutture di controllo;
+- [DOM](#dom) per la manipolazione degli elementi.
+
+## Sintesi finale
+
+Costruire un front end di base significa imparare una sequenza precisa:
+
+- organizzare il contenuto con HTML;
+- dare forma al contenuto con CSS;
+- aggiungere comportamento con JavaScript.
+
+Se riesci a fare bene queste tre cose in un progetto semplice, hai gia' costruito una base vera. Non completa, non avanzata, ma vera. Ed e' la base su cui si costruisce tutto il resto.

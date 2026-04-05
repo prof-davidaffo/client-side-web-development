@@ -1,7 +1,7 @@
 ---
 lang: it
 title: 'Sviluppo Web lato client'
-author: "[Joel Ross](http://faculty.washington.edu/joelross/)"
+author: "[Joel Ross](http://faculty.washington.edu/joelross/) · Traduzione italiana: Prof. Davide Daffonchio"
 date: "`r format(Sys.Date(), '%B %d, %Y')`"
 description: 'Dispensa del corso INFO 340: Client-Side Web Development.'
 github-repo: prof-davidaffo/client-side-web-development
@@ -33,3 +33,5 @@ Questo libro è open source. Visita il progetto su [GitHub](https://github.com/p
 
 <h3>Ringraziamenti</h3>
 Alcuni capitoli sono stati originariamente scritti da [Mike Freeman](http://mfviz.com/#/). Alcuni contenuti sono stati adattati da [tutorial](https://drstearns.github.io/tutorials/) di [David Stearns](https://www.linkedin.com/in/david-stearns-09a27319/). Parte della struttura e delle spiegazioni è ispirata a [Learning Web Design](https://learningwebdesign.com/) di Jennifer Robbins.
+
+La traduzione italiana e l'adattamento del libro sono a cura del **Prof. Davide Daffonchio**.
