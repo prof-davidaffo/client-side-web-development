@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 12 Modello a oggetti del documento (DOM) | Sviluppo Web lato client</title>
   <meta name="description" content="Dispensa del corso INFO 340: Client-Side Web Development." />
-  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 12 Modello a oggetti del documento (DOM) | Sviluppo Web lato client" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Joel Ross · Traduzione italiana: Prof. Davide Daffonchio" />
 
 
-<meta name="date" content="2026-04-05" />
+<meta name="date" content="2026-04-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -546,83 +546,53 @@
 </ul></li>
 <li class="chapter" data-level="27" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html"><i class="fa fa-check"></i><b>27</b> Appendice: dispensa rapida di front end</a>
 <ul>
-<li class="chapter" data-level="27.1" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#che-cosa-stai-costruendo"><i class="fa fa-check"></i><b>27.1</b> Che cosa stai costruendo</a></li>
-<li class="chapter" data-level="27.2" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#che-cosa-significa-front-end"><i class="fa fa-check"></i><b>27.2</b> Che cosa significa “front end”</a></li>
+<li class="chapter" data-level="27.1" data-path="dom.html"><a href="#perch%C3%A9-imparare-a-costruire-una-pagina-web"><i class="fa fa-check"></i><b>27.1</b> Perché imparare a costruire una pagina web</a></li>
+<li class="chapter" data-level="27.2" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#tre-linguaggi-tre-compiti"><i class="fa fa-check"></i><b>27.2</b> Tre linguaggi, tre compiti</a></li>
 <li class="chapter" data-level="27.3" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#il-progetto-della-dispensa"><i class="fa fa-check"></i><b>27.3</b> Il progetto della dispensa</a></li>
 <li class="chapter" data-level="27.4" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#strumenti-minimi"><i class="fa fa-check"></i><b>27.4</b> Strumenti minimi</a></li>
-<li class="chapter" data-level="27.5" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#primo-concetto-il-browser-legge-file"><i class="fa fa-check"></i><b>27.5</b> Primo concetto: il browser legge file</a></li>
+<li class="chapter" data-level="27.5" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#il-browser-legge-file"><i class="fa fa-check"></i><b>27.5</b> Il browser legge file</a></li>
 <li class="chapter" data-level="27.6" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#i-percorsi-dei-file"><i class="fa fa-check"></i><b>27.6</b> I percorsi dei file</a></li>
 <li class="chapter" data-level="27.7" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#html-la-struttura-della-pagina"><i class="fa fa-check"></i><b>27.7</b> HTML: la struttura della pagina</a>
 <ul>
-<li class="chapter" data-level="27.7.1" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#una-pagina-html-minima"><i class="fa fa-check"></i><b>27.7.1</b> Una pagina HTML minima</a></li>
-<li class="chapter" data-level="27.7.2" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#che-cosa-significa-questo-codice"><i class="fa fa-check"></i><b>27.7.2</b> Che cosa significa questo codice</a></li>
-<li class="chapter" data-level="27.7.3" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#perche-il-file-javascript-va-in-fondo"><i class="fa fa-check"></i><b>27.7.3</b> Perche’ il file JavaScript va in fondo</a></li>
+<li class="chapter" data-level="27.7.1" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#la-struttura-base"><i class="fa fa-check"></i><b>27.7.1</b> La struttura base</a></li>
+<li class="chapter" data-level="27.7.2" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#i-tag-principali"><i class="fa fa-check"></i><b>27.7.2</b> I tag principali</a></li>
+<li class="chapter" data-level="27.7.3" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#micro-esercizio"><i class="fa fa-check"></i><b>27.7.3</b> Micro-esercizio</a></li>
 </ul></li>
-<li class="chapter" data-level="27.8" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#i-tag-html-che-devi-conoscere-subito"><i class="fa fa-check"></i><b>27.8</b> I tag HTML che devi conoscere subito</a>
+<li class="chapter" data-level="27.8" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#la-struttura-completa-del-progetto"><i class="fa fa-check"></i><b>27.8</b> La struttura completa del progetto</a></li>
+<li class="chapter" data-level="27.9" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#css-dare-forma-alla-pagina"><i class="fa fa-check"></i><b>27.9</b> CSS: dare forma alla pagina</a>
 <ul>
-<li class="chapter" data-level="27.8.1" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#titoli-e-testo"><i class="fa fa-check"></i><b>27.8.1</b> Titoli e testo</a></li>
-<li class="chapter" data-level="27.8.2" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#link"><i class="fa fa-check"></i><b>27.8.2</b> Link</a></li>
-<li class="chapter" data-level="27.8.3" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#immagini"><i class="fa fa-check"></i><b>27.8.3</b> Immagini</a></li>
-<li class="chapter" data-level="27.8.4" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#sezioni-semantiche"><i class="fa fa-check"></i><b>27.8.4</b> Sezioni semantiche</a></li>
-<li class="chapter" data-level="27.8.5" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#micro-esercizio"><i class="fa fa-check"></i><b>27.8.5</b> Micro-esercizio</a></li>
+<li class="chapter" data-level="27.9.1" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#come-funziona-una-regola-css"><i class="fa fa-check"></i><b>27.9.1</b> Come funziona una regola CSS</a></li>
+<li class="chapter" data-level="27.9.2" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#colori-e-misure"><i class="fa fa-check"></i><b>27.9.2</b> Colori e misure</a></li>
+<li class="chapter" data-level="27.9.3" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#margin-e-padding"><i class="fa fa-check"></i><b>27.9.3</b> margin e padding</a></li>
+<li class="chapter" data-level="27.9.4" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#il-file-css-completo"><i class="fa fa-check"></i><b>27.9.4</b> Il file CSS completo</a></li>
+<li class="chapter" data-level="27.9.5" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#micro-esercizio-1"><i class="fa fa-check"></i><b>27.9.5</b> Micro-esercizio</a></li>
 </ul></li>
-<li class="chapter" data-level="27.9" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#costruire-la-struttura-del-progetto"><i class="fa fa-check"></i><b>27.9</b> Costruire la struttura del progetto</a>
+<li class="chapter" data-level="27.10" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#responsive-la-pagina-su-mobile"><i class="fa fa-check"></i><b>27.10</b> Responsive: la pagina su mobile</a>
 <ul>
-<li class="chapter" data-level="27.9.1" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#perche-qui-compaiono-class-e-id"><i class="fa fa-check"></i><b>27.9.1</b> Perche’ qui compaiono <code>class</code> e <code>id</code></a></li>
+<li class="chapter" data-level="27.10.1" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#layout-a-colonne-con-flexbox"><i class="fa fa-check"></i><b>27.10.1</b> Layout a colonne con Flexbox</a></li>
+<li class="chapter" data-level="27.10.2" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#micro-esercizio-2"><i class="fa fa-check"></i><b>27.10.2</b> Micro-esercizio</a></li>
 </ul></li>
-<li class="chapter" data-level="27.10" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#css-trasformare-struttura-in-interfaccia"><i class="fa fa-check"></i><b>27.10</b> CSS: trasformare struttura in interfaccia</a>
+<li class="chapter" data-level="27.11" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#il-form-dei-contatti"><i class="fa fa-check"></i><b>27.11</b> Il form dei contatti</a>
 <ul>
-<li class="chapter" data-level="27.10.1" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#primo-file-css"><i class="fa fa-check"></i><b>27.10.1</b> Primo file CSS</a></li>
-<li class="chapter" data-level="27.10.2" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#come-si-legge-una-regola-css"><i class="fa fa-check"></i><b>27.10.2</b> Come si legge una regola CSS</a></li>
+<li class="chapter" data-level="27.11.1" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#html"><i class="fa fa-check"></i><b>27.11.1</b> HTML</a></li>
+<li class="chapter" data-level="27.11.2" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#css"><i class="fa fa-check"></i><b>27.11.2</b> CSS</a></li>
 </ul></li>
-<li class="chapter" data-level="27.11" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#due-idee-fondamentali-del-css"><i class="fa fa-check"></i><b>27.11</b> Due idee fondamentali del CSS</a>
+<li class="chapter" data-level="27.12" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#quando-qualcosa-non-funziona"><i class="fa fa-check"></i><b>27.12</b> Quando qualcosa non funziona</a></li>
+<li class="chapter" data-level="27.13" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#javascript-aggiungere-interazione"><i class="fa fa-check"></i><b>27.13</b> JavaScript: aggiungere interazione</a>
 <ul>
-<li class="chapter" data-level="27.11.1" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#tag-selector-e-class-selector"><i class="fa fa-check"></i><b>27.11.1</b> Tag selector e class selector</a></li>
-<li class="chapter" data-level="27.11.2" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#margin-e-padding"><i class="fa fa-check"></i><b>27.11.2</b> Margin e padding</a></li>
-<li class="chapter" data-level="27.11.3" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#micro-esercizio-1"><i class="fa fa-check"></i><b>27.11.3</b> Micro-esercizio</a></li>
+<li class="chapter" data-level="27.13.1" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#il-dom"><i class="fa fa-check"></i><b>27.13.1</b> Il DOM</a></li>
+<li class="chapter" data-level="27.13.2" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#primo-script-cambiare-il-testo-di-un-paragrafo"><i class="fa fa-check"></i><b>27.13.2</b> Primo script: cambiare il testo di un paragrafo</a></li>
+<li class="chapter" data-level="27.13.3" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#micro-esercizio-3"><i class="fa fa-check"></i><b>27.13.3</b> Micro-esercizio</a></li>
+<li class="chapter" data-level="27.13.4" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#secondo-script-mostrare-e-nascondere-un-elemento"><i class="fa fa-check"></i><b>27.13.4</b> Secondo script: mostrare e nascondere un elemento</a></li>
+<li class="chapter" data-level="27.13.5" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#terzo-script-evidenziare-il-link-attivo-nel-menu"><i class="fa fa-check"></i><b>27.13.5</b> Terzo script: evidenziare il link attivo nel menu</a></li>
 </ul></li>
-<li class="chapter" data-level="27.12" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#organizzare-i-contenuti-in-blocchi"><i class="fa fa-check"></i><b>27.12</b> Organizzare i contenuti in blocchi</a></li>
-<li class="chapter" data-level="27.13" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#responsive-far-funzionare-la-pagina-su-mobile"><i class="fa fa-check"></i><b>27.13</b> Responsive: far funzionare la pagina su mobile</a>
-<ul>
-<li class="chapter" data-level="27.13.1" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#il-meta-viewport"><i class="fa fa-check"></i><b>27.13.1</b> Il meta viewport</a></li>
-<li class="chapter" data-level="27.13.2" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#immagini-fluide"><i class="fa fa-check"></i><b>27.13.2</b> Immagini fluide</a></li>
-<li class="chapter" data-level="27.13.3" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#layout-a-colonne-con-flexbox"><i class="fa fa-check"></i><b>27.13.3</b> Layout a colonne con Flexbox</a></li>
-<li class="chapter" data-level="27.13.4" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#micro-esercizio-2"><i class="fa fa-check"></i><b>27.13.4</b> Micro-esercizio</a></li>
-</ul></li>
-<li class="chapter" data-level="27.14" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#come-controllare-se-qualcosa-non-funziona"><i class="fa fa-check"></i><b>27.14</b> Come controllare se qualcosa non funziona</a>
-<ul>
-<li class="chapter" data-level="27.14.1" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#console"><i class="fa fa-check"></i><b>27.14.1</b> Console</a></li>
-<li class="chapter" data-level="27.14.2" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#ispeziona-elemento"><i class="fa fa-check"></i><b>27.14.2</b> Ispeziona elemento</a></li>
-<li class="chapter" data-level="27.14.3" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#tre-controlli-rapidi-quando-qualcosa-va-male"><i class="fa fa-check"></i><b>27.14.3</b> Tre controlli rapidi quando qualcosa va male</a></li>
-</ul></li>
-<li class="chapter" data-level="27.15" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#javascript-aggiungere-una-piccola-interazione"><i class="fa fa-check"></i><b>27.15</b> JavaScript: aggiungere una piccola interazione</a></li>
-<li class="chapter" data-level="27.16" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#il-dom-la-pagina-vista-da-javascript"><i class="fa fa-check"></i><b>27.16</b> Il DOM: la pagina vista da JavaScript</a></li>
-<li class="chapter" data-level="27.17" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#primo-script-utile"><i class="fa fa-check"></i><b>27.17</b> Primo script utile</a></li>
-<li class="chapter" data-level="27.18" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#spiegazione-riga-per-riga-dello-script"><i class="fa fa-check"></i><b>27.18</b> Spiegazione riga per riga dello script</a>
-<ul>
-<li class="chapter" data-level="27.18.1" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#micro-esercizio-3"><i class="fa fa-check"></i><b>27.18.1</b> Micro-esercizio</a></li>
-</ul></li>
-<li class="chapter" data-level="27.19" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#secondo-esempio-mostrare-e-nascondere-una-sezione"><i class="fa fa-check"></i><b>27.19</b> Secondo esempio: mostrare e nascondere una sezione</a></li>
-<li class="chapter" data-level="27.20" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#metodo-di-lavoro-corretto"><i class="fa fa-check"></i><b>27.20</b> Metodo di lavoro corretto</a></li>
-<li class="chapter" data-level="27.21" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#errori-comuni-da-evitare"><i class="fa fa-check"></i><b>27.21</b> Errori comuni da evitare</a>
-<ul>
-<li class="chapter" data-level="27.21.1" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#in-html"><i class="fa fa-check"></i><b>27.21.1</b> In HTML</a></li>
-<li class="chapter" data-level="27.21.2" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#in-css"><i class="fa fa-check"></i><b>27.21.2</b> In CSS</a></li>
-<li class="chapter" data-level="27.21.3" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#in-javascript"><i class="fa fa-check"></i><b>27.21.3</b> In JavaScript</a></li>
-</ul></li>
-<li class="chapter" data-level="27.22" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#form-e-input-essenziali"><i class="fa fa-check"></i><b>27.22</b> Form e input essenziali</a></li>
-<li class="chapter" data-level="27.23" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#regole-minime-di-qualita"><i class="fa fa-check"></i><b>27.23</b> Regole minime di qualita’</a></li>
-<li class="chapter" data-level="27.24" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#roadmap-del-progetto"><i class="fa fa-check"></i><b>27.24</b> Roadmap del progetto</a>
-<ul>
-<li class="chapter" data-level="27.24.1" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#versione-1-struttura"><i class="fa fa-check"></i><b>27.24.1</b> Versione 1: struttura</a></li>
-<li class="chapter" data-level="27.24.2" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#versione-2-stile"><i class="fa fa-check"></i><b>27.24.2</b> Versione 2: stile</a></li>
-<li class="chapter" data-level="27.24.3" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#versione-3-responsive"><i class="fa fa-check"></i><b>27.24.3</b> Versione 3: responsive</a></li>
-<li class="chapter" data-level="27.24.4" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#versione-4-interazione"><i class="fa fa-check"></i><b>27.24.4</b> Versione 4: interazione</a></li>
-</ul></li>
-<li class="chapter" data-level="27.25" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#consegna-minima"><i class="fa fa-check"></i><b>27.25</b> Consegna minima</a></li>
-<li class="chapter" data-level="27.26" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#checklist-finale"><i class="fa fa-check"></i><b>27.26</b> Checklist finale</a></li>
-<li class="chapter" data-level="27.27" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#per-approfondire-nel-libro"><i class="fa fa-check"></i><b>27.27</b> Per approfondire nel libro</a></li>
-<li class="chapter" data-level="27.28" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#sintesi-finale"><i class="fa fa-check"></i><b>27.28</b> Sintesi finale</a></li>
+<li class="chapter" data-level="27.14" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#come-lavorare"><i class="fa fa-check"></i><b>27.14</b> Come lavorare</a></li>
+<li class="chapter" data-level="27.15" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#errori-comuni"><i class="fa fa-check"></i><b>27.15</b> Errori comuni</a></li>
+<li class="chapter" data-level="27.16" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#roadmap-del-progetto"><i class="fa fa-check"></i><b>27.16</b> Roadmap del progetto</a></li>
+<li class="chapter" data-level="27.17" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#consegna-minima"><i class="fa fa-check"></i><b>27.17</b> Consegna minima</a></li>
+<li class="chapter" data-level="27.18" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#checklist-finale"><i class="fa fa-check"></i><b>27.18</b> Checklist finale</a></li>
+<li class="chapter" data-level="27.19" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#per-approfondire-nel-libro"><i class="fa fa-check"></i><b>27.19</b> Per approfondire nel libro</a></li>
+<li class="chapter" data-level="27.20" data-path="rapid-frontend-liceo.html"><a href="rapid-frontend-liceo.html#sintesi"><i class="fa fa-check"></i><b>27.20</b> Sintesi</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -649,7 +619,7 @@
 <p>Lo scopo principale di usare JavaScript in una web page e’ rendere quella pagina <strong>interattiva</strong>: il linguaggio JavaScript e’ usato per programmare decisioni logiche che influenzeranno cio’ che viene mostrato nella pagina. Lo fa principalmente <em>cambiando l’HTML renderizzato dal browser</em>. Per esempio, JavaScript puo’ essere usato per cambiare il testo dentro un <code>&lt;p&gt;</code>, aggiungere altri elementi <code>&lt;li&gt;</code> a una lista, o dare a un <code>&lt;div&gt;</code> un nuovo attribute CSS <code>class</code>. La rappresentazione programmatica degli elementi HTML attualmente mostrati dal browser e’ conosciuta come <strong>Document Object Model (DOM)</strong>. Nel web programming, il codice JavaScript e’ usato per modificare il DOM (gli elementi HTML attualmente mostrati dal browser) in risposta all’input dell’utente, rendendo cosi’ la pagina interattiva. Questo capitolo introduce il Document Object Model e come usare JavaScript per manipolarlo tramite interazioni guidate dall’utente.</p>
 <div id="la-dom-api" class="section level2 hasAnchor" number="12.1">
 <h2><span class="header-section-number">12.1</span> La DOM API<a href="dom.html#la-dom-api" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Come dovresti ricordare dal <a href="#html">Capitolo 3</a>, gli elementi HTML possono essere annidati, permettendoci di considerare una web page come un <a href="https://en.wikipedia.org/wiki/Tree_(data_structure)"><strong>“tree”</strong></a> di elementi:</p>
+<p>Come dovresti ricordare dal <a href="rapid-frontend-liceo.html#html">Capitolo 3</a>, gli elementi HTML possono essere annidati, permettendoci di considerare una web page come un <a href="https://en.wikipedia.org/wiki/Tree_(data_structure)"><strong>“tree”</strong></a> di elementi:</p>
 <div class="float">
 <img src="img/html/dom-tree.jpg" alt="Un esempio di DOM tree (un tree di elementi HTML)." />
 <div class="figcaption">Un esempio di DOM tree (un tree di elementi HTML).</div>
