@@ -406,7 +406,7 @@ Con questa configurazione, le card si dispongono verticalmente su schermi con la
 
 ## Il form dei contatti
 
-Un form consente all'utente di inserire dati e inviarli. In questo progetto il form non è collegato a un server, ma la sua costruzione permette di acquisire familiarità con elementi e interazioni realistici.
+Un form consente all'utente di inserire dati e inviarli. In questo progetto il form non è collegato a un server, ma viene comunque costruito con una struttura vicina a un caso reale.
 
 ### Struttura HTML del form
 
@@ -417,13 +417,13 @@ Un form consente all'utente di inserire dati e inviarli. In questo progetto il f
 
   <form class="contact-form">
     <label for="nome">Nome</label>
-    <input id="nome" type="text" placeholder="Il tuo nome">
+    <input id="nome" name="nome" type="text" placeholder="Il tuo nome" required>
 
     <label for="email">Email</label>
-    <input id="email" type="email" placeholder="la.tua@email.it">
+    <input id="email" name="email" type="email" placeholder="la.tua@email.it" required>
 
     <label for="messaggio">Messaggio</label>
-    <textarea id="messaggio" rows="4" placeholder="Scrivi qui la tua domanda"></textarea>
+    <textarea id="messaggio" name="messaggio" rows="4" placeholder="Scrivi qui la tua domanda" required></textarea>
 
     <button type="submit">Invia</button>
   </form>
@@ -433,6 +433,14 @@ Un form consente all'utente di inserire dati e inviarli. In questo progetto il f
 L'elemento `label` descrive il campo corrispondente. L'attributo `for` deve coincidere con l'`id` del campo a cui si riferisce: questa corrispondenza consente al browser di spostare il focus al campo quando si clicca sull'etichetta, migliorando l'accessibilità.
 
 L'elemento `input` con `type="email"` attiva la validazione automatica del formato nel browser prima dell'invio. L'elemento `textarea` produce un'area di testo a più righe; l'attributo `rows` ne controlla l'altezza iniziale.
+
+### `id`, `name` e invio del form
+
+In un form reale, i campi hanno quasi sempre sia `id` sia `name`, ma i due attributi non svolgono lo stesso ruolo. `id` identifica l'elemento nella pagina: serve per collegare `label` e campo, per creare link interni e per selezionare l'elemento in JavaScript. `name`, invece, identifica il dato inviato dal form: se il browser inviasse il modulo a un server, i valori verrebbero trasmessi usando i nomi dei campi (`nome`, `email`, `messaggio`).
+
+L'attributo booleano `required` dice al browser che il campo non può essere lasciato vuoto. Se l'utente preme il pulsante di invio senza aver compilato quei campi, il browser blocca il submit e segnala l'errore.
+
+Quando si preme un pulsante `type="submit"`, il browser prova a inviare il form e normalmente ricarica la pagina. In un progetto solo client-side questo comportamento viene spesso intercettato in JavaScript con `event.preventDefault()`, così si può mostrare un messaggio di conferma senza lasciare la pagina.
 
 ### Stili CSS del form
 
@@ -513,6 +521,44 @@ Il pannello Elementi mostra la struttura HTML effettivamente caricata dal browse
 ### Pannello Rete
 
 Il pannello Rete mostra le richieste HTTP effettuate dalla pagina durante il caricamento. I file non trovati appaiono con il codice di stato `404`. Ricaricare la pagina con questo pannello aperto è il metodo più rapido per verificare che tutti i file CSS, JavaScript e le immagini siano stati caricati correttamente.
+
+---
+
+## JavaScript essenziale
+
+Prima di manipolare la pagina con il DOM, è utile fissare pochi elementi di sintassi del linguaggio.
+
+### Variabili e valori
+
+```js
+'use strict';
+
+const titolo = 'Open Day 2026';
+let numeroIscritti = 120;
+let iscrizioniAperte = true;
+
+console.log(titolo);
+```
+
+`const` si usa per valori che non devono essere riassegnati; `let` per valori che possono cambiare durante l'esecuzione del programma. JavaScript distingue tra stringhe (`'Open Day 2026'`), numeri (`120`) e valori booleani (`true`, `false`).
+
+La funzione `console.log()` stampa un valore nella Console del browser. È il modo più semplice per controllare se una variabile contiene davvero ciò che ci si aspetta.
+
+### Condizioni e funzioni
+
+```js
+function creaMessaggio(nome) {
+  if (nome === '') {
+    return 'Benvenuto';
+  }
+
+  return 'Benvenuto, ' + nome;
+}
+
+console.log(creaMessaggio('Marta'));
+```
+
+Una funzione raccoglie istruzioni sotto un nome riutilizzabile. L'istruzione `if` permette di prendere decisioni; `return` restituisce il risultato della funzione. L'operatore `===` confronta due valori in modo rigoroso ed è quello da preferire nei controlli di uguaglianza.
 
 ---
 
@@ -648,6 +694,43 @@ navLinks.forEach(function (link) {
 
 `querySelectorAll` restituisce una `NodeList`, una collezione di elementi su cui è possibile iterare con `.forEach()`. Al click su un link, la classe `active` viene rimossa da tutti i link della navigazione, poi aggiunta esclusivamente a quello selezionato.
 
+### Esempio 4 — Conferma all'invio del form
+
+In un progetto solo client-side, l'invio del form viene spesso intercettato per evitare il ricaricamento della pagina e mostrare invece un messaggio di conferma.
+
+HTML da aggiungere subito dopo il form:
+
+```html
+<p id="form-feedback"></p>
+```
+
+CSS facoltativo:
+
+```css
+#form-feedback {
+  margin-top: 0.75rem;
+  font-weight: bold;
+  color: #1f3c88;
+}
+```
+
+JavaScript:
+
+```js
+'use strict';
+
+const contactForm = document.querySelector('.contact-form');
+const feedback    = document.querySelector('#form-feedback');
+
+contactForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+  feedback.textContent = 'Richiesta inviata correttamente. Vi contatteremo presto.';
+  contactForm.reset();
+});
+```
+
+Il metodo `event.preventDefault()` blocca il comportamento standard del browser, che altrimenti invierebbe il form e ricaricherebbe la pagina. La chiamata `contactForm.reset()` svuota i campi dopo l'invio, riportandoli allo stato iniziale.
+
 ---
 
 ## Diagnostica e risoluzione degli errori
@@ -667,6 +750,15 @@ Quando la pagina non si comporta come previsto, è utile seguire una procedura s
 
 **Errori frequenti in JavaScript:** tag `<script>` posizionato nell'`<head>` invece che in fondo al `<body>`; selettore con `id` che non corrisponde all'HTML; assenza di apertura della Console per la lettura dei messaggi di errore.
 
+### Validazione finale
+
+Una pagina può sembrare corretta nel proprio browser e contenere comunque errori di sintassi HTML o CSS. Prima della consegna finale conviene quindi validare il codice con strumenti automatici:
+
+- [W3C HTML Validation Service](https://validator.w3.org/nu/)
+- [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/)
+
+La validazione non sostituisce i test nel browser, ma aiuta a individuare errori che spesso passano inosservati: tag non chiusi correttamente, attributi invalidi, proprietà CSS scritte male o dichiarazioni fuori standard.
+
 ---
 
 ## Ordine di sviluppo consigliato
@@ -680,6 +772,8 @@ Lo sviluppo del progetto va affrontato per livelli progressivi, verificando il f
 3. **Layout responsive.** Verificare il comportamento su diverse larghezze di viewport. Le card devono disporsi in colonna su schermi stretti e affiancate su schermi larghi.
 
 4. **Interazione JavaScript.** Aggiungere i comportamenti dinamici solo dopo che HTML e CSS funzionano correttamente. Testare ogni script aprendo la Console.
+
+5. **Validazione finale.** Controllare HTML e CSS con i validator W3C, poi ripetere una verifica completa nel browser.
 
 Affrontare tutti i livelli contemporaneamente rende difficile isolare l'origine degli errori.
 
@@ -712,6 +806,7 @@ Il progetto consegnato deve includere: una pagina HTML completa e navigabile; al
 7. La pagina funziona correttamente su viewport stretto (< 768 px).
 8. I link interni puntano agli `id` corretti.
 9. L'interazione JavaScript funziona e la Console non riporta errori.
+10. HTML e CSS superano la validazione W3C, oppure eventuali avvisi sono stati letti e compresi.
 
 ---
 

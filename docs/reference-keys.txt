@@ -154,11 +154,15 @@ media-query-1
 layout-responsive-delle-card
 il-form-dei-contatti
 struttura-html-del-form
+id-name-e-invio-del-form
 stili-css-del-form
 strumenti-per-sviluppatori-del-browser
 pannello-console
 pannello-elementi
 pannello-rete
+javascript-essenziale
+variabili-e-valori
+condizioni-e-funzioni
 javascript-comportamento-dinamico
 il-document-object-model-dom
 selezione-degli-elementi
@@ -166,7 +170,9 @@ gestione-degli-eventi
 esempio-1-modifica-del-testo
 esempio-2-mostrare-e-nascondere-un-elemento
 esempio-3-link-attivo-nella-navigazione
+esempio-4-conferma-allinvio-del-form
 diagnostica-e-risoluzione-degli-errori
+validazione-finale
 ordine-di-sviluppo-consigliato
 progetto-specifiche-e-consegna
 sviluppo-per-versioni
