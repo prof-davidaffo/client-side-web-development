@@ -1,200 +1,997 @@
-# Accessibilita' dei siti web {#web-accessibility}
+---
+title: "Accessibilità dei siti web"
+subtitle: "Web Standards e Inclusive Design — Triennio Informatica"
+author: ""
+date: ""
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    theme: flatly
+    highlight: tango
+---
 
-I web standards fanno piu' che stabilire la sintassi corretta del web code. Rendere un sito accessibile significa progettare e implementare pagine che possano essere usate da tutte le persone, incluse quelle che navigano con tecnologie assistive come screen reader, tastiera o altri strumenti alternativi.
+# Accessibilità dei siti web {#web-accessibility}
 
-In pratica, parlare di accessibilita' web significa concentrarsi su un principio semplice: il contenuto di un sito non deve dipendere soltanto da come appare sullo schermo. Deve essere comprensibile, navigabile e utilizzabile anche quando viene fruito in modi diversi.
+I web standards fanno più che stabilire la sintassi corretta del codice HTML. Rendere un sito accessibile significa progettare e implementare pagine che possano essere usate da tutte le persone, incluse quelle che navigano con tecnologie assistive come screen reader, tastiera o altri strumenti alternativi.
 
-## Perche' l'accessibilita' conta
+Il principio di fondo è semplice: il contenuto di un sito non deve dipendere soltanto da come appare sullo schermo. Deve essere comprensibile, navigabile e utilizzabile anche quando viene fruito in modi diversi — da persone diverse, con strumenti diversi, in condizioni diverse.
 
-Considera il seguente utente ipotetico:
+## Perché l'accessibilità conta
 
-> Tracy e' una studentessa universitaria di 19 anni ed e' nata cieca. Durante le superiori ha fatto bene come poteva affidandosi a audiolibri e al supporto di tutor, quindi non si e' mai davvero preoccupata di imparare il Braille. E' interessata alla letteratura inglese ed e' molto appassionata di short stories; il suo sogno e' diventare autrice di audiobook.
-Tracy usa Internet per condividere i suoi scritti e per connettersi con altri autori tramite social network. Possiede un laptop e usa uno screen reader chiamato [JAWS](http://www.freedomscientific.com/Products/Blindness/JAWS): un programma che legge ad alta voce lo schermo con una voce artificiale.
-<cite><small>(Adattato da [qui](http://scidok.sulb.uni-saarland.de/volltexte/2007/1098/pdf/personas_access.pdf))</small></i>
+Considera il seguente utente:
 
-Una delle limitazioni piu' spesso trascurate sull'usabilita' di un sito e' se puo' essere usato da persone con qualche forma di disabilita'. Esistono diverse forme di disabilita' o impairment che possono influire sull'accesso a una web page, tra cui:
+> Tracy è una studentessa di 19 anni, nata cieca. Usa Internet ogni giorno per scrivere, leggere e connettersi con altri autori. Sul suo laptop ha installato uno screen reader chiamato [JAWS](http://www.freedomscientific.com/Products/Blindness/JAWS): un programma che legge ad alta voce tutto quello che appare sullo schermo. Quando un sito non è strutturato correttamente, JAWS legge il codice alla lettera — o non legge nulla.
+> <cite><small>(Adattato da [qui](http://scidok.sulb.uni-saarland.de/volltexte/2007/1098/pdf/personas_access.pdf))</small></cite>
 
-- _Vision Impairments_: circa il 2% della popolazione e' cieca, quindi usa mezzi alternativi per leggere le web page. La presbiopia e altri problemi di vista sono molto comuni, richiedendo testo piu' grande e piu' chiaro. Inoltre, circa il 4,5% della popolazione e' daltonica.
-- _Motor Impairments_: l'artrite si presenta in circa l'1% della popolazione e puo' limitare la facilita' d'uso di mouse, tastiera o touchscreen. Altri impairment come tremori, patologie dei motoneuroni e paralisi possono impattare ulteriormente l'accesso.
-- _Cognitive Impairments_: autismo, dislessia e barriere linguistiche possono escludere persone dall'uso del tuo sito.
+La storia di Tracy non è un caso limite. Esistono diverse categorie di disabilità o impairment che influiscono sull'accesso al web:
 
-Se non rendi il tuo sito accessibile, stai escludendo una parte rilevante degli utenti, riducendo la disponibilita' e l'uso del sito. Supportare utenti con disabilita' non e' solo la cosa moralmente giusta da fare, e' anche un requisito sempre piu' importante dal punto di vista professionale e legale. In molti contesti, "accessibility" ha significato legalmente conformita' alle [Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/WAI/intro/wcag) del W3C.
+- **Vision impairments:** circa il 2% della popolazione è cieca e usa mezzi alternativi per leggere le pagine. Presbiopia e altri problemi di vista sono molto comuni. Circa il 4,5% della popolazione è daltonica.
+- **Motor impairments:** l'artrite colpisce circa l'1% della popolazione e può limitare l'uso di mouse, tastiera o touchscreen. Tremori, patologie dei motoneuroni e paralisi possono impattare ulteriormente l'accesso.
+- **Cognitive impairments:** autismo, dislessia e barriere linguistiche possono escludere persone dall'uso del sito.
 
-Infine, progettare il tuo sito pensando all'accessibilita' non lo rende solo piu' usabile per chi ha disabilita' - lo rende piu' usabile per _tutti_. Questo e' il principio dietro il [**Universal Design**](https://en.wikipedia.org/wiki/Universal_design): progettare per essere usabili da tutte le persone, indipendentemente dalle loro capacita', beneficia non solo chi ha limitazioni, ma tutti.
+Se non rendi il tuo sito accessibile, stai escludendo una parte rilevante degli utenti. Supportare persone con disabilità non è solo la cosa giusta da fare: è anche un requisito legale crescente. In Italia, la [Legge Stanca](https://www.agid.gov.it/it/design-servizi/accessibilita) impone standard di accessibilità alle pubbliche amministrazioni, allineati alle [Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/WAI/intro/wcag) del W3C.
 
-Il universal design si applica anche ai siti web:
+### Universal Design
 
-- Se supporti persone che non possono vedere, allora potresti supportare anche persone che non possono vedere _in quel momento_, ad esempio per un forte riflesso sullo schermo.
-- Se supporti persone con motor impairment, allora potresti supportare anche persone che cercano di usare il sito senza mouse, ad esempio da un laptop su un autobus che sobbalza.
-- Se supporti persone con cognitive impairments, allora potresti supportare anche persone che sono temporaneamente impaired, ad esempio per stanchezza, stress o privazione di sonno.
+Progettare per l'accessibilità non rende il sito usabile solo per chi ha disabilità — lo rende più usabile per *tutti*. È il principio del [**Universal Design**](https://en.wikipedia.org/wiki/Universal_design): progettare per la gamma più ampia possibile di utenti beneficia anche chi non ha limitazioni permanenti.
 
-Se assicuri che la tua web page sia ben strutturata e navigabile da screen reader, assicuri anche che sia navigabile da _altre_ macchine, come gli indicizzatori dei motori di ricerca o browser non convenzionali.
+Qualche esempio concreto:
 
-<p class="alert alert-info">Oltre alle capacita' individuali, le persone dipendono anche da una grande quantita' di **infrastruttura** esistente per assicurarsi di avere connessione Internet e che le loro request possano raggiungere il tuo web server. La mancanza di questo accesso e' spesso legata a disuguaglianze economiche o sociali, formando quello che si chiama [**digital divide**](https://en.wikipedia.org/wiki/Digital_divide). Nello sviluppo client-side, questo puo' includere ad esempio considerazioni come la quantita' di dati serviti, la dimensione delle immagini e la semplicita' dell'interfaccia.</p>
+- Supportare chi non può vedere aiuta anche chi non può vedere *in quel momento* (un riflesso forte sullo schermo, una stanza buia).
+- Supportare chi ha motor impairment aiuta anche chi usa il sito senza mouse (su un autobus che sobbalza, o con una mano occupata).
+- Supportare chi ha cognitive impairment aiuta anche chi è temporaneamente stanco, stressato o privato di sonno.
+- Una pagina navigabile da screen reader è navigabile anche da motori di ricerca e altri agenti automatici.
 
-## Screen reader e WCAG
+<p class="alert alert-info">Secondo le stime dell'OMS, oltre 1 miliardo di persone nel mondo vive con una qualche forma di disabilità — circa il 15% della popolazione globale. Progettare in modo accessibile significa raggiungere più persone, non fare un favore a una minoranza.</p>
 
-In questo testo, discuteremo principalmente come supportare l'accessibilita' per utenti con impairment visivi come quelli che usano screen reader. Uno [**screen reader**](https://en.wikipedia.org/wiki/Screen_reader) e' un software che sintetizza e "legge" il contenuto dello schermo ad alta voce tramite gli speaker, cosi' gli utenti possono navigare e controllare il computer senza dover vedere lo schermo. Gli screen reader sono spesso combinati con _keyboard controls_, cosi' gli utenti usano solo la tastiera per controllare il computer e non il mouse.
+## Screen reader
 
-Esistono diversi software di screen reader:
+Uno [**screen reader**](https://en.wikipedia.org/wiki/Screen_reader) è un software che interpreta il contenuto dello schermo e lo legge ad alta voce tramite una sintesi vocale. Gli utenti navigano tipicamente usando solo la tastiera: niente mouse, niente grafica.
 
-- I Mac hanno [VoiceOver](https://help.apple.com/voiceover/info/guide) integrato nel sistema operativo.
-- Windows ha un screen reader integrato chiamato [Microsoft Narrator](https://support.microsoft.com/en-us/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1). I screen reader piu' popolari restano applicazioni piu' consolidate come [JAWS](http://www.freedomscientific.com/Products/Blindness/JAWS) e [NDVA](https://www.nvaccess.org/).
+Gli screen reader più diffusi sono:
 
-<p class="alert alert-success">Dovresti provare questo software. Segui i link sopra per capire come attivare lo screen reader sul tuo computer, poi prova a navigare Internet _senza guardare lo schermo_. Questo ti dara' la sensazione di come sia usare un computer da ciechi.</p>
+- **VoiceOver** — integrato nei sistemi Apple (Mac: `Cmd + F5`, iPhone: triplo click sul tasto laterale)
+- **NVDA** — gratuito e open source per Windows ([nvaccess.org](https://www.nvaccess.org/))
+- **JAWS** — il più usato a livello professionale su Windows ([freedomscientific.com](http://www.freedomscientific.com/Products/Blindness/JAWS))
+- **Microsoft Narrator** — integrato in Windows (`Win + Ctrl + Enter`)
+- **TalkBack** — integrato in Android
 
-Gli screen reader sono semplicemente software che interpretano l'HTML di un sito per permettere all'utente di ascoltare e navigare il contenuto: sono fondamentalmente _web browser non visuali_. Quindi supportare gli screen reader significa implementare il tuo sito in modo che funzioni con questo browser. Puoi farlo assicurandoti che il tuo sito segua i web standards e in particolare che sia conforme alle [**Web Content Accessibility Guidelines (WCAG)**](https://www.w3.org/WAI/intro/wcag).
+Uno screen reader è fondamentalmente un **browser non visuale**: interpreta l'HTML della pagina e lo traduce in audio. Questo significa che supportare uno screen reader equivale a implementare correttamente gli standard HTML — non serve nessuna tecnologia speciale, serve scrivere il codice come si deve.
 
-Le linee guida WCAG sono guidate da 4 principi principali:
+<p class="alert alert-success">**Prova adesso.** Attiva VoiceOver o Narrator sul tuo computer e prova a navigare un sito senza guardare lo schermo. Anche solo 3 minuti di questa esperienza fanno capire più di qualsiasi spiegazione teorica.</p>
 
-1. **Perceivable**: le informazioni e i componenti dell'interfaccia utente devono essere presentabili in modi che gli utenti possano percepire.
-2. **Operable**: i componenti dell'interfaccia utente e la navigazione devono essere operabili.
-3. **Understandable**: le informazioni e il funzionamento delle interfacce utente devono essere comprensibili.
-4. **Robust**: il contenuto deve essere abbastanza robusto da poter essere interpretato in modo affidabile da una varieta' di user agent, incluse le tecnologie assistive.
+## Le WCAG e i livelli di conformità
 
-In modo piu' concreto, le web page accessibili sono quelle che possono essere navigate dagli screen reader, hanno contenuto che puo' essere percepito anche senza presentazione visiva e permettono all'utente di completare le azioni principali senza ostacoli inutili.
+Le [**Web Content Accessibility Guidelines (WCAG)**](https://www.w3.org/WAI/intro/wcag) sono lo standard internazionale di riferimento per l'accessibilità web, pubblicato dal W3C. Sono organizzate attorno a quattro principi fondamentali, spesso riassunti con l'acronimo **POUR**:
 
-## HTML semantico
+1. **Perceivable** *(Percepibile)* — le informazioni devono essere presentabili in modi che tutti gli utenti possano percepire. Un'immagine senza `alt` non è percepibile da chi non la vede.
+2. **Operable** *(Operabile)* — tutti i componenti dell'interfaccia devono essere azionabili. Un pulsante raggiungibile solo col mouse non è operabile da tastiera.
+3. **Understandable** *(Comprensibile)* — le informazioni e il funzionamento dell'interfaccia devono essere comprensibili. Un messaggio di errore vago non è comprensibile.
+4. **Robust** *(Robusto)* — il contenuto deve funzionare con tecnologie assistive diverse, presenti e future.
 
-Un passo fondamentale per assicurarti che le tue pagine web siano accessibili e' fare in modo che l'uso degli elementi HTML sia _semantico_. Gli elementi HTML dovrebbero essere usati per descrivere il significato o la forma del contenuto, _non_ per dare a quel contenuto un aspetto visivo.
+Le WCAG definiscono tre livelli di conformità crescenti:
 
-Per esempio, un elemento `<h1>` e' usato per indicare un heading di primo livello, come il titolo della pagina. Ma di default i browser danno agli elementi `<h1>` un aspetto visivo diverso rispetto al contenuto non marcato. E' possibile ottenere un effetto visivo simile usando solo CSS:
+| Livello | Descrizione | Applicazione tipica |
+|---------|-------------|---------------------|
+| **A** | Requisiti minimi. Senza questi, alcune categorie di utenti sono completamente escluse. | Sempre obbligatorio |
+| **AA** | Standard adottato dalla maggior parte delle normative internazionali, inclusa la Legge Stanca. | Obiettivo professionale standard |
+| **AAA** | Livello massimo. Spesso difficile da raggiungere per interi siti; si applica selettivamente. | Contesti specializzati |
 
-<div class="row">
-<div class="column col2">
+L'obiettivo pratico in quasi tutti i contesti professionali è la **conformità AA**.
+
+---
+
+# HTML semantico {#semantic-html}
+
+Un passo fondamentale per l'accessibilità è usare gli elementi HTML in modo *semantico*: ogni elemento deve descrivere il **significato** del contenuto, non il suo aspetto visivo. Un lettore di schermo ignora completamente il CSS — legge la struttura del markup.
+
+## Heading e struttura del contenuto
+
+Gli elementi heading (`<h1>` – `<h6>`) sono il meccanismo principale con cui uno screen reader naviga una pagina. La maggior parte degli screen reader permette di saltare direttamente da un heading all'altro, o di ascoltare l'elenco di tutti gli heading come se fosse un indice. Per questo motivo:
+
+- Gli heading devono essere **gerarchici**: non si salta da `<h1>` a `<h3>` senza un `<h2>` intermedio.
+- Gli heading devono essere **significativi**: devono descrivere il contenuto della sezione, non essere scelti per la loro dimensione visiva.
+- Non usare un `<h3>` solo perché "vuoi il testo più grande" — usa CSS per quello.
+
 ```html
-<!-- html -->
-<h1>Questo e' un vero heading!</h1>
-<div class="fake-header">
-    Questo sembra solo un heading.
-</div>
+<!-- ❌ Sbagliato: heading usati per lo stile, non per la struttura -->
+<h1>Benvenuti</h1>
+<h3>Prodotti</h3>   <!-- salta h2 -->
+<div class="h2">Contatti</div>   <!-- non è un heading, è un div -->
+
+<!-- ✅ Corretto: gerarchia rispettata, elementi semantici usati -->
+<h1>Benvenuti nel nostro sito</h1>
+  <h2>Prodotti</h2>
+  <h2>Contatti</h2>
 ```
-</div>
-<div class="column col2">
-```css
-/* css */
-.fake-header {
-  font-size: 2em;
-  font-weight: bold;
-}
-```
-</div>
-</div>
 
-![Un heading reale e un heading finto](img/accessibility/headings.png)
+## Elementi di sezione
 
-Il tuo HTML dovrebbe essere **sempre** semantico. Un lettore di schermo ignora per lo piu' il CSS, quindi se qualcosa dovrebbe essere un heading di primo livello, devi marcarlo come tale. Allo stesso modo, dovresti usare gli elementi **solo** quando sono semanticamente appropriati: non usare un elemento `<h3>` solo perche' vuoi il testo piu' grande se non e' davvero un terzo livello di heading.
+HTML5 ha introdotto elementi di sezione semantici che organizzano la struttura della pagina in modo comprensibile agli screen reader. Puoi pensarli come `<div>` specializzati, ma con un significato preciso:
 
-<p class="alert alert-warning">HTML e' per la semantica. CSS e' per l'aspetto.</p>
+| Elemento | Scopo |
+|----------|-------|
+| `<header>` | Intestazione della pagina o di una sezione (logo, titolo, navigazione) |
+| `<nav>` | Insieme di link di navigazione |
+| `<main>` | Contenuto principale del documento — uno solo per pagina |
+| `<section>` | Sezione tematica autonoma di contenuto |
+| `<article>` | Contenuto indipendente e autopubblicabile (post, notizia, commento) |
+| `<aside>` | Contenuto correlato ma secondario (sidebar, nota a margine) |
+| `<footer>` | Piè di pagina della pagina o di una sezione |
 
-Questo e' lo stesso motivo per cui non dovresti mai usare il tag `<i>` solo per rendere il testo _corsivo_. Il tag `<i>` non ha un significato semantico utile; invece dovresti usare un tag semantico piu' significativo. Di solito questo significa `<em>`, dato che il testo in corsivo e' normalmente _enfatizzato_.
-
-In effetti, HTML 5 include molti [elementi semantici](https://www.w3schools.com/tags/ref_byfunc.asp) che possono essere usati per indicare testo "formattato" con un significato particolare, inclusi [`<abbr>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/abbr), [`<address>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/address), [`<cite>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/cite), [`<del>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/del), [`<dfn>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dfn), [`<mark>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/mark) e [`<time>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time).
-
-<p class="alert alert-warning">Non usare mai il tag [`<table>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table) per strutturare documenti e posizionare contenuti. Il tag `<table>` dovrebbe essere usato **solo** per contenuti che sono semanticamente una tabella. Se vuoi impaginare contenuti in una griglia, usa il CSS.</p>
-
-Per esempi piu' dettagliati sull'uso semantico dei singoli elementi HTML, vedi anche [HTML Semantico](#semantic-html).
-
-## Struttura della pagina e navigazione
-
-Poiche' i lettori di schermo non possono cogliere il contenuto di una pagina web "a colpo d'occhio", le pagine accessibili devono essere strutturate esplicitamente in modo che il contenuto sia facilmente navigabile.
-
-Il modo piu' importante per fornire questa struttura e' l'uso consapevole degli elementi **heading** (`<h1>`, `<h2>`, ecc.). I lettori di schermo generano automaticamente un "indice" basato su questi heading, permettendo agli utenti di muoversi facilmente tra grandi quantita' di contenuto. Per assicurare che gli heading siano utili, devono essere **significativi** e **gerarchici**: non dovrebbero saltare livelli.
-
-HTML 5 ha introdotto elementi aggiuntivi che possono essere usati per organizzare il contenuto delle pagine web rendendo la struttura piu' esplicita. Questi elementi di sezione non producono effetti visivi di per se', ma forniscono una strutturazione semantica al contenuto web. Puoi pensarli come `<div>` specializzati.
-
-- [`<header>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/header) rappresenta la parte introduttiva della pagina, come il titolo o una immagine banner. Puo' includere anche elementi comuni della pagina come navigazione o barre di ricerca.
-- [`<nav>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav) contiene link di navigazione, di solito per muoversi nel sito.
-- [`<main>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main) rappresenta il contenuto principale del documento. Una pagina web dovrebbe avere un solo elemento `<main>`.
-- [`<footer>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/footer) rappresenta il footer della pagina, di solito contenente informazioni sulla pagina.
-- [`<section>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section) rappresenta una sezione autonoma di contenuto.
-- [`<article>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article) rappresenta contenuto autonomo che puo' essere pubblicato indipendentemente, come un articolo di news o un post del blog.
-
-Un body di una pagina web tipica puo' quindi avere una struttura simile a:
+Struttura tipica di una pagina ben organizzata:
 
 ```html
 <body>
-    <header>
-        <nav>
-            link di navigazione qui
-        </nav>
-    </header>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/articoli">Articoli</a></li>
+        <li><a href="/contatti">Contatti</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main>
-        <section>
-            contenuto...
-        </section>
-        <section>
-            contenuto...
-        </section>
-    </main>
+  <main>
+    <article>
+      <h1>Titolo dell'articolo</h1>
+      <section>
+        <h2>Prima sezione</h2>
+        <p>Contenuto...</p>
+      </section>
+    </article>
+    <aside>
+      <h2>Articoli correlati</h2>
+    </aside>
+  </main>
 
-    <footer>
-        informazioni sul copyright qui
-    </footer>
+  <footer>
+    <p>&copy; 2024 Nome Sito</p>
+  </footer>
 </body>
 ```
 
-In generale, usare questi elementi semantici di sezione aiuta a organizzare il contenuto per i lettori di schermo, oltre a renderlo piu' chiaramente strutturato. Anche i link devono essere chiari e autoesplicativi: uno screen reader puo' elencare rapidamente tutti gli hyperlink di una pagina, quindi testi come "clicca qui" o "here" sono poco utili fuori contesto.
+## Elementi inline semantici
 
-## Informazioni visive e contenuti percepibili
+Lo stesso principio si applica agli elementi inline. Non usare `<i>` per il corsivo o `<b>` per il grassetto: questi tag non hanno significato semantico utile. Usa invece gli elementi che descrivono il *perché* il testo è evidenziato:
 
-Un altro principio fondamentale dell'accessibilita' e' che le informazioni non possono essere solo visive. Se un contenuto o un controllo si capisce soltanto guardandolo, una parte degli utenti non potra' usarlo correttamente.
-
-Per rendere le immagini accessibili, includi sempre un attributo `alt` che fornisce testo alternativo quando l'immagine non puo' essere mostrata:
-
-```html
-<img src="picture.png" alt="descrizione dell'immagine">
-```
-
-L'"alt-text" non dovrebbe includere formule introduttive come "immagine di", perche' gli screen reader indicano gia' che si tratta di un'immagine. Per immagini piu' complesse, come grafici o infografiche, e' opportuno affiancare una descrizione piu' lunga nel testo della pagina o tramite un collegamento dedicato.
-
-Per contenuti puramente decorativi, invece, e' meglio evitare rumore inutile per chi usa tecnologie assistive. In questi casi puoi usare `aria-hidden="true"` per segnalare che quell'elemento non aggiunge informazione utile alla lettura della pagina.
-
-In generale, il modo migliore per rendere accessibili le informazioni puramente visive e' _non avere informazioni puramente visive_ in primo luogo. Il contenuto di una pagina dovrebbe sempre supportare utenti e browser non visuali: includi descrizioni testuali, caption per immagini e video, etichette testuali invece di sole icone e, quando il colore e' usato per evidenziare qualcosa, affianca sempre anche un altro segnale testuale o strutturale.
-
-## Form e interattivita' accessibili
-
-I form sono una parte centrale dell'interazione nei siti web e richiedono particolare attenzione per essere accessibili.
-
-Uno dei passaggi piu' importanti per rendere un form accessibile e' fornire label per tutti i form control e input. Le label si specificano usando l'elemento `<label>` associato all'`id` dell'input:
+| Invece di | Usa | Quando |
+|-----------|-----|--------|
+| `<i>` | `<em>` | Testo enfatizzato |
+| `<b>` | `<strong>` | Testo di importanza elevata |
+| `<i>` | `<cite>` | Titolo di un'opera citata |
+| `<i>` | `<dfn>` | Termine che si sta definendo |
+| qualsiasi | `<abbr title="...">` | Abbreviazioni e acronimi |
+| qualsiasi | `<time datetime="...">` | Date e orari |
+| qualsiasi | `<mark>` | Testo evidenziato come rilevante nel contesto |
 
 ```html
-<label for="emailInput">Email</label>
-<input id="emailInput" name="email" type="email">
+<!-- ❌ Sbagliato -->
+<i>Nota bene:</i> il sito sarà offline sabato.
+Pubblicato il <b>12 aprile 2024</b>.
+
+<!-- ✅ Corretto -->
+<em>Nota bene:</em> il sito sarà offline sabato.
+Pubblicato il <time datetime="2024-04-12">12 aprile 2024</time>.
 ```
 
-Tutti i form control dovrebbero essere etichettati per supportare screen reader e altre tecnologie assistive. Anche quando scegli di nascondere visivamente una label, la label dovrebbe comunque essere presente nel markup.
+## Link descrittivi
 
-Mantenere i form brevi e semplici e' buono sia per l'accessibilita' sia per l'usabilita' complessiva. Per form piu' complessi, puoi raggruppare input correlati dentro un elemento `<fieldset>` e usare `<legend>` per dare un titolo al gruppo.
+Uno screen reader può elencare tutti i link di una pagina in una lista separata. Se i tuoi link dicono "clicca qui", "qui" o "leggi di più", questa lista è completamente inutile. Il testo di un link deve essere **autoesplicativo anche fuori contesto**:
 
-Anche i componenti interattivi personalizzati devono poter essere usati da tastiera e devono comunicare correttamente il proprio stato. Se un elemento agisce come un bottone, e' meglio usare davvero un `<button>` invece di simulare quel comportamento con un generico `<div>`.
+```html
+<!-- ❌ Sbagliato: il testo del link non dice nulla fuori contesto -->
+<p>Per il report annuale, <a href="report.pdf">clicca qui</a>.</p>
+<a href="articolo.html">Leggi di più</a>
 
-## ARIA
+<!-- ✅ Corretto: il testo del link è autoesplicativo -->
+<p><a href="report.pdf">Scarica il report annuale 2024 (PDF, 2MB)</a></p>
+<a href="articolo.html">Leggi l'articolo su Intelligenza Artificiale e lavoro</a>
+```
 
-Il WAI ha creato uno standard aggiuntivo per supportare l'accessibilita' chiamato [**ARIA**](https://w3c.github.io/aria/), cioe' **A**ccessible **R**ich **I**nternet **A**pplications. ARIA definisce attributi HTML aggiuntivi che possono essere inclusi negli elementi per fornire supporto extra agli screen reader e ad altre tecnologie assistive.
+Se un link apre in una nuova scheda, segnalalo nel testo per non disorientare l'utente:
 
-ARIA puo' aiutare in diversi casi:
+```html
+<a href="https://esempio.it" target="_blank">
+  Visita il sito partner <span class="sr-only">(si apre in una nuova scheda)</span>
+</a>
+```
 
-- con `aria-label` puoi fornire un'etichetta alternativa per elementi che non hanno testo leggibile ma che devono essere compresi da uno screen reader;
-- con `aria-describedby` puoi associare a un elemento una descrizione piu' lunga presente altrove nella pagina;
-- con `role` puoi esplicitare lo scopo semantico di un elemento quando non e' gia' espresso dall'HTML nativo;
-- con attributi di stato come `aria-expanded` puoi comunicare se un menu, un accordion o un pannello sono aperti o chiusi.
+La classe `.sr-only` (screen reader only) nasconde il testo visivamente ma lo mantiene nel markup per gli screen reader:
 
-Tuttavia, molti attributi ARIA diventano ridondanti quando usi HTML semantico corretto. Se un elemento deve essere cliccato per causare un'azione, usa un `<button>` invece di un elemento generico con `role="button"`. Se una sezione e' navigazione, usa `<nav>`. Se il contenuto principale e' il cuore della pagina, usa `<main>`.
+```css
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+```
 
-<p class="alert alert-danger">Il WAI afferma chiaramente che <em>No ARIA is better than Bad ARIA</em>. Usare male ARIA puo' disinformare gravemente gli utenti di tecnologie assistive, rendendo piu' difficile capire la pagina. Un buon uso di HTML semantico aiuta molto l'accessibilita'; ARIA dovrebbe essere usato solo per colmare gap espliciti dove l'HTML semantico non basta.</p>
+## Tabelle
 
-## Verifica e approfondimenti
+Le tabelle HTML devono essere usate **solo per dati tabulari** — mai per il layout della pagina. Usare `<table>` per posizionare elementi visivi è una pratica antica e profondamente sbagliata: uno screen reader tenterà di leggere la tabella come se contenesse dati strutturati, producendo output incomprensibile.
 
-Scrivere un sito accessibile non significa solo "sapere le regole", ma anche verificare che il risultato funzioni davvero.
+Per il layout usa CSS Grid o Flexbox. Per i dati tabulari, usa `<table>` con la marcatura corretta:
 
-- Valida il markup con i validator del W3C.
-- Prova a navigare la pagina solo da tastiera.
-- Attiva uno screen reader e verifica il flusso di lettura reale.
-- Usa strumenti di controllo come [WAVE Accessibility Evaluation Service](http://wave.webaim.org/).
+```html
+<table>
+  <caption>Vendite trimestrali per prodotto</caption>
+  <thead>
+    <tr>
+      <th scope="col">Prodotto</th>
+      <th scope="col">Q1</th>
+      <th scope="col">Q2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Widget A</th>
+      <td>1.200</td>
+      <td>1.450</td>
+    </tr>
+  </tbody>
+</table>
+```
 
-Per approfondire gli aspetti implementativi, vedi anche:
+- `<caption>` descrive la tabella agli screen reader.
+- `<thead>` e `<tbody>` strutturano semanticamente la tabella.
+- `scope="col"` e `scope="row"` sulle celle `<th>` indicano se l'intestazione si riferisce a una colonna o a una riga.
 
-- [HTML Semantico](#semantic-html) per elementi, media, tabelle e form accessibili.
-- [Code Style Guide](#code-style-guide) per pratiche di markup e CSS che evitano soluzioni poco accessibili.
+<p class="alert alert-warning">Non usare mai `<table>` per strutturare il layout della pagina. Per il layout usa CSS Grid o Flexbox.</p>
+
+---
+
+# Contrasto cromatico {#contrasto}
+
+Il contrasto tra testo e sfondo è uno degli aspetti più frequentemente violati e più facilmente verificabili. Colori che ti sembrano distinguibili a occhio potrebbero non superare i requisiti WCAG — specialmente per chi ha impairment visivi, daltonismo, o sta usando il sito in condizioni di luce intensa.
+
+Le WCAG definiscono rapporti minimi calcolati su una scala da 1:1 (nessun contrasto) a 21:1 (bianco su nero):
+
+| Tipo di testo | Livello AA | Livello AAA |
+|---------------|-----------|-------------|
+| Testo normale (< 18pt, o < 14pt grassetto) | **4,5:1** | 7:1 |
+| Testo grande (≥ 18pt, o ≥ 14pt grassetto) | **3:1** | 4,5:1 |
+| Componenti UI e grafica informativa | **3:1** | — |
+
+Per verificare i tuoi colori usa [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) o direttamente i DevTools del browser (pannello Elements → tab Accessibility → sezione Contrast).
+
+## Il colore non basta da solo
+
+Una regola importante: **non usare mai il colore come unico mezzo per trasmettere informazioni**. Il 4,5% della popolazione è daltonica — la forma più comune, la deuteranopia, rende difficile distinguere rosso da verde. Se il tuo sistema di feedback usa solo il colore per segnalare errori e successi, circa 1 persona su 20 non lo capisce.
+
+```html
+<!-- ❌ Sbagliato: solo il colore distingue i due stati -->
+<p class="errore">Il campo email non è valido.</p>   <!-- rosso -->
+<p class="successo">Messaggio inviato!</p>             <!-- verde -->
+
+<!-- ✅ Corretto: colore + icona + testo esplicito -->
+<p class="errore">⚠️ Errore: il campo email non è valido.</p>
+<p class="successo">✓ Operazione completata con successo.</p>
+```
+
+La stessa regola si applica a grafici, link, stati di elementi interattivi, indicatori di step in un processo. Se stai usando il colore per distinguere qualcosa, chiediti: *se questa pagina fosse in bianco e nero, l'informazione sarebbe ancora leggibile?*
+
+---
+
+# Navigazione da tastiera e focus visibile {#tastiera}
+
+Molti utenti navigano il web usando solo la tastiera: chi ha motor impairment, chi usa uno screen reader, chi preferisce non usare il mouse. Per questi utenti la navigazione deve funzionare con `Tab` per spostarsi tra elementi interattivi, `Shift + Tab` per tornare indietro, `Enter` o `Spazio` per attivare un elemento, e i tasti freccia per muoversi all'interno di componenti come menu o slider.
+
+## Focus visibile
+
+Ogni volta che un elemento riceve il focus da tastiera, deve essere visivamente distinguibile. I browser mostrano di default un contorno (outline) attorno all'elemento focalizzato. Il problema è che molti sviluppatori lo rimuovono perché considerano l'outline "brutto":
+
+```css
+/* ❌ Non farlo mai senza un'alternativa: rende la navigazione da tastiera impossibile */
+:focus {
+  outline: none;
+}
+```
+
+La soluzione non è eliminare il focus, ma **personalizzarlo** in modo che sia visibile e si integri nel design:
+
+```css
+/* ✅ Focus personalizzato e visibile */
+:focus-visible {
+  outline: 3px solid #005fcc;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+```
+
+La pseudo-classe `:focus-visible` è preferibile a `:focus` perché applica lo stile **solo quando il focus è raggiunto da tastiera** — non quando l'elemento viene cliccato con il mouse. Questo evita il problema per cui il focus outline appariva su bottoni cliccati col mouse, che molti designer trovano indesiderato.
+
+Per elementi su sfondo scuro puoi usare un outline chiaro con box-shadow per garantire visibilità su qualsiasi sfondo:
+
+```css
+:focus-visible {
+  outline: 2px solid white;
+  box-shadow: 0 0 0 4px #005fcc;
+}
+```
+
+## Ordine del focus
+
+L'ordine in cui `Tab` sposta il focus deve essere **logico e prevedibile** — idealmente segue l'ordine di lettura visiva della pagina (sinistra→destra, alto→basso). L'ordine predefinito segue la sequenza degli elementi nel DOM, quindi è importante che la struttura del markup rispecchi la struttura visiva.
+
+Evita di usare `tabindex` con valori positivi (es. `tabindex="3"`) per forzare un ordine: questo crea spesso più problemi di quanti ne risolva. Se devi escludere un elemento dalla navigazione da tastiera, usa `tabindex="-1"`.
+
+## Skip link
+
+Le pagine con molto contenuto ripetuto in cima (menu di navigazione, banner) costringono chi naviga da tastiera a fare `Tab` decine di volte per raggiungere il contenuto principale. La soluzione è un **skip link**: un link visibile solo quando riceve il focus che permette di saltare direttamente al contenuto principale.
+
+```html
+<!-- Primo elemento del body -->
+<a href="#main-content" class="skip-link">Salta al contenuto principale</a>
+
+<!-- ... navigazione, header ... -->
+
+<main id="main-content">
+  <!-- contenuto principale -->
+</main>
+```
+
+```css
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  background: #005fcc;
+  color: white;
+  padding: 8px 16px;
+  z-index: 9999;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+```
+
+Lo skip link è invisibile per chi usa il mouse, ma è il primo elemento che uno screen reader o un utente da tastiera incontra sulla pagina.
+
+<p class="alert alert-success">**Prova pratica.** Apri un sito qualsiasi e naviga premendo solo il tasto `Tab`. Riesci a vedere dove si trova il focus in ogni momento? Riesci a raggiungere tutti i link e i pulsanti? L'ordine di navigazione è logico?</p>
+
+---
+
+# Immagini e contenuti visivi {#immagini}
+
+Il principio fondamentale è che nessuna informazione può esistere *solo* nella forma visiva. Se il contenuto è comprensibile solo guardandolo, una parte degli utenti ne è esclusa.
+
+## Testo alternativo
+
+Ogni immagine informativa deve avere un attributo `alt` che ne descrive il contenuto. Lo screen reader annuncia "immagine" automaticamente, quindi non iniziare l'alt-text con "immagine di" o "foto di":
+
+```html
+<!-- ❌ Sbagliato -->
+<img src="grafico.png">                          <!-- nessun alt -->
+<img src="grafico.png" alt="immagine">           <!-- inutile -->
+<img src="grafico.png" alt="immagine di un grafico a barre che mostra..."> <!-- "immagine di" ridondante -->
+
+<!-- ✅ Corretto -->
+<img src="grafico.png" alt="Grafico a barre: le vendite crescono del 30% nel Q3 2024 rispetto al Q3 2023">
+```
+
+La qualità dell'alt-text dipende dal contesto. Per un'immagine decorativa non serve descriverla — anzi, sarebbe rumore inutile per chi ascolta. Usa `alt=""` (stringa vuota, non assente) per segnalare allo screen reader di ignorare l'immagine:
+
+```html
+<!-- Immagine decorativa: alt vuoto -->
+<img src="divider-wave.svg" alt="">
+
+<!-- Icona SVG decorativa: aria-hidden -->
+<svg aria-hidden="true" focusable="false">...</svg>
+```
+
+Per immagini complesse come grafici, infografiche o diagrammi, l'alt-text non è sufficiente. Affianca una **descrizione lunga** nel testo della pagina, come una tabella con i dati del grafico o un paragrafo descrittivo:
+
+```html
+<figure>
+  <img src="grafico-vendite.png"
+       alt="Grafico delle vendite 2020–2024. Descrizione dettagliata sotto."
+       aria-describedby="grafico-desc">
+  <figcaption id="grafico-desc">
+    Le vendite annuali sono cresciute da 1,2 milioni nel 2020 a 3,4 milioni nel 2024,
+    con un'accelerazione significativa a partire dal 2022.
+  </figcaption>
+</figure>
+```
+
+## Contenuti multimediali
+
+Audio e video richiedono forme alternative di accesso:
+
+**Sottotitoli (captions):** obbligatori per i video. Devono essere sincronizzati e includere non solo il parlato ma anche effetti sonori rilevanti e indicazioni di chi sta parlando. I sottotitoli *closed* (attivabili/disattivabili) sono preferibili ai sottotitoli *open* (incorporati nel video).
+
+**Audiodescrizione:** necessaria quando un video contiene informazioni trasmesse solo visivamente — azioni, espressioni, testo sullo schermo. È una traccia audio aggiuntiva che descrive quello che accade.
+
+**Trascrizione testuale:** rende il contenuto di audio e video accessibile in modo non sequenziale, cercabile e usabile da screen reader. È particolarmente utile per contenuti lunghi.
+
+```html
+<video controls>
+  <source src="lezione.mp4" type="video/mp4">
+  <track kind="captions"      src="captions-it.vtt"      srclang="it" label="Italiano" default>
+  <track kind="descriptions"  src="descriptions-it.vtt"  srclang="it" label="Audiodescrizione">
+</video>
+<p><a href="trascrizione.txt">Leggi la trascrizione testuale della lezione</a></p>
+```
+
+**Autoplay:** i contenuti che partono automaticamente disorientano gli utenti di screen reader, che possono trovarsi a sentire due flussi audio sovrapposti. Se un media parte in automatico, deve essere possibile fermarlo immediatamente — anche da tastiera. In generale, evita l'autoplay.
+
+---
+
+# Form accessibili {#form}
+
+I form sono tra i componenti più critici dal punto di vista dell'accessibilità. Uno screen reader che non riesce a capire i campi di un form rende l'utente incapace di completare azioni fondamentali: registrarsi, fare acquisti, inviare messaggi.
+
+## Label
+
+La regola più importante: ogni campo di input deve avere una `<label>` associata tramite gli attributi `for` e `id`. Il placeholder non è una label:
+
+```html
+<!-- ❌ Sbagliato: nessuna label -->
+<input type="email" placeholder="La tua email">
+
+<!-- ❌ Sbagliato: il placeholder non è una label -->
+<div>Email</div>
+<input type="email" placeholder="inserisci la tua email">
+
+<!-- ✅ Corretto: label associata all'input -->
+<label for="emailInput">Indirizzo email</label>
+<input id="emailInput" name="email" type="email" autocomplete="email">
+```
+
+Il `placeholder` scompare non appena l'utente inizia a digitare. Se la label e il placeholder contengono la stessa informazione, l'utente si trova a dover ricordare cosa stava compilando mentre scrive. Molti screen reader, inoltre, non leggono i placeholder in modo affidabile.
+
+Se vuoi nascondere visivamente la label mantenendola accessibile (es. in una barra di ricerca dove la funzione è ovvia), usa la classe `.sr-only` descritta nella sezione precedente. Non eliminare la label dal markup.
+
+## Fieldset e legend
+
+Per gruppi di input correlati — specialmente radio button e checkbox — usa `<fieldset>` con `<legend>`:
+
+```html
+<fieldset>
+  <legend>Preferenza di contatto</legend>
+
+  <label>
+    <input type="radio" name="contatto" value="email"> Email
+  </label>
+  <label>
+    <input type="radio" name="contatto" value="telefono"> Telefono
+  </label>
+  <label>
+    <input type="radio" name="contatto" value="nessuno"> Nessuna preferenza
+  </label>
+</fieldset>
+```
+
+Senza `<fieldset>`, uno screen reader annuncia solo "Email" e "Telefono" — senza il contesto che si tratta di preferenze di contatto. Con `<fieldset>` e `<legend>`, annuncia "Preferenza di contatto, Email" per ogni opzione.
+
+## Pulsanti
+
+Se un elemento deve essere cliccato per eseguire un'azione, usa `<button>`. Non usare `<div>` o `<span>` con JavaScript:
+
+```html
+<!-- ❌ Sbagliato: non navigabile da tastiera, non ha ruolo semantico -->
+<div class="btn" onclick="invia()">Invia</div>
+
+<!-- ✅ Corretto: navigabile, attivabile con Enter/Spazio, ruolo comunicato -->
+<button type="submit">Invia il modulo</button>
+```
+
+Un `<button>` è automaticamente nel tab order, risponde a `Enter` e `Spazio`, e comunica il suo ruolo agli screen reader senza bisogno di attributi aggiuntivi. Un `<div>` non fa nessuna di queste cose.
+
+## Messaggi di errore accessibili
+
+La gestione degli errori nei form è spesso il punto più trascurato. Quando un campo non è compilato correttamente, lo screen reader deve poterlo comunicare chiaramente. Ci sono tre attributi fondamentali:
+
+- `aria-invalid="true"` — segnala che il campo contiene un valore non valido
+- `aria-describedby` — collega il campo a un elemento che lo descrive (il messaggio di errore)
+- `role="alert"` — fa sì che il messaggio di errore venga annunciato immediatamente dallo screen reader
+
+```html
+<label for="emailInput">Indirizzo email <span aria-hidden="true">*</span></label>
+<input
+  id="emailInput"
+  name="email"
+  type="email"
+  aria-required="true"
+  aria-invalid="true"
+  aria-describedby="emailError emailHint"
+>
+<span id="emailHint">Es. nome@esempio.it</span>
+<span id="emailError" role="alert">
+  ⚠️ Inserisci un indirizzo email valido.
+</span>
+```
+
+Nota che `aria-describedby` può contenere più ID separati da spazio: in questo caso lo screen reader legge prima il messaggio di errore, poi il suggerimento sul formato.
+
+Per messaggi che appaiono dinamicamente dopo l'invio del form (es. una conferma o un errore generale), usa `aria-live`:
+
+```html
+<!-- Annuncio non urgente: aspetta che l'utente finisca l'azione corrente -->
+<div aria-live="polite" aria-atomic="true" id="statoForm"></div>
+
+<!-- Annuncio urgente: interrompe la lettura corrente -->
+<div aria-live="assertive" id="erroreGrave"></div>
+```
+
+`aria-atomic="true"` indica allo screen reader di leggere l'intera regione come un blocco ogni volta che cambia, invece di leggere solo le parti modificate.
+
+<p class="alert alert-warning">Non comunicare gli errori solo tramite colore (es. bordo rosso sul campo). Affianca sempre un messaggio testuale esplicito e associalo al campo tramite `aria-describedby`. Un utente daltonico potrebbe non vedere la differenza.</p>
+
+---
+
+# ARIA {#aria}
+
+[**ARIA**](https://w3c.github.io/aria/) (Accessible Rich Internet Applications) è uno standard del W3C che estende HTML con attributi aggiuntivi per comunicare ruolo, stato e proprietà agli screen reader. ARIA è particolarmente utile per componenti interattivi complessi — menu, accordion, tab, modal, slider — che HTML nativo non descrive in modo sufficientemente dettagliato.
+
+## Attributi principali
+
+| Attributo | Scopo | Esempio |
+|-----------|-------|---------|
+| `aria-label` | Etichetta per elementi senza testo visibile | `<button aria-label="Chiudi">✕</button>` |
+| `aria-labelledby` | Collega l'elemento a un heading o label esistente | `<div role="dialog" aria-labelledby="titoloModal">` |
+| `aria-describedby` | Collega l'elemento a una descrizione più lunga | `<input aria-describedby="passwordHint">` |
+| `aria-hidden` | Nasconde l'elemento agli screen reader | `<svg aria-hidden="true">` |
+| `aria-expanded` | Stato aperto/chiuso di un menu o pannello | `<button aria-expanded="false">` |
+| `aria-selected` | Elemento selezionato in una lista o tab | `<li role="tab" aria-selected="true">` |
+| `aria-disabled` | Elemento disabilitato | `<button aria-disabled="true">` |
+| `aria-invalid` | Campo con valore non valido | `<input aria-invalid="true">` |
+| `aria-required` | Campo obbligatorio | `<input aria-required="true">` |
+| `aria-live` | Regione aggiornata dinamicamente | `<div aria-live="polite">` |
+| `role` | Ruolo semantico esplicito | `<div role="alert">` |
+
+## Esempio: menu a tendina accessibile
+
+```html
+<nav>
+  <button
+    aria-expanded="false"
+    aria-controls="menuProdotti"
+    id="btnProdotti">
+    Prodotti ▾
+  </button>
+  <ul id="menuProdotti" role="menu" hidden>
+    <li role="menuitem"><a href="/prodotto-a">Prodotto A</a></li>
+    <li role="menuitem"><a href="/prodotto-b">Prodotto B</a></li>
+  </ul>
+</nav>
+```
+
+```javascript
+const btn = document.getElementById('btnProdotti');
+const menu = document.getElementById('menuProdotti');
+
+btn.addEventListener('click', () => {
+  const aperto = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', !aperto);
+  menu.hidden = aperto;
+});
+```
+
+Quando il menu si apre, `aria-expanded="true"` informa lo screen reader del cambiamento di stato. Quando si chiude, torna a `false`. Senza questo attributo, l'utente non sa se il menu è aperto o chiuso.
+
+## La regola fondamentale di ARIA
+
+<p class="alert alert-danger">Il WAI afferma esplicitamente: **No ARIA is better than Bad ARIA**. Usare ARIA in modo scorretto può disinformare gravemente gli utenti di tecnologie assistive, rendendo la pagina più difficile da usare rispetto a non avere ARIA. Prima di aggiungere ARIA, chiediti se l'HTML semantico corretto non risolve già il problema.</p>
+
+Un buon HTML semantico risolve la maggior parte dei problemi di accessibilità senza bisogno di ARIA:
+
+- Vuoi che un elemento sia cliccabile? Usa `<button>`, non `<div role="button">`.
+- Vuoi indicare la navigazione? Usa `<nav>`, non `<div role="navigation">`.
+- Vuoi indicare il contenuto principale? Usa `<main>`, non `<div role="main">`.
+
+ARIA va usato solo per colmare gap espliciti — tipicamente componenti UI complessi che non hanno un equivalente HTML nativo.
+
+---
+
+# Animazioni e movimento {#animazioni}
+
+Alcuni utenti soffrono di disturbi vestibolari o di sensibilità al movimento. Animazioni rapide, transizioni intense o contenuti che si muovono autonomamente possono causare nausea, disorientamento o in casi estremi crisi epilettiche.
+
+## prefers-reduced-motion
+
+I sistemi operativi moderni espongono una preferenza utente chiamata **reduce motion**. Puoi rispettarla in CSS con la media query `prefers-reduced-motion`:
+
+```css
+/* Animazione standard */
+.card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+}
+
+/* Per chi ha impostato "riduci movimento" nel sistema operativo */
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+  .card:hover {
+    transform: none;
+  }
+}
+```
+
+Un approccio alternativo — e spesso più pratico — è definire le animazioni solo quando l'utente *non* ha richiesto di ridurle:
+
+```css
+/* Le animazioni si applicano SOLO se l'utente non le ha disabilitate */
+@media (prefers-reduced-motion: no-preference) {
+  .card {
+    transition: transform 0.4s ease;
+  }
+}
+```
+
+## Regole pratiche
+
+- **Niente lampeggi oltre 3 Hz.** Contenuti che lampeggiano più di 3 volte al secondo possono scatenare crisi epilettiche in utenti fotosensibili. Questo è un criterio di Livello **A** nelle WCAG — il minimo assoluto.
+- **Niente autoplay senza controlli.** Video, animazioni in loop e caroselli che partono automaticamente devono poter essere fermati dall'utente.
+- **Muovi solo quello che deve muoversi.** Animazioni frivole o decorative prolungate disturbano chi ha disturbi vestibolari. Prediligi animazioni brevi e funzionali.
+- **Non usare il movimento come unico mezzo informativo.** Se un'animazione comunica un'informazione (es. un'icona che pulsa per indicare una notifica), affianca un segnale testuale.
+
+---
+
+# Verifica dell'accessibilità {#verifica}
+
+Scrivere codice accessibile non significa solo conoscere le regole — significa verificare che il risultato funzioni davvero. Gli strumenti automatici sono un punto di partenza, non un punto di arrivo.
+
+## Strumenti automatici
+
+Gli strumenti automatici analizzano il codice e segnalano problemi verificabili meccanicamente. Riescono a rilevare circa il **30–40% dei problemi WCAG** — quelli più evidenti e strutturali.
+
+| Strumento | Tipo | Note |
+|-----------|------|-------|
+| [WAVE](http://wave.webaim.org/) | Web app + estensione browser | Ottima visualizzazione in-page dei problemi |
+| [axe DevTools](https://www.deque.com/axe/devtools/) | Estensione browser | Si integra nei DevTools, zero falsi positivi |
+| [Lighthouse](https://developer.chrome.com/docs/lighthouse/) | Integrato in Chrome DevTools | Audit completo incluso accessibility score |
+| [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) | Web app | Specifico per il contrasto cromatico |
+
+## Test manuali
+
+I test manuali sono insostituibili perché coprono i problemi che nessuno strumento automatico può rilevare: la qualità degli alt-text, la logicità dell'ordine del focus, la chiarezza dei messaggi di errore, la coerenza dell'esperienza complessiva.
+
+**Test da tastiera:**
+
+1. Rimuovi il mouse dal tavolo.
+2. Naviga l'intera pagina con `Tab` e `Shift + Tab`.
+3. Verifica che il focus sia visibile in ogni momento.
+4. Verifica che l'ordine di navigazione sia logico.
+5. Attiva ogni elemento interattivo con `Enter` o `Spazio`.
+6. Se ci sono menu o componenti complessi, verifica che i tasti freccia funzionino correttamente.
+
+**Test con screen reader:**
+
+1. Attiva VoiceOver (Mac: `Cmd + F5`) o Narrator (Windows: `Win + Ctrl + Enter`).
+2. Naviga la pagina senza guardare lo schermo.
+3. Ascolta come vengono annunciati heading, link, immagini e form.
+4. Verifica che i messaggi di errore vengano comunicati.
+5. Prova a completare il percorso principale della pagina (es. compilare e inviare un form).
+
+**Test del contrasto:**
+
+1. Apri il [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/).
+2. Inserisci il colore del testo e il colore dello sfondo per ogni combinazione usata nel sito.
+3. Verifica che il rapporto sia ≥ 4,5:1 per testo normale e ≥ 3:1 per testo grande.
+
+<p class="alert alert-info">Gli strumenti automatici rilevano circa il 30–40% dei problemi WCAG. I test manuali — e in particolare i test con utenti reali che usano tecnologie assistive — sono insostituibili per una valutazione completa.</p>
+
+---
+
+# 🛠️ Progetto — Audit e correzione di accessibilità {#progetto}
+
+> **Durata stimata:** 2 ore  
+> **Lavoro:** individuale o in coppie  
+> **Consegna:** file HTML corretto + relazione di audit
+
+## Descrizione
+
+Riceverai una pagina HTML volutamente mal progettata dal punto di vista dell'accessibilità. Il tuo compito è diviso in due fasi:
+
+1. **Audit** — identificare e documentare tutti i problemi presenti.
+2. **Correzione** — modificare HTML e CSS per risolvere i problemi trovati.
+
+---
+
+## Pagina di partenza
+
+Salva il seguente codice in un file chiamato `pagina-inaccessibile.html` e aprilo nel browser:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Blog di Tecnologia</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      color: #aaaaaa;
+    }
+    .nav {
+      background: #333;
+      padding: 10px;
+    }
+    .nav a {
+      color: #555555;
+      text-decoration: none;
+      margin-right: 15px;
+    }
+    .big-title {
+      font-size: 2em;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+    .subtitle {
+      font-size: 1.3em;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+    .error-msg {
+      color: red;
+      border: 1px solid red;
+      padding: 5px;
+    }
+    .success-msg {
+      color: green;
+      border: 1px solid green;
+      padding: 5px;
+    }
+    input, textarea {
+      display: block;
+      margin: 5px 0 15px;
+      width: 300px;
+    }
+    :focus {
+      outline: none;
+    }
+    .btn {
+      background: #0055ff;
+      color: white;
+      padding: 10px 20px;
+      cursor: pointer;
+      display: inline-block;
+    }
+    table {
+      width: 100%;
+    }
+    table td {
+      padding: 10px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGAZIONE -->
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="articoli.html">Qui</a>
+    <a href="contatti.html">Clicca qui</a>
+  </div>
+
+  <!-- INTESTAZIONE CON TABELLA USATA COME LAYOUT -->
+  <table>
+    <tr>
+      <td><img src="logo.png"></td>
+      <td><div class="big-title">Blog di Tecnologia</div></td>
+    </tr>
+  </table>
+
+  <!-- CONTENUTO PRINCIPALE -->
+  <div class="big-title">Ultimi articoli</div>
+
+  <div class="subtitle">Intelligenza Artificiale nel 2024</div>
+  <p>L'intelligenza artificiale sta trasformando ogni settore produttivo...</p>
+  <a href="articolo1.html">Leggi di più</a>
+
+  <div class="subtitle">Sicurezza informatica</div>
+  <p>Le minacce informatiche sono in costante aumento nel panorama digitale...</p>
+  <a href="articolo2.html">Leggi di più</a>
+
+  <!-- IMMAGINE SENZA ALT E SENZA DESCRIZIONE -->
+  <div>
+    <img src="grafico-crescita.png">
+  </div>
+
+  <!-- VIDEO IN AUTOPLAY SENZA CONTROLLI NÉ SOTTOTITOLI -->
+  <video src="demo.mp4" autoplay loop>
+    Il tuo browser non supporta i video.
+  </video>
+
+  <!-- FORM DI CONTATTO INACCESSIBILE -->
+  <div class="big-title">Contattaci</div>
+
+  <div class="error-msg">I campi con * sono obbligatori</div>
+
+  <div>Nome *</div>
+  <input type="text" placeholder="Il tuo nome">
+
+  <div>Email *</div>
+  <input type="email" placeholder="La tua email">
+
+  <div>Messaggio</div>
+  <textarea placeholder="Scrivi qui il tuo messaggio..."></textarea>
+
+  <br>
+
+  <div class="btn" onclick="inviaForm()">Invia messaggio</div>
+
+  <div class="error-msg" id="erroreForm" style="display:none;">
+    Compila tutti i campi obbligatori.
+  </div>
+  <div class="success-msg" id="successoForm" style="display:none;">
+    Messaggio inviato!
+  </div>
+
+  <!-- FOOTER -->
+  <div style="margin-top: 40px; font-size: 0.8em;">
+    &copy; 2024 Blog di Tecnologia. Tutti i diritti riservati.
+    <span style="color: red;">&#9733;</span> Sito preferito dagli utenti
+  </div>
+
+  <script>
+    function inviaForm() {
+      document.getElementById('erroreForm').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
+```
+
+---
+
+## Fase 1 — Audit {#audit}
+
+> **Durata stimata: 45 minuti**
+
+### Strumenti da usare, in ordine
+
+1. **Ispezione manuale del codice** — leggi il markup e identifica i problemi strutturali e semantici.
+2. **WAVE** — carica la pagina su [wave.webaim.org](http://wave.webaim.org/) (o usa l'estensione browser) e analizza gli errori e gli avvisi.
+3. **WebAIM Contrast Checker** — verifica ogni coppia di colori testo/sfondo presente nel CSS.
+4. **Navigazione da tastiera** — apri la pagina nel browser e naviga solo con `Tab`, `Shift+Tab`, `Enter`, `Spazio`. Annota tutto quello che non funziona.
+5. **Screen reader** — attiva VoiceOver (`Cmd+F5`) o Narrator (`Win+Ctrl+Enter`) e ascolta come viene letta la pagina. Prova a compilare il form.
+
+### Scheda di audit da compilare
+
+Per ogni problema trovato, compila una riga di questa tabella nella relazione:
+
+| # | Elemento / sezione | Problema riscontrato | Principio WCAG | Livello | Gravità |
+|---|-------------------|---------------------|----------------|---------|---------|
+| 1 | | | | A / AA | alta / media / bassa |
+| 2 | | | | | |
+| … | | | | | |
+
+### Checklist minima
+
+Verifica almeno i seguenti punti. Per ognuno, indica se il problema è presente, assente, o parzialmente presente:
+
+- [ ] Gli elementi heading sono usati in modo gerarchico e semantico (non sostituiti da classi CSS)
+- [ ] La pagina usa elementi di sezione semantici (`<nav>`, `<header>`, `<main>`, `<footer>`)
+- [ ] Nessuna `<table>` viene usata per il layout
+- [ ] Tutte le immagini informative hanno un `alt` descrittivo
+- [ ] Le immagini decorative hanno `alt=""` o `aria-hidden="true"`
+- [ ] I grafici o immagini complesse hanno una descrizione lunga nel testo
+- [ ] Il contrasto testo/sfondo rispetta i requisiti WCAG AA (≥ 4,5:1 per testo normale)
+- [ ] Il colore non è l'unico mezzo per trasmettere informazioni
+- [ ] Tutti gli input del form hanno una `<label>` associata tramite `for`/`id`
+- [ ] I pulsanti sono implementati con `<button>`, non con `<div>` o `<span>`
+- [ ] I link hanno testi descrittivi e autoesplicativi anche fuori contesto
+- [ ] Il focus da tastiera è visibile su tutti gli elementi interattivi
+- [ ] I messaggi di errore sono associati agli input e non comunicati solo con il colore
+- [ ] Il video ha l'attributo `controls` e sottotitoli con `<track>`
+- [ ] Il video non parte in automatico senza che l'utente possa fermarlo
+
+<p class="alert alert-info">Alcuni problemi emergono solo usando gli strumenti: la navigazione da tastiera e lo screen reader rivelano spesso problemi che l'ispezione del codice non mostra. Non saltare questi passaggi.</p>
+
+---
+
+## Fase 2 — Correzione {#correzione}
+
+> **Durata stimata: 60 minuti**
+
+Crea una copia del file chiamata `pagina-accessibile.html` e correggi tutti i problemi identificati nell'audit. Di seguito la lista degli interventi attesi.
+
+**Struttura e semantica:**
+
+- Sostituire il `<div class="nav">` con `<nav>`.
+- Eliminare la `<table>` usata per il layout dell'intestazione e sostituirla con un `<header>` e CSS Flexbox.
+- Sostituire le classi `.big-title` e `.subtitle` con i veri heading `<h1>`, `<h2>`, `<h3>` in gerarchia corretta. Aggiungere un `<main>` attorno al contenuto principale e un `<footer>` in fondo.
+- Sostituire il `<div class="btn">` con `<button type="button">`.
+
+**Link:**
+
+- Rendere i testi di tutti i link descrittivi e autoesplicativi fuori contesto (niente "qui", "clicca qui", "leggi di più").
+
+**Immagini:**
+
+- Aggiungere un `alt` descrittivo all'immagine del grafico.
+- Aggiungere `alt="Logo Blog di Tecnologia"` (o `alt=""` se puramente decorativo) all'immagine del logo.
+- Aggiungere una descrizione lunga del grafico nel testo della pagina, usando `<figure>` e `<figcaption>` o un paragrafo vicino all'immagine.
+
+**Contrasto:**
+
+- Correggere `color: #aaaaaa` sul `body` (su sfondo `#f0f0f0` il rapporto è 2,3:1 — insufficiente). Scegli un colore che rispetti il rapporto 4,5:1.
+- Correggere `color: #555555` sui link della nav (su sfondo `#333333` il rapporto è 1,6:1 — insufficiente).
+
+**Focus:**
+
+- Rimuovere `outline: none` dal selettore `:focus` e sostituirlo con uno stile di focus visibile usando `:focus-visible`.
+
+**Form:**
+
+- Sostituire i `<div>` usati come label con veri elementi `<label for="...">`.
+- Aggiungere `id` corrispondenti a tutti gli input.
+- Aggiungere `aria-required="true"` agli input obbligatori.
+- Collegare il messaggio di errore all'input tramite `aria-describedby`.
+- Aggiungere `aria-invalid="true"` agli input in errore (gestito via JavaScript).
+- Aggiungere `role="alert"` al div del messaggio di errore dinamico.
+- Correggere il messaggio iniziale sui campi obbligatori: non comunicarlo solo con il colore rosso.
+
+**Video:**
+
+- Aggiungere `controls` e rimuovere `autoplay loop`, oppure aggiungere un pulsante per fermare il video accessibile da tastiera.
+- Aggiungere un elemento `<track kind="captions">` con il file dei sottotitoli (puoi usare un file `.vtt` vuoto o con testo di esempio).
+
+**Bonus:**
+
+- Aggiungere uno skip link visibile solo quando focalizzato, che punta a `#main-content`.
+- Aggiungere una media query `prefers-reduced-motion: reduce` per disabilitare eventuali transizioni.
+
+---
+
+## Consegna
+
+Consegna una cartella compressa con questa struttura:
+
+```
+cognome-accessibilita/
+├── pagina-inaccessibile.html   ← originale, non modificata
+├── pagina-accessibile.html     ← versione corretta
+└── relazione.pdf               ← o .txt / .md
+```
+
+La **relazione** deve contenere:
+
+1. **Tabella di audit** — tutti i problemi trovati con le colonne indicate.
+2. **Descrizione delle correzioni** — per ogni problema, cosa hai fatto e perché.
+3. **Riflessione finale** (minimo 10 righe) — cosa ti ha sorpreso di più? Quali problemi erano più difficili da trovare? Hai trovato problemi non presenti nella checklist?
+
+---
+
+## Criteri di valutazione
+
+| Criterio | Peso | Descrizione |
+|----------|------|-------------|
+| Completezza dell'audit | 30% | Numero e qualità dei problemi identificati; correttezza dei principi WCAG citati |
+| Correttezza delle correzioni HTML | 40% | Uso appropriato di elementi semantici, label, attributi ARIA |
+| Correttezza delle correzioni CSS | 15% | Contrasto sufficiente, focus visibile, stile coerente |
+| Relazione e riflessione | 15% | Chiarezza della documentazione; profondità della riflessione |
+
+<p class="alert alert-success">**Bonus (fino a 2 punti):** verifica la pagina corretta con WAVE o axe DevTools, includi uno screenshot dei risultati nella relazione e commenta quali problemi rimangono e perché.</p>
+
+---
+
+## Risorse
+
+- [WAVE Accessibility Evaluation Service](http://wave.webaim.org/)
+- [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
+- [axe DevTools](https://www.deque.com/axe/devtools/) — estensione browser
+- [MDN Web Docs — Accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility)
+- [WCAG 2.1 Quick Reference](https://www.w3.org/WAI/WCAG21/quickref/)
+- [The A11Y Project — Checklist](https://www.a11yproject.com/checklist/)
+- [WebAIM — Introduction to Web Accessibility](https://webaim.org/intro/)
