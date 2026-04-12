@@ -11,6 +11,7 @@ rmd_files:
   ## environment setup and fundamentals
   - setup.Rmd
   - client-side.Rmd
+  - accessibility.Rmd
 
   ## HTML & CSS
   - html-fundamentals.Rmd

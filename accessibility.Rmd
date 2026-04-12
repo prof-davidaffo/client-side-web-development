@@ -1,13 +1,64 @@
-<!-- TODO: controllare https://w3c.github.io/using-aria/ per ulteriori dettagli da includere? -->
+# Accessibilita' dei siti web {#web-accessibility}
 
-# Standard e Accessibilita'
+I web standards fanno piu' che stabilire la sintassi corretta del web code. Rendere un sito accessibile significa progettare e implementare pagine che possano essere usate da tutte le persone, incluse quelle che navigano con tecnologie assistive come screen reader, tastiera o altri strumenti alternativi.
 
+In pratica, parlare di accessibilita' web significa concentrarsi su un principio semplice: il contenuto di un sito non deve dipendere soltanto da come appare sullo schermo. Deve essere comprensibile, navigabile e utilizzabile anche quando viene fruito in modi diversi.
 
+## Perche' l'accessibilita' conta
 
-### HTML Semantico {-}
-Un passo fondamentale per assicurarti che le tue pagine web siano accessibili e' fare in modo che l'uso degli elementi HTML sia _semantico_. Gli elementi HTML dovrebbero essere usati per descrivere il significato o la forma del contenuto, _non_ per dare a quel contenuto un aspetto visivo!
+Considera il seguente utente ipotetico:
 
-Per esempio, un elemento `<h1>` e' usato per indicare un heading di primo livello, come il titolo della pagina. Ma di default, i browser danno agli elementi `<h1>` un aspetto visivo diverso rispetto al contenuto non marcato (di solito rendendolo piu' grande e in grassetto). E' possibile ottenere un effetto visivo simile usando solo CSS:
+> Tracy e' una studentessa universitaria di 19 anni ed e' nata cieca. Durante le superiori ha fatto bene come poteva affidandosi a audiolibri e al supporto di tutor, quindi non si e' mai davvero preoccupata di imparare il Braille. E' interessata alla letteratura inglese ed e' molto appassionata di short stories; il suo sogno e' diventare autrice di audiobook.
+Tracy usa Internet per condividere i suoi scritti e per connettersi con altri autori tramite social network. Possiede un laptop e usa uno screen reader chiamato [JAWS](http://www.freedomscientific.com/Products/Blindness/JAWS): un programma che legge ad alta voce lo schermo con una voce artificiale.
+<cite><small>(Adattato da [qui](http://scidok.sulb.uni-saarland.de/volltexte/2007/1098/pdf/personas_access.pdf))</small></i>
+
+Una delle limitazioni piu' spesso trascurate sull'usabilita' di un sito e' se puo' essere usato da persone con qualche forma di disabilita'. Esistono diverse forme di disabilita' o impairment che possono influire sull'accesso a una web page, tra cui:
+
+- _Vision Impairments_: circa il 2% della popolazione e' cieca, quindi usa mezzi alternativi per leggere le web page. La presbiopia e altri problemi di vista sono molto comuni, richiedendo testo piu' grande e piu' chiaro. Inoltre, circa il 4,5% della popolazione e' daltonica.
+- _Motor Impairments_: l'artrite si presenta in circa l'1% della popolazione e puo' limitare la facilita' d'uso di mouse, tastiera o touchscreen. Altri impairment come tremori, patologie dei motoneuroni e paralisi possono impattare ulteriormente l'accesso.
+- _Cognitive Impairments_: autismo, dislessia e barriere linguistiche possono escludere persone dall'uso del tuo sito.
+
+Se non rendi il tuo sito accessibile, stai escludendo una parte rilevante degli utenti, riducendo la disponibilita' e l'uso del sito. Supportare utenti con disabilita' non e' solo la cosa moralmente giusta da fare, e' anche un requisito sempre piu' importante dal punto di vista professionale e legale. In molti contesti, "accessibility" ha significato legalmente conformita' alle [Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/WAI/intro/wcag) del W3C.
+
+Infine, progettare il tuo sito pensando all'accessibilita' non lo rende solo piu' usabile per chi ha disabilita' - lo rende piu' usabile per _tutti_. Questo e' il principio dietro il [**Universal Design**](https://en.wikipedia.org/wiki/Universal_design): progettare per essere usabili da tutte le persone, indipendentemente dalle loro capacita', beneficia non solo chi ha limitazioni, ma tutti.
+
+Il universal design si applica anche ai siti web:
+
+- Se supporti persone che non possono vedere, allora potresti supportare anche persone che non possono vedere _in quel momento_, ad esempio per un forte riflesso sullo schermo.
+- Se supporti persone con motor impairment, allora potresti supportare anche persone che cercano di usare il sito senza mouse, ad esempio da un laptop su un autobus che sobbalza.
+- Se supporti persone con cognitive impairments, allora potresti supportare anche persone che sono temporaneamente impaired, ad esempio per stanchezza, stress o privazione di sonno.
+
+Se assicuri che la tua web page sia ben strutturata e navigabile da screen reader, assicuri anche che sia navigabile da _altre_ macchine, come gli indicizzatori dei motori di ricerca o browser non convenzionali.
+
+<p class="alert alert-info">Oltre alle capacita' individuali, le persone dipendono anche da una grande quantita' di **infrastruttura** esistente per assicurarsi di avere connessione Internet e che le loro request possano raggiungere il tuo web server. La mancanza di questo accesso e' spesso legata a disuguaglianze economiche o sociali, formando quello che si chiama [**digital divide**](https://en.wikipedia.org/wiki/Digital_divide). Nello sviluppo client-side, questo puo' includere ad esempio considerazioni come la quantita' di dati serviti, la dimensione delle immagini e la semplicita' dell'interfaccia.</p>
+
+## Screen reader e WCAG
+
+In questo testo, discuteremo principalmente come supportare l'accessibilita' per utenti con impairment visivi come quelli che usano screen reader. Uno [**screen reader**](https://en.wikipedia.org/wiki/Screen_reader) e' un software che sintetizza e "legge" il contenuto dello schermo ad alta voce tramite gli speaker, cosi' gli utenti possono navigare e controllare il computer senza dover vedere lo schermo. Gli screen reader sono spesso combinati con _keyboard controls_, cosi' gli utenti usano solo la tastiera per controllare il computer e non il mouse.
+
+Esistono diversi software di screen reader:
+
+- I Mac hanno [VoiceOver](https://help.apple.com/voiceover/info/guide) integrato nel sistema operativo.
+- Windows ha un screen reader integrato chiamato [Microsoft Narrator](https://support.microsoft.com/en-us/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1). I screen reader piu' popolari restano applicazioni piu' consolidate come [JAWS](http://www.freedomscientific.com/Products/Blindness/JAWS) e [NDVA](https://www.nvaccess.org/).
+
+<p class="alert alert-success">Dovresti provare questo software. Segui i link sopra per capire come attivare lo screen reader sul tuo computer, poi prova a navigare Internet _senza guardare lo schermo_. Questo ti dara' la sensazione di come sia usare un computer da ciechi.</p>
+
+Gli screen reader sono semplicemente software che interpretano l'HTML di un sito per permettere all'utente di ascoltare e navigare il contenuto: sono fondamentalmente _web browser non visuali_. Quindi supportare gli screen reader significa implementare il tuo sito in modo che funzioni con questo browser. Puoi farlo assicurandoti che il tuo sito segua i web standards e in particolare che sia conforme alle [**Web Content Accessibility Guidelines (WCAG)**](https://www.w3.org/WAI/intro/wcag).
+
+Le linee guida WCAG sono guidate da 4 principi principali:
+
+1. **Perceivable**: le informazioni e i componenti dell'interfaccia utente devono essere presentabili in modi che gli utenti possano percepire.
+2. **Operable**: i componenti dell'interfaccia utente e la navigazione devono essere operabili.
+3. **Understandable**: le informazioni e il funzionamento delle interfacce utente devono essere comprensibili.
+4. **Robust**: il contenuto deve essere abbastanza robusto da poter essere interpretato in modo affidabile da una varieta' di user agent, incluse le tecnologie assistive.
+
+In modo piu' concreto, le web page accessibili sono quelle che possono essere navigate dagli screen reader, hanno contenuto che puo' essere percepito anche senza presentazione visiva e permettono all'utente di completare le azioni principali senza ostacoli inutili.
+
+## HTML semantico
+
+Un passo fondamentale per assicurarti che le tue pagine web siano accessibili e' fare in modo che l'uso degli elementi HTML sia _semantico_. Gli elementi HTML dovrebbero essere usati per descrivere il significato o la forma del contenuto, _non_ per dare a quel contenuto un aspetto visivo.
+
+Per esempio, un elemento `<h1>` e' usato per indicare un heading di primo livello, come il titolo della pagina. Ma di default i browser danno agli elementi `<h1>` un aspetto visivo diverso rispetto al contenuto non marcato. E' possibile ottenere un effetto visivo simile usando solo CSS:
 
 <div class="row">
 <div class="column col2">
@@ -32,65 +83,43 @@ Per esempio, un elemento `<h1>` e' usato per indicare un heading di primo livell
 
 ![Un heading reale e un heading finto](img/accessibility/headings.png)
 
-Il tuo HTML dovrebbe essere **sempre** semantico! Un lettore di schermo ignora (per lo piu') il CSS, quindi se qualcosa dovrebbe essere un heading di primo livello, devi marcarlo come tale per farlo capire al lettore di schermo. Allo stesso modo, dovresti usare gli elementi **solo** quando sono semanticamente appropriati&mdash;non usare un elemento `<h3>` solo perche' vuoi il testo piu' grande se non e' davvero un terzo livello di heading (usa invece il CSS per lo styling).
+Il tuo HTML dovrebbe essere **sempre** semantico. Un lettore di schermo ignora per lo piu' il CSS, quindi se qualcosa dovrebbe essere un heading di primo livello, devi marcarlo come tale. Allo stesso modo, dovresti usare gli elementi **solo** quando sono semanticamente appropriati: non usare un elemento `<h3>` solo perche' vuoi il testo piu' grande se non e' davvero un terzo livello di heading.
 
-<p class="alert alert-warning">HTML e' solo per la semantica. CSS e' per l'aspetto.</p>
+<p class="alert alert-warning">HTML e' per la semantica. CSS e' per l'aspetto.</p>
 
-Questo e' lo stesso motivo per cui non dovresti mai usare il tag `<i>` per rendere il testo _corsivo_. Il tag `<i>` non ha un significato semantico utile (significa solo "corsivo" o "diverso"); invece, dovresti usare un tag semantico piu' significativo. Di solito questo significa `<em>`, dato che il testo in corsivo e' normalmente _enfatizzato_.
+Questo e' lo stesso motivo per cui non dovresti mai usare il tag `<i>` solo per rendere il testo _corsivo_. Il tag `<i>` non ha un significato semantico utile; invece dovresti usare un tag semantico piu' significativo. Di solito questo significa `<em>`, dato che il testo in corsivo e' normalmente _enfatizzato_.
 
-In effetti, HTML 5 include molti [elementi semantici](https://www.w3schools.com/tags/ref_byfunc.asp) che possono essere usati per indicare testo "formattato" con un significato particolare, inclusi:
-[`<abbr>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/abbr),
-[`<address>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/address),
-<!-- [`<code>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/code), -->
-[`<cite>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/cite),
-[`<del>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/del),
-[`<dfn>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dfn),
-[`<mark>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/mark),
-e
-[`<time>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time).
-Assicurati di controllare la documentazione per ognuno di questi elementi per capire quando devono essere usati (e quali attributi aggiuntivi potrebbero supportare).
+In effetti, HTML 5 include molti [elementi semantici](https://www.w3schools.com/tags/ref_byfunc.asp) che possono essere usati per indicare testo "formattato" con un significato particolare, inclusi [`<abbr>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/abbr), [`<address>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/address), [`<cite>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/cite), [`<del>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/del), [`<dfn>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dfn), [`<mark>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/mark) e [`<time>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time).
 
-<p class="alert alert-warning">Non usare mai il tag [`<table>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table) per strutturare documenti e posizionare contenuti. Il tag `<table>` dovrebbe essere usato **solo** per contenuti che sono semanticamente una tabella (ad es. una tabella di dati). Se vuoi impaginare contenuti in una griglia, usa un sistema CSS come Flexbox (vedi [Capitolo 7](#flexbox)).</p>
+<p class="alert alert-warning">Non usare mai il tag [`<table>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table) per strutturare documenti e posizionare contenuti. Il tag `<table>` dovrebbe essere usato **solo** per contenuti che sono semanticamente una tabella. Se vuoi impaginare contenuti in una griglia, usa il CSS.</p>
 
+Per esempi piu' dettagliati sull'uso semantico dei singoli elementi HTML, vedi anche [HTML Semantico](#semantic-html).
 
-### ARIA {-}
+## Struttura della pagina e navigazione
 
+Poiche' i lettori di schermo non possono cogliere il contenuto di una pagina web "a colpo d'occhio", le pagine accessibili devono essere strutturate esplicitamente in modo che il contenuto sia facilmente navigabile.
 
+Il modo piu' importante per fornire questa struttura e' l'uso consapevole degli elementi **heading** (`<h1>`, `<h2>`, ecc.). I lettori di schermo generano automaticamente un "indice" basato su questi heading, permettendo agli utenti di muoversi facilmente tra grandi quantita' di contenuto. Per assicurare che gli heading siano utili, devono essere **significativi** e **gerarchici**: non dovrebbero saltare livelli.
 
+HTML 5 ha introdotto elementi aggiuntivi che possono essere usati per organizzare il contenuto delle pagine web rendendo la struttura piu' esplicita. Questi elementi di sezione non producono effetti visivi di per se', ma forniscono una strutturazione semantica al contenuto web. Puoi pensarli come `<div>` specializzati.
 
-### Struttura della pagina (Navigabile) {-}
-Poiche' i lettori di schermo non possono cogliere il contenuto di una pagina web "a colpo d'occhio", le pagine accessibili devono essere strutturate esplicitamente in modo che il contenuto sia facilmente navigabile&mdash;ad es. per permettere all'utente di "scrollare" rapidamente a un particolare post del blog.
-
-Il modo piu' importante per fornire questa struttura e' l'uso consapevole degli elementi **heading** (`<h1>`, `<h2>`, ecc.). I lettori di schermo generano automaticamente un "indice" basato su questi heading, permettendo agli utenti di muoversi facilmente tra grandi quantita' di contenuto. Per assicurare che gli heading siano utili, devono essere **significativi** (davvero segnare i titoli delle sezioni) e **gerarchici** (non saltano livelli: ogni `<h3>` ha un `<h2>` sopra). Il primo requisito e' solo buon uso dell'HTML che farai comunque; il secondo puo' richiedere un po' di attenzione.
-
-Gli elementi heading `<h#>` fanno parte della specifica HTML originale e quindi sono supportati da _tutti_ i sistemi di lettori di schermo. Tuttavia, HTML 5 ha introdotto elementi aggiuntivi che possono essere usati per organizzare il contenuto delle pagine web rendendo la struttura piu' esplicita. Questi sono spesso chiamati [elementi semantici](https://www.w3schools.com/html/html5_semantic_elements.asp) o "elementi di sezione". Sono tutti elementi **a livello di blocco** che non producono effetti visivi di per se', ma forniscono una strutturazione semantica al contenuto web. Puoi pensarli come `<div>` specializzati.
-
-<p class="alert alert-info">Una metafora e' che annidare elementi HTML in un `<div>` e' come mettere quel contenuto in una busta per "raggrupparlo" (ad es. per lo styling). In quel caso, un elemento semantico come `<header>` e' solo una busta con un colore unico che rende piu' facile trovarla nell'archivio.</p>
-
-- [`<header>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/header) rappresenta la parte "header" o introduttiva della pagina, come il titolo o una immagine banner. Puo' includere anche elementi comuni della pagina come navigazione o barre di ricerca. Questo corrisponde al landmark role `role="banner"`; non serve includere quel role se usi questo elemento.
-
-    Nota che un `<header>` e' diverso da un head**ing** (`<h1>`), che e' diverso dal `<head>`! Un _head**ing**_ e' un elemento (ad es. `<h1>`) che include un titolo o sottotitolo. Un _<code>&lt;head**er**&gt;</code>_ e' un elemento di "raggruppamento" che puo' contenere piu' elementi e di solito ha informazioni di banner/logo. Il `<head>` e' un elemento che NON fa parte del `<body>` (quindi non e' mostrato nella pagina web) e contiene _metadati_ sulla pagina.
-
-- [`<nav>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav) contiene link di navigazione, di solito per muoversi nel sito (pensa a una barra di navigazione). Non tutti i link devono stare in un `<nav>`; questo serve per le "sezioni" della pagina web che sono puramente di navigazione. Questo elemento corrisponde al landmark role `role="navigation"`.
-- [`<main>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav) rappresenta il contenuto "main" del documento. Di solito viene _dopo_ l'`<header>` (ma non dentro&mdash;infatti, `<main>` _non puo'_ essere un discendente di `<header>`). Nota che una pagina web puo' avere un solo elemento `<main>`. Questo elemento corrisponde al landmark role `role="main"`.
-- [`<footer>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/footer) rappresenta il "footer" della pagina, di solito contenente informazioni sulla pagina. Questo elemento corrisponde al landmark role `role="contentinfo"`.
-- [`<section>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section) rappresenta una sezione autonoma di contenuto (ad es. con un subheading come `<h3>`). Un `<section>` puo' anche contenere i propri elementi `<header>`, `<footer>` e `<nav>` relativi a quella sezione.
-
-    Allo stesso modo, un elemento [`<article>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article) rappresenta contenuto autonomo, ma contenuto che puo' essere pubblicato indipendentemente (come un articolo di news o un post del blog). Nota che un `<section>` puo' raggruppare piu' elementi `<article>` (come un elenco di post), e un `<article>` puo' contenere piu' di un `<section>`. Pensa a come e' strutturato un giornale (con una "Sezione Sport" che contiene articoli, che a loro volta possono avere sezioni diverse).
+- [`<header>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/header) rappresenta la parte introduttiva della pagina, come il titolo o una immagine banner. Puo' includere anche elementi comuni della pagina come navigazione o barre di ricerca.
+- [`<nav>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav) contiene link di navigazione, di solito per muoversi nel sito.
+- [`<main>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main) rappresenta il contenuto principale del documento. Una pagina web dovrebbe avere un solo elemento `<main>`.
+- [`<footer>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/footer) rappresenta il footer della pagina, di solito contenente informazioni sulla pagina.
+- [`<section>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section) rappresenta una sezione autonoma di contenuto.
+- [`<article>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article) rappresenta contenuto autonomo che puo' essere pubblicato indipendentemente, come un articolo di news o un post del blog.
 
 Un body di una pagina web tipica puo' quindi avere una struttura simile a:
 
 ```html
-<!-- A partire dal tag body -->
 <body>
-    <!-- Header della pagina -->
     <header>
         <nav>
             link di navigazione qui
         </nav>
     </header>
 
-    <!-- Contenuto principale della pagina -->
     <main>
         <section>
             contenuto...
@@ -100,15 +129,72 @@ Un body di una pagina web tipica puo' quindi avere una struttura simile a:
         </section>
     </main>
 
-    <!-- Footer della pagina -->
     <footer>
         informazioni sul copyright qui
     </footer>
 </body>
 ```
 
-In generale, usare questi elementi semantici di sezione aiuta a organizzare il contenuto per i lettori di schermo (cosi' gli utenti con disabilita' visive possono navigare facilmente la pagina), oltre a rendere il contenuto piu' chiaramente strutturato.
+In generale, usare questi elementi semantici di sezione aiuta a organizzare il contenuto per i lettori di schermo, oltre a renderlo piu' chiaramente strutturato. Anche i link devono essere chiari e autoesplicativi: uno screen reader puo' elencare rapidamente tutti gli hyperlink di una pagina, quindi testi come "clicca qui" o "here" sono poco utili fuori contesto.
 
-<!-- info su tabIndex e skiplinks qui?? -->
+## Informazioni visive e contenuti percepibili
 
-### Informazioni visive (Percepibile) {-}
+Un altro principio fondamentale dell'accessibilita' e' che le informazioni non possono essere solo visive. Se un contenuto o un controllo si capisce soltanto guardandolo, una parte degli utenti non potra' usarlo correttamente.
+
+Per rendere le immagini accessibili, includi sempre un attributo `alt` che fornisce testo alternativo quando l'immagine non puo' essere mostrata:
+
+```html
+<img src="picture.png" alt="descrizione dell'immagine">
+```
+
+L'"alt-text" non dovrebbe includere formule introduttive come "immagine di", perche' gli screen reader indicano gia' che si tratta di un'immagine. Per immagini piu' complesse, come grafici o infografiche, e' opportuno affiancare una descrizione piu' lunga nel testo della pagina o tramite un collegamento dedicato.
+
+Per contenuti puramente decorativi, invece, e' meglio evitare rumore inutile per chi usa tecnologie assistive. In questi casi puoi usare `aria-hidden="true"` per segnalare che quell'elemento non aggiunge informazione utile alla lettura della pagina.
+
+In generale, il modo migliore per rendere accessibili le informazioni puramente visive e' _non avere informazioni puramente visive_ in primo luogo. Il contenuto di una pagina dovrebbe sempre supportare utenti e browser non visuali: includi descrizioni testuali, caption per immagini e video, etichette testuali invece di sole icone e, quando il colore e' usato per evidenziare qualcosa, affianca sempre anche un altro segnale testuale o strutturale.
+
+## Form e interattivita' accessibili
+
+I form sono una parte centrale dell'interazione nei siti web e richiedono particolare attenzione per essere accessibili.
+
+Uno dei passaggi piu' importanti per rendere un form accessibile e' fornire label per tutti i form control e input. Le label si specificano usando l'elemento `<label>` associato all'`id` dell'input:
+
+```html
+<label for="emailInput">Email</label>
+<input id="emailInput" name="email" type="email">
+```
+
+Tutti i form control dovrebbero essere etichettati per supportare screen reader e altre tecnologie assistive. Anche quando scegli di nascondere visivamente una label, la label dovrebbe comunque essere presente nel markup.
+
+Mantenere i form brevi e semplici e' buono sia per l'accessibilita' sia per l'usabilita' complessiva. Per form piu' complessi, puoi raggruppare input correlati dentro un elemento `<fieldset>` e usare `<legend>` per dare un titolo al gruppo.
+
+Anche i componenti interattivi personalizzati devono poter essere usati da tastiera e devono comunicare correttamente il proprio stato. Se un elemento agisce come un bottone, e' meglio usare davvero un `<button>` invece di simulare quel comportamento con un generico `<div>`.
+
+## ARIA
+
+Il WAI ha creato uno standard aggiuntivo per supportare l'accessibilita' chiamato [**ARIA**](https://w3c.github.io/aria/), cioe' **A**ccessible **R**ich **I**nternet **A**pplications. ARIA definisce attributi HTML aggiuntivi che possono essere inclusi negli elementi per fornire supporto extra agli screen reader e ad altre tecnologie assistive.
+
+ARIA puo' aiutare in diversi casi:
+
+- con `aria-label` puoi fornire un'etichetta alternativa per elementi che non hanno testo leggibile ma che devono essere compresi da uno screen reader;
+- con `aria-describedby` puoi associare a un elemento una descrizione piu' lunga presente altrove nella pagina;
+- con `role` puoi esplicitare lo scopo semantico di un elemento quando non e' gia' espresso dall'HTML nativo;
+- con attributi di stato come `aria-expanded` puoi comunicare se un menu, un accordion o un pannello sono aperti o chiusi.
+
+Tuttavia, molti attributi ARIA diventano ridondanti quando usi HTML semantico corretto. Se un elemento deve essere cliccato per causare un'azione, usa un `<button>` invece di un elemento generico con `role="button"`. Se una sezione e' navigazione, usa `<nav>`. Se il contenuto principale e' il cuore della pagina, usa `<main>`.
+
+<p class="alert alert-danger">Il WAI afferma chiaramente che <em>No ARIA is better than Bad ARIA</em>. Usare male ARIA puo' disinformare gravemente gli utenti di tecnologie assistive, rendendo piu' difficile capire la pagina. Un buon uso di HTML semantico aiuta molto l'accessibilita'; ARIA dovrebbe essere usato solo per colmare gap espliciti dove l'HTML semantico non basta.</p>
+
+## Verifica e approfondimenti
+
+Scrivere un sito accessibile non significa solo "sapere le regole", ma anche verificare che il risultato funzioni davvero.
+
+- Valida il markup con i validator del W3C.
+- Prova a navigare la pagina solo da tastiera.
+- Attiva uno screen reader e verifica il flusso di lettura reale.
+- Usa strumenti di controllo come [WAVE Accessibility Evaluation Service](http://wave.webaim.org/).
+
+Per approfondire gli aspetti implementativi, vedi anche:
+
+- [HTML Semantico](#semantic-html) per elementi, media, tabelle e form accessibili.
+- [Code Style Guide](#code-style-guide) per pratiche di markup e CSS che evitano soluzioni poco accessibili.

@@ -174,6 +174,8 @@ Questo testo non include dettagli specifici necessari a garantire che le web pag
 
 
 ## Accessibilita' web
+Per una trattazione organica e dedicata all'accessibilita' dei siti, vedi anche il capitolo [Accessibilita' dei siti web](#web-accessibility), che raccoglie principi, motivazioni e tecniche operative in un'unica sezione.
+
 I web standards fanno piu' che stabilire la sintassi corretta del web code. Considera il seguente utente ipotetico:
 
 > Tracy e' una studentessa universitaria di 19 anni ed e' nata cieca. Durante le superiori ha fatto bene come poteva affidandosi a audiolibri e al supporto di tutor, quindi non si e' mai davvero preoccupata di imparare il Braille. E' interessata alla letteratura inglese ed e' molto appassionata di short stories; il suo sogno e' diventare autrice di audiobook.
