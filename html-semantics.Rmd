@@ -1,6 +1,6 @@
 # HTML Semantico {#semantic-html}
 
-Come spiegato nei capitoli precedenti, lo scopo del markup HTML e' **annotare semanticamente** il testo. Quando diciamo che HTML e' "semantico", intendiamo che descrive il significato, la struttura o lo scopo del testo — _non_ l'aspetto visivo del contenuto. Usare HTML solo per la semantica aiuta a seguire il principio di _separation of concerns_ (rendendo il codice piu' flessibile e facile da modificare e mantenere). Inoltre rende le web page piu' **accessibili**, perche' possono essere comprese e navigate meglio da tecnologie assistive come gli screen reader.
+Come spiegato nei capitoli precedenti, lo scopo del markup HTML e' **annotare semanticamente** il testo. Quando diciamo che HTML e' "semantico", intendiamo che descrive il significato, la struttura o lo scopo del testo — _non_ l'aspetto visivo del contenuto. Usare HTML solo per la semantica aiuta a seguire il principio di _separation of concerns_ (rendendo il codice piu' flessibile e facile da modificare e mantenere).
 
 Un HTML non semantico e' un HTML che non descrive davvero il significato di un contenuto, ma che puo' avere un aspetto visivo che suggerisce quel significato attraverso l'uso di CSS. Per esempio, un elemento `<h1>` indica un top-level heading, come il titolo della pagina. Ma di default i browser danno a `<h1>` un aspetto diverso dal contenuto non marcato (di solito piu' grande e in grassetto). E' possibile ottenere un effetto visivo simile solo con CSS:
 
@@ -27,13 +27,13 @@ Un HTML non semantico e' un HTML che non descrive davvero il significato di un c
 
 ![A real heading (top) and a fake heading (bottom).](img/accessibility/headings.png)
 
-In questo esempio, la seconda riga _sembra_ un heading (e' grande e bold) — ma l'HTML dice che non lo e', e' solo un paragraph. Questo puo' creare problemi e confusione, soprattutto per screen reader e altri sistemi che non sono interessati all'aspetto visivo. Un utente cieco che visita questa pagina non saprebbe che il secondo paragraph dovrebbe fare da heading, perche' questo non e' indicato nell'HTML (solo dall'aspetto renderizzato).
+In questo esempio, la seconda riga _sembra_ un heading (e' grande e bold) — ma l'HTML dice che non lo e', e' solo un paragraph. Questo puo' creare problemi di interpretazione, perche' il significato non e' espresso dal markup.
 
-Per questo motivo e' vitale che il markup HTML sia usato solo per fornire un'annotazione semantica accurata. Non usare un tipo di elemento non semantico (come un heading) per il suo aspetto di default, e usa elementi che forniscono informazioni aggiuntive sullo scopo del contenuto quando possibile, cosi' che screen reader e altre tecnologie assistive lo comprendano.
+Per questo motivo e' vitale che il markup HTML sia usato solo per fornire un'annotazione semantica accurata. Non usare un tipo di elemento non semantico (come un heading) per il suo aspetto di default, e usa elementi che forniscono informazioni aggiuntive sullo scopo del contenuto quando possibile.
 
 <p class="alert alert-info">Molte regole nella [code style guide](#code-style-guide) riguardano l'uso semantico di HTML.</p>
 
-Questo capitolo discute alcuni elementi HTML specifici, fornendo dettagli su come includerli nei documenti e come usarli in modo semantico per garantire che la pagina supporti al meglio le tecnologie assistive. Discute anche lo standard **ARIA** per aggiungere significati semantici aggiuntivi agli elementi e supportare ulteriormente l'accessibilita'.
+Questo capitolo discute alcuni elementi HTML specifici, fornendo dettagli su come includerli nei documenti e come usarli in modo semantico. Per le considerazioni di accessibilita' e ARIA, vedi il capitolo [Accessibilita' dei siti web](#web-accessibility).
 
 ## Elementi HTML specifici
 Ci sono oltre 100 elementi HTML diversi, ognuno con il proprio significato semantico. Questo capitolo non e' una reference completa (per quello usa [la reference MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)), ma fornisce indicazioni specifiche e requisiti per usarli in modo efficace e semantico.
@@ -91,34 +91,14 @@ Ricaricare una pagina significa che tutti gli asset (immagini, ecc.) possono ess
 Gli hyperlink servono per la _navigazione_ — attivare un hyperlink dirige l'utente verso un URL diverso. L'elemento `<a>` _non_ va usato per elementi cliccabili che non fanno navigazione (come inviare un form o espandere un dropdown). I clic non di navigazione vanno annotati come **`<button>`**. Allo stesso modo, non usare un `<button>` per la navigazione — quello deve essere un `<a>`! Se vuoi che un hyperlink sembri un button, puoi usare CSS per stilizzarlo in quel modo — [Bootstrap](#utility-classes) supporta facilmente questo comportamento, per esempio.
 
 
-#### Hyperlink accessibili {-}
-Tecnologie assistive come gli screen reader possono saltare rapidamente tra gli hyperlink di una pagina — questo aiuta gli utenti a capire quali elementi di navigazione sono disponibili e a spostarsi velocemente senza ascoltare contenuti extra. Per questo, per rendere un hyperlink accessibile, _il testo del link deve indicare dove porta_ anche quando e' fuori contesto:
-
-```html
-<!-- Do this -->
-<a href="/assignments">see assignments here</a>
-
-<!-- Don't do this -->
-see assignments <a href="/assignments">here</a>
-```
-
-Nel secondo esempio, il link consiste solo nella parola "here", quindi quando uno screen reader elenca tutti gli elementi di navigazione, elenchera' solo la parola "here" senza contesto per capire dove porta. Questo aiuta anche utenti vedenti, che capiscono piu' facilmente i link nel contesto.
-
-Allo stesso modo, assicurati che testi di link "simili" che puntano a posti diversi siano resi univoci:
-
-```html
-<!-- Don't do this; screenreaders can't distinguish between the links -->
-For the first <a href="exercise-01.html">exercise</a> you'll practice HTML, for
-the second <a href="exercise-02.html">exercise</a> you'll practice CSS.
-```
-
-Usare attribute ARIA come `aria-label` (vedi sotto) puo' aiutare a garantire che il testo dei link sia accessibile, fornendo contesto specifico per lo screen reader se fai fatica a rendere la prosa auto-contenuta.
+#### Testi di link {-}
+Le linee guida per testi di link chiari e univoci sono trattate nel capitolo [Accessibilita' dei siti web](#web-accessibility).
 
 
 ### Elementi testuali inline {-}
-//storicamente le singole parole di una frase possono essere formattate tipograficamente per essere marcate come distinte rendendole in bold o italico. Ma queste sono solo proprieta' di _aspetto_/formattazione — non forniscono alcuna informazione semantica sul testo. Quindi anche se HTML include elementi `<b>` per il bold e `<i>` per l'italic, questi sono artefatti storici e _non dovrebbero essere usati_. Per esempio, `<b>` fa renderizzare il testo in bold, ma non fa nulla per indicare _perche'_ quel testo e' in bold. Un utente vedente puo' inferire qualcosa dal contesto, ma uno screen reader non puo' fare queste inferenze da elementi non semantici.
+//storicamente le singole parole di una frase possono essere formattate tipograficamente per essere marcate come distinte rendendole in bold o italico. Ma queste sono solo proprieta' di _aspetto_/formattazione — non forniscono alcuna informazione semantica sul testo. Quindi anche se HTML include elementi `<b>` per il bold e `<i>` per l'italic, questi sono artefatti storici e _non dovrebbero essere usati_. Per esempio, `<b>` fa renderizzare il testo in bold, ma non fa nulla per indicare _perche'_ quel testo e' in bold.
 
-HTML include invece una vasta serie di [inline textual elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element#inline_text_semantics) che puoi usare per separare semanticamente il testo. Di default possono renderizzare il testo in bold o italico (e questo puo' essere personalizzato con CSS), fornendo anche supporto semantico aggiuntivo per rendere il testo piu' accessibile alle tecnologie assistive.
+HTML include invece una vasta serie di [inline textual elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element#inline_text_semantics) che puoi usare per separare semanticamente il testo. Di default possono renderizzare il testo in bold o italico (e questo puo' essere personalizzato con CSS), fornendo anche supporto semantico aggiuntivo per chiarire il significato del testo.
 
 Alcuni degli elementi inline semantici piu' utili o interessanti sono descritti qui sotto, con link alla documentazione MDN per maggiori informazioni:
 
@@ -149,23 +129,23 @@ Importante: anche se molti di questi elementi forniscono uno styling di default,
 <!-- line breaks -- leave in the style guide? -->
 
 ### Immagini e media {-}
-Anche se le web page sono principalmente un medium testuale, spesso contengono molte informazioni puramente _visive_. Questo include media come immagini o video, ma anche etichette visive come icone (ad es. un bottone "search" con una lente o un [hamburger button](https://en.wikipedia.org/wiki/Hamburger_button)). Queste feature possono essere create con diversi elementi, ma servono attenzioni specifiche per garantire che siano accessibili e possano essere _percepite_ dagli screen reader.
+Anche se le web page sono principalmente un medium testuale, spesso contengono molte informazioni puramente _visive_. Questo include media come immagini o video, ma anche etichette visive come icone (ad es. un bottone "search" con una lente o un [hamburger button](https://en.wikipedia.org/wiki/Hamburger_button)). Queste feature possono essere create con diversi elementi, ma servono attenzioni specifiche per mantenere chiaro il significato del contenuto.
 
 La forma piu' comune di media visivo sul web sono le immagini, create con l'elemento **`<img>`**. Come notato in [HTML Fundamentals](#html-fundamentals), l'attribute `src` specifica il path del file immagine da mostrare. Di solito e' un _relative path_ verso un file servito dallo stesso domain (ad es. `src="imgs/my_pic.jpg"`). Ma e' anche possibile usare un path assoluto verso un'immagine su un altro domain (ad es. `src="http://pictures.com/cat_pic.jpg"`) — questo e' chiamato [hotlinking](https://simple.wikipedia.org/wiki/Hotlinking) di un'immagine. L'hotlinking e' spesso considerato una bad practice — non solo costringe un altro domain a fornire bandwidth per i contenuti del tuo sito, ma significa anche che il file servito potrebbe cambiare senza che tu lo sappia, causando contenuti indesiderati sul tuo sito.
 
-Per rendere le immagini accessibili, includi sempre un attribute `alt` che fornisce testo **alt**ernativo quando l'immagine non puo' essere mostrata (ad es. con screen reader, ma anche se l'immagine non si carica):
+Includi sempre un attribute `alt` che fornisce testo **alt**ernativo quando l'immagine non puo' essere mostrata (ad es. se l'immagine non si carica):
 
 ```html
 <img src="puppy_picture.jpg" alt="a cute puppy">
 ```
 
-Questo elemento verra' letto dagli screen reader come "a cute puppy, image". Nota che l'"alt-text" _non_ dovrebbe includere testo introduttivo come "a picture of", perche' gli screen reader indicano gia' che si tratta di un'immagine. La WAI (Web Accessibility Initiative) fornisce ulteriori [indicazioni su come scrivere un buon alt text](https://www.w3.org/WAI/tutorials/images/tips/).
+L'attributo `alt` fornisce testo alternativo quando l'immagine non e' disponibile o non viene caricata. Evita testi introduttivi ridondanti come "a picture of".
 
-Per immagini piu' complesse (come chart o infographic), puoi anche fornire un _hyperlink_ a una descrizione piu' lunga usando l'attribute `longdesc`. Questo attribute prende un valore URI (relativo o assoluto; quello che metteresti in `href`) che punta a dove si trova la descrizione. Gli screen reader offriranno all'utente l'opzione di navigare verso questa descrizione lunga.
+Per immagini piu' complesse (come chart o infographic), puoi anche fornire un _hyperlink_ a una descrizione piu' lunga usando l'attribute `longdesc`. Questo attribute prende un valore URI (relativo o assoluto; quello che metteresti in `href`) che punta a dove si trova la descrizione.
 
 ```html
 <img src="accessibility_infographic.png"
-     alt="an infographic showing how to make web pages accessible"
+     alt="an infographic showing layout patterns"
      longdesc="infographic_text.html"> <!-- link to other page with text description -->
 ```
 
@@ -196,17 +176,15 @@ E' anche possibile incorporare elementi video o audio in una web page usando ris
 
 Sia `<video>` che `<audio>` supportano molti attribute aggiuntivi (come `controls` nell'esempio sopra) usati per personalizzare presentazione, controlli e playback. Una discussione completa di tutte le opzioni e' fuori dallo scopo di questo testo; vedi la documentazione per dettagli ed esempi.
 
-Nota che i controlli video in particolare [potrebbero non essere completamente accessibili agli screen reader](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/Multimedia) a seconda del browser. Come minimo, dovresti [aggiungere caption e subtitle](https://developer.mozilla.org/en-US/docs/Web/Media/Audio_and_video_delivery/Adding_captions_and_subtitles_to_HTML5_video) ai video (fornendo elementi `<track>`) per assicurarti che tutti gli utenti possano accedervi.
-
 Infine, l'elemento [**`<canvas>`**](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) e' usato per generare immagini grafiche (2d o 3d) via JavaScript. E' la base HTML per molte interazioni grafiche o web game — anche se gran parte del lavoro avviene in JavaScript e altri linguaggi.
 
 
 ### Headings {-}
-Gli elementi [**Heading**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements) (`<h1>`, `<h2>`, fino a `<h6>`) sono usati per dare struttura a una web page, permettendo a utenti e screen reader di navigare facilmente tra le sezioni del contenuto. Gli elementi `<h#>` sono block-level e di default sono piu' grandi e bold del testo normale (con heading piu' piccoli resi piu' piccoli). Tuttavia, _non_ usare gli heading solo per cambiare la formattazione del testo — usa CSS per quello.
+Gli elementi [**Heading**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements) (`<h1>`, `<h2>`, fino a `<h6>`) sono usati per dare struttura a una web page, permettendo di navigare facilmente tra le sezioni del contenuto. Gli elementi `<h#>` sono block-level e di default sono piu' grandi e bold del testo normale (con heading piu' piccoli resi piu' piccoli). Tuttavia, _non_ usare gli heading solo per cambiare la formattazione del testo — usa CSS per quello.
 
 <p class="alert alert-warning">Fai attenzione a non confondere un head**ing** (`<h1>`) con l'elemento `<head>` (per i meta-data) o con l'elemento di sectioning `<header>` descritto sotto.</p>
 
-Gli heading sono usati da browser e screen reader per costruire automaticamente un "table of contents" della pagina. Quindi dovresti considerarli come titoli di capitoli o sezioni — come etichetteresti le parti di un "outline" della pagina. Ogni web page dovrebbe avere un solo `<h1>`, che rappresenta il "titolo" della pagina. Sezioni diverse possono essere marcate con `<h2>`, mentre le sottosezioni con `<h3>` e cosi' via. Una pagina puo' avere molti `<h2>` o `<h3>`, ognuno che segna un "livello" nell'outline. Per esempio, le sezioni di questo capitolo sono annotate con heading `<h#>`:
+Gli heading sono usati dai browser per costruire automaticamente un "table of contents" della pagina. Quindi dovresti considerarli come titoli di capitoli o sezioni — come etichetteresti le parti di un "outline" della pagina. Ogni web page dovrebbe avere un solo `<h1>`, che rappresenta il "titolo" della pagina. Sezioni diverse possono essere marcate con `<h2>`, mentre le sottosezioni con `<h3>` e cosi' via. Una pagina puo' avere molti `<h2>` o `<h3>`, ognuno che segna un "livello" nell'outline. Per esempio, le sezioni di questo capitolo sono annotate con heading `<h#>`:
 
 ```html
 <h1>Semantic HTML</h1>
@@ -215,12 +193,12 @@ Gli heading sono usati da browser e screen reader per costruire automaticamente 
 <h3>Inline Textual Elements</h3>
 <h3>Images and Media</h3>
 ...
-<h2>ARIA for Accessibility</h2>
+<h2>Sectioning Elements</h2>
 ```
 
 E' possibile che una pagina non abbia sezioni o sottosezioni, quindi potrebbe non avere `<h2>` o elementi piu' piccoli.
 
-Poiche' screen reader e altri sistemi usano i heading per generare un "table of contents" (che aiuta a navigare velocemente la pagina), e' importante che i heading siano sia significativi che gerarchici. Devono essere _significativi_ nel descrivere il contenuto della sezione che introducono, come un titolo di sezione. Devono essere _gerarchici_ nel non saltare livelli: ogni `<h3>` deve avere un `<h2>` sopra — non puoi avere una sottosezione senza una sezione.
+Poiche' i browser e altri strumenti usano i heading per generare un "table of contents" (che aiuta a navigare velocemente la pagina), e' importante che i heading siano sia significativi che gerarchici. Devono essere _significativi_ nel descrivere il contenuto della sezione che introducono, come un titolo di sezione. Devono essere _gerarchici_ nel non saltare livelli: ogni `<h3>` deve avere un `<h2>` sopra — non puoi avere una sottosezione senza una sezione.
 
 Vedi anche [Sectioning Elements](#sectioning-elements) per maggiori dettagli sulla organizzazione strutturale del contenuto.
 
@@ -281,7 +259,7 @@ Un `<span>` puo' essere usato per applicare styling a contenuto inline, ad esemp
 
 
 ### Sectioning elements {-}
-Gli elementi heading `<h#>` fanno parte della specifica HTML originale, quindi sono supportati da _tutti_ i sistemi di screen reader. Tuttavia, HTML 5 ha introdotto elementi aggiuntivi per organizzare il contenuto della pagina e rendere la struttura piu' esplicita. Questi sono spesso chiamati [**sectioning elements**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element#content_sectioning). Sono tutti elementi _block-level_ che non hanno impatto sull'aspetto, ma forniscono informazioni semantiche sull'organizzazione del loro contenuto. Puoi vederli come `<div>` specializzati — raggruppano elementi, ma danno anche un significato al motivo del raggruppamento.
+Gli elementi heading `<h#>` fanno parte della specifica HTML originale. Tuttavia, HTML 5 ha introdotto elementi aggiuntivi per organizzare il contenuto della pagina e rendere la struttura piu' esplicita. Questi sono spesso chiamati [**sectioning elements**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element#content_sectioning). Sono tutti elementi _block-level_ che non hanno impatto sull'aspetto, ma forniscono informazioni semantiche sull'organizzazione del loro contenuto. Puoi vederli come `<div>` specializzati — raggruppano elementi, ma danno anche un significato al motivo del raggruppamento.
 
 Sono spesso chiamati [semantic elements](https://www.w3schools.com/html/html5_semantic_elements.asp) o "sectioning elements". Sono tutti elementi **block-level** che non producono effetti visivi da soli, ma forniscono struttura semantica al contenuto web. Puoi pensarli come `<div>` specializzati.
 
@@ -308,7 +286,7 @@ Gli elementi di sectioning comuni sono descritti qui sotto.
 
   Nota che, come nell'esempio sopra, gli elementi `<section>` possono contenere altri `<section>` ("subsection"), ciascuno con un heading appropriato.
 
-  Ricorda che `<section>` non ha aspetto di default, anche se puoi usare CSS per personalizzarlo. Sono usati per fornire semantica organizzativa utilizzabile da screen reader e altri sistemi.
+  Ricorda che `<section>` non ha aspetto di default, anche se puoi usare CSS per personalizzarlo. Sono usati per fornire semantica organizzativa del contenuto.
 
   `<section>` e' il piu' generico dei sectioning elements; gli altri possono essere visti come tipi di section piu' specifici.
 
@@ -316,7 +294,7 @@ Gli elementi di sectioning comuni sono descritti qui sotto.
 
   <div class="alert alert-warning">Fai attenzione a non confondere un `<header>` con un head**ing** (`<h1>`) o con l'elemento `<head>`. Un _<code>&lt;head**er**&gt;</code>_ e' un sectioning element per contenuto introduttivo mostrato nella pagina e puo' contenere piu' child element. Il `<head>` e' un elemento che NON fa parte del `<body>` (quindi non e' mostrato nella pagina) e contiene _metadata_ sulla pagina.</div>
 
-  Una pagina dovrebbe quasi sempre contenere un `<header>` con contenuto introduttivo, come l'`<h1>` e banner image. Questo uso implica il landmark role `role="banner"` (vedi [ARIA for Accessibility](#aria-for-accessibility) sotto). Inoltre, specifici `<section>` possono includere un `<header>` per contenere il contenuto introduttivo di quella sezione.
+  Una pagina dovrebbe quasi sempre contenere un `<header>` con contenuto introduttivo, come l'`<h1>` e banner image. Inoltre, specifici `<section>` possono includere un `<header>` per contenere il contenuto introduttivo di quella sezione.
 
   ```html
   <body>
@@ -335,9 +313,9 @@ Gli elementi di sectioning comuni sono descritti qui sotto.
 
   Anche se e' possibile fornire un `<header>` per ogni sezione (e ogni `<section>` _dovrebbe_ avere un heading), in pratica una `<section>` con poco contenuto introduttivo — come un solo heading — spesso non avra' un `<header>` separato perche' non aggiunge molta informazione sulla struttura della pagina. Puo' essere utile ma non e' obbligatorio.
 
-- Un [**`<footer>`**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/footer) di solito contiene informazioni sull'autore o sulla fonte dei contenuti della pagina, includendo informazioni di copyright. Questo elemento implica il landmark role `role="contentinfo"` (vedi [ARIA for Accessibility](#aria-for-accessibility) sotto).
+- Un [**`<footer>`**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/footer) di solito contiene informazioni sull'autore o sulla fonte dei contenuti della pagina, includendo informazioni di copyright.
 
-  Un `<footer>` contiene comunque contenuto visibile, quindi va dentro il `<body>`! Tipicamente le pagine hanno un solo `<footer>` — e' posizionato in fondo alla pagina come ultimo elemento del `<body>`, ma non sempre (usare questo sectioning element aiuta a navigare la pagina anche se il `<footer>` e' altrove). Il `<footer>` contiene informazioni visibili sulla pagina, come autore e copyright. _Non_ contiene la "conclusione" della pagina (quella sarebbe una normale `<section>`). Le informazioni dell'autore sono spesso dentro un elemento [`<address>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/address), che rappresenta informazioni di contatto.
+  Un `<footer>` contiene comunque contenuto visibile, quindi va dentro il `<body>`! Tipicamente le pagine hanno un solo `<footer>` — e' posizionato in fondo alla pagina come ultimo elemento del `<body>`, ma non sempre (usare questo sectioning element aiuta a chiarire la struttura della pagina anche se il `<footer>` e' altrove). Il `<footer>` contiene informazioni visibili sulla pagina, come autore e copyright. _Non_ contiene la "conclusione" della pagina (quella sarebbe una normale `<section>`). Le informazioni dell'autore sono spesso dentro un elemento [`<address>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/address), che rappresenta informazioni di contatto.
 
   ```html
   <footer>
@@ -348,7 +326,7 @@ Gli elementi di sectioning comuni sono descritti qui sotto.
 
   Anche i singoli `<section>` possono avere il loro `<footer>`, ma non e' comune perche' le sezioni raramente hanno informazioni d'autore diverse dal resto della pagina. E' piu' comune che un elemento `<article>` abbia un proprio `<footer>`.
 
-- L'elemento [**`<main>`**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main) rappresenta il contenuto "principale" o centrale del documento. Una web page puo' avere un solo `<main>`. Questo elemento implica il landmark role `role="main"` (vedi [ARIA for Accessibility](#aria-for-accessibility) sotto).
+- L'elemento [**`<main>`**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main) rappresenta il contenuto "principale" o centrale del documento. Una web page puo' avere un solo `<main>`.
 
   La maggior parte delle pagine ha un `<main>`. Di solito viene _dopo_ il `<header>` (ma non dentro — infatti, `<main>` _non_ puo' essere discendente di `<header>`). L'elemento `<main>` contiene poi i `<section>` della pagina, ed e' seguito dal `<footer>`:
 
@@ -375,11 +353,11 @@ Gli elementi di sectioning comuni sono descritti qui sotto.
   Questa e' una struttura tipica per un documento HTML.
 
 
-- Un [**`<nav>`**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav) rappresenta la parte di una pagina che fornisce link di navigazione, come una navigation bar o un table of contents. Non tutti i link devono stare in un `<nav>`; questo elemento rappresenta una sezione della pagina puramente navigazionale (pensa a un `<section>` specializzato). Questo elemento implica il landmark role `role="navigation"` (vedi [ARIA for Accessibility](#aria-for-accessibility) sotto). Un `<nav>` si trova spesso nel `<header>` (per la nav bar in cima), ma non e' obbligatorio — una pagina puo' avere piu' sezioni `<nav>`.
+- Un [**`<nav>`**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav) rappresenta la parte di una pagina che fornisce link di navigazione, come una navigation bar o un table of contents. Non tutti i link devono stare in un `<nav>`; questo elemento rappresenta una sezione della pagina puramente navigazionale (pensa a un `<section>` specializzato). Un `<nav>` si trova spesso nel `<header>` (per la nav bar in cima), ma non e' obbligatorio — una pagina puo' avere piu' sezioni `<nav>`.
 
 - Un [**`<article>`**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article) e' simile a un `<section>`, ma rappresenta contenuto autonomo che potrebbe essere pubblicato indipendentemente — come un news article o un blog post. Se una sezione probabilmente verrebbe pubblicata come documento a se', allora puo' essere un `<article>`. Nota che un `<section>` puo' raggruppare piu' `<article>` (come un blog roll), e un `<article>` puo' contenere piu' `<section>`. Questo rispecchia come e' strutturato un giornale (ad es. con una "Sports Section" che contiene articoli, che a loro volta possono avere sezioni).
 
-In generale, usare sectioning elements semantici aiuta a strutturare chiaramente il contenuto, oltre a organizzarlo per gli screen reader e renderlo piu' accessibile. Quasi ogni pagina dovrebbe avere `<header>`, `<main>` e `<footer>`; pagine con piu' contenuto saranno divise in `<section>`; e siti con piu' pagine organizzeranno la navigazione con un `<nav>`.
+In generale, usare sectioning elements semantici aiuta a strutturare chiaramente il contenuto. Quasi ogni pagina dovrebbe avere `<header>`, `<main>` e `<footer>`; pagine con piu' contenuto saranno divise in `<section>`; e siti con piu' pagine organizzeranno la navigazione con un `<nav>`.
 
 
 <!-- ### Lists {-}
@@ -426,7 +404,7 @@ Le tabelle sono codificate in HTML con l'elemento `<table>`. Un `<table>` contie
 </div>
 </div>
 
-Un elemento **`<th>`** (**t**able **h**eader) rappresenta una _cella_ che si trova nella riga o colonna di intestazione, e puo' sostituire un `<td>` (e' comunque una cella, ma specializzata). Per esempio, la prima riga di una tabella puo' contenere `<th>` invece di `<td>` perche' quelle celle sono le intestazioni delle colonne. Di default, `<th>` renderizza il contenuto in bold. Un `<th>` si aspetta un attribute `scope` che indica se e' l'header di una `"row"` o di una `"col"` (colonna). Anche se `scope` puo' essere ridondante per tabelle semplici, e' una best practice includerlo per garantire che tecnologie assistive come gli screen reader presentino e navighino la tabella correttamente.
+Un elemento **`<th>`** (**t**able **h**eader) rappresenta una _cella_ che si trova nella riga o colonna di intestazione, e puo' sostituire un `<td>` (e' comunque una cella, ma specializzata). Per esempio, la prima riga di una tabella puo' contenere `<th>` invece di `<td>` perche' quelle celle sono le intestazioni delle colonne. Di default, `<th>` renderizza il contenuto in bold. Un `<th>` si aspetta un attribute `scope` che indica se e' l'header di una `"row"` o di una `"col"` (colonna). Anche se `scope` puo' essere ridondante per tabelle semplici, e' una best practice includerlo per chiarire la struttura della tabella.
 
 ```html
 <table>
@@ -464,7 +442,7 @@ Le tabelle possono essere rese piu' accessibili includendo elementi di _table se
 </table>
 ```
 
-Le celle (`<td>` o `<tr>`) possono estendersi su piu' righe o colonne specificando gli attribute `colspan` e `rowspan`. Se una cella si estende su piu' colonne o righe, allora ometti le celle `<td>` che sta sostituendo. Nota che lo spanning di righe o colonne non e' comune nei dati tabellari (poiche' un dato non dovrebbe estendersi su piu' feature o osservazioni) e puo' rendere difficile per chi usa screen reader capire la struttura dei dati. E' meglio organizzare i dati per non richiedere questo spanning.
+Le celle (`<td>` o `<tr>`) possono estendersi su piu' righe o colonne specificando gli attribute `colspan` e `rowspan`. Se una cella si estende su piu' colonne o righe, allora ometti le celle `<td>` che sta sostituendo. Nota che lo spanning di righe o colonne non e' comune nei dati tabellari (poiche' un dato non dovrebbe estendersi su piu' feature o osservazioni) e puo' rendere piu' difficile capire la struttura dei dati. E' meglio organizzare i dati per non richiedere questo spanning.
 
 <!-- could add example here... -->
 
@@ -540,7 +518,7 @@ Anche se `<input>` e' l'elemento piu' comune per raccogliere input in un `<form>
 Vedi la documentazione per altre opzioni nell'uso di questi elementi. Collettivamente, `<input>`, `<select>` e simili sono chiamati _form control elements_.
 
 
-Come negli esempi sopra, tutti i form control e gli input supportano e si aspettano un attribute `name`. Questo attribute fornisce un identificatore per distinguere l'input dagli altri nel form (il form stesso non sa quale testo descrittivo sia attorno o etichetti gli input). Nota che `name` e' distinto dall'attribute `id` — `name` identifica il _valore inserito dall'utente_ nei dati del form, mentre `id` identifica l'elemento `<input>` stesso (indipendentemente dai dati inseriti). Poiche' gli `id` sono usati con `<label>` per accessibilita', molti `<input>` avranno entrambi gli attribute — possono anche usare lo stesso identificatore, sembrando ridondanti, ma servono a scopi diversi.
+Come negli esempi sopra, tutti i form control e gli input supportano e si aspettano un attribute `name`. Questo attribute fornisce un identificatore per distinguere l'input dagli altri nel form (il form stesso non sa quale testo descrittivo sia attorno o etichetti gli input). Nota che `name` e' distinto dall'attribute `id` — `name` identifica il _valore inserito dall'utente_ nei dati del form, mentre `id` identifica l'elemento `<input>` stesso (indipendentemente dai dati inseriti). Molti `<input>` avranno entrambi gli attribute — possono anche usare lo stesso identificatore, sembrando ridondanti, ma servono a scopi diversi.
 
 Tutti gli input supportano anche un attribute `value`. Questo attribute memorizza il valore inserito o selezionato dall'utente. Puoi usarlo per fornire un valore di default che l'utente puo' sostituire.
 
@@ -569,13 +547,11 @@ Checkbox, radio button e select dropdown usano l'attribute `value` per distingue
 
 Quando il form viene submit, i dati inseriti dall'utente sono codificati usando l'attribute `name` come identificatore o "chiave", e l'attribute `value` come valore. Questo si vede nei query parameter dell'URL target di una request `GET`. Per esempio, senza modifiche dell'utente, gli input `firstname` e `lastname` dell'esempio sopra produrrebbero una lista di query parameter tipo: `?firstname=Joel;lastname=Ross` — le chiavi (prima di `=`) sono i `name`, e i valori (dopo `=`) sono i `value`. Di conseguenza i `name` sono spesso scelti per produrre identificatori di dati facili da consumare per un server.
 
-Oltre a `<input>` e affini, un `<form>` contiene spesso elementi [**`<button>`**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button). In particolare un `<button type="submit">` inviera' il form parent quando cliccato. E' una best practice avere un submit button esplicito (anche per form di ricerca) e non affidarsi solo all'utente che preme "enter" — questo rende il form piu' accessibile.
+Oltre a `<input>` e affini, un `<form>` contiene spesso elementi [**`<button>`**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button). In particolare un `<button type="submit">` inviera' il form parent quando cliccato. E' una best practice avere un submit button esplicito (anche per form di ricerca) e non affidarsi solo all'utente che preme "enter" — questo rende il form piu' chiaro e prevedibile.
 
 
-#### Label e accessibilita' {-}
-Essendo strutture complesse e chiave per l'interazione, i form richiedono particolare cura per essere _accessibili_.
-
-Uno dei passaggi piu' importanti per rendere un form accessibile e' fornire label per tutti i form control e input. Le label si specificano usando l'elemento [**`<label>`**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) (che vedi negli esempi sopra). Il testo dentro `<label>` e' quello che l'utente vede e che descrive l'input (spesso istruzioni su quali dati inserire). Associ un `<label>` a un input specifico usando l'attribute **`for`** del `<label>` — questo attribute prende come valore l'`id` dell'input (l'`id` identifica univocamente un elemento nella pagina):
+#### Label e chiarezza {-}
+Le label si specificano usando l'elemento [**`<label>`**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) (che vedi negli esempi sopra). Il testo dentro `<label>` descrive l'input (spesso istruzioni su quali dati inserire). Associ un `<label>` a un input specifico usando l'attribute **`for`** del `<label>` — questo attribute prende come valore l'`id` dell'input (l'`id` identifica univocamente un elemento nella pagina):
 
 ```html
 <!-- this label is a description for the element with the `nameInput` id -->
@@ -585,10 +561,7 @@ Uno dei passaggi piu' importanti per rendere un form accessibile e' fornire labe
 
 Di default, quando l'utente clicca il testo del `<label>`, il form control associato riceve **focus** (viene selezionato, con il cursore pronto a ricevere input). Questo rende piu' facile selezionare l'input giusto, ed e' particolarmente utile per elementi piccoli come le checkbox, che possono essere difficili da colpire (per via della [Fitts' Law](https://en.wikipedia.org/wiki/Fitts%27s_law)).
 
-
-Tutti i form control dovrebbero essere etichettati per supportare screen reader e altre tecnologie assistive. Se non vuoi testo descrittivo per utenti vedenti (per altri indizi visivi), puoi usare CSS per nascondere visivamente il `<label>`, ma dovrebbe essere sempre presente.
-
-E' anche possibile associare implicitamente un `<label>` e un `<input>` rendendo l'`<input>` un _child element_ del `<label>`. Questo puo' essere utile per contenuti generati dinamicamente quando non puoi specificare un `id` per l'`<input>` (ad es. form in cui l'utente aggiunge text box). Tuttavia, l'associazione esplicita con l'attribute `for` e' meglio supportata dalle tecnologie assistive, quindi va usata quando possibile.
+E' anche possibile associare implicitamente un `<label>` e un `<input>` rendendo l'`<input>` un _child element_ del `<label>`. Questo puo' essere utile per contenuti generati dinamicamente quando non puoi specificare un `id` per l'`<input>` (ad es. form in cui l'utente aggiunge text box). Tuttavia, l'associazione esplicita con l'attribute `for` e' piu' chiara e va usata quando possibile.
 
 ```html
 <!-- implicitly labeling an input, used only when `id` cannot be specified -->
@@ -598,7 +571,7 @@ E' anche possibile associare implicitamente un `<label>` e un `<input>` rendendo
 </label>
 ```
 
-Mantenere i form brevi e semplici (con meno input possibile) e' buono sia per l'accessibilita' sia per l'usabilita' complessiva — in genere gli utenti preferiscono form brevi. Per form piu' complessi, puoi anche raggruppare input mettendoli insieme dentro un elemento [**`<fieldset>`**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset). Questo e' particolarmente utile per i radio button. L'elemento `<legend>` e' usato per dare un "titolo" a un `<fieldset>`.
+Mantenere i form brevi e semplici (con meno input possibile) aiuta l'usabilita' complessiva — in genere gli utenti preferiscono form brevi. Per form piu' complessi, puoi anche raggruppare input mettendoli insieme dentro un elemento [**`<fieldset>`**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset). Questo e' particolarmente utile per i radio button. L'elemento `<legend>` e' usato per dare un "titolo" a un `<fieldset>`.
 
 ```html
 <fieldset>
@@ -614,112 +587,8 @@ Mantenere i form brevi e semplici (con meno input possibile) e' buono sia per l'
 </fieldset>
 ```
 
-Per maggiori indicazioni su form accessibili, vedi il [WAI Forms Tutorial](https://www.w3.org/WAI/tutorials/forms/).
-
-
-## ARIA for Accessibility
-Come notato in [Client-Side-Development]{#web-accessibility}, rendere accessibili le web page implica conformarsi alle [Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/WAI/intro/wcag) del W3C, sviluppate dalla [**Web Accessibility Initiative (WAI)**](https://www.w3.org/WAI/) (parte del W3C). Il WAI ha anche creato uno standard web aggiuntivo per supportare l'accessibilita'. Questo standard si chiama [**A**ccessible **R**ich **I**nternet **A**pplications Suite](https://w3c.github.io/aria/), o **ARIA**. ARIA specifica un _estensione_ a HTML, definendo attribute HTML aggiuntivi che possono essere inclusi negli elementi per fornire supporto extra agli screen reader e ad altre tecnologie assistive. Questi attribute aiutano gli screen reader a navigare una pagina (per chi non puo' semplicemente scrollare visivamente), e forniscono un meccanismo con cui web app "ricche" e interattive (come quelle che creerai con JavaScript) possono comunicare il loro comportamento agli screen reader.
-
-Questa sezione descrive alcuni degli attribute ARIA piu' comuni che puoi usare per assicurare che le web page siano accessibili a tutti. Noterai che molti attribute ARIA sono resi ridondanti dall'uso di HTML semantico — HTML come standard e' evoluto per supportare meglio l'accessibilita' da quando ARIA e' stato creato. Detto questo, ci sono ancora casi in cui HTML non basta, e ARIA deve intervenire.
-
-### ARIA Labeling {-}
-Un passo fondamentale per rendere le web page accessibili e' assicurarsi che siano **perceivable** per gli screen reader. Questo significa che il contenuto non puo' essere _solo_ visivo. L'esempio piu' comune e' includere attribute `alt` per gli elementi `<img>`, che permette a elementi visivi di essere percepiti e compresi dalle tecnologie assistive.
-
-Ma l'attribute `alt` e' supportato solo da `<img>`, anche se altri elementi possono essere usati per informazioni visive (ad es. un `<div>` con un background image, o un `<svg>` con grafica). ARIA permette di fornire "alternate text" per altri elementi usando l'attribute **`aria-label`**, che specifica quale testo deve essere letto _al posto del contenuto normale_.
-
-```html
-<div class="green-rect" aria-label="a giant green rectangle"></div>
-```
-
-Nota che `aria-label` serve solo per elementi puramente visivi (senza testo); non devi mettere `aria-label` su ogni `<div>` o su qualsiasi `<p>`. Se l'elemento contiene testo — anche se annidato tra piu' child — probabilmente non serve un `aria-label`.
-
-Per descrizioni piu' lunghe (piu' frasi), puoi usare **`aria-describedby`** con un riferimento all'`id` di un altro elemento _nella stessa pagina_ che contiene la descrizione testuale. `aria-describedby` prende come valore un riferimento a fragment (simile a un bookmark hyperlink) verso l'elemento contenente la descrizione.
-
-  ```html
-  <div class="green-rect" aria-describedby="#rectDetail"></div>
-  <p id="rectDetail">The above rectangle is giant and green.</p>
-  ```
-
-Il testo descrittivo puo' stare ovunque nella pagina; e' ok che un elemento visivo sia separato dalla descrizione da altri elementi. Come per i bookmark link, nota che il valore `aria-describedby` inizia con il simbolo `#`, ma l'`id` dell'elemento target non lo include. Inoltre, nota che `aria-label` _sostituisce_ il contenuto dell'elemento, mentre `aria-describedby` viene letto _dopo_ il contenuto dell'elemento, perche' fornisce piu' informazioni (confronta con l'attribute simile [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby)).
-
-<p class="alert alert-warning">In generale, il modo migliore per rendere accessibili le informazioni puramente visive e' _non avere informazioni puramente visive_ in primo luogo. Il contenuto di una pagina dovrebbe sempre supportare utenti e browser non visivi: includi descrizioni testuali e caption per le immagini, usa etichette testuali invece di icone per i button, ecc. Questo e' il modo migliore per supportare il universal design.</p>
-
-Mentre `alt` e `aria-label` permettono di rendere percepibili elementi visivi, ci sono immagini (o altri elementi) puramente decorativi: loghi, icone che accompagnano testo nei button, ecc. Puoi rendere questo contenuto piu' accessibile e fare in modo che uno screen reader lo "salti" usando un altro attribute ARIA **`aria-hidden="true"`**. Un elemento con questo attribute appare comunque nella pagina renderizzata, ma viene ignorato dagli screen reader. (Questo attribute e' un'eccezione alla regola generale che gli attribute boolean non prendono valori).
-
-```html
-<!-- a search button with an icon -->
-<!-- the icon img will not be read, but the button text will be -->
-<button>
-  <img src="search_icon.png" aria-hidden="true">
-  Search
-</button>
-```
-
-Nota che elementi nascosti via CSS (ad es. con `display:none`) sono gia' rimossi da cio' che uno screen reader legge, quindi non richiedono l'attribute ARIA aggiuntivo.
-
-### ARIA Roles and Landmarks {-}
-La specifica ARIA definisce un attribute [**`role`**](https://www.w3.org/TR/wai-aria/roles) che dettaglia lo _scopo semantico_ di un elemento per gli screen reader quando quello scopo e' chiaro solo tramite styling visivo.
-
-Per esempio, una pagina puo' avere un `<div>` o un `<svg>` stilizzato per sembrare e comportarsi come un button; l'attribute ARIA aiuta gli screen reader a capire che quell'elemento puo' essere premuto per causare un'azione:
-
-```html
-<div class="btn" role="button">Submit</div>
-```
-
-Dal punto di vista dello screen reader, questo elemento agisce come un `<button>`, anche se e' un elemento diverso per qualche motivo.
-
-Ci sono [molti ARIA role diversi](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles), inclusi role per struttura e per widget interattivi come `dialog`, `switch` o `menu`. Alcuni, come `button` nell'esempio sopra, sono ridondanti con elementi semantici introdotti dopo lo standard ARIA. E' meglio usare elementi che riflettono il loro scopo semantico invece di affidarsi a ARIA role. Se un elemento deve essere cliccato per causare un'azione, usa un `<button>` invece di `role="button"` — poi stilizzalo con CSS come vuoi.
-
-Inoltre, l'attribute ARIA `role` puo' essere usato per indicare [**landmark regions**](https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/). Un landmark role indica posizioni specifiche nel documento e consente a uno screen reader di "saltare" facilmente a quella sezione. Questo aiuta a garantire che la pagina sia **navigable**. I landmark role includono:
-
-- [`banner`](https://w3c.github.io/aria/#banner): contenuto relativo al sito nel suo insieme, piuttosto che alla pagina specifica (nome derivato dal "banner" in cima alla pagina). L'elemento `<header>` implica questo role.
-- [`main`](https://w3c.github.io/aria/#main): il contenuto "main". Utile per far saltare lo screen reader al cuore della pagina, oltre banner e navigazione. L'elemento `<main>` implica questo role.
-- [`contentinfo`](https://w3c.github.io/aria/#contentinfo): sezione con informazioni sulla pagina, come contatti autore e copyright. Di solito sta in fondo. L'elemento `<footer>` implica questo role.
-- [`navigation`](https://w3c.github.io/aria/#navigation): sezione di link per muoversi nella pagina, come una nav bar. Permette agli screen reader di saltare ai "quick links" e muoversi rapidamente. Nota pero' che ascoltare tutti i link puo' richiedere tempo, quindi e' importante permettere di saltare al resto del contenuto (con una tecnica chiamata ["skip link"](https://webaim.org/techniques/skipnav/)). L'elemento `<nav>` implica questo role.
-
-Come detto, questi landmark role sono anche impliciti nei [sectioning elements](#sectioning-elements); non serve includere anche un `role` su questi elementi, ed e' best practice usare gli elementi espliciti invece dei landmark role!
-
-<p class="alert alert-success">Considerare il contenuto in termini di questi role puo' essere un buon trucco di design per organizzare la pagina in modo comprensibile e accessibile per tutti!</p>
-
-
-### ARIA e interattivita' {-}
-ARIA fornisce supporto all'accessibilita' anche per web page _interattive_, dove il contenuto cambia mentre la pagina viene usata, attraverso attribute che notano esplicitamente lo _stato_ della web application.
-
-Per esempio, considera una pagina con un [hamburger menu](https://en.wikipedia.org/wiki/Hamburger_button)) o un dropdown/"slide-out" simile. Le tecnologie assistive devono informare l'utente se il menu e' espanso o se il contenuto scorrevole e' visibile. Questo puo' essere gestito con [ARIA state attributes](https://w3c.github.io/aria/#states_and_properties) come `aria-expanded`:
-
-```html
-<!-- un esempio di menu hamburger con attributi ARIA -->
-<button aria-expanded="false" aria-controls="menuContent" aria-label="Expand Menu">
-  <img src="hamburger-icon" alt="a hamburger menu">
-</button>
-
-<ul id="menuContent" class="collapsed">
-  <li>Link 1</li>
-  <li>Link 2</li>
-  ...
-</ul>
-```
-
-Nell'esempio sopra, l'elemento `<button>` controlla se il `<ul>` e' espanso o no — nell'HTML corrente, il `<ul>` e' collassato (nascosto) tramite una class CSS. Usando JavaScript (vedi [DOM Manipulation](#dom)), cliccare il button puo' cambiare lo styling CSS del `<ul>` per renderlo visibile.
-
-L'attribute ARIA `aria-expanded` e' sull'elemento button per indicare alle tecnologie assistive che questo button (a) e' un controllo interattivo per una parte della pagina, e (b) il suo stato corrente e' "non espanso". Quando il button viene premuto, il JavaScript cambierebbe anche l'attribute `aria-expanded` a `"true"`, indicando ora agli screen reader che il menu e' aperto. L'attribute `aria-controls` fa riferimento all'`id` dell'elemento che il button sta controllando (cosi' lo screen reader sa quale elemento e' stato modificato).
-
-Widget e pattern interattivi diversi possono richiedere altri attribute ARIA per supportare al meglio le tecnologie assistive. Quando guardi esempi di questi widget (ad es. quelli di [Bootstrap](https://getbootstrap.com/)), verifica gli attribute ARIA appropriati e consulta la [documentazione ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) per best practice.
-
-<!--
-//`aria-live` for parts of the page that will fill with content later -->
-
-
-<p class="alert alert-danger">Il WAI afferma chiaramente che [_No ARIA is better than Bad ARIA_](https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/). Usare male ARIA puo' disinformare gravemente gli utenti di tecnologie assistive, rendendo piu' difficile capire la pagina — invece di semantica poco chiara, avresti semantica sbagliata. Un buon uso di HTML semantico aiuta molto l'accessibilita'; ARIA puo' e dovrebbe essere usato solo per colmare gap espliciti dove l'HTML semantico non basta.</p>
+Per maggiori indicazioni sui form, vedi la documentazione MDN.
 
 
 ## Risorse {-}
-La maggior parte dei dettagli su elementi HTML specifici si trova nelle risorse indicate nei capitoli precedenti (ad es. [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML)). Di seguito alcune risorse aggiuntive per scrivere HTML _accessibile_.
-
-<div class="list-condensed">
-- [Teach Access Tutorial](https://teachaccess.github.io/tutorial/) per creare web page accessibili. Fornisce molti esempi e dettagli. Dai un'occhiata alla [code checklist](https://teachaccess.github.io/tutorial/#/12) e alla [design checklist](https://teachaccess.github.io/tutorial/#/19).
-- [UW Accessibility Checklist](http://www.washington.edu/accessibility/checklist/) una lista completa di considerazioni per sviluppare sistemi accessibili creata da UW. Vedi anche la [lista completa di strumenti e risorse](http://www.washington.edu/accessibility/web/tools-and-resources/).
-- [Using ARIA (w3c)](https://w3c.github.io/using-aria/) guida ufficiale all'uso della specifica ARIA
-- [ARIA Resources (MDN)](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA)
-- [WAVE Accessibility Evaluation Service](http://wave.webaim.org/)
-</div>
+La maggior parte dei dettagli su elementi HTML specifici si trova nelle risorse indicate nei capitoli precedenti (ad es. [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML)).

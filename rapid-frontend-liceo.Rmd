@@ -115,7 +115,7 @@ Le componenti di questa struttura hanno ruoli precisi:
 
 ### Elementi semantici principali
 
-Gli elementi di titolazione `h1`–`h6` definiscono una gerarchia: `h1` è il titolo principale della pagina (se ne usa uno solo), `h2` i titoli di sezione, `h3` i sottotitoli. L'ordine deve essere rispettato: saltare livelli — ad esempio passare da `h1` a `h3` — compromette l'accessibilità e il posizionamento nei motori di ricerca.
+Gli elementi di titolazione `h1`–`h6` definiscono una gerarchia: `h1` è il titolo principale della pagina (se ne usa uno solo), `h2` i titoli di sezione, `h3` i sottotitoli. L'ordine deve essere rispettato: saltare livelli — ad esempio passare da `h1` a `h3` — compromette la chiarezza della struttura e il posizionamento nei motori di ricerca.
 
 Gli elementi strutturali principali sono:
 
@@ -128,7 +128,7 @@ Gli elementi strutturali principali sono:
 
 L'elemento generico `div` non ha significato semantico: va usato solo quando nessun elemento semantico risulta appropriato.
 
-L'elemento `a` crea collegamenti ipertestuali. L'attributo `href="#contatti"` punta a un elemento con `id="contatti"` nella stessa pagina; `href="https://..."` punta a una risorsa esterna. L'elemento `img` richiede sempre l'attributo `alt`, che fornisce una descrizione testuale dell'immagine per lettori di schermo e in caso di mancato caricamento.
+L'elemento `a` crea collegamenti ipertestuali. L'attributo `href="#contatti"` punta a un elemento con `id="contatti"` nella stessa pagina; `href="https://..."` punta a una risorsa esterna. L'elemento `img` richiede sempre l'attributo `alt`, che fornisce una descrizione testuale dell'immagine in caso di mancato caricamento.
 
 ### Attributi `id` e `class`
 
@@ -430,7 +430,7 @@ Un form consente all'utente di inserire dati e inviarli. In questo progetto il f
 </section>
 ```
 
-L'elemento `label` descrive il campo corrispondente. L'attributo `for` deve coincidere con l'`id` del campo a cui si riferisce: questa corrispondenza consente al browser di spostare il focus al campo quando si clicca sull'etichetta, migliorando l'accessibilità.
+L'elemento `label` descrive il campo corrispondente. L'attributo `for` deve coincidere con l'`id` del campo a cui si riferisce: questa corrispondenza consente al browser di spostare il focus al campo quando si clicca sull'etichetta, migliorando l'usabilità.
 
 L'elemento `input` con `type="email"` attiva la validazione automatica del formato nel browser prima dell'invio. L'elemento `textarea` produce un'area di testo a più righe; l'attributo `rows` ne controlla l'altezza iniziale.
 

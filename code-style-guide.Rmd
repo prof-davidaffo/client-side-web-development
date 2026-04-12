@@ -136,7 +136,7 @@ Questo capitolo fornisce diverse linee guida specifiche seguendo le opinioni deg
 
 ### Elementi specifici {-}
 
-- Evita elementi di formattazione non semantici (ad es. `<i>`, `<b>`), perche' non sono accessibili agli screen reader.
+- Evita elementi di formattazione non semantici (ad es. `<i>`, `<b>`), perche' non aggiungono significato al contenuto.
 
 - Evita di usare l'elemento `<br>` per gli a capo. Se stai spezzando una riga di testo, di solito e' perche' stai definendo un nuovo _paragraph_, quindi dovresti usare un altro `<p>`. Se non c'e' un significato semantico per il line break, non inserirlo! Se devi regolare la spaziatura tra paragraph (ad es. vuoi una spaziatura singola invece che doppia), usa il CSS per regolare margin o padding.
 

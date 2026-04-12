@@ -124,7 +124,7 @@ Gli attributi consentiti e i loro nomi sono determinati dalla specifica HTML -- 
 
 - Ogni elemento HTML puo' includere un attribute **`class`**, usato per specificare quali _CSS class_ si applicano. Vedi [CSS Fundamentals](#css-fundamentals) per maggiori dettagli.
 
-- L'attribute `lang` indica la lingua in cui e' scritto il contenuto dell'elemento. I programmi che leggono questo file possono usarlo per indicizzare correttamente il contenuto, pronunciarlo correttamente tramite uno screen reader o persino tradurlo in un'altra lingua:
+- L'attribute `lang` indica la lingua in cui e' scritto il contenuto dell'elemento. I programmi che leggono questo file possono usarlo per indicizzare correttamente il contenuto o tradurlo in un'altra lingua:
 
     ```html
     <p lang="sp">No me gusta</p>
@@ -148,13 +148,13 @@ Nota che alcuni attribute si scrivono senza un valore esplicito, nel senso che i
 Alcuni elementi HTML non richiedono un closing tag perche' _non possono_ contenere contenuto. Questi elementi sono spesso usati per inserire media in una web page, come l'elemento `<img>`. Con un `<img>` puoi specificare il path dell'immagine nell'attribute `src`, ma l'elemento immagine non puo' contenere testo o altri contenuti. Poiche' non puo' contenere contenuto, ometti del tutto l'end tag:
 
 ```html
-<img src="picture.png" alt="description of image for screen readers and indexers">
+<img src="picture.png" alt="description of image">
 ```
 
 Versioni piu' vecchie di HTML (e linguaggi correlati come [XML](https://en.wikipedia.org/wiki/XML)) richiedevano di includere una barra `/` subito prima del simbolo di chiusura `>`. Questa barra di "chiusura" indicava che l'elemento era completo e non si aspettava altro contenuto — un cosiddetto **self-closing tag**:
 
 ```html
-<img src="picture.png" alt="description of image for screen readers and indexers" />
+<img src="picture.png" alt="description of image" />
 ```
 
 In HTML5 non e' piu' richiesto, quindi sentiti libero di omettere la barra (anche se alcuni puristi, o chi lavora con XML, la includono ancora). Dovrai includere la barra di chiusura `/` sugli empty element quando scrivi HTML per app [React](#react).
@@ -279,7 +279,7 @@ Ci sono alcune parti ed elementi in questo template:
       <title>My Page Title</title>
       ```
 
-      I browser mostrano il page title nella tab in alto nella finestra del browser, e lo usano come nome predefinito del bookmark se lo salvi. Ma il title viene _anche_ usato da search indexer e screen reader per ciechi, perche' spesso fornisce un forte segnale sull'argomento della pagina. Quindi il titolo dovrebbe essere informativo e riflettere il contenuto.
+I browser mostrano il page title nella tab in alto nella finestra del browser, e lo usano come nome predefinito del bookmark se lo salvi. Ma il title viene _anche_ usato da search indexer e altri agenti automatici, perche' spesso fornisce un forte segnale sull'argomento della pagina. Quindi il titolo dovrebbe essere informativo e riflettere il contenuto.
 
   - Un tag **`<meta>`** che specifica la character encoding della pagina:
 

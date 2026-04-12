@@ -189,7 +189,7 @@ Questo elemento ha `p-3` (3 spacer di **p**adding su tutti i lati), `pt-1` (1 sp
 
 Bootstrap e' pieno di utility class, sia per styling generico (es. [borders](https://getbootstrap.com/docs/5.2/utilities/borders/) o [position](https://getbootstrap.com/docs/5.2/utilities/position/)), sia per contenuti specifici (es. [lists](https://getbootstrap.com/docs/5.2/content/typography/#lists), [tables](https://getbootstrap.com/docs/5.2/content/tables/), [forms](https://getbootstrap.com/docs/5.2/forms/overview/)). Offre anche class per gestire i [flexbox](https://getbootstrap.com/docs/5.2/utilities/flex/). Esplora la documentazione per dettagli.
 
-<p class="alert alert-info">Bootstrap include anche linee guida e class che [supportano i lettori di schermo](https://getbootstrap.com/docs/5.2/getting-started/accessibility/). Per esempio, `.visually-hidden` serve per rendere un elemento percepibile solo ai lettori di schermo.</p>
+<p class="alert alert-info">Le considerazioni di accessibilita' in Bootstrap (es. `.visually-hidden` e attributi ARIA) sono raccolte nel capitolo [Accessibilita' dei siti web](#web-accessibility).</p>
 
 <p class="alert alert-warning">Le utility class **non** significano che non dovrai mai scrivere CSS! Anche se Bootstrap copre molti casi comuni, quasi sempre dovrai aggiungere personalizzazioni per ottenere l'aspetto desiderato. Al minimo, regole CSS che si applicano a molti elementi possono rendere lo styling piu' leggibile e consistente.</p>
 
@@ -342,7 +342,7 @@ al valore dell'attributo `id` sull'elemento che avvia il markup della modal -->
 
 (Provalo su [CodePen](https://codepen.io/drstearns/pen/dzKqNB)).
 
-C'e' molto da capire in questo codice, incluse class di stile e attribute ARIA (`role`, `aria-labelledby`, `aria-hidden`). La parte importante e' che l'elemento `.modal` e' _nascosto_ (`display:none`) al caricamento. Quando clicchi il `<button>`, la libreria JS vede `data-toggle="modal"` e determina che deve aprire la modal. Usa `data-target` per capire _quale_ modal aprire (quella con l'`id`), e la mostra. L'attribute `data-dismiss` nel button dentro la modal permette di chiuderla.
+C'e' molto da capire in questo codice, incluse class di stile e attributi ARIA (spiegati nel capitolo [Accessibilita' dei siti web](#web-accessibility)). La parte importante e' che l'elemento `.modal` e' _nascosto_ (`display:none`) al caricamento. Quando clicchi il `<button>`, la libreria JS vede `data-toggle="modal"` e determina che deve aprire la modal. Usa `data-target` per capire _quale_ modal aprire (quella con l'`id`), e la mostra. L'attribute `data-dismiss` nel button dentro la modal permette di chiuderla.
 
 <p class="alert alert-info">Il modo migliore per capire questi componenti e' partire dagli esempi in documentazione e poi analizzare ogni elemento e attribute. Leggi la documentazione!</p>
 

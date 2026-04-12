@@ -313,7 +313,7 @@ ul li:hover { }
 p:hover img { }
 ```
 
-<p class="alert alert-warning">Anche se e' carino, in generale modificare l'aspetto della pagina con `:hover` non e' una grande idea e va usato con parsimonia. `:hover` non e' accessibile (uno screen reader non puo' hoverare). `:hover` non funziona su dispositivi mobile (non puoi hoverare con il dito). E cambiare lo styling in hover -- in particolare se influisce sulle dimensioni -- puo' causare effetti a cascata sul resto della pagina, rendendola piu' difficile da leggere e usare.</p>
+<p class="alert alert-warning">Anche se e' carino, in generale modificare l'aspetto della pagina con `:hover` non e' una grande idea e va usato con parsimonia. `:hover` non funziona su dispositivi mobile (non puoi hoverare con il dito). E cambiare lo styling in hover -- in particolare se influisce sulle dimensioni -- puo' causare effetti a cascata sul resto della pagina, rendendola piu' difficile da leggere e usare.</p>
 
 Ci sono [molte pseudo-class supportate](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes), che vanno dalle interazioni utente allo stato dei form:
 
@@ -343,8 +343,7 @@ a:link {  }
 a:visited {  }
 
 /* Si applica agli elementi <a> che hanno focus. Puoi vedere il focus quando usi
-   il tasto `tab` per navigare una pagina.
-   Particolarmente rilevante per gli screen reader */
+   il tasto `tab` per navigare una pagina. */
 a:focus {  }
 
 /* Si applica agli elementi <a> mentre sono "activated" (per esempio, cliccati da uno user) */
@@ -360,7 +359,7 @@ a:link, a:visited, a:hover, a:focus, a:active {
 }
 ```
 
-<p class="alert alert-warning">Ricorda di impostare sempre sia `hover` _sia_ `focus`, per supportare l'accessibilita' delle persone che non possono usare un mouse.</p>
+<p class="alert alert-warning">Nota: l'importanza degli stati `:focus` per l'accessibilita' e' discussa nel capitolo [Accessibilita' dei siti web](#web-accessibility).</p>
 
 
 #### Pseudo-class di struttura dell'albero {-}

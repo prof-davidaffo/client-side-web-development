@@ -54,7 +54,7 @@ Altri components di base includono:
     <Image source={ require('./path/to/picture.png') }/>
     ```
 
-    Inoltre, dovresti sempre specificare una prop `accessibilityLabel` che indichi come l'immagine dovrebbe essere letta dagli _screen readers_ (si', esistono anche per dispositivi mobile! Anche le persone non vedenti usano i telefoni).
+    Per le considerazioni sull'accessibilita' e sulla corretta etichettatura degli elementi, vedi il capitolo [Accessibilita' dei siti web](#web-accessibility).
 
 
 ### Styling React Native {-}

@@ -90,7 +90,7 @@ li { /* applies to all <li> elements */
 
 Nell'esempio sopra, gli elementi `<li>` avranno un font piu' grande anche se una regola non applica quella property direttamente -- il parent `<ul>` riceve il valore, e i child `<li>` lo ereditano.
 
-Se lo styling del parent non e' stato specificato da te, l'elemento puo' comunque ereditare uno stile dal _browser built-in stylesheet_, spesso chiamato **user-agent stylesheet**. Questo e' lo styling "di default" che si applica agli elementi, ad esempio heading grandi e bold. Anche se molti browser hanno stylesheet simili, l'utente puo' modificarli (ad es. aumentando il font-size di default per accessibilita'). Quindi a volte devi stilizzare esplicitamente un elemento per sovrascrivere lo styling di default del browser.
+Se lo styling del parent non e' stato specificato da te, l'elemento puo' comunque ereditare uno stile dal _browser built-in stylesheet_, spesso chiamato **user-agent stylesheet**. Questo e' lo styling "di default" che si applica agli elementi, ad esempio heading grandi e bold. Anche se molti browser hanno stylesheet simili, l'utente puo' modificarli (ad es. aumentando il font-size di default). Quindi a volte devi stilizzare esplicitamente un elemento per sovrascrivere lo styling di default del browser.
 
 Se vuoi indicare esplicitamente che un elemento deve essere stilizzato come il parent, puoi dare a quella property il valore **`inherit`**. Se vuoi che un elemento usi il valore di default del browser, puoi usare **`initial`**. Questi valori sono utili quando vuoi "annullare" una regola piu' generale.
 
@@ -146,7 +146,7 @@ La maggior parte dei browser ha un font-size di default di `16px`, quindi `1em` 
 
 Per valori di lunghezza `0` (usati ad es. per padding o margin), ometti le unita' come ridondanti -- usa solo `0`, non `0px`.
 
-In generale, dovresti specificare i font-size con _unita' relative_ (ad es. `em`) -- questo supporta l'accessibilita', perche' utenti con impairment visivi possono aumentare il font-size di default e tutto il testo si adattera'. Le unita' assolute sono migliori per elementi che non scalano tra dispositivi (ad es. dimensioni delle immagini o la max-width del contenuto). Tuttavia, usare dimensioni relative permette a quei componenti di scalare col resto della pagina.
+In generale, dovresti specificare i font-size con _unita' relative_ (ad es. `em`) per favorire lo scaling del testo quando cambiano le preferenze del browser. Le unita' assolute sono migliori per elementi che non scalano tra dispositivi (ad es. dimensioni delle immagini o la max-width del contenuto). Tuttavia, usare dimensioni relative permette a quei componenti di scalare col resto della pagina.
 
 <p class="alert alert-success">I font-size dovrebbero essere sempre relativi (`em` o `rem`); le dimensioni di layout possono essere assolute (ma le unita' relative sono migliori).</p>
 
@@ -477,7 +477,7 @@ Oltre a `block` e `inline`, gli elementi possono avere `display: inline-block`. 
 
 ![Un esempio di un elemento con `display: inline-block`.](img/css/inline-block-example.png)
 
-La property `display` permette anche di rimuovere gli elementi dal flow con `none`. Questo rimuove l'elemento dal normal flow e anche dal contenuto letto da tecnologie assistive come gli screen reader.
+La property `display` permette anche di rimuovere gli elementi dal flow con `none`. Questo rimuove l'elemento dal normal flow e lo esclude dal rendering della pagina.
 
 ```css
 .hidden {

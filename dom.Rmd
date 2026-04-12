@@ -245,21 +245,7 @@ main.removeChild(main.querySelector('p'));
 Il metodo `appendChild()` e' considerato piu' pulito che modificare direttamente la property `innerHTML`, perche' permette di modificare il DOM tree senza cancellare cio' che c'era prima. Una pratica comune e' usare `document.createElement()` per creare un elemento _block_, poi impostare il `innerHTML` di quell'elemento con il suo contenuto (che puo' includere elementi _inline_), e infine usare `appendChild` per aggiungere il nuovo block element al tree nella posizione desiderata.
 
 ### Accessibility {-}
-Ogni volta che impari una nuova tecnologia, dovresti chiederti: **come influisce sull'accessibilita'?** Con il codice JavaScript che modifica il DOM renderizzato, e' possibile che il contenuto di una pagina cambi _dopo_ che e' stato letto da uno screen reader. E mentre un utente vedente probabilmente vedra' il cambiamento visivamente, uno screen reader non ha modo di sapere che qualcosa nella pagina e' diverso a meno che tu non glielo dica.
-
-Puoi far sapere agli screen reader che un elemento di una pagina potrebbe cambiare il suo contenuto _in futuro_ trasformando quell'elemento in una [ARIA Live Region](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions). Le live region vengono "osservate" dalle tecnologie assistive, e quando il contenuto cambia leggono il nuovo contenuto all'utente come se fosse letto per la prima volta.
-
-Rendi un elemento una live region assegnandogli l'attribute `aria-live`:
-
-```html
-<div aria-live="polite">
-  Questo contenuto puo' cambiare!
-</div>
-```
-
-Il value assegnato all'attribute `aria-live` e' il "politeness level", che specifica la priorita' con cui lo screen reader dovrebbe leggere il cambiamento. L'opzione piu' comune (che dovresti quasi sempre usare) e' `"polite"`, che indica che il testo cambiato verra' letto solo quando l'utente ha _messo in pausa_ cio' che e' attualmente in lettura. Un alert `"polite"` non interrompe il testo o la descrizione in corso, ma viene inserito quando c'e' una pausa (se la lettura corrente va avanti troppo a lungo, il nuovo contenuto non verra' letto).
-
-- L'altra opzione e' `"assertive"`, che indica che il nuovo contenuto va letto non appena cambia, interrompendo potenzialmente altri contenuti. Questo dovrebbe essere usato solo per informazioni importanti (come alerts, warnings o errors), perche' puo' interrompere il flusso dell'utente in modo molto disorientante. In breve: _sempre essere polite!_
+Le considerazioni sull'accessibilita' del contenuto dinamico (incluso `aria-live`) sono trattate nel capitolo [Accessibilita' dei siti web](#web-accessibility).
 
 
 ## Ascoltare gli Eventi
