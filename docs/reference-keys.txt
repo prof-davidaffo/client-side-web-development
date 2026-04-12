@@ -45,17 +45,6 @@ regole-pratiche
 verifica
 strumenti-automatici
 test-manuali
-progetto
-descrizione
-pagina-di-partenza
-audit
-strumenti-da-usare-in-ordine
-scheda-di-audit-da-compilare
-checklist-minima
-correzione
-consegna
-criteri-di-valutazione
-risorse
 html-fundamentals
 elementi-html
 nidificazione-di-elementi
