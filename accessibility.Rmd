@@ -1,17 +1,3 @@
----
-title: "Accessibilità dei siti web"
-subtitle: "Web Standards e Inclusive Design — Triennio Informatica"
-author: ""
-date: ""
-output:
-  html_document:
-    toc: true
-    toc_float: true
-    toc_depth: 3
-    theme: flatly
-    highlight: tango
----
-
 # Accessibilità dei siti web {#web-accessibility}
 
 I web standards fanno più che stabilire la sintassi corretta del codice HTML. Rendere un sito accessibile significa progettare e implementare pagine che possano essere usate da tutte le persone, incluse quelle che navigano con tecnologie assistive come screen reader, tastiera o altri strumenti alternativi.
