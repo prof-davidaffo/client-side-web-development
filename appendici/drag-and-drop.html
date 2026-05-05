@@ -1,0 +1,1059 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dispensa interattiva: HTML Drag and Drop API</title>
+  <style>
+    :root {
+      --bg: #f7f7f2;
+      --panel: #ffffff;
+      --ink: #1f2933;
+      --muted: #64748b;
+      --line: #d9ded7;
+      --green: #187a5b;
+      --green-soft: #dff3ea;
+      --blue: #255f85;
+      --blue-soft: #e3f0f7;
+      --red: #b84646;
+      --red-soft: #f8e5e5;
+      --yellow: #f5c542;
+      --code: #172033;
+      --code-soft: #23304a;
+      --shadow: 0 14px 34px rgba(31, 41, 51, 0.09);
+      color-scheme: light;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    code, pre {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    .app {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    aside {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: auto;
+      border-right: 1px solid var(--line);
+      background: #eef1e9;
+      padding: 24px 18px;
+    }
+
+    .brand {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .brand strong {
+      font-size: 1.05rem;
+    }
+
+    .brand span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .progress-shell {
+      height: 9px;
+      border-radius: 99px;
+      background: #d5dbd0;
+      overflow: hidden;
+      margin: 14px 0 6px;
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: var(--green);
+      transition: width 0.25s ease;
+    }
+
+    .progress-label {
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    nav {
+      display: grid;
+      gap: 6px;
+      margin-top: 24px;
+    }
+
+    nav a {
+      border-radius: 8px;
+      color: #344255;
+      padding: 9px 10px;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      background: #dde5d7;
+      outline: none;
+    }
+
+    main {
+      min-width: 0;
+    }
+
+    .hero {
+      display: grid;
+      gap: 18px;
+      min-height: 54vh;
+      align-content: center;
+      padding: 64px clamp(22px, 5vw, 72px) 42px;
+      background:
+        linear-gradient(120deg, rgba(24, 122, 91, 0.92), rgba(37, 95, 133, 0.83)),
+        url("HTML Drag and Drop API_files/colorpicker2000.png");
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+
+    .hero h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(2.2rem, 6vw, 5.3rem);
+      line-height: 0.96;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 0;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    button,
+    .button-link {
+      border: 0;
+      border-radius: 8px;
+      background: var(--green);
+      color: white;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      padding: 10px 14px;
+      text-decoration: none;
+      transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    button:hover,
+    .button-link:hover {
+      background: #12664b;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(31, 41, 51, 0.15);
+    }
+
+    button.secondary {
+      background: #e8eee5;
+      color: #21322c;
+    }
+
+    button.secondary:hover {
+      background: #dbe6d7;
+    }
+
+    .content {
+      display: grid;
+      gap: 22px;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 30px clamp(16px, 4vw, 42px) 70px;
+    }
+
+    section {
+      scroll-margin-top: 22px;
+      padding: 30px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    section:last-child {
+      border-bottom: 0;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: clamp(1.45rem, 2.4vw, 2.2rem);
+      letter-spacing: 0;
+      line-height: 1.1;
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    .lead {
+      max-width: 820px;
+      color: #405060;
+      font-size: 1.08rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .single-column {
+      grid-template-columns: 1fr;
+    }
+
+    .triple {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .note {
+      border-left: 5px solid var(--green);
+      background: var(--green-soft);
+      box-shadow: none;
+    }
+
+    .warning {
+      border-left: 5px solid var(--yellow);
+      background: #fff7db;
+      box-shadow: none;
+    }
+
+    .demo-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .drop-zone {
+      display: flex;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      gap: 10px;
+      min-height: 178px;
+      border: 2px dashed #a9b6aa;
+      border-radius: 8px;
+      background: #fbfcfa;
+      padding: 14px;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .drop-zone.is-over {
+      border-color: var(--green);
+      background: var(--green-soft);
+    }
+
+    .drag-item {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 120px;
+      min-height: 44px;
+      border: 1px solid #aeb8c2;
+      border-radius: 8px;
+      background: #ffffff;
+      box-shadow: 0 7px 18px rgba(31, 41, 51, 0.11);
+      color: #1f2933;
+      cursor: grab;
+      font-weight: 800;
+      padding: 9px 12px;
+      user-select: none;
+    }
+
+    .drag-item:active {
+      cursor: grabbing;
+    }
+
+    .drag-item.blue {
+      border-color: #91b5cc;
+      background: var(--blue-soft);
+    }
+
+    .drag-item.green {
+      border-color: #94c9b7;
+      background: var(--green-soft);
+    }
+
+    .drag-item.red {
+      border-color: #e0aaaa;
+      background: var(--red-soft);
+    }
+
+    .drag-item.small {
+      min-width: 0;
+      min-height: 38px;
+      font-size: 0.92rem;
+    }
+
+    .placeholder {
+      color: var(--muted);
+      font-size: 0.92rem;
+      width: 100%;
+    }
+
+    pre {
+      margin: 0;
+      overflow: auto;
+      border-radius: 8px;
+      background: var(--code);
+      color: #e9eef5;
+      padding: 16px;
+      font-size: 0.92rem;
+      line-height: 1.48;
+    }
+
+    .code-token {
+      color: #95d5b2;
+    }
+
+    .code-string {
+      color: #ffd166;
+    }
+
+    .code-comment {
+      color: #a7b0c0;
+    }
+
+    .inline-code {
+      border-radius: 6px;
+      background: #edf1f4;
+      color: #172033;
+      padding: 0.12rem 0.35rem;
+      font-size: 0.94em;
+    }
+
+    .event-flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      counter-reset: step;
+    }
+
+    .event-flow .card {
+      position: relative;
+      box-shadow: none;
+    }
+
+    .event-flow .card::before {
+      counter-increment: step;
+      content: counter(step);
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: white;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .step-list {
+      display: grid;
+      gap: 14px;
+      counter-reset: lesson-step;
+    }
+
+    .step-card {
+      display: grid;
+      grid-template-columns: 46px minmax(0, 1fr);
+      gap: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .step-card::before {
+      counter-increment: lesson-step;
+      content: counter(lesson-step);
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: white;
+      font-weight: 800;
+    }
+
+    .step-card h3 {
+      margin-top: 0;
+    }
+
+    .step-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .quiz {
+      display: grid;
+      gap: 10px;
+    }
+
+    .choice {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      padding: 12px;
+    }
+
+    .choice input {
+      margin-top: 5px;
+      accent-color: var(--green);
+    }
+
+    .feedback {
+      min-height: 28px;
+      border-radius: 8px;
+      padding: 9px 11px;
+      font-weight: 700;
+    }
+
+    .feedback:empty {
+      display: none;
+    }
+
+    .feedback.ok {
+      background: var(--green-soft);
+      color: #155c45;
+    }
+
+    .feedback.bad {
+      background: var(--red-soft);
+      color: var(--red);
+    }
+
+    .columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .match-layout {
+      display: grid;
+      gap: 16px;
+    }
+
+    .target-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .target {
+      min-height: 62px;
+      border: 2px dashed #aeb8c2;
+      border-radius: 8px;
+      background: white;
+      padding: 10px;
+    }
+
+    .target h3 {
+      color: var(--muted);
+      font-size: 0.92rem;
+      text-transform: uppercase;
+    }
+
+    .target.correct {
+      border-color: var(--green);
+      background: var(--green-soft);
+    }
+
+    .target.wrong {
+      border-color: var(--red);
+      background: var(--red-soft);
+    }
+
+    .fill-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .fill-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(160px, 260px);
+      gap: 10px;
+      align-items: center;
+    }
+
+    select {
+      width: 100%;
+      border: 1px solid #b7c0c9;
+      border-radius: 8px;
+      background: white;
+      color: var(--ink);
+      font: inherit;
+      padding: 10px 12px;
+    }
+
+    .checklist {
+      display: grid;
+      gap: 8px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .checklist li {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+    }
+
+    .checklist input {
+      margin-top: 5px;
+      accent-color: var(--green);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 99px;
+      background: #edf1f4;
+      color: #334155;
+      font-size: 0.82rem;
+      font-weight: 800;
+      padding: 4px 9px;
+    }
+
+    @media (max-width: 920px) {
+      .app {
+        display: block;
+      }
+
+      aside {
+        position: static;
+        height: auto;
+      }
+
+      nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .grid,
+      .triple,
+      .demo-layout,
+      .event-flow,
+      .columns,
+      .target-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero {
+        min-height: 62vh;
+        padding-top: 42px;
+      }
+
+      nav {
+        grid-template-columns: 1fr;
+      }
+
+      .fill-row {
+        grid-template-columns: 1fr;
+      }
+
+      .drag-item {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside aria-label="Navigazione dispensa">
+      <div class="brand">
+        <strong>HTML Drag and Drop API</strong>
+        <span>Drag and drop in HTML, con demo ed esercizi.</span>
+        <div class="progress-shell" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+        <span class="progress-label" id="progressLabel">0% completato</span>
+      </div>
+      <nav>
+        <a href="#obiettivi">Obiettivi</a>
+        <a href="#concetto">Concetto</a>
+        <a href="#demo">Demo guidata</a>
+        <a href="#eventi">Eventi chiave</a>
+        <a href="#esercizi">Esercizi</a>
+        <a href="#progetto">Mini progetto</a>
+        <a href="#riepilogo">Riepilogo</a>
+      </nav>
+    </aside>
+
+    <main>
+      <header class="hero">
+        <span class="tag">HTML + JavaScript</span>
+        <h1>Drag and Drop API</h1>
+        <p>Impara a rendere un elemento trascinabile, autorizzare una zona di rilascio e spostare nodi nel DOM usando gli eventi nativi del browser.</p>
+        <div class="hero-actions">
+          <a class="button-link" href="#demo">Vai alla demo</a>
+          <a class="button-link" href="#esercizi">Apri gli esercizi</a>
+        </div>
+      </header>
+
+      <div class="content">
+        <section id="obiettivi">
+          <h2>Obiettivi</h2>
+          <p class="lead">Obiettivo: costruire una piccola interfaccia in cui l'utente trascina elementi tra contenitori.</p>
+          <div class="grid triple">
+            <div class="card">
+              <h3>Rendere un elemento trascinabile</h3>
+              <p>Usare l'attributo <span class="inline-code">draggable="true"</span> sugli elementi che devono partire con un trascinamento.</p>
+            </div>
+            <div class="card">
+              <h3>Trasportare un riferimento</h3>
+              <p>Scrivere e leggere dati con <span class="inline-code">event.dataTransfer</span>, di solito salvando l'id dell'elemento.</p>
+            </div>
+            <div class="card">
+              <h3>Gestire il rilascio</h3>
+              <p>Consentire il drop con <span class="inline-code">preventDefault()</span> e poi spostare l'elemento nel contenitore di destinazione.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="concetto">
+          <h2>Il concetto in breve</h2>
+          <p>Il drag and drop è l'interazione con cui afferri un oggetto sullo schermo e lo rilasci altrove. In HTML non basta muovere il mouse: il browser deve sapere quale elemento può essere trascinato, quali zone accettano il rilascio e cosa fare quando il rilascio avviene.</p>
+          <div class="card note">
+            <h3>Schema mentale</h3>
+            <p><strong>Partenza:</strong> salvo cosa sto trascinando. <strong>Passaggio sopra la zona:</strong> autorizzo il drop. <strong>Rilascio:</strong> recupero il dato e aggiorno la pagina.</p>
+          </div>
+        </section>
+
+        <section id="demo">
+          <h2>Demo guidata</h2>
+          <p class="lead">Trascina il riquadro dentro l'area vuota. Questo è il caso minimo: un elemento che parte e un contenitore che lo riceve.</p>
+          <div class="demo-layout">
+            <div class="card">
+              <h3>Elemento</h3>
+              <div class="drop-zone" data-zone="source" aria-label="Elementi disponibili">
+                <div class="drag-item blue" id="demo-card-1" draggable="true">Trascinami</div>
+              </div>
+            </div>
+            <div class="card">
+              <h3>Area di rilascio</h3>
+              <div class="drop-zone" data-zone="target" aria-label="Area di destinazione">
+                <span class="placeholder">Rilascia qui.</span>
+              </div>
+            </div>
+          </div>
+          <div class="card note">
+            <h3>Cosa osservare</h3>
+            <p>Quando inizi a trascinare, il browser memorizza l'id del riquadro. Quando passi sopra l'area vuota, la pagina autorizza il rilascio. Quando lasci il mouse, il riquadro viene spostato dentro la nuova area.</p>
+          </div>
+        </section>
+
+        <section id="eventi">
+          <h2>Eventi e metodi chiave</h2>
+          <p class="lead">Un drag and drop funziona solo se prepari sia l'elemento che parte sia il contenitore che riceve. Segui questi passaggi nell'ordine.</p>
+          <div class="step-list">
+            <div class="step-card">
+              <div>
+                <h3>Decidi quale elemento si può trascinare</h3>
+                <p>Aggiungi <span class="inline-code">draggable="true"</span> all'elemento che l'utente deve afferrare. Senza questo attributo, un normale <span class="inline-code">div</span> o <span class="inline-code">p</span> non parte come oggetto trascinabile.</p>
+                <pre><code>&lt;div id="task-1" draggable="true"&gt;Studiare dragstart&lt;/div&gt;</code></pre>
+              </div>
+            </div>
+            <div class="step-card">
+              <div>
+                <h3>Quando parte il trascinamento, salva cosa stai spostando</h3>
+                <p><span class="inline-code">dragstartHandler</span> non è una funzione già esistente del browser: è un nome scelto da noi. Potresti chiamarla anche <span class="inline-code">iniziaTrascinamento</span>. Diventa utile solo quando la colleghi all'evento <span class="inline-code">dragstart</span>.</p>
+                <p>L'evento <span class="inline-code">dragstart</span> scatta appena inizi a trascinare. Qui salvi un dato dentro <span class="inline-code">dataTransfer</span>. Di solito salvi l'id dell'elemento, perché poi ti servirà per ritrovarlo nel DOM.</p>
+                <p>Nel nostro esempio non ci sono due tipi di elemento. C'è un solo elemento trascinato e salviamo una sola informazione: il suo id.</p>
+                <p><span class="inline-code">"text/plain"</span> non descrive l'elemento. Descrive il valore che stai mettendo in <span class="inline-code">dataTransfer</span>. Siccome l'id è una stringa, cioè testo normale, usiamo <span class="inline-code">"text/plain"</span>.</p>
+                <pre><code>event.dataTransfer.setData("text/plain", "task-1");</code></pre>
+                <p>Leggila così: "salva il testo <span class="inline-code">task-1</span> dentro il trasferimento". Quando fai il drop, chiedi indietro quel testo con <span class="inline-code">getData("text/plain")</span>.</p>
+                <pre><code>const elemento = document.getElementById("task-1");
+elemento.addEventListener("dragstart", dragstartHandler);
+
+function dragstartHandler(event) {
+  event.dataTransfer.setData("text/plain", event.currentTarget.id);
+}</code></pre>
+              </div>
+            </div>
+            <div class="step-card">
+              <div>
+                <h3>Quando passi sopra una zona, autorizza il rilascio</h3>
+                <p>Anche <span class="inline-code">dragoverHandler</span> è solo un nome scelto da noi. La funzione viene eseguita perché la colleghiamo alla zona con <span class="inline-code">addEventListener("dragover", ...)</span>.</p>
+                <p>Per impostazione predefinita il browser non permette di rilasciare elementi ovunque. Nell'evento <span class="inline-code">dragover</span> devi chiamare <span class="inline-code">preventDefault()</span>: è il segnale che quella zona accetta il drop.</p>
+                <pre><code>const zona = document.getElementById("area-drop");
+zona.addEventListener("dragover", dragoverHandler);
+
+function dragoverHandler(event) {
+  event.preventDefault();
+}</code></pre>
+              </div>
+            </div>
+            <div class="step-card">
+              <div>
+                <h3>Quando rilasci, recupera l'id e sposta l'elemento</h3>
+                <p><span class="inline-code">dropHandler</span> è un'altra funzione definita da noi e collegata all'evento <span class="inline-code">drop</span>. Il browser fornisce l'evento; noi decidiamo che codice eseguire quando quell'evento accade.</p>
+                <p>L'evento <span class="inline-code">drop</span> scatta nel momento del rilascio. Leggi il dato salvato con <span class="inline-code">getData("text/plain")</span>: devi usare lo stesso tipo che avevi usato in <span class="inline-code">setData()</span>. Poi trovi l'elemento con <span class="inline-code">document.getElementById()</span> e lo inserisci nella zona con <span class="inline-code">appendChild()</span>.</p>
+                <pre><code>zona.addEventListener("drop", dropHandler);
+
+function dropHandler(event) {
+  event.preventDefault();
+  const id = event.dataTransfer.getData("text/plain");
+  event.currentTarget.appendChild(document.getElementById(id));
+}</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="grid single-column">
+            <div class="card">
+              <h3>Esempio completo minimo</h3>
+              <pre><code><span class="code-token">const</span> elemento = document.getElementById(<span class="code-string">"task-1"</span>);
+<span class="code-token">const</span> zona = document.getElementById(<span class="code-string">"area-drop"</span>);
+
+elemento.addEventListener(<span class="code-string">"dragstart"</span>, dragstartHandler);
+zona.addEventListener(<span class="code-string">"dragover"</span>, dragoverHandler);
+zona.addEventListener(<span class="code-string">"drop"</span>, dropHandler);
+
+<span class="code-token">function</span> dragstartHandler(event) {
+  event.dataTransfer.setData(<span class="code-string">"text/plain"</span>, event.currentTarget.id);
+}
+
+<span class="code-token">function</span> dragoverHandler(event) {
+  event.preventDefault();
+}
+
+<span class="code-token">function</span> dropHandler(event) {
+  event.preventDefault();
+  <span class="code-token">const</span> id = event.dataTransfer.getData(<span class="code-string">"text/plain"</span>);
+  event.currentTarget.appendChild(document.getElementById(id));
+}</code></pre>
+            </div>
+            <div class="card">
+              <h3>Da ricordare</h3>
+              <p><span class="inline-code">dragstartHandler</span>, <span class="inline-code">dragoverHandler</span> e <span class="inline-code">dropHandler</span> sono nomi inventati da noi. Non fai override di funzioni native.</p>
+              <p><span class="inline-code">"text/plain"</span> non indica un tipo di elemento HTML. Indica il formato del dato salvato. Nel nostro caso il dato salvato è l'id, e l'id è testo.</p>
+              <p>Regola pratica: scrivi <span class="inline-code">"text/plain"</span> sia quando salvi sia quando leggi. Se salvi con <span class="inline-code">setData("text/plain", id)</span>, recuperi con <span class="inline-code">getData("text/plain")</span>.</p>
+              <p><span class="inline-code">dataTransfer</span> non sposta da solo l'elemento: serve solo a trasportare un'informazione durante il drag.</p>
+              <p><span class="inline-code">appendChild()</span> e il comando che sposta davvero il nodo dentro il nuovo contenitore.</p>
+              <p><span class="inline-code">currentTarget</span> indica l'elemento su cui hai collegato il listener. In una zona di drop è spesso più sicuro di <span class="inline-code">target</span>, che potrebbe essere un elemento interno.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="esercizi">
+          <h2>Esercizi</h2>
+          <div class="grid single-column">
+            <div class="card">
+              <h3>1. Quiz rapido</h3>
+              <div class="quiz" data-quiz="q1">
+                <p>Quale istruzione rende possibile il rilascio dentro una zona durante <span class="inline-code">dragover</span>?</p>
+                <label class="choice"><input type="radio" name="q1" value="a"> <span><span class="inline-code">event.preventDefault()</span></span></label>
+                <label class="choice"><input type="radio" name="q1" value="b"> <span><span class="inline-code">event.stopDrag()</span></span></label>
+                <label class="choice"><input type="radio" name="q1" value="c"> <span><span class="inline-code">element.draggable()</span></span></label>
+                <button type="button" data-check-quiz="q1">Controlla</button>
+                <div class="feedback" id="q1-feedback"></div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>2. Completa il codice</h3>
+              <div class="fill-grid">
+                <div class="fill-row">
+                  <code>event.dataTransfer.<strong>?</strong>("text/plain", event.currentTarget.id);</code>
+                  <select data-answer="setData">
+                    <option value="">Scegli</option>
+                    <option>appendChild</option>
+                    <option>setData</option>
+                    <option>querySelector</option>
+                  </select>
+                </div>
+                <div class="fill-row">
+                  <code><strong>?</strong>.preventDefault();</code>
+                  <select data-answer="event">
+                    <option value="">Scegli</option>
+                    <option>document</option>
+                    <option>event</option>
+                    <option>window</option>
+                  </select>
+                </div>
+                <div class="fill-row">
+                  <code>document.getElementById(id)</code>
+                  <select data-answer="trova">
+                    <option value="">Scegli</option>
+                    <option>trova l'elemento tramite id</option>
+                    <option>crea un nuovo elemento</option>
+                    <option>cancella il contenitore</option>
+                  </select>
+                </div>
+                <button type="button" id="checkFill">Verifica risposte</button>
+                <div class="feedback" id="fillFeedback"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>3. Abbina ogni pezzo alla fase corretta</h3>
+            <p>Trascina i frammenti nelle colonne giuste, poi controlla.</p>
+            <div class="match-layout">
+              <div>
+                <h3>Frammenti</h3>
+                <div class="drop-zone" id="match-source">
+                  <div class="drag-item small" draggable="true" data-match="start" id="match-1">setData("text/plain", id)</div>
+                  <div class="drag-item small" draggable="true" data-match="over" id="match-2">preventDefault()</div>
+                  <div class="drag-item small" draggable="true" data-match="drop" id="match-3">getData("text/plain")</div>
+                  <div class="drag-item small" draggable="true" data-match="html" id="match-4">draggable="true"</div>
+                </div>
+              </div>
+              <div class="target-grid">
+                <div class="target" data-expects="html">
+                  <h3>HTML</h3>
+                </div>
+                <div class="target" data-expects="start">
+                  <h3>dragstart</h3>
+                </div>
+                <div class="target" data-expects="over">
+                  <h3>dragover</h3>
+                </div>
+                <div class="target" data-expects="drop">
+                  <h3>drop</h3>
+                </div>
+              </div>
+            </div>
+            <div class="hero-actions">
+              <button type="button" id="checkMatch">Controlla abbinamenti</button>
+              <button type="button" class="secondary" id="resetMatch">Reset</button>
+            </div>
+            <div class="feedback" id="matchFeedback"></div>
+          </div>
+        </section>
+
+        <section id="progetto">
+          <h2>Mini progetto da 30 minuti</h2>
+          <p class="lead">Realizza a parte una piccola bacheca kanban in un file HTML autonomo.</p>
+          <div class="grid single-column">
+            <div class="card">
+              <h3>Consegna</h3>
+              <p>Crea un file chiamato <span class="inline-code">mini-kanban.html</span> con tre colonne: <strong>Da fare</strong>, <strong>In corso</strong>, <strong>Fatto</strong>. Inserisci almeno cinque attività trascinabili nella prima colonna e permetti di spostarle tra tutte le colonne.</p>
+            </div>
+            <div class="card">
+              <h3>Requisiti minimi</h3>
+              <ul>
+                <li>Ogni attività deve avere un <span class="inline-code">id</span> unico e <span class="inline-code">draggable="true"</span>.</li>
+                <li>Durante <span class="inline-code">dragstart</span> salva l'id dell'attività con <span class="inline-code">dataTransfer.setData()</span>.</li>
+                <li>Ogni colonna deve accettare il rilascio usando <span class="inline-code">dragover</span> e <span class="inline-code">preventDefault()</span>.</li>
+                <li>Nel <span class="inline-code">drop</span> recupera l'id con <span class="inline-code">getData()</span> e sposta l'attività nella colonna scelta.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Estensioni facoltative</h3>
+              <ul>
+                <li>Aggiungi un effetto visivo quando una card passa sopra una colonna.</li>
+                <li>Aggiungi un contatore di attività per ogni colonna.</li>
+                <li>Impedisci il rilascio fuori dalle colonne.</li>
+              </ul>
+            </div>
+            <div class="card note">
+              <h3>Obiettivo finale</h3>
+              <p>Il progetto è completo quando puoi aprire <span class="inline-code">mini-kanban.html</span> nel browser e spostare le attività avanti e indietro tra le tre colonne senza errori in console.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="riepilogo">
+          <h2>Riepilogo operativo</h2>
+          <div class="grid">
+            <div class="card">
+              <h3>Checklist</h3>
+              <ul class="checklist">
+                <li><input type="checkbox" class="progress-check"> <span>Ho capito a cosa serve <span class="inline-code">draggable="true"</span>.</span></li>
+                <li><input type="checkbox" class="progress-check"> <span>So usare <span class="inline-code">setData()</span> e <span class="inline-code">getData()</span>.</span></li>
+                <li><input type="checkbox" class="progress-check"> <span>Ricordo che il drop richiede <span class="inline-code">preventDefault()</span> in <span class="inline-code">dragover</span>.</span></li>
+                <li><input type="checkbox" class="progress-check"> <span>Ho letto la consegna del mini progetto.</span></li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Errori comuni</h3>
+              <p><strong>Dimenticare <span class="inline-code">preventDefault()</span>:</strong> il browser non considera valida la zona di rilascio.</p>
+              <p><strong>Usare id duplicati:</strong> <span class="inline-code">getElementById()</span> restituisce un solo elemento, quindi gli id devono essere unici.</p>
+              <p><strong>Appendere su <span class="inline-code">target</span> senza controllo:</strong> se il drop avviene sopra un figlio, potresti spostare l'elemento nel punto sbagliato. Usa <span class="inline-code">currentTarget</span> quando colleghi listener alla zona.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const state = {
+      quizDone: false,
+      fillDone: false,
+      matchDone: false
+    };
+
+    function setDragHandlers(root = document) {
+      root.querySelectorAll("[draggable='true']").forEach((item) => {
+        item.addEventListener("dragstart", (event) => {
+          event.dataTransfer.setData("text/plain", event.currentTarget.id);
+          event.dataTransfer.effectAllowed = "move";
+        });
+      });
+    }
+
+    function setupDropZone(zone) {
+      zone.addEventListener("dragover", (event) => {
+        event.preventDefault();
+        zone.classList.add("is-over");
+      });
+
+      zone.addEventListener("dragleave", (event) => {
+        if (!zone.contains(event.relatedTarget)) {
+          zone.classList.remove("is-over");
+        }
+      });
+
+      zone.addEventListener("drop", (event) => {
+        event.preventDefault();
+        zone.classList.remove("is-over");
+        const id = event.dataTransfer.getData("text/plain");
+        const dragged = document.getElementById(id);
+        if (!dragged) return;
+        const placeholder = zone.querySelector(".placeholder");
+        if (placeholder) placeholder.remove();
+        zone.appendChild(dragged);
+      });
+    }
+
+    document.querySelectorAll(".drop-zone, .target").forEach(setupDropZone);
+    setDragHandlers();
+
+    function setFeedback(element, ok, message) {
+      element.className = "feedback " + (ok ? "ok" : "bad");
+      element.textContent = message;
+    }
+
+    function updateProgress() {
+      const checks = Array.from(document.querySelectorAll(".progress-check"));
+      const checked = checks.filter((item) => item.checked).length;
+      const exerciseScore = [state.quizDone, state.fillDone, state.matchDone].filter(Boolean).length;
+      const total = checks.length + 3;
+      const done = checked + exerciseScore;
+      const percentage = Math.round((done / total) * 100);
+      document.getElementById("progressBar").style.width = percentage + "%";
+      document.getElementById("progressLabel").textContent = percentage + "% completato";
+    }
+
+    document.querySelectorAll(".progress-check").forEach((item) => {
+      item.addEventListener("change", updateProgress);
+    });
+
+    document.querySelector("[data-check-quiz='q1']").addEventListener("click", () => {
+      const selected = document.querySelector("input[name='q1']:checked");
+      const feedback = document.getElementById("q1-feedback");
+      if (!selected) {
+        setFeedback(feedback, false, "Seleziona una risposta.");
+        return;
+      }
+      const ok = selected.value === "a";
+      state.quizDone = ok;
+      setFeedback(feedback, ok, ok ? "Corretto: il comportamento predefinito va annullato." : "Non ancora: cerca il metodo che annulla il comportamento predefinito.");
+      updateProgress();
+    });
+
+    document.getElementById("checkFill").addEventListener("click", () => {
+      const selects = Array.from(document.querySelectorAll("[data-answer]"));
+      const expected = {
+        setData: "setData",
+        event: "event",
+        trova: "trova l'elemento tramite id"
+      };
+      const ok = selects.every((select) => select.value === expected[select.dataset.answer]);
+      state.fillDone = ok;
+      setFeedback(
+        document.getElementById("fillFeedback"),
+        ok,
+        ok ? "Tutto corretto." : "C'e almeno una risposta da rivedere."
+      );
+      updateProgress();
+    });
+
+    const matchSource = document.getElementById("match-source");
+    const initialMatchItems = Array.from(matchSource.children);
+
+    document.getElementById("checkMatch").addEventListener("click", () => {
+      let correct = 0;
+      const targets = Array.from(document.querySelectorAll(".target[data-expects]"));
+      targets.forEach((target) => {
+        target.classList.remove("correct", "wrong");
+        const item = target.querySelector(".drag-item");
+        const ok = item && item.dataset.match === target.dataset.expects;
+        if (ok) correct += 1;
+        target.classList.add(ok ? "correct" : "wrong");
+      });
+      const ok = correct === targets.length;
+      state.matchDone = ok;
+      setFeedback(
+        document.getElementById("matchFeedback"),
+        ok,
+        ok ? "Abbinamenti corretti." : "Corrette " + correct + " su " + targets.length + "."
+      );
+      updateProgress();
+    });
+
+    document.getElementById("resetMatch").addEventListener("click", () => {
+      initialMatchItems.forEach((item) => matchSource.appendChild(item));
+      document.querySelectorAll(".target").forEach((target) => {
+        target.classList.remove("correct", "wrong");
+      });
+      document.getElementById("matchFeedback").textContent = "";
+      state.matchDone = false;
+      updateProgress();
+    });
+
+    updateProgress();
+  </script>
+</body>
+</html>

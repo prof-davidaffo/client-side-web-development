@@ -1,1 +1,5 @@
-# (APPENDICE) Appendici e argomenti speciali {-}
+# Appendici e argomenti speciali
+
+## Dispense standalone
+
+- [Drag and Drop API](appendici/drag-and-drop.html)

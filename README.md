@@ -22,6 +22,19 @@ You will _also_ need to install node dependencies for Prism syntax highlighting:
 npm install
 ```
 
+You can install the R packages used by the book into a local user library with:
+
+```bash
+make install-r-deps
+```
+
+By default this uses `~/R/library`, matching the `Makefile`. To use a different
+library path, run for example:
+
+```bash
+make install-r-deps R_LIBS=~/some/other/R/library
+```
+
 ## Building the Book
 You can use the included [`Makefile`](https://en.wikipedia.org/wiki/Makefile) to build the book:
 

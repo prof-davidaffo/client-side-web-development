@@ -41,7 +41,6 @@ rmd_files:
   - firebase.Rmd
 
   ## Special Topics
-  - appendix.Rmd
   - code-style-guide.Rmd
   - jest.Rmd
   - webpack.Rmd
@@ -49,4 +48,4 @@ rmd_files:
   - css-in-js.Rmd
   - redux.Rmd
   - react-native.Rmd
-  - rapid-frontend-liceo.Rmd
+  - appendix.Rmd
